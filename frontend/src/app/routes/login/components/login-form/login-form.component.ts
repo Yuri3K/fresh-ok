@@ -6,6 +6,7 @@ import { FormControlEmailComponent } from '../../../../shared/ui-elems/forms/for
 import { TranslateModule } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../../../../core/services/api.service';
+import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-login-form',
@@ -23,11 +24,12 @@ export class LoginFormComponent {
   private router = inject(Router)
   private fb = inject(FormBuilder)
   private apiService = inject(ApiService)
+  private authService = inject(AuthService)
 
   submitting = signal(false)
   loginForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required]]
+    email: ['testuser@gmail.com', [Validators.required, Validators.email]],
+    password: ['123456', [Validators.required]]
   })
 
   get emailControl(): FormControl<string> {
@@ -39,6 +41,12 @@ export class LoginFormComponent {
   }
 
   onSubmit() {
+    if(this.loginForm.invalid) {
+      return
+    }
 
+    const formData = this.loginForm.value
+
+    this.authService.signInWithEmailAndPassword(formData.email!, formData.password!)
   }
 }

@@ -17,7 +17,7 @@ import { LoginFormComponent } from "./components/login-form/login-form.component
     ReactiveFormsModule,
     GoToRegisterComponent,
     LoginFormComponent
-],
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -30,7 +30,7 @@ export class LoginComponent {
       this.authSetvice.signInWithGoogle()
       this.router.navigate(['/home'])
     } catch (err) {
-      console.error('Login error', err)
+      console.error('Login error wit Google account', err)
     }
   }
 }

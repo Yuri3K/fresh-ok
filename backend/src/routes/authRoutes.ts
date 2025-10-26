@@ -1,8 +1,9 @@
 import express from 'express'
-import { registerUser } from '../controllers/authController'
+import { checkEmailExists, registerUser } from '../controllers/authController'
 
 const router = express.Router()
 
 router.post('/', registerUser)
+router.post('/check-email', checkEmailExists)
 
 export default router

@@ -9,7 +9,8 @@
         "enter-email": "Enter your email",
         "email-hint": "Hint: example@gmail.com",
         "email-error-required": "Please enter email",
-        "email-error-invalid": "Please enter correct email"
+        "email-error-invalid": "Please enter correct email",
+        "email-error-exists": "This email is already registered."
       },
       "pwd": {
         "enter-pwd": "Enter your password",
@@ -47,6 +48,7 @@
   },
   "register-page": {
     "title": "Sign up",
+    "register-error": "Failed to register user \"{{email}}\"",
     "go-to-login": {
       "prefix": "Already have account? Go to ",
       "link": "login",

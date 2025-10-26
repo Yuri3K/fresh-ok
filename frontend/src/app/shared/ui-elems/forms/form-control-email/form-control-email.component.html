@@ -33,4 +33,10 @@
     </mat-error>
   }
 
+  @if(emailControl.hasError('emailExists')) {
+    <mat-error>
+      {{'common.forms.email.email-error-exists' | translate}}
+    </mat-error>
+  }
+
 </mat-form-field>

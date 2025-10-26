@@ -39,13 +39,23 @@ export class LangsService {
         .pipe(
           tap(langs => {
             this.setLangs(langs)
-            const langsMap = new Map()
-            langs.forEach(lang => langsMap.set(lang.browserLang, lang.name))
-            const browserLang = this.translateService.getBrowserLang()
-            const existingLang = langsMap.get(browserLang) ?? 'en-US'
-            this.translateService.use(existingLang)
+            this.setInitialLanguage(langs)
           }),
         )
     }
+  }
+
+  private setInitialLanguage(langs: Lang[]) {
+    const browserLang = this.translateService.getBrowserLang();
+
+    const matchedLang = langs.find(lang => lang.browserLang === browserLang);
+
+    const langToUse =
+      matchedLang?.name ??
+      this.translateService.currentLang ??
+      this.translateService.defaultLang ??
+      'en-US';
+
+    this.translateService.use(langToUse);
   }
 }

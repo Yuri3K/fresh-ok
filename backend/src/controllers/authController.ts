@@ -35,6 +35,28 @@ const registerUser = async (req: Request, res: Response) => {
 
 }
 
+const checkEmailExists = async (req: Request, res: Response) => {
+  const {email} = req.body
+
+  if(!email) return
+
+  try {
+    const usersRef = db.collection('users')
+    const snapshot = await usersRef.where('email', '==', email.toLowerCase()).get()
+
+    if(!snapshot.empty) {
+      return res.json({exists: true})
+    } 
+    
+    return res.json({exists: false})
+
+  } catch (err: any) {
+    console.error("Error checking email:", err)
+    return res.status(500).json({error: err.message})
+  }
+}
+
 export {
-  registerUser
+  registerUser,
+  checkEmailExists
 }
