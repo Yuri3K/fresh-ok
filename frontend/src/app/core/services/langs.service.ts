@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable, of, tap } from 'rxjs';
+import { BehaviorSubject, Observable, of, tap } from 'rxjs';
 import { ApiService } from './api.service';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -19,7 +19,7 @@ export class LangsService {
   private readonly langsSubject = new BehaviorSubject<Lang[]>([])
   langs$ = this.langsSubject.asObservable()
 
-  constructor() {
+  init() {
     this.getLangsFromDb().subscribe()
   }
 

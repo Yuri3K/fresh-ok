@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express"
 import { admin } from "../config/firebaseAdmin"
 import { DecodedIdToken } from "firebase-admin/auth";
 
-interface AuthRequest extends Request {
+export interface AuthRequest extends Request {
     user?: DecodedIdToken;
 }
 

@@ -77,7 +77,6 @@ export class RegisterFormComponent implements OnInit {
           const message = this.translateService.instant('register-page.register-error', {
             email: formData.email
           })
-          console.log("🔸 message:", message)
           this.snackbarService.openSnackBar(message)
           console.log("error register user", err)
         }

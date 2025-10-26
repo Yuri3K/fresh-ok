@@ -44,22 +44,7 @@ export class AppComponent implements OnInit {
   definedLang$!: Observable<string>
 
   ngOnInit(): void {
+    this.langsService.init()
     this.switchModeService.init()
   }
-
-  // defineLang() {
-  //   this.definedLang$ = this.langs$
-  //     .pipe(
-  //       map(langs => {
-  //         const processedLangs = new Map()
-  //         langs.forEach(lang => processedLangs.set(lang.browserLang, lang.name))
-  //         const browserLang = this.translateService.getBrowserLang()
-  //         const existingLang = processedLangs.get(browserLang) ?? 'en-US'
-  //         console.log("🔸 existingLang:", existingLang)
-  //         this.translateService.use(existingLang)
-  //         return existingLang
-  //       })
-  //     )
-  // }
-
 }

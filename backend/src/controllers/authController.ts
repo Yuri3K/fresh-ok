@@ -1,5 +1,7 @@
 import { Request, Response } from "express"
 import {admin, db} from '../config/firebaseAdmin'
+import { AuthRequest } from "../utils/verify-token"
+import { error } from "console"
 
 const registerUser = async (req: Request, res: Response) => {
   const {email, password, displayName} = req.body 
@@ -32,7 +34,43 @@ const registerUser = async (req: Request, res: Response) => {
     console.log("Error registered User", err)
     res.status(500).json({error: err.message})
   }
+}
 
+const registerGoogleUser = async(req: Request, res: Response) => {
+  const authReq = req as AuthRequest;
+  const user = authReq.user
+
+  if(!user) {
+    return res.status(400).json({error: 'Unauthorized'})
+  }
+
+  const {uid, email, name, picture} = user
+
+  try {
+    const userRef = db.collection('users').doc(uid)
+    const userDoc = await userRef.get()
+
+    if(!userDoc.exists) {
+      const authUser = await admin.auth().getUser(uid)
+      const displayName = authUser.displayName || name || 'No Name'
+
+      await userRef.set({
+        uid,
+        email, 
+        displayName,
+        role: 'customer',
+        createdAt: admin.firestore.FieldValue.serverTimestamp()
+      })
+
+      await admin.auth().setCustomUserClaims(uid, {role: 'customer'})
+    }
+
+    res.status(200).json({result: 'ok'})
+
+  } catch (err: any) {
+    console.log('Error registering Google user:', err)
+    res.status(500).json({error: err.message})
+  }
 }
 
 const checkEmailExists = async (req: Request, res: Response) => {
@@ -58,5 +96,6 @@ const checkEmailExists = async (req: Request, res: Response) => {
 
 export {
   registerUser,
-  checkEmailExists
+  checkEmailExists,
+  registerGoogleUser
 }

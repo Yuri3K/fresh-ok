@@ -18,19 +18,19 @@ export class AuthService {
   user$ = this.userSubject.asObservable()
   authInitializing$ = this.authInitializingSubject.asObservable()
 
-  constructor() { 
+  constructor() {
     onAuthStateChanged(firebaseAuth, user => {
-      console.log("🔸 user:", user)
       this.userSubject.next(user)
       this.authInitializingSubject.next(false)
 
-      if(user) {
-        const currentUrl = this.router.url
-        if(currentUrl == '/login') {
-          this.router.navigate(['/home'])
+      const currentUrl = this.router.url;
+
+      if (user) {
+        if (currentUrl === '/login' || currentUrl === '/register' || currentUrl === '/') {
+          this.router.navigate(['/home']);
         }
       } else {
-        this.router.navigate(['/login'])
+        this.router.navigate(['/login']);
       }
     })
   }
@@ -42,6 +42,13 @@ export class AuthService {
   async signInWithGoogle(): Promise<void> {
     const provider = new GoogleAuthProvider()
     await signInWithPopup(firebaseAuth, provider)
+
+
+    try {
+      this.apiService.post('/register/googleUser', {}).subscribe()
+    } catch (err) {
+      console.error('Error registering Google user:', err);
+    }
   }
 
   // Метод для выхода
