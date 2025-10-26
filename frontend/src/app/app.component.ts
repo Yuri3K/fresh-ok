@@ -10,6 +10,8 @@ import {
   style,
   animate,
 } from '@angular/animations';
+import { LangsService } from './core/services/langs.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -35,11 +37,29 @@ import {
 export class AppComponent implements OnInit {
   private readonly switchModeService = inject(SwitchModeService)
   private readonly authService = inject(AuthService)
+  private readonly langsService = inject(LangsService)
 
   readonly authInitializing$ = this.authService.authInitializing$
+
+  definedLang$!: Observable<string>
 
   ngOnInit(): void {
     this.switchModeService.init()
   }
+
+  // defineLang() {
+  //   this.definedLang$ = this.langs$
+  //     .pipe(
+  //       map(langs => {
+  //         const processedLangs = new Map()
+  //         langs.forEach(lang => processedLangs.set(lang.browserLang, lang.name))
+  //         const browserLang = this.translateService.getBrowserLang()
+  //         const existingLang = processedLangs.get(browserLang) ?? 'en-US'
+  //         console.log("🔸 existingLang:", existingLang)
+  //         this.translateService.use(existingLang)
+  //         return existingLang
+  //       })
+  //     )
+  // }
 
 }

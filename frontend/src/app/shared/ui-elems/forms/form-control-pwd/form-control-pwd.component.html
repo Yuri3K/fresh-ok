@@ -1,0 +1,53 @@
+<mat-form-field
+  appearance="outline"
+  class="form-control"
+>
+  @if(label){
+    <mat-label>{{label}}</mat-label>
+  }
+
+  <input
+    matInput
+    [type]="isPwdHide() ? 'password' : 'text'"
+    [formControl]="pwdControl"
+    autocomplete="off"
+  >
+
+  @if(hint) {
+    <mat-hint>{{hint}}</mat-hint>
+  }
+
+  <button
+    class="register__pwd-btn"
+    matIconButton
+    matSuffix
+    (click)="togglePwdVisibility($event)"
+    [attr.aria-label]="isPwdHide() ? 
+      ('common.forms.pwd.show-pwd' | translate) : 
+      ('common.forms.pwd.hide-pwd' | translate)"
+    [matTooltip]="isPwdHide() ? 
+      ('common.forms.pwd.show-pwd' | translate) : 
+      ('common.forms.pwd.hide-pwd' | translate)"
+    [attr.aria-pressed]="isPwdHide()"
+  >
+    <mat-icon>{{isPwdHide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+  </button>
+
+  @if (pwdControl.hasError('required') && pwdControl.touched) {
+    <mat-error>
+      {{'common.forms.pwd.pwd-error-required' | translate}}
+    </mat-error>
+  } 
+
+  @if (pwdControl.hasError('minlength') && pwdControl.touched) {
+    <mat-error>
+      {{
+        'common.forms.pwd.pwd-error-minlength' | translate : {
+          minlength: pwdControl.getError('minlength').requiredLength,
+          currentlength: pwdControl.getError('minlength').actualLength
+        }
+      }}
+    </mat-error>
+  }
+
+</mat-form-field>

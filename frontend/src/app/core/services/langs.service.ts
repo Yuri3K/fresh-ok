@@ -1,10 +1,12 @@
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of, tap } from 'rxjs';
+import { BehaviorSubject, map, Observable, of, tap } from 'rxjs';
 import { ApiService } from './api.service';
+import { TranslateService } from '@ngx-translate/core';
 
 export interface Lang {
   id: string
   name: string
+  browserLang: string
 }
 
 @Injectable({
@@ -12,6 +14,7 @@ export interface Lang {
 })
 export class LangsService {
   private readonly apiService = inject(ApiService)
+  private readonly translateService = inject(TranslateService)
 
   private readonly langsSubject = new BehaviorSubject<Lang[]>([])
   langs$ = this.langsSubject.asObservable()
@@ -29,11 +32,20 @@ export class LangsService {
   }
 
   private getLangsFromDb(): Observable<Lang[]> {
-    if(this.langs.length) {
+    if (this.langs.length) {
       return of(this.langs)
     } else {
-      return this.apiService.get<Lang[]>('/langs')
-        .pipe(tap(langs => this.setLangs(langs)))
+      return this.apiService.getWithoutToken<Lang[]>('/langs')
+        .pipe(
+          tap(langs => {
+            this.setLangs(langs)
+            const langsMap = new Map()
+            langs.forEach(lang => langsMap.set(lang.browserLang, lang.name))
+            const browserLang = this.translateService.getBrowserLang()
+            const existingLang = langsMap.get(browserLang) ?? 'en-US'
+            this.translateService.use(existingLang)
+          }),
+        )
     }
   }
 }

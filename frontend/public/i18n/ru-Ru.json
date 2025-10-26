@@ -1,9 +1,56 @@
 {
-  "hello": "Привет",
-    "header": {
-    "user": {
-      "alt": "Аватар"
+  "hello": "Hello",
+  "common": {
+    "close": "Close",
+    "logout": "logOut",
+    "login": "logIn",
+    "forms": {
+      "email": {
+        "enter-email": "Введите email",
+        "email-hint": "Пример: example@gmail.com",
+        "email-error-required": "Пожалуйста, введите email",
+        "email-error-invalid": "Пожалуйста, введите правильный email"
+      },
+      "pwd": {
+        "enter-pwd": "Введите пароль",
+        "show-pwd": "Показать пароль",
+        "hide-pwd": "Скрыть палоль",
+        "pwd-hint": "Пример: должен содержать не менее 6 симвотов",
+        "pwd-error-required": "Пожалуйста, введите пароль",
+        "pwd-error-minlength": "Пароль должен содержать не менее {{minlength}} символов. Сейчас символов: {{currentlength}}."
+      },
+      "name": {
+        "enter-nick": "Введите имя",
+        "nick-placeholder": "Пример: User",
+        "nick-hint": "Подсказка: должен содержать не менее 2 символов",
+        "nick-error-required": "Пожалуйста, введите имя",
+        "nick-error-minlength": "Имя должно содержать не менее {{minlength}} символов. Сейчас символов: {{currentlength}}."
+      }
     }
   },
-  "": ""
+  "header": {
+    "user": {
+      "alt": "Avatar",
+      "greetings": "Hi, {{name}}",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service"
+    }
+  },
+  "login-page": {
+    "title": "Войти",
+    "login-with-google": "Продолжить с Google",
+    "go-to-register": {
+      "prefix": "Еще не зарегистрированы? Перейти на страницу",
+      "link": "регистрации",
+      "suffix": "."
+    }
+  },
+  "register-page": {
+    "title": "Sign up",
+    "go-to-login": {
+      "prefix": "Already have account? Go to ",
+      "link": "login",
+      "suffix": " page."
+    }
+  }
 }

@@ -3,7 +3,30 @@
   "common": {
     "close": "Close",
     "logout": "logOut",
-    "login": "logIn"
+    "login": "logIn",
+    "forms": {
+      "email": {
+        "enter-email": "Enter your email",
+        "email-hint": "Hint: example@gmail.com",
+        "email-error-required": "Please enter email",
+        "email-error-invalid": "Please enter correct email"
+      },
+      "pwd": {
+        "enter-pwd": "Enter your password",
+        "show-pwd": "Show password",
+        "hide-pwd": "Hide password",
+        "pwd-hint": "Hint: must be at least 6 characters long",
+        "pwd-error-required": "Please enter password",
+        "pwd-error-minlength": "Password must be at least {{minlength}} symbols. Now is {{currentlength}} symbol(s)"
+      },
+      "name": {
+        "enter-nick": "Enter nickname",
+        "nick-placeholder": "Ex: User",
+        "nick-hint": "Hint: must be at least 2 characters long",
+        "nick-error-required": "Please enter nickname",
+        "nick-error-minlength": "Nickname must be at least {{minlength}} symbols. Now is {{currentlength}} symbol"
+      }
+    }
   },
   "header": {
     "user": {
@@ -15,25 +38,19 @@
   },
   "login-page": {
     "title": "Login",
-    "login-with-google": "Sign in with Google"
+    "login-with-google": "Continue with Google",
+    "go-to-register": {
+      "prefix": "Not registered yet? Go to ",
+      "link": "register",
+      "suffix": " page."
+    }
   },
   "register-page": {
-    "title": "Sign In",
-    "enter-nick":"Enter nickname",
-    "nick-placeholder":"User",
-    "nick-hint":"Hint: must be at least 2 characters long",
-    "nick-error-required":"Please enter nickname",
-    "nick-error-minlength":"Nickname must be at least {{minlength}} symbols. Now is {{currentlength}} symbol",
-    "enter-email":"Enter your email",
-    "email-placeholder":"example@gmail.com",
-    "email-hint":"Hint: example@gmail.ru",
-    "email-error-required":"Please enter email",
-    "email-error-not-email":"Please enter correct email",
-    "enter-pwd":"Enter your password",
-    "show-pwd":"Show password",
-    "hide-pwd":"Hide password",
-    "pwd-hint":"Hint: must be at least 6 characters long",
-    "pwd-error-required":"Please enter password",
-    "pwd-error-minlength":"Password must be at least {{minlength}} symbols. Now is {{currentlength}} symbol(s)"
+    "title": "Sign up",
+    "go-to-login": {
+      "prefix": "Already have account? Go to ",
+      "link": "login",
+      "suffix": " page."
+    }
   }
 }

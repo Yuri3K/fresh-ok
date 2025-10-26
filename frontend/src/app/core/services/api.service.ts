@@ -1,7 +1,7 @@
 import { HttpClient, HttpContext } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { catchError, Observable, take, throwError } from 'rxjs';
+import { catchError, Observable, of, take, throwError } from 'rxjs';
 import { SKIP_AUTH } from '../interceptors/auth-context';
 
 @Injectable({
@@ -41,6 +41,11 @@ export class ApiService {
   }
 
   postWithoutToken<T>(url: string, body: any): Observable<T> {
+    console.log("🔸 body:", body)
+    console.log("🔸 url:", url)
+    console.log("🔸 `${this.serverUrl}${url}`:", `${this.serverUrl}${url}`)
+    
+    // return of(null as T)
     return this.handle(this.http.post<T>(`${this.serverUrl}${url}`, body, {
       context: new HttpContext().set(SKIP_AUTH, true)
     }))

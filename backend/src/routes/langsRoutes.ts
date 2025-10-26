@@ -1,10 +1,10 @@
 import express from 'express'
-import langsController from '../controllers/langsController'
+import {getLangs} from '../controllers/langsController'
 import verifyToken from '../utils/verify-token'
 
 
 const router = express.Router()
 
-router.get('/langs', verifyToken, langsController.getLangs)
+router.get('/', getLangs)
 
 export default router

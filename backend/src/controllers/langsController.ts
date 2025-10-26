@@ -13,6 +13,6 @@ const getLangs = async (req: Request, res: Response) => {
   }
 }
 
-export default {
+export {
   getLangs
 }

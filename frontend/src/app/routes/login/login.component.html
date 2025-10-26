@@ -2,10 +2,15 @@
   <app-h2-title 
     [text]="'login-page.title' | translate"
   />
+
+  <app-login-form />
+
   
   <app-btn-flat 
     [btnText]="'login-page.login-with-google' | translate"
     iconName="login"
     (click)="loginWithGoogle()"
   />
+
+  <app-go-to-register />
 </div>

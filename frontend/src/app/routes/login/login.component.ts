@@ -4,14 +4,20 @@ import { Router } from '@angular/router';
 import { H2TitleComponent } from "../../shared/ui-elems/typography/h2-title/h2-title.component";
 import { TranslateModule } from '@ngx-translate/core';
 import { BtnFlatComponent } from '../../shared/ui-elems/buttons/btn-flat/btn-flat.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { GoToRegisterComponent } from './components/go-to-register/go-to-register.component';
+import { LoginFormComponent } from "./components/login-form/login-form.component";
 
 @Component({
   selector: 'app-login',
   imports: [
     H2TitleComponent,
     TranslateModule,
-    BtnFlatComponent
-  ],
+    BtnFlatComponent,
+    ReactiveFormsModule,
+    GoToRegisterComponent,
+    LoginFormComponent
+],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -26,5 +32,5 @@ export class LoginComponent {
     } catch (err) {
       console.error('Login error', err)
     }
-  } 
+  }
 }

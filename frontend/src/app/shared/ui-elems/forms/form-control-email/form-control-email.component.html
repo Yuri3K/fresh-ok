@@ -1,0 +1,36 @@
+<mat-form-field
+  appearance="outline"
+  class="form-control"
+>
+  @if(label) {
+    <mat-label>{{label}}</mat-label>
+  }
+
+  <input 
+    matInput 
+    type="'text" 
+    [placeholder]="placeholder"
+    [formControl]="emailControl"
+  >
+  
+  <mat-icon matSuffix>
+    email
+  </mat-icon>
+
+  @if(hint) {
+    <mat-hint>{{hint}}</mat-hint>
+  }
+
+  @if(emailControl.hasError('required') && emailControl.touched){
+    <mat-error>
+      {{'common.forms.email.email-error-required' | translate}}
+    </mat-error>
+  }
+
+  @if(emailControl.hasError('email') && emailControl.touched) {
+    <mat-error>
+      {{'common.forms.email.email-error-invalid' | translate}}
+    </mat-error>
+  }
+
+</mat-form-field>
