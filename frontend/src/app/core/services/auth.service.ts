@@ -43,9 +43,8 @@ export class AuthService {
     const provider = new GoogleAuthProvider()
     await signInWithPopup(firebaseAuth, provider)
 
-
     try {
-      this.apiService.post('/register/googleUser', {}).subscribe()
+      this.apiService.post('/register-user/with-google', {}).subscribe()
     } catch (err) {
       console.error('Error registering Google user:', err);
     }

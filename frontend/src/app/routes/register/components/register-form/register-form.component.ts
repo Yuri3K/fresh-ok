@@ -7,11 +7,12 @@ import { BtnFlatComponent } from '../../../../shared/ui-elems/buttons/btn-flat/b
 import { ApiService } from '../../../../core/services/api.service';
 import { Router } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { emailExistsValidator } from '../../../../core/valodators/email-exists.validator';
+import { emailExistsValidator } from '../../../../core/validators/email-exists.validator';
 import { SnackbarService } from '../../../../core/services/snackbar.service';
 import { finalize } from 'rxjs';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { LoaderComponent } from '../../../../shared/components/loader/loader.component';
+import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-register-form',
@@ -33,6 +34,7 @@ export class RegisterFormComponent implements OnInit {
   private apiService = inject(ApiService)
   private snackbarService = inject(SnackbarService)
   private translateService = inject(TranslateService)
+  private authService = inject(AuthService)
 
 
   submitting = signal(false)
@@ -71,18 +73,17 @@ export class RegisterFormComponent implements OnInit {
     const formData = this.registerForm.value
     const auth = getAuth()
 
-    this.apiService.postWithoutToken('/register', formData)
+    this.apiService.postWithoutToken('/register-user', formData)
       .pipe(
         finalize(() => {
-          this.registerForm.reset()
           this.submitting.set(false)
         })
       ).subscribe({
         next: async (res: any) => {
           if (res.result == 'ok') {
+            this.registerForm.reset()
             try {
-              await signInWithEmailAndPassword(
-                auth,
+              this.authService.signInWithEmailAndPassword(
                 formData.email!,
                 formData.password!
               )

@@ -11,7 +11,7 @@ export function emailExistsValidator(apiService: ApiService): AsyncValidatorFn {
       return timer(400)
         .pipe(
           switchMap(() => {
-            return apiService.postWithoutToken('/register/check-email', {email: control.value})
+            return apiService.postWithoutToken('/register-user/check-email', {email: control.value})
             .pipe(
               map((res: any) => {
                 return res.exists ? {emailExists: true} : null

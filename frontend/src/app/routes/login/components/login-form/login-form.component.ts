@@ -4,8 +4,6 @@ import { BtnFlatComponent } from '../../../../shared/ui-elems/buttons/btn-flat/b
 import { FormControlPasswordComponent } from '../../../../shared/ui-elems/forms/form-control-pwd/form-control-pwd.component';
 import { FormControlEmailComponent } from '../../../../shared/ui-elems/forms/form-control-email/form-control-email.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { Router } from '@angular/router';
-import { ApiService } from '../../../../core/services/api.service';
 import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
@@ -21,9 +19,7 @@ import { AuthService } from '../../../../core/services/auth.service';
   styleUrl: './login-form.component.scss'
 })
 export class LoginFormComponent {
-  private router = inject(Router)
   private fb = inject(FormBuilder)
-  private apiService = inject(ApiService)
   private authService = inject(AuthService)
 
   submitting = signal(false)

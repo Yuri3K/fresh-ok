@@ -6,6 +6,6 @@ const router = express.Router()
 
 router.post('/', registerUser)
 router.post('/check-email', checkEmailExists)
-router.post('/googleUser', verifyToken, registerGoogleUser)
+router.post('/with-google', verifyToken, registerGoogleUser)
 
 export default router

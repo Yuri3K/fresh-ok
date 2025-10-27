@@ -20,7 +20,6 @@ export class GoogleBtnComponent {
   async loginWithGoogle() {
     try {
       this.authSetvice.signInWithGoogle()
-      this.router.navigate(['/home'])
     } catch (err) {
       console.error('Login error wit Google account', err)
     }
