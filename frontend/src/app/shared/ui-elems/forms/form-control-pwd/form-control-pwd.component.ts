@@ -5,7 +5,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslateModule } from '@ngx-translate/core';
-import { BtnIconComponent } from '../../buttons/btn-icon/btn-icon.component';
 
 @Component({
   selector: 'app-form-control-pwd',
@@ -16,7 +15,6 @@ import { BtnIconComponent } from '../../buttons/btn-icon/btn-icon.component';
     MatIconModule,
     TranslateModule,
     MatTooltipModule,
-    BtnIconComponent
   ],
   templateUrl: './form-control-pwd.component.html',
   styleUrls: ['./form-control-pwd.component.scss', '../form-control.scss']

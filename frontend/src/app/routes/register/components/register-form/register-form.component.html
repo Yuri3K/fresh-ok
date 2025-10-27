@@ -1,27 +1,33 @@
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register__form">
-  <app-form-control-name 
-    [nameControl]="displayNameControl"
-    [label]="'common.forms.name.enter-nick' | translate"
-    [hint]="'common.forms.name.nick-hint' | translate"
-    [placeholder]="'common.forms.name.nick-placeholder' | translate"
-    suffixIcon="person"
-  />
+@if(submitting()) {
+  <app-loader />
+} @else {
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register__form">
+    <app-form-control-name 
+      [nameControl]="displayNameControl"
+      [label]="'common.forms.name.enter-nick' | translate"
+      [hint]="'common.forms.name.nick-hint' | translate"
+      [placeholder]="'common.forms.name.nick-placeholder' | translate"
+      suffixIcon="person"
+    />
 
-  <app-form-control-email 
-    [emailControl]="emailControl"
-    [label]="'common.forms.email.enter-email' | translate"
-    [hint]="'common.forms.email.email-hint' | translate"
-  />
+    <app-form-control-email 
+      [emailControl]="emailControl"
+      [label]="'common.forms.email.enter-email' | translate"
+      [hint]="'common.forms.email.email-hint' | translate"
+    />
 
-  <app-form-control-pwd 
-    [pwdControl]="passwordControl"
-    [label]="'common.forms.pwd.enter-pwd' | translate"
-    [hint]="'common.forms.pwd.pwd-hint' | translate"
-  />
+    <app-form-control-pwd 
+      [pwdControl]="passwordControl"
+      [label]="'common.forms.pwd.enter-pwd' | translate"
+      [hint]="'common.forms.pwd.pwd-hint' | translate"
+    />
 
-  <app-btn-flat 
-    [btnText]="'register-page.title' | translate"
-    type="submit"
-    [btnDisabled]="registerForm.invalid"
-  />
-</form>
+    <app-btn-flat 
+      [btnText]="'register-page.title' | translate"
+      type="submit"
+      [btnDisabled]="registerForm.invalid"
+    />
+  </form>
+}
+
+

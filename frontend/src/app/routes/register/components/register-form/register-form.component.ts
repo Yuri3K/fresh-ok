@@ -9,6 +9,9 @@ import { Router } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { emailExistsValidator } from '../../../../core/valodators/email-exists.validator';
 import { SnackbarService } from '../../../../core/services/snackbar.service';
+import { finalize } from 'rxjs';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { LoaderComponent } from '../../../../shared/components/loader/loader.component';
 
 @Component({
   selector: 'app-register-form',
@@ -18,7 +21,8 @@ import { SnackbarService } from '../../../../core/services/snackbar.service';
     FormControlPasswordComponent,
     FormControlEmailComponent,
     FormControlNameComponent,
-    TranslateModule
+    TranslateModule,
+    LoaderComponent
   ],
   templateUrl: './register-form.component.html',
   styleUrl: './register-form.component.scss'
@@ -29,6 +33,7 @@ export class RegisterFormComponent implements OnInit {
   private apiService = inject(ApiService)
   private snackbarService = inject(SnackbarService)
   private translateService = inject(TranslateService)
+
 
   submitting = signal(false)
   registerForm = this.fb.group({
@@ -62,15 +67,29 @@ export class RegisterFormComponent implements OnInit {
 
   onSubmit() {
     if (this.registerForm.invalid) return
-
+    this.submitting.set(true)
     const formData = this.registerForm.value
+    const auth = getAuth()
 
     this.apiService.postWithoutToken('/register', formData)
-      .subscribe({
-        next: (res: any) => {
+      .pipe(
+        finalize(() => {
+          this.registerForm.reset()
+          this.submitting.set(false)
+        })
+      ).subscribe({
+        next: async (res: any) => {
           if (res.result == 'ok') {
-            this.registerForm.reset()
-            this.router.navigate(['/login'])
+            try {
+              await signInWithEmailAndPassword(
+                auth,
+                formData.email!,
+                formData.password!
+              )
+            } catch (loginErr) {
+              console.error('Auto-login failed:', loginErr);
+              this.router.navigate(['/login']);
+            }
           }
         },
         error: err => {
