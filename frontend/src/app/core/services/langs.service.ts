@@ -28,7 +28,6 @@ export class LangsService {
   }
 
   private setLangs(langs: Lang[]) {
-    console.log("🔸 langs:", langs)
     this.langsSubject.next(langs)
   }
 
@@ -57,7 +56,6 @@ export class LangsService {
       this.translateService.defaultLang ??
       'en-US';
 
-    console.log("🔸 langToUse:", langToUse)
     this.translateService.use(langToUse);
   }
 }

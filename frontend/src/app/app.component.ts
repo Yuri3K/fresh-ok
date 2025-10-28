@@ -10,10 +10,8 @@ import {
   style,
   animate,
 } from '@angular/animations';
-import { Lang, LangsService } from './core/services/langs.service';
+import { LangsService } from './core/services/langs.service';
 import { Observable } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
-
 @Component({
   selector: 'app-root',
   imports: [

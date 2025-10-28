@@ -5,7 +5,7 @@ import { firebaseAuth } from '../firebase.client';
 import { Router } from '@angular/router';
 import { ApiService } from './api.service';
 import { SnackbarService } from './snackbar.service';
-import { TranslateService } from '@ngx-translate/core';
+// import { TranslateService } from '@ngx-translate/core';
 
 export interface dbUser {
   uid: string
@@ -22,7 +22,7 @@ export class AuthService {
   private readonly router = inject(Router)
   private readonly apiService = inject(ApiService)
   private readonly snackbarService = inject(SnackbarService)
-  private readonly translateService = inject(TranslateService)
+  // private readonly translateService = inject(TranslateService)
 
   private readonly authUserSubject = new BehaviorSubject<User | null | undefined>(undefined)
   private readonly dbUserSubject = new BehaviorSubject<dbUser | null>(null)
@@ -40,12 +40,12 @@ export class AuthService {
       const currentUrl = this.router.url;
 
       if (user) {
-        // this.fetchDbUser()
-          // .subscribe(() => {
+        this.fetchDbUser()
+          .subscribe(() => {
             if (currentUrl === '/login' || currentUrl === '/register' || currentUrl === '/') {
               this.router.navigate(['/home']);
             }
-          // })
+          })
       } else {
         this.router.navigate(['/login']);
       }
@@ -58,8 +58,8 @@ export class AuthService {
       tap((user => this.dbUserSubject.next(user))),
       catchError((err) => {
         console.log('Error fetching current user', err)
-        const errorMessage = this.translateService.instant('errors.fetch-collection-user')
-        this.snackbarService.openSnackBar(errorMessage)
+        // const errorMessage = this.translateService.instant('errors.fetch-collection-user')
+        // this.snackbarService.openSnackBar(errorMessage)
         return throwError(() => err)
       })
     )
