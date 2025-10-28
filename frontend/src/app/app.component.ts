@@ -10,8 +10,9 @@ import {
   style,
   animate,
 } from '@angular/animations';
-import { LangsService } from './core/services/langs.service';
+import { Lang, LangsService } from './core/services/langs.service';
 import { Observable } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -39,7 +40,7 @@ export class AppComponent implements OnInit {
   private readonly authService = inject(AuthService)
   private readonly langsService = inject(LangsService)
 
-  readonly authInitializing$ = this.authService.authInitializing$
+  readonly authInitializing$: Observable<boolean> = this.authService.authInitializing$
 
   definedLang$!: Observable<string>
 

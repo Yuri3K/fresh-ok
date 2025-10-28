@@ -28,6 +28,7 @@ export class LangsService {
   }
 
   private setLangs(langs: Lang[]) {
+    console.log("🔸 langs:", langs)
     this.langsSubject.next(langs)
   }
 
@@ -38,8 +39,8 @@ export class LangsService {
       return this.apiService.getWithoutToken<Lang[]>('/langs')
         .pipe(
           tap(langs => {
-            this.setLangs(langs)
             this.setInitialLanguage(langs)
+            this.setLangs(langs)
           }),
         )
     }
@@ -56,6 +57,7 @@ export class LangsService {
       this.translateService.defaultLang ??
       'en-US';
 
+    console.log("🔸 langToUse:", langToUse)
     this.translateService.use(langToUse);
   }
 }

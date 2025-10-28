@@ -29,6 +29,9 @@
       }
     }
   },
+  "errors": {
+    "fetch-collection-user": "Error occured while fetching user from collection"
+  },
   "header": {
     "user": {
       "alt": "Avatar",
