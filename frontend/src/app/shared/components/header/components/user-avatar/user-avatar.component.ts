@@ -51,6 +51,6 @@ export class UserAvatarComponent {
   }
 
   logout() {
-    this.authService.logout()
+    this.authService.logout().subscribe()
   }
 }

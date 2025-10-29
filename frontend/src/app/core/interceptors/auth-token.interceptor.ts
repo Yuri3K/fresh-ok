@@ -39,12 +39,12 @@ export const authTokenInterceptor: HttpInterceptorFn = (
                         const retried = req.clone({ setHeaders: { Authorization: `Bearer ${newToken}` } })
                         return next(retried)
                       }
-                      authService.logout()
+                      authService.logout().subscribe()
                       router.navigate(['/login']);
                       return throwError(() => err);
                     }),
                     catchError(() => {
-                      authService.logout()
+                      authService.logout().subscribe()
                       router.navigate(['/login']);
                       return throwError(() => err);
                     })

@@ -13,7 +13,7 @@ function checkAuth(): Observable<boolean | UrlTree> {
       take(1),
       map(user => {
         if (user) return true;
-        authService.logout()
+        authService.logout().subscribe()
         return router.parseUrl('/login'); // безопасный редирект через UrlTree
       })
     )
