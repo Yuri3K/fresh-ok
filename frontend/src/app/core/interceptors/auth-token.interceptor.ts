@@ -20,7 +20,7 @@ export const authTokenInterceptor: HttpInterceptorFn = (
     return next(req)
   }
 
-  return from(authService.getIdToken(false))
+  return authService.getIdToken(false)
     .pipe(
       switchMap(token => {
         const authReq = token
@@ -32,7 +32,7 @@ export const authTokenInterceptor: HttpInterceptorFn = (
             catchError((err: unknown) => {
               const httpErr = err as HttpErrorResponse
               if (httpErr.status === 401) {
-                return from(authService.getIdToken(true))
+                return authService.getIdToken(true)
                   .pipe(
                     switchMap(newToken => {
                       if (newToken) {

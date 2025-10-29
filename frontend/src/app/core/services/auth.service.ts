@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
-import { GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, User } from 'firebase/auth';
-import { BehaviorSubject, catchError, map, Observable, tap, throwError } from 'rxjs';
+import { GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, User, UserCredential } from 'firebase/auth';
+import { BehaviorSubject, catchError, from, map, Observable, of, switchMap, tap, throwError } from 'rxjs';
 import { firebaseAuth } from '../firebase.client';
 import { Router } from '@angular/router';
 import { ApiService } from './api.service';
@@ -30,6 +30,7 @@ export class AuthService {
 
   user$ = this.authUserSubject.asObservable()
   role$ = this.dbUserSubject.pipe(map(u => u?.role || null))
+  permissions$ = this.dbUserSubject.pipe(map(u => u?.permissions || null))
   authInitializing$ = this.authInitializingSubject.asObservable()
 
   constructor() {
@@ -54,41 +55,58 @@ export class AuthService {
 
   private fetchDbUser(): Observable<dbUser> {
     return this.apiService.get<dbUser>('/users/me')
-    .pipe(
-      tap((user => this.dbUserSubject.next(user))),
-      catchError((err) => {
-        console.log('Error fetching current user', err)
-        // const errorMessage = this.translateService.instant('errors.fetch-collection-user')
-        // this.snackbarService.openSnackBar(errorMessage)
-        return throwError(() => err)
-      })
-    )
+      .pipe(
+        tap((user => this.dbUserSubject.next(user))),
+        catchError((err) => {
+          console.log('Error fetching current user', err)
+
+          // const errorMessage = this.translateService.instant('errors.fetch-collection-user')
+          // this.snackbarService.openSnackBar(errorMessage)
+          return throwError(() => err)
+        })
+      )
   }
 
-  async signInWithEmailAndPassword(email: string, password: string): Promise<void> {
-    await signInWithEmailAndPassword(firebaseAuth, email, password)
+  signInWithEmailAndPassword(email: string, password: string): Observable<UserCredential> {
+    return from(signInWithEmailAndPassword(firebaseAuth, email, password))
+      .pipe(
+        catchError(error => {
+          console.error('Login error:', error);
+          throw error;
+        })
+      )
   }
 
-  async signInWithGoogle(): Promise<void> {
+  signInWithGoogle(): Observable<UserCredential | null> {
     const provider = new GoogleAuthProvider()
-    await signInWithPopup(firebaseAuth, provider)
 
-    try {
-      this.apiService.post('/register-user/with-google', {}).subscribe()
-    } catch (err) {
-      console.error('Error registering Google user:', err);
-    }
+    return from(signInWithPopup(firebaseAuth, provider))
+      .pipe(
+        switchMap(() =>
+          this.apiService.post<UserCredential>('/register-user/with-google', {})
+        ),
+        catchError(err => {
+          console.error('Error registering Google user:', err);
+          return of(null)
+        })
+      )
   }
 
   // Метод для выхода
-  async logout(): Promise<void> {
-    await signOut(firebaseAuth)
+  logout(): Observable<void> {
+    return from(signOut(firebaseAuth))
+      .pipe(
+        tap(() => {
+          this.authUserSubject.next(null)
+          this.dbUserSubject.next(null)
+        })
+      )
   }
 
   // Получить текущий idToken для отправки на бэкенд
-  async getIdToken(forceRefresh = false): Promise<string | null> {
+  getIdToken(forceRefresh = false): Observable<string | null> {
     const user = firebaseAuth.currentUser
-    return user ? user.getIdToken(forceRefresh) : null
+    return user ? from(user.getIdToken(forceRefresh)) : of(null)
   }
 
   // Быстрая проверка авторизации

@@ -1,22 +1,27 @@
-<form 
-  [formGroup]="loginForm"
-  (ngSubmit)="onSubmit()"
-  class="login__form"
->
-  <app-form-control-email 
-    [emailControl]="emailControl"
-    [hint]="'common.forms.email.email-hint' | translate"
-    [label]="'common.forms.email.enter-email' | translate"
-  />
+@if(submitting()) {
+  <app-loader />
+} @else {
+  <form 
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit()"
+    class="login__form"
+  >
+    <app-form-control-email 
+      [emailControl]="emailControl"
+      [hint]="'common.forms.email.email-hint' | translate"
+      [label]="'common.forms.email.enter-email' | translate"
+    />
+  
+    <app-form-control-pwd 
+      [pwdControl]="passwordControl"
+      [label]="'common.forms.pwd.enter-pwd' | translate"
+    />
+  
+    <app-btn-flat 
+      [btnText]="'login-page.title' | translate"
+      type="submit"
+      [btnDisabled]="loginForm.invalid"
+    />
+  </form>
+}
 
-  <app-form-control-pwd 
-    [pwdControl]="passwordControl"
-    [label]="'common.forms.pwd.enter-pwd' | translate"
-  />
-
-  <app-btn-flat 
-    [btnText]="'login-page.title' | translate"
-    type="submit"
-    [btnDisabled]="loginForm.invalid"
-  />
-</form>

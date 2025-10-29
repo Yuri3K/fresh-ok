@@ -10,7 +10,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { emailExistsValidator } from '../../../../core/validators/email-exists.validator';
 import { SnackbarService } from '../../../../core/services/snackbar.service';
 import { finalize } from 'rxjs';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
 import { LoaderComponent } from '../../../../shared/components/loader/loader.component';
 import { AuthService } from '../../../../core/services/auth.service';
 
@@ -82,15 +82,10 @@ export class RegisterFormComponent implements OnInit {
         next: async (res: any) => {
           if (res.result == 'ok') {
             this.registerForm.reset()
-            try {
-              this.authService.signInWithEmailAndPassword(
-                formData.email!,
-                formData.password!
-              )
-            } catch (loginErr) {
-              console.error('Auto-login failed:', loginErr);
-              this.router.navigate(['/login']);
-            }
+            this.authService.signInWithEmailAndPassword(
+              formData.email!,
+              formData.password!
+            ).subscribe()
           }
         },
         error: err => {

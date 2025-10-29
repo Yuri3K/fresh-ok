@@ -5,6 +5,8 @@ import { FormControlPasswordComponent } from '../../../../shared/ui-elems/forms/
 import { FormControlEmailComponent } from '../../../../shared/ui-elems/forms/form-control-email/form-control-email.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { AuthService } from '../../../../core/services/auth.service';
+import { LoaderComponent } from '../../../../shared/components/loader/loader.component';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-login-form',
@@ -14,6 +16,7 @@ import { AuthService } from '../../../../core/services/auth.service';
     FormControlPasswordComponent,
     FormControlEmailComponent,
     TranslateModule,
+    LoaderComponent,
   ],
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.scss'
@@ -40,9 +43,12 @@ export class LoginFormComponent {
     if(this.loginForm.invalid) {
       return
     }
+    this.submitting.set(true)
 
     const formData = this.loginForm.value
 
     this.authService.signInWithEmailAndPassword(formData.email!, formData.password!)
+    .pipe(finalize(() => this.submitting.set(false)))
+    .subscribe()
   }
 }
