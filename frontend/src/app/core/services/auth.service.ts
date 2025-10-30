@@ -67,6 +67,52 @@ export class AuthService {
       )
   }
 
+  /**
+   * Проверка роли пользователя
+   */
+  hasRole(roles: string[]): boolean {
+    const user = this.dbUserSubject.getValue()
+
+    if (!user || !user.role) {
+      this.logout().subscribe()
+      return false
+    }
+
+    // если роли не переданы — доступ открыт
+    if (!roles || roles.length === 0) {
+      return true
+    }
+
+    return roles.includes(user.role)
+  }
+
+  /**
+   * Проверка разрешений пользователя
+   * @param permissionsRequired — массив разрешений для проверки
+   * @param mode — 'any' (хватает одного) или 'all' (нужны все); по умолчанию 'any'
+   */
+  hasPermission(permissionsRequired: string[], permissionsMode: 'all' | 'any' = 'any'): boolean {
+    const user = this.dbUserSubject.getValue()
+
+    if (!user) {
+      this.logout().subscribe()
+      return false
+    }
+
+    const userPermissions = user.permissions ?? []
+
+    // если доступы не переданы — доступ открыт
+    if(!permissionsRequired || permissionsRequired.length == 0) {
+      return true
+    }
+
+    if(permissionsMode === 'all') {
+      return permissionsRequired.every(p => userPermissions.includes(p))
+    } else {
+      return permissionsRequired.some(p => userPermissions.includes(p))
+    }
+  }
+
   signInWithEmailAndPassword(email: string, password: string): Observable<UserCredential> {
     return from(signInWithEmailAndPassword(firebaseAuth, email, password))
       .pipe(
