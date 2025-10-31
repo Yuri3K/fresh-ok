@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express"
 import { admin, db } from "../config/firebaseAdmin"
 import { DecodedIdToken } from "firebase-admin/auth";
+import { DEFAULT_ROLE } from "../controllers/authController";
 
 export interface AuthRequest extends Request {
   user?: DecodedIdToken & {
@@ -24,12 +25,19 @@ export default async function verifyToken(req: Request, res: Response, next: Nex
 
   try {
     const decoded = await admin.auth().verifyIdToken(idToken)
-    const userDoc = await db.collection('users').doc(decoded.uid).get()
-    const userData = userDoc.data()
+
+    // ПРОВЕРКА РОЛИ И ПРАВ ИЗ DECODED ТОКЕНА (Custom Claims)
+    const userRole = decoded.role
+    const userPermissuins = decoded.permissions
+
+    if(!userRole) {
+      return res.status(403).send("Token is missing role. Please re-authenticate.")
+    }
+
     authReq.user = {
       ...decoded,
-      role: userData?.role ?? 'customer',
-      permissions: userData?.permissions ?? []
+      role: userRole ?? DEFAULT_ROLE,
+      permissions: userPermissuins ?? []
     }
     next()
   } catch (err) {

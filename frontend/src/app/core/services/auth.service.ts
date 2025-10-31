@@ -55,6 +55,15 @@ export class AuthService {
     })
   }
 
+  private refreshAndFetchUser(userCredential: UserCredential): Observable<UserCredential> {
+    // Принудительно обновляем ID-токен (чтобы получить актуальные claims)
+    return from(userCredential.user.getIdToken(true))
+      .pipe(
+        switchMap(() => this.fetchDbUser()),
+        map(() => userCredential)
+      )
+  }
+
   private fetchDbUser(): Observable<dbUser> {
     return this.apiService.get<dbUser>('/users/me')
       .pipe(
@@ -118,6 +127,7 @@ export class AuthService {
   signInWithEmailAndPassword(email: string, password: string): Observable<UserCredential> {
     return from(signInWithEmailAndPassword(firebaseAuth, email, password))
       .pipe(
+        switchMap(userCredential => this.refreshAndFetchUser(userCredential)),
         catchError(error => {
           console.error('Login error:', error);
           throw error;
@@ -130,9 +140,11 @@ export class AuthService {
 
     return from(signInWithPopup(firebaseAuth, provider))
       .pipe(
-        switchMap(() =>
+        switchMap((userCredential) =>
           this.apiService.post<UserCredential>('/register-user/with-google', {})
+          .pipe(map(() => userCredential))
         ),
+        switchMap(userCredential => this.refreshAndFetchUser(userCredential)),
         catchError(err => {
           console.error('Error registering Google user:', err);
           return of(null)

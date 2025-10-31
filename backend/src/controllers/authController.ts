@@ -2,6 +2,18 @@ import { Request, Response } from "express"
 import {admin, db} from '../config/firebaseAdmin'
 import { AuthRequest } from "../utils/verify-token"
 
+export const DEFAULT_ROLE = 'customer'
+
+async function getPermissionsByRole(role: string) {
+  const roleDoc = await db.collection('roles').doc(role).get()
+  const permissions = roleDoc.exists ?
+    roleDoc.data()?.permissions :
+    []
+
+    return permissions
+
+}
+
 const registerUser = async (req: Request, res: Response) => {
   const {email, password, displayName} = req.body 
 
@@ -15,15 +27,21 @@ const registerUser = async (req: Request, res: Response) => {
       email, password, displayName
     })
 
+    const permissions = getPermissionsByRole(DEFAULT_ROLE)
+
     // Устанавливаем кастомную роль (в claims)
-    await admin.auth().setCustomUserClaims(newUser.uid, {role: 'customer'})
+    await admin.auth().setCustomUserClaims(newUser.uid, {
+      role: DEFAULT_ROLE,
+      permissions: permissions
+    })
 
     // Добавляем в Firestore DB коллекцию users
     await db.collection('users').doc(newUser.uid).set({
       uid: newUser.uid,
       email,
       displayName,
-      role: 'customer',
+      role: DEFAULT_ROLE,
+      permissions: permissions,
       createdAt: admin.firestore.FieldValue.serverTimestamp()
     })
 
@@ -52,16 +70,21 @@ const registerGoogleUser = async(req: Request, res: Response) => {
     if(!userDoc.exists) {
       const authUser = await admin.auth().getUser(uid)
       const displayName = authUser.displayName || name || 'No Name'
+      const permissions = getPermissionsByRole(DEFAULT_ROLE)
 
       await userRef.set({
         uid,
         email, 
         displayName,
-        role: 'customer',
+        role: DEFAULT_ROLE,
+        permissions: permissions,
         createdAt: admin.firestore.FieldValue.serverTimestamp()
       })
 
-      await admin.auth().setCustomUserClaims(uid, {role: 'customer'})
+      await admin.auth().setCustomUserClaims(uid, {
+        role: DEFAULT_ROLE,
+        permissions: permissions
+      })
     }
 
     res.status(200).json({result: 'ok'})
