@@ -1,7 +1,6 @@
 import { Request, Response } from "express"
 import {admin, db} from '../config/firebaseAdmin'
 import { AuthRequest } from "../utils/verify-token"
-import { error } from "console"
 
 const registerUser = async (req: Request, res: Response) => {
   const {email, password, displayName} = req.body 

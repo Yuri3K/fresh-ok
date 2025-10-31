@@ -1,1 +1,15 @@
-<p>public-layout works!</p>
+<div class="container">
+  <app-header (toggleSidenav)="sidenav.toggle()"/>
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav [mode]="'side'">
+      <p>PUBLIC SIDENAV</p>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <main>
+        <router-outlet />
+      </main>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+</div>

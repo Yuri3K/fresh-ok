@@ -37,8 +37,6 @@ export class ApiService {
   }
 
   post<T>(url: string,  body: any): Observable<T> {
-      console.log("🔸 url:", url)
-
     return this.handle(this.http.post<T>(`${this.serverUrl}${url}`, body))
   }
 

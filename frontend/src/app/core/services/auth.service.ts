@@ -35,21 +35,23 @@ export class AuthService {
 
   constructor() {
     onAuthStateChanged(firebaseAuth, user => {
+      console.log("🔸 user:", user)
+
       this.authUserSubject.next(user)
       this.authInitializingSubject.next(false)
 
       const currentUrl = this.router.url;
 
-      if (user) {
-        this.fetchDbUser()
-          .subscribe(() => {
-            if (currentUrl === '/login' || currentUrl === '/register' || currentUrl === '/') {
-              this.router.navigate(['/home']);
-            }
-          })
-      } else {
-        this.router.navigate(['/login']);
-      }
+      // if (user) {
+      //   this.fetchDbUser()
+      //     .subscribe(() => {
+      //       if (currentUrl === '/login' || currentUrl === '/register' || currentUrl === '/') {
+      //         this.router.navigate(['/home']);
+      //       }
+      //     })
+      // } else {
+      //   this.router.navigate(['/login']);
+      // }
     })
   }
 
@@ -102,11 +104,11 @@ export class AuthService {
     const userPermissions = user.permissions ?? []
 
     // если доступы не переданы — доступ открыт
-    if(!permissionsRequired || permissionsRequired.length == 0) {
+    if (!permissionsRequired || permissionsRequired.length == 0) {
       return true
     }
 
-    if(permissionsMode === 'all') {
+    if (permissionsMode === 'all') {
       return permissionsRequired.every(p => userPermissions.includes(p))
     } else {
       return permissionsRequired.some(p => userPermissions.includes(p))
