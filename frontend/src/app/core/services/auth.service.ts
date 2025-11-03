@@ -5,6 +5,7 @@ import { firebaseAuth } from '../firebase.client';
 import { Router } from '@angular/router';
 import { ApiService } from './api.service';
 import { SnackbarService } from './snackbar.service';
+import { environment } from '../../../environments/environment';
 // import { TranslateService } from '@ngx-translate/core';
 
 export interface dbUser {
@@ -40,20 +41,38 @@ export class AuthService {
       this.authUserSubject.next(user)
       this.authInitializingSubject.next(false)
 
-      const currentUrl = this.router.url;
-
-      // if (user) {
-      //   this.fetchDbUser()
-      //     .subscribe(() => {
-      //       if (currentUrl === '/login' || currentUrl === '/register' || currentUrl === '/') {
-      //         this.router.navigate(['/home']);
-      //       }
-      //     })
-      // } else {
-      //   this.router.navigate(['/login']);
-      // }
+      if (user) {
+        this.fetchDbUser().subscribe({
+          error: (err) => {
+            this.logout().subscribe(() => {
+              // const errorMessage = this.translateService.instant('errors.fetch-collection-user')
+              // this.snackbarService.openSnackBar(errorMessage)
+              this.router.navigate(['/login'])
+            })
+          }
+        })
+      } else {
+        this.authUserSubject.next(null)
+        this.dbUserSubject.next(null);
+      }
     })
   }
+  
+  private navigateAfterLogin() {
+    const lsKey = environment.lsSavedUrlKey
+    const savedUrl = localStorage.getItem(lsKey)
+    if(savedUrl) {
+      // Если не авторизированный пользователь пытался перейти на защищенный роут
+      // то его запрошенный url будет сохранен в Local Storage (authGuard), а сам пользователь
+      // будет переведен на страницу /login, и после успешной авторизации, будет
+      // переведен на сохраненный URL
+      this.router.navigateByUrl(savedUrl)
+      localStorage.removeItem(lsKey)
+    } else {
+      // Если сохраненного URL нет — переходим на /home
+      this.router.navigate(['/home'])
+    }
+  } 
 
   private refreshAndFetchUser(userCredential: UserCredential): Observable<UserCredential> {
     // Принудительно обновляем ID-токен (чтобы получить актуальные claims)
@@ -67,14 +86,7 @@ export class AuthService {
   private fetchDbUser(): Observable<dbUser> {
     return this.apiService.get<dbUser>('/users/me')
       .pipe(
-        tap((user => this.dbUserSubject.next(user))),
-        catchError((err) => {
-          console.log('Error fetching current user', err)
-
-          // const errorMessage = this.translateService.instant('errors.fetch-collection-user')
-          // this.snackbarService.openSnackBar(errorMessage)
-          return throwError(() => err)
-        })
+        tap((user => this.dbUserSubject.next(user)))
       )
   }
 
@@ -128,6 +140,7 @@ export class AuthService {
     return from(signInWithEmailAndPassword(firebaseAuth, email, password))
       .pipe(
         switchMap(userCredential => this.refreshAndFetchUser(userCredential)),
+        tap(() => this.navigateAfterLogin()),
         catchError(error => {
           console.error('Login error:', error);
           throw error;
@@ -142,9 +155,10 @@ export class AuthService {
       .pipe(
         switchMap((userCredential) =>
           this.apiService.post<UserCredential>('/register-user/with-google', {})
-          .pipe(map(() => userCredential))
+            .pipe(map(() => userCredential))
         ),
         switchMap(userCredential => this.refreshAndFetchUser(userCredential)),
+        tap(() => this.navigateAfterLogin()),
         catchError(err => {
           console.error('Error registering Google user:', err);
           return of(null)
@@ -159,6 +173,7 @@ export class AuthService {
         tap(() => {
           this.authUserSubject.next(null)
           this.dbUserSubject.next(null)
+          this.router.navigate(['/login'])
         })
       )
   }

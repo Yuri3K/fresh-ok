@@ -27,7 +27,7 @@ const registerUser = async (req: Request, res: Response) => {
       email, password, displayName
     })
 
-    const permissions = getPermissionsByRole(DEFAULT_ROLE)
+    const permissions = await getPermissionsByRole(DEFAULT_ROLE)
 
     // Устанавливаем кастомную роль (в claims)
     await admin.auth().setCustomUserClaims(newUser.uid, {

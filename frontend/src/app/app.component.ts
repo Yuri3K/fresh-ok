@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SwitchModeService } from './core/services/switch-mode.service';
 import { AuthService } from './core/services/auth.service';
@@ -12,6 +12,7 @@ import {
 } from '@angular/animations';
 import { LangsService } from './core/services/langs.service';
 import { Observable } from 'rxjs';
+import { environment } from '../environments/environment';
 @Component({
   selector: 'app-root',
   imports: [
@@ -33,7 +34,7 @@ import { Observable } from 'rxjs';
     ])
   ]
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   private readonly switchModeService = inject(SwitchModeService)
   private readonly authService = inject(AuthService)
   private readonly langsService = inject(LangsService)
@@ -45,5 +46,9 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.langsService.init()
     this.switchModeService.init()
+  }
+
+  ngOnDestroy(): void {
+    localStorage.removeItem(environment.lsSavedUrlKey)
   }
 }

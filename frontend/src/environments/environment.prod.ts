@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
   serverUrl: '',
+  lsSavedUrlKey: 'saved-url',
   firebaseConfig: {
     apiKey: "AIzaSyDQzDOAYhh_bxa0iQ7xMLKUuHXq2shG-ew",
     authDomain: "freshok-market.firebaseapp.com",
