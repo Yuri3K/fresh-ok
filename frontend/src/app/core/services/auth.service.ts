@@ -29,6 +29,11 @@ export class AuthService {
   private readonly dbUserSubject = new BehaviorSubject<dbUser | null>(null)
   private readonly authInitializingSubject = new BehaviorSubject<boolean>(true)
 
+  // список защищённых префиксов в url, при наличии которых будет выполнен редирект 
+  // на страницу /login для неавторизированных пользователей 
+  // (как правило, это /admin, /user, /profile и т.д.)
+  private readonly protectedPrefixes = ['/admin', '/user', '/favs']
+
   user$ = this.authUserSubject.asObservable()
   role$ = this.dbUserSubject.pipe(map(u => u?.role || null))
   permissions$ = this.dbUserSubject.pipe(map(u => u?.permissions || null))
@@ -47,7 +52,6 @@ export class AuthService {
             this.logout().subscribe(() => {
               // const errorMessage = this.translateService.instant('errors.fetch-collection-user')
               // this.snackbarService.openSnackBar(errorMessage)
-              this.router.navigate(['/login'])
             })
           }
         })
@@ -167,13 +171,21 @@ export class AuthService {
   }
 
   // Метод для выхода
-  logout(): Observable<void> {
+  logout(redirect = true): Observable<void> {
     return from(signOut(firebaseAuth))
       .pipe(
         tap(() => {
           this.authUserSubject.next(null)
           this.dbUserSubject.next(null)
-          this.router.navigate(['/login'])
+
+          if(redirect) {
+            const currentUrl = this.router.url
+            const isProtected = this.protectedPrefixes.some(p => currentUrl.startsWith(p))
+
+            if(isProtected) {
+              this.router.navigate(['/login'])
+            }
+          }
         })
       )
   }

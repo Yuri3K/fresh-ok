@@ -40,12 +40,10 @@ export const authTokenInterceptor: HttpInterceptorFn = (
                         return next(retried)
                       }
                       authService.logout().subscribe()
-                      router.navigate(['/login']);
                       return throwError(() => err);
                     }),
                     catchError(() => {
                       authService.logout().subscribe()
-                      router.navigate(['/login']);
                       return throwError(() => err);
                     })
                   )

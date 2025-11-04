@@ -33,7 +33,6 @@ export const roleGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
 
       if (!role) {
         auth.logout().subscribe()
-        router.navigate(['/login'])
         return false
       }
 
