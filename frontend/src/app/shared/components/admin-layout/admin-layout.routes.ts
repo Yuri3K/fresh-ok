@@ -6,6 +6,7 @@ export const routes: Routes = [
   {
     path: '',
     redirectTo: '/admin/dashboard',
+    data: { roles: ['superAdmin', 'admin', 'manager'] },
     pathMatch: 'full'
   },
   {

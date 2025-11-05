@@ -1,7 +1,7 @@
 import { ActivatedRouteSnapshot, CanActivateFn, Router } from "@angular/router";
 import { AuthService } from "../services/auth.service";
 import { inject } from "@angular/core";
-import { combineLatest, map, take } from "rxjs";
+import { combineLatest, filter, map, take } from "rxjs";
 
 /**
  * Универсальный Role/Permission Guard для Angular
@@ -27,14 +27,15 @@ export const roleGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
     auth.permissions$,
     auth.authInitializing$
   ]).pipe(
+    filter(([,, initializing]) => !initializing),
     take(1),
-    map(([role, permissions, initializing]) => {
-      if (initializing) return false
+    map(([role, permissions]) => {
 
       //Дополнительно проверяем авторизирован ли пользователь
       if (!auth.isAuthenticated()) {
-        auth.logout().subscribe()
-        return false
+        // Выполняем только редирект на страницу '/login'. Очистку authUserSubject 
+        // и dbUserSubject выпонит свм AuthService в onAuthStateChanged
+        return router.createUrlTree(['/login']);
       }
 
       // hasRole будет true в одном из следующих случаев:

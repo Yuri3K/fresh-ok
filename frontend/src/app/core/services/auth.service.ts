@@ -83,6 +83,7 @@ export class AuthService {
     return from(userCredential.user.getIdToken(true))
       .pipe(
         switchMap(() => this.fetchDbUser()),
+        // Возвращаем userCredential, чтобы сними можно было рподолжать работать в потоке
         map(() => userCredential)
       )
   }

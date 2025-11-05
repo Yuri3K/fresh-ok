@@ -1,10 +1,10 @@
 import { inject } from "@angular/core";
-import { CanActivateChildFn, CanActivateFn, Router, RouterStateSnapshot, UrlTree, } from "@angular/router";
+import { ActivatedRouteSnapshot, CanActivateChildFn, CanActivateFn, Router, RouterStateSnapshot, UrlTree, } from "@angular/router";
 import { AuthService } from "../services/auth.service";
 import { filter, map, Observable, take } from "rxjs";
 import { environment } from "../../../environments/environment";
 
-function checkAuth(state: RouterStateSnapshot): Observable<boolean | UrlTree> {
+function checkAuth(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> {
   const authService = inject(AuthService)
   const router = inject(Router)
   const lsSavedUrlKey = environment.lsSavedUrlKey
@@ -26,12 +26,11 @@ function checkAuth(state: RouterStateSnapshot): Observable<boolean | UrlTree> {
         }
         
         authService.logout().subscribe()
-        // return router.parseUrl('/login'); // безопасный редирект через UrlTree
-        return false
+        return router.parseUrl('/login'); // безопасный редирект через UrlTree
       })
     )
 }
 
-export const authGuard: CanActivateFn = (route, state: RouterStateSnapshot) => checkAuth(state)
+export const authGuard: CanActivateFn = (route, state: RouterStateSnapshot) => checkAuth(route, state)
 
-export const authChildGuard: CanActivateChildFn = (route, state: RouterStateSnapshot) => checkAuth(state)
+export const authChildGuard: CanActivateChildFn = (route, state: RouterStateSnapshot) => checkAuth(route,state)
