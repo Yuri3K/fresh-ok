@@ -9,6 +9,6 @@ const router = express.Router()
 router.use('/langs', langsRouter)
 router.use('/register-user', authRouter)
 router.use('/users', usersRoutes)
-router.get('/admin', adminRoutes)
+router.use('/admin', adminRoutes)
 
 export default router

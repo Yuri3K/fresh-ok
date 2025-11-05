@@ -19,7 +19,7 @@ export const roleGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
   const allowedRoles = route.data['roles'] as string[] | undefined
   const requiredPermissions = route.data['permissions'] as string[] | undefined
 
-  // Бывают случаи, когда пользователь должен обладать всеми перечисленными правами или наоборот иметь хотя бы одно из требуемых разрешений. По умолчанию считаем, что 'any'
+  // Бывают случаи, когда пользователь должен обладать всеми перечисленными правами ('all') или наоборот иметь хотя бы одно из требуемых разрешений ('any'). По умолчанию считаем, что 'any'
   const permissionsMode = route.data['permissionMode'] as 'any' | 'all' | undefined
 
   return combineLatest([
@@ -31,19 +31,20 @@ export const roleGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
     map(([role, permissions, initializing]) => {
       if (initializing) return false
 
-      if (!role) {
+      //Дополнительно проверяем авторизирован ли пользователь
+      if (!auth.isAuthenticated()) {
         auth.logout().subscribe()
         return false
       }
 
       // hasRole будет true в одном из следующих случаев:
-      // 1. Для маршрута не указано ограничение по ролям (route.data['roles'] отсутствует)
+      // 1. Для маршрута не указано ограничение по ролям (route.data['roles'] отсутствует) — значит доступ открыт для всех
       // 2. Ограничение указано, но список ролей пуст — значит доступ открыт для всех
       // 3. Роль текущего пользователя присутствует в списке разрешённых ролей
       const hasRole =
         !allowedRoles ||
         allowedRoles.length === 0 ||
-        allowedRoles.includes(role)
+        allowedRoles.includes(role!)
 
       // hasPermission будет true в одном из следующих случаев:
       // 1. Для маршрута не указано ограничение по permissions (route.data['permissions'] отсутствует)
@@ -60,7 +61,7 @@ export const roleGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
         );
 
       // Если пользователь прошёл проверку по роли и разрешениям — разрешаем доступ
-      if (hasRole || hasPermission) return true
+      if (hasRole && hasPermission) return true
 
       // В противном случае — редирект на страницу "Доступ запрещён"
       router.navigate(['/403'])

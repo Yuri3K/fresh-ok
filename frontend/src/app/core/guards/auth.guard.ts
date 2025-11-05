@@ -26,7 +26,8 @@ function checkAuth(state: RouterStateSnapshot): Observable<boolean | UrlTree> {
         }
         
         authService.logout().subscribe()
-        return router.parseUrl('/login'); // безопасный редирект через UrlTree
+        // return router.parseUrl('/login'); // безопасный редирект через UrlTree
+        return false
       })
     )
 }

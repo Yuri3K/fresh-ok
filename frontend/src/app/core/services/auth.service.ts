@@ -29,8 +29,8 @@ export class AuthService {
   private readonly dbUserSubject = new BehaviorSubject<dbUser | null>(null)
   private readonly authInitializingSubject = new BehaviorSubject<boolean>(true)
 
-  // список защищённых префиксов в url, при наличии которых будет выполнен редирект 
-  // на страницу /login для неавторизированных пользователей 
+  // список защищённых префиксов для url, при наличии которых в начале url
+  //  будет выполнен редирект на страницу /login для неавторизированных пользователей 
   // (как правило, это /admin, /user, /profile и т.д.)
   private readonly protectedPrefixes = ['/admin', '/user', '/favs']
 

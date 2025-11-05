@@ -11,7 +11,6 @@ const getUsersList = async (req: AuthRequest, res: Response) => {
 
     const usersList = usersSnapshot.docs.map(doc => {
       const data = doc.data()
-
       return {
         uid: data.uid,
         email: data.email,
