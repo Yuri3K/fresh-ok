@@ -6,11 +6,11 @@ export const routes: Routes = [
   {
     path: '',
     redirectTo: '/admin/dashboard',
-    data: { roles: ['superAdmin', 'admin', 'manager'] },
     pathMatch: 'full'
   },
   {
     path: 'dashboard',
+    data: { roles: ['superAdmin', 'admin', 'manager', 'customer'] },
     component: DashboardComponent
   },
   {

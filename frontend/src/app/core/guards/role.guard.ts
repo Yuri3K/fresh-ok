@@ -2,6 +2,7 @@ import { ActivatedRouteSnapshot, CanActivateFn, Router } from "@angular/router";
 import { AuthService } from "../services/auth.service";
 import { inject } from "@angular/core";
 import { combineLatest, filter, map, take } from "rxjs";
+import { UserAccessService } from "../services/user-access.service";
 
 /**
  * Универсальный Role/Permission Guard для Angular
@@ -14,6 +15,7 @@ import { combineLatest, filter, map, take } from "rxjs";
  */
 export const roleGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
   const auth = inject(AuthService)
+  const userAccess = inject(UserAccessService)
   const router = inject(Router)
 
   const allowedRoles = route.data['roles'] as string[] | undefined
@@ -23,16 +25,20 @@ export const roleGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
   const permissionsMode = route.data['permissionMode'] as 'any' | 'all' | undefined
 
   return combineLatest([
-    auth.role$,
-    auth.permissions$,
+    userAccess.dbUser$,
+    // userAccess.role$,
+    // userAccess.permissions$,
     auth.authInitializing$
   ]).pipe(
-    filter(([,, initializing]) => !initializing),
+    filter(([user, initializing]) => user !== undefined && !initializing),
     take(1),
-    map(([role, permissions]) => {
+    map(([user]) => {
+    console.log("🔸 user:", user)
+    // console.log("🔸 permissions:", permissions)
+    // console.log("🔸 role:", role)
 
       //Дополнительно проверяем авторизирован ли пользователь
-      if (!auth.isAuthenticated()) {
+      if (!auth.isAuthenticated() || !user) {
         // Выполняем только редирект на страницу '/login'. Очистку authUserSubject 
         // и dbUserSubject выпонит свм AuthService в onAuthStateChanged
         return router.createUrlTree(['/login']);
@@ -45,7 +51,7 @@ export const roleGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
       const hasRole =
         !allowedRoles ||
         allowedRoles.length === 0 ||
-        allowedRoles.includes(role!)
+        allowedRoles.includes(user.role)
 
       // hasPermission будет true в одном из следующих случаев:
       // 1. Для маршрута не указано ограничение по permissions (route.data['permissions'] отсутствует)
@@ -57,9 +63,12 @@ export const roleGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
         requiredPermissions.length === 0 ||
         (
           permissionsMode === 'all'
-            ? requiredPermissions.every(p => permissions?.includes(p))
-            : requiredPermissions.some(p => permissions?.includes(p))
+            ? requiredPermissions.every(p => user.permissions?.includes(p))
+            : requiredPermissions.some(p => user.permissions?.includes(p))
         );
+
+      console.log("🔸 hasRole:", hasRole)
+      console.log("🔸 hasPermission:", hasPermission)
 
       // Если пользователь прошёл проверку по роли и разрешениям — разрешаем доступ
       if (hasRole && hasPermission) return true

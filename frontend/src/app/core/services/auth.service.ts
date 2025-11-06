@@ -6,15 +6,8 @@ import { Router } from '@angular/router';
 import { ApiService } from './api.service';
 import { SnackbarService } from './snackbar.service';
 import { environment } from '../../../environments/environment';
+import { UserAccessService } from './user-access.service';
 // import { TranslateService } from '@ngx-translate/core';
-
-export interface dbUser {
-  uid: string
-  email: string
-  displayName: string
-  role: string
-  permissions: string[]
-}
 
 @Injectable({
   providedIn: 'root'
@@ -22,21 +15,20 @@ export interface dbUser {
 export class AuthService {
   private readonly router = inject(Router)
   private readonly apiService = inject(ApiService)
+  private readonly userAccessService = inject(UserAccessService)
   private readonly snackbarService = inject(SnackbarService)
   // private readonly translateService = inject(TranslateService)
 
   private readonly authUserSubject = new BehaviorSubject<User | null | undefined>(undefined)
-  private readonly dbUserSubject = new BehaviorSubject<dbUser | null>(null)
+  // private readonly dbUserSubject = new BehaviorSubject<dbUser | null>(null)
   private readonly authInitializingSubject = new BehaviorSubject<boolean>(true)
 
   // список защищённых префиксов для url, при наличии которых в начале url
-  //  будет выполнен редирект на страницу /login для неавторизированных пользователей 
+  // будет выполнен редирект на страницу /login для неавторизированных пользователей 
   // (как правило, это /admin, /user, /profile и т.д.)
   private readonly protectedPrefixes = ['/admin', '/user', '/favs']
 
   user$ = this.authUserSubject.asObservable()
-  role$ = this.dbUserSubject.pipe(map(u => u?.role || null))
-  permissions$ = this.dbUserSubject.pipe(map(u => u?.permissions || null))
   authInitializing$ = this.authInitializingSubject.asObservable()
 
   constructor() {
@@ -47,7 +39,7 @@ export class AuthService {
       this.authInitializingSubject.next(false)
 
       if (user) {
-        this.fetchDbUser().subscribe({
+        this.userAccessService.fetchDbUser().subscribe({
           error: (err) => {
             this.logout().subscribe(() => {
               // const errorMessage = this.translateService.instant('errors.fetch-collection-user')
@@ -57,7 +49,7 @@ export class AuthService {
         })
       } else {
         this.authUserSubject.next(null)
-        this.dbUserSubject.next(null);
+        this.userAccessService.setDbUser(null);
       }
     })
   }
@@ -82,63 +74,10 @@ export class AuthService {
     // Принудительно обновляем ID-токен (чтобы получить актуальные claims)
     return from(userCredential.user.getIdToken(true))
       .pipe(
-        switchMap(() => this.fetchDbUser()),
+        switchMap(() => this.userAccessService.fetchDbUser()),
         // Возвращаем userCredential, чтобы сними можно было рподолжать работать в потоке
         map(() => userCredential)
       )
-  }
-
-  private fetchDbUser(): Observable<dbUser> {
-    return this.apiService.get<dbUser>('/users/me')
-      .pipe(
-        tap((user => this.dbUserSubject.next(user)))
-      )
-  }
-
-  /**
-   * Проверка роли пользователя
-   */
-  hasRole(roles: string[]): boolean {
-    const user = this.dbUserSubject.getValue()
-
-    if (!user || !user.role) {
-      this.logout().subscribe()
-      return false
-    }
-
-    // если роли не переданы — доступ открыт
-    if (!roles || roles.length === 0) {
-      return true
-    }
-
-    return roles.includes(user.role)
-  }
-
-  /**
-   * Проверка разрешений пользователя
-   * @param permissionsRequired — массив разрешений для проверки
-   * @param mode — 'any' (хватает одного) или 'all' (нужны все); по умолчанию 'any'
-   */
-  hasPermission(permissionsRequired: string[], permissionsMode: 'all' | 'any' = 'any'): boolean {
-    const user = this.dbUserSubject.getValue()
-
-    if (!user) {
-      this.logout().subscribe()
-      return false
-    }
-
-    const userPermissions = user.permissions ?? []
-
-    // если доступы не переданы — доступ открыт
-    if (!permissionsRequired || permissionsRequired.length == 0) {
-      return true
-    }
-
-    if (permissionsMode === 'all') {
-      return permissionsRequired.every(p => userPermissions.includes(p))
-    } else {
-      return permissionsRequired.some(p => userPermissions.includes(p))
-    }
   }
 
   signInWithEmailAndPassword(email: string, password: string): Observable<UserCredential> {
@@ -177,7 +116,7 @@ export class AuthService {
       .pipe(
         tap(() => {
           this.authUserSubject.next(null)
-          this.dbUserSubject.next(null)
+          this.userAccessService.setDbUser(null);
 
           if(redirect) {
             const currentUrl = this.router.url

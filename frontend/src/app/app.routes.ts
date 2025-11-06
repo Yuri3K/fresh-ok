@@ -17,8 +17,8 @@ export const routes: Routes = [
     path: 'admin',
     component: AdminLayoutComponent,
     canActivate: [authGuard, roleGuard],
-    canActivateChild: [authChildGuard],
-    data: {roles: ['superAdmin', 'admin', 'manager']},
+    canActivateChild: [authChildGuard, roleGuard],
+    data: {roles: ['superAdmin', 'admin', 'manager', 'customer']},
     loadChildren: () => import('./shared/components/admin-layout/admin-layout.routes').then(m => m.routes)
   },
   {
