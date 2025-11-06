@@ -26,21 +26,16 @@ export const roleGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
 
   return combineLatest([
     userAccess.dbUser$,
-    // userAccess.role$,
-    // userAccess.permissions$,
     auth.authInitializing$
   ]).pipe(
     filter(([user, initializing]) => user !== undefined && !initializing),
     take(1),
     map(([user]) => {
-    console.log("🔸 user:", user)
-    // console.log("🔸 permissions:", permissions)
-    // console.log("🔸 role:", role)
-
+      console.log("🔸 user:", user)
       //Дополнительно проверяем авторизирован ли пользователь
       if (!auth.isAuthenticated() || !user) {
         // Выполняем только редирект на страницу '/login'. Очистку authUserSubject 
-        // и dbUserSubject выпонит свм AuthService в onAuthStateChanged
+        // и dbUserSubject выпонит сам AuthService в onAuthStateChanged
         return router.createUrlTree(['/login']);
       }
 
@@ -66,9 +61,6 @@ export const roleGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
             ? requiredPermissions.every(p => user.permissions?.includes(p))
             : requiredPermissions.some(p => user.permissions?.includes(p))
         );
-
-      console.log("🔸 hasRole:", hasRole)
-      console.log("🔸 hasPermission:", hasPermission)
 
       // Если пользователь прошёл проверку по роли и разрешениям — разрешаем доступ
       if (hasRole && hasPermission) return true

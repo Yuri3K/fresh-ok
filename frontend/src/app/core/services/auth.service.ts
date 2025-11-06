@@ -1,12 +1,12 @@
 import { inject, Injectable } from '@angular/core';
 import { GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, User, UserCredential } from 'firebase/auth';
-import { BehaviorSubject, catchError, from, map, Observable, of, switchMap, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, from, map, Observable, of, switchMap, tap } from 'rxjs';
 import { firebaseAuth } from '../firebase.client';
 import { Router } from '@angular/router';
 import { ApiService } from './api.service';
 import { SnackbarService } from './snackbar.service';
-import { environment } from '../../../environments/environment';
 import { UserAccessService } from './user-access.service';
+import { AuthRedirectService } from './auth-redirect.service';
 // import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
@@ -16,6 +16,7 @@ export class AuthService {
   private readonly router = inject(Router)
   private readonly apiService = inject(ApiService)
   private readonly userAccessService = inject(UserAccessService)
+  private readonly authRedirectService = inject(AuthRedirectService)
   private readonly snackbarService = inject(SnackbarService)
   // private readonly translateService = inject(TranslateService)
 
@@ -53,22 +54,6 @@ export class AuthService {
       }
     })
   }
-  
-  private navigateAfterLogin() {
-    const lsKey = environment.lsSavedUrlKey
-    const savedUrl = localStorage.getItem(lsKey)
-    if(savedUrl) {
-      // Если не авторизированный пользователь пытался перейти на защищенный роут
-      // то его запрошенный url будет сохранен в Local Storage (authGuard), а сам пользователь
-      // будет переведен на страницу /login, и после успешной авторизации, будет
-      // переведен на сохраненный URL
-      this.router.navigateByUrl(savedUrl)
-      localStorage.removeItem(lsKey)
-    } else {
-      // Если сохраненного URL нет — переходим на /home
-      this.router.navigate(['/home'])
-    }
-  } 
 
   private refreshAndFetchUser(userCredential: UserCredential): Observable<UserCredential> {
     // Принудительно обновляем ID-токен (чтобы получить актуальные claims)
@@ -84,7 +69,7 @@ export class AuthService {
     return from(signInWithEmailAndPassword(firebaseAuth, email, password))
       .pipe(
         switchMap(userCredential => this.refreshAndFetchUser(userCredential)),
-        tap(() => this.navigateAfterLogin()),
+        tap(() => this.authRedirectService.navigateAfterLogin()),
         catchError(error => {
           console.error('Login error:', error);
           throw error;
@@ -102,7 +87,7 @@ export class AuthService {
             .pipe(map(() => userCredential))
         ),
         switchMap(userCredential => this.refreshAndFetchUser(userCredential)),
-        tap(() => this.navigateAfterLogin()),
+        tap(() => this.authRedirectService.navigateAfterLogin()),
         catchError(err => {
           console.error('Error registering Google user:', err);
           return of(null)
