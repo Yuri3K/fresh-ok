@@ -1,5 +1,5 @@
 import { NextFunction, Response } from "express"
-import { AuthRequest } from "../utils/verify-token"
+import { AuthRequest } from "./verify-token"
 import {db} from '../config/firebaseAdmin'
 
 /**

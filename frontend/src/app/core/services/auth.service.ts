@@ -21,7 +21,6 @@ export class AuthService {
   // private readonly translateService = inject(TranslateService)
 
   private readonly authUserSubject = new BehaviorSubject<User | null | undefined>(undefined)
-  // private readonly dbUserSubject = new BehaviorSubject<dbUser | null>(null)
   private readonly authInitializingSubject = new BehaviorSubject<boolean>(true)
 
   // список защищённых префиксов для url, при наличии которых в начале url

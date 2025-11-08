@@ -31,7 +31,6 @@ export const roleGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
     filter(([user, initializing]) => user !== undefined && !initializing),
     take(1),
     map(([user]) => {
-      console.log("🔸 user:", user)
       //Дополнительно проверяем авторизирован ли пользователь
       if (!auth.isAuthenticated() || !user) {
         // Выполняем только редирект на страницу '/login'. Очистку authUserSubject 

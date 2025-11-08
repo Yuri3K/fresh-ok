@@ -1,5 +1,5 @@
 import { Response } from "express";
-import { AuthRequest } from "../utils/verify-token";
+import { AuthRequest } from "../middleware/verify-token";
 import {db} from '../config/firebaseAdmin'
 
 const getCurrentUser = async (req: AuthRequest, res: Response) => {

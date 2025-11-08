@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import {admin, db} from '../config/firebaseAdmin'
-import { AuthRequest } from "../utils/verify-token"
+import { AuthRequest } from "../middleware/verify-token"
 
 export const DEFAULT_ROLE = 'customer'
 

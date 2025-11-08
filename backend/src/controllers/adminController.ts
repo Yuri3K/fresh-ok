@@ -1,6 +1,6 @@
 
 import { db, admin } from "../config/firebaseAdmin";
-import { AuthRequest } from "../utils/verify-token";
+import { AuthRequest } from "../middleware/verify-token";
 import { Response } from "express"
 
 const getUsersList = async (req: AuthRequest, res: Response) => {

@@ -1,5 +1,5 @@
 import express from 'express'
-import verifyToken from '../utils/verify-token'
+import verifyToken from '../middleware/verify-token'
 import { checkPermission } from '../middleware/checkPermission'
 import {getUsersList, deleteUser} from '../controllers/adminController'
 
