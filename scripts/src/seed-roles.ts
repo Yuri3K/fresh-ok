@@ -2,7 +2,8 @@ import admin  from 'firebase-admin'
 import fs from 'fs'
 import path from 'path'
 
-import serviceAccountJSON from '../../backend/src/freshok-market-firebase-adminsdk-fbsvc-a25e9ae2ac.json'
+// import serviceAccountJSON from '../../backend/src/freshok-market-firebase-adminsdk-fbsvc-a25e9ae2ac.json'
+import serviceAccountJSON from '../../backend/src/freshok-market-firebase-adminsdk-fbsvc-d0313b7ad7.json'
 
 const serviceAcocunt = serviceAccountJSON as admin.ServiceAccount
 
