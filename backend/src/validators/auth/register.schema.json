@@ -1,5 +1,5 @@
 {
-  "$id": "https://example.com/schemas/users/register.schema.json",
+  "$id": "validators/auth/register.schema.json",
   "type": "object",
   "properties": {
     "email": { "type": "string", "format": "email" },
