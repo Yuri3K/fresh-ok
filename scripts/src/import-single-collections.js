@@ -1,5 +1,5 @@
-const admin = require('firebase-admin');
 const { Firestore } = require('@google-cloud/firestore');
+const admin = require('firebase-admin');
 const fs = require('fs');
 const path = require('path');
 
@@ -17,7 +17,7 @@ const INPUT_DIR = './gpalette-uat/backups';
 const PROGRESS_FILE = path.join(INPUT_DIR, 'progress-import.json');
 const BATCH_SIZE = 500;
 
-// ✅ Инициализация Firebase
+// ✅ Firebase
 if (!admin.apps.length) {
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
@@ -25,7 +25,7 @@ if (!admin.apps.length) {
   });
 }
 
-// ✅ Firestore SDK
+// ✅ Firestore
 const firestore = new Firestore({
   projectId: PROJECT_ID,
   databaseId: TARGET_DATABASE_ID,
@@ -38,10 +38,16 @@ const firestore = new Firestore({
 console.log(`✅ Connected to Firestore: project=${PROJECT_ID}, database=${firestore.databaseId}`);
 
 // ----------------------------------------------------
-// 📘 Работа с прогрессом
+// 📘 Прогресс
 // ----------------------------------------------------
+function ensureProgressFile() {
+  const dir = path.dirname(PROGRESS_FILE);
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+  if (!fs.existsSync(PROGRESS_FILE)) fs.writeFileSync(PROGRESS_FILE, '{}');
+}
+
 function loadProgress() {
-  if (!fs.existsSync(PROGRESS_FILE)) return {};
+  ensureProgressFile();
   try {
     return JSON.parse(fs.readFileSync(PROGRESS_FILE, 'utf8'));
   } catch {
@@ -51,6 +57,7 @@ function loadProgress() {
 }
 
 function saveProgress(progress) {
+  ensureProgressFile();
   fs.writeFileSync(PROGRESS_FILE, JSON.stringify(progress, null, 2));
 }
 
@@ -67,7 +74,6 @@ async function importSubcollections(parentDocRef, subcollections) {
       const { __subcollections__, ...plainData } = docData;
       await subColRef.doc(docId).set(plainData);
 
-      // 🔁 Рекурсивно импортируем вложенные подколлекции
       if (__subcollections__) {
         await importSubcollections(subColRef.doc(docId), __subcollections__);
       }
@@ -76,15 +82,22 @@ async function importSubcollections(parentDocRef, subcollections) {
 }
 
 // ----------------------------------------------------
-// 📥 Импорт одной коллекции
+// 📥 Импорт одной коллекции (включая подколлекции)
 // ----------------------------------------------------
-async function importCollection(filePath, progress) {
+async function importSingleCollection(collectionName, batchSize = BATCH_SIZE) {
+  const filePath = path.join(INPUT_DIR, `${collectionName}.json`);
+  if (!fs.existsSync(filePath)) {
+    console.error(`❌ Файл ${filePath} не найден`);
+    process.exit(1);
+  }
+
   const raw = fs.readFileSync(filePath, 'utf8');
   const json = JSON.parse(raw);
-  const collectionName = Object.keys(json)[0];
   const data = json[collectionName];
 
   console.log(`📥 Importing collection: ${collectionName} (${Object.keys(data).length} documents)`);
+
+  const progress = loadProgress();
 
   let batch = firestore.batch();
   let count = 0;
@@ -96,8 +109,7 @@ async function importCollection(filePath, progress) {
     batch.set(docRef, plainData);
     count++;
 
-    // Когда batch достигает лимита — коммитим
-    if (count % BATCH_SIZE === 0) {
+    if (count % batchSize === 0) {
       await batch.commit();
       console.log(`⬆️  ${collectionName}: committed ${count} documents...`);
       batch = firestore.batch();
@@ -106,13 +118,12 @@ async function importCollection(filePath, progress) {
       saveProgress(progress);
     }
 
-    // 🔁 После коммита подколлекций — рекурсивный импорт
     if (__subcollections__) {
       await importSubcollections(docRef, __subcollections__);
     }
   }
 
-  if (count % BATCH_SIZE !== 0) {
+  if (count % batchSize !== 0) {
     await batch.commit();
   }
 
@@ -122,32 +133,23 @@ async function importCollection(filePath, progress) {
   console.log(`✅ Finished importing collection: ${collectionName} (${count} documents)\n`);
 }
 
-// ----------------------------------------------------
-// 🚀 Импорт всех коллекций
-// ----------------------------------------------------
-async function importAllCollections() {
-  console.log('🚀 Starting Firestore import...');
-  const progress = loadProgress();
-
-  const files = fs
-    .readdirSync(INPUT_DIR)
-    .filter(f => f.endsWith('.json') && !f.includes('progress'));
-
-  for (const file of files) {
-    const collectionName = path.basename(file, '.json');
-
-    if (progress[collectionName]?.done) {
-      console.log(`⏭️  Skipping ${collectionName} (already imported)`);
-      continue;
-    }
-
-    await importCollection(path.join(INPUT_DIR, file), progress);
+// --- CLI запуск ---
+// node src/import-single-collection.js users
+if (require.main === module) {
+  const collectionName = process.argv[2];
+  if (!collectionName) {
+    console.error('❌ Please provide a collection name. Example: node src/import-single-collection.js users');
+    process.exit(1);
   }
 
-  console.log('🎉 Import completed! All collections imported.');
-  fs.unlinkSync(PROGRESS_FILE);
-  console.log('🧹 progress-import.json removed.');
+  importSingleCollection(collectionName)
+    .then(() => {
+      console.log('🎉 Import finished successfully (with subcollections).');
+    })
+    .catch((err) => {
+      console.error('❌ Import failed:', err);
+      process.exit(1);
+    });
 }
 
-// ▶️ Запуск
-importAllCollections().catch(console.error);
+module.exports = { importSingleCollection };
