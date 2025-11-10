@@ -4,20 +4,13 @@ const fs = require('fs');
 const path = require('path');
 
 // 🔐 Сервисный аккаунт
-const serviceAccount = require('../../backend/src/freshok-market-firebase-adminsdk-fbsvc-d0313b7ad7.json');
-// const serviceAccount = require('../../backend/src/gpalette-uat-da7fef05dd53.json');
-
+const serviceAccount = require('../../backend/src/gpalette-uat-da7fef05dd53.json');
 
 // ⚙️ Конфигурация
-const PROJECT_ID = 'freshok-market';
-const TARGET_DATABASE_ID = '(default)';
-
-
-// const PROJECT_ID = 'gpalette-uat';
-// const TARGET_DATABASE_ID = 'gpalette-import-2025-aug-15';
-
-
+const PROJECT_ID = 'gpalette-uat';
+const TARGET_DATABASE_ID = 'gpalette-import-2025-aug-15';
 const OUTPUT_DIR = './src/gpalette-uat/backups'; // Папка для экспорта
+const PROGRESS_FILE = path.join(OUTPUT_DIR, 'progress.json');
 const BATCH_SIZE = 1000;
 
 // ✅ Инициализация Firebase
@@ -41,14 +34,31 @@ const firestore = new Firestore({
 console.log(`✅ Connected to Firestore: project=${PROJECT_ID}, database=${firestore.databaseId}`);
 
 // ----------------------------------------------------
-// 🧩 Экспорт одной коллекции в отдельный JSON
+// 📘 Работа с файлом прогресса
 // ----------------------------------------------------
-async function exportCollection(collectionName, batchSize = BATCH_SIZE) {
+function loadProgress() {
+  if (!fs.existsSync(PROGRESS_FILE)) return {};
+  try {
+    return JSON.parse(fs.readFileSync(PROGRESS_FILE, 'utf-8'));
+  } catch {
+    console.warn('⚠️ Progress file corrupted. Starting fresh.');
+    return {};
+  }
+}
+
+function saveProgress(progress) {
+  fs.writeFileSync(PROGRESS_FILE, JSON.stringify(progress, null, 2));
+}
+
+// ----------------------------------------------------
+// 🧩 Экспорт одной коллекции
+// ----------------------------------------------------
+async function exportCollection(collectionName, progress, batchSize = BATCH_SIZE) {
   console.log(`📤 Exporting collection: ${collectionName}`);
 
   const data = {};
   let lastDoc = null;
-  let total = 0;
+  let total = progress[collectionName]?.count || 0;
 
   while (true) {
     let query = firestore.collection(collectionName).orderBy('__name__').limit(batchSize);
@@ -63,6 +73,11 @@ async function exportCollection(collectionName, batchSize = BATCH_SIZE) {
     }
 
     lastDoc = snapshot.docs[snapshot.docs.length - 1];
+
+    // 💾 Сохраняем промежуточный прогресс
+    progress[collectionName] = { done: false, count: total };
+    saveProgress(progress);
+
     console.log(`⬇️  ${collectionName}: ${total} documents exported so far...`);
   }
 
@@ -74,6 +89,10 @@ async function exportCollection(collectionName, batchSize = BATCH_SIZE) {
   const filePath = path.join(OUTPUT_DIR, `${collectionName}.json`);
   fs.writeFileSync(filePath, JSON.stringify({ [collectionName]: data }, null, 2));
 
+  // ✅ Отмечаем коллекцию как завершённую
+  progress[collectionName] = { done: true, count: total };
+  saveProgress(progress);
+
   console.log(`✅ Saved: ${filePath} (${total} documents)\n`);
 }
 
@@ -82,14 +101,31 @@ async function exportCollection(collectionName, batchSize = BATCH_SIZE) {
 // ----------------------------------------------------
 async function exportAllCollections() {
   console.log('🚀 Starting Firestore export...');
+  if (!fs.existsSync(OUTPUT_DIR)) {
+    fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+  }
+
+  const progress = loadProgress();
   const collections = await firestore.listCollections();
 
   for (const col of collections) {
-    await exportCollection(col.id);
+    const name = col.id;
+
+    // ⏩ Пропускаем, если коллекция уже экспортирована
+    if (progress[name]?.done) {
+      console.log(`⏭️  Skipping ${name} (already exported)`);
+      continue;
+    }
+
+    await exportCollection(name, progress);
   }
 
-  console.log('🎉 Export completed! All collections saved in:');
+  console.log('\n🎉 Export completed! All collections saved in:');
   console.log(path.resolve(OUTPUT_DIR));
+
+  // Удаляем файл прогресса после успешного завершения
+  fs.unlinkSync(PROGRESS_FILE);
+  console.log('🧹 Progress file removed (all done).');
 }
 
 // ▶️ Запуск
