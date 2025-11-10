@@ -31,15 +31,12 @@ const firestore = new Firestore({
 console.log(`✅ Connected to project: ${PROJECT_ID}, database: ${firestore.databaseId}`);
 
 // ----------------------------------------------------
-// 📦 Функция экспорта коллекции постранично (стриминг)
+// 📦 Экспорт коллекции в структуру Firestore Import
 // ----------------------------------------------------
-async function exportCollectionToJSON(collectionName, outputFile, batchSize = 1000) {
-  const stream = fs.createWriteStream(outputFile);
-  stream.write('[');
-
+async function exportCollectionForImport(collectionName, outputFile, batchSize = 1000) {
+  const output = { [collectionName]: {} };
   let lastDoc = null;
   let totalCount = 0;
-  let first = true;
 
   while (true) {
     let query = firestore.collection(collectionName).orderBy('__name__').limit(batchSize);
@@ -49,10 +46,7 @@ async function exportCollectionToJSON(collectionName, outputFile, batchSize = 10
     if (snapshot.empty) break;
 
     for (const doc of snapshot.docs) {
-      const data = { id: doc.id, ...doc.data() };
-      if (!first) stream.write(',\n');
-      stream.write(JSON.stringify(data));
-      first = false;
+      output[collectionName][doc.id] = doc.data();
       totalCount++;
     }
 
@@ -60,12 +54,10 @@ async function exportCollectionToJSON(collectionName, outputFile, batchSize = 10
     console.log(`⬇️  Exported ${totalCount} documents so far...`);
   }
 
-  stream.write(']');
-  stream.end();
-
+  fs.writeFileSync(outputFile, JSON.stringify(output, null, 2));
   console.log(`✅ Export finished. Total documents: ${totalCount}`);
   console.log(`📁 Saved to: ${outputFile}`);
 }
 
 // 🚀 Запуск экспорта
-exportCollectionToJSON(COLLECTION_NAME, OUTPUT_FILE).catch(console.error);
+exportCollectionForImport(COLLECTION_NAME, OUTPUT_FILE).catch(console.error);
