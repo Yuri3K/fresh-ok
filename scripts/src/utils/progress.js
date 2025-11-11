@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const OUTPUT_DIR = './gpalette-uat/backups';
+const OUTPUT_DIR = './sonorous-summer-364413/backups';
 const PROGRESS_FILE = path.join(OUTPUT_DIR, 'progress.json');
 
 function loadProgress() {
