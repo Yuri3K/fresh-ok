@@ -15,6 +15,10 @@ type RequestPart = 'body' | 'query' | 'params' | 'headers'
 // Partial<Record<...>> делает все эти ключи опциональными. Это означает, что в SchemaMap не нужно передавать все поля из RequestPart
 type SchemaMap = Partial<Record<RequestPart, string>>
 
+// В тип Validator будет записан тот тип, который возвращает ajv.compile. 
+// TypeScript не знает заранее тип этой функции, поэтому мы сохраняем её тип вот так
+type Validator = ReturnType<typeof ajv.compile>;
+
 /**
  * Middleware для валидации данных запроса через JSON Schema.
  * Поддерживает валидацию сразу нескольких частей запроса: body, query, params, headers.
@@ -24,13 +28,27 @@ type SchemaMap = Partial<Record<RequestPart, string>>
  * @param defaultTarget - часть запроса по умолчанию (используется, если передана только одна схема)
  *
  * Примеры:
- * validateRequest('auth/register.schema.json') — валидирует req.body
+ * validateRequest<RegisterUserRequest>('auth/register.schema.json') — валидирует req.body
  * validateRequest({ query: 'users/query.schema.json', params: 'users/id.schema.json' })
+ * 
+ * <TBody = any> - TypeScript, когда будет валидировать body для RegisterUserRequest будет знать, 
+ * что req.body внутри контроллера — это объект вида { email, password, displayName }
+ * 
+ * Request<unknown, unknown, TBody> - Тип Request из Express выглядит так: Request<Params, ResBody, ReqBody, ReqQuery>
+ * По умолчанию, если ничего не указать, все типы = any:
+ * Request<Params = core.ParamsDictionary, ResBody = any, ReqBody = any, ReqQuery = core.Query>
+ * 
+ * Но нам валидация нужна только для body. Поэтому: Request<unknown, unknown, TBody>
+ * означает:
+ * Params — неизвестно (мы не трогаем req.params) req.params (например /users/:id)
+ * ResBody — неизвестно (тип ответа - используется редко)
+ * ReqBody — TBody, то есть валидированное тело запроса (req.body)
+ * ReqQuery — оставляем дефолт (any)
  */
-function validateRequest(schemaConfig: string | SchemaMap, defauldTarget: RequestPart = 'body') {
+function validateRequest<TBody = any>(schemaConfig: string | SchemaMap, defauldTarget: RequestPart = 'body') {
   // Объект, где ключ — это часть запроса (body, query, params, headers),
   // а значение — функция-валидатор, скомпилированная через ajv.compile(schema)
-  const validators: Partial<Record<RequestPart, any>> = {}
+  const validators: Partial<Record<RequestPart, Validator>> = {}
 
   // Если schemaConfig — это строка, значит валидация применяется только к одной части запроса (по умолчанию — body).
   // Если объект — то валидируем несколько частей (например, body + query).
@@ -54,8 +72,9 @@ function validateRequest(schemaConfig: string | SchemaMap, defauldTarget: Reques
     validators[part as RequestPart] = ajv.compile(schema)
   }
 
-  // Возвращаем непосредственно middleware для Express
-  return (req: Request, res: Response, next: NextFunction) => {
+  // Возвращаем непосредственно middleware для Express. 
+  // Про Request<unknown, unknown, TBody> написано в комментариях сверху
+  return (req: Request<unknown, unknown, TBody>, res: Response, next: NextFunction) => {
     // Массив, куда будут собираться все найденные ошибки (из разных частей запроса)
     const allErrors: {
       part: RequestPart,

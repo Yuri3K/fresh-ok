@@ -1,6 +1,7 @@
 import { Request, Response } from "express"
 import {admin, db} from '../config/firebaseAdmin'
 import { AuthRequest } from "../middleware/verify-token"
+import { RegisterUserRequest } from "../types/schemas/auth/register"
 
 export const DEFAULT_ROLE = 'customer'
 
@@ -14,7 +15,7 @@ async function getPermissionsByRole(role: string) {
 
 }
 
-const registerUser = async (req: Request, res: Response) => {
+const registerUser = async (req: Request<unknown, unknown, RegisterUserRequest>, res: Response) => {
   const {email, password, displayName} = req.body 
 
   if(!email || !password || !displayName) {
@@ -53,9 +54,8 @@ const registerUser = async (req: Request, res: Response) => {
   }
 }
 
-const registerGoogleUser = async(req: Request, res: Response) => {
-  const authReq = req as AuthRequest;
-  const user = authReq.user
+const registerGoogleUser = async(req: AuthRequest, res: Response) => {
+  const user = req.user
 
   if(!user) {
     return res.status(400).json({error: 'Unauthorized'})

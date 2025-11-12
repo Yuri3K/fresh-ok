@@ -33,12 +33,13 @@ export default async function verifyToken(req: Request, res: Response, next: Nex
     if(!userRole) {
       return res.status(403).send("Token is missing role. Please re-authenticate.")
     }
-
+    
     authReq.user = {
       ...decoded,
       role: userRole ?? DEFAULT_ROLE,
       permissions: userPermissuins ?? []
     }
+    console.log("🔸 authReq.user:", authReq.user)
     next()
   } catch (err) {
     console.error("Invalid token:", err);
