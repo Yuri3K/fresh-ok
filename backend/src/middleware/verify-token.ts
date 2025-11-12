@@ -3,16 +3,20 @@ import { admin, db } from "../config/firebaseAdmin"
 import { DecodedIdToken } from "firebase-admin/auth";
 import { DEFAULT_ROLE } from "../controllers/authController";
 
-export interface AuthRequest extends Request {
+export interface AuthRequest<
+  TParams = Record<string, string>,  // параметры маршрута (например, { uid: string })
+  TResBody = any,                    // тело ответа (опционально)
+  TReqBody = any,                    // тело запроса
+  TReqQuery = Record<string, any>    // query параметры
+> extends Request {
   user?: DecodedIdToken & {
     role?: string
     permissions?: string[]
   }
 }
 
-export default async function verifyToken(req: Request, res: Response, next: NextFunction) {
-  const authReq = req as AuthRequest;
-  const authHeader = authReq.headers.authorization
+export default async function verifyToken(req: AuthRequest, res: Response, next: NextFunction) {
+  const authHeader = req.headers.authorization
   if (!authHeader?.startsWith("Bearer ")) {
     return res.status(401).send("Missing or invalid Authorization header")
   }
@@ -30,16 +34,15 @@ export default async function verifyToken(req: Request, res: Response, next: Nex
     const userRole = decoded.role
     const userPermissuins = decoded.permissions
 
-    if(!userRole) {
+    if (!userRole) {
       return res.status(403).send("Token is missing role. Please re-authenticate.")
     }
-    
-    authReq.user = {
+
+    req.user = {
       ...decoded,
       role: userRole ?? DEFAULT_ROLE,
       permissions: userPermissuins ?? []
     }
-    console.log("🔸 authReq.user:", authReq.user)
     next()
   } catch (err) {
     console.error("Invalid token:", err);

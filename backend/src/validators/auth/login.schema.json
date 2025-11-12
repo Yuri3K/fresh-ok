@@ -13,7 +13,7 @@
     },
     "password": {
       "type": "string",
-      "minLength": 8,
+      "minLength": 6,
       "maxLength": 128,
       "description": "User password (plaintext, to be hashed server-side)"
     }

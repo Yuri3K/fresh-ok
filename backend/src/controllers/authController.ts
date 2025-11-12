@@ -2,6 +2,8 @@ import { Request, Response } from "express"
 import {admin, db} from '../config/firebaseAdmin'
 import { AuthRequest } from "../middleware/verify-token"
 import { RegisterUserRequest } from "../types/schemas/auth/register"
+import { RegisterWithGoogleUserRequest } from "../types/schemas/auth/register-google"
+import { CheckEmailExistence } from "../types/schemas/auth/check-email"
 
 export const DEFAULT_ROLE = 'customer'
 
@@ -54,7 +56,7 @@ const registerUser = async (req: Request<unknown, unknown, RegisterUserRequest>,
   }
 }
 
-const registerGoogleUser = async(req: AuthRequest, res: Response) => {
+const registerGoogleUser = async(req: AuthRequest<unknown, unknown, RegisterWithGoogleUserRequest>, res: Response) => {
   const user = req.user
 
   if(!user) {
@@ -95,7 +97,7 @@ const registerGoogleUser = async(req: AuthRequest, res: Response) => {
   }
 }
 
-const checkEmailExists = async (req: Request, res: Response) => {
+const checkEmailExists = async (req: Request<unknown, unknown, CheckEmailExistence>, res: Response) => {
   const {email} = req.body
 
   if(!email) return

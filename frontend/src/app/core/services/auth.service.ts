@@ -70,6 +70,7 @@ export class AuthService {
         switchMap(userCredential => this.refreshAndFetchUser(userCredential)),
         tap(() => this.authRedirectService.navigateAfterLogin()),
         catchError(error => {
+          this.snackbarService.openSnackBar('Invalid email or password')
           console.error('Login error:', error);
           throw error;
         })
