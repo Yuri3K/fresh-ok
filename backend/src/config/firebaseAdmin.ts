@@ -5,7 +5,8 @@ dotenv.config();
 
 if (!admin.apps.length) {
   if(process.env.MODE === 'development') {
-    // admin.initializeApp();
+    console.log("!!!   DEV    !!!")
+    admin.initializeApp();
     // const serviceAccount = JSON.parse(
     //   Buffer.from(process.env.GOOGLE_CREDENTIALS_BASE64!, 'base64').toString('utf8')
     // );
