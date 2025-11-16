@@ -5,6 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:prod":"ng build --configuration=production --base-href=/fresh-ok/",
+    "deploy:manual": "npm run build:prod && cd dist/frontend/browser && copy index.html 404.html && git init && git add . && git commit -m \"Deploy to gh-pages with 404 fallback\" && git push --force https://github.com/Yuri3K/fresh-ok.git master:gh-pages",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

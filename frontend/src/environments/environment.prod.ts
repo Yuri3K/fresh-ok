@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  serverUrl: '',
+  serverUrl: 'https://freshok-backend.onrender.com',
   lsSavedUrlKey: 'saved-url',
   firebaseConfig: {
     apiKey: "AIzaSyDQzDOAYhh_bxa0iQ7xMLKUuHXq2shG-ew",
