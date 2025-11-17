@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 5000
 // Настройка CORS
 app.use(cors({
   credentials: true,
-  origin: ['http://localhost:4200']
+  origin: ['http://localhost:4200', 'https://yuri3k.github.io']
 }))
 
 // Middleware для парсинга тела запроса (JSON и URL-encoded)
