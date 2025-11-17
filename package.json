@@ -1,0 +1,14 @@
+{
+  "name": "freshokfrontback",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "deploy:frontend": "npm --prefix frontend run build:prod && cd frontend/dist/frontend/browser && copy index.html 404.html && git init && git add . && git commit -m \"Deploy to gh-pages\" && git push --force https://github.com/Yuri3K/fresh-ok.git master:gh-pages",
+    "deploy:backend": "git subtree push --prefix backend render master",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
