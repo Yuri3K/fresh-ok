@@ -1,4 +1,5 @@
 {
+  // Настройки компилятора, которые будут применены при выполнении команды npm run build
   "compilerOptions": {
     // Уровень JavaScript, в который компилируется TypeScript.
     // ES2022 — современный стандарт (async/await, class fields, т.д.)
@@ -40,8 +41,11 @@
     "typeRoots": ["./node_modules/@types"]
   },
   // Каталоги с исходным кодом, которые нужно компилировать
-  "include": ["src/**/*"],
+  "include": [
+    "src/**/*", // Весь исходный код .ts
+    "src/validators/**/*.json", // Включаем декларации типов
+  ],
 
   // Исключаем node_modules (иначе компилятор начнет анализировать тысячи файлов)
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "build"]
 }
