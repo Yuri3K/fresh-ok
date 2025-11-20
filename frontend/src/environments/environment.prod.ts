@@ -1,6 +1,5 @@
 export const environment = {
   production: true,
-  // serverUrl: 'https://freshok-backend.onrender.com',
   serverUrl: 'https://fresh-ok.onrender.com',
   lsSavedUrlKey: 'saved-url',
   firebaseConfig: {
