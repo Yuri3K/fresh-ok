@@ -43,8 +43,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   definedLang$!: Observable<string>
 
-  ngOnInit(): void {
-    this.langsService.init()
+  async ngOnInit() {
+    await this.langsService.init()
     this.switchModeService.init()
   }
 

@@ -2,7 +2,7 @@ import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { AbstractControl, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { LangsService } from '../../../../core/services/langs.service';
 
 @Component({
@@ -18,16 +18,21 @@ import { LangsService } from '../../../../core/services/langs.service';
 })
 export class LangDropdownComponent {
   @Input() control!: AbstractControl;
-
   @Output() selectionChange = new EventEmitter<any>();
 
+  private translateService = inject(TranslateService)
+  private langsService = inject(LangsService)
   private langs$ = inject(LangsService).langs$
+
+  currentLang = this.translateService.getCurrentLang()
 
   get hasValidators(): boolean {
     return !!this.control?.validator || !!this.control?.asyncValidator;
   }
 
-  selectionChangeEvent(event: any) {
-    this.selectionChange.emit(event.value);
+  changeLang(event: Event) {
+    const lang = (event.target as any).value
+    this.langsService.setLanguage(lang);
+    this.currentLang = lang;
   }
 }

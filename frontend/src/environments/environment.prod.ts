@@ -2,6 +2,7 @@ export const environment = {
   production: true,
   serverUrl: 'https://fresh-ok.onrender.com',
   lsSavedUrlKey: 'saved-url',
+  lsLangKey: 'saved-lang',
   firebaseConfig: {
     apiKey: "AIzaSyDQzDOAYhh_bxa0iQ7xMLKUuHXq2shG-ew",
     authDomain: "freshok-market.firebaseapp.com",
