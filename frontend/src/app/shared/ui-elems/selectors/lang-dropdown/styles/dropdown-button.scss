@@ -1,0 +1,44 @@
+.lang-dr__trigger-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background-color: var(--dark-800);
+  padding: 10px;
+  border: 1px solid var(--dark-900);
+  border-radius: 10px;
+  cursor: pointer;
+  width: 150px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: var(--dark-hover);
+  }
+
+  .lang-dr__current-lang {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+
+    mat-icon {
+      width: 26px;
+      height: 20px;
+    }
+
+    span {
+      font-family: "Open Sans", Arial, Helvetica, sans-serif;
+      color: var(--white);
+      font-size: 1.4rem;
+      font-weight: 500;
+    }
+  }
+
+  .carret {
+    width: 8px;
+    height: auto;
+    fill: var(--white);
+    transform: rotate(0);
+    transition: transform 0.3s ease;
+  }
+}

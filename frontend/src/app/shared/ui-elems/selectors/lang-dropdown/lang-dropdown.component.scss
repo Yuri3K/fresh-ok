@@ -1,0 +1,22 @@
+@use "./styles/dropdown-button.scss";
+@use "./styles/dropdown-body.scss";
+
+.lang-dr {
+  position: relative;
+  z-index: 1;
+
+  &.open {
+
+    .lang-dr__trigger-btn{
+      background-color: var(--dark-hover);
+    }
+
+    .lang-dr__body {
+      pointer-events: unset;
+    }
+
+    .carret {
+      transform: rotate(180deg);
+    }
+  }
+}

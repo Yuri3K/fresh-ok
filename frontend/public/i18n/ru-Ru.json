@@ -1,9 +1,9 @@
 {
-  "hello": "Hello",
+  "hello": "Привет",
   "common": {
-    "close": "Close",
-    "logout": "logOut",
-    "login": "logIn",
+    "close": "Закрыть",
+    "logout": "Выход",
+    "login": "Войти",
     "forms": {
       "email": {
         "enter-email": "Введите email",
