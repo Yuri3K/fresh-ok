@@ -14,11 +14,15 @@
   </mat-card-header>
   
   <mat-card-content class="avatar-popup__content">
-    <img 
-      draggable="false"
-      [src]="authUser.photoURL"
-      [alt]="'header.user.alt' | translate"
-    >
+    @if (authUser.photoURL) {
+      <img 
+        draggable="false"
+        [src]="authUser.photoURL"
+        [alt]="'header.user.alt' | translate"
+      >
+    } @else {
+      <mat-icon>person</mat-icon>
+    }
 
     <p>{{'header.user.greetings' | translate : ({name: authUser.displayName})}}</p>
 

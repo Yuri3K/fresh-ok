@@ -4,9 +4,9 @@
 .lang-dr {
   position: relative;
   z-index: 1;
+  margin-right: 10px;
 
   &.open {
-
     .lang-dr__trigger-btn{
       background-color: var(--dark-hover);
     }

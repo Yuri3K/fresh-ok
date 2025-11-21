@@ -3,7 +3,7 @@ import { AbstractControl, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { LangsService } from '../../../../core/services/langs.service';
+import { Lang, LangsService } from '../../../../core/services/langs.service';
 import { AsyncPipe, NgFor } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { OpenMenuDirective } from '../../../../core/directives/open-menu.directive';
@@ -35,10 +35,10 @@ export class LangDropdownComponent {
     console.log("🚀 currentLang:", this.currentLang)    
   }
 
-  changeLang(event: Event) {
-    const lang = (event.target as HTMLSelectElement).value
-    this.langsService.setLanguage(lang);
-    this.currentLang = lang;
+  changeLang(lang: Lang) {
+    console.log("🔸 lang:", lang)
+    this.langsService.setLanguage(lang.name);
+    this.currentLang = lang.name;
   }
 }
 

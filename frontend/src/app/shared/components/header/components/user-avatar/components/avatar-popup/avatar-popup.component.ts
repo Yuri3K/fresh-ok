@@ -4,6 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { User } from 'firebase/auth';
 import { MatCardModule } from '@angular/material/card';
 import { BtnFlatComponent } from '../../../../../../ui-elems/buttons/btn-flat/btn-flat.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-avatar-popup',
@@ -12,6 +13,7 @@ import { BtnFlatComponent } from '../../../../../../ui-elems/buttons/btn-flat/bt
     BtnFlatComponent,
     MatCardModule,
     TranslateModule,
+    MatIconModule,
   ],
   templateUrl: './avatar-popup.component.html',
   styleUrl: './avatar-popup.component.scss'

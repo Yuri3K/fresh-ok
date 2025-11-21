@@ -3,16 +3,16 @@
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  background-color: var(--dark-800);
-  padding: 10px;
-  border: 1px solid var(--dark-900);
+  background-color: var(--mat-sys-background);
+  padding: 4px 5px 4px 10px;
+  border: 1px solid var(--mat-sys-inverse-on-surface);
   border-radius: 10px;
   cursor: pointer;
   width: 150px;
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: var(--dark-hover);
+    background-color: var(--mat-sys-inverse-on-surface);
   }
 
   .lang-dr__current-lang {
@@ -21,21 +21,16 @@
     justify-content: flex-start;
     gap: 8px;
 
-    mat-icon {
-      width: 26px;
-      height: 20px;
-    }
-
     span {
       font-family: "Open Sans", Arial, Helvetica, sans-serif;
-      color: var(--white);
+      color: var(--mat-sys-inverse-surface);
       font-size: 1.4rem;
       font-weight: 500;
     }
   }
 
   .carret {
-    fill: var(--white);
+    fill: var(--mat-sys-inverse-surface);
     transform: rotate(0);
     transition: transform 0.3s ease;
   }
