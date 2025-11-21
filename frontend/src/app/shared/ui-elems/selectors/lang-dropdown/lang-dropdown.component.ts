@@ -6,12 +6,16 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { LangsService } from '../../../../core/services/langs.service';
 import { AsyncPipe, NgFor } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { OpenMenuDirective } from '../../../../core/directives/open-menu.directive';
+import { MatSvgIconPipe } from '../../../../core/pipes/mat-svg-icon.pipe';
 
 @Component({
   selector: 'app-lang-dropdown',
   imports: [
     TranslateModule,
     MatIconModule,
+    OpenMenuDirective,
+    MatSvgIconPipe,
     AsyncPipe,
     NgFor,
   ],
@@ -39,52 +43,3 @@ export class LangDropdownComponent {
 }
 
 
-
-
-
-// import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
-// import { LanguageDropdownService } from "./services/language-dropdown.service";
-// import { TranslateService } from "@ngx-translate/core";
-// import { StoreService } from "src/app/services/store.service";
-// import { ActivatedRoute, NavigationEnd, Params, Router } from "@angular/router";
-// import { filter, take } from "rxjs";
-// import { HttpClient } from "@angular/common/http";
-
-// @Component({
-//   selector: 'app-language-dropdown',
-//   templateUrl: './language-dropdown.component.html',
-//   styleUrls: ['./language-dropdown.component.scss']
-// })
-
-// export class LanguageDropdownComponent implements OnInit {
-
-//   constructor(
-//     public langDrService: LanguageDropdownService,
-//     public translateService: TranslateService,
-//     private storeService: StoreService,
-//     private router: Router,
-//     private activatedRoute: ActivatedRoute,
-//   ) { }
-
-//   ngOnInit() {
-//     this.router.routerState.root.queryParams
-//       .pipe(filter(params => params['lang']))
-//       .subscribe(queryLang => {
-//         this.useLang(queryLang.lang)
-//       })
-//     this.langDrService.init()
-//   }
-
-//   public useLang(lang: string) {
-//     this.translateService.use(lang)
-//     this.storeService._currentLang$ = lang
-
-//     this.router.navigate([], {
-//       relativeTo: this.activatedRoute,
-//       queryParams: { lang: lang },
-//       queryParamsHandling: 'merge'
-//     })
-//   }
-
-
-// }
