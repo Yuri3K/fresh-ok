@@ -29,6 +29,7 @@ export class LangsService {
   async init() {
     // this.getLangsFromDb().subscribe()
     const langs = await firstValueFrom(this.apiService.getWithoutToken<Lang[]>('/langs'))
+    console.log("🚀 ~ langs:", langs)
     this.setLangs(langs)
 
     const langToUse = this.resolveInitialLanguage(langs)
@@ -72,19 +73,19 @@ export class LangsService {
     return this.translateService.defaultLang || 'en'
   }
 
-  private getLangsFromDb(): Observable<Lang[]> {
-    if (this.langs.length) {
-      return of(this.langs)
-    } else {
-      return this.apiService.getWithoutToken<Lang[]>('/langs')
-        .pipe(
-          tap(langs => {
-            this.setInitialLanguage(langs)
-            this.setLangs(langs)
-          }),
-        )
-    }
-  }
+  // private getLangsFromDb(): Observable<Lang[]> {
+  //   if (this.langs.length) {
+  //     return of(this.langs)
+  //   } else {
+  //     return this.apiService.getWithoutToken<Lang[]>('/langs')
+  //       .pipe(
+  //         tap(langs => {
+  //           this.setInitialLanguage(langs)
+  //           this.setLangs(langs)
+  //         }),
+  //       )
+  //   }
+  // }
 
   private setInitialLanguage(langs: Lang[]) {
     const browserLang = this.translateService.getBrowserLang();

@@ -26,6 +26,10 @@ export class LangDropdownComponent {
   langs$ = inject(LangsService).langs$
 
   currentLang = this.translateService.getCurrentLang()
+  
+  ngOnInit() {
+    console.log("🚀 currentLang:", this.currentLang)    
+  }
 
   changeLang(event: Event) {
     const lang = (event.target as HTMLSelectElement).value

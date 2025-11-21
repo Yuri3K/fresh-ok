@@ -1,25 +1,30 @@
 <div class="lang-dr" appOpenMenu >
-  <button class="lang-dr__trigger-btn"
-  [attr.aria-label]="'header-top.language-dropdown.btn-aria-label' |translate">
+  <button 
+    class="lang-dr__trigger-btn"
+    [attr.aria-label]="'header-top.language-dropdown.btn-aria-label' | translate"
+  >
     <div class="lang-dr__current-lang">
       <!-- <mat-icon [svgIcon]="langDrService.getLangData(translateService.currentLang).iconPath | matSvgIcon">
       </mat-icon> -->
-      <!-- <span>{{langDrService.getLangData(translateService.currentLang).title}}</span> -->
+      <span>{{this.currentLang}}</span>
     </div>
     <mat-icon class="carret">arrow_drop_down</mat-icon>
   </button>
-  <div class="lang-dr__body dropdown-body">
+  <!-- <div class="lang-dr__body dropdown-body">
     <ul class="lang-dr__list dropdown-list">
         <li *ngFor="let lang of (langs$ | async)">
-          <button>
-          <!-- <mat-icon [svgIcon]="language.iconPath | matSvgIcon"></mat-icon> -->
-          <!-- <span>{{language.title}}</span> -->
-          <!-- <pre>{{isOpen}}</pre> -->
+          <button 
+            [attr.data-abbr]="lang.browserLang"
+            [class.active]="currentLang === lang.browserLang"
+          >
+          <mat-icon [svgIcon]="language.iconPath | matSvgIcon"></mat-icon>
+          <span>{{lang.name}}</span>
+          <pre>{{isOpen}}</pre>
         </button>
         </li>
       
     </ul>
-  </div>
+  </div> -->
 </div>
 
 
