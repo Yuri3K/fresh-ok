@@ -1,0 +1,1 @@
+import{Eb as s,Fb as p,Ub as r,kb as n}from"./chunk-NLWRVA4G.js";var t=class e{static \u0275fac=function(o){return new(o||e)};static \u0275cmp=n({type:e,selectors:[["app-products"]],decls:2,vars:0,template:function(o,m){o&1&&(s(0,"p"),r(1,"products works!"),p())},encapsulation:2})};var f=[{path:"",component:t}];export{f as routes};
