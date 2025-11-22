@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { APP_INITIALIZER, ApplicationConfig, provideAppInitializer, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -9,6 +9,8 @@ import { provideCacheableAnimationLoader, provideLottieOptions } from 'ngx-lotti
 import player from 'lottie-web';
 import { authTokenInterceptor } from './core/interceptors/auth-token.interceptor';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { initLangsFactory } from './core/init/langs.init';
+import { LangsService } from './core/services/langs.service';
 
 const interceptors = [
   authTokenInterceptor
@@ -21,13 +23,18 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(withInterceptors(interceptors)),
     provideTranslateService({
-      // lang: 'en-US',
+      // lang: 'en-US', // будет определено в LangsService
       fallbackLang: 'en-US',
       loader: provideTranslateHttpLoader({
         prefix: 'i18n/',
         suffix: '.json'
       })
     }),
+
+    // Дождется инициализации языков перед загрузкой приложения
+    provideAppInitializer(initLangsFactory),
+    
+
     provideLottieOptions({
       player: () => player,
     }),

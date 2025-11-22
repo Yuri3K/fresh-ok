@@ -37,14 +37,12 @@ import { environment } from '../environments/environment';
 export class AppComponent implements OnInit, OnDestroy {
   private readonly switchModeService = inject(SwitchModeService)
   private readonly authService = inject(AuthService)
-  private readonly langsService = inject(LangsService)
 
   readonly authInitializing$: Observable<boolean> = this.authService.authInitializing$
 
   definedLang$!: Observable<string>
 
   async ngOnInit() {
-    await this.langsService.init()
     this.switchModeService.init()
   }
 

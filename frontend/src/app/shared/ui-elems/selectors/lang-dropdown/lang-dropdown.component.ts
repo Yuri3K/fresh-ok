@@ -1,10 +1,7 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { AbstractControl, ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { Component, inject } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { Lang, LangsService } from '../../../../core/services/langs.service';
-import { AsyncPipe, NgFor } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { OpenMenuDirective } from '../../../../core/directives/open-menu.directive';
 import { MatSvgIconPipe } from '../../../../core/pipes/mat-svg-icon.pipe';
@@ -17,28 +14,22 @@ import { MatSvgIconPipe } from '../../../../core/pipes/mat-svg-icon.pipe';
     OpenMenuDirective,
     MatSvgIconPipe,
     AsyncPipe,
-    NgFor,
   ],
   templateUrl: './lang-dropdown.component.html',
   styleUrl: './lang-dropdown.component.scss',
   standalone: true,
 })
 export class LangDropdownComponent {
-  private translateService = inject(TranslateService)
   private langsService = inject(LangsService)
 
-  langs$ = inject(LangsService).langs$
+  langs$ = this.langsService.langs$
+  currentLang$ = this.langsService.currentLang$
 
-  currentLang = this.translateService.getCurrentLang()
-  
   ngOnInit() {
-    console.log("🚀 currentLang:", this.currentLang)    
   }
 
   changeLang(lang: Lang) {
-    console.log("🔸 lang:", lang)
-    this.langsService.setLanguage(lang.name);
-    this.currentLang = lang.name;
+    this.langsService.setLanguage(lang);
   }
 }
 

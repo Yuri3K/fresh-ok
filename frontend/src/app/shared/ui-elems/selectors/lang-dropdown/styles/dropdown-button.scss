@@ -8,7 +8,7 @@
   border: 1px solid var(--mat-sys-inverse-on-surface);
   border-radius: 10px;
   cursor: pointer;
-  width: 150px;
+  min-width: 120px;
   transition: background-color 0.3s ease;
 
   &:hover {
