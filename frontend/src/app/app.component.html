@@ -1,6 +1,9 @@
 @let authInitializing = (authInitializing$ | async);
+@let langs = (langs$ | async);
 
-@if(authInitializing) {
+
+
+@if(authInitializing || !langs) {
   <!-- <div @fade class="loader-wrapper"> -->
     <app-loader class="global" />
   <!-- </div> -->

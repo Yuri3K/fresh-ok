@@ -32,7 +32,7 @@ export const appConfig: ApplicationConfig = {
     }),
 
     // Дождется инициализации языков перед загрузкой приложения
-    provideAppInitializer(initLangsFactory),
+    // provideAppInitializer(initLangsFactory),
     
 
     provideLottieOptions({
