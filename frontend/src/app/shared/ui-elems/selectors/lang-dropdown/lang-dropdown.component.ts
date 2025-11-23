@@ -5,6 +5,7 @@ import { AsyncPipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { OpenMenuDirective } from '../../../../core/directives/open-menu.directive';
 import { MatSvgIconPipe } from '../../../../core/pipes/mat-svg-icon.pipe';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-lang-dropdown',
@@ -24,6 +25,8 @@ export class LangDropdownComponent {
 
   langs$ = this.langsService.langs$
   currentLang$ = this.langsService.currentLang$
+
+  mediaUrl = environment.mediaUrl
 
   ngOnInit() {
   }

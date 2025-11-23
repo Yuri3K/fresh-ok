@@ -24,7 +24,7 @@
                 (click)="changeLang(lang)"
                 [class.active]="currentLang.name === lang.name"
               >
-                <mat-icon [svgIcon]="`assets/images/flags/${lang.browserLang}.svg` | matSvgIcon" />
+                <mat-icon [svgIcon]="`${mediaUrl}/flags/${lang.browserLang}.svg` | matSvgIcon" />
                 <span>{{ lang.name }}</span>
               </button>
             </li>
