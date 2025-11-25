@@ -9,6 +9,7 @@ export class AuthRedirectService {
   private readonly router = inject(Router)
 
   navigateAfterLogin() {
+    console.log("NAVIGATE AFTER LOGIN")
     const lsKey = environment.lsSavedUrlKey
     const savedUrl = localStorage.getItem(lsKey)
     if (savedUrl) {

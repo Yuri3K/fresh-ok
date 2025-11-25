@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, User, UserCredential } from 'firebase/auth';
-import { BehaviorSubject, catchError, from, map, Observable, of, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, catchError, from, map, Observable, of, retry, switchMap, tap, throwError } from 'rxjs';
 import { firebaseAuth } from '../firebase.client';
 import { Router } from '@angular/router';
 import { ApiService } from './api.service';
@@ -58,11 +58,29 @@ export class AuthService {
     // Принудительно обновляем ID-токен (чтобы получить актуальные claims)
     return from(userCredential.user.getIdToken(true))
       .pipe(
+        switchMap(() => this.waitForClaims(userCredential.user)),
         switchMap(() => this.userAccessService.fetchDbUser()),
         // Возвращаем userCredential, чтобы сними можно было рподолжать работать в потоке
         map(() => userCredential)
       )
   }
+
+private waitForClaims(user: User): Observable<void> {
+  return from(user.getIdTokenResult(true)).pipe(
+    switchMap(tokenResult => {
+      if (tokenResult.claims?.['role']) {
+        // role уже доступна — идем дальше
+        return of(void 0);
+      }
+      // Иначе ждём и повторяем
+      return throwError(() => new Error("No role yet"));
+    }),
+    retry({
+      count: 10,          // до 10 попыток
+      delay: 300          // каждые 300 мс
+    })
+  );
+}
 
   signInWithEmailAndPassword(email: string, password: string): Observable<UserCredential> {
     return from(signInWithEmailAndPassword(firebaseAuth, email, password))
@@ -103,11 +121,11 @@ export class AuthService {
           this.authUserSubject.next(null)
           this.userAccessService.setDbUser(null);
 
-          if(redirect) {
+          if (redirect) {
             const currentUrl = this.router.url
             const isProtected = this.protectedPrefixes.some(p => currentUrl.startsWith(p))
 
-            if(isProtected) {
+            if (isProtected) {
               this.router.navigate(['/login'])
             }
           }

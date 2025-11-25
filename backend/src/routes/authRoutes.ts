@@ -21,7 +21,7 @@ router.post(
 
 router.post(
   '/with-google',
-  verifyToken,
+  verifyToken({ allowMissingRole: true }),
   validateRequest({headers: 'auth/register-google.schema.json'}),
   registerGoogleUser
 )

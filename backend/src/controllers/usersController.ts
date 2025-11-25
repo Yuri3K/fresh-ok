@@ -4,6 +4,7 @@ import {db} from '../config/firebaseAdmin'
 
 const getCurrentUser = async (req: AuthRequest, res: Response) => {
   const user = req.user
+  console.log("🔸 user:", user)
 
   if(!user) {
     return res.status(401).json({error: 'Unauthorized'})
@@ -17,7 +18,7 @@ const getCurrentUser = async (req: AuthRequest, res: Response) => {
 
   const userData = userDoc.data()
 
-  res.json({
+  return res.json({
     uid: userData?.uid,
     email: userData?.email,
     displayName: userData?.displayName,

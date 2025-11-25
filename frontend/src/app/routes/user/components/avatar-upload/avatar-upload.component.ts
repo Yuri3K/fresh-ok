@@ -1,30 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { ImageService } from '../../services/image.service';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ImageService } from '../../../../core/services/image.service';
 
 @Component({
   selector: 'app-avatar-upload',
   imports: [CommonModule],
-  template: `
-    <div style="padding: 20px; border: 1px solid #ccc; max-width: 400px;">
-      <h2>Загрузка Аватарки (Тест)</h2>
-
-      <input type="file" (change)="onFileSelected($event)" accept="image/*" />
-      
-      <button 
-        (click)="onUpload()" 
-        [disabled]="!selectedFile || isUploading"
-        style="margin-left: 10px;"
-      >
-        {{ isUploading ? 'Загрузка...' : 'Загрузить Аватар' }}
-      </button>
-
-      <div *ngIf="message" style="margin-top: 15px;">
-        <p [style.color]="isError ? 'red' : 'green'">{{ message }}</p>
-        <p *ngIf="uploadedUrl">URL: <a [href]="uploadedUrl" target="_blank">{{ uploadedUrl }}</a></p>
-      </div>
-    </div>
-  `,
+  templateUrl: './avatar-upload.component.html',
+  styleUrl: './avatar-upload.component.scss'
   // (В реальном проекте стили и шаблон выносятся в отдельные файлы)
 })
 export class AvatarUploadComponent {

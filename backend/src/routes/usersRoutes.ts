@@ -4,6 +4,6 @@ import { getCurrentUser } from '../controllers/usersController'
 
 const router = express.Router()
 
-router.get('/me', verifyToken, getCurrentUser)
+router.get('/me', verifyToken(), getCurrentUser)
 
 export default router

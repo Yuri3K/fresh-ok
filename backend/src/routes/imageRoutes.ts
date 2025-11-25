@@ -11,7 +11,7 @@ const router = express.Router()
 
 router.post(
   '/upload-private',
-  verifyToken,
+  verifyToken(),
   checkPermission.all(['admin', 'superAdmin']),
   uploadImageMiddleware,
   uploadPrivateImage
@@ -19,7 +19,7 @@ router.post(
 
 router.get(
   '/get-private-url/:publicId',
-  verifyToken,
+  verifyToken(),
   getPrivateImageUrl
 )
 

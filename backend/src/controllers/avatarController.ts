@@ -20,14 +20,19 @@ export async function uploadUserAvatar(
   req: AuthRequest,
   res: Response,
 ) {
-  if (!req.file || !req.user) {
-    // Если нет файла или пользователь не аутентифицирован
-    return res.status(400).json({ message: 'No file uploaded or user unauthorized' })
+  if (!req.file) {
+    // Если нет файла 
+    return res.status(400).json({ message: 'No file uploaded ' })
+  }
+
+  if (!req.user) {
+    // Пользователь не аутентифицирован
+    return res.status(400).json({ message: 'User unauthorized' })
   }
 
   // public_id будет всегда одинаковым для данного пользователя: 'avatars/UID'
   // Это позволяет нам использовать overwrite: true и не хранить старые ID.
-  const public_id_for_user = `avatars/${req.user.uid}`;
+  const public_id_for_user = req.user.uid;
 
   // 1. Создание потока для загрузки
   const uploadStream = cloudinary.uploader.upload_stream({

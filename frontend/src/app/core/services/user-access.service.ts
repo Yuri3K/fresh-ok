@@ -22,10 +22,12 @@ export class UserAccessService {
   readonly dbUser$ = this.dbUserSubject.asObservable()
 
   setDbUser(user: dbUser | null) {
+    console.log("🔸 DBuser:", user)
     this.dbUserSubject.next(user)
   }
 
   fetchDbUser(): Observable<dbUser> {
+    console.log("FETCH DbUser START")
     return this.apiService.get<dbUser>('/users/me')
       .pipe(
         tap((user => this.setDbUser(user)))

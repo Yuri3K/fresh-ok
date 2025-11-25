@@ -110,6 +110,7 @@ function validateRequest<TBody = any>(schemaConfig: string | SchemaMap, defauldT
     }
 
     // Если всё прошло успешно — передаём управление дальше
+    console.log("Validate COmplete")
     next()
   }
 }

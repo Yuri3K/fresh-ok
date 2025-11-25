@@ -2,13 +2,11 @@ import { Component, inject, OnInit } from '@angular/core';
 import { LangsService } from '../../core/services/langs.service';
 import { filter, take } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
-import { AvatarUploadComponent } from './components/avatar-upload/avatar-upload.component';
 
 @Component({
   selector: 'app-home',
   imports: [
     TranslateModule,
-    AvatarUploadComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
