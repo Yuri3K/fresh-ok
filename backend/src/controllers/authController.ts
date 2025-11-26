@@ -8,15 +8,12 @@ import { CheckEmailExistence } from "../types/schemas/auth/check-email"
 export const DEFAULT_ROLE = 'customer'
 
 async function getPermissionsByRole(role: string) {
-  console.log("IN ROLE PERMISSIONS")
   const roleDoc = await db.collection('roles').doc(role).get()
   const permissions = roleDoc.exists ?
   roleDoc.data()?.permissions :
   []
   
-  console.log("🔸 permissions:", permissions)
   return permissions
-
 }
 
 const registerUser = async (req: Request<unknown, unknown, RegisterUserRequest>, res: Response) => {
@@ -59,40 +56,24 @@ const registerUser = async (req: Request<unknown, unknown, RegisterUserRequest>,
 }
 
 const registerGoogleUser = async (req: AuthRequest<unknown, unknown, RegisterWithGoogleUserRequest>, res: Response) => {
-  console.log("REGISTER START")
-
+  console.log("IN REGISTER USER")
   const user = req.user
+  console.log("🔸 user:", user)
 
   if (!user) {
     return res.status(400).json({ error: 'Unauthorized' })
   }
 
   const { uid, email, name, picture } = user
-  console.log("🔸 uid:", uid)
-  console.log("🔸 name:", name)
-  console.log("🔸 email:", email)
 
   try {
-
     const userRef = db.collection('users').doc(uid)
     const userDoc = await userRef.get()
 
-    console.log("REGISTER CONTINUE")
     if (!userDoc.exists) {
       const authUser = await admin.auth().getUser(uid)
       const displayName = authUser.displayName || name || 'No Name'
       const permissions = await getPermissionsByRole(DEFAULT_ROLE)
-      console.log("REGISTER CONTINUE 222")
-
-      const obj = {
-        uid,
-        email,
-        displayName,
-        role: DEFAULT_ROLE,
-        permissions: permissions,
-        createdAt: admin.firestore.FieldValue.serverTimestamp()
-      }
-      console.log("🔸 obj:", obj)
 
       await userRef.set({
         uid,
@@ -103,16 +84,11 @@ const registerGoogleUser = async (req: AuthRequest<unknown, unknown, RegisterWit
         createdAt: admin.firestore.FieldValue.serverTimestamp()
       })
 
-      console.log("REGISTER CONTINUE 333")
-
-
       await admin.auth().setCustomUserClaims(uid, {
         role: DEFAULT_ROLE,
         permissions: permissions
       })
     }
-
-    console.log("REGISTER END")
 
     res.status(200).json({ result: 'ok' })
 

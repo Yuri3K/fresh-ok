@@ -1,6 +1,6 @@
 import { HttpErrorResponse, HttpEvent, HttpHandlerFn, HttpInterceptorFn, HttpRequest } from "@angular/common/http";
 import { inject } from "@angular/core";
-import { catchError, from, Observable, switchMap, throwError } from "rxjs";
+import { catchError, Observable, switchMap, throwError } from "rxjs";
 import { environment } from "../../../environments/environment";
 import { AuthService } from "../services/auth.service";
 import { Router } from "@angular/router";
@@ -11,7 +11,6 @@ export const authTokenInterceptor: HttpInterceptorFn = (
   next: HttpHandlerFn
 ): Observable<HttpEvent<unknown>> => {
   const authService = inject(AuthService)
-  const router = inject(Router)
 
   if (
     !req.url.startsWith(environment.serverUrl) ||
@@ -23,6 +22,8 @@ export const authTokenInterceptor: HttpInterceptorFn = (
   return authService.getIdToken(false)
     .pipe(
       switchMap(token => {
+              console.log("🔸 token:", token)
+
         const authReq = token
           ? req.clone({ setHeaders: { Authorization: `Bearer ${token}` } })
           : req
