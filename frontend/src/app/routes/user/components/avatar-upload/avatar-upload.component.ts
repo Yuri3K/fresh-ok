@@ -4,7 +4,10 @@ import { ImageService } from '../../../../core/services/image.service';
 
 @Component({
   selector: 'app-avatar-upload',
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+
+  ],
   templateUrl: './avatar-upload.component.html',
   styleUrl: './avatar-upload.component.scss'
   // (В реальном проекте стили и шаблон выносятся в отдельные файлы)
@@ -16,7 +19,9 @@ export class AvatarUploadComponent {
   isError: boolean = false;
   uploadedUrl: string | null = null;
 
-  constructor(private imageService: ImageService) { }
+  constructor(
+    private imageService: ImageService,
+  ) { }
 
   onFileSelected(event: any): void {
     const file: File = event.target.files[0];

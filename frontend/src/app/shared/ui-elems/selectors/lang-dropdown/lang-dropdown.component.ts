@@ -26,7 +26,7 @@ export class LangDropdownComponent {
   langs$ = this.langsService.langs$
   currentLang$ = this.langsService.currentLang$
 
-  mediaUrl = environment.mediaUrl
+  mediaUrl = environment.cloudinary_url
 
   ngOnInit() {
   }

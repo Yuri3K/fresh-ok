@@ -1,3 +1,5 @@
+@let dbUser = (dbUser$ | async);
+
 <mat-card 
   class="avatar-popup"
   appearance="outlined"
@@ -14,7 +16,13 @@
   </mat-card-header>
   
   <mat-card-content class="avatar-popup__content">
-    @if (authUser.photoURL) {
+    @if(dbUser?.avatarId) {
+      <img 
+        draggable="false"
+        [src]="mediaUrl + dbUser?.avatarId"
+        [alt]="'header.user.alt' | translate"
+      >
+    } @else if (authUser.photoURL) {
       <img 
         draggable="false"
         [src]="authUser.photoURL"

@@ -1,5 +1,6 @@
 @let authUser = (authUser$ | async);
 @let tooltipContent = (tooltipContent$ | async);
+@let dbUser = (dbUser$ | async);
 
 <div class="user-avatar">
   @if (authUser) {
@@ -17,7 +18,12 @@
       (click)="togglePopup()"
       >
       <div class="user-avatar__bg">
-        @if(authUser.photoURL) {
+        @if(dbUser?.avatarId) {
+          <img 
+            [src]="mediaUrl + dbUser?.avatarId" 
+            [alt]="'header.user.alt' | translate"
+          >
+        }@else if(authUser.photoURL) {
           <img 
             [src]="authUser.photoURL" 
             [alt]="'header.user.alt' | translate"

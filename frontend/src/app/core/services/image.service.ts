@@ -6,9 +6,7 @@ import { ApiService } from './api.service';
   providedIn: 'root'
 })
 export class ImageService {
-  private apiService = inject(ApiService
-
-  )
+  private apiService = inject(ApiService)
 
   /**
    * Отправляет файл изображения на сервер для загрузки.

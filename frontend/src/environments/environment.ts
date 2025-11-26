@@ -2,7 +2,7 @@ export const environment = {
   production: false,
   serverUrl: 'http://localhost:5000',
   mediaUrl: 'https://fresh-ok-media.pages.dev/',
-  cloudinary_url: 'https://res.cloudinary.com/dmvfgc2l0/',
+  cloudinary_url: 'https://res.cloudinary.com/dmvfgc2l0/image/upload/',
   lsSavedUrlKey: 'saved-url',
   lsLangKey: 'saved-lang',
   firebaseConfig: {

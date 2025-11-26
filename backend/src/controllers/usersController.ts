@@ -22,7 +22,8 @@ const getCurrentUser = async (req: AuthRequest, res: Response) => {
     email: userData?.email,
     displayName: userData?.displayName,
     role: userData?.role,
-    permissions: userData?.permissions
+    permissions: userData?.permissions,
+    avatarId: userData?.avatarId,
   })
 }
 

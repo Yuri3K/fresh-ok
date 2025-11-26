@@ -8,6 +8,7 @@ export interface dbUser {
   displayName: string
   role: string
   permissions: string[]
+  avatarId?: string
 }
 
 @Injectable({
@@ -22,6 +23,7 @@ export class UserAccessService {
   readonly dbUser$ = this.dbUserSubject.asObservable()
 
   setDbUser(user: dbUser | null) {
+    console.log("🔸 DBuser:", user)
     this.dbUserSubject.next(user)
   }
 

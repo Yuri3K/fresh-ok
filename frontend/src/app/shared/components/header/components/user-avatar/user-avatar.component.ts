@@ -1,14 +1,15 @@
-import { Component, HostListener, inject, ViewEncapsulation } from '@angular/core';
+import { Component, inject, ViewEncapsulation } from '@angular/core';
 import { AuthService } from '../../../../../core/services/auth.service';
-import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AsyncPipe } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { filter, map, take } from 'rxjs';
+import { filter, map } from 'rxjs';
 import { AvatarPopupComponent } from './components/avatar-popup/avatar-popup.component';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { UserAccessService } from '../../../../../core/services/user-access.service';
+import { environment } from '../../../../../../environments/environment';
 
 @Component({
   selector: 'app-user-avatar',
@@ -28,19 +29,20 @@ import { OverlayModule } from '@angular/cdk/overlay';
 })
 export class UserAvatarComponent {
   private readonly authService = inject(AuthService)
-  private readonly router = inject(Router)
-
+  readonly dbUser$ = inject(UserAccessService).dbUser$
+  
   readonly authUser$ = this.authService.user$
   readonly tooltipContent$ = this.authUser$
-    .pipe(
-      filter(user => user !== undefined),
-      map(user =>
-        ['Google Account', user?.displayName ?? '', user?.email ?? ''].join('\n')
-      )
+  .pipe(
+    filter(user => user !== undefined),
+    map(user =>
+      ['Google Account', user?.displayName ?? '', user?.email ?? ''].join('\n')
     )
+  )
+  
+  readonly mediaUrl = environment.cloudinary_url
 
   isPopupOpen = false
-
 
   togglePopup() {
     this.isPopupOpen = !this.isPopupOpen
