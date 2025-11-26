@@ -56,9 +56,7 @@ const registerUser = async (req: Request<unknown, unknown, RegisterUserRequest>,
 }
 
 const registerGoogleUser = async (req: AuthRequest<unknown, unknown, RegisterWithGoogleUserRequest>, res: Response) => {
-  console.log("IN REGISTER USER")
   const user = req.user
-  console.log("🔸 user:", user)
 
   if (!user) {
     return res.status(400).json({ error: 'Unauthorized' })

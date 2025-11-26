@@ -22,8 +22,6 @@ export const authTokenInterceptor: HttpInterceptorFn = (
   return authService.getIdToken(false)
     .pipe(
       switchMap(token => {
-              console.log("🔸 token:", token)
-
         const authReq = token
           ? req.clone({ setHeaders: { Authorization: `Bearer ${token}` } })
           : req

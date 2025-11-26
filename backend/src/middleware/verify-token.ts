@@ -24,26 +24,19 @@ export interface AuthRequest<
 export default function verifyToken(options?: { allowMissingRole?: boolean }) {
 
   return async (req: AuthRequest, res: Response, next: NextFunction) => {
-    console.log("Verify Start")
-
     const authHeader = req.headers.authorization
-    console.log("🔸 authHeader:", authHeader)
     if (!authHeader?.startsWith("Bearer ")) {
-      console.log("!!!  NO HEADER  !!!")
       return res.status(401).send("Missing or invalid Authorization header")
     }
 
     const idToken = authHeader.split("Bearer ")[1]
 
     if (!idToken) {
-      console.log("!!!  NO TOKEN  !!!")
       return res.status(401).json({ message: 'Token missing' });
     }
 
     try {
-      console.log("!!!  IN TRY  !!!")
       const decoded = await admin.auth().verifyIdToken(idToken)
-      console.log("!!!  decoded OK  !!!")
 
       // ПРОВЕРКА РОЛИ И ПРАВ ИЗ DECODED ТОКЕНА (Custom Claims)
       const userRole = decoded.role
@@ -86,13 +79,8 @@ export default function verifyToken(options?: { allowMissingRole?: boolean }) {
         permissions: userPermissuins ?? []
       }
 
-      console.log("Verify COmplete")
-
       next()
     } catch (err) {
-      console.log("!!!  INVALID TOKEN  !!!")
-      console.log("🔸 idToken:", idToken)
-
       console.error("Invalid token:", err);
       return res.status(401).send("Unauthorized");
     }

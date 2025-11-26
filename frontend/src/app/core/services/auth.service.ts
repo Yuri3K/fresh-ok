@@ -33,15 +33,12 @@ export class AuthService {
 
   constructor() {
     onAuthStateChanged(firebaseAuth, user => {
-      console.log("🔸 STATE CHANGED:", user)
-
       this.authUserSubject.next(user)
       this.authInitializingSubject.next(false)
 
       if (user) {
         user.getIdTokenResult().then(token => {
           const role = token.claims['role']
-          console.log("ROLE IN USER", role)
 
           if (role) {
             this.userAccessService.fetchDbUser().subscribe({
@@ -67,30 +64,10 @@ export class AuthService {
     // Принудительно обновляем ID-токен (чтобы получить актуальные claims)
     return from(userCredential.user.getIdToken(true))
       .pipe(
-        tap(() => console.log("!!! REFRESH TOKEN  !!!")),
-        switchMap(() => this.waitForClaims(userCredential.user)),
         switchMap(() => this.userAccessService.fetchDbUser()),
         // Возвращаем userCredential, чтобы сними можно было рподолжать работать в потоке
         map(() => userCredential)
       )
-  }
-
-  private waitForClaims(user: User): Observable<void> {
-    return from(user.getIdTokenResult(true)).pipe(
-      switchMap(tokenResult => {
-        console.log("🔸 tokenResult.claims?.['role']:", tokenResult.claims?.['role'])
-        if (tokenResult.claims?.['role']) {
-          // role уже доступна — идем дальше
-          return of(void 0);
-        }
-        // Иначе ждём и повторяем
-        return throwError(() => new Error("No role yet"));
-      }),
-      retry({
-        count: 10,          // до 10 попыток
-        delay: 300          // каждые 300 мс
-      })
-    );
   }
 
   signInWithEmailAndPassword(email: string, password: string): Observable<UserCredential> {
@@ -111,11 +88,10 @@ export class AuthService {
 
     return from(signInWithPopup(firebaseAuth, provider))
       .pipe(
-        switchMap((userCredential) =>{
-          console.log("STARTING CALL with-google")
-          return this.apiService.post<UserCredential>('/register-user/with-google', {})
+        switchMap((userCredential) =>
+          this.apiService.post<UserCredential>('/register-user/with-google', {})
             .pipe(map(() => userCredential))
-        }),
+        ),
         switchMap(userCredential => this.refreshAndFetchUser(userCredential)),
         tap(() => this.authRedirectService.navigateAfterLogin()),
         catchError(err => {
