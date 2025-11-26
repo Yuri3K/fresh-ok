@@ -5,7 +5,8 @@ import cloudinary from '../config/cloudinary'
 import { Readable } from 'stream'
 import { db } from '../config/firebaseAdmin'
 
-// Инициализация multer 
+// Инициализация multer. Эта библиотека работает с файлами, 
+// которые были переданы на бэк с формы (input type="file") 
 const upload = multer({
   storage: multer.memoryStorage(),
   limits: {
@@ -13,18 +14,22 @@ const upload = multer({
   }
 })
 
-// Middleware для обработки одного файла с именем 'image'
+// Middleware для обработки одного файла с именем 'image'. 
+// То есть multer проверит тип файла и убудиться, что это картинка
 export const uploadImageMiddleware = upload.single('image')
 
 export async function uploadUserAvatar(
   req: AuthRequest,
   res: Response,
 ) {
+
   if (!req.file) {
     // Если нет файла 
     return res.status(400).json({ message: 'No file uploaded ' })
   }
-
+  console.log('origin:', req.headers.origin);
+  console.log('file:', req.file);
+  console.log('body keys:', Object.keys(req.body));
   if (!req.user) {
     // Пользователь не аутентифицирован
     return res.status(400).json({ message: 'User unauthorized' })

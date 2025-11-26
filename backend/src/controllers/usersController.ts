@@ -3,9 +3,7 @@ import { AuthRequest } from "../middleware/verify-token";
 import {db} from '../config/firebaseAdmin'
 
 const getCurrentUser = async (req: AuthRequest, res: Response) => {
-  console.log("🔸 GET CURRENT USER ")
   const user = req.user
-  console.log("🔸 user:", user)
 
   if(!user) {
     return res.status(401).json({error: 'Unauthorized'})
