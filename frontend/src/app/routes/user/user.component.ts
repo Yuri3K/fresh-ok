@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { AvatarUploadComponent } from './components/avatar-upload/avatar-upload.component';
+import { RouterOutlet } from '@angular/router';
+
 
 @Component({
   selector: 'app-user',
-  imports: [
-    AvatarUploadComponent,
-  ],
+  imports: [RouterOutlet],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss'
 })

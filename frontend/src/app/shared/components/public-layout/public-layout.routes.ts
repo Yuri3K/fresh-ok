@@ -2,7 +2,7 @@ import { Routes } from "@angular/router";
 import { HomeComponent } from "../../../routes/home/home.component";
 import { UserComponent } from "../../../routes/user/user.component";
 import { roleGuard } from "../../../core/guards/role.guard";
-import { FavsComponent } from "../../../routes/favs/favs.component";
+import { authChildGuard, authGuard } from "../../../core/guards/auth.guard";
 
 export const routes: Routes = [
   {
@@ -21,14 +21,10 @@ export const routes: Routes = [
   {
     path: 'user',
     component: UserComponent,
-    canActivate: [roleGuard],
-    data: {roles: ['customer']}
-  },
-  {
-    path: 'favs',
-    component: FavsComponent,
-    canActivate: [roleGuard],
-    data: {roles: ['customer']}
+    canActivate: [authGuard, roleGuard],
+    canActivateChild: [authChildGuard, roleGuard],
+    data: { roles: ['customer'] },
+    loadChildren: () => import('../../../routes/user/user.routes').then(m => m.routes)
   }
 ]
 
