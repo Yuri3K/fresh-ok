@@ -27,9 +27,7 @@ export async function uploadUserAvatar(
     // Если нет файла 
     return res.status(400).json({ message: 'No file uploaded ' })
   }
-  console.log('origin:', req.headers.origin);
-  console.log('file:', req.file);
-  console.log('body keys:', Object.keys(req.body));
+
   if (!req.user) {
     // Пользователь не аутентифицирован
     return res.status(400).json({ message: 'User unauthorized' })
@@ -44,8 +42,8 @@ export async function uploadUserAvatar(
     folder: 'avatars', // Папка в Cloudinary (создастся, если не существует)
     type: 'upload', // Изображение будет ПУБЛИЧНЫМ
     resource_type: 'auto', // Определить тип файла автоматически
-    public_id: public_id_for_user, // Перезаписываем старый аватар
-    overwrite: true
+    public_id: public_id_for_user, 
+    overwrite: true // Перезаписываем старый аватар
   },
     async (error, result) => {
       if (error) {

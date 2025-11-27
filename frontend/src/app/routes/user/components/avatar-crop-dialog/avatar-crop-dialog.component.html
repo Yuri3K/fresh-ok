@@ -1,0 +1,23 @@
+<div class="crop">
+  <app-h2-title 
+    class="crop__title"
+    [text]="'Crop avatar'"
+  />
+
+  <input type="file" (change)="fileChangeEvent($event)" />
+
+  <div class="crop__area">
+    <image-cropper
+      [imageChangedEvent]="imageChangedEvent"
+      [maintainAspectRatio]="true"
+      [aspectRatio]="1"
+      format="png"
+      (imageCropped)="imageCropped($event)"
+      (imageLoaded)="imageLoaded($event)"
+      (cropperReady)="cropperReady()"
+      (loadImageFailed)="loadImageFailed()"
+    />
+  </div>
+
+  <img [src]="croppedImage" />
+</div>

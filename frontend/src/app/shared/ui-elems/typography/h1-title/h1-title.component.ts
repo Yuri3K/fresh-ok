@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+import { NgStyle } from "@angular/common";
 import { Component, Input } from "@angular/core";
 
 @Component({
@@ -6,7 +6,7 @@ import { Component, Input } from "@angular/core";
   standalone: true,
   templateUrl: './h1-title.component.html',
   styleUrl: './h1-title.component.scss',
-  imports: [CommonModule]
+  imports: [NgStyle]
 })
 
 export class H1TitleComponent{

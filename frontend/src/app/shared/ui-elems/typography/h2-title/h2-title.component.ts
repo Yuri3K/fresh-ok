@@ -1,9 +1,9 @@
-import { CommonModule } from '@angular/common';
+import { NgStyle } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-h2-title',
-  imports: [CommonModule],
+  imports: [NgStyle],
   templateUrl: './h2-title.component.html',
   styleUrl: './h2-title.component.scss'
 })

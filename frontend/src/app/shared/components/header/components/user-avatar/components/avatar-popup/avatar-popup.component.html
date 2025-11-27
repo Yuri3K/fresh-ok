@@ -19,7 +19,7 @@
     @if(dbUser?.avatarId) {
       <img 
         draggable="false"
-        [src]="mediaUrl + dbUser?.avatarId"
+        [src]="mediaUrl + avatarMeta + dbUser?.avatarId"
         [alt]="'header.user.alt' | translate"
       >
     } @else if (authUser.photoURL) {

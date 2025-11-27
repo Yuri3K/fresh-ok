@@ -41,6 +41,7 @@ export class UserAvatarComponent {
   )
   
   readonly mediaUrl = environment.cloudinary_url
+  readonly avatarMeta = 'f_auto,q_auto,c_thumb,g_face,r_max,w_32,h_32/'
 
   isPopupOpen = false
 
