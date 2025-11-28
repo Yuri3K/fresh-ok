@@ -21,4 +21,13 @@ export class ImageService {
 
     return this.apiService.post('/avatar', formData)
   }
+
+  uploadAvatarFromBlob(blob: Blob): Observable<any> {
+    const file = new File([blob], 'avatar.png', { type: blob.type });
+
+    const formData = new FormData();
+    formData.append('image', file, file.name);
+
+    return this.apiService.post('/avatar', formData);
+  }
 }

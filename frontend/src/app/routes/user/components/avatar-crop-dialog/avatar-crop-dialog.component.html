@@ -1,23 +1,36 @@
 <div class="crop">
-  <app-h2-title 
-    class="crop__title"
-    [text]="'Crop avatar'"
-  />
-
-  <input type="file" (change)="fileChangeEvent($event)" />
-
-  <div class="crop__area">
-    <image-cropper
-      [imageChangedEvent]="imageChangedEvent"
-      [maintainAspectRatio]="true"
-      [aspectRatio]="1"
-      format="png"
-      (imageCropped)="imageCropped($event)"
-      (imageLoaded)="imageLoaded($event)"
-      (cropperReady)="cropperReady()"
-      (loadImageFailed)="loadImageFailed()"
+    <app-h2-title 
+      mat-dialog-title
+      class="crop__title"
+      [text]="'Crop avatar'"
     />
-  </div>
 
-  <img [src]="croppedImage" />
+    <mat-dialog-content>
+      <div (wheel)="onWheel($event)" class="crop__area">
+        <image-cropper
+          [imageChangedEvent]="imageChangedEvent"
+          [roundCropper]="true"
+          [maintainAspectRatio]="true"
+          [aspectRatio]="1"
+          format="png"
+          (imageCropped)="imageCropped($event)"
+          (imageLoaded)="imageLoaded($event)"
+          (cropperReady)="cropperReady()"
+          (loadImageFailed)="loadImageFailed()"
+          [transform]="transform"
+        />
+      </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+      <app-btn-raised 
+        (click)="crop()"
+        btnText="Crop"
+        [btnDisabled]="!imageChangedEvent"
+      />
+      <app-btn-raised 
+        mat-dialog-close
+        btnText="Cancel"
+      />
+    </mat-dialog-actions>
 </div>

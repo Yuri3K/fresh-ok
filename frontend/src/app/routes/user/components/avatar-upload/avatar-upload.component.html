@@ -3,13 +3,13 @@
 
   <input type="file" (change)="onFileSelected($event)" accept="image/*" />
   
-  <button 
+  <!-- <button 
     (click)="onUpload()" 
     [disabled]="!selectedFile || isUploading"
     style="margin-left: 10px;"
   >
     {{ isUploading ? 'Загрузка...' : 'Загрузить Аватар' }}
-  </button>
+  </button> -->
 
   <div *ngIf="message" style="margin-top: 15px;">
     <p [style.color]="isError ? 'red' : 'green'">{{ message }}</p>

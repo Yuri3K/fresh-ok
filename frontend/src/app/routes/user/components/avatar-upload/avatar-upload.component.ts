@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ImageService } from '../../../../core/services/image.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AvatarCropDialogComponent } from '../avatar-crop-dialog/avatar-crop-dialog.component';
 
 @Component({
   selector: 'app-avatar-upload',
@@ -19,6 +21,8 @@ export class AvatarUploadComponent {
   isError: boolean = false;
   uploadedUrl: string | null = null;
 
+  private readonly dialog = inject(MatDialog)
+
   constructor(
     private imageService: ImageService,
   ) { }
@@ -26,13 +30,32 @@ export class AvatarUploadComponent {
   onFileSelected(event: any): void {
     const file: File = event.target.files[0];
     if (file) {
+      console.log("🔸 file:", file)
       this.selectedFile = file;
       this.message = '';
       this.uploadedUrl = null;
+      this.openCropDialog(event)
     }
   }
 
-  onUpload(): void {
+  private openCropDialog(event: Event) {
+    const cropDialog = this.dialog.open(AvatarCropDialogComponent, {
+      panelClass: 'crop-dialog',
+      data: {
+        event: event
+      }
+    })
+
+    cropDialog.afterClosed().subscribe(result => {
+      console.log("!!! RESULT !!!", result)
+      if(result !== undefined) {
+        this.onUpload(result)
+        // this.selectedFile = result
+      }
+    })
+  }
+
+  onUpload(blob: Blob): void {
     if (!this.selectedFile) {
       this.message = 'Выберите файл для загрузки.';
       this.isError = true;
@@ -44,7 +67,7 @@ export class AvatarUploadComponent {
     this.isError = false;
     this.uploadedUrl = null;
 
-    this.imageService.uploadAvatar(this.selectedFile).subscribe({
+    this.imageService.uploadAvatarFromBlob(blob).subscribe({
       next: (response) => {
         this.message = 'Загрузка прошла успешно! ID: ' + response.public_id;
         this.uploadedUrl = response.url; // Публичный URL из ответа бэкенда
