@@ -5,7 +5,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 @Pipe({
   name: 'matSvgIcon'
 })
-export class MatSvgIconPipe implements PipeTransform {
+export class SvgIconPipe implements PipeTransform {
 
   constructor(
     private iconRegistry: MatIconRegistry,

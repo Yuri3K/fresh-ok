@@ -1,3 +1,18 @@
-<button mat-mini-fab aria-label="Example icon button with a menu icon">
-  <mat-icon>menu</mat-icon>
+<button 
+  type="button"
+  mat-mini-fab 
+  [matBadge]="count" 
+  [matBadgeHidden]="count == 0 ? true : isBadgeHidden"
+  [matBadgePosition]="badgePosition"
+  [ngStyle]="{
+    width: width,
+    height: width,
+  }"
+>
+  <mat-icon
+    [ngStyle]="{ 
+      color: iconColor, 
+      fontSize: fz,
+    }"
+  >{{iconName}}</mat-icon>
 </button>

@@ -1,0 +1,16 @@
+<h1>
+  <a 
+    class="logo" 
+    [routerLink]="['']" 
+    queryParamsHandling="merge"
+  >
+    <mat-icon
+      [svgIcon]="logoUrl | matSvgIcon" 
+    />
+    
+    <div>
+      <span class='logo-title'>{{'logo-title' | translate}}</span>
+      <span class='logo-subtitle'>{{'logo-subtitle' | translate}}</span>
+    </div>
+  </a>
+</h1>

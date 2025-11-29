@@ -4,8 +4,8 @@ import { Lang, LangsService } from '../../../../core/services/langs.service';
 import { AsyncPipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { OpenMenuDirective } from '../../../../core/directives/open-menu.directive';
-import { MatSvgIconPipe } from '../../../../core/pipes/mat-svg-icon.pipe';
 import { environment } from '../../../../../environments/environment';
+import { SvgIconPipe } from '../../../../core/pipes/svg-icon.pipe';
 
 @Component({
   selector: 'app-lang-dropdown',
@@ -13,7 +13,7 @@ import { environment } from '../../../../../environments/environment';
     TranslateModule,
     MatIconModule,
     OpenMenuDirective,
-    MatSvgIconPipe,
+    SvgIconPipe,
     AsyncPipe,
   ],
   templateUrl: './lang-dropdown.component.html',

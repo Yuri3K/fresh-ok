@@ -3,18 +3,18 @@ import { MiniFabBtnComponent } from '../../../../ui-elems/buttons/mini-fab-btn/m
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-favs-btn',
+  selector: 'app-shopping-cart',
   imports: [
     MiniFabBtnComponent
   ],
-  templateUrl: './favs-btn.component.html',
-  styleUrl: './favs-btn.component.scss'
+  templateUrl: './shopping-cart.component.html',
+  styleUrl: './shopping-cart.component.scss'
 })
-export class FavsBtnComponent {
+export class ShoppingCartComponent {
   private readonly router = inject(Router)
 
-  navigateToFavs() {
-    this.router.navigate(['/user', 'favs'], {
+  navigateToCart() {
+    this.router.navigate(['/cart'], {
       queryParamsHandling: 'merge'
     })
   }

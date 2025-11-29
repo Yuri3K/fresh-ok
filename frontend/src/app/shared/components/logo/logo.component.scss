@@ -1,0 +1,37 @@
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  img {
+    height: 60px;
+    width: auto;
+  }
+}
+
+.logo-title {
+  font-family: "Ruda", Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 2.8rem;
+  line-height: 1.2;
+  display: block;
+  text-transform: uppercase;
+}
+
+.logo-subtitle {
+  font-family: "Ruda", Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 1.2rem;
+  line-height: 1.2;
+  width: 100%;
+  display: block;
+  text-align: center;
+}

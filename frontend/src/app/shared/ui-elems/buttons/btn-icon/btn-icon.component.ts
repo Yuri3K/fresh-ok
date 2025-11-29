@@ -1,10 +1,8 @@
 import { NgStyle } from '@angular/common';
 import {
   Component,
-  EventEmitter,
   HostBinding,
   Input,
-  Output,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -32,7 +30,6 @@ export class BtnIconComponent {
   }
 
   ngOnInit() {
-    console.log('🚀 ~ iconColor:', this.iconColor);
     if (!this.fz) {
       this.fz = `${Math.round(parseInt(this.width) * 0.6) / 16}rem`;
     }

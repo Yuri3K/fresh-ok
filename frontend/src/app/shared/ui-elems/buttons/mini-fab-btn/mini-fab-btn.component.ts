@@ -1,14 +1,36 @@
-import { Component } from '@angular/core';
+import { NgStyle } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
+import { MatBadgeModule, MatBadgePosition } from '@angular/material/badge';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-mini-fab-btn',
   imports: [
-    MatIconModule
+    MatIconModule,
+    MatBadgeModule,
+    MatButtonModule,
+    NgStyle
   ],
   templateUrl: './mini-fab-btn.component.html',
   styleUrl: './mini-fab-btn.component.scss'
 })
-export class MiniFabBtnComponent {
+export class MiniFabBtnComponent implements OnInit {
+  @Input({ required: true }) iconName!: string
+  @Input() iconColor?: string;
+  @Input() count = 0
+  @Input() isBadgeHidden = true
+  @Input() width: string = '40px';
+  @Input() fz?: string;
+  @Input() ariaLabel: string = '';
+  @Input() btnDisabled = false;
+  @Input() tooltipShowDelay = 150;
+  @Input() tooltipText?: string;
+  @Input() badgePosition: MatBadgePosition = 'before';
 
+  ngOnInit() {
+    if (!this.fz) {
+      this.fz = `${Math.round(parseInt(this.width) * 0.6) / 16}rem`;
+    }
+  }
 }
