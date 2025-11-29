@@ -5,6 +5,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { SwitchModeComponent } from './components/switch-mode/switch-mode.component';
 import { UserAvatarComponent } from './components/user-avatar/user-avatar.component';
 import { LangDropdownComponent } from '../../ui-elems/selectors/lang-dropdown/lang-dropdown.component';
+import { BtnIconComponent } from '../../ui-elems/buttons/btn-icon/btn-icon.component';
 
 @Component({
   selector: 'app-header',
@@ -14,10 +15,11 @@ import { LangDropdownComponent } from '../../ui-elems/selectors/lang-dropdown/la
     MatButtonModule,
     SwitchModeComponent,
     UserAvatarComponent,
-    LangDropdownComponent
+    LangDropdownComponent,
+    BtnIconComponent,
   ],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
   @Output() toggleSidenav = new EventEmitter<void>();

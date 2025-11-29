@@ -3,6 +3,7 @@ import { HeaderComponent } from '../header/header.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
+import { HeaderMarketComponent } from '../header-market/header-market.component';
 
 @Component({
   selector: 'app-public-layout',
@@ -10,11 +11,10 @@ import { RouterOutlet } from '@angular/router';
     HeaderComponent,
     MatButtonModule,
     MatSidenavModule,
-    RouterOutlet
+    RouterOutlet,
+    HeaderMarketComponent,
   ],
   templateUrl: './public-layout.component.html',
-  styleUrl: './public-layout.component.scss'
+  styleUrl: './public-layout.component.scss',
 })
-export class PublicLayoutComponent {
-
-}
+export class PublicLayoutComponent {}

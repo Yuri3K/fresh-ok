@@ -1,7 +1,12 @@
 <mat-toolbar>
-  <button mat-icon-button (click)="toggleSidenav.emit()">
-    <mat-icon>menu</mat-icon>
-  </button>
+  <app-btn-icon
+    iconColor="var(--mat-sys-primary-fixed-dim)"
+    (click)="toggleSidenav.emit()"
+    tooltipText="Mnu Open Menu Close"
+    [tooltipShowDelay]="500"
+    iconName="menu"
+  />
+
   <app-switch-mode />
   <app-lang-dropdown />
   <app-user-avatar />

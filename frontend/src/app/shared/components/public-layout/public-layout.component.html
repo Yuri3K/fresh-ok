@@ -1,5 +1,6 @@
 <div class="container">
-  <app-header (toggleSidenav)="sidenav.toggle()"/>
+  <app-header (toggleSidenav)="sidenav.toggle()" />
+  <app-header-market class="green" />
   <mat-sidenav-container>
     <mat-sidenav #sidenav [mode]="'side'">
       <p>PUBLIC SIDENAV</p>
@@ -11,5 +12,4 @@
       </main>
     </mat-sidenav-content>
   </mat-sidenav-container>
-
 </div>
