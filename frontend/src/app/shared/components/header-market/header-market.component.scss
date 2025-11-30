@@ -4,7 +4,8 @@
   @include mat.toolbar-overrides(
     (
       container-background-color: var(--mat-sys-primary-container),
-      //   container-text-color: red,
+      container-text-color: var(--mat-sys-secondary-fixed-dim),
+      standard-height: 'auto',
     )
   );
 }

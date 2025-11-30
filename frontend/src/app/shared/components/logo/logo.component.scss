@@ -11,27 +11,28 @@
     opacity: 0.8;
   }
 
-  img {
-    height: 60px;
+  mat-icon {
     width: auto;
+    height: 60px;
   }
 }
 
-.logo-title {
+.logo__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
   font-family: "Ruda", Arial, Helvetica, sans-serif;
   font-weight: 500;
-  font-size: 2.8rem;
   line-height: 1.2;
-  display: block;
+}
+
+.logo-title {
+  font-size: 1.75rem;
   text-transform: uppercase;
 }
 
 .logo-subtitle {
-  font-family: "Ruda", Arial, Helvetica, sans-serif;
-  font-weight: 500;
-  font-size: 1.2rem;
-  line-height: 1.2;
-  width: 100%;
-  display: block;
-  text-align: center;
+  font-size: 0.75rem;
 }

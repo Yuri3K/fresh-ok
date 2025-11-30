@@ -40,6 +40,12 @@
       "terms": "Terms of Service"
     }
   },
+  "header-market": {
+    "logo": {
+      "title": "Freshok",
+      "subtitle": "online-market"
+    }
+  },
   "login-page": {
     "title": "Login",
     "login-with-google": "Continue with Google",
