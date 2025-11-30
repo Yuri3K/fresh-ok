@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
 import { LogoComponent } from '../logo/logo.component';
-import { CatalogComponent } from './components/catalog/catalog.component';
 import { FavsBtnComponent } from './components/favs-btn/favs-btn.component';
 import { SearchInMarketComponent } from './components/search-in-market/search-in-market.component';
 import { ProfileBtnComponent } from './components/profile-btn/profile-btn.component';
 import { MatToolbar } from '@angular/material/toolbar';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { CatalogSelectorComponent } from '../../ui-elems/selectors/catalog-selector/catalog-selector.component';
 
 @Component({
   selector: 'app-header-market',
   imports: [
     LogoComponent,
-    CatalogComponent,
+    CatalogSelectorComponent,
     SearchInMarketComponent,
     FavsBtnComponent,
     ProfileBtnComponent,

@@ -1,29 +1,21 @@
-@import "./styles/catalog-dr-button.scss";
-@import "./styles/catalog-dr-body.scss";
+@use "./styles/catalog-dr-button.scss";
+@use "./styles/catalog-dr-body.scss";
 
 .catalog-dr{
-  background-color: var(--white);
   width: 240px;
   height: 50px;
   border-radius: 8px;
   position: relative;
-
-  &:hover {
-    .catalog-dr__trigger-btn{
-      background-color: var(--green-200);
-    }
-  }
+  z-index: 2;
 
   &.open {
-
     .catalog-dr__trigger-btn{
-      background-color: var(--green-200);
+      background-color: var(--mat-sys-secondary-fixed-dim);
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
     }
 
     .catalog-dr__body {
-      // max-height: 545px;
       pointer-events: unset;
     }
 

@@ -44,6 +44,10 @@
     "logo": {
       "title": "Freshok",
       "subtitle": "online-market"
+    },
+    "catalog": {
+      "title": "Product catalog",
+      "all-categories": "All categories"
     }
   },
   "login-page": {

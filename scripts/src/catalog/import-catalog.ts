@@ -14,14 +14,14 @@ const db = admin.firestore();
 
 async function seedCategories() {
   try {
-    const filePath = path.join(__dirname, "categories.json");
+    const filePath = path.join(__dirname, "catalog.json");
     const fileData = fs.readFileSync(filePath, "utf8");
-    const categories = JSON.parse(fileData);
+    const catalog = JSON.parse(fileData);
 
-    console.log(`Found ${Object.keys(categories).length} categories...`);
+    console.log(`Found ${Object.keys(catalog).length} catalog...`);
 
-    for (const [categoryId, data] of Object.entries(categories)) {
-      const docRef = db.collection("categories").doc(categoryId);
+    for (const [categoryId, data] of Object.entries(catalog)) {
+      const docRef = db.collection("catalog").doc(categoryId);
       const doc = await docRef.get();
 
       if (!doc.exists) {
@@ -42,10 +42,10 @@ async function seedCategories() {
       }
     }
 
-    console.log("Categories seeding finished successfully.");
+    console.log("catalog seeding finished successfully.");
     process.exit(0);
   } catch (err) {
-    console.error("Error seeding categories:", err);
+    console.error("Error seeding catalog:", err);
     process.exit(1);
   }
 }

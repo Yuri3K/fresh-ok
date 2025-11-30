@@ -1,6 +1,7 @@
 @use "@angular/material" as mat;
 
 :host {
+  z-index: 2;
   @include mat.toolbar-overrides(
     (
       container-background-color: var(--mat-sys-primary-container),

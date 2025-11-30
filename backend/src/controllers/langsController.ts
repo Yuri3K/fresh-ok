@@ -9,7 +9,7 @@ const getLangs = async (req: Request, res: Response) => {
     res.json(langs);
   } catch (err) {
     console.log(err)
-    res.status(500).send('Error fetching data')
+    res.status(500).send('Error fetching langs')
   }
 }
 

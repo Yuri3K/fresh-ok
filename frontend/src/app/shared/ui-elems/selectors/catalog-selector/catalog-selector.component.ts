@@ -1,44 +1,29 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { Subscription, filter, tap } from 'rxjs';
-import { CatalogDropDownItem } from './interfaces/catalog-dropdown.interface';
+import { Component, inject } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
+import { MatIconModule } from '@angular/material/icon';
+import { OpenMenuDirective } from '../../../../core/directives/open-menu.directive';
+import { AsyncPipe } from '@angular/common';
+import { CatalogService } from '../../../../core/services/catalog.service';
+import { LangsService } from '../../../../core/services/langs.service';
 
 @Component({
   selector: 'app-catalog-selector',
   templateUrl: './catalog-selector.component.html',
   styleUrls: ['./catalog-selector.component.scss'],
+  imports: [
+    MatIconModule,
+    TranslateModule,
+    OpenMenuDirective,
+    AsyncPipe
+  ]
 })
-export class CatalogDropdownComponent implements OnInit, OnDestroy {
-  catalogList: CatalogDropDownItem[];
-  activeCategory: string;
-  activeCategorySub: Subscription;
+export class CatalogSelectorComponent {
+  currentLang$ = inject(LangsService).currentLang$
+  catalogService = inject(CatalogService)
+  catalogList$ = this.catalogService.catalogList$
+  selectedCategory$ = this.catalogService.selectedCategory$
 
-  constructor(private translateService: TranslateService) {}
-
-  ngOnInit() {
-    this.getCatalogList();
-    this.getActiveCategoty();
-  }
-
-  private getCatalogList() {
-    this.translateService
-      .stream('header-bottom.catalog-dropdown.catalog-list')
-      // .pipe(filter(data => typeof data === 'object'))
-      .subscribe((data: CatalogDropDownItem[]) => {
-        this.catalogList = data;
-      });
-  }
-  private getActiveCategoty() {
-    this.activeCategorySub = this.storeService._activeCategory$.subscribe(
-      (category) => (this.activeCategory = category)
-    );
-  }
-
-  public updateCategory(category: string) {
-    this.storeService._activeCategory$ = category;
-  }
-
-  ngOnDestroy() {
-    this.activeCategorySub.unsubscribe();
+  selectCategory(category: string) {
+    this.catalogService.setSelectedCategory(category)
   }
 }

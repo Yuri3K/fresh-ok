@@ -6,11 +6,11 @@ npx ts-node src/seed-roles.ts
 
 ---
 
-в терминале перейти в папку scripts/src/categories и выполнить команду
+в терминале перейти в папку scripts/src/catalog и выполнить команду
 
-npx ts-node import-categories.ts
+npx ts-node import-catalog.ts
 
-Эта команда НАПОЛНИТ коллекцию "categories" в Firestore и выполнит запись документов согласно логике скрипта
+Эта команда НАПОЛНИТ коллекцию "catalog" в Firestore и выполнит запись документов согласно логике скрипта
 
 ---
 

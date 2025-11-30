@@ -40,6 +40,10 @@
     "logo": {
       "title": "Фрешок",
       "subtitle": "онлайн-маркет"
+    },
+    "catalog": {
+      "title": "Каталог продуктов",
+      "all-categories": "Все категории"
     }
   },
   "login-page": {

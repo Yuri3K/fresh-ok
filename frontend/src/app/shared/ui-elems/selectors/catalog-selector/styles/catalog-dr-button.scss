@@ -1,37 +1,39 @@
-.catalog-dr__trigger-btn{
+.catalog-dr__trigger-btn {
   font-family: "Open Sans", Arial, Helvetica, sans-serif;
   font-weight: 500;
-  font-size: 1.4rem;
+  font-size: 0.875rem;
   line-height: 1.2;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 100%;
   border: none;
-  background-color: transparent;
-  color: var(--green-500);
+  background-color: var(--mat-sys-secondary-fixed);
+  color: var(--mat-sys-on-primary-fixed-variant);
   width: 100%;
   padding: 0 15px;
   border-radius: 8px;
   transition: background-color 0.3s ease, border-bottom-left-radius 0.3s ease, border-bottom-right-radius 0.3s ease;
 
-  .catalog-dr__btn-text{
+  &:hover {
+    background-color: var(--mat-sys-secondary-fixed-dim);
+  }
+
+  .catalog-dr__btn-text {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     gap: 15px;
 
     mat-icon {
-      fill: var(--green-500);
-      height: 17px;
+      color: var(--mat-sys-on-primary-fixed-variant);
     }
   }
-  
+
 }
 
 .carret {
-  width: auto;
-  height: 6px;
+  color: var(--mat-sys-on-primary-fixed-variant);
   transform: rotate(0);
   transition: transform 0.3s ease;
 }

@@ -1,7 +1,7 @@
 @use "@angular/material" as mat;
 
 :host {
-  z-index: 2;
+  z-index: 3;
 
   @include mat.toolbar-overrides(
     (

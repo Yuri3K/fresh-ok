@@ -1,14 +1,15 @@
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, firstValueFrom, map, Observable, of, switchMap, take, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, switchMap, take, throwError } from 'rxjs';
 import { ApiService } from './api.service';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../../../environments/environment';
 import { Location } from '@angular/common';
 
+export type LangCode = 'en' | 'ru' | 'uk';
 export interface Lang {
   id: string;
   name: string;        // e.g. "en-US", "ru-RU"
-  browserLang: string; // e.g. "en", "ru"
+  browserLang: LangCode; // e.g. "en", "ru"
 }
 
 @Injectable({
@@ -30,9 +31,9 @@ export class LangsService {
   }
 
   /**
- * init() - вызывается из APP_INITIALIZER.
+ * init() - вызывается в app.component.
  * загружает языки через API бэкенда, 
- * оgределяет стартовый язык и выполняет translate.use(...).
+ * определяет стартовый язык и выполняет translate.use(...).
  */
   init(): Observable<unknown> {
     return this.apiService.getWithoutToken<Lang[]>('/langs')
