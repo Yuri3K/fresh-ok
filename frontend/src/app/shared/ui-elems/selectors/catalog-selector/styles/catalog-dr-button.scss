@@ -1,0 +1,37 @@
+.catalog-dr__trigger-btn{
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 1.4rem;
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  border: none;
+  background-color: transparent;
+  color: var(--green-500);
+  width: 100%;
+  padding: 0 15px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, border-bottom-left-radius 0.3s ease, border-bottom-right-radius 0.3s ease;
+
+  .catalog-dr__btn-text{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+
+    mat-icon {
+      fill: var(--green-500);
+      height: 17px;
+    }
+  }
+  
+}
+
+.carret {
+  width: auto;
+  height: 6px;
+  transform: rotate(0);
+  transition: transform 0.3s ease;
+}

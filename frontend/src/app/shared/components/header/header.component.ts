@@ -6,6 +6,7 @@ import { SwitchModeComponent } from './components/switch-mode/switch-mode.compon
 import { UserAvatarComponent } from './components/user-avatar/user-avatar.component';
 import { LangDropdownComponent } from '../../ui-elems/selectors/lang-dropdown/lang-dropdown.component';
 import { BtnIconComponent } from '../../ui-elems/buttons/btn-icon/btn-icon.component';
+import { AdminBtnComponent } from './components/admin-btn/admin-btn.component';
 
 @Component({
   selector: 'app-header',
@@ -17,6 +18,7 @@ import { BtnIconComponent } from '../../ui-elems/buttons/btn-icon/btn-icon.compo
     UserAvatarComponent,
     LangDropdownComponent,
     BtnIconComponent,
+    AdminBtnComponent,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',

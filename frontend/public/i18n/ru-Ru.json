@@ -36,6 +36,12 @@
       "terms": "Terms of Service"
     }
   },
+  "header-market": {
+    "logo": {
+      "title": "Фрешок",
+      "subtitle": "онлайн-маркет"
+    }
+  },
   "login-page": {
     "title": "Войти",
     "login-with-google": "Продолжить с Google",

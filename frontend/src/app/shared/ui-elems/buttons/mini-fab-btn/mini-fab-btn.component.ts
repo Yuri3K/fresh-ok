@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatBadgeModule, MatBadgePosition } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-mini-fab-btn',
@@ -10,16 +11,17 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule,
     MatBadgeModule,
     MatButtonModule,
-    NgStyle
+    NgStyle,
+    MatTooltip,
   ],
   templateUrl: './mini-fab-btn.component.html',
-  styleUrl: './mini-fab-btn.component.scss'
+  styleUrl: './mini-fab-btn.component.scss',
 })
 export class MiniFabBtnComponent implements OnInit {
-  @Input({ required: true }) iconName!: string
+  @Input({ required: true }) iconName!: string;
   @Input() iconColor?: string;
-  @Input() count = 0
-  @Input() isBadgeHidden = true
+  @Input() count = 0;
+  @Input() isBadgeHidden = true;
   @Input() width: string = '40px';
   @Input() fz?: string;
   @Input() ariaLabel: string = '';

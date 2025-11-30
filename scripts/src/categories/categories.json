@@ -1,0 +1,137 @@
+{
+  "fruits-vegetables": {
+    "name": {
+      "uk": "Фрукти та овочі",
+      "ru": "Фрукты и овощи",
+      "en": "Fruits & Vegetables"
+    },
+    "slug": "fruits-vegetables",
+    "order": 1
+  },
+  "meat-poultry": {
+    "name": {
+      "uk": "М'ясо",
+      "ru": "Мясо",
+      "en": "Meat"
+    },
+    "slug": "meat-poultry",
+    "order": 2
+  },
+  "fish-seafood": {
+    "name": {
+      "uk": "Риба та морепродукти",
+      "ru": "Рыба и морепродукты",
+      "en": "Fish & Seafood"
+    },
+    "slug": "fish-seafood",
+    "order": 3
+  },
+  "dairy-eggs": {
+    "name": {
+      "uk": "Молоко та яйця",
+      "ru": "Молоко и яйца",
+      "en": "Milk & Eggs"
+    },
+    "slug": "dairy-eggs",
+    "order": 4
+  },
+  "bread-bakery": {
+    "name": {
+      "uk": "Хліб та випічка",
+      "ru": "Хлеб и выпечка",
+      "en": "Bread & Bakery"
+    },
+    "slug": "bread-bakery",
+    "order": 5
+  },
+  "sausages": {
+    "name": {
+      "uk": "Ковбаси",
+      "ru": "Колбасы",
+      "en": "Sausages"
+    },
+    "slug": "sausages",
+    "order": 6
+  },
+  "frozen-food": {
+    "name": {
+      "uk": "Заморожені продукти",
+      "ru": "Замороженные продукты",
+      "en": "Frozen Food"
+    },
+    "slug": "frozen-food",
+    "order": 7
+  },
+  "groceries": {
+    "name": {
+      "uk": "Бакалія",
+      "ru": "Бакалея",
+      "en": "Groceries"
+    },
+    "slug": "groceries",
+    "order": 8
+  },
+  "sweets-snacks": {
+    "name": {
+      "uk": "Солодощі та снеки",
+      "ru": "Сладости и снеки",
+      "en": "Sweets & Snacks"
+    },
+    "slug": "snacks",
+    "order": 9
+  },
+  "drinks": {
+    "name": {
+      "uk": "Напої",
+      "ru": "Напитки",
+      "en": "Drinks"
+    },
+    "slug": "drinks",
+    "order": 10
+  },
+  "alcohol": {
+    "name": {
+      "uk": "Алкоголь",
+      "ru": "Алкоголь",
+      "en": "Alcohol"
+    },
+    "slug": "alcohol",
+    "order": 11
+  },
+  "tea-coffee": {
+    "name": {
+      "uk": "Чай та кава",
+      "ru": "Чай и кофе",
+      "en": "Tea and coffee"
+    },
+    "slug": "tea-coffee",
+    "order": 12
+  },
+  "baby-food": {
+    "name": {
+      "uk": "Детяче харчування",
+      "ru": "Детское питание",
+      "en": "Baby food"
+    },
+    "slug": "baby-food",
+    "order": 13
+  },
+  "cleaning-home": {
+    "name": {
+      "uk": "Побутова хімія",
+      "ru": "Бытовая химия",
+      "en": "Сleaning-home"
+    },
+    "slug": "cleaning-home",
+    "order": 14
+  },
+  "pet-products": {
+    "name": {
+      "uk": "Товари для тварин",
+      "ru": "Товары для животных",
+      "en": "Pet products"
+    },
+    "slug": "pet-products",
+    "order": 15
+  }
+}

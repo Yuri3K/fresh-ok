@@ -1,0 +1,18 @@
+<div class="catalog-dr" appOpenMenu>
+  <button class="catalog-dr__trigger-btn">
+    <div class="catalog-dr__btn-text" >
+      <mat-icon [svgIcon]="'./assets/images/header/catalog.svg' | matSvgIcon"></mat-icon>
+      <span>{{'header-bottom.catalog-dropdown.catalog-dr-title' | translate}}</span>
+    </div>
+    <mat-icon class="carret" [svgIcon]="'./assets/images/header/chevron.svg' | matSvgIcon"></mat-icon>
+  </button>
+  <div class="catalog-dr__body dropdown-body">
+    <ul class="catalog-dr__list dropdown-list">
+      <li class="catalog-dr__item" *ngFor="let item of catalogList">
+        <button [attr.data-id]="item.id" [class.active]="item.id === activeCategory" (click)="updateCategory(item.id)">
+          {{item.name}}
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>

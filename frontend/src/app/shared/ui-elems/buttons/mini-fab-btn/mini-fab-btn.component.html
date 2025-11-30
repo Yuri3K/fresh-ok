@@ -1,9 +1,11 @@
-<button 
+<button
   type="button"
-  mat-mini-fab 
-  [matBadge]="count" 
+  mat-mini-fab
+  [matBadge]="count"
   [matBadgeHidden]="count == 0 ? true : isBadgeHidden"
   [matBadgePosition]="badgePosition"
+  [matTooltip]="tooltipText"
+  [matTooltipShowDelay]="tooltipShowDelay"
   [ngStyle]="{
     width: width,
     height: width,
@@ -14,5 +16,6 @@
       color: iconColor, 
       fontSize: fz,
     }"
-  >{{iconName}}</mat-icon>
+    >{{ iconName }}</mat-icon
+  >
 </button>
