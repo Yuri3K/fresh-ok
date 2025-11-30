@@ -48,6 +48,10 @@
     "catalog": {
       "title": "Product catalog",
       "all-categories": "All categories"
+    },
+    "search-input": {
+      "placeholder": "Find in market",
+      "submit": "Find"
     }
   },
   "login-page": {

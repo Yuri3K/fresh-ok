@@ -44,6 +44,10 @@
     "catalog": {
       "title": "Каталог продуктов",
       "all-categories": "Все категории"
+    },
+    "search-input": {
+      "placeholder": "Найти в магазине",
+      "submit": "Поиск"
     }
   },
   "login-page": {
