@@ -1,7 +1,11 @@
-@use "./styles/catalog-dr-button.scss";
-@use "./styles/catalog-dr-body.scss";
+@use "./styles/catalog-button.scss";
+@use "./styles/catalog-body.scss";
 
-.catalog-dr{
+:host {
+  margin-left: auto;
+}
+
+.catalog{
   width: 240px;
   height: 50px;
   border-radius: 8px;
@@ -9,13 +13,13 @@
   z-index: 2;
 
   &.open {
-    .catalog-dr__trigger-btn{
+    .catalog__trigger-btn{
       background-color: var(--mat-sys-secondary-fixed-dim);
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
     }
 
-    .catalog-dr__body {
+    .catalog__body {
       pointer-events: unset;
     }
 

@@ -10,3 +10,13 @@
     )
   );
 }
+
+mat-toolbar{
+  padding-top: 7px;
+  padding-bottom: 7px;
+  gap: 15px;
+
+  @media (max-width: 1024px) {
+    gap: 10px;
+  }
+}

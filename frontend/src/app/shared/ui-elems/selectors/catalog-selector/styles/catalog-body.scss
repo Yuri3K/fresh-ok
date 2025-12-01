@@ -1,4 +1,4 @@
-.catalog-dr__body {
+.catalog__body {
   min-width: 100%;
   width: auto;
   transition: max-height 0.3s ease;
@@ -12,7 +12,7 @@
 
 }
 
-.catalog-dr__list {
+.catalog__list {
   display: flex;
   flex-direction: column;
   align-items: flex-start;

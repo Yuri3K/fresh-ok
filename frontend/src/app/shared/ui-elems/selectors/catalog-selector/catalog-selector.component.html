@@ -1,35 +1,37 @@
-@let catalogList = (catalogList$ | async);
-@let lang = (currentLang$ | async)!.browserLang;
+@let catalogList = (catalogList$ | async); 
+@let lang = (currentLang$ | async); 
 @let selectedCategory = (selectedCategory$ | async);
 
-<div class="catalog-dr" appOpenMenu>
-  <button class="catalog-dr__trigger-btn">
-    <div class="catalog-dr__btn-text" >
+@if(catalogList && lang) {
+<div class="catalog" appOpenMenu>
+  <button class="catalog__trigger-btn">
+    <div class="catalog__btn-text">
       <mat-icon>notes</mat-icon>
-      <span>{{'header-market.catalog.title' | translate}}</span>
+      <span>{{ "header-market.catalog.title" | translate }}</span>
     </div>
     <mat-icon class="carret">arrow_drop_down</mat-icon>
   </button>
-  <div class="catalog-dr__body dropdown-body">
-    <ul class="catalog-dr__list dropdown-list">
-      <li class="catalog-dr__item">
-        <button 
+  <div class="catalog__body dropdown-body">
+    <ul class="catalog__list dropdown-list">
+      <li class="catalog__item">
+        <button
           [class.active]="selectedCategory == 'all'"
           (click)="selectCategory('all')"
         >
-          {{'header-market.catalog.all-categories' | translate}}
+          {{ "header-market.catalog.all-categories" | translate }}
         </button>
       </li>
       @for(item of catalogList; track item.id; let i = $index) {
-        <li class="catalog-dr__item">
-          <button 
-            [class.active]="selectedCategory == item.slug"
-            (click)="selectCategory(item.slug)"
-          >
-            {{item.name[lang]}}
-          </button>
-        </li>
+      <li class="catalog__item">
+        <button
+          [class.active]="selectedCategory == item.slug"
+          (click)="selectCategory(item.slug)"
+        >
+          {{ item.name[lang.browserLang] }}
+        </button>
+      </li>
       }
     </ul>
   </div>
 </div>
+}

@@ -1,92 +1,24 @@
-.search{
-  height: 50px;
-  max-width: 580px;
-  margin: 0 auto;
+:host {
+  margin-right: auto;
 }
 
-.search__form {
+form {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  height: 100%;
+  justify-content: start;
+}
+
+mat-form-field {
+  width: 250px;
+  height: 50px;
 }
 
 button {
-  font-family: "Open Sans", Arial, Helvetica, sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.875rem;
-  line-height: 1.2;
-  font-weight: 500;
-  color: var(--white);
-  background-color: var(--dark-800);
-  height: 100%;
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
-  transition: background-color 0.3s ease;
-  transition: min-width 0.3s ease;
+  --mdc-filled-button-container-height: 50px;
+  --mdc-filled-button-container-color: var(--mat-sys-neutral-variant20);
+  --mdc-filled-button-label-text-color: var(--mat-sys-secondary-fixed);
 
-  &:hover {
-    background-color: var(--dark-800-hover);
-  }
-
-  &:active{
-    color: var(--white-hover);
-    border: 2px solid var(--green-400);
-  }
-
-  &:focus{
-    color: var(--white);
-    outline: none;
-  }
-
-  &:disabled {
-    background-color: var(--dark-800);
-    color: var(--white);
-    border: none;
-    // cursor: no-drop;
-    cursor: auto;
-  }
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  min-width: 110px;
 }
-
-.search__input-wrapper{
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex: 1;
-
-  // mat-icon{
-  //   height: 100%;
-  //   width: 21px;
-  //   fill: var(--dark-800);
-  //   position: absolute;
-  //   left: 10px;
-  //   top: 0;
-  // }
-
-  // input {
-  //   font-family: "Open Sans", Arial, Helvetica, sans-serif;
-  //   width: 100%;
-  //   height: 100%;
-  //   border: none;
-  //   // padding: 15px 15px 15px 45px;
-  //   font-size: 0.875rem;
-  //   line-height: 1.2;
-  //   border-top-left-radius: 8px;
-  //   border-bottom-left-radius: 8px;
-  //   transition: background-color 0.3s ease;
-
-  //   &:hover {
-  //     background-color: var(--green-100);
-  //   }
-
-  //   &:focus{
-  //     outline: 2px solid var(--green-400);
-  //   }
-  // }
-
-
-}
-
