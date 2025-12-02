@@ -11,7 +11,7 @@ export class SliderService {
   slides!: CarouselSlide[]
 
   private readonly translateService = inject(TranslateService)
-  sliderData = this.translateService.stream('')
+  sliderData$ = this.translateService.stream('header')
     .pipe(
       tap(data => {
         console.log("!!! DATA !!!!", data)

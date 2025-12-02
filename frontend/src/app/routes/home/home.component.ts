@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { CarouselComponent } from '../../../../projects/carousel/src/public-api';
+import { SliderService } from '../../core/services/slider.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +14,13 @@ import { CarouselComponent } from '../../../../projects/carousel/src/public-api'
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
+  private readonly sliderService = inject(SliderService)
+  private destroyRef = inject(DestroyRef)
+
+  sliderData = this.sliderService.sliderData$
+  .pipe(takeUntilDestroyed(this.destroyRef))
+  .subscribe()
+  
   slidesList = [
     {
       title: "Hello 1"
@@ -23,8 +32,10 @@ export class HomeComponent implements OnInit {
       title: "Hello 3"
     }
   ]
-
+  
   ngOnInit() {
+    console.log("🔸 sliderData:", this.sliderData)
+    
   }
 
 }
