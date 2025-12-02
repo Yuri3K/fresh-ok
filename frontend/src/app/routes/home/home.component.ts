@@ -1,29 +1,30 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { LangsService } from '../../core/services/langs.service';
-import { filter, take } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { CarouselComponent } from '../../../../projects/carousel/src/public-api';
 
 @Component({
   selector: 'app-home',
   imports: [
     TranslateModule,
+    CarouselComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
-  private readonly langsService = inject(LangsService)
+  slidesList = [
+    {
+      title: "Hello 1"
+    },
+    {
+      title: "Hello 2"
+    },
+    {
+      title: "Hello 3"
+    }
+  ]
 
   ngOnInit() {
-    this.getLangs()
-  }
-
-  private getLangs() {
-    this.langsService.langs$
-      .pipe(
-        filter(langs => langs.length > 0),
-        take(1)
-      ).subscribe()
   }
 
 }

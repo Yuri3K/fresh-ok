@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'lib-carousel',
   imports: [],
-  template: `
-    <p>
-      carousel works!
-    </p>
-  `,
-  styles: ``
+  templateUrl: './carousel.component.html',
+  styleUrl: './carousel.component.scss'
 })
-export class CarouselComponent {
-
+export class CarouselComponent implements OnInit {
+  @Input() slides!: any[];
+  
+  ngOnInit() {
+    console.log("🔸 slides:", this.slides)
+    
+  }
 }
