@@ -1,8 +1,9 @@
 <div class="carousel">
   <ul class="carousel__list">
-    @for (slide of slides; track $index) {
+    @for (slide of slides; track $index; let i = $index) {
     <li 
       class="carousel__item"
+      [class.carousel__item--active]="i == currentIndex()"
       [ngStyle]="{backgroundImage: `url('${slide.imageUrl}')`}"
       >
       <div class="carousel__container">
@@ -13,15 +14,36 @@
           ></h2>
         <span class="carousel__slide-subtitle">{{slide.subtitle}}</span>
           <p class="carousel__slide-descr">{{slide.descr}}</p>
-          <a [routerLink]="slide.link">{{slide.btn}}</a>
+          <a 
+            [routerLink]="slide.link"
+            class="carousel__slide-btn"
+          >
+            {{slide.btn}}
+          </a>
         </div>
       </div>
     </li>
     }
   </ul>
 
-  <div class="carouser__btns">
+  <div class="carousel__btns">
+    <button
+      type="button"
+      class="carousel__btn carousel__btn--prev"
+      (click)="prev()"
+      aria-label="Previous Slide"
+    >
+     <
+    </button>
 
+    <button
+      type="button"
+      class="carousel__btn carousel__btn--next"
+      (click)="next()"
+      aria-label="Next Slide"
+    >
+      >
+    </button>
   </div>
 
   <div class="carousel__bollets">

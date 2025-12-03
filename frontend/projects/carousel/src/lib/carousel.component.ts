@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, signal } from '@angular/core';
 import { CarouselSlide } from './carousel.types';
 import { RouterLink } from '@angular/router';
 import { NgStyle } from '@angular/common';
@@ -11,9 +11,20 @@ import { NgStyle } from '@angular/common';
 })
 export class CarouselComponent implements OnInit {
   @Input() slides!: CarouselSlide[];
+  @Input() autoplay = true;
+  @Input() autoPlayInterval = 5000 // автопрокрутка каждые 5 сек
+
+  currentIndex = signal(0)
   
   ngOnInit() {
     console.log("🔸 slides:", this.slides)
-    
+  }
+
+  prev() {
+
+  }
+
+  next() {
+
   }
 }

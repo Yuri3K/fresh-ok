@@ -22,11 +22,11 @@ export class HomeComponent implements OnInit {
   slides$ = this.sliderService.slides$
 
   ngOnInit() {
-    this.getSlides()
+    this.fetchSlides()
   }
 
-  private getSlides() {
-    this.sliderService.sliderData$
+  private fetchSlides() {
+    this.sliderService.getSliderData()
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe()
   }
