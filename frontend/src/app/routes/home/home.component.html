@@ -1,4 +1,7 @@
-<p>{{'hello' | translate}}</p>
-<lib-carousel
-  [slides]="slidesList"
-></lib-carousel>
+@let slidesList = (slides$ | async);
+
+@if(slidesList && slidesList.length) {
+  <lib-carousel
+    [slides]="slidesList"
+  ></lib-carousel>
+}

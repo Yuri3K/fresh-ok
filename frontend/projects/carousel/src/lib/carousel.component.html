@@ -1,9 +1,30 @@
 <div class="carousel">
   <ul class="carousel__list">
     @for (slide of slides; track $index) {
-    <li class="carousel__item">
-      {{slide.title}}
+    <li 
+      class="carousel__item"
+      [ngStyle]="{backgroundImage: `url('${slide.imageUrl}')`}"
+      >
+      <div class="carousel__container">
+        <div class="carousel__slide-content">
+          <h2 
+            class="carousel__slide-title"
+            [innerHTML]="slide.title"
+          ></h2>
+        <span class="carousel__slide-subtitle">{{slide.subtitle}}</span>
+          <p class="carousel__slide-descr">{{slide.descr}}</p>
+          <a [routerLink]="slide.link">{{slide.btn}}</a>
+        </div>
+      </div>
     </li>
     }
   </ul>
+
+  <div class="carouser__btns">
+
+  </div>
+
+  <div class="carousel__bollets">
+
+  </div>
 </div>
