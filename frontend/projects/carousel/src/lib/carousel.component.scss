@@ -9,6 +9,14 @@
 
 .carousel__list {
   position: relative;
+  cursor: grab;
+
+  touch-action: pan-y; // Разрешаем вертикальный скролл, но контролируем горизонтальный
+  user-select: none; // Отключаем выделение текста при свайпе
+
+  &.dragging {
+    cursor: grabbing;
+  }
 }
 
 .carousel__item {
@@ -74,6 +82,7 @@
 }
 
 .carousel__slide-btn{
+  cursor: pointer;
   position: relative;
   transition: top 0.4s ease-in-out, background-color 0.2s ease-in-out;
 

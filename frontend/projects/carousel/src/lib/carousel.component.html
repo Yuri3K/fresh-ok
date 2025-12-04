@@ -1,9 +1,18 @@
 <div class="carousel">
   <ul 
+    #carouselList
     class="carousel__list"
+    [class.dragging]="isDragging"
     [ngStyle]="{
       height: carouselHeight
     }"
+    (touchstart)="onTouchStart($event)"
+    (touchend)="onTouchEnd($event)"
+    (touchmove)="onTouchMove($event)"
+    (mousedown)="onMouseDown($event)"
+    (mousemove)="onMouseMove($event)"
+    (mouseup)="onMouseUp($event)"
+    (mouseleave)="onMouseLeave($event)"
   >
     @for (slide of slides; track $index; let i = $index) {
     <li 
@@ -22,7 +31,7 @@
         <span class="carousel__slide-subtitle">{{slide.subtitle}}</span>
           <p class="carousel__slide-descr">{{slide.descr}}</p>
           <a 
-            [routerLink]="slide.link"
+            (click)="navigateByLink(slide.link)"
             class="btn green carousel__slide-btn"
           >
             {{slide.btn}}
