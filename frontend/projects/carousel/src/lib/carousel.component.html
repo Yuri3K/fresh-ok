@@ -1,10 +1,17 @@
 <div class="carousel">
-  <ul class="carousel__list">
+  <ul 
+    class="carousel__list"
+    [ngStyle]="{
+      height: carouselHeight
+    }"
+  >
     @for (slide of slides; track $index; let i = $index) {
     <li 
       class="carousel__item"
       [class.carousel__item--active]="i == currentIndex()"
-      [ngStyle]="{backgroundImage: `url('${slide.imageUrl}')`}"
+      [ngStyle]="{
+        backgroundImage: `url('${slide.imageUrl}')`,
+        }"
       >
       <div class="carousel__container">
         <div class="carousel__slide-content">
@@ -16,7 +23,7 @@
           <p class="carousel__slide-descr">{{slide.descr}}</p>
           <a 
             [routerLink]="slide.link"
-            class="carousel__slide-btn"
+            class="btn green carousel__slide-btn"
           >
             {{slide.btn}}
           </a>
@@ -28,25 +35,34 @@
 
   <div class="carousel__btns">
     <button
+      mat-mini-fab
       type="button"
-      class="carousel__btn carousel__btn--prev"
-      (click)="prev()"
+      class="green carousel__btn carousel__btn--prev"
+      (click)="prev(); this.onUserInteraction()"
       aria-label="Previous Slide"
     >
-     <
+     <mat-icon>chevron_left</mat-icon>
     </button>
 
     <button
+      mat-mini-fab
       type="button"
-      class="carousel__btn carousel__btn--next"
-      (click)="next()"
+      class="green carousel__btn carousel__btn--next"
+      (click)="next(); this.onUserInteraction()"
       aria-label="Next Slide"
     >
-      >
+      <mat-icon>chevron_right</mat-icon>
     </button>
   </div>
 
   <div class="carousel__bollets">
-
+    @for(slide of slides; track $index; let i = $index) {
+      <button
+        class="green carousel__bollet"
+        [class.carousel__bollet--active]="i == currentIndex()"
+        (click)="goToSlide(i); onUserInteraction()"
+        [attr.aria-label]="'Go to slide' + (i + 1)"
+      ></button>
+    }
   </div>
 </div>
