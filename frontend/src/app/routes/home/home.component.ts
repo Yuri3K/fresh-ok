@@ -3,14 +3,17 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CarouselComponent } from '../../../../projects/carousel/src/public-api';
 import { SliderService } from '../../core/services/slider.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
+import { M3CarouselComponent } from '../../../../projects/m3-carousel/src/public-api';
 
 @Component({
   selector: 'app-home',
   imports: [
     TranslateModule,
     CarouselComponent,
-    AsyncPipe
+    AsyncPipe,
+    CommonModule,
+    M3CarouselComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'

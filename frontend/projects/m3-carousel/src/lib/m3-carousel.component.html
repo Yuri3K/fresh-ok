@@ -1,0 +1,23 @@
+<div 
+  class="m3-carousel"
+  role="group"
+  aria-roledescription="carousel"
+>
+  <div 
+    class="m3-carousel-viewport"
+    m3Swipe
+    (swipeLeft)="onSwipeLeft()"
+    (swipeRight)="onSwipeRigth()"
+  >
+    <div 
+      class="m3-carousel-track"
+      [style.transform]="
+        'translateX(' + 
+        (-carouselService.currentIndex() * (100 / 1)) + 
+        '%)'
+      "
+    >
+      <ng-content select="[M3CarouselSlide]"></ng-content>
+    </div>
+  </div>
+</div>

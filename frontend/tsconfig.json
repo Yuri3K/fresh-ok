@@ -6,6 +6,9 @@
     "paths": {
       "carousel": [
         "./dist/carousel"
+      ],
+      "m3-carousel": [
+        "./dist/m3-carousel"
       ]
     },
     "outDir": "./dist/out-tsc",
