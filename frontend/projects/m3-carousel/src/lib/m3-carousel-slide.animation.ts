@@ -5,7 +5,7 @@ export const slideAnimation = trigger('slide', [
     style({opacity: 0}),
     animate('300ms ease-in-out', style({opacity: 1}))
   ]),
-  transition(':leavee', [
+  transition(':leave', [
     animate('300ms ease-in-out', style({opacity: 0}))
   ])
 ])

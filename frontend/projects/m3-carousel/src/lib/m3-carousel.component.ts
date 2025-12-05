@@ -5,6 +5,8 @@ import { M3CarouselSlideDirective } from './m3-carousel-slide.directive';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRipple } from "@angular/material/core";
+import { CommonModule } from '@angular/common';
+import { slideAnimation } from './m3-carousel-slide.animation';
 
 @Component({
   selector: 'm3-carousel',
@@ -13,10 +15,12 @@ import { MatRipple } from "@angular/material/core";
     M3CarouselSlideDirective,
     MatIconModule,
     MatButtonModule,
-    MatRipple
+    MatRipple,
+    CommonModule,
 ],
   templateUrl: './m3-carousel.component.html',
   styleUrl: './m3-carousel.component.scss',
+  animations: [slideAnimation],
 })
 
 export class M3CarouselComponent implements OnInit, OnDestroy {

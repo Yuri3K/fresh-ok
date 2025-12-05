@@ -7,17 +7,17 @@
 
 
   <m3-carousel 
-    [autoplay]="true" 
+    [autoplay]="false" 
     [interval]="4000" 
-    [loop]="true"
+    [loop]="false"
   >
-    <!-- @for(slide of slidesList; track $index; let i = $index) { -->
-        <ng-template M3CarouselSlide *ngFor="let slide of slidesList">
+    @for(slide of slidesList; track $index; let i = $index) {
+        <ng-template M3CarouselSlide>
           <div class="slide--content">
             <img [src]="slide.imageUrl" alt="" />
             <div class="caption">{{slide.title}}</div>
           </div>
       </ng-template>
-    <!-- } -->
+    }
   </m3-carousel>
 }

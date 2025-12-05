@@ -17,7 +17,12 @@
         '%)'
       "
     >
-      <ng-content select="[M3CarouselSlide]"></ng-content>
+      @for(tpl of carouselService.slides(); track $index; let i = $index) {
+        <ng-container *ngTemplateOutlet="tpl"></ng-container>
+      }
+        <!-- <ng-container *ngFor="let tpl of carouselService.slides(); let i = index">
+        </ng-container> -->
+      <!-- <ng-content select="[M3CarouselSlide]"></ng-content> -->
     </div>
   </div>
 
@@ -36,18 +41,16 @@
       role="tablist"
       aria-label="Carousel indicators"
     >
-    <!-- (click)="carouselService.goTo(i)" -->
-    <!-- aria-label="Go to slide {{i + 1}}" -->
-    <!-- [attr.aria-selected]="carouselService.currentIndex() == i" -->
-      @for(_ of constructor(carouselService.slidesLength()); track $index; let i = $index) {
+      @for(_ of [].constructor(carouselService.slidesLength()); track $index; let i = $index) {
         <button
           type="button"
           mat-icon-button
           class="m3-carousel__dot"
           matRipple
+          (click)="carouselService.goTo(i)"
+          [attr.aria-selected]="carouselService.currentIndex() == i"
         >
-          <!-- <mat-icon>{{ carouselService.currentIndex() === i ? 'lens' : 'radio_button_unchecked' }}</mat-icon> -->
-           <mat-icon>lens</mat-icon>
+          <mat-icon>{{ carouselService.currentIndex() === i ? 'lens' : 'radio_button_unchecked' }}</mat-icon>
         </button>
       }
     </div>
