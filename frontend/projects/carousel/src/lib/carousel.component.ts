@@ -59,7 +59,7 @@ export class CarouselComponent implements OnInit, OnDestroy {
       this.onUserInteraction()
     } else if (event.key == 'ArrowRight') {
       this.next()
-      this.onUserInteraction
+      this.onUserInteraction()
     }
   }
 
@@ -161,7 +161,7 @@ export class CarouselComponent implements OnInit, OnDestroy {
   // ============ MOUSE EVENTS (Desktop) ============
   onMouseDown(event: MouseEvent) {
     if (!this.draggingEnabled) return
-    
+
     this.mouseStartX = event.screenX
     this.mouseStartY = event.screenY
     this.isDragging = true
@@ -190,14 +190,14 @@ export class CarouselComponent implements OnInit, OnDestroy {
   private handleDragging() {
     const deltaX = this.mouseStartX - this.mouseEndX
     const deltaY = this.mouseStartY - this.mouseEndY
+    
     if ((Math.abs(deltaX) > Math.abs(deltaY))) {
       if (deltaX < -this.dragMinDistance) {
-        this.next()
-        this.onUserInteraction()
-      } else if (deltaX > this.dragMinDistance) {
         this.prev()
-        this.onUserInteraction()
+      } else if (deltaX > this.dragMinDistance) {
+        this.next()
       }
+      this.onUserInteraction()
     }
   }
 
