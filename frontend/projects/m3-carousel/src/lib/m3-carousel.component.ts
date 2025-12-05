@@ -2,13 +2,19 @@ import { Component, ElementRef, inject, Input, OnDestroy, OnInit } from '@angula
 import { M3CarouselService } from './m3-carousel.service';
 import { M3SwipeDirective } from "./m3-swipe.directive";
 import { M3CarouselSlideDirective } from './m3-carousel-slide.directive';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatRipple } from "@angular/material/core";
 
 @Component({
-  selector: 'lib-m3-carousel',
+  selector: 'm3-carousel',
   imports: [
     M3SwipeDirective,
-    M3CarouselSlideDirective
-  ],
+    M3CarouselSlideDirective,
+    MatIconModule,
+    MatButtonModule,
+    MatRipple
+],
   templateUrl: './m3-carousel.component.html',
   styleUrl: './m3-carousel.component.scss',
 })

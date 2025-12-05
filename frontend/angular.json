@@ -146,7 +146,7 @@
       "projectType": "library",
       "root": "projects/m3-carousel",
       "sourceRoot": "projects/m3-carousel/src",
-      "prefix": "lib",
+      "prefix": "m3",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",

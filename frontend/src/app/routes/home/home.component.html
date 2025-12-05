@@ -1,17 +1,23 @@
 @let slidesList = (slides$ | async);
 
 @if(slidesList && slidesList.length) {
-  <lib-carousel
+  <!-- <lib-carousel
     [slides]="slidesList"
-  ></lib-carousel>
+  ></lib-carousel> -->
 
 
-  <m3-carousel [autoplay]="true" [interval]="4000" [loop]="true">
-    <ng-template m3CarouselItem *ngFor="let slide of slides">
-    <div class="slide--content">
-      <img [src]="slide.img" alt="{{slide.alt}}" />
-      <div class="caption">{{slide.title}}</div>
-    </div>
-  </ng-template>
+  <m3-carousel 
+    [autoplay]="true" 
+    [interval]="4000" 
+    [loop]="true"
+  >
+    <!-- @for(slide of slidesList; track $index; let i = $index) { -->
+        <ng-template M3CarouselSlide *ngFor="let slide of slidesList">
+          <div class="slide--content">
+            <img [src]="slide.imageUrl" alt="" />
+            <div class="caption">{{slide.title}}</div>
+          </div>
+      </ng-template>
+    <!-- } -->
   </m3-carousel>
 }

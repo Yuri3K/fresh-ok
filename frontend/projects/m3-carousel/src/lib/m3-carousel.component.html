@@ -20,4 +20,48 @@
       <ng-content select="[M3CarouselSlide]"></ng-content>
     </div>
   </div>
+
+  <div class="m3-carousel-controls">
+    <button
+      type="button"
+      mat-icon-button
+      (click)="carouselService.prev()"
+      aria-label="Previous slide"
+    >
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+
+    <div 
+      class="m3-carousel__dots"
+      role="tablist"
+      aria-label="Carousel indicators"
+    >
+    <!-- (click)="carouselService.goTo(i)" -->
+    <!-- aria-label="Go to slide {{i + 1}}" -->
+    <!-- [attr.aria-selected]="carouselService.currentIndex() == i" -->
+      @for(_ of constructor(carouselService.slidesLength()); track $index; let i = $index) {
+        <button
+          type="button"
+          mat-icon-button
+          class="m3-carousel__dot"
+          matRipple
+        >
+          <!-- <mat-icon>{{ carouselService.currentIndex() === i ? 'lens' : 'radio_button_unchecked' }}</mat-icon> -->
+           <mat-icon>lens</mat-icon>
+        </button>
+      }
+    </div>
+
+
+    <button
+      type="button"
+      mat-icon-button
+      (click)="carouselService.next()"
+      aria-label="Next slide"
+    >
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+
+
+  </div>
 </div>
