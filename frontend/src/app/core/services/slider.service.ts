@@ -1,9 +1,17 @@
 import { inject, Injectable } from '@angular/core';
-import { CarouselSlide } from '../../../../projects/carousel/src/lib/carousel.types';
 import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
+export interface CarouselSlide {
+  id: string
+  title: string
+  subtitle: string
+  descr: string
+  btn: string
+  link: string
+  imageUrl: string
+}
 
 @Injectable({
   providedIn: 'root'

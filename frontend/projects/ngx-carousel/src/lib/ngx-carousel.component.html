@@ -1,0 +1,6 @@
+
+<!-- @for(slide of slides; track $index; let i = $index) {
+  <ng-container [ngTemplateOutlet]="slide.teplateRef" />
+} -->
+
+<ng-content select="[ngxCarouselSlide]"></ng-content>

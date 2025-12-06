@@ -9,6 +9,9 @@
       ],
       "m3-carousel": [
         "./dist/m3-carousel"
+      ],
+      "ngx-carousel": [
+        "./dist/ngx-carousel"
       ]
     },
     "outDir": "./dist/out-tsc",

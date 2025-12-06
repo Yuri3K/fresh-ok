@@ -4,8 +4,9 @@ import { SliderService } from '../../core/services/slider.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AsyncPipe, CommonModule } from '@angular/common';
 // import { CarouselComponent } from 'carousel';
-import { M3CarouselComponent } from '../../../../projects/m3-carousel/src/public-api';
-import { M3CarouselSlideDirective } from '../../../../projects/m3-carousel/src/lib/m3-carousel-slide.directive';
+// import { M3CarouselComponent } from '../../../../projects/m3-carousel/src/public-api';
+import { CarouselSlideComponent } from './components/carousel-slide/carousel-slide.component';
+import { NgxCarouselComponent, NgxCarouselSLideDirective } from 'ngx-carousel';
 
 @Component({
   selector: 'app-home',
@@ -13,10 +14,12 @@ import { M3CarouselSlideDirective } from '../../../../projects/m3-carousel/src/l
     TranslateModule,
     // CarouselComponent,
     AsyncPipe,
-    M3CarouselComponent,
-    M3CarouselSlideDirective,
-    CommonModule
-],
+    // M3CarouselComponent,
+    CommonModule,
+    NgxCarouselComponent,
+    CarouselSlideComponent,
+    // NgxCarouselSLideDirective,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
