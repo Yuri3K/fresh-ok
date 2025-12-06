@@ -9,9 +9,49 @@
   left: 0;
   right: 0;
   pointer-events: none;
+
+  &.bullets {
+    top: unset;
+    bottom: 10px;
+  }
 }
 
 .ngx-carousel__btn {
   pointer-events: auto;
   cursor: pointer;
+}
+
+.ngx-carousel__dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.ngx-carousel__dot {
+  pointer-events: auto;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--mat-sys-primary-container);
+  background-color: var(--mat-sys-secondary-fixed);
+  border-radius: 50%;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #fff;
+  }
+
+  &.active {
+    background-color: var(--mat-sys-primary);
+    // border: 2px solid var(--mat-sys-primary);
+    
+    &:hover {
+      background-color: var(--mat-sys-primary-container);
+    }
+  }
 }

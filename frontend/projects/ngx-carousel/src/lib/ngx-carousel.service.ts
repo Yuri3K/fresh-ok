@@ -29,23 +29,23 @@ export class NgxCarouselService {
     // })
   }
 
-  next() {
-    const len = this.slidesLength()
-    console.log("🔸 len1:", len)
-    this.currentSlide.update(index => {
-      console.log("🔸 index1:", index)
-      return (index == len - 1) ? 0 : index + 1
-    })
-  }
+  // next() {
+  //   const len = this.slidesLength()
+  //   console.log("🔸 len1:", len)
+  //   this.currentSlide.update(index => {
+  //     console.log("🔸 index1:", index)
+  //     return (index == len - 1) ? 0 : index + 1
+  //   })
+  // }
 
-  prev() {
-    const len = this.slidesLength()
-    console.log("🔸 len2:", len)
-    this.currentSlide.update(index => {
-      console.log("🔸 index2:", index)
-      return index == 0 ? len - 1 : index - 1
-    })
-  }
+  // prev() {
+  //   const len = this.slidesLength()
+  //   console.log("🔸 len2:", len)
+  //   this.currentSlide.update(index => {
+  //     console.log("🔸 index2:", index)
+  //     return index == 0 ? len - 1 : index - 1
+  //   })
+  // }
 
   register(slides: any[]) {
     this.slides.set(slides)
@@ -67,26 +67,26 @@ export class NgxCarouselService {
     return this.slides().length
   }
 
-  // goTo(index: number) {
-  //   const len = this.slidesLength()
+  goTo(index: number) {
+    const len = this.slidesLength()
 
-  //   if (len == 0) return
+    if (len == 0) return
 
-  //   if (this.config().loop) {
-  //     const normalized = ((index % len) + len) % len
-  //     this.currentIndex.set(normalized)
-  //   } else {
-  //     this.currentIndex.set(Math.max(0, Math.min(index, len - 1)))
-  //   }
-  // }
+    // if (this.config().loop) {
+      const normalized = ((index % len) + len) % len
+      this.currentSlide.set(normalized)
+    // } else {
+      // this.currentSlide.set(Math.max(0, Math.min(index, len - 1)))
+    // }
+  }
 
-  // next() {
-  //   this.goTo(this.currentIndex() + 1)
-  // }
+  next() {
+    this.goTo(this.currentSlide() + 1)
+  }
 
-  // prev() {
-  //   this.goTo(this.currentIndex() - 1)
-  // }
+  prev() {
+    this.goTo(this.currentSlide() - 1)
+  }
 
   // startAutoplay() {
   //   if (!this.config().autoplay) return
