@@ -1,0 +1,47 @@
+.carousel {
+    height: auto;
+    outline: none;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 600px;
+}
+
+.carousel-list {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.carousel-slide {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-shrink: 0;
+    position: relative;
+
+    &:hover {
+      cursor: grab;
+    }
+}
+
+// .carousel-track{
+//     width: 100%;
+//     height: 100%;
+//     position: relative;
+//     overflow: hidden;
+// }
+
+// .carousel-slide {
+//     width: 100%;
+//     height: 100%;
+//     display: none;
+
+//     &.active {
+//         display: block;
+//     }
+// }

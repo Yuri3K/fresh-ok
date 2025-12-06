@@ -3,10 +3,11 @@
 @if(slidesList && slidesList.length) {
   <lib-ngx-carousel>
     @for(slide of slidesList; track $index; let i = $index) {
-      <app-carousel-slide 
-        [slide]="slide"
-        ngxCarouselSlide
-      />
+      <ngx-carousel-slide>
+        <app-carousel-slide 
+          [slide]="slide"
+        />
+      </ngx-carousel-slide>
     }
   </lib-ngx-carousel>
 }

@@ -6,7 +6,7 @@ import { CarouselSlide } from '../../../../core/services/slider.service';
 @Component({
   selector: 'app-carousel-slide',
   imports: [
-    // NgStyle
+    NgStyle
   ],
   templateUrl: './carousel-slide.component.html',
   styleUrl: './carousel-slide.component.scss'

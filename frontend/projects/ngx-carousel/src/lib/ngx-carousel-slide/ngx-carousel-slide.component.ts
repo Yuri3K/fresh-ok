@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'ngx-carousel-slide',
@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './ngx-carousel-slide.component.scss'
 })
 export class NgxCarouselSlideComponent {
+  @ViewChild(TemplateRef) public templateRef!: TemplateRef<any>;
 
 }

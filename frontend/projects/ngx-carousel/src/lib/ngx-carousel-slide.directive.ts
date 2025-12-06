@@ -1,4 +1,4 @@
-import { Directive, ElementRef, inject, OnInit } from "@angular/core";
+import { Directive, ElementRef, inject, OnInit, TemplateRef } from "@angular/core";
 
 @Directive({
   selector: '[ngxCarouselSlide]',
@@ -7,6 +7,8 @@ import { Directive, ElementRef, inject, OnInit } from "@angular/core";
 
 export class NgxCarouselSLideDirective implements OnInit {
   private readonly el = inject(ElementRef<HTMLElement>)
+
+  // constructor(public tpl: TemplateRef<any>) { }
 
   ngOnInit() {
     console.log("!!! EL !!!", this.el)
