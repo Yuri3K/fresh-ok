@@ -1,55 +1,25 @@
 
 <div
   #carouselContainer
-  class="carousel"
+  class="ngx-carousel"
   tabindex="0"
 >
   <ul 
     #carouselList
-    class="carousel-list"
+    [style.transform]="'translateX(-' + carousel.currentSlide() * 100 + '%)'"
+    class="ngx-carousel__list"
     role="listbox"
   >
     @for(slide of slidesList; track $index; let i = $index) {
       <li 
-        class="carousel-slide"
-        [class.active]="i === currentSlide()"
+        class="ngx-carousel__slide"
+        role="option"
+        [class.active]="i === carousel.currentSlide()"
       >
         <ng-container [ngTemplateOutlet]="slide.templateRef"></ng-container>
       </li>
     } 
   </ul>
 
-
-
-
+  <ngx-carousel-controls />
 </div>
-
-<!-- <div
-  #carouselContainer
-  class="carousel"
-  tabindex="0"
-  [style.max-width]="maxWidth"
-  [style.height]="!maintainAspectRatio ? '100%' : 'auto'"
->
-  <ul
-    #carouselList
-    class="carousel-list"
-    role="listbox"
-    [style.flex-direction]="orientation === 'rtl' ? 'row-reverse' : 'row'"
-    [style.height]="!maintainAspectRatio ? '100%' : 'auto'"
-  >
-    <li
-      #carouselSlide
-      *ngFor="let slide of slidesList"
-      class="carousel-slide"
-      role="option"
-      [style.padding-bottom]="maintainAspectRatio && proportion ? proportion + '%': '0px'"
-      [style.height]="!maintainAspectRatio && slideHeight ? slideHeight : '0px'"
-      (panleft)="onPan($event, carouselSlide)"
-      (panright)="onPan($event, carouselSlide)"
-      (panend)="onPanEnd($event, carouselSlide)"
-      (pancancel)="onPanEnd($event, carouselSlide)"
-    >
-      <ng-container [ngTemplateOutlet]="slide.templateRef"></ng-container>
-    </li>
-  </ul> -->

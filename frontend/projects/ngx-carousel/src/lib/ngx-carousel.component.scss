@@ -1,47 +1,37 @@
-.carousel {
-    height: auto;
-    outline: none;
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    height: 600px;
+.ngx-carousel {
+  height: auto;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 600px;
 }
 
-.carousel-list {
-    display: flex;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    list-style: none;
+.ngx-carousel__list {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  transition: transform 0.5s ease;
 }
 
-.carousel-slide {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-shrink: 0;
-    position: relative;
+.ngx-carousel__slide {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-shrink: 0;
+  position: relative;
+  pointer-events: none;
 
-    &:hover {
-      cursor: grab;
-    }
+  &:hover {
+    cursor: grab;
+  }
+
+  &.active {
+    display: block;
+    pointer-events: auto;
+  }
 }
-
-// .carousel-track{
-//     width: 100%;
-//     height: 100%;
-//     position: relative;
-//     overflow: hidden;
-// }
-
-// .carousel-slide {
-//     width: 100%;
-//     height: 100%;
-//     display: none;
-
-//     &.active {
-//         display: block;
-//     }
-// }

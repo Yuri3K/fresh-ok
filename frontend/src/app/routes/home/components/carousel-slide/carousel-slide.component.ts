@@ -19,16 +19,8 @@ export class CarouselSlideComponent {
   private readonly router = inject(Router)
 
   navigateByLink(link: string) {
-    // const deltaX = this.mouseStartX - this.mouseEndX
-    // const deltaY = this.mouseStartY - this.mouseEndY
-
-    // if (
-    //   (Math.abs(deltaX) < this.dragMinDistance)
-    //   && (Math.abs(deltaY) < this.dragMinDistance)
-    // ) {
       this.router.navigate([link], {
         queryParamsHandling: 'merge'
       }).then()
-    // }
   }
 }
