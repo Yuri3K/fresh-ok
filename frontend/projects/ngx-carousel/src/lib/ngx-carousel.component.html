@@ -23,7 +23,6 @@
     (pointerup)="swipe.onPointerUp($event)"
     (pointercancel)="swipe.onPointerUp($event)"
     (pointerleave)="swipe.onPointerUp($event)"
-
   >
     @for(slide of slidesList; track $index; let i = $index) {
       <li 

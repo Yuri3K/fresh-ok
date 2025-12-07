@@ -39,11 +39,6 @@ export class NgxSwipeService {
     this.isSwiping.set(true);
     this.autoplay.stop();
 
-    // pointercapture гарантирует, что все pointermove события будут приходить на этот элемент, 
-    // даже если палец/мышь вышли за пределы слайдера.
-    // Без него свайп часто "обрывается", если пользователь ведёт чуть в сторону.
-    this.carouselList.nativeElement.setPointerCapture(event.pointerId);
-
     // Отключаем transition в начале свайпа (через Renderer2)
     this.renderer.setStyle(this.carouselList.nativeElement, 'transition', 'none');
   }
@@ -56,6 +51,11 @@ export class NgxSwipeService {
     // Проверяем, превысили ли мы порог, чтобы считать это "свайпом", а не кликом
     if (Math.abs(this.currentX) > this.CLICK_LIMIT) {
       this.isSwipedEnough.set(true);
+      
+      // pointercapture гарантирует, что все pointermove события будут приходить на этот элемент, 
+      // даже если палец/мышь вышли за пределы слайдера.
+      // Без него свайп часто "обрывается", если пользователь ведёт чуть в сторону.
+      this.carouselList.nativeElement.setPointerCapture(event.pointerId);
     }
 
     // Смещение в процентах (пользовательское + текущий слайд)
@@ -68,6 +68,7 @@ export class NgxSwipeService {
 
   onPointerUp(event: PointerEvent) {
     if (!this.isSwiping()) return;
+    const target = event.target as HTMLElement
 
     // 1. Включаем transition обратно, прежде чем менять currentSlide()
     this.renderer.setStyle(this.carouselList.nativeElement, 'transition', 'transform 0.5s ease');
@@ -87,6 +88,7 @@ export class NgxSwipeService {
 
     // 2. Сбрасываем флаги
     this.isSwiping.set(false);
+    this.isSwipedEnough.set(false);
     this.currentX = 0;
     this.autoplay.resume();
   }
