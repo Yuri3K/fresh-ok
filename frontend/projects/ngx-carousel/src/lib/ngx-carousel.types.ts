@@ -5,7 +5,6 @@ export interface NgxCarouselConfig {
   interval?: number,
   loop?: boolean,
   pauseOnHover?: boolean;
-  stopOnInteraction?: boolean;
   animation?: 'slide' | 'fade',
   startIndex?: number,
 }
@@ -15,7 +14,6 @@ export const DEFAULT_CAROUSEL_CONFIG: NgxCarouselConfig = {
   interval: 5000,
   loop: true,
   pauseOnHover: true,
-  stopOnInteraction: true,
   animation: 'slide',
   startIndex: 0,
 }

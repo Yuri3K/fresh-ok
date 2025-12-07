@@ -23,7 +23,7 @@ export const appConfig: ApplicationConfig = {
       provide: NGX_CAROUSEL_CONFIG,
       useValue: {
         autoplay: true, 
-        interval: 1000, 
+        interval: 5000, 
         loop: true ,
       }
     },

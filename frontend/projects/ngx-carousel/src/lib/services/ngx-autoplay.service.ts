@@ -1,48 +1,59 @@
-import { effect, inject, Injectable, signal } from "@angular/core";
+import { computed, effect, inject, Injectable, signal } from "@angular/core";
 import { NgxCarouselService } from "./ngx-carousel.service";
+import { config } from "rxjs/internal/config";
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class NgxAutoplayService {
-  private autoplayTimer: any = null
+  private timerAutoplay: any = null
+  // private timerResume: any = null
   private carousel = inject(NgxCarouselService)
-  private config = signal(this.carousel.getConfig())
-  private isPlaing = signal(true)
+  private isPlaying = signal(true)
+  private config = computed(() => this.carousel.getConfig());
 
   constructor() {
-    console.log("!!! AUTOPLAY RUN !!!")
     effect(() => {
+      if(!this.config().autoplay || this.carousel.slidesLength() <= 1) {
+        this.stop()
+        return
+      }
+
       this.config().autoplay ?
-        this.startAutoplay() :
-        this.stopAutoplay()
+        this.start() :
+        this.stop()
     })
   }
 
-  private startAutoplay() {
-    if (!this.config().autoplay) return
-
-    this.isPlaing.set(true)
-    this.stopAutoplay()
-    const interval = this.config().interval || 5000
-    this.autoplayTimer = setInterval(() => this.carousel.next(), interval)
+  private start() {
+    if (!this.config().autoplay || !this.isPlaying()) return
+    
+    this.stop()
+    const delay  = this.config().interval ?? 5000
+    this.timerAutoplay = setInterval(() => this.carousel.next(), delay )
   }
 
-  stopAutoplay() {
-    this.isPlaing.set(false)
-
-    if (this.autoplayTimer) {
-      clearInterval(this.autoplayTimer)
-      this.autoplayTimer = null
+  stop() {
+    this.isPlaying.set(false)
+    if (this.timerAutoplay) {
+      clearInterval(this.timerAutoplay)
+      this.timerAutoplay = null
     }
   }
 
-  resumeAutoplay() {
+  pause() {
+    if(this.config().pauseOnHover) {
+      this.stop();
+    }
+  }
+
+  resume() {
     if(this.config().autoplay) {
-      setTimeout(() => {
-        this.startAutoplay()
-      }, 5000);
+      this.isPlaying.set(true);
+
+      const delay = this.config().interval ?? 5000;
+      setTimeout(() => this.start(), delay);
     }
   }
 }

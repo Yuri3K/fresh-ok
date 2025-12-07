@@ -10,10 +10,6 @@ export class NgxCarouselService {
   private slides = signal<NgxCarouselSlideComponent[]>([])
   currentSlide = signal(0)
 
-  // private autoplayTimer: any = null
-  // readonly slides = computed(() => this._slides())
-  // isPlaing = signal(false)
-
   constructor(
     @Optional() @Inject(NGX_CAROUSEL_CONFIG) defaultCfg: NgxCarouselConfig
   ) {
@@ -22,12 +18,6 @@ export class NgxCarouselService {
       ...(defaultCfg || {})
     })
     this.currentSlide.set(this.config().startIndex ?? 0)
-
-    // effect(() => {
-    //   this.config().autoplay
-    //     ? this.startAutoplay()
-    //     : this.stopAutoplay()
-    // })
   }
 
   register(slides: NgxCarouselSlideComponent[]) {
@@ -46,6 +36,10 @@ export class NgxCarouselService {
     return this.config()
   }
 
+  getSlides(): NgxCarouselSlideComponent[] {
+    return this.slides()
+  }
+
   slidesLength(): number {
     return this.slides().length
   }
@@ -55,12 +49,12 @@ export class NgxCarouselService {
 
     if (len == 0) return
 
-    // if (this.config().loop) {
+    if (this.config().loop) {
       const normalized = ((index % len) + len) % len
       this.currentSlide.set(normalized)
-    // } else {
-      // this.currentSlide.set(Math.max(0, Math.min(index, len - 1)))
-    // }
+    } else {
+      this.currentSlide.set(Math.max(0, Math.min(index, len - 1)))
+    }
   }
 
   next() {
@@ -70,31 +64,4 @@ export class NgxCarouselService {
   prev() {
     this.goTo(this.currentSlide() - 1)
   }
-
-  // startAutoplay() {
-  //   if (!this.config().autoplay) return
-
-  //   this.isPlaing.set(true)
-  //   this.stopAutoplay()
-  //   const interval = this.config().interval ?? 5000
-  //   this.autoplayTimer = setInterval(() => this.next(), interval)
-  // }
-
-  // stopAutoplay() {
-  //   this.isPlaing.set(false)
-
-  //   if (this.autoplayTimer) {
-  //     clearInterval(this.autoplayTimer)
-  //     this.autoplayTimer = null
-  //   }
-  // }
-
-  // puaseTemporarily() {
-  //   // pause during user interaction
-  //   this.stopAutoplay()
-  // }
-
-  // resumeAfterInteraction() {
-  //   if (this.config().autoplay) this.startAutoplay()
-  // }
 }

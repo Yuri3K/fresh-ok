@@ -5,18 +5,23 @@
   tabindex="0"
   aria-roledescription="carousel"
   aria-live="polite"
-  (keydown.arrowRight)="carousel.prev()"
-  (keydown.arrowLeft)="carousel.next()"
-  (mouseleave)="autoplay.resumeAutoplay()"
-  (mouseover)="autoplay.stopAutoplay()"
-  (focus)="autoplay.stopAutoplay()"
-  (blur)="autoplay.resumeAutoplay()"
+  (keydown.arrowRight)="carousel.next()"
+  (keydown.arrowLeft)="carousel.prev()"
+  (mouseleave)="autoplay.resume()"
+  (mouseover)="autoplay.pause()"
+  (focusin)="autoplay.pause()"
+  (focusout)="autoplay.resume()"
 >
   <ul 
     #carouselList
     [style.transform]="'translateX(-' + carousel.currentSlide() * 100 + '%)'"
     class="ngx-carousel__list"
     role="listbox"
+    (pointerdown)="swipe.onPointerDown($event)"
+    (pointermove)="swipe.onPointerMove($event)"
+    (pointerup)="swipe.onPointerUp($event)"
+    (pointercancel)="swipe.onPointerUp($event)"
+    (pointerleave)="swipe.onPointerUp($event)"
   >
     @for(slide of slidesList; track $index; let i = $index) {
       <li 
