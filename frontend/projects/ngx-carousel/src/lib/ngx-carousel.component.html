@@ -16,12 +16,14 @@
     #carouselList
     [style.transform]="'translateX(-' + carousel.currentSlide() * 100 + '%)'"
     class="ngx-carousel__list"
+    [class.no-click]="swipe.isSwipedEnough()"
     role="listbox"
     (pointerdown)="swipe.onPointerDown($event)"
     (pointermove)="swipe.onPointerMove($event)"
     (pointerup)="swipe.onPointerUp($event)"
     (pointercancel)="swipe.onPointerUp($event)"
     (pointerleave)="swipe.onPointerUp($event)"
+
   >
     @for(slide of slidesList; track $index; let i = $index) {
       <li 

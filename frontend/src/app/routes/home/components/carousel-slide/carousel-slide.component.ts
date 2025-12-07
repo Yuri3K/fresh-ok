@@ -19,7 +19,9 @@ export class CarouselSlideComponent {
   private readonly router = inject(Router)
 
   navigateByLink(link: string) {
-      this.router.navigate([link], {
+      console.log("!!! CLICK !!!")
+
+      this.router.navigate(['/user'], {
         queryParamsHandling: 'merge'
       }).then()
   }
