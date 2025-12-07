@@ -1,26 +1,27 @@
 import { computed, effect, inject, Inject, Injectable, Optional, signal } from '@angular/core';
-import { DEFAULT_CAROUSEL_CONFIG, NGX_CAROUSEL_CONFIG, NgxCarouselConfig } from './ngx-carousel.types';
+import { NgxCarouselSlideComponent } from '../ngx-carousel-slide/ngx-carousel-slide.component';
+import { DEFAULT_CAROUSEL_CONFIG, NGX_CAROUSEL_CONFIG, NgxCarouselConfig } from '../ngx-carousel.types';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NgxCarouselService {
-  // private config = signal<NgxCarouselConfig>(DEFAULT_CAROUSEL_CONFIG)
-  // private autoplayTimer: any = null
-  private slides = signal<any[]>([])
-  // readonly slides = computed(() => this._slides())
-
+  private config = signal<NgxCarouselConfig>(DEFAULT_CAROUSEL_CONFIG)
+  private slides = signal<NgxCarouselSlideComponent[]>([])
   currentSlide = signal(0)
+
+  // private autoplayTimer: any = null
+  // readonly slides = computed(() => this._slides())
   // isPlaing = signal(false)
 
   constructor(
-    // @Optional() @Inject(NGX_CAROUSEL_CONFIG) defaultCfg: NgxCarouselConfig
+    @Optional() @Inject(NGX_CAROUSEL_CONFIG) defaultCfg: NgxCarouselConfig
   ) {
-    // this.config.set({
-    //   ...DEFAULT_CAROUSEL_CONFIG,
-    //   ...(defaultCfg || {})
-    // })
-    // this.currentIndex.set(this.config().startIndex ?? 0)
+    this.config.set({
+      ...DEFAULT_CAROUSEL_CONFIG,
+      ...(defaultCfg || {})
+    })
+    this.currentSlide.set(this.config().startIndex ?? 0)
 
     // effect(() => {
     //   this.config().autoplay
@@ -29,39 +30,21 @@ export class NgxCarouselService {
     // })
   }
 
-  // next() {
-  //   const len = this.slidesLength()
-  //   console.log("🔸 len1:", len)
-  //   this.currentSlide.update(index => {
-  //     console.log("🔸 index1:", index)
-  //     return (index == len - 1) ? 0 : index + 1
-  //   })
-  // }
-
-  // prev() {
-  //   const len = this.slidesLength()
-  //   console.log("🔸 len2:", len)
-  //   this.currentSlide.update(index => {
-  //     console.log("🔸 index2:", index)
-  //     return index == 0 ? len - 1 : index - 1
-  //   })
-  // }
-
-  register(slides: any[]) {
+  register(slides: NgxCarouselSlideComponent[]) {
     this.slides.set(slides)
   }
 
-  // unregisterAll() {
-  //   this._slides.set([])
-  // }
+  unregisterAll() {
+    this.slides.set([])
+  }
 
-  // setConfig(partial: Partial<NgxCarouselConfig>) {
-  //   this.config.set({ ...this.config(), ...partial })
-  // }
+  setConfig(partial: Partial<NgxCarouselConfig>) {
+    this.config.set({ ...this.config(), ...partial })
+  }
 
-  // getConfig() {
-  //   return this.config()
-  // }
+  getConfig() {
+    return this.config()
+  }
 
   slidesLength(): number {
     return this.slides().length

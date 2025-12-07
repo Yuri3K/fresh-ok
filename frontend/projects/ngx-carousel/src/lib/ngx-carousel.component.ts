@@ -2,7 +2,8 @@ import { AfterViewInit, Component, ContentChildren, inject, QueryList, signal } 
 import { NgxCarouselSlideComponent } from '../lib/ngx-carousel-slide/ngx-carousel-slide.component';
 import { NgTemplateOutlet } from '@angular/common';
 import { NgxCarouselControlsComponent } from './ngx-carousel-controls/ngx-carousel-controls.component';
-import { NgxCarouselService } from './ngx-carousel.service';
+import { NgxCarouselService } from './services/ngx-carousel.service';
+import { NgxAutoplayService } from './services/ngx-autoplay.service';
 
 
 
@@ -19,6 +20,7 @@ export class NgxCarouselComponent implements AfterViewInit {
   @ContentChildren(NgxCarouselSlideComponent) slidesList!: QueryList<NgxCarouselSlideComponent>
 
   carousel = inject(NgxCarouselService)
+  autoplay = inject(NgxAutoplayService)
   
   ngAfterViewInit() {
     this.carousel.register(this.slidesList.toArray())

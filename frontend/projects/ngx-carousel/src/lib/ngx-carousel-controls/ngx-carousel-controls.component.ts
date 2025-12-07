@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { NgxCarouselService } from '../ngx-carousel.service';
+import { NgxCarouselService } from '../services/ngx-carousel.service';
 
 @Component({
   selector: 'ngx-carousel-controls',

@@ -3,6 +3,14 @@
   #carouselContainer
   class="ngx-carousel"
   tabindex="0"
+  aria-roledescription="carousel"
+  aria-live="polite"
+  (keydown.arrowRight)="carousel.prev()"
+  (keydown.arrowLeft)="carousel.next()"
+  (mouseleave)="autoplay.resumeAutoplay()"
+  (mouseover)="autoplay.stopAutoplay()"
+  (focus)="autoplay.stopAutoplay()"
+  (blur)="autoplay.resumeAutoplay()"
 >
   <ul 
     #carouselList
@@ -20,6 +28,6 @@
       </li>
     } 
   </ul>
-
+  
   <ngx-carousel-controls />
 </div>
