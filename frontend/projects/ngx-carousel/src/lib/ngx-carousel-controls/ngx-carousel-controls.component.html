@@ -30,9 +30,9 @@
       <button
         type="button"
         class="green ngx-carousel__dot"
-        [class.active]="carousel.currentSlide() == i"
+        [class.active]="carousel.getDisplayIndex() == i"
         (click)="carousel.goTo(i)"
-        [attr.aria-selected]="carousel.currentSlide() == i"
+        [attr.aria-selected]="carousel.getDisplayIndex() == i"
       ></button>
     }
   </div>

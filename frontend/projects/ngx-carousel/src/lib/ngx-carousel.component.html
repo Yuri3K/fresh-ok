@@ -17,6 +17,7 @@
     [style.transform]="'translateX(-' + carousel.currentSlide() * 100 + '%)'"
     class="ngx-carousel__list"
     [class.no-click]="swipe.isSwipedEnough()"
+    [class.no-transition]="carousel.shouldDisableTransition()"
     role="listbox"
     (pointerdown)="swipe.onPointerDown($event)"
     (pointermove)="swipe.onPointerMove($event)"
@@ -24,7 +25,7 @@
     (pointercancel)="swipe.onPointerUp($event)"
     (pointerleave)="swipe.onPointerUp($event)"
   >
-    @for(slide of slidesList; track $index; let i = $index) {
+    @for(slide of carousel.slidesWithClones(); track $index; let i = $index) {
       <li 
         class="ngx-carousel__slide"
         role="option"

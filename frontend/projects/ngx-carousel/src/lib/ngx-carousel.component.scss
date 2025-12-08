@@ -1,7 +1,3 @@
-:host {
-  height: 600px;
-}
-
 .ngx-carousel {
   outline: none;
   overflow: hidden;
@@ -26,6 +22,10 @@
   
   &.no-click{
     cursor: grabbing;
+  }
+
+  &.no-transition {
+    transition: none !important;
   }
 }
 
