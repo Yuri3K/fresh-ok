@@ -5,6 +5,7 @@ import { NgxCarouselControlsComponent } from './ngx-carousel-controls/ngx-carous
 import { NgxCarouselService } from './services/ngx-carousel.service';
 import { NgxAutoplayService } from './services/ngx-autoplay.service';
 import { NgxSwipeService } from './services/ngx-swipe.service';
+import { ɵEmptyOutletComponent } from "@angular/router";
 
 
 
@@ -12,14 +13,15 @@ import { NgxSwipeService } from './services/ngx-swipe.service';
   selector: 'lib-ngx-carousel',
   imports: [
     NgTemplateOutlet,
-    NgxCarouselControlsComponent
+    NgxCarouselControlsComponent,
+    ɵEmptyOutletComponent
 ],
   templateUrl: './ngx-carousel.component.html',
   styleUrl: './ngx-carousel.component.scss',
 })
 export class NgxCarouselComponent implements AfterViewInit {
   @ContentChildren(NgxCarouselSlideComponent) slidesList!: QueryList<NgxCarouselSlideComponent>
-  @ViewChild('carouselList') carouselList!: ElementRef<HTMLDivElement>;
+  @ViewChild('carouselList', {static: true}) carouselList!: ElementRef<HTMLDivElement>;
 
   private renderer = inject(Renderer2)
 

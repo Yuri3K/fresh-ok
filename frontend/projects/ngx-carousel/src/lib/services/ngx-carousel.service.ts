@@ -9,6 +9,7 @@ export class NgxCarouselService {
   private config = signal<NgxCarouselConfig>(DEFAULT_CAROUSEL_CONFIG)
   private slides = signal<NgxCarouselSlideComponent[]>([])
   currentSlide = signal(0)
+  slidesWithClones = signal<NgxCarouselSlideComponent[]>([])
 
   constructor(
     @Optional() @Inject(NGX_CAROUSEL_CONFIG) defaultCfg: NgxCarouselConfig
@@ -17,11 +18,28 @@ export class NgxCarouselService {
       ...DEFAULT_CAROUSEL_CONFIG,
       ...(defaultCfg || {})
     })
-    this.currentSlide.set(this.config().startIndex ?? 0)
+    this.currentSlide.set((this.config().startIndex ?? 0))
   }
+
+  
 
   register(slides: NgxCarouselSlideComponent[]) {
     this.slides.set(slides)
+
+    this.slidesWithClones.update(() => {
+    if (slides.length === 0) return [];
+    
+    // Если loop включен, добавляем клоны в начало и конец
+    if (this.config().loop && slides.length > 1) {
+      return [
+        slides[slides.length - 1],   // Клон последнего в начало
+        ...slides,                   // Все оригинальные
+        slides[0]                    // Клон первого в конец
+      ];
+    }
+    
+    return slides;
+  });
   }
 
   unregisterAll() {

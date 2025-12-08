@@ -24,13 +24,14 @@
     (pointercancel)="swipe.onPointerUp($event)"
     (pointerleave)="swipe.onPointerUp($event)"
   >
-    @for(slide of slidesList; track $index; let i = $index) {
+    @for(slide of carousel.slidesWithClones(); track $index; let i = $index) {
       <li 
         class="ngx-carousel__slide"
         role="option"
         [class.active]="i === carousel.currentSlide()"
       >
-        <ng-container [ngTemplateOutlet]="slide.templateRef"></ng-container>
+        <!-- <ng-container [ngTemplateOutlet]="slide.templateRef"></ng-container> -->
+         <ng-component>{{slide}}</ng-component>
       </li>
     } 
   </ul>
