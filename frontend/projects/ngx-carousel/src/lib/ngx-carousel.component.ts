@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ContentChildren, ElementRef, inject, QueryList, Renderer2, signal, ViewChild } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, ContentChildren, ElementRef, inject, QueryList, Renderer2, signal, ViewChild } from '@angular/core';
 import { NgxCarouselSlideComponent } from '../lib/ngx-carousel-slide/ngx-carousel-slide.component';
 import { NgTemplateOutlet } from '@angular/common';
 import { NgxCarouselControlsComponent } from './ngx-carousel-controls/ngx-carousel-controls.component';
@@ -17,9 +17,9 @@ import { NgxSwipeService } from './services/ngx-swipe.service';
   templateUrl: './ngx-carousel.component.html',
   styleUrl: './ngx-carousel.component.scss',
 })
-export class NgxCarouselComponent implements AfterViewInit {
+export class NgxCarouselComponent implements AfterViewInit, AfterContentInit {
   @ContentChildren(NgxCarouselSlideComponent) slidesList!: QueryList<NgxCarouselSlideComponent>
-  @ViewChild('carouselList') carouselList!: ElementRef<HTMLDivElement>;
+  @ViewChild('carouselList', { static: true }) carouselList!: ElementRef<HTMLDivElement>;
 
   private renderer = inject(Renderer2)
 
@@ -28,8 +28,16 @@ export class NgxCarouselComponent implements AfterViewInit {
   swipe = inject(NgxSwipeService)
   
   ngAfterViewInit() {
-    this.carousel.register(this.slidesList.toArray())
     this.swipe.registerSlideList(this.carouselList)
     this.swipe.setRenderer(this.renderer)
+  }
+  
+  ngAfterContentInit() {
+    console.log(" !!! CONTENT INIT !!!")
+    this.slidesList.toArray().map(s => console.log('SLIDE', !!s.templateRef))
+    setTimeout(() => {
+      this.carousel.register(this.slidesList.toArray())
+    }, 3000);
+
   }
 }
