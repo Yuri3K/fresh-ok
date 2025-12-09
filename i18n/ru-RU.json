@@ -1,0 +1,98 @@
+{
+  "hello": "Привет",
+  "common": {
+    "close": "Закрыть",
+    "logout": "Выход",
+    "login": "Войти",
+    "forms": {
+      "email": {
+        "enter-email": "Введите email",
+        "email-hint": "Пример: example@gmail.com",
+        "email-error-required": "Пожалуйста, введите email",
+        "email-error-invalid": "Пожалуйста, введите правильный email"
+      },
+      "pwd": {
+        "enter-pwd": "Введите пароль",
+        "show-pwd": "Показать пароль",
+        "hide-pwd": "Скрыть палоль",
+        "pwd-hint": "Пример: должен содержать не менее 6 симвотов",
+        "pwd-error-required": "Пожалуйста, введите пароль",
+        "pwd-error-minlength": "Пароль должен содержать не менее {{minlength}} символов. Сейчас символов: {{currentlength}}."
+      },
+      "name": {
+        "enter-nick": "Введите имя",
+        "nick-placeholder": "Пример: User",
+        "nick-hint": "Подсказка: должен содержать не менее 2 символов",
+        "nick-error-required": "Пожалуйста, введите имя",
+        "nick-error-minlength": "Имя должно содержать не менее {{minlength}} символов. Сейчас символов: {{currentlength}}."
+      }
+    }
+  },
+  "header": {
+    "user": {
+      "alt": "Avatar",
+      "greetings": "Hi, {{name}}",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service"
+    }
+  },
+  "header-market": {
+    "logo": {
+      "title": "Фрешок",
+      "subtitle": "онлайн-маркет"
+    },
+    "catalog": {
+      "title": "Каталог продуктов",
+      "all-categories": "Все категории"
+    },
+    "search-input": {
+      "placeholder": "Найти в магазине",
+      "submit": "Поиск"
+    }
+  },
+  "login-page": {
+    "title": "Войти",
+    "login-with-google": "Продолжить с Google",
+    "go-to-register": {
+      "prefix": "Еще не зарегистрированы? Перейти на страницу",
+      "link": "регистрации",
+      "suffix": "."
+    }
+  },
+  "register-page": {
+    "title": "Sign up",
+    "go-to-login": {
+      "prefix": "Already have account? Go to ",
+      "link": "login",
+      "suffix": " page."
+    }
+  },
+    "homepage": {
+    "slider": [
+      {
+        "title": "Свежачок вам в хату",
+        "subtitle": "скидка -50%",
+        "descr": "Только с 7 по 13 июля скидка на сезонные фрукты и овощи до 50%. Торопитесь!",
+        "btn": "Купить сейчас",
+        "link": "/",
+        "imageUrl": "slider/slide1"
+      },
+      {
+        "title": "Накрути себе томатов",
+        "subtitle": "Акция: 3 кг по цене 1",
+        "descr": "Только с 12 по 15 июля скидка на домашние помидорчики",
+        "btn": "Купить сейчас",
+        "link": "/",
+        "imageUrl": "slider/slide2"
+      },
+      {
+        "title": "Пусть остальные позеленеют от зависти",
+        "subtitle": "Распродажа зелени",
+        "descr": "",
+        "btn": "Купить сейчас",
+        "link": "/",
+        "imageUrl": "slider/slide3"
+      }
+    ]
+  }
+}
