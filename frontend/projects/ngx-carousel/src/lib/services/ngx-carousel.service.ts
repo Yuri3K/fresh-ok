@@ -1,4 +1,4 @@
-import { computed, effect, inject, Inject, Injectable, Optional, signal } from '@angular/core';
+import { computed, effect, inject, Inject, Injectable, Optional, signal, TemplateRef } from '@angular/core';
 import { NgxCarouselSlideComponent } from '../ngx-carousel-slide/ngx-carousel-slide.component';
 import { DEFAULT_CAROUSEL_CONFIG, NGX_CAROUSEL_CONFIG, NgxCarouselConfig } from '../ngx-carousel.types';
 
@@ -7,9 +7,25 @@ import { DEFAULT_CAROUSEL_CONFIG, NGX_CAROUSEL_CONFIG, NgxCarouselConfig } from 
 })
 export class NgxCarouselService {
   private config = signal<NgxCarouselConfig>(DEFAULT_CAROUSEL_CONFIG)
-  private slides = signal<NgxCarouselSlideComponent[]>([])
+  private slides = signal<TemplateRef<unknown>[]>([]);
   currentSlide = signal(0)
-  slidesWithClones = signal<NgxCarouselSlideComponent[]>([])
+
+  slidesWithClones = computed(() => {
+    const slides = this.slides();
+
+    if (slides.length === 0) return [];
+
+    // Если loop включен, добавляем клоны в начало и конец
+    if (this.config().loop && slides.length > 1) {
+      return [
+        // slides[slides.length - 1], // Клон последнего в начало
+        ...slides,                  // Все оригинальные
+        // slides[0]                   // Клон первого в конец
+      ];
+    }
+
+    return slides;
+  });
 
   constructor(
     @Optional() @Inject(NGX_CAROUSEL_CONFIG) defaultCfg: NgxCarouselConfig
@@ -18,28 +34,15 @@ export class NgxCarouselService {
       ...DEFAULT_CAROUSEL_CONFIG,
       ...(defaultCfg || {})
     })
-    this.currentSlide.set((this.config().startIndex ?? 0))
+    this.currentSlide.set((this.config().startIndex ?? 0) + 1)
   }
 
-  
+
 
   register(slides: NgxCarouselSlideComponent[]) {
-    this.slides.set(slides)
-
-    this.slidesWithClones.update(() => {
-    if (slides.length === 0) return [];
-    
-    // Если loop включен, добавляем клоны в начало и конец
-    if (this.config().loop && slides.length > 1) {
-      return [
-        slides[slides.length - 1],   // Клон последнего в начало
-        ...slides,                   // Все оригинальные
-        slides[0]                    // Клон первого в конец
-      ];
-    }
-    
-    return slides;
-  });
+    // Извлекаем templateRef из каждого компонента
+    const templateRefs = slides.map(slide => slide.templateRef);
+    this.slides.set(templateRefs);
   }
 
   unregisterAll() {
@@ -54,7 +57,7 @@ export class NgxCarouselService {
     return this.config()
   }
 
-  getSlides(): NgxCarouselSlideComponent[] {
+  getSlides(){
     return this.slides()
   }
 
