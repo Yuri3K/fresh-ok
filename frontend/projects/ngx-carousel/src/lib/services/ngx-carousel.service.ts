@@ -1,17 +1,37 @@
-import { computed, Inject, Injectable, Optional, signal } from '@angular/core';
-import { NgxCarouselSlideComponent } from '../ngx-carousel-slide/ngx-carousel-slide.component';
+import { computed, Inject, Injectable, Optional, Renderer2, signal, TemplateRef } from '@angular/core';
 import { DEFAULT_CAROUSEL_CONFIG, NGX_CAROUSEL_CONFIG, NgxCarouselConfig } from '../ngx-carousel.types';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NgxCarouselService {
+  private carouselListElement!: HTMLElement;
+  private renderer!: Renderer2;
   private config = signal<NgxCarouselConfig>(DEFAULT_CAROUSEL_CONFIG)
-  private slides = signal<NgxCarouselSlideComponent[]>([])
+  private slides = signal<any[]>([])
+  templateRef = signal<TemplateRef<any> | null>(null);
+  currentSlide = signal(0)
 
   // Флаг для отключения transition при мгновенном сбросе
   private disableTransition = signal(false)
-  currentSlide = signal(0)
+
+  slidesWithClones = computed<any[]>(() => {
+    const data = this.slides();
+    const len = data.length;
+
+    if (len === 0) return [];
+
+    // Если loop включен, добавляем клоны в начало и конец
+    if (this.config().loop && len > 1) {
+      return [
+        data[len - 1], // Клон последнего в начало
+        ...data,       // Все оригинальные
+        data[0]        // Клон первого в конец
+      ];
+    }
+
+    return data;
+  });
 
   constructor(
     @Optional() @Inject(NGX_CAROUSEL_CONFIG) defaultCfg: NgxCarouselConfig
@@ -25,26 +45,16 @@ export class NgxCarouselService {
     this.currentSlide.set((this.config().startIndex ?? 0) + 1)
   }
 
-  slidesWithClones = computed(() => {
-    const slides = this.slides();
-    
-    if (slides.length === 0) return [];
-    
-    // Если loop включен, добавляем клоны в начало и конец
-    if (this.config().loop && slides.length > 1) {
-      return [
-        slides[slides.length - 1],   // Клон последнего в начало
-        ...slides,                   // Все оригинальные
-        slides[0]                    // Клон первого в конец
-      ];
-    }
-    
-    return slides;
-  });
+  registerCarouselList(element: HTMLElement, renderer: Renderer2) {
+    this.carouselListElement = element;
+    this.renderer = renderer;
+  }
 
-  register(slides: NgxCarouselSlideComponent[]) {
-    this.slides.set(slides);
-    // Устанавливаем начальную позицию с учетом клона
+  register(slidesData: any[], templateRef: TemplateRef<any>) {
+    this.slides.set(slidesData);
+    this.templateRef.set(templateRef);
+
+    // Установка стартового слайда с учетом клона
     this.currentSlide.set((this.config().startIndex ?? 0) + 1);
   }
 
@@ -60,7 +70,7 @@ export class NgxCarouselService {
     return this.config()
   }
 
-  getSlides(): NgxCarouselSlideComponent[] {
+  getSlides() {
     return this.slides();
   }
 

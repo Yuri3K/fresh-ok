@@ -25,13 +25,16 @@
     (pointercancel)="swipe.onPointerUp($event)"
     (pointerleave)="swipe.onPointerUp($event)"
   >
-    @for(slide of carousel.slidesWithClones(); track $index; let i = $index) {
+    @for(slideData of carousel.slidesWithClones(); track $index; let i = $index) {
       <li 
         class="ngx-carousel__slide"
         role="option"
         [class.active]="i === carousel.currentSlide()"
       >
-        <ng-container [ngTemplateOutlet]="slide.templateRef"></ng-container>
+        <ng-container 
+          [ngTemplateOutlet]="carousel.templateRef()"
+          [ngTemplateOutletContext]="{ $implicit: slideData, index: i }"
+        ></ng-container>
       </li>
     } 
   </ul>

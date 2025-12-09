@@ -1,5 +1,4 @@
-import { AfterContentInit, AfterViewInit, Component, ContentChildren, ElementRef, inject, QueryList, Renderer2, signal, ViewChild } from '@angular/core';
-import { NgxCarouselSlideComponent } from '../lib/ngx-carousel-slide/ngx-carousel-slide.component';
+import { AfterContentInit, AfterViewInit, Component, ContentChild, ElementRef, inject, Input, Renderer2, TemplateRef, ViewChild } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
 import { NgxCarouselControlsComponent } from './ngx-carousel-controls/ngx-carousel-controls.component';
 import { NgxCarouselService } from './services/ngx-carousel.service';
@@ -12,14 +11,16 @@ import { NgxSwipeService } from './services/ngx-swipe.service';
   selector: 'lib-ngx-carousel',
   imports: [
     NgTemplateOutlet,
-    NgxCarouselControlsComponent
+    NgxCarouselControlsComponent,
 ],
   templateUrl: './ngx-carousel.component.html',
   styleUrl: './ngx-carousel.component.scss',
 })
 export class NgxCarouselComponent implements AfterViewInit, AfterContentInit {
-  @ContentChildren(NgxCarouselSlideComponent) slidesList!: QueryList<NgxCarouselSlideComponent>
+  // @ContentChildren(NgxCarouselSlideComponent) slidesList!: QueryList<NgxCarouselSlideComponent>
+  @Input() slidesList!: any[];
   @ViewChild('carouselList', { static: true }) carouselList!: ElementRef<HTMLDivElement>;
+  @ContentChild('slideTemplate', { static: true }) slideTemplateRef!: TemplateRef<any>;
 
   private renderer = inject(Renderer2)
 
@@ -30,14 +31,11 @@ export class NgxCarouselComponent implements AfterViewInit, AfterContentInit {
   ngAfterViewInit() {
     this.swipe.registerSlideList(this.carouselList)
     this.swipe.setRenderer(this.renderer)
+    this.carousel.registerCarouselList(this.carouselList.nativeElement, this.renderer)
   }
   
   ngAfterContentInit() {
-    console.log(" !!! CONTENT INIT !!!")
-    this.slidesList.toArray().map(s => console.log('SLIDE', !!s.templateRef))
-    setTimeout(() => {
-      this.carousel.register(this.slidesList.toArray())
-    }, 3000);
-
+    // this.carousel.register(this.slidesList.toArray())
+    this.carousel.register(this.slidesList, this.slideTemplateRef)
   }
 }

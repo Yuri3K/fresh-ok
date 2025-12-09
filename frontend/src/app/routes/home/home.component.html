@@ -1,14 +1,16 @@
 @let slidesList = (slides$ | async);
 
 @if(slidesList && slidesList.length) {
-  <lib-ngx-carousel>
-    @for(slide of slidesList; track $index; let i = $index) {
-      <ngx-carousel-slide>
-        <app-carousel-slide 
-          [slide]="slide"
-        />
-      </ngx-carousel-slide>
-    }
+  <lib-ngx-carousel [slidesList]="slidesList">
+    <!-- @for(slide of slidesList; track $index; let i = $index) {
+      <ngx-carousel-slide> -->
+        <ng-template #slideTemplate let-slide>
+          <app-carousel-slide 
+            [slide]="slide"
+          />
+        </ng-template>
+      <!-- </ngx-carousel-slide>
+    } -->
   </lib-ngx-carousel>
 }
 

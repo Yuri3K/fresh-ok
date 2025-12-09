@@ -1,4 +1,4 @@
-import { computed, ElementRef, inject, Injectable, Renderer2, signal } from '@angular/core';
+import { ElementRef, inject, Injectable, Renderer2, signal } from '@angular/core';
 import { NgxCarouselService } from './ngx-carousel.service';
 import { NgxAutoplayService } from './ngx-autoplay.service';
 
