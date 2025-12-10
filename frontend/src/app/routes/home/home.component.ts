@@ -3,8 +3,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SliderService } from '../../core/services/slider.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AsyncPipe, CommonModule } from '@angular/common';
-import { NgxCarouselComponent } from 'ngx-carousel';
 import { CarouselSlideComponent } from './components/carousel-slide/carousel-slide.component';
+import { NgxCarouselComponent } from '../../../../projects/ngx-carousel/src/public-api';
 
 @Component({
   selector: 'app-home',

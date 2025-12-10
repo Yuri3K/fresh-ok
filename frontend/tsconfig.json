@@ -4,12 +4,6 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-      "carousel": [
-        "./dist/carousel"
-      ],
-      "m3-carousel": [
-        "./dist/m3-carousel"
-      ],
       "ngx-carousel": [
         "./dist/ngx-carousel"
       ]
