@@ -1,19 +1,16 @@
-import { computed, Inject, Injectable, Optional, Renderer2, signal, TemplateRef } from '@angular/core';
+import { computed, Inject, Injectable, Optional, signal } from '@angular/core';
 import { DEFAULT_CAROUSEL_CONFIG, NGX_CAROUSEL_CONFIG, NgxCarouselConfig } from '../ngx-carousel.types';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NgxCarouselService {
-  private carouselListElement!: HTMLElement;
-  private renderer!: Renderer2;
   private config = signal<NgxCarouselConfig>(DEFAULT_CAROUSEL_CONFIG)
   private slides = signal<any[]>([])
-  templateRef = signal<TemplateRef<any> | null>(null);
   currentSlide = signal(0)
 
   // Флаг для отключения transition при мгновенном сбросе
-  private disableTransition = signal(false)
+  disableTransition = signal(false)
 
   slidesWithClones = computed<any[]>(() => {
     const data = this.slides();
@@ -41,18 +38,12 @@ export class NgxCarouselService {
       ...(defaultCfg || {})
     })
 
-    // +1 потому что первый реальный слайд теперь имеет индекс 1
-    this.currentSlide.set((this.config().startIndex ?? 0) + 1)
+    // // +1 потому что первый реальный слайд теперь имеет индекс 1
+    // this.currentSlide.set((this.config().startIndex ?? 0) + 1)
   }
 
-  registerCarouselList(element: HTMLElement, renderer: Renderer2) {
-    this.carouselListElement = element;
-    this.renderer = renderer;
-  }
-
-  register(slidesData: any[], templateRef: TemplateRef<any>) {
+  register(slidesData: any[]) {
     this.slides.set(slidesData);
-    this.templateRef.set(templateRef);
 
     // Установка стартового слайда с учетом клона
     this.currentSlide.set((this.config().startIndex ?? 0) + 1);
@@ -76,10 +67,6 @@ export class NgxCarouselService {
 
   slidesLength(): number {
      return this.slides().length;
-  }
-
-  shouldDisableTransition(): boolean {
-    return this.disableTransition();
   }
 
   /**
@@ -110,7 +97,6 @@ export class NgxCarouselService {
 
     if (this.config().loop) {
       // В режиме loop просто устанавливаем целевой индекс
-      // Логика клонов обрабатывается в handleInfiniteLoop
       this.currentSlide.set(targetIndex);
     } else {
       this.currentSlide.set(Math.max(1, Math.min(targetIndex, len)));

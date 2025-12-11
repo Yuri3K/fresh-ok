@@ -17,7 +17,7 @@
     [style.transform]="'translateX(-' + carousel.currentSlide() * 100 + '%)'"
     class="ngx-carousel__list"
     [class.no-click]="swipe.isSwipedEnough()"
-    [class.no-transition]="carousel.shouldDisableTransition()"
+    [class.no-transition]="carousel.disableTransition()"
     role="listbox"
     (pointerdown)="swipe.onPointerDown($event)"
     (pointermove)="swipe.onPointerMove($event)"
@@ -32,7 +32,7 @@
         [class.active]="i === carousel.currentSlide()"
       >
         <ng-container 
-          [ngTemplateOutlet]="carousel.templateRef()"
+          [ngTemplateOutlet]="slideTemplateRef"
           [ngTemplateOutletContext]="{ $implicit: slideData, index: i }"
         ></ng-container>
       </li>

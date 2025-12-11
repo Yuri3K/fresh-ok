@@ -6,4 +6,4 @@
 export * from './lib/ngx-carousel.component';
 
 export * from './lib/ngx-carousel.types';
-export * from './lib/ngx-carousel-slide/ngx-carousel-slide.component';
+export * from './lib/components/ngx-carousel-slide/ngx-carousel-slide.component';
