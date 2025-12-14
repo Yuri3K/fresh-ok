@@ -33,19 +33,11 @@ export class NgxCarouselService {
   constructor(
     @Optional() @Inject(NGX_CAROUSEL_CONFIG) defaultCfg: NgxCarouselConfig
   ) {
-    setTimeout(() => {
-      
-      console.log("🔸 defaultCfg:", defaultCfg)
-    }, 1000);
     this.config.set({
       ...DEFAULT_CAROUSEL_CONFIG,
       ...(defaultCfg || {})
     })
-
-    // // +1 потому что первый реальный слайд теперь имеет индекс 1
-    // this.currentSlide.set((this.config().startIndex ?? 0) + 1)
   }
-
 
   register(slidesData: any[]) {
     this.slides.set(slidesData);

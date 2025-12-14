@@ -20,7 +20,7 @@
   touch-action: pan-y; // важно: разрешаем вертикальный скролл
   cursor: grab;
   
-  &.no-click{
+  &.grabbing{
     cursor: grabbing;
   }
 
