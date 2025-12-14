@@ -14,9 +14,9 @@ export class NgxSwipeService {
   private autoplay = inject(NgxAutoplayService);
 
   private renderer!: Renderer2;
+  private carouselList!: ElementRef<HTMLDivElement>;
   private startX = 0;
   private currentX = 0;
-  private carouselList!: ElementRef<HTMLDivElement>;
 
   private isSwiping = signal(false);
 

@@ -1,4 +1,4 @@
-import { AfterContentInit, AfterViewInit, Component, ContentChild, ElementRef, inject, Input, Renderer2, TemplateRef, ViewChild } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, ContentChild, ElementRef, inject, Input, OnDestroy, Renderer2, TemplateRef, ViewChild } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
 import { NgxCarouselControlsComponent } from './ngx-carousel-controls/ngx-carousel-controls.component';
 import { NgxCarouselService } from './services/ngx-carousel.service';
@@ -16,7 +16,7 @@ import { NgxSwipeService } from './services/ngx-swipe.service';
   templateUrl: './ngx-carousel.component.html',
   styleUrl: './ngx-carousel.component.scss',
 })
-export class NgxCarouselComponent implements AfterViewInit, AfterContentInit {
+export class NgxCarouselComponent implements AfterViewInit, OnDestroy {
   // @ContentChildren(NgxCarouselSlideComponent) slidesList!: QueryList<NgxCarouselSlideComponent>
   @Input() slidesList!: any[];
   @ViewChild('carouselList', { static: true }) carouselList!: ElementRef<HTMLDivElement>;
@@ -31,11 +31,15 @@ export class NgxCarouselComponent implements AfterViewInit, AfterContentInit {
   ngAfterViewInit() {
     this.swipe.registerSlideList(this.carouselList)
     this.swipe.setRenderer(this.renderer)
-    this.carousel.registerCarouselList(this.carouselList.nativeElement, this.renderer)
+    this.carousel.register(this.slidesList, this.slideTemplateRef)
   }
   
   ngAfterContentInit() {
     // this.carousel.register(this.slidesList.toArray())
     this.carousel.register(this.slidesList, this.slideTemplateRef)
+  }
+
+  ngOnDestroy(): void {
+    this.carousel.unregisterAll()
   }
 }
