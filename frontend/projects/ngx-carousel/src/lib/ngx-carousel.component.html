@@ -32,7 +32,7 @@
         [class.active]="i === carousel.currentSlide()"
       >
         <ng-container 
-          [ngTemplateOutlet]="carousel.templateRef()"
+          [ngTemplateOutlet]="slideTemplateRef"
           [ngTemplateOutletContext]="{ $implicit: slideData, index: i }"
         ></ng-container>
       </li>

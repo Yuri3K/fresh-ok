@@ -39,7 +39,8 @@ export class NgxSwipeService {
     this.isSwiping.set(true);
     this.autoplay.stop();
 
-    // Отключаем transition в начале свайпа (через Renderer2)
+    // Отключаем transition в начале свайпа (через Renderer2). 
+    // Чтобы слайд без задержек тянулся за мышкой/пальцем
     this.renderer.setStyle(this.carouselList.nativeElement, 'transition', 'none');
   }
 

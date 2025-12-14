@@ -1,4 +1,4 @@
-import { computed, Inject, Injectable, Optional, Renderer2, signal, TemplateRef } from '@angular/core';
+import { computed, Inject, Injectable, Optional, signal } from '@angular/core';
 import { DEFAULT_CAROUSEL_CONFIG, NGX_CAROUSEL_CONFIG, NgxCarouselConfig } from '../ngx-carousel.types';
 
 @Injectable({
@@ -7,7 +7,6 @@ import { DEFAULT_CAROUSEL_CONFIG, NGX_CAROUSEL_CONFIG, NgxCarouselConfig } from 
 export class NgxCarouselService {
   private config = signal<NgxCarouselConfig>(DEFAULT_CAROUSEL_CONFIG)
   private slides = signal<any[]>([])
-  templateRef = signal<TemplateRef<any> | null>(null);
   currentSlide = signal(0)
 
   // Флаг для отключения transition при мгновенном сбросе
@@ -42,11 +41,14 @@ export class NgxCarouselService {
       ...DEFAULT_CAROUSEL_CONFIG,
       ...(defaultCfg || {})
     })
+
+    // // +1 потому что первый реальный слайд теперь имеет индекс 1
+    // this.currentSlide.set((this.config().startIndex ?? 0) + 1)
   }
 
-  register(slidesData: any[], templateRef: TemplateRef<any>) {
+
+  register(slidesData: any[]) {
     this.slides.set(slidesData);
-    this.templateRef.set(templateRef);
 
     // Установка стартового слайда с учетом клона
     const index = this.config().loop ?
@@ -70,10 +72,6 @@ export class NgxCarouselService {
 
   slidesLength(): number {
     return this.slides().length;
-  }
-
-  shouldDisableTransition(): boolean {
-    return this.disableTransition();
   }
 
 
