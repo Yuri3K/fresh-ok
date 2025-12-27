@@ -4,7 +4,7 @@ import { SliderService } from '../../core/services/slider.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { CarouselSlideComponent } from './components/carousel-slide/carousel-slide.component';
-import { NgxCarouselComponent } from 'ngx-carousel';
+import { NgxCarouselComponent, NgxCarouselConfig } from 'ngx-freshok-carousel';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +13,7 @@ import { NgxCarouselComponent } from 'ngx-carousel';
     AsyncPipe,
     CommonModule,
     CarouselSlideComponent,
-    NgxCarouselComponent,
+    NgxCarouselComponent, 
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
@@ -23,6 +23,8 @@ export class HomeComponent implements OnInit {
   private destroyRef = inject(DestroyRef)
 
   slides$ = this.sliderService.slides$
+
+  config = this.sliderService.config
 
   ngOnInit() {
     this.fetchSlides()

@@ -9,7 +9,7 @@ import { provideCacheableAnimationLoader, provideLottieOptions } from 'ngx-lotti
 import player from 'lottie-web';
 import { authTokenInterceptor } from './core/interceptors/auth-token.interceptor';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { NGX_CAROUSEL_CONFIG } from 'ngx-carousel';
+import { NGX_CAROUSEL_CONFIG } from 'ngx-freshok-carousel';
 
 const interceptors = [
   authTokenInterceptor
@@ -22,9 +22,10 @@ export const appConfig: ApplicationConfig = {
     {
       provide: NGX_CAROUSEL_CONFIG,
       useValue: {
-        autoplay: false, 
+        autoplay: true, 
         interval: 5000, 
         loop: true,
+        pauseOnHover: true,
       }
     },
     provideRouter(routes),

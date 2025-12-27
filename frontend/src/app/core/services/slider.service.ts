@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { NgxCarouselConfig } from 'ngx-freshok-carousel';
 
 export interface CarouselSlide {
   id: string
@@ -22,6 +23,10 @@ export class SliderService {
   readonly slides$ = this.slidesSubject.asObservable()
 
   private readonly translateService = inject(TranslateService)
+
+  readonly config: NgxCarouselConfig = {
+    autoplay: false, 
+  }
 
   getSliderData(): Observable<CarouselSlide[]> {
     return this.translateService.stream('homepage.slider')
