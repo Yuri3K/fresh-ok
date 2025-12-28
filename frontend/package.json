@@ -25,7 +25,7 @@
     "@ngx-translate/http-loader": "^17.0.0",
     "firebase": "^12.4.0",
     "lottie-web": "^5.13.0",
-    "ngx-freshok-carousel": "^0.0.4",
+    "ngx-freshok-carousel": "^0.0.0-watch",
     "ngx-image-cropper": "^9.1.5",
     "ngx-lottie": "^12.0.0",
     "rxjs": "~7.8.0",

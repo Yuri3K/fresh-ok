@@ -10,11 +10,24 @@
       <app-carousel-slide [slide]="slide"/>
     </ng-template>
 
-    <ng-template #controlsTemplate let-carousel>
-      <!-- <app-carousel-controls 
-        [carousel]="carousel"
-        [slides]="slides"
-      /> -->
+    <ng-template #btnRight let-carousel>
+      <app-mini-fab-btn 
+        iconName="chevron_right"
+        ariaLabel="Prev Slide"
+        (click)="carousel.next()"
+        [isBadgeHidden]="true"
+        iconColor="var(--mat-sys-on-secondary-container)"
+      />
+    </ng-template>
+
+    <ng-template #btnLeft let-carousel>
+      <app-mini-fab-btn 
+        iconName="chevron_left"
+        ariaLabel="Next Slide"
+        (click)="carousel.prev()"
+        [isBadgeHidden]="true"
+        iconColor="var(--mat-sys-on-secondary-container)"
+      />
     </ng-template>
   </lib-ngx-carousel>
 }

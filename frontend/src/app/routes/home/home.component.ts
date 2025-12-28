@@ -5,6 +5,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { CarouselSlideComponent } from './components/carousel-slide/carousel-slide.component';
 import { NgxCarouselComponent, NgxCarouselConfig } from 'ngx-freshok-carousel';
+import { MiniFabBtnComponent } from '../../shared/ui-elems/buttons/mini-fab-btn/mini-fab-btn.component';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,7 @@ import { NgxCarouselComponent, NgxCarouselConfig } from 'ngx-freshok-carousel';
     CommonModule,
     CarouselSlideComponent,
     NgxCarouselComponent, 
+    MiniFabBtnComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
