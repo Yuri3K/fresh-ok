@@ -1,9 +1,23 @@
 <mat-toolbar>
-  <app-logo />
-  <app-catalog-selector />
-  <app-search-in-market />
+  <div class="hm__top">
+    <div class="hm__left">
+      <app-logo />
+    </div>
+  
+    <div class="hm__center">
+      <app-catalog-selector />
+      <app-search-in-market />
+    </div>
+  
+    <div class="hm__right">
+      <app-show-search-btn />
+      <app-profile-btn />
+      <app-favs-btn />
+      <app-shopping-cart />
+    </div>
+  </div>
 
-  <app-profile-btn />
-  <app-favs-btn />
-  <app-shopping-cart />
+  <div class="hm__bottom">
+    <app-search-in-market />
+  </div>
 </mat-toolbar>

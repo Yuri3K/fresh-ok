@@ -1,40 +1,29 @@
-<!-- <div class="search" appOpenMenu>
-  <button class="trigger-btn">
-    <mat-icon>search</mat-icon>
-  </button>
 
+<form (ngSubmit)="onSubmit()">
+  <mat-form-field class="no-subscript">
+    <mat-icon matPrefix>search</mat-icon>
 
-  <div class="search__body dropdown-body">
-    <ul class="dropdown-list">
-      <li> -->
-        <form (ngSubmit)="onSubmit()">
-          <mat-form-field class="no-subscript">
-            <mat-icon matPrefix>search</mat-icon>
-      
-            <input
-              type="text"
-              matInput
-              [formControl]="searchField"
-              [placeholder]="'header-market.search-input.placeholder' | translate"
-            />
-      
-            @if(searchField.value) {
-              <app-btn-icon 
-                matSuffix
-                [iconName]="'close'" 
-                [ariaLabel]="'header.clear-search' | translate" 
-                [tooltipText]="'header.clear-search' | translate"
-                (click)="clearInput()"
-              />
-            }
-          </mat-form-field>
-          <div class="submit-button">
-            <button mat-flat-button type="submit" [disabled]="!searchField.valid">
-              {{ 'header-market.search-input.submit' | translate }}
-            </button>
-          </div>
-        </form> 
-      <!-- </li>
-    </ul>
+    <input
+      type="text"
+      matInput
+      [formControl]="searchField"
+      [placeholder]="'header-market.search-input.placeholder' | translate"
+    />
+
+    @if(searchField.value) {
+      <app-btn-icon 
+        matSuffix
+        [iconName]="'close'" 
+        [ariaLabel]="'header.clear-search' | translate" 
+        [tooltipText]="'header.clear-search' | translate"
+        (click)="clearInput()"
+      />
+    }
+  </mat-form-field>
+  <div class="submit-button">
+    <button mat-flat-button type="submit" [disabled]="!searchField.valid">
+      {{ 'header-market.search-input.submit' | translate }}
+    </button>
   </div>
-</div> -->
+</form> 
+

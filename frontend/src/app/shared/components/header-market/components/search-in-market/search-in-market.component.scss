@@ -1,32 +1,5 @@
-:host {
-  margin-right: auto;
-}
-
-// .search {
-//   position: relative;
-//   z-index: 2;
-
-//   &.open {
-//     .search__body {
-//       pointer-events: unset;
-//     }
-//   }
-// }
-
-// .trigger-btn {
-// }
-
-// .search__body {
-//   min-width: 100%;
-//   width: auto;
-//   transition: max-height 0.3s ease;
-//   pointer-events: none;
-//   height: auto;
-//   max-height: 0;
-//   position: absolute;
-//   left: 0;
-//   top: 100%;
-//   overflow: hidden;
+// :host {
+//   margin-right: auto;
 // }
 
 form {
@@ -40,6 +13,10 @@ mat-form-field {
 
   width: 250px;
   height: 50px;
+
+  @media (max-width: 992px) {
+    width: 230px;
+  }
 }
 
 button {
@@ -51,4 +28,8 @@ button {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   min-width: 110px;
+
+  @media (max-width: 992px) {
+    min-width: 100px;
+  }
 }

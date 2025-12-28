@@ -6,6 +6,7 @@ import { ProfileBtnComponent } from './components/profile-btn/profile-btn.compon
 import { MatToolbar } from '@angular/material/toolbar';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { CatalogSelectorComponent } from '../../ui-elems/selectors/catalog-selector/catalog-selector.component';
+import { ShowSearchBtnComponent } from './components/show-search-btn/show-search-btn.component';
 
 @Component({
   selector: 'app-header-market',
@@ -16,9 +17,10 @@ import { CatalogSelectorComponent } from '../../ui-elems/selectors/catalog-selec
     FavsBtnComponent,
     ProfileBtnComponent,
     MatToolbar,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    ShowSearchBtnComponent,
   ],
   templateUrl: './header-market.component.html',
   styleUrl: './header-market.component.scss',
 })
-export class HeaderMarketComponent {}
+export class HeaderMarketComponent { }

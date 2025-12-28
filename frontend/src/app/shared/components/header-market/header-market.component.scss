@@ -12,11 +12,72 @@
 }
 
 mat-toolbar{
+  flex-direction: column;
   padding-top: 20px;
   padding-bottom: 20px;
+}
+
+.hm__top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
   gap: 15px;
 
   @media (max-width: 1024px) {
     gap: 10px;
   }
+
+  .hm__left{
+    @media (max-width: 992px) {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      display: block;
+    }
+  }
+  
+  .hm__center {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+
+    @media (max-width: 1024px) {
+      gap: 10px;
+    }
+
+    app-search-in-market {
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+  }
+
+  .hm__right {
+    display: flex;
+    gap: 15px;
+
+    @media (max-width: 1024px) {
+      gap: 10px;
+    }
+  }
 }
+
+.hm__bottom{
+  display: none;
+  width: 100%;
+  height: auto;
+  max-height: 0;
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+}
+

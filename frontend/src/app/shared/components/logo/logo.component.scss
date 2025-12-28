@@ -30,6 +30,14 @@
   font-family: "Ruda", Arial, Helvetica, sans-serif;
   font-weight: 500;
   line-height: 1.2;
+
+  @media (max-width: 992px) {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    display: flex;
+  }
 }
 
 .logo-title {
