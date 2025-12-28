@@ -2,6 +2,33 @@
   margin-right: auto;
 }
 
+// .search {
+//   position: relative;
+//   z-index: 2;
+
+//   &.open {
+//     .search__body {
+//       pointer-events: unset;
+//     }
+//   }
+// }
+
+// .trigger-btn {
+// }
+
+// .search__body {
+//   min-width: 100%;
+//   width: auto;
+//   transition: max-height 0.3s ease;
+//   pointer-events: none;
+//   height: auto;
+//   max-height: 0;
+//   position: absolute;
+//   left: 0;
+//   top: 100%;
+//   overflow: hidden;
+// }
+
 form {
   display: flex;
   align-items: center;

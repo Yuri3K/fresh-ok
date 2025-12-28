@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { TranslateModule } from '@ngx-translate/core';
 import { BtnIconComponent } from '../../../../ui-elems/buttons/btn-icon/btn-icon.component';
+import { OpenMenuDirective } from '../../../../../core/directives/open-menu.directive';
 
 @Component({
   selector: 'app-search-in-market',
@@ -17,7 +18,8 @@ import { BtnIconComponent } from '../../../../ui-elems/buttons/btn-icon/btn-icon
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
-    BtnIconComponent
+    BtnIconComponent,
+    OpenMenuDirective
   ],
   templateUrl: './search-in-market.component.html',
   styleUrl: './search-in-market.component.scss'
