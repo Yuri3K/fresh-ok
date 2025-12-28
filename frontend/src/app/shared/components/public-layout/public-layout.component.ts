@@ -17,39 +17,39 @@ import { HeaderMarketComponent } from '../header-market/header-market.component'
   templateUrl: './public-layout.component.html',
   styleUrl: './public-layout.component.scss',
 })
-export class PublicLayoutComponent implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild('headerMain', { read: ElementRef }) headerMainRef!: ElementRef
-  @ViewChild('headerMarket', { read: ElementRef }) headerMarketRef!: ElementRef
-  private resizeObserver!: ResizeObserver
+export class PublicLayoutComponent  {
+  // @ViewChild('headerMain', { read: ElementRef }) headerMainRef!: ElementRef
+  // @ViewChild('headerMarket', { read: ElementRef }) headerMarketRef!: ElementRef
+  // private resizeObserver!: ResizeObserver
 
-  private headerMainHeight = signal(0)
-  private headerMarketHeight = signal(0)
+  // private headerMainHeight = signal(0)
+  // private headerMarketHeight = signal(0)
 
   sidenavHeight = computed(() => {
-    const headersHeight = this.headerMainHeight() + this.headerMarketHeight()
-    return `calc(100% - ${headersHeight}px)`
+    // const headersHeight = this.headerMainHeight() + this.headerMarketHeight()
+    // return `calc(100% - ${headersHeight}px)`
   })
 
   ngOnInit() {
-    this.watchHeaderHeight()
+    // this.watchHeaderHeight()
   }
 
   ngAfterViewInit() {
-    this.resizeObserver.observe(this.headerMainRef.nativeElement)
-    this.resizeObserver.observe(this.headerMarketRef.nativeElement)
+    // this.resizeObserver.observe(this.headerMainRef.nativeElement)
+    // this.resizeObserver.observe(this.headerMarketRef.nativeElement)
   }
   
-  private watchHeaderHeight() {
-    this.resizeObserver = new ResizeObserver((entries) => {
-      const headerMainHeight = entries[0].contentRect.height
-      const headerMarketHeight = entries[0].contentRect.height
+  // private watchHeaderHeight() {
+  //   this.resizeObserver = new ResizeObserver((entries) => {
+  //     const headerMainHeight = entries[0].contentRect.height
+  //     const headerMarketHeight = entries[0].contentRect.height
   
-      this.headerMainHeight.set(headerMainHeight)
-      this.headerMarketHeight.set(headerMarketHeight)
-    })
-  }
+  //     this.headerMainHeight.set(headerMainHeight)
+  //     this.headerMarketHeight.set(headerMarketHeight)
+  //   })
+  // }
 
   ngOnDestroy() {
-    this.resizeObserver?.disconnect()
+    // this.resizeObserver?.disconnect()
   }
 }
