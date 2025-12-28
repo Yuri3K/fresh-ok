@@ -1,0 +1,45 @@
+@if(isArrows()) {
+  <div class="ngx-carousel__controls">
+    <button
+      type="button"
+      class="ngx-carousel__btn"
+      (click)="carousel.prev()"
+      aria-label="Previous slide"
+    >
+ 
+    </button>
+  
+    <button
+      type="button"
+      class="ngx-carousel__btn"
+      aria-label="Next slide"
+      (click)="carousel.next()"
+    >
+
+    </button>
+
+  </div>
+}
+
+@if(isDots()) {
+  <div class="ngx-carousel__controls bullets">
+    <div 
+      role="tablist"
+      aria-label="Carousel indicators"
+      class="ngx-carousel__dots"
+    >
+      @for(dot of slides(); track $index; let i = $index) {
+        <button
+          type="button"
+          [attr.aria-selected]="carousel.getDisplayIndex() == i"
+          class="ngx-carousel__dot"
+          [class.active]="carousel.getDisplayIndex() == i"
+          (click)="carousel.goTo(i)"
+        ></button>
+      }
+    </div>
+  </div>
+}
+
+
+
