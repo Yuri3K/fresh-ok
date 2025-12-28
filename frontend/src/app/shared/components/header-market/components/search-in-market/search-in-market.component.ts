@@ -19,7 +19,7 @@ import { OpenMenuDirective } from '../../../../../core/directives/open-menu.dire
     ReactiveFormsModule,
     MatButtonModule,
     BtnIconComponent,
-    OpenMenuDirective
+    // OpenMenuDirective
   ],
   templateUrl: './search-in-market.component.html',
   styleUrl: './search-in-market.component.scss'

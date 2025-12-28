@@ -9,5 +9,6 @@
 }
 
 mat-sidenav-container{
-  min-height: calc(100% - 64px - 90px);
+  flex: 1;
+  // min-height: calc(100% - 64px - 90px);
 }
