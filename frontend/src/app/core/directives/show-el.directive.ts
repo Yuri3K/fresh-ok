@@ -22,9 +22,7 @@ export class ShowElDirective implements OnInit {
   ngOnInit() {
     const host = this.elRef.nativeElement;
     this.elemBody = host.querySelector('.elem-body');
-    console.log('🚀 ~ elemBody:', this.elemBody);
     this.elemContent = host.querySelector('.elem-content');
-    console.log('🚀 ~ elemContent:', this.elemContent);
     this.elemToggle = host.querySelector('.elem-toggle');
 
     if (!this.elemBody || !this.elemContent) {
