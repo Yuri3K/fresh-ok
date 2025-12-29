@@ -16,4 +16,24 @@
   transition: max-height 0.3s ease;
   pointer-events: none;
   position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.more__list {
+  padding: 10px;
+  border: 1px solid var(--mat-sys-on-secondary-container);
+  border-radius: 10px;
+  background-color: var(--mat-sys-primary-container);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  app-show-search-btn {
+    display: none;
+
+    @media (max-width: 768px) {
+      display: block;
+    }
+  }
 }

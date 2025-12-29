@@ -2,13 +2,10 @@
 
 :host {
   z-index: 2;
-  @include mat.toolbar-overrides(
-    (
-      container-background-color: var(--mat-sys-primary-container),
+  @include mat.toolbar-overrides((container-background-color: var(--mat-sys-primary-container),
       container-text-color: var(--mat-sys-secondary-fixed-dim),
       standard-height: "auto",
-    )
-  );
+    ));
 }
 
 mat-toolbar {
@@ -30,16 +27,6 @@ mat-toolbar {
     gap: 10px;
   }
 
-  .hm__left {
-    @media (max-width: 992px) {
-      display: none;
-    }
-
-    @media (max-width: 768px) {
-      display: block;
-    }
-  }
-
   .hm__center {
     flex: 1;
     display: flex;
@@ -49,6 +36,12 @@ mat-toolbar {
 
     @media (max-width: 1024px) {
       gap: 10px;
+    }
+
+    app-catalog-selector{
+      @media (max-width: 576px) {
+        display: none;
+      }
     }
 
     app-search-in-market {
@@ -64,6 +57,21 @@ mat-toolbar {
 
     @media (max-width: 1024px) {
       gap: 10px;
+    }
+
+    app-more-btn {
+      display: none;
+
+      @media (max-width: 992px) {
+        display: block;
+      }
+    }
+
+    app-profile-btn,
+    app-favs-btn {
+      @media (max-width: 992px) {
+        display: none;
+      }
     }
   }
 }

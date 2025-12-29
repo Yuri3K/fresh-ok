@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MiniFabBtnComponent } from '../../../../ui-elems/buttons/mini-fab-btn/mini-fab-btn.component';
+import { ShowSearchService } from './show-search.service';
 
 @Component({
   selector: 'app-show-search-btn',
@@ -10,5 +11,5 @@ import { MiniFabBtnComponent } from '../../../../ui-elems/buttons/mini-fab-btn/m
   styleUrl: './show-search-btn.component.scss'
 })
 export class ShowSearchBtnComponent {
-  @Output() showSearchForm = new EventEmitter<void>()
+  showSearchService = inject(ShowSearchService)
 }

@@ -1,6 +1,5 @@
 <mat-toolbar
-  [class.show]="isSearchFormShown"
-  appShowEl
+  [appShowEl]="showSearchService.isSearchVisible()"
 >
   <div class="hm__top">
     <div class="hm__left">
@@ -13,15 +12,7 @@
     </div>
   
     <div class="hm__right">
-      <app-more-btn 
-        [componentsList]="[ 1, 2 , 3
-          
-        ]"
-      />
-      <app-show-search-btn 
-        (showSearchForm)="isSearchFormShown = !isSearchFormShown"
-        class="elem-toggle"
-      />
+      <app-more-btn/>
       <app-profile-btn />
       <app-favs-btn />
       <app-shopping-cart />

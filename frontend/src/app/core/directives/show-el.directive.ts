@@ -3,6 +3,7 @@ import {
   ElementRef,
   HostBinding,
   HostListener,
+  Input,
   OnInit,
   Renderer2,
 } from '@angular/core';
@@ -15,15 +16,24 @@ export class ShowElDirective implements OnInit {
 
   private elemBody!: HTMLElement | null;
   private elemContent!: HTMLElement | null;
-  private elemToggle!: HTMLElement | null;
+  // private elemToggle!: HTMLElement | null;
 
-  constructor(private elRef: ElementRef, private renderer: Renderer2) {}
+  @Input()
+  set appShowEl(value: boolean) {
+    this.isShow = value;
+
+    queueMicrotask(() => {
+      value ? this.showEl() : this.hideEl();
+    });
+  }
+
+  constructor(private elRef: ElementRef, private renderer: Renderer2) { }
 
   ngOnInit() {
     const host = this.elRef.nativeElement;
     this.elemBody = host.querySelector('.elem-body');
     this.elemContent = host.querySelector('.elem-content');
-    this.elemToggle = host.querySelector('.elem-toggle');
+    // this.elemToggle = host.querySelector('.elem-toggle');
 
     if (!this.elemBody || !this.elemContent) {
       console.warn(
