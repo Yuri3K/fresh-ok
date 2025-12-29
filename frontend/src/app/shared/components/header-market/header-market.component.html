@@ -13,6 +13,11 @@
     </div>
   
     <div class="hm__right">
+      <app-more-btn 
+        [componentsList]="[ 1, 2 , 3
+          
+        ]"
+      />
       <app-show-search-btn 
         (showSearchForm)="isSearchFormShown = !isSearchFormShown"
         class="elem-toggle"

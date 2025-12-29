@@ -1,0 +1,19 @@
+.more {
+  position: relative;
+  z-index: 2;
+
+  &.open {
+    .more__body {
+      pointer-events: all;
+    }
+  }
+}
+
+.more__body {
+  overflow: hidden;
+  height: auto;
+  max-height: 0;
+  transition: max-height 0.3s ease;
+  pointer-events: none;
+  position: absolute;
+}

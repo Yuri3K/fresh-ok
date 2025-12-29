@@ -8,6 +8,7 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 import { CatalogSelectorComponent } from '../../ui-elems/selectors/catalog-selector/catalog-selector.component';
 import { ShowSearchBtnComponent } from './components/show-search-btn/show-search-btn.component';
 import { ShowElDirective } from '../../../core/directives/show-el.directive';
+import { MoreBtnComponent } from './components/more-btn/more-btn.component';
 
 @Component({
   selector: 'app-header-market',
@@ -21,6 +22,7 @@ import { ShowElDirective } from '../../../core/directives/show-el.directive';
     ShoppingCartComponent,
     ShowSearchBtnComponent,
     ShowElDirective,
+    MoreBtnComponent
   ],
   templateUrl: './header-market.component.html',
   styleUrl: './header-market.component.scss',
