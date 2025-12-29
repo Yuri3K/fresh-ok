@@ -22,7 +22,7 @@ export class OpenMenuDirective implements OnInit {
 
     // Подстраховка — если структура HTML сломана
     if (!this.dropdownBody || !this.dropdownList) {
-      console.warn("appOpenMenu: .dropdown-body or .dropdown-list mot found");
+      console.warn("appOpenMenu: .dropdown-body or .dropdown-list not found");
     }
   }
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { LogoComponent } from '../logo/logo.component';
 import { FavsBtnComponent } from './components/favs-btn/favs-btn.component';
 import { SearchInMarketComponent } from './components/search-in-market/search-in-market.component';
@@ -7,6 +7,7 @@ import { MatToolbar } from '@angular/material/toolbar';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { CatalogSelectorComponent } from '../../ui-elems/selectors/catalog-selector/catalog-selector.component';
 import { ShowSearchBtnComponent } from './components/show-search-btn/show-search-btn.component';
+import { ShowElDirective } from '../../../core/directives/show-el.directive';
 
 @Component({
   selector: 'app-header-market',
@@ -19,8 +20,11 @@ import { ShowSearchBtnComponent } from './components/show-search-btn/show-search
     MatToolbar,
     ShoppingCartComponent,
     ShowSearchBtnComponent,
+    ShowElDirective,
   ],
   templateUrl: './header-market.component.html',
   styleUrl: './header-market.component.scss',
 })
-export class HeaderMarketComponent { }
+export class HeaderMarketComponent {
+  isSearchFormShown = false
+ }

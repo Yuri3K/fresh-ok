@@ -72,11 +72,16 @@ mat-toolbar{
   height: auto;
   max-height: 0;
   overflow: hidden;
+  transition: max-height 0.2s ease;
 
   @media (max-width: 768px) {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  app-search-in-market{
+    padding-top: 15px;
   }
 
 }

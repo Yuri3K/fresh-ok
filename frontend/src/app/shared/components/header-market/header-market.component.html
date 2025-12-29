@@ -1,4 +1,7 @@
-<mat-toolbar>
+<mat-toolbar
+  [class.show]="isSearchFormShown"
+  appShowEl
+>
   <div class="hm__top">
     <div class="hm__left">
       <app-logo />
@@ -10,14 +13,17 @@
     </div>
   
     <div class="hm__right">
-      <app-show-search-btn />
+      <app-show-search-btn 
+        (showSearchForm)="isSearchFormShown = !isSearchFormShown"
+        class="elem-toggle"
+      />
       <app-profile-btn />
       <app-favs-btn />
       <app-shopping-cart />
     </div>
   </div>
 
-  <div class="hm__bottom">
-    <app-search-in-market />
+  <div class="hm__bottom elem-body">
+    <app-search-in-market class="elem-content"/>
   </div>
 </mat-toolbar>
