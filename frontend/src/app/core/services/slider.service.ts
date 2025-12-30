@@ -26,6 +26,23 @@ export class SliderService {
 
   readonly config: NgxCarouselConfig = {
     autoplay: false, 
+    breakpoints: [
+      {
+        breakpoint: 0, // до 768
+        showArrows: false,
+        showDots: true,
+      },
+      {
+        breakpoint: 768, // от 768
+        showArrows: true,
+        showDots: false,
+      },
+      {
+        breakpoint: 1024, // от 1024
+        showArrows: true,
+        showDots: false,
+      },
+    ]
   }
 
   getSliderData(): Observable<CarouselSlide[]> {
