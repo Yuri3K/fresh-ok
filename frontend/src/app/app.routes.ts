@@ -11,6 +11,7 @@ import { LangGuard } from './core/guards/lang.guard';
 export const routes: Routes = [
   {
     path: ':lang',
+    // canActivate: [LangGuard], // Проверяет корректность кода языка (en, ru, uk)
     children: [
       {
         path: '',
