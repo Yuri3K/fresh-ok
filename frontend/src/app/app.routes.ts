@@ -1,12 +1,14 @@
 import { Routes } from '@angular/router';
-import { AdminLayoutComponent } from './shared/components/admin-layout/admin-layout.component';
-import { authChildGuard, authGuard } from './core/guards/auth.guard';
-import { PublicLayoutComponent } from './shared/components/public-layout/public-layout.component';
+// import { AdminLayoutComponent } from './shared/components/admin-layout/admin-layout.component';
+// import { authChildGuard, authGuard } from './core/guards/auth.guard';
+// import { PublicLayoutComponent } from './shared/components/public-layout/public-layout.component';
 import { isAlreadyAuthGuard } from './core/guards/is-already-auth.guard';
-import { roleGuard } from './core/guards/role.guard';
+// import { roleGuard } from './core/guards/role.guard';
 import { Error403Component } from './shared/components/403/403.component';
 import { Error404Component } from './shared/components/404/404.component';
 import { LangGuard } from './core/guards/lang.guard';
+import { inject } from '@angular/core';
+import { LangsService } from './core/services/langs.service';
 
 export const routes: Routes = [
   {
@@ -15,15 +17,15 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        component: PublicLayoutComponent,
+        // component: PublicLayoutComponent,
         loadChildren: () => import('./shared/components/public-layout/public-layout.routes').then(m => m.routes)
       },
       {
         path: 'admin',
-        component: AdminLayoutComponent,
-        canActivate: [authGuard, roleGuard],
-        canActivateChild: [authChildGuard, roleGuard],
-        data: { roles: ['superAdmin', 'admin', 'manager', 'customer'] },
+        // component: AdminLayoutComponent,
+        // canActivate: [authGuard, roleGuard],
+        // canActivateChild: [authChildGuard, roleGuard],
+        // data: { roles: ['superAdmin', 'admin', 'manager', 'customer'] },
         loadChildren: () => import('./shared/components/admin-layout/admin-layout.routes').then(m => m.routes)
       },
       {
@@ -45,13 +47,30 @@ export const routes: Routes = [
     ]
   },
   // Редирект с корня localhost:4200 на localhost:4200/ru (или другой язык)
+  // {
+  //   path: '',
+  //   pathMatch: 'full',
+  //   canActivate: [LangGuard],
+  //   children: [], // Этот блок сработает только для редиректа
+  // },
   {
     path: '',
     pathMatch: 'full',
-    canActivate: [LangGuard],
-    children: [], // Этот блок сработает только для редиректа
+    redirectTo: (route) => {
+      const langsService = inject(LangsService);
+      const targetLang = langsService.resolveTargetLang();
+      return `/${targetLang}/home`;
+    }
   },
+  // {
+  //   path: '**', redirectTo: 'en/404'
+  // }
   {
-    path: '**', redirectTo: 'en/404'
+    path: '**', 
+    redirectTo: () => {
+      const langsService = inject(LangsService);
+      const targetLang = langsService.resolveTargetLang();
+      return `/${targetLang}/404`;
+    }
   }
 ];

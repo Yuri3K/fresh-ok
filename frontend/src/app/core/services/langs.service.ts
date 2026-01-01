@@ -43,7 +43,6 @@ export class LangsService {
       .pipe(
         take(1),
         switchMap(langs => {
-          console.log("🔸 langs:", langs)
           this.setLangs(langs) // записываем полученные языки с сервера в langsSubject
           const langToUse = this.resolveInitialLanguage(langs) // en-US, ru-RU, uk-UK
 
@@ -138,8 +137,8 @@ export class LangsService {
     const langData = this.langs.find(l => l.name == targetLang)
 
     if (langData) {
-      // this.setCurrentLang(langData)
-      this.setLanguage(langData)
+      this.setCurrentLang(langData)
+      // this.setLanguage(langData)
     }
 
     console.log('targetLang', targetLang)
@@ -148,19 +147,15 @@ export class LangsService {
 
   // Если в URL не будет указан язык, LangGuard будет запрашивать опредилить язык автоматически
   resolveTargetLang() {
-    console.log("🔸 resolveTargetLang:")
     // Проверяем в LS наличие данных о примененном языке
     const stored = localStorage.getItem(environment.lsLangKey)
-    console.log("🔸 stored:", stored)
 
     // Проверяем какой язык использует браузер пользователя
     const browser = this.translateService.getBrowserLang() // en, ru, uk
-    console.log("🔸 browser:", browser)
 
     if (stored) {
       const match = this.langs.find(l => l.name === stored)
-      console.log("🔸 this.langs:", this.langs)
-      console.log("🔸 match:", match)
+
       if (match) return match.browserLang
     } else {
       //Проверяем поддерживаем ли мы язык, который используется в браузере пользоватуля

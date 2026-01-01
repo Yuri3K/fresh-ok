@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, provideAppInitializer, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -10,6 +10,7 @@ import player from 'lottie-web';
 import { authTokenInterceptor } from './core/interceptors/auth-token.interceptor';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { NGX_CAROUSEL_CONFIG } from 'ngx-freshok-carousel';
+import { initLangsFactory } from './core/init/langs.init';
 
 const interceptors = [
   authTokenInterceptor
@@ -40,7 +41,7 @@ export const appConfig: ApplicationConfig = {
     }),
 
     // Дождется инициализации языков перед загрузкой приложения
-    // provideAppInitializer(initLangsFactory),
+    provideAppInitializer(initLangsFactory),
     
 
     provideLottieOptions({
