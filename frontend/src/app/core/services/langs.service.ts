@@ -127,26 +127,27 @@ export class LangsService {
       const match = langs.find(l => l.browserLang == browserLang)
       if (match) targetLang = match.name // en-US, ru-RU, uk-UK
     }
+    console.log("🔸 targetLang:", targetLang)
 
     // Если ничего не найдено, то возвращаем значение по умолчанию
     if (!targetLang) {
       targetLang = this.translateService.defaultLang || 'en-US'
     }
 
-    // Назначаем currentLang
-    const langData = this.langs.find(l => l.name == targetLang)
+    // // Назначаем currentLang
+    // const langData = this.langs.find(l => l.name == targetLang)
 
-    if (langData) {
-      this.setCurrentLang(langData)
-      // this.setLanguage(langData)
-    }
+    // if (langData) {
+    //   this.setCurrentLang(langData)
+    //   // this.setLanguage(langData)
+    // }
 
-    console.log('targetLang', targetLang)
     return targetLang // en-US, ru-RU, uk-UK
   }
 
   // Если в URL не будет указан язык, LangGuard будет запрашивать опредилить язык автоматически
   resolveTargetLang() {
+    console.log("🔸 this.langs:", this.langs)
     // Проверяем в LS наличие данных о примененном языке
     const stored = localStorage.getItem(environment.lsLangKey)
 

@@ -53,12 +53,15 @@ export const routes: Routes = [
   //   canActivate: [LangGuard],
   //   children: [], // Этот блок сработает только для редиректа
   // },
+
+  // Редирект с корня localhost:4200 на localhost:4200/ru (или другой язык)
   {
     path: '',
     pathMatch: 'full',
     redirectTo: (route) => {
       const langsService = inject(LangsService);
       const targetLang = langsService.resolveTargetLang();
+      console.log("🔸 targetLang:", targetLang)
       return `/${targetLang}/home`;
     }
   },
@@ -66,7 +69,7 @@ export const routes: Routes = [
   //   path: '**', redirectTo: 'en/404'
   // }
   {
-    path: '**', 
+    path: '**',
     redirectTo: () => {
       const langsService = inject(LangsService);
       const targetLang = langsService.resolveTargetLang();
