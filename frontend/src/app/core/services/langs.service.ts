@@ -4,6 +4,7 @@ import { ApiService } from './api.service';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../../../environments/environment';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 export type LangCode = 'en' | 'ru' | 'uk';
 export interface Lang {
@@ -19,6 +20,7 @@ export class LangsService {
   private readonly apiService = inject(ApiService)
   private readonly translateService = inject(TranslateService)
   private location = inject(Location)
+  private router = inject(Router)
 
   private readonly langsSubject = new BehaviorSubject<Lang[]>([])
   private readonly currentLangSubject = new BehaviorSubject<Lang | null>(null)
@@ -77,9 +79,21 @@ export class LangsService {
 
   // Используется при смене языка в языковом дропдауне
   setLanguage(lang: Lang) {
-    this.translateService.use(lang.name) // en-US, ru-RU, uk-UK
-    this.setCurrentLang(lang) // объект с данными про выбранный язык
-    localStorage.setItem(environment.lsLangKey, lang.name) // записываем в LS en-US / ru-RU / uk-UK
+    // this.translateService.use(lang.name) // en-US, ru-RU, uk-UK
+    // this.setCurrentLang(lang) // объект с данными про выбранный язык
+    // localStorage.setItem(environment.lsLangKey, lang.name) // записываем в LS en-US / ru-RU / uk-UK
+
+    const currentUrl = this.location.path();
+    const segments = currentUrl.split('/');
+    // Заменяем сегмент языка: /en/products -> /ru/products
+    segments[1] = lang.browserLang; 
+    
+    this.translateService.use(lang.name).subscribe(() => {
+      this.setCurrentLang(lang);
+      localStorage.setItem(environment.lsLangKey, lang.name);
+      // Важно: переходим по новому URL
+      this.router.navigateByUrl(segments.join('/'));
+    });
   }
 
   private setCurrentLang(lang: Lang) {
@@ -87,6 +101,7 @@ export class LangsService {
   }
 
   private resolveInitialLanguage(langs: Lang[]): string {
+    console.log("🔸 resolveInitialLanguage:")
     let targetLang: string = ''
 
     // Язык в URL
@@ -120,5 +135,24 @@ export class LangsService {
     }
 
     return targetLang // en-US, ru-RU, uk-UK
+  }
+
+  resolveTargetLang() {
+    console.log("🔸 resolveTargetLang:")
+    const stored = localStorage.getItem(environment.lsLangKey)
+    if(stored) {
+      const match = this.langs.find(l => l.name === stored)
+      if(match) return match.name
+    }
+
+    const browser = this.translateService.getBrowserLang()  // en, ru, uk
+    if (browser && this.isSupported(browser)) return browser;
+
+    return 'en'; // fallback
+  }
+
+  isSupported(shortCode: string): boolean {
+    // Проверка, есть ли такой код в списке от бэкенда
+    return this.langs.some(l => l.browserLang === shortCode);
   }
 }
