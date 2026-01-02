@@ -1,9 +1,8 @@
 import { HttpErrorResponse, HttpEvent, HttpHandlerFn, HttpInterceptorFn, HttpRequest } from "@angular/common/http";
-import { inject } from "@angular/core";
+import { inject, Injector } from "@angular/core";
 import { catchError, Observable, switchMap, throwError } from "rxjs";
 import { environment } from "../../../environments/environment";
 import { AuthService } from "../services/auth.service";
-import { Router } from "@angular/router";
 import { SKIP_AUTH } from "./auth-context";
 
 export const authTokenInterceptor: HttpInterceptorFn = (
@@ -11,6 +10,7 @@ export const authTokenInterceptor: HttpInterceptorFn = (
   next: HttpHandlerFn
 ): Observable<HttpEvent<unknown>> => {
   const authService = inject(AuthService)
+  const injector = inject(Injector)
 
   if (
     !req.url.startsWith(environment.serverUrl) ||

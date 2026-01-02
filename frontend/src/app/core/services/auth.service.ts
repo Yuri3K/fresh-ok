@@ -7,6 +7,7 @@ import { ApiService } from './api.service';
 import { SnackbarService } from './snackbar.service';
 import { UserAccessService } from './user-access.service';
 import { AuthRedirectService } from './auth-redirect.service';
+import { LangsService } from './langs.service';
 // import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
@@ -14,6 +15,7 @@ import { AuthRedirectService } from './auth-redirect.service';
 })
 export class AuthService {
   private readonly router = inject(Router)
+  private readonly langsService = inject(LangsService)
   private readonly apiService = inject(ApiService)
   private readonly userAccessService = inject(UserAccessService)
   private readonly authRedirectService = inject(AuthRedirectService)

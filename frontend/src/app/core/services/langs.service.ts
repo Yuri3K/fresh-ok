@@ -146,7 +146,7 @@ export class LangsService {
 
   // Если в URL не будет указан язык, LangGuard будет запрашивать опредилить язык автоматически
   resolveTargetLang() {
-    console.log("🔸 this.langs:", this.langs)
+    console.log("🔸 !!!this.langs:!!!", this.langs)
     // Проверяем в LS наличие данных о примененном языке
     const stored = localStorage.getItem(environment.lsLangKey)
 
