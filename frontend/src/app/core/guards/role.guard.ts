@@ -1,12 +1,13 @@
-import { ActivatedRouteSnapshot, CanActivateFn, Router } from "@angular/router";
-import { AuthService } from "../services/auth.service";
-import { inject } from "@angular/core";
-import { combineLatest, filter, map, take } from "rxjs";
-import { UserAccessService } from "../services/user-access.service";
+import { ActivatedRouteSnapshot, CanActivateFn, Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { inject } from '@angular/core';
+import { combineLatest, filter, map, take } from 'rxjs';
+import { UserAccessService } from '../services/user-access.service';
+import { LangRouterService } from '../services/lang-router.service';
 
 /**
  * Универсальный Role/Permission Guard для Angular
- * 
+ *
  * Поддерживает:
  * - проверку ролей пользователя (roles)
  * - проверку разрешений пользователя (permissions)
@@ -14,28 +15,30 @@ import { UserAccessService } from "../services/user-access.service";
  * - перенаправление на /login или /403 при отсутствии доступа
  */
 export const roleGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
-  const auth = inject(AuthService)
-  const userAccess = inject(UserAccessService)
+  const auth = inject(AuthService);
+  const userAccess = inject(UserAccessService);
   const router = inject(Router)
+  const navigateService = inject(LangRouterService);
 
-  const allowedRoles = route.data['roles'] as string[] | undefined
-  const requiredPermissions = route.data['permissions'] as string[] | undefined
+  const allowedRoles = route.data['roles'] as string[] | undefined;
+  const requiredPermissions = route.data['permissions'] as string[] | undefined;
 
   // Бывают случаи, когда пользователь должен обладать всеми перечисленными правами ('all') или наоборот иметь хотя бы одно из требуемых разрешений ('any'). По умолчанию считаем, что 'any'
-  const permissionsMode = route.data['permissionMode'] as 'any' | 'all' | undefined
+  const permissionsMode = route.data['permissionMode'] as
+    | 'any'
+    | 'all'
+    | undefined;
 
-  return combineLatest([
-    userAccess.dbUser$,
-    auth.authInitializing$
-  ]).pipe(
+  return combineLatest([userAccess.dbUser$, auth.authInitializing$]).pipe(
     filter(([user, initializing]) => user !== undefined && !initializing),
     take(1),
     map(([user]) => {
       //Дополнительно проверяем авторизирован ли пользователь
       if (!auth.isAuthenticated() || !user) {
-        // Выполняем только редирект на страницу '/login'. Очистку authUserSubject 
+        // Выполняем только редирект на страницу '/login'. Очистку authUserSubject
         // и dbUserSubject выпонит сам AuthService в onAuthStateChanged
-        return router.createUrlTree(['/login']);
+        const urlWithLang = navigateService.addLangInUrlArr(['/login'])
+        return router.createUrlTree(urlWithLang);
       }
 
       // hasRole будет true в одном из следующих случаев:
@@ -45,7 +48,7 @@ export const roleGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
       const hasRole =
         !allowedRoles ||
         allowedRoles.length === 0 ||
-        allowedRoles.includes(user.role)
+        allowedRoles.includes(user.role);
 
       // hasPermission будет true в одном из следующих случаев:
       // 1. Для маршрута не указано ограничение по permissions (route.data['permissions'] отсутствует)
@@ -55,18 +58,18 @@ export const roleGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
       const hasPermission =
         !requiredPermissions ||
         requiredPermissions.length === 0 ||
-        (
-          permissionsMode === 'all'
-            ? requiredPermissions.every(p => user.permissions?.includes(p))
-            : requiredPermissions.some(p => user.permissions?.includes(p))
-        );
+        (permissionsMode === 'all'
+          ? requiredPermissions.every((p) => user.permissions?.includes(p))
+          : requiredPermissions.some((p) => user.permissions?.includes(p)));
 
       // Если пользователь прошёл проверку по роли и разрешениям — разрешаем доступ
-      if (hasRole && hasPermission) return true
+      if (hasRole && hasPermission) return true;
 
       // В противном случае — редирект на страницу "Доступ запрещён"
-      router.navigate(['/403'])
-      return false
+      navigateService.navigate(['/403'], {
+        queryParamsHandling: 'merge',
+      });
+      return false;
     })
-  )
-}
+  );
+};

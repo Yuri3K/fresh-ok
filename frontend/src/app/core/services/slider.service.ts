@@ -49,8 +49,6 @@ export class SliderService {
     return this.translateService.stream('homepage.slider')
     .pipe(
       tap((slides: CarouselSlide[]) => {
-          console.log("🚀 ~ this.translateService.getCurrentLang():", this.translateService.getCurrentLang())
-          console.log("🚀 ~ slides:", slides)
           const processedSlides = slides.map(s => {
             return {
               ...s,

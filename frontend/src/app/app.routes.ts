@@ -70,7 +70,6 @@ export const routes: Routes = [
     path: '',
     pathMatch: 'full',
     redirectTo: (route) => {
-      console.log("🚀 ~ route:", route)
       const langsService = inject(LangsService);
       // const langs$ = langsService.langs$;
 
@@ -81,21 +80,20 @@ export const routes: Routes = [
         // )
         // .subscribe((langs) => {
           const targetLang = langsService.resolveTargetLang();
-          console.log('🔸 targetLang:', targetLang);
           return `/${targetLang}/home`;
         // });
     },
   },
-  {
-    path: '**',
-    redirectTo: 'en/404',
-  },
   // {
   //   path: '**',
-  //   redirectTo: () => {
-  //     const langsService = inject(LangsService);
-  //     const targetLang = langsService.resolveTargetLang();
-  //     return `/${targetLang}/404`;
-  //   }
-  // }
+  //   redirectTo: 'en/404',
+  // },
+  {
+    path: '**',
+    redirectTo: () => {
+      const langsService = inject(LangsService);
+      const targetLang = langsService.resolveTargetLang();
+      return `/${targetLang}/404`;
+    }
+  }
 ];

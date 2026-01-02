@@ -18,22 +18,17 @@ export const LangGuard: CanActivateFn = (
     take(1),
     map((langs) => {
       const langParam = route.params['lang']; // берем :lang из URL
-      console.log('🚀 ~ langParam:', langParam);
 
       // Если в URL не указан язык
       if (!langParam) {
-        console.log('NOT PARAM');
         // Определяем язык автоматически
         const targetLng = langsService.resolveTargetLang(); // en, ru, uk
-        console.log('🚀 ~ targetLng:', targetLng);
-        console.log('🚀 ~ state.url:', state.url);
 
         return router.parseUrl(`/${targetLng}${state.url}`); // переключаемся на автоматически определенный язык
       }
 
       // Если я зык в URL был указан, но язык не поддерживается
       if (!langsService.isSupported(langParam)) {
-        console.log('NOT SUPPORT');
         const fallback = langsService.resolveTargetLang(); // пытаемся автоматически определить язык и если не получается, то применим язык для fallback
         return router.parseUrl(`/${fallback}${state.url}`); // переходим на страницу используя язык, который попал в fallback
       }

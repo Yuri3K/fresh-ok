@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { MiniFabBtnComponent } from '../../../../ui-elems/buttons/mini-fab-btn/mini-fab-btn.component';
-import { Router } from '@angular/router';
+import { LangRouterService } from '../../../../../core/services/lang-router.service';
 
 @Component({
   selector: 'app-favs-btn',
@@ -11,10 +11,10 @@ import { Router } from '@angular/router';
   styleUrl: './favs-btn.component.scss'
 })
 export class FavsBtnComponent {
-  private readonly router = inject(Router)
+  private navigateService = inject(LangRouterService)
 
   navigateToFavs() {
-    this.router.navigate(['/user', 'favs'], {
+    this.navigateService.navigate(['/user', 'favs'], {
       queryParamsHandling: 'merge'
     })
   }

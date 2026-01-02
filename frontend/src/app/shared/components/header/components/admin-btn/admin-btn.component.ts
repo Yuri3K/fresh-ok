@@ -12,9 +12,8 @@ export class AdminBtnComponent {
   private navigateService = inject(LangRouterService)
 
   navigateToAdmin() {
-    this.navigateService.navigate(
-      ['/admin'],
-      { queryParamsHandling: 'merge' }
-    )
+    this.navigateService.navigate(['/admin'], { 
+      queryParamsHandling: 'merge' 
+     } )
   }
 }

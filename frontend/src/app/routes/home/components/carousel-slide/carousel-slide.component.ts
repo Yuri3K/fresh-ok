@@ -1,7 +1,7 @@
 import { NgStyle } from '@angular/common';
 import { Component, inject, Input } from '@angular/core';
-import { Router } from '@angular/router';
 import { CarouselSlide } from '../../../../core/services/slider.service';
+import { LangRouterService } from '../../../../core/services/lang-router.service';
 
 @Component({
   selector: 'app-carousel-slide',
@@ -16,10 +16,10 @@ import { CarouselSlide } from '../../../../core/services/slider.service';
 export class CarouselSlideComponent {
   @Input() slide!: CarouselSlide
 
-  private readonly router = inject(Router)
+  private navigateService = inject(LangRouterService)
 
   navigateByLink(link: string) {
-      this.router.navigate([link], {
+      this.navigateService.navigate([link], {
         queryParamsHandling: 'merge'
       }).then()
   }

@@ -1,21 +1,19 @@
 import { Component, inject } from '@angular/core';
 import { MiniFabBtnComponent } from '../../../../ui-elems/buttons/mini-fab-btn/mini-fab-btn.component';
-import { Router } from '@angular/router';
+import { LangRouterService } from '../../../../../core/services/lang-router.service';
 
 @Component({
   selector: 'app-profile-btn',
-  imports: [
-    MiniFabBtnComponent
-  ],
+  imports: [MiniFabBtnComponent],
   templateUrl: './profile-btn.component.html',
-  styleUrl: './profile-btn.component.scss'
+  styleUrl: './profile-btn.component.scss',
 })
 export class ProfileBtnComponent {
-  private readonly router = inject(Router)
+  private navigateService = inject(LangRouterService);
 
   navigateToProfile() {
-    this.router.navigate(['/user'], {
-      queryParamsHandling: 'merge'
-    })
+    this.navigateService.navigate(['/user'], {
+      queryParamsHandling: 'merge',
+    });
   }
 }

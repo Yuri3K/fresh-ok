@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { MiniFabBtnComponent } from '../../../../ui-elems/buttons/mini-fab-btn/mini-fab-btn.component';
-import { Router } from '@angular/router';
+import { LangRouterService } from '../../../../../core/services/lang-router.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -11,10 +11,10 @@ import { Router } from '@angular/router';
   styleUrl: './shopping-cart.component.scss'
 })
 export class ShoppingCartComponent {
-  private readonly router = inject(Router)
+  private navigateService = inject(LangRouterService)
 
   navigateToCart() {
-    this.router.navigate(['/cart'], {
+    this.navigateService.navigate(['/cart'], {
       queryParamsHandling: 'merge'
     })
   }

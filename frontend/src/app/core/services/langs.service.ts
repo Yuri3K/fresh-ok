@@ -127,7 +127,6 @@ export class LangsService {
       const match = this.langs.find(l => l.browserLang == browserLang)
       if (match) targetLang = match.name // en-US, ru-RU, uk-UK
     }
-    console.log("🔸 targetLang:", targetLang)
 
     // Если ничего не найдено, то возвращаем значение по умолчанию
     if (!targetLang) {
