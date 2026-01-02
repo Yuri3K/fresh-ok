@@ -65,15 +65,15 @@ export const routes: Routes = [
       return `/${targetLang}/home`;
     }
   },
-  // {
-  //   path: '**', redirectTo: 'en/404'
-  // }
   {
-    path: '**',
-    redirectTo: () => {
-      const langsService = inject(LangsService);
-      const targetLang = langsService.resolveTargetLang();
-      return `/${targetLang}/404`;
-    }
+    path: '**', redirectTo: 'en/404'
   }
+  // {
+  //   path: '**',
+  //   redirectTo: () => {
+  //     const langsService = inject(LangsService);
+  //     const targetLang = langsService.resolveTargetLang();
+  //     return `/${targetLang}/404`;
+  //   }
+  // }
 ];

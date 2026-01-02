@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
 import { MiniFabBtnComponent } from '../../../../ui-elems/buttons/mini-fab-btn/mini-fab-btn.component';
+import { LangRouterService } from '../../../../../core/services/lang-router.service';
 
 @Component({
   selector: 'app-admin-btn',
@@ -9,11 +9,12 @@ import { MiniFabBtnComponent } from '../../../../ui-elems/buttons/mini-fab-btn/m
   styleUrl: './admin-btn.component.scss',
 })
 export class AdminBtnComponent {
-  private readonly router = inject(Router);
+  private navigateService = inject(LangRouterService)
 
   navigateToAdmin() {
-    this.router.navigate(['/admin'], {
-      queryParamsHandling: 'merge',
-    });
+    this.navigateService.navigate(
+      ['/admin'],
+      { queryParamsHandling: 'merge' }
+    )
   }
 }

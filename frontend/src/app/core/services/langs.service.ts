@@ -44,7 +44,7 @@ export class LangsService {
         take(1),
         switchMap(langs => {
           this.setLangs(langs) // записываем полученные языки с сервера в langsSubject
-          const langToUse = this.resolveInitialLanguage(langs) // en-US, ru-RU, uk-UK
+          const langToUse = this.resolveInitialLanguage() // en-US, ru-RU, uk-UK
 
           return this.translateService.use(langToUse) // метод use в ngx-translate - это тоже Observable
             .pipe(
@@ -71,12 +71,12 @@ export class LangsService {
     this.langsSubject.next(langs)
   }
 
-  private getLangFromUrl(langs: Lang[]) {
+  private getLangFromUrl() {
     // получит из url первый сегмент, например /home, елси в url язык не передан или /en, если я зык передан
     const firstSegment = this.location.path().split('/')[1]
 
     // Проверит совпадает ли сегмент с языками, которые доступны. Если да, то вернет название языка (en, ru, uk), если нет, то вернет null
-    return langs.some(l => l.browserLang === firstSegment) ? firstSegment : null;
+    return this.langs.some(l => l.browserLang === firstSegment) ? firstSegment : null;
   }
 
   // Используется при смене языка в языковом дропдауне
@@ -104,11 +104,11 @@ export class LangsService {
     this.currentLangSubject.next(lang) // lang - объект с данными про выбранный язык
   }
 
-  private resolveInitialLanguage(langs: Lang[]): string {
+  resolveInitialLanguage(): string {
     let targetLang: string = ''
 
     // Язык в URL
-    const urlLang = this.getLangFromUrl(langs)
+    const urlLang = this.getLangFromUrl()
 
     // Язык из localStorage
     const stored = localStorage.getItem(environment.lsLangKey) // en-US, ru-RU, uk-UK
@@ -119,12 +119,12 @@ export class LangsService {
     // Проверяем первый язык, который был определен 
     // (по приоритету urlLang ==> stored ==> browserLang)
     if (urlLang) {
-      const match = langs.find(l => l.browserLang == urlLang)
+      const match = this.langs.find(l => l.browserLang == urlLang)
       if (match) targetLang = match.name // en-US, ru-RU, uk-UK
-    } else if (stored && langs.some(l => l.name == stored)) {
+    } else if (stored && this.langs.some(l => l.name == stored)) {
       targetLang = stored // en-US, ru-RU, uk-UK
     } else {
-      const match = langs.find(l => l.browserLang == browserLang)
+      const match = this.langs.find(l => l.browserLang == browserLang)
       if (match) targetLang = match.name // en-US, ru-RU, uk-UK
     }
     console.log("🔸 targetLang:", targetLang)
@@ -134,13 +134,12 @@ export class LangsService {
       targetLang = this.translateService.defaultLang || 'en-US'
     }
 
-    // // Назначаем currentLang
-    // const langData = this.langs.find(l => l.name == targetLang)
+    // Назначаем currentLang
+    const langData = this.langs.find(l => l.name == targetLang)
 
-    // if (langData) {
-    //   this.setCurrentLang(langData)
-    //   // this.setLanguage(langData)
-    // }
+    if (langData) {
+      this.setCurrentLang(langData)
+    }
 
     return targetLang // en-US, ru-RU, uk-UK
   }

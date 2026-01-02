@@ -9,7 +9,6 @@ export const LangGuard: CanActivateFn = (route, state): boolean | UrlTree => {
   const router = inject(Router)
 
   const langParam = route.params['lang'] // берем :lang из URL
-  console.log("🔸 langParam:", langParam)
 
   // Если в URL не указан язык
   if (!langParam) {
