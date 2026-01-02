@@ -2,15 +2,15 @@
   "hello": "Hello",
   "common": {
     "close": "Close",
-    "logout": "logOut",
-    "login": "logIn",
+    "logout": "Log Out",
+    "login": "Log In",
     "forms": {
       "email": {
         "enter-email": "Enter your email",
         "email-hint": "Hint: example@gmail.com",
         "email-error-required": "Please enter email",
         "email-error-invalid": "Please enter correct email",
-        "email-error-exists": "This email is already registered."
+        "email-error-exists": "This email is already registered"
       },
       "pwd": {
         "enter-pwd": "Enter your password",
@@ -18,19 +18,19 @@
         "hide-pwd": "Hide password",
         "pwd-hint": "Hint: must be at least 6 characters long",
         "pwd-error-required": "Please enter password",
-        "pwd-error-minlength": "Password must be at least {{minlength}} symbols. Now is {{currentlength}} symbol(s)"
+        "pwd-error-minlength": "Password must be at least {{minlength}} characters. Now is {{currentlength}} character(s)"
       },
       "name": {
         "enter-nick": "Enter nickname",
         "nick-placeholder": "Ex: User",
         "nick-hint": "Hint: must be at least 2 characters long",
         "nick-error-required": "Please enter nickname",
-        "nick-error-minlength": "Nickname must be at least {{minlength}} symbols. Now is {{currentlength}} symbol"
+        "nick-error-minlength": "Nickname must be at least {{minlength}} characters. Now is {{currentlength}} character(s)"
       }
     }
   },
   "errors": {
-    "fetch-collection-user": "Error occured while fetching user from collection"
+    "fetch-collection-user": "Error occurred while fetching user from collection"
   },
   "header": {
     "user": {
@@ -43,7 +43,7 @@
   "header-market": {
     "logo": {
       "title": "Freshok",
-      "subtitle": "online-market"
+      "subtitle": "online market"
     },
     "catalog": {
       "title": "Product catalog",
@@ -59,15 +59,15 @@
     "login-with-google": "Continue with Google",
     "go-to-register": {
       "prefix": "Not registered yet? Go to ",
-      "link": "register",
+      "link": "registration",
       "suffix": " page."
     }
   },
   "register-page": {
-    "title": "Sign up",
+    "title": "Sign Up",
     "register-error": "Failed to register user \"{{email}}\"",
     "go-to-login": {
-      "prefix": "Already have account? Go to ",
+      "prefix": "Already have an account? Go to ",
       "link": "login",
       "suffix": " page."
     }
@@ -77,7 +77,7 @@
       {
         "title": "Freshness Delivered Right to Your Door",
         "subtitle": "50% OFF",
-        "descr": "Only from July 7 to 13 — up to 50% off seasonal fruits and veggies. Don’t miss out!",
+        "descr": "Only from July 7 to 13 — up to 50% off seasonal fruits and vegetables. Don't miss out!",
         "btn": "Buy Now",
         "link": "/",
         "imageUrl": "slider/slide1"

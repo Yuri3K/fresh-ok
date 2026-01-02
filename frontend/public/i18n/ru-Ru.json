@@ -2,92 +2,97 @@
   "hello": "Привет",
   "common": {
     "close": "Закрыть",
-    "logout": "Выход",
+    "logout": "Выйти",
     "login": "Войти",
     "forms": {
       "email": {
-        "enter-email": "Введите email",
-        "email-hint": "Пример: example@gmail.com",
-        "email-error-required": "Пожалуйста, введите email",
-        "email-error-invalid": "Пожалуйста, введите правильный email"
+        "enter-email": "Введите свою электронную почту",
+        "email-hint": "Подсказка: example@gmail.com",
+        "email-error-required": "Пожалуйста, введите электронную почту",
+        "email-error-invalid": "Пожалуйста, введите корректную электронную почту",
+        "email-error-exists": "Эта электронная почта уже зарегистрирована"
       },
       "pwd": {
-        "enter-pwd": "Введите пароль",
+        "enter-pwd": "Введите свой пароль",
         "show-pwd": "Показать пароль",
-        "hide-pwd": "Скрыть палоль",
-        "pwd-hint": "Пример: должен содержать не менее 6 симвотов",
+        "hide-pwd": "Скрыть пароль",
+        "pwd-hint": "Подсказка: должно быть не менее 6 символов",
         "pwd-error-required": "Пожалуйста, введите пароль",
-        "pwd-error-minlength": "Пароль должен содержать не менее {{minlength}} символов. Сейчас символов: {{currentlength}}."
+        "pwd-error-minlength": "Пароль должен быть не менее {{minlength}} символов. Сейчас {{currentlength}} символов"
       },
       "name": {
-        "enter-nick": "Введите имя",
-        "nick-placeholder": "Пример: User",
-        "nick-hint": "Подсказка: должен содержать не менее 2 символов",
-        "nick-error-required": "Пожалуйста, введите имя",
-        "nick-error-minlength": "Имя должно содержать не менее {{minlength}} символов. Сейчас символов: {{currentlength}}."
+        "enter-nick": "Введите никнейм",
+        "nick-placeholder": "Например: Пользователь",
+        "nick-hint": "Подсказка: должно быть не менее 2 символов",
+        "nick-error-required": "Пожалуйста, введите никнейм",
+        "nick-error-minlength": "Никнейм должен быть не менее {{minlength}} символов. Сейчас {{currentlength}} символов"
       }
     }
   },
+  "errors": {
+    "fetch-collection-user": "Произошла ошибка при получении пользователя из коллекции"
+  },
   "header": {
     "user": {
-      "alt": "Avatar",
-      "greetings": "Hi, {{name}}",
-      "privacy": "Privacy Policy",
-      "terms": "Terms of Service"
+      "alt": "Аватар",
+      "greetings": "Привет, {{name}}",
+      "privacy": "Политика конфиденциальности",
+      "terms": "Условия использования"
     }
   },
   "header-market": {
     "logo": {
-      "title": "Фрешок",
+      "title": "Freshok",
       "subtitle": "онлайн-маркет"
     },
     "catalog": {
-      "title": "Каталог продуктов",
+      "title": "Каталог товаров",
       "all-categories": "Все категории"
     },
     "search-input": {
-      "placeholder": "Найти в магазине",
-      "submit": "Поиск"
+      "placeholder": "Найти в маркете",
+      "submit": "Найти"
     }
   },
   "login-page": {
-    "title": "Войти",
+    "title": "Вход",
     "login-with-google": "Продолжить с Google",
     "go-to-register": {
-      "prefix": "Еще не зарегистрированы? Перейти на страницу",
+      "prefix": "Еще не зарегистрированы? Перейдите на страницу ",
       "link": "регистрации",
       "suffix": "."
     }
   },
   "register-page": {
-    "title": "Sign up",
+    "title": "Регистрация",
+    "register-error": "Не удалось зарегистрировать пользователя \"{{email}}\"",
     "go-to-login": {
-      "prefix": "Already have account? Go to ",
-      "link": "login",
-      "suffix": " page."
+      "prefix": "Уже есть аккаунт? Перейдите на страницу ",
+      "link": "входа",
+      "suffix": "."
     }
   },
-    "homepage": {
+  "homepage": {
     "slider": [
       {
-        "title": "Свежачок вам в хату",
-        "subtitle": "скидка -50%",
-        "descr": "Только с 7 по 13 июля скидка на сезонные фрукты и овощи до 50%. Торопитесь!",
+        "title": "Свежесть прямо к вашей двери",
+        "subtitle": "СКИДКА 50%",
+        "descr": "Только с 7 по 13 июля — скидки до 50% на сезонные фрукты и овощи. Не пропустите!",
         "btn": "Купить сейчас",
         "link": "/",
         "imageUrl": "slider/slide1"
       },
       {
-        "title": "Накрути себе томатов",
+        "title": "Сойдите с ума от помидоров",
         "subtitle": "Акция: 3 кг по цене 1",
-        "descr": "Только с 12 по 15 июля скидка на домашние помидорчики",
+        "descr": "С 12 по 15 июля наслаждайтесь скидками на домашние, сочные помидоры!",
         "btn": "Купить сейчас",
         "link": "/",
         "imageUrl": "slider/slide2"
       },
       {
-        "title": "Пусть остальные позеленеют от зависти",
-        "subtitle": "Распродажа зелени",
+        "title": "Заставьте всех позеленеть от зависти",
+        "subtitle": "Скидки на зелень",
         "descr": "",
         "btn": "Купить сейчас",
         "link": "/",

@@ -9,6 +9,7 @@ import { Error404Component } from './shared/components/404/404.component';
 import { LangGuard } from './core/guards/lang.guard';
 import { inject } from '@angular/core';
 import { LangsService } from './core/services/langs.service';
+import { filter, map, take } from 'rxjs';
 
 export const routes: Routes = [
   {
@@ -18,7 +19,10 @@ export const routes: Routes = [
       {
         path: '',
         // component: PublicLayoutComponent,
-        loadChildren: () => import('./shared/components/public-layout/public-layout.routes').then(m => m.routes)
+        loadChildren: () =>
+          import('./shared/components/public-layout/public-layout.routes').then(
+            (m) => m.routes
+          ),
       },
       {
         path: 'admin',
@@ -26,25 +30,32 @@ export const routes: Routes = [
         // canActivate: [authGuard, roleGuard],
         // canActivateChild: [authChildGuard, roleGuard],
         // data: { roles: ['superAdmin', 'admin', 'manager', 'customer'] },
-        loadChildren: () => import('./shared/components/admin-layout/admin-layout.routes').then(m => m.routes)
+        loadChildren: () =>
+          import('./shared/components/admin-layout/admin-layout.routes').then(
+            (m) => m.routes
+          ),
       },
       {
         path: 'login',
         canActivate: [isAlreadyAuthGuard],
-        loadChildren: () => import('./routes/login/login.routes').then(m => m.routes)
+        loadChildren: () =>
+          import('./routes/login/login.routes').then((m) => m.routes),
       },
       {
         path: 'register',
         canActivate: [isAlreadyAuthGuard],
-        loadChildren: () => import('./routes/register/register.routes').then(m => m.routes)
+        loadChildren: () =>
+          import('./routes/register/register.routes').then((m) => m.routes),
       },
       {
-        path: '403', component: Error403Component
+        path: '403',
+        component: Error403Component,
       },
       {
-        path: '404', component: Error404Component
+        path: '404',
+        component: Error404Component,
       },
-    ]
+    ],
   },
   // Редирект с корня localhost:4200 на localhost:4200/ru (или другой язык)
   // {
@@ -59,15 +70,26 @@ export const routes: Routes = [
     path: '',
     pathMatch: 'full',
     redirectTo: (route) => {
+      console.log("🚀 ~ route:", route)
       const langsService = inject(LangsService);
-      const targetLang = langsService.resolveTargetLang();
-      console.log("🔸 targetLang:", targetLang)
-      return `/${targetLang}/home`;
-    }
+      // const langs$ = langsService.langs$;
+
+      // return langs$
+        // .pipe(
+        //   filter((langs) => langs.length > 0),
+        //   take(1)
+        // )
+        // .subscribe((langs) => {
+          const targetLang = langsService.resolveTargetLang();
+          console.log('🔸 targetLang:', targetLang);
+          return `/${targetLang}/home`;
+        // });
+    },
   },
   {
-    path: '**', redirectTo: 'en/404'
-  }
+    path: '**',
+    redirectTo: 'en/404',
+  },
   // {
   //   path: '**',
   //   redirectTo: () => {

@@ -35,7 +35,9 @@ export class HomeComponent implements OnInit {
   private fetchSlides() {
     this.sliderService.getSliderData()
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe()
+      .subscribe(data => {
+        console.log('DATA!!!!!!!', data)
+      })
   }
 
 }

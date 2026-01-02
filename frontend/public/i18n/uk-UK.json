@@ -1,9 +1,103 @@
 {
-  "hello": "Привит",
-    "header": {
-    "user": {
-      "alt": "Аватар"
+  "hello": "Привіт",
+  "common": {
+    "close": "Закрити",
+    "logout": "Вийти",
+    "login": "Увійти",
+    "forms": {
+      "email": {
+        "enter-email": "Введіть свою електронну пошту",
+        "email-hint": "Підказка: example@gmail.com",
+        "email-error-required": "Будь ласка, введіть електронну пошту",
+        "email-error-invalid": "Будь ласка, введіть коректну електронну пошту",
+        "email-error-exists": "Ця електронна пошта вже зареєстрована"
+      },
+      "pwd": {
+        "enter-pwd": "Введіть свій пароль",
+        "show-pwd": "Показати пароль",
+        "hide-pwd": "Приховати пароль",
+        "pwd-hint": "Підказка: має бути не менше 6 символів",
+        "pwd-error-required": "Будь ласка, введіть пароль",
+        "pwd-error-minlength": "Пароль має бути не менше {{minlength}} символів. Зараз {{currentlength}} символ(ів)"
+      },
+      "name": {
+        "enter-nick": "Введіть нікнейм",
+        "nick-placeholder": "Наприклад: Користувач",
+        "nick-hint": "Підказка: має бути не менше 2 символів",
+        "nick-error-required": "Будь ласка, введіть нікнейм",
+        "nick-error-minlength": "Нікнейм має бути не менше {{minlength}} символів. Зараз {{currentlength}} символ"
+      }
     }
   },
-  "": ""
+  "errors": {
+    "fetch-collection-user": "Сталася помилка при отриманні користувача з колекції"
+  },
+  "header": {
+    "user": {
+      "alt": "Аватар",
+      "greetings": "Привіт, {{name}}",
+      "privacy": "Політика конфіденційності",
+      "terms": "Умови використання"
+    }
+  },
+  "header-market": {
+    "logo": {
+      "title": "Freshok",
+      "subtitle": "онлайн-маркет"
+    },
+    "catalog": {
+      "title": "Каталог товарів",
+      "all-categories": "Всі категорії"
+    },
+    "search-input": {
+      "placeholder": "Знайти в маркеті",
+      "submit": "Знайти"
+    }
+  },
+  "login-page": {
+    "title": "Вхід",
+    "login-with-google": "Продовжити з Google",
+    "go-to-register": {
+      "prefix": "Ще не зареєстровані? Перейдіть на сторінку ",
+      "link": "реєстрації",
+      "suffix": "."
+    }
+  },
+  "register-page": {
+    "title": "Реєстрація",
+    "register-error": "Не вдалося зареєструвати користувача \"{{email}}\"",
+    "go-to-login": {
+      "prefix": "Вже маєте обліковий запис? Перейдіть на сторінку ",
+      "link": "входу",
+      "suffix": "."
+    }
+  },
+  "homepage": {
+    "slider": [
+      {
+        "title": "Свіжість прямо до ваших дверей",
+        "subtitle": "ЗНИЖКА 50%",
+        "descr": "Тільки з 7 по 13 липня — знижки до 50% на сезонні фрукти та овочі. Не пропустіть!",
+        "btn": "Купити зараз",
+        "link": "/",
+        "imageUrl": "slider/slide1"
+      },
+      {
+        "title": "Зійдіть з розуму від помідорів",
+        "subtitle": "Акція: 3 кг за ціною 1",
+        "descr": "З 12 по 15 липня насолоджуйтесь знижками на домашні, соковиті помідори!",
+        "btn": "Купити зараз",
+        "link": "/",
+        "imageUrl": "slider/slide2"
+      },
+      {
+        "title": "Зробіть так, щоб усі заздрили",
+        "subtitle": "Знижки на зелень",
+        "descr": "",
+        "btn": "Купити зараз",
+        "link": "/",
+        "imageUrl": "slider/slide3"
+      }
+    ]
+  }
 }
