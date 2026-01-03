@@ -36,7 +36,7 @@ export class AuthService {
   private readonly userAccessService = inject(UserAccessService);
   private readonly authRedirectService = inject(AuthRedirectService);
   private readonly snackbarService = inject(SnackbarService);
-  private readonly routerService = inject(LangRouterService);
+  private readonly navigateService = inject(LangRouterService);
   // private readonly translateService = inject(TranslateService)
 
   private readonly authUserSubject = new BehaviorSubject<
@@ -160,9 +160,6 @@ export class AuthService {
   // Если после разлогинивания нам не нужно перекидывать 
   // пользователя на страницу /login, то передаем redirect = false
   logout(redirect = true): Observable<void> {
-    console.log("🔸 redirect:", redirect)
-    console.log("!!! IN !!!")
-
     // Применяем метод from из RxJs, чтобы Promise превратить в Observable.
     // Вызываем встроенный метод signOut, чтобы разлогинить пользователя
     return from(signOut(firebaseAuth)).pipe(
@@ -170,23 +167,17 @@ export class AuthService {
         this.authUserSubject.next(null);
         this.userAccessService.setDbUser(null);
 
+        // Если редирект включен, то получаем нужные данные для редиректа 
         if (redirect) {
           const currentUrl = this.router.url;
-          console.log("🔸 currentUrl:", currentUrl)
           const segments = currentUrl.split('/').filter(Boolean);
-          console.log("🔸 segments:", segments)
           const firstAfterLang = segments[1];
-          console.log("🔸 firstAfterLang:", firstAfterLang)
           const isProtected = this.protectedPrefixes.includes(firstAfterLang);
-          console.log("🔸 isProtected:", isProtected)
 
-          // const isProtected = this.protectedPrefixes.some((p) =>
-          //   currentUrl.startsWith(p)
-          // );
-
+          // Если редирект включен и мы находимся на защищенном роуте
+          // то выполняем редирект на страницу /login
           if (isProtected) {
-            console.log("!!! IN PROTECTED !!!")
-            this.routerService.navigate(['/login'], {
+            this.navigateService.navigate(['/login'], {
               queryParamsHandling: 'merge',
             });
           }

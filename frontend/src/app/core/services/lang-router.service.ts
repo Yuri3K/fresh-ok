@@ -16,7 +16,7 @@ export class LangRouterService {
   // тогда, когда в этом будет необходимость
   private injector = inject(Injector);
 
-  // Инжектим LangsService не при старте приложения, а только тогда, 
+  // Инжектим LangsService не при старте приложения только тогда, 
   // когда нужно получить данные из LangsService
   get langsService() {
     return this.injector.get(LangsService);

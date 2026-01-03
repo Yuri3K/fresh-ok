@@ -19,7 +19,6 @@ function checkIsAuth(): Observable<boolean | UrlTree> {
         // Если пользователь АУТЕНТИФИЦИРОВАН (user есть)
         if (user) {
           // ЗАПРЕЩАЕМ доступ к /login или /register и перенаправляем на /home
-          console.log("ALREADY AUTH CALLED /HOME")
           const urlWithLang = navigateService.addLangInUrl('/home')
           return router.parseUrl(urlWithLang)
         }

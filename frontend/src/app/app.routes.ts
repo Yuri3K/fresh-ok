@@ -53,7 +53,6 @@ export const routes: Routes = [
     path: '',
     pathMatch: 'full',
     canActivate: [() => {
-      console.log(" !!!IN   EMPTY  !!!")
       const langsService = inject(LangsService);
       const router = inject(Router);
 
@@ -72,7 +71,6 @@ export const routes: Routes = [
   {
     path: '**',
     canActivate: [() => {
-      console.log(" !!!IN   **  !!!")
       const langsService = inject(LangsService);
       const router = inject(Router);
 

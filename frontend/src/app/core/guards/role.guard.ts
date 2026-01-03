@@ -37,7 +37,6 @@ export const roleGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
       if (!auth.isAuthenticated() || !user) {
         // Выполняем только редирект на страницу '/login'. Очистку authUserSubject
         // и dbUserSubject выпонит сам AuthService в onAuthStateChanged
-        console.log("!!! ROLE GUARD NAVIGATE TO /LOGIN !!!")
         const urlWithLang = navigateService.addLangInUrlArr(['/login'])
         return router.createUrlTree(urlWithLang);
       }

@@ -56,6 +56,7 @@ export class LangsService {
                 const langData = langs.find(l => l.name === langToUse);
 
                 if (langData) {
+                  const langFromUrl = this.getLangFromUrl()
                   // записываем объект данных текущего языка в currentLangSubject
                   this.setCurrentLang(langData); 
 

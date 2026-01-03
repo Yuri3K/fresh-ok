@@ -24,7 +24,6 @@ export const authTokenInterceptor: HttpInterceptorFn = (
 ): Observable<HttpEvent<unknown>> => {
   const authService = inject(AuthService)
 
-  console.log("!!!  AUTH INTERCEPTOR !!!", req.url, "SKIP_AUTH:", req.context.get(SKIP_AUTH))
 
   // Если запрашиваемый URL НЕ начинается на environment.serverUrl
   // или если APISERVICE в запросе прикрепил SKIP_AUTH = true
@@ -37,7 +36,6 @@ export const authTokenInterceptor: HttpInterceptorFn = (
     return next(req);
   }
 
-  console.log("!!!  AUTH INTERCEPTOR NEXT NOT CALLED")
   // Если верхний IF не сработал, то получаем токен из authService. 
   // Передаем false, так как обновление токета тут не требуется
   return authService.getIdToken(false).pipe(
