@@ -5,19 +5,32 @@ import { LangsService } from './langs.service';
 @Injectable({
   providedIn: 'root',
 })
+
+// Данный сервис используется для добавления используемого языка в URL
 export class LangRouterService {
   private router = inject(Router);
+
+  // здесь применяется Injector в связи с тем, что при старте приложения если
+  // сразу импортировать LangsService, то это вызовет circular DI. А с применением 
+  // Injector мы будем через get langsService() получать данные из LangsService только
+  // тогда, когда в этом будет необходимость
   private injector = inject(Injector);
 
+  // Инжектим LangsService не при старте приложения, а только тогда, 
+  // когда нужно получить данные из LangsService
   get langsService() {
     return this.injector.get(LangsService);
   }
 
+  // Выполнит переход по переданному URL, используя метод router.navigate 
+  // но предварительно добавит в URL язык
   navigate(urlArr: string[], extras?: NavigationExtras) {
     const normalizedUrlArr = this.addLangInUrlArr(urlArr);
     return this.router.navigate(normalizedUrlArr, extras);
   }
 
+  // Выполнит переход по переданному URL, используя метод router.navigateByUrl 
+  // но предварительно добавит в URL язык
   navigateByUrl(url: string, extras?: NavigationExtras) {
     const normalizedUrl = this.addLangInUrl(url);
     return this.router.navigateByUrl(normalizedUrl, extras);
@@ -25,6 +38,7 @@ export class LangRouterService {
 
   // ===================ВНУТРЕННЯЯ ЛОГИКА=========================
 
+  // Метод для добавления языка в массив URL
   addLangInUrlArr(urlArr: string[]) {
     if (!urlArr.length) return urlArr;
 
@@ -52,7 +66,8 @@ export class LangRouterService {
     return ['/', shortLang, ...clenedUrlArr];
   }
 
-  private addLangInUrl(url: string) {
+  // Метод для добавления языка в URL строку
+  addLangInUrl(url: string) {
     // Очищаем строку с URL от '/' и превращаем строку в массив
     const cleanUrlArr = this.removeSlash(url).split('/');
     const firstSegment = cleanUrlArr[0];

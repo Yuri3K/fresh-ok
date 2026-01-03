@@ -1,5 +1,5 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { NavigationStart, Router, RouterOutlet } from '@angular/router';
 import { SwitchModeService } from './core/services/switch-mode.service';
 import { AuthService } from './core/services/auth.service';
 import { AsyncPipe } from '@angular/common';
@@ -39,6 +39,10 @@ export class AppComponent implements OnInit, OnDestroy {
   private readonly authService = inject(AuthService)
   private readonly langsService = inject(LangsService)
 
+
+  private readonly router = inject(Router)
+
+
   readonly authInitializing$: Observable<boolean> = this.authService.authInitializing$
   readonly langs$ = this.langsService.langs$
 
@@ -47,6 +51,12 @@ export class AppComponent implements OnInit, OnDestroy {
   async ngOnInit() {
     this.langsService.init().subscribe()
     this.switchModeService.init()
+
+    this.router.events.subscribe(e => {
+      if(e instanceof NavigationStart) {
+        console.log("!!! ROUTER URL !!!",e.url)
+      }
+    })
   }
 
   ngOnDestroy(): void {

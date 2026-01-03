@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import { Router, Routes } from '@angular/router';
 // import { AdminLayoutComponent } from './shared/components/admin-layout/admin-layout.component';
 // import { authChildGuard, authGuard } from './core/guards/auth.guard';
 // import { PublicLayoutComponent } from './shared/components/public-layout/public-layout.component';
@@ -58,42 +58,42 @@ export const routes: Routes = [
     ],
   },
   // Редирект с корня localhost:4200 на localhost:4200/ru (или другой язык)
-  // {
-  //   path: '',
-  //   pathMatch: 'full',
-  //   canActivate: [LangGuard],
-  //   children: [], // Этот блок сработает только для редиректа
-  // },
-
-  // Редирект с корня localhost:4200 на localhost:4200/ru (или другой язык)
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: (route) => {
+    canActivate: [() => {
+      console.log(" !!!IN   EMPTY  !!!")
       const langsService = inject(LangsService);
-      // const langs$ = langsService.langs$;
+      const router = inject(Router);
 
-      // return langs$
-        // .pipe(
-        //   filter((langs) => langs.length > 0),
-        //   take(1)
-        // )
-        // .subscribe((langs) => {
+      return langsService.langs$.pipe(
+        filter(langs => langs.length > 0), // ждем загрузки языков
+        take(1),
+        map(() => {
           const targetLang = langsService.resolveTargetLang();
-          return `/${targetLang}/home`;
-        // });
-    },
+          return router.parseUrl(`/${targetLang}/home`);
+        })
+      );
+    }],
+    children: []
   },
-  // {
-  //   path: '**',
-  //   redirectTo: 'en/404',
-  // },
+
   {
     path: '**',
-    redirectTo: () => {
+    canActivate: [() => {
+      console.log(" !!!IN   **  !!!")
       const langsService = inject(LangsService);
-      const targetLang = langsService.resolveTargetLang();
-      return `/${targetLang}/404`;
-    }
+      const router = inject(Router);
+
+      return langsService.langs$.pipe(
+        filter(langs => langs.length > 0),
+        take(1),
+        map(() => {
+          const targetLang = langsService.resolveTargetLang();
+          return router.parseUrl(`/${targetLang}/404`);
+        })
+      );
+    }],
+    children: []
   }
 ];

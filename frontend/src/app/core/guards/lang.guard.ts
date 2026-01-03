@@ -13,6 +13,15 @@ export const LangGuard: CanActivateFn = (
   const langs$ = langsService.langs$;
   const router = inject(Router);
 
+  // При старте приложения языки еще не получены с сервера, поэтому 
+  // вызов langsService.resolveTargetLang() вернет fallback язык.
+  // Поэтому ждем получение языков и потом продолжаем навигацию.
+  // Если langsService.init() вызывать не в app.component.ts, а в 
+  // app.config.ts (через provideAppInitializer(initLangsFactory)), 
+  // то приложение запуститься только после получения языков и ждать как 
+  // сейчас сделано не будет ножно. 
+  // Сейчас не получаем языки через provideAppInitializer(initLangsFactory)
+  // из-за холодного старта сервера на живом сайте.
   return langs$.pipe(
     filter((langs) => langs.length > 0),
     take(1),
@@ -24,6 +33,7 @@ export const LangGuard: CanActivateFn = (
         // Определяем язык автоматически
         const targetLng = langsService.resolveTargetLang(); // en, ru, uk
 
+        
         return router.parseUrl(`/${targetLng}${state.url}`); // переключаемся на автоматически определенный язык
       }
 
@@ -33,6 +43,7 @@ export const LangGuard: CanActivateFn = (
         return router.parseUrl(`/${fallback}${state.url}`); // переходим на страницу используя язык, который попал в fallback
       }
 
+      // Если язык есть в URL этот и язык поддерживается, то переходим поэтому URL
       return true;
     })
   );
