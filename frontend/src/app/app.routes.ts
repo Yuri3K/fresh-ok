@@ -8,24 +8,6 @@ import { LangsService } from './core/services/langs.service';
 import { filter, map, take } from 'rxjs';
 
 export const routes: Routes = [
-  // Этот роут временный. Потом можно удалить. Он нужен только для того, чтобы 
-  // обработать ссылку https://yuri3k.github.io/fresh-ok/home, которая была прикреплена в резюмэ
-  {
-    path: 'home',
-    canActivate: [() => {
-      const langsService = inject(LangsService);
-      const router = inject(Router);
-
-      const targetLang = langsService.resolveTargetLang();
-      console.log("🔸IN ROUTE targetLang:", targetLang)
-      return router.createUrlTree([targetLang, 'home'], {
-        queryParamsHandling: 'preserve', // сохраняем query параметры
-      });
-    }],
-    children: []
-  },
-  // КОНЕЦ ВРЕММЕННОГО РОУТА для https://yuri3k.github.io/fresh-ok/home
-
   {
     path: ':lang',
     canActivate: [LangGuard], // Проверяет корректность кода языка (en, ru, uk)

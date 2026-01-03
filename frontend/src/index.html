@@ -20,6 +20,39 @@
       }
     })();
   </script>
+
+  <script>
+    (function () {
+      const baseHref = '/fresh-ok/';
+      const supportedLangs = ['en', 'ru', 'uk'];
+
+      const pathname = window.location.pathname;
+      const path = pathname.replace(baseHref, '').replace(/^\/+/, '');
+
+      if (!path) return;
+
+      const segments = path.split('/');
+      const firstSegment = segments[0];
+
+      if (supportedLangs.includes(firstSegment)) return;
+
+      const storedLang = localStorage.getItem('lang');
+      const browserLang = navigator.language?.split('-')[0];
+
+      let targetLang = 'en';
+
+      if (storedLang && supportedLangs.includes(storedLang)) {
+        targetLang = storedLang;
+      } else if (supportedLangs.includes(browserLang)) {
+        targetLang = browserLang;
+      }
+
+      const redirectUrl =
+        baseHref + targetLang + '/' + segments.join('/');
+
+      window.location.replace(redirectUrl);
+    })();
+  </script>
 </head>
 
 <body>
