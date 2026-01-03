@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting…</title>
+
+    <script>
+      // 1. сохраняем URL, на который зашёл пользователь
+      sessionStorage.setItem(
+        'redirect',
+        location.pathname + location.search + location.hash
+      );
+
+      // 2. редиректим в корень GitHub Pages
+      location.replace('/fresh-ok/');
+    </script>
+  </head>
+  <body></body>
+</html>
