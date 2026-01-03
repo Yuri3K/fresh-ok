@@ -1,9 +1,5 @@
 import { Router, Routes } from '@angular/router';
-// import { AdminLayoutComponent } from './shared/components/admin-layout/admin-layout.component';
-// import { authChildGuard, authGuard } from './core/guards/auth.guard';
-// import { PublicLayoutComponent } from './shared/components/public-layout/public-layout.component';
 import { isAlreadyAuthGuard } from './core/guards/is-already-auth.guard';
-// import { roleGuard } from './core/guards/role.guard';
 import { Error403Component } from './shared/components/403/403.component';
 import { Error404Component } from './shared/components/404/404.component';
 import { LangGuard } from './core/guards/lang.guard';
@@ -18,7 +14,6 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        // component: PublicLayoutComponent,
         loadChildren: () =>
           import('./shared/components/public-layout/public-layout.routes').then(
             (m) => m.routes
@@ -26,10 +21,6 @@ export const routes: Routes = [
       },
       {
         path: 'admin',
-        // component: AdminLayoutComponent,
-        // canActivate: [authGuard, roleGuard],
-        // canActivateChild: [authChildGuard, roleGuard],
-        // data: { roles: ['superAdmin', 'admin', 'manager', 'customer'] },
         loadChildren: () =>
           import('./shared/components/admin-layout/admin-layout.routes').then(
             (m) => m.routes

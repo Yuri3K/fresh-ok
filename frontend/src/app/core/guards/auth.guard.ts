@@ -39,12 +39,14 @@ function checkAuth(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): O
         }
         
         console.log("🔸 !!! AUTH GUARD  CALLED LOGOUT!!! ")
-        authService.logout().subscribe()
+        // authService.logout().subscribe()
 
-        console.log("🔸 !!! AUTH GUARD  RETURN FALSE ")
-        return false
-        // const urlWithLang = navigateService.addLangInUrl('/login')
-        // return router.parseUrl(urlWithLang); // безопасный редирект через UrlTree
+        // console.log("🔸 !!! AUTH GUARD  RETURN FALSE ")
+        // return false
+        
+        console.log("🔸 !!! AUTH GUARD CALLED /LOGIN ")
+        const urlWithLang = navigateService.addLangInUrl('/login')
+        return router.parseUrl(urlWithLang); // безопасный редирект через UrlTree
       })
     )
 }
