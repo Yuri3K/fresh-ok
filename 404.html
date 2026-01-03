@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Fresh OK</title>
+  <script>
+    // Сохраняем полный путь включая базовый URL
+    var pathSegmentsToKeep = 1; // Количество сегментов в base href (fresh-ok = 1)
+    
+    var l = window.location;
+    
+    // Заменяем текущий URL на index.html с параметрами
+    l.replace(
+      l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+      l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/' +
+      '?p=/' +
+      l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+      (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+      l.hash
+    );
+  </script>
+</head>
+<body></body>
+</html>
