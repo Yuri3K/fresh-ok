@@ -14,36 +14,51 @@
     #app-preloader {
       position: fixed;
       inset: 0;
-      background: #ffffff;
+      background: #121316;
+      color: #fff;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      z-index: 9999;
+      z-index: 99999;
       font-family: Roboto, Arial, sans-serif;
-      color: #444;
     }
 
     .spinner {
-      width: 48px;
-      height: 48px;
-      border: 4px solid #ddd;
-      border-top-color: #3f51b5;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-bottom: 12px;
+      text-align: center;
+      max-width: 380px;
+      padding: 24px;
+      transform: scale(0);
+      transition: transform 0.5s ease;
     }
 
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
+    .spinner.show {
+      transform: scale(1);
+    }
+
+    #preloader-timer {
+      margin-top: 16px;
+      font-size: 14px;
+      opacity: 0.85;
+    }
+
+    .heading {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .text {
+      font-size: 1.25rem;
+      margin-top: 15px;
+      line-height: 1.2;
     }
   </style>
 
   <script>
     (function () {
-      if (!location.hostname.endsWith('github.io')) return;
+      if (
+        !location.hostname.endsWith('github.io') ||
+        !location.hostname.endsWith('onrender.com')
+      ) return;
 
       const redirect = sessionStorage.getItem('redirect');
 
@@ -56,7 +71,10 @@
 
   <script>
     (function () {
-      if (!location.hostname.endsWith('github.io')) return;
+      if (
+        !location.hostname.endsWith('github.io') ||
+        !location.hostname.endsWith('onrender.com')
+      ) return;
 
       const base = '/fresh-ok/';
       const supported = ['en', 'ru', 'uk'];
@@ -83,15 +101,96 @@
       location.replace(base + lang + '/' + path);
     })();
   </script>
+
+
 </head>
 
 <body>
-  <div id="app-preloader">
-    <div class="spinner"></div>
-    <p>Loading application…</p>
-  </div>
-
   <app-root></app-root>
+
+  <script>
+    const PRELOADER_I18N = {
+      ru: {
+        title: 'Загрузка приложения.',
+        wait: 'Пожалуйста, подождите.',
+        note: 'При холодном старте сервера это может занять до 1 минуты.',
+        timer: (s) => `Осталось: ${s} сек`,
+        almost: 'Почти готово…'
+      },
+      en: {
+        title: 'Loading application.',
+        wait: 'Please wait.',
+        note: 'Cold server start may take up to 1 minute.',
+        timer: (s) => `Remaining: ${s} sec`,
+        almost: 'Almost ready…'
+      },
+      uk: {
+        title: 'Завантаження застосунку.',
+        wait: 'Будь ласка, зачекайте.',
+        note: 'Холодний старт сервера може тривати до 1 хвилини.',
+        timer: (s) => `Залишилось: ${s} сек`,
+        almost: 'Майже готово…'
+      }
+    };
+  </script>
+
+  <script>
+    function detectLangFromUrl() {
+      const supported = ['ru', 'en', 'uk'];
+
+      // /fresh-ok/en/home → ["fresh-ok", "en", "home"]
+      const segments = location.pathname.split('/').filter(Boolean);
+
+      const lang = segments.find(seg => supported.includes(seg));
+      return lang || 'en'; // fallback
+    }
+  </script>
+
+  <script>
+    (function () {
+      const lang = detectLangFromUrl();
+      const t = PRELOADER_I18N[lang] || PRELOADER_I18N.en;
+
+      const preloader = document.createElement('div');
+      const box = document.createElement('div');
+      const timerEl = document.createElement('div');
+
+      preloader.id = 'app-preloader';
+      box.className = 'spinner';
+
+      box.innerHTML = `
+      <h2 class="heading">${t.title}</h2>
+      <p class="text">${t.wait}</p>
+      <p class="text">${t.note}</p>
+    `;
+
+      timerEl.id = 'preloader-timer';
+      box.appendChild(timerEl);
+      preloader.appendChild(box);
+      document.body.appendChild(preloader);
+
+      setTimeout(() => {
+        const el = document.querySelector('.spinner')
+        if(el) {
+          el.classList.add('show')
+          
+          let seconds = 60;
+          timerEl.textContent = t.timer(seconds);
+    
+          const interval = setInterval(() => {
+            seconds--;
+            timerEl.textContent = t.timer(seconds);
+    
+            if (seconds <= 0) {
+              clearInterval(interval);
+              timerEl.textContent = t.almost;
+            }
+          }, 1000);
+        }
+      }, 1500);
+
+    })();
+  </script>
 </body>
 
 </html>
