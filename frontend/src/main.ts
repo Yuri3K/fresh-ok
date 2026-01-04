@@ -5,10 +5,10 @@ import { AppComponent } from './app/app.component';
 bootstrapApplication(AppComponent, appConfig)
   // Yдаляеv из DOM дерева прелоадер, который отображается 
   // во время холодного старта сервера
-  // .then(() => {
-  //   const preloader = document.getElementById('app-preloader');
-  //   if (preloader) {
-  //     preloader.remove();
-  //   }
-  // })
+  .then(() => {
+    const preloader = document.getElementById('app-preloader');
+    if (preloader) {
+      preloader.remove();
+    }
+  })
   .catch((err) => console.error(err));
