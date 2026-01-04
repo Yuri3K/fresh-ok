@@ -12,6 +12,8 @@
 
   <script>
     (function () {
+      if (!location.hostname.endsWith('github.io')) return;
+
       const redirect = sessionStorage.getItem('redirect');
 
       if (redirect) {
@@ -23,6 +25,8 @@
 
   <script>
     (function () {
+      if (!location.hostname.endsWith('github.io')) return;
+      
       const base = '/fresh-ok/';
       const supported = ['en', 'ru', 'uk'];
 
