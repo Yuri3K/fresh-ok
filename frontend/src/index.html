@@ -23,34 +23,29 @@
 
   <script>
     (function () {
-      const baseHref = '/fresh-ok/';
-      const supportedLangs = ['en', 'ru', 'uk'];
+      const base = '/fresh-ok/';
+      const supported = ['en', 'ru', 'uk'];
 
-      const pathname = window.location.pathname;
-      const path = pathname.replace(baseHref, '').replace(/^\/+/, '');
+      let path = location.pathname.replace(base, '').replace(/^\/+/, '');
 
-      if (!path) return;
-
-      const segments = path.split('/');
-      const firstSegment = segments[0];
-
-      if (supportedLangs.includes(firstSegment)) return;
-
-      const storedLang = localStorage.getItem('lang');
-      const browserLang = navigator.language?.split('-')[0];
-
-      let targetLang = 'en';
-
-      if (storedLang && supportedLangs.includes(storedLang)) {
-        targetLang = storedLang;
-      } else if (supportedLangs.includes(browserLang)) {
-        targetLang = browserLang;
+      if (!path) {
+        location.replace(base + 'en/home');
+        return;
       }
 
-      const redirectUrl =
-        baseHref + targetLang + '/' + segments.join('/');
+      const [first, ...rest] = path.split('/');
 
-      window.location.replace(redirectUrl);
+      if (supported.includes(first)) return;
+
+      const stored = localStorage.getItem('lang');
+      const browser = navigator.language?.split('-')[0];
+
+      const lang =
+        supported.includes(stored) ? stored :
+          supported.includes(browser) ? browser :
+            'en';
+
+      location.replace(base + lang + '/' + path);
     })();
   </script>
 </head>

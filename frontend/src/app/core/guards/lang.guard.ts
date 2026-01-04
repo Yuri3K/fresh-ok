@@ -25,35 +25,36 @@ export const LangGuard: CanActivateFn = (route, state): boolean | UrlTree => {
   //   filter((langs) => langs.length > 0),
   //   take(1),
   //   map((langs) => {
-  const langParam = route.params['lang']; // берем :lang из URL
+      const langParam = route.params['lang']; // берем :lang из URL
+      console.log("🔸 langParam:", langParam)
 
-  // Если в URL не указан язык
-  if (!langParam) {
-    // Определяем язык автоматически
-    const targetLng = langsService.resolveTargetLang(); // en, ru, uk
+      // Если в URL не указан язык
+      if (!langParam) {
+        // Определяем язык автоматически
+        const targetLng = langsService.resolveTargetLang(); // en, ru, uk
 
-    // Используем createUrlTree для сохранения query параметров
-    return router.createUrlTree([targetLng, ...getPathSegments(state.url)], {
-      queryParamsHandling: 'preserve', // сохраняем query параметры
-      fragment: route.fragment || undefined, // сохраняем fragment (#anchor)
-    });
-  }
+        // Используем createUrlTree для сохранения query параметров
+        return router.createUrlTree([targetLng, ...getPathSegments(state.url)], {
+          queryParamsHandling: 'preserve', // сохраняем query параметры
+          fragment: route.fragment || undefined, // сохраняем fragment (#anchor)
+        });
+      }
 
-  // Если язык в URL был указан, но язык не поддерживается
-  if (!langsService.isSupported(langParam)) {
-    // Пытаемся автоматически определить язык и если не получается, то применим язык по дефолту
-    const fallback = langsService.resolveTargetLang();
+      // Если язык в URL был указан, но язык не поддерживается
+      if (!langsService.isSupported(langParam)) {
+        // Пытаемся автоматически определить язык и если не получается, то применим язык по дефолту
+        const fallback = langsService.resolveTargetLang();
 
-    // Переходим на страницу используя язык, который попал в fallback
-    // Используем createUrlTree для сохранения query параметров
-    return router.createUrlTree([fallback, ...getPathSegments(state.url)], {
-      queryParamsHandling: 'preserve', // сохраняем query параметры
-      fragment: route.fragment || undefined, // сохраняем fragment (#anchor)
-    });
-  }
+        // Переходим на страницу используя язык, который попал в fallback
+        // Используем createUrlTree для сохранения query параметров
+        return router.createUrlTree([fallback, ...getPathSegments(state.url)], {
+          queryParamsHandling: 'preserve', // сохраняем query параметры
+          fragment: route.fragment || undefined, // сохраняем fragment (#anchor)
+        });
+      }
 
-  // Если язык есть в URL и этот язык поддерживается, то переходим поэтому URL
-  return true;
+      // Если язык есть в URL и этот язык поддерживается, то переходим поэтому URL
+      return true;
   //   })
   // );
 };

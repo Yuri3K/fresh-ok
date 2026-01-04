@@ -44,29 +44,42 @@ export const routes: Routes = [
       },
       {
         path: '404',
+        // canActivate: [LangGuard],
         component: Error404Component,
       },
     ],
   },
-  // Редирект с корня localhost:4200 на localhost:4200/ru (или другой язык)
+  // // Редирект с корня localhost:4200 на localhost:4200/ru (или другой язык)
+  // {
+  //   path: '',
+  //   pathMatch: 'full',
+  //   canActivate: [() => {
+  //     const langsService = inject(LangsService);
+  //     const router = inject(Router);
+
+  //     // return langsService.langs$.pipe(
+  //       // filter(langs => langs.length > 0), // ждем загрузки языков
+  //       // take(1),
+  //       // map(() => {
+  //         const targetLang = langsService.resolveTargetLang();
+  //         console.log("🔸 targetLang IN EMPTY:", targetLang)
+  //         return router.parseUrl(`/${targetLang}/home`);
+  //     //   })
+  //     // );
+  //   }],
+  //   children: []
+  // },
+
   {
     path: '',
     pathMatch: 'full',
-    canActivate: [() => {
-      const langsService = inject(LangsService);
-      const router = inject(Router);
-
-      return langsService.langs$.pipe(
-        filter(langs => langs.length > 0), // ждем загрузки языков
-        take(1),
-        map(() => {
-          const targetLang = langsService.resolveTargetLang();
-          return router.parseUrl(`/${targetLang}/home`);
-        })
-      );
-    }],
-    children: []
+    canActivate: [LangGuard],
+    children: [], // Этот блок сработает только для редиректа
   },
+  // {
+  //   path: '**',
+  //   redirectTo: '404',
+  // }
 
   {
     path: '**',
@@ -74,14 +87,15 @@ export const routes: Routes = [
       const langsService = inject(LangsService);
       const router = inject(Router);
 
-      return langsService.langs$.pipe(
-        filter(langs => langs.length > 0),
-        take(1),
-        map(() => {
+      // return langsService.langs$.pipe(
+        // filter(langs => langs.length > 0),
+        // take(1),
+        // map(() => {
           const targetLang = langsService.resolveTargetLang();
+          console.log("🔸 targetLang IN **:", targetLang)
           return router.parseUrl(`/${targetLang}/404`);
-        })
-      );
+      //   })
+      // );
     }],
     children: []
   }

@@ -4,6 +4,7 @@
     "close": "Close",
     "logout": "Log Out",
     "login": "Log In",
+    "back-to-homepage": "Back to Homepage",
     "forms": {
       "email": {
         "enter-email": "Enter your email",
