@@ -5,8 +5,13 @@
   .advantages__list {
     margin-top: 18px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 65px;
+
+    @media (max-width: 768px) {
+      gap: 40px;
+    }
   }
 
   .advantages__item {

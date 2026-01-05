@@ -16,5 +16,9 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class AdvantagesComponent {
   mediaUrl = environment.cloudinary_url
-
+  
+  ngOnInit() {
+    console.log("🚀 ~ mediaUrl:", this.mediaUrl)
+    
+  }
 }

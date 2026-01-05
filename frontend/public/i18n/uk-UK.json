@@ -103,6 +103,23 @@
         "link": "/",
         "imageUrl": "slider/slide3"
       }
+    ],
+    "advantages": [
+      {
+        "scr": "advantages/scooter",
+        "title": "Безкоштовна доставка",
+        "descr": "Для замовлень на суму від 500<span class='currency'>₴</span>"
+      },
+      {
+        "scr": "advantages/return-box",
+        "title": "Повернення товару",
+        "descr": "Якщо товари були зіпсовані"
+      },
+      {
+        "scr": "advantages/24-hours",
+        "title": "Підтримка 24/7",
+        "descr": "Найкращі оператори"
+      }
     ]
   }
 }

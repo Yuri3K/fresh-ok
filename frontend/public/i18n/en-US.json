@@ -103,6 +103,23 @@
         "link": "/",
         "imageUrl": "slider/slide3"
       }
+    ],
+    "advantages": [
+      {
+        "scr": "advantages/scooter",
+        "title": "Free Delivery",
+        "descr": "For orders over 500<span class='currency'>₴</span>"
+      },
+      {
+        "scr": "advantages/return-box",
+        "title": "Product Return",
+        "descr": "If items were damaged"
+      },
+      {
+        "scr": "advantages/24-hours",
+        "title": "24/7 Support",
+        "descr": "Best operators"
+      }
     ]
   }
 }

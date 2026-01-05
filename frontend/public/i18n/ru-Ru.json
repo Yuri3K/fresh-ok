@@ -104,25 +104,22 @@
         "imageUrl": "slider/slide3"
       }
     ],
-    "advantages": {
-      "title": "",
-      "services": [
-        {
-          "scr": "advantages/scooter",
-          "title": "Бесплатная доставка",
-          "descr": "Для заказов на сумму от 500<span class='currency'>₴</span>"
-        },
-        {
-          "scr": "advantages/return-box",
-          "title": "Возврат товара",
-          "descr": "Если товары были испорчены"
-        },
-        {
-          "scr": "advantages/24-hours",
-          "title": "Поддержка 24/7",
-          "descr": "Лучшие операторы"
-        }
-      ]
-    }
+    "advantages": [
+      {
+        "scr": "advantages/scooter",
+        "title": "Бесплатная доставка",
+        "descr": "Для заказов на сумму от 500<span class='currency'>₴</span>"
+      },
+      {
+        "scr": "advantages/return-box",
+        "title": "Возврат товара",
+        "descr": "Если товары были испорчены"
+      },
+      {
+        "scr": "advantages/24-hours",
+        "title": "Поддержка 24/7",
+        "descr": "Лучшие операторы"
+      }
+    ]
   }
 }
