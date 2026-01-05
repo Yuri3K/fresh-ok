@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnDestroy, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SwitchModeService } from './core/services/switch-mode.service';
 import { AuthService } from './core/services/auth.service';
@@ -13,6 +13,9 @@ import {
 import { LangsService } from './core/services/langs.service';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment';
+import { Meta, Title } from '@angular/platform-browser';
+import { TranslateService } from '@ngx-translate/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 @Component({
   selector: 'app-root',
   imports: [
@@ -38,6 +41,10 @@ export class AppComponent implements OnInit, OnDestroy {
   private readonly switchModeService = inject(SwitchModeService)
   private readonly authService = inject(AuthService)
   private readonly langsService = inject(LangsService)
+  private readonly translateService = inject(TranslateService)
+  private readonly destroRef = inject(DestroyRef)
+  private readonly title = inject(Title)
+  private readonly meta = inject(Meta)
 
   readonly authInitializing$: Observable<boolean> = this.authService.authInitializing$
   readonly langs$ = this.langsService.langs$
@@ -47,6 +54,17 @@ export class AppComponent implements OnInit, OnDestroy {
   async ngOnInit() {
     // this.langsService.init().subscribe()
     this.switchModeService.init()
+    this.applySeo()
+  }
+
+  private applySeo() {
+    this.translateService
+    .stream('seo')
+    .pipe(takeUntilDestroyed(this.destroRef))
+    .subscribe(seo => {
+      this.title.setTitle(seo['meta-title'])
+      this.meta.updateTag({name: 'description', content: seo['meta-descr']})
+    })
   }
 
   ngOnDestroy(): void {

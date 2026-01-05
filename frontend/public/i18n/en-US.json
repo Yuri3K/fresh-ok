@@ -1,5 +1,9 @@
 {
   "hello": "Hello",
+  "seo": {
+    "meta-title": "Fresh-ok",
+    "meta-descr": "Welcome to the Fresh*ok online marketplace. Here you can always find fresh and affordable groceries."
+  },
   "common": {
     "close": "Close",
     "logout": "Log Out",
