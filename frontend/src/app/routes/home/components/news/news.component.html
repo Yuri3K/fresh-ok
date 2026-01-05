@@ -1,0 +1,15 @@
+@let newsItems = ('homepage.news.newsItems' | translate);
+
+<section class="news">
+	<app-h2-title 
+		class="mews__title"
+		[text]="'homepage.news.title' | translate"
+		fz="2rem"
+	/>
+
+	<div class="news__items">
+		@for(newsItem of newsItems; track $index) {
+			<app-news-card [newsItem]="newsItem"/>
+		}
+	</div>
+</section>

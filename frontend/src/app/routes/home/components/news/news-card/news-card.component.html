@@ -1,0 +1,12 @@
+<article class="news-card">
+  <div 
+		class="news-card__img"
+		[ngStyle]="{
+			bachgroundImage: `url('${mediaUrl}${newsItem().src}')`
+		}"
+	>
+	</div>
+  <div class="news-card__content">
+		{{newsItem().descr}}
+	</div>
+</article>

@@ -7,6 +7,7 @@ import { CarouselSlideComponent } from './components/carousel-slide/carousel-sli
 import { NgxCarouselComponent, NgxCarouselConfig } from 'ngx-freshok-carousel';
 import { MiniFabBtnComponent } from '../../shared/ui-elems/buttons/mini-fab-btn/mini-fab-btn.component';
 import { AdvantagesComponent } from './components/advantages/advantages.component';
+import { NewsComponent } from './components/news/news.component';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +19,7 @@ import { AdvantagesComponent } from './components/advantages/advantages.componen
     NgxCarouselComponent, 
     MiniFabBtnComponent,
     AdvantagesComponent,
+    NewsComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
