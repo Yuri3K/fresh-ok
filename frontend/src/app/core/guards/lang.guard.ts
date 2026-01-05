@@ -34,7 +34,7 @@ export const LangGuard: CanActivateFn = (route, state): boolean | UrlTree => {
         const targetLng = langsService.resolveTargetLang(); // en, ru, uk
 
         // Используем createUrlTree для сохранения query параметров
-        return router.createUrlTree([targetLng, ...getPathSegments(state.url)], {
+        return router.createUrlTree([targetLng, ...route.url.map(s => s.path)], {
           queryParamsHandling: 'preserve', // сохраняем query параметры
           fragment: route.fragment || undefined, // сохраняем fragment (#anchor)
         });
@@ -44,10 +44,11 @@ export const LangGuard: CanActivateFn = (route, state): boolean | UrlTree => {
       if (!langsService.isSupported(langParam)) {
         // Пытаемся автоматически определить язык и если не получается, то применим язык по дефолту
         const fallback = langsService.resolveTargetLang();
+        console.log("🚀 ~ ...route.url.map(s => s.path):", [fallback, ...route.url.map(s => s.path)])
 
         // Переходим на страницу используя язык, который попал в fallback
         // Используем createUrlTree для сохранения query параметров
-        return router.createUrlTree([fallback, ...getPathSegments(state.url)], {
+        return router.createUrlTree([fallback, ...route.url.map(s => s.path)], {
           queryParamsHandling: 'preserve', // сохраняем query параметры
           fragment: route.fragment || undefined, // сохраняем fragment (#anchor)
         });

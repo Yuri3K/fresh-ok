@@ -49,7 +49,7 @@ export const routes: Routes = [
       },
     ],
   },
-  // // Редирект с корня localhost:4200 на localhost:4200/ru (или другой язык)
+  // 
   // {
   //   path: '',
   //   pathMatch: 'full',
@@ -70,17 +70,13 @@ export const routes: Routes = [
   //   children: []
   // },
 
+  // Редирект с корня localhost:4200 на localhost:4200/ru (или другой язык)
   {
     path: '',
     pathMatch: 'full',
     canActivate: [LangGuard],
     children: [], // Этот блок сработает только для редиректа
   },
-  // {
-  //   path: '**',
-  //   redirectTo: '404',
-  // }
-
   {
     path: '**',
     canActivate: [() => {
