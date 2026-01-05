@@ -9,7 +9,7 @@ import { filter, map } from 'rxjs';
 import { AvatarPopupComponent } from './components/avatar-popup/avatar-popup.component';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { UserAccessService } from '../../../../../core/services/user-access.service';
-import { environment } from '../../../../../../environments/environment';
+import { MEDIA_URL } from '../../../../../core/urls';
 
 @Component({
   selector: 'app-user-avatar',
@@ -40,7 +40,7 @@ export class UserAvatarComponent {
     )
   )
   
-  readonly mediaUrl = environment.cloudinary_url
+  readonly mediaUrl = MEDIA_URL
   readonly avatarMeta = 'f_auto,q_auto,c_thumb,g_face,r_max,w_32,h_32/'
 
   isPopupOpen = false

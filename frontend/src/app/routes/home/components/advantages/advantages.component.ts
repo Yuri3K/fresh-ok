@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { environment } from '../../../../../environments/environment';
 import { SvgIconPipe } from '../../../../core/pipes/svg-icon.pipe';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatIconModule } from '@angular/material/icon';
+import { MEDIA_URL } from '../../../../core/urls';
 
 @Component({
   selector: 'app-advantages',
@@ -15,10 +15,6 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './advantages.component.scss'
 })
 export class AdvantagesComponent {
-  mediaUrl = environment.cloudinary_url
-  
-  ngOnInit() {
-    console.log("🚀 ~ mediaUrl:", this.mediaUrl)
-    
-  }
+  mediaUrl = MEDIA_URL
+
 }

@@ -4,8 +4,8 @@ import { Lang, LangsService } from '../../../../core/services/langs.service';
 import { AsyncPipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { OpenMenuDirective } from '../../../../core/directives/open-menu.directive';
-import { environment } from '../../../../../environments/environment';
 import { SvgIconPipe } from '../../../../core/pipes/svg-icon.pipe';
+import { MEDIA_URL } from '../../../../core/urls';
 
 @Component({
   selector: 'app-lang-dropdown',
@@ -26,7 +26,7 @@ export class LangDropdownComponent {
   langs$ = this.langsService.langs$
   currentLang$ = this.langsService.currentLang$
 
-  mediaUrl = environment.cloudinary_url
+  mediaUrl = MEDIA_URL
 
   ngOnInit() {
   }

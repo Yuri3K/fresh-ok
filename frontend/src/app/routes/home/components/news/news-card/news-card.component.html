@@ -2,10 +2,16 @@
   <div 
 		class="news-card__img"
 		[ngStyle]="{
-			bachgroundImage: `url('${mediaUrl}${newsItem().src}')`
+			backgroundImage: `url('${mediaUrl}${newsItem().src}')`
 		}"
 	>
 	</div>
+
+	<div class="news-card__date">
+		<span class="news-card__month">{{newsItem().date.month}}</span>
+		<span class="news-card__day">{{newsItem().date.day}}</span>
+	</div>
+
   <div class="news-card__content">
 		{{newsItem().descr}}
 	</div>

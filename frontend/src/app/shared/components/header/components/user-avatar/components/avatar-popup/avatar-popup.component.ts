@@ -5,9 +5,9 @@ import { User } from 'firebase/auth';
 import { MatCardModule } from '@angular/material/card';
 import { BtnFlatComponent } from '../../../../../../ui-elems/buttons/btn-flat/btn-flat.component';
 import { MatIconModule } from '@angular/material/icon';
-import { environment } from '../../../../../../../../environments/environment';
 import { UserAccessService } from '../../../../../../../core/services/user-access.service';
 import { AsyncPipe } from '@angular/common';
+import { MEDIA_URL } from '../../../../../../../core/urls';
 
 @Component({
   selector: 'app-avatar-popup',
@@ -31,7 +31,7 @@ export class AvatarPopupComponent {
   readonly privacyLink = 'https://policies.google.com/privacy?hl=en'
   readonly termsLink = 'https://policies.google.com/terms?hl=en'
 
-  readonly mediaUrl = environment.cloudinary_url
+  readonly mediaUrl = MEDIA_URL
 
   // c_fill — обрезать под квадрат без искажений
   // g_face — определить и центрировать на лице

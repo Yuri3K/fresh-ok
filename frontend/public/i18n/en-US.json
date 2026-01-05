@@ -120,6 +120,37 @@
         "title": "24/7 Support",
         "descr": "Best operators"
       }
-    ]
+    ],
+    "news": {
+      "title": "Our News",
+      "all-new": "All News",
+      "route-page": "en/all-news",
+      "newsItems": [
+        {
+          "src": "news/strawberry",
+          "descr": "This summer’s event: seasonal fruit sale at Fresh-ok online market. Hurry before it’s all gone!",
+          "date": {
+            "day": "15",
+            "month": "July"
+          }
+        },
+        {
+          "src": "news/mango",
+          "descr": "A fantastic selection of mangoes in our online market",
+          "date": {
+            "day": "28",
+            "month": "May"
+          }
+        },
+        {
+          "src": "news/papaya",
+          "descr": "Everything you wanted to know about papaya",
+          "date": {
+            "day": "20",
+            "month": "February"
+          }
+        }
+      ]
+    }
   }
 }
