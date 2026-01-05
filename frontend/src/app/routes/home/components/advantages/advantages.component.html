@@ -1,1 +1,19 @@
-<p>advantages works!</p>
+@let advantages = ('homepage.advantages.services' | translate);
+
+<div class="advantages green">
+  <div class="container">
+    <ul class="advantages__list">
+      @for(item of advantages; track $index) {
+      <li class="advantages__item">
+        <mat-icon [svgIcon]="`${mediaUrl}${item.scr}.svg` | matSvgIcon" />
+        <div class="advantages__content">
+          <span class="advantages__title">
+            {{item.title}}
+          </span>
+          <span class="advantages__descr" [innerHtml]="item.descr"></span>
+        </div>
+      </li>
+      }
+    </ul>
+  </div>
+</div>

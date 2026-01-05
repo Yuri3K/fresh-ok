@@ -8,13 +8,27 @@
     content="Welcome to the Freshok online marketplace. Here you can always find fresh and affordable groceries." />
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- <link rel="icon" type="image/x-icon" href="favicon.ico"> -->
-   
+
+  <!-- Может использоваться браузерами в особых случаях (например, для больших фавиконок в интерфейсе, при увеличении масштаба) -->
   <link rel="icon" type="image/png" href="assets/images/favicon/favicon-96x96.png" sizes="96x96" />
+
+  <!-- Браузеры, поддерживающие SVG (Firefox, Chrome, некоторые другие), будут использовать эту иконку -->
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon/favicon.svg" />
+
+  <!-- Фолбэк для браузеров, которые не поддерживают SVG -->
   <link rel="shortcut icon" href="assets/images/favicon/favicon.ico" />
+
+  <!-- Иконка для добавления сайта на домашний экран iOS (iPhone/iPad) и в док macOS Safari -->
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png" />
+
+  <!-- Задаёт короткое имя приложения (до 12 символов), которое будет отображаться под иконкой на домашнем экране iOS, когда пользователь добавит сайт туда. Если этого тега нет, используется содержимое <title> (которое может быть длиннее) -->
   <meta name="apple-mobile-web-app-title" content="Fresh-ok" />
+
+  <!-- Файл Web App Manifest — "сердце" PWA (Progressive Web App). В нём указываются:
+    Название приложения, тема, фон
+    Набор иконок для Android (при добавлении на экран дома)
+    Способ запуска (полноэкранный, как приложение)
+    Ориентация экрана и т.д. -->
   <link rel="manifest" href="assets/images/favicon/site.webmanifest" />
 
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">

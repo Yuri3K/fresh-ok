@@ -1,7 +1,7 @@
 {
   "hello": "Привет",
   "seo": {
-    "meta-title": "Fresh-ok",
+    "meta-title": "Fresh-ok | Главная страница",
     "meta-descr": "Добро пожаловать в Fresh-ok онлайн-маркет. Здесь вы всегда найдете свежие и недорогие продукты."
   },
   "common": {
@@ -103,6 +103,26 @@
         "link": "/",
         "imageUrl": "slider/slide3"
       }
-    ]
+    ],
+    "advantages": {
+      "title": "",
+      "services": [
+        {
+          "scr": "advantages/scooter",
+          "title": "Бесплатная доставка",
+          "descr": "Для заказов на сумму от 500<span class='currency'>₴</span>"
+        },
+        {
+          "scr": "advantages/return-box",
+          "title": "Возврат товара",
+          "descr": "Если товары были испорчены"
+        },
+        {
+          "scr": "advantages/24-hours",
+          "title": "Поддержка 24/7",
+          "descr": "Лучшие операторы"
+        }
+      ]
+    }
   }
 }

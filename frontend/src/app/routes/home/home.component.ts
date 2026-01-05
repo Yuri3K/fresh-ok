@@ -6,6 +6,7 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 import { CarouselSlideComponent } from './components/carousel-slide/carousel-slide.component';
 import { NgxCarouselComponent, NgxCarouselConfig } from 'ngx-freshok-carousel';
 import { MiniFabBtnComponent } from '../../shared/ui-elems/buttons/mini-fab-btn/mini-fab-btn.component';
+import { AdvantagesComponent } from './components/advantages/advantages.component';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,8 @@ import { MiniFabBtnComponent } from '../../shared/ui-elems/buttons/mini-fab-btn/
     CommonModule,
     CarouselSlideComponent,
     NgxCarouselComponent, 
-    MiniFabBtnComponent
+    MiniFabBtnComponent,
+    AdvantagesComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
