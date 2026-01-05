@@ -4,12 +4,19 @@
 <head>
   <meta charset="utf-8">
   <title>Fresh-ok</title>
-  <meta
-      name="description"
-      content="Welcome to the Freshok online marketplace. Here you can always find fresh and affordable groceries." />
+  <meta name="description"
+    content="Welcome to the Freshok online marketplace. Here you can always find fresh and affordable groceries." />
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- <link rel="icon" type="image/x-icon" href="favicon.ico"> -->
+   
+  <link rel="icon" type="image/png" href="assets/images/favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon/favicon.svg" />
+  <link rel="shortcut icon" href="assets/images/favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Fresh-ok" />
+  <link rel="manifest" href="assets/images/favicon/site.webmanifest" />
+
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -174,16 +181,16 @@
 
       setTimeout(() => {
         const el = document.querySelector('.spinner')
-        if(el) {
+        if (el) {
           el.classList.add('show')
-          
+
           let seconds = 60;
           timerEl.textContent = t.timer(seconds);
-    
+
           const interval = setInterval(() => {
             seconds--;
             timerEl.textContent = t.timer(seconds);
-    
+
             if (seconds <= 0) {
               clearInterval(interval);
               timerEl.textContent = t.almost;
