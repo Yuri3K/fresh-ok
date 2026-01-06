@@ -28,9 +28,9 @@
 .news__items{
   // display: flex;
   // align-items: stretch;
+  // flex-wrap: wrap;
   display: grid; 
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  justify-content: space-between;
+  justify-content: center;
   gap: 30px;
-  flex-wrap: wrap;
 }

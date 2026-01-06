@@ -4,6 +4,7 @@ import { MEDIA_URL } from '../../../../../core/urls';
 
 export interface NewsItem {
   src: string
+  alt: string
   descr: string
   date: {
     day: string
@@ -13,9 +14,7 @@ export interface NewsItem {
 
 @Component({
   selector: 'app-news-card',
-  imports: [
-    NgStyle,
-  ],
+  imports: [],
   templateUrl: './news-card.component.html',
   styleUrl: './news-card.component.scss'
 })

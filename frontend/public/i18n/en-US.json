@@ -128,6 +128,7 @@
       "newsItems": [
         {
           "src": "news/strawberry",
+          "alt": "Fruit sale",
           "descr": "This summer’s event: seasonal fruit sale at Fresh-ok online market. Hurry before it’s all gone!",
           "date": {
             "day": "15",
@@ -136,6 +137,7 @@
         },
         {
           "src": "news/mango",
+          "alt": "A fantastic selection of mangoes",
           "descr": "A fantastic selection of mangoes in our online market",
           "date": {
             "day": "28",
@@ -144,6 +146,7 @@
         },
         {
           "src": "news/papaya",
+          "alt": "Papaya",
           "descr": "Everything you wanted to know about papaya",
           "date": {
             "day": "20",

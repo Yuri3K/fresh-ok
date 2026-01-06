@@ -1,10 +1,9 @@
 <article class="news-card">
-  <div 
-		class="news-card__img"
-		[ngStyle]="{
-			backgroundImage: `url('${mediaUrl}${newsItem().src}')`
-		}"
-	>
+  <div class="news-card__img-wrapper">
+	<img 
+		class="news-card__img" 
+		[src]="mediaUrl + newsItem().src" 
+		[alt]="newsItem().alt">
 	</div>
 
 	<div class="news-card__date">
