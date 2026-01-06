@@ -1,5 +1,6 @@
 import { Component, input } from '@angular/core';
 import { MEDIA_URL } from '../../../../../core/urls';
+import { Sponsor } from '../services/sponsors.service';
 
 @Component({
   selector: 'app-sponsors-slide',
@@ -8,6 +9,6 @@ import { MEDIA_URL } from '../../../../../core/urls';
   styleUrl: './sponsors-slide.component.scss'
 })
 export class SponsorsSlideComponent {
-  imgPath = input.required<string>()
-  mediaUrl = MEDIA_URL + this.imgPath()
+  sponsor = input.required<Partial<Sponsor>>()
+
 }

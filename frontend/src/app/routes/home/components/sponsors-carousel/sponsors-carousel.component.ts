@@ -1,12 +1,19 @@
 import { Component, inject } from '@angular/core';
 import { SponsorsService } from './services/sponsors.service';
+import { SponsorsSlideComponent } from './sponsors-slide/sponsors-slide.component';
+import { NgxCarouselComponent } from 'ngx-freshok-carousel';
 
 @Component({
   selector: 'app-sponsors-carousel',
-  imports: [],
+  imports: [
+    SponsorsSlideComponent,
+    NgxCarouselComponent,
+  ],
   templateUrl: './sponsors-carousel.component.html',
   styleUrl: './sponsors-carousel.component.scss'
 })
 export class SponsorsCarouselComponent {
-  sponsors = inject(SponsorsService).sponsors
+  sponsorsService = inject(SponsorsService)
+  sponsors = this.sponsorsService.sponsors
+  config = this.sponsorsService.config
 }

@@ -1,1 +1,8 @@
-<p>{{sponsors()}}</p>
+<lib-ngx-carousel 
+	[slides]="sponsors()"
+	[config]="config"
+>
+	<ng-template #slideTemplate let-slide>
+		<app-sponsors-slide [sponsor]="slide"/>
+	</ng-template>
+</lib-ngx-carousel>
