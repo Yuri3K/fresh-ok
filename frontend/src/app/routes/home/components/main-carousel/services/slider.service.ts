@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../../../environments/environment';
 import { NgxCarouselConfig } from 'ngx-freshok-carousel';
 
 export interface CarouselSlide {

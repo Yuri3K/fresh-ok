@@ -1,17 +1,1 @@
-.carousel-main {
-  --carousel-list-height: 500px;
 
-  --user-controls-dot-active-bg: var(--mat-sys-primary);
-  --user-controls-dot-bg: var(--mat-sys-secondary-fixed);
-  --user-controls-dot-border: 2px solid var(--mat-sys-primary-container);
-  --user-controls-dot-active-bg-hover: var(--mat-sys-primary-container);
-  --user-controls-dot-hover-bg: #fff;
-
-//   @media (max-width: 768px) {
-//     --carousel-list-height: 450px;
-//   }
-
-  @media (max-width: 576px) {
-    --carousel-list-height: 450px;
-  }
-}

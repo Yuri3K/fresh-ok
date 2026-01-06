@@ -1,38 +1,4 @@
-@let slidesList = (slides$ | async); @if(slidesList && slidesList.length) {
-<!-- Тэг для карусели. Передаем json объект со слайдами и настройки карусели (config)  -->
-<lib-ngx-carousel
-  class="green carousel-main"
-  [slides]="slidesList"
-  [config]="config"
->
-  <!-- Передаем в карусель шаблон слайда, чтобы от применялся внутри карусели -->
-  <ng-template #slideTemplate let-slide>
-    <app-carousel-slide [slide]="slide" />
-  </ng-template>
-
-  <!-- Передаем в карусель кастомную кнопку ВПРАВО -->
-  <ng-template #btnRight let-carousel>
-    <app-mini-fab-btn
-      iconName="chevron_right"
-      ariaLabel="Prev Slide"
-      (click)="carousel.next()"
-      [isBadgeHidden]="true"
-      iconColor="var(--mat-sys-on-secondary-container)"
-    />
-  </ng-template>
-
-  <!-- Передаем в карусель кастомную кнопку ВЛЕВО -->
-  <ng-template #btnLeft let-carousel>
-    <app-mini-fab-btn
-      iconName="chevron_left"
-      ariaLabel="Next Slide"
-      (click)="carousel.prev()"
-      [isBadgeHidden]="true"
-      iconColor="var(--mat-sys-on-secondary-container)"
-    />
-  </ng-template>
-</lib-ngx-carousel>
-}
-
+<app-main-carousel />
 <app-advantages />
+<app-sponsors-carousel />
 <app-news />

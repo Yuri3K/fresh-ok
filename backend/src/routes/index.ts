@@ -6,6 +6,7 @@ import adminRoutes from './adminRoutes'
 import imageRoutes from './imageRoutes'
 import avatarRoutes from './avatarRoutes'
 import catalogRoutes from './catalogRoutes'
+import sponsorsRoutes from './sponsorsRoutes'
 
 const router = express.Router()
 
@@ -16,5 +17,6 @@ router.use('/admin', adminRoutes)
 router.use('/image', imageRoutes)  // НЕ ИСПОЛЬЗУЕТСЯ
 router.use('/avatar', avatarRoutes)
 router.use('/catalog', catalogRoutes)
+router.use('/sponsors', sponsorsRoutes)
 
 export default router
