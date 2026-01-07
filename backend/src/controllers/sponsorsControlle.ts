@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import { db } from '../config/firebaseAdmin'
 
-export interface Sponsor {
+interface Sponsor {
   id: string
-  path: string
+  publicId: string
   order: number
   createdAt: string
   updatedAt: string

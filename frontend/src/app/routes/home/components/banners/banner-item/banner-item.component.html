@@ -1,0 +1,14 @@
+<article class="banner">
+  <div class="banner__announcement">
+    {{banner().translations[currentLang()].announcement}}
+  </div>
+  <div class="banner__title">
+    {{banner().translations[currentLang()].title}}
+  </div>
+  <div class="banner__subtitle">
+    {{banner().translations[currentLang()].subtitle}}
+  </div>
+  <a class="banner__link" [routerLink]="banner().linkUrl">
+    {{banner().translations[currentLang()].buttonText}}
+  </a>
+</article>

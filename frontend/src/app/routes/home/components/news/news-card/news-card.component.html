@@ -2,7 +2,7 @@
   <div class="news-card__img-wrapper">
 	<img 
 		class="news-card__img" 
-		[src]="mediaUrl + newsItem().src" 
+		[src]="`${mediaUrl}${newsItem().src}.jpg`" 
 		[alt]="newsItem().alt">
 	</div>
 

@@ -1,0 +1,7 @@
+<section class="banners">
+  @for(banner of banners(); track banner.id) {
+    <app-banner-item 
+      [banner]="banner"
+    />
+  }
+</section>

@@ -1,13 +1,12 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { map, Observable, pipe, take, tap } from 'rxjs';
+import { map, Observable, take, tap } from 'rxjs';
 import { ApiService } from '../../../../../core/services/api.service';
-import { environment } from '../../../../../../environments/environment';
 import { MEDIA_URL } from '../../../../../core/urls';
 import { NgxCarouselConfig } from 'ngx-freshok-carousel';
 
 export interface Sponsor {
   id: string;
-  path: string;
+  publicId: string;
   order: number;
   createdAt: string;
   updatedAt: string;
@@ -54,20 +53,16 @@ export class SponsorsService {
   };
 
   constructor() {
-    console.log('CALLED');
-    this.getSponsorsData().subscribe((s) => {
-      console.log('IN SYB !!!!', s);
-    });
+    this.getSponsorsData().subscribe();
   }
 
   getSponsorsData(): Observable<Partial<Sponsor>[]> {
     return this.apiService.getWithoutToken<Sponsor[]>('/sponsors').pipe(
       take(1),
-      // tap(sponsors => console.log('!!! sponsors !!!', sponsors)),
       map((sponsors) =>
         sponsors.map((s) => {
           return {
-            path: MEDIA_URL + s.path,
+            path: MEDIA_URL + s.publicId + '.png',
             id: s.id,
           };
         })

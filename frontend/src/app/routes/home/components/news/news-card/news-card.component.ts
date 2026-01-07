@@ -1,5 +1,4 @@
 import { Component, input } from '@angular/core';
-import { NgStyle } from '@angular/common';
 import { MEDIA_URL } from '../../../../../core/urls';
 
 export interface NewsItem {
