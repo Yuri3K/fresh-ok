@@ -3,6 +3,7 @@ import { map, Observable, pipe, take, tap } from 'rxjs';
 import { ApiService } from '../../../../../core/services/api.service';
 import { environment } from '../../../../../../environments/environment';
 import { MEDIA_URL } from '../../../../../core/urls';
+import { NgxCarouselConfig } from 'ngx-freshok-carousel';
 
 export interface Sponsor {
   id: string;
@@ -20,16 +21,36 @@ export class SponsorsService {
 
   sponsors = signal<Partial<Sponsor>[]>([]);
 
-  config = {
-    pauseOnHover: false,
-    autoplay: true,
-    showArrows: false,
+  config: NgxCarouselConfig = {
+    mode: 'non-stop',
+    nonStopSpeed: 70,
+    slidesToShow: 5,
     showDots: false,
-    slidesToShow: 3,
-    speed: 1000,
-    interval: 0,
+    showArrows: false,
     loop: true,
-    breakpoints: [],
+    stopAutoplayBtn: true,
+    breakpoints: [
+      {
+        breakpoint: 1200,  // от 1200 и выше
+        slidesToShow: 5,
+      },
+      {
+        breakpoint: 992,  // от 992 и выше
+        slidesToShow: 4,
+      },
+      {
+        breakpoint: 768,  // от 768 и выше
+        slidesToShow: 3,
+      },
+      {
+        breakpoint: 576,  // от 576 и выше
+        slidesToShow: 2,
+      },
+      {
+        breakpoint: 0,  // до 576
+        slidesToShow: 1,
+      }
+    ]
   };
 
   constructor() {
