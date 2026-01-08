@@ -1,5 +1,4 @@
 import { Component, input } from '@angular/core';
-import { MEDIA_URL } from '../../../../../core/urls';
 import { Sponsor } from '../services/sponsors.service';
 
 @Component({
@@ -10,5 +9,9 @@ import { Sponsor } from '../services/sponsors.service';
 })
 export class SponsorsSlideComponent {
   sponsor = input.required<Partial<Sponsor>>()
-
+  
+  ngOnInit() {
+    
+    console.log("🔸 sponsor:", this.sponsor())
+  }
 }

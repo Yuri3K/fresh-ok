@@ -62,7 +62,7 @@ export class SponsorsService {
       map((sponsors) =>
         sponsors.map((s) => {
           return {
-            path: MEDIA_URL + s.publicId + '.png',
+            publicId: MEDIA_URL + s.publicId + '.png',
             id: s.id,
           };
         })
