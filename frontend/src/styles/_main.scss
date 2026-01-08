@@ -38,3 +38,19 @@ body {
 .currency {
   margin-left: 2px;
 }
+
+// Для выпадающих списков, которые используют OpenMenuDirective
+.dropdown-body {
+  transition: max-height 0.3s ease;
+  overflow: hidden; /* по умолчанию скрыто */
+}
+
+/* Кастомный скроллбар */
+.dropdown-body::-webkit-scrollbar {
+  width: 0;
+}
+
+.dropdown-body::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+// END Для выпадающих списков, которые используют OpenMenuDirective

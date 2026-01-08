@@ -12,7 +12,7 @@ export class OpenMenuDirective implements OnInit {
   constructor(
     private elRef: ElementRef,
     private renderer: Renderer2
-  ) {}
+  ) { }
 
   ngOnInit() {
     // Ищем элементы один раз, а не при каждом клике
@@ -33,8 +33,23 @@ export class OpenMenuDirective implements OnInit {
   private open() {
     if (!this.dropdownBody || !this.dropdownList) return;
 
-    const height = this.dropdownList.getBoundingClientRect().height;
-    this.renderer.setStyle(this.dropdownBody, "max-height", height + "px");
+    // Получаем размеры и позицию
+    const listRect = this.dropdownList.getBoundingClientRect();
+    const bodyRect = this.dropdownBody.getBoundingClientRect();
+
+    // Вычисляем доступное пространство снизу от dropdown-body
+    const viewportHeight = window.innerHeight;
+    const spaceBelow = viewportHeight - bodyRect.bottom;
+
+    // Отступ от края окна (можно настроить)
+    const bottomGap = 16;
+    const maxAvailableHeight = spaceBelow - bottomGap;
+
+    // Выбираем меньшее значение: либо высота списка, либо доступное пространство
+    const finalHeight = Math.min(listRect.height, maxAvailableHeight);
+
+    this.renderer.setStyle(this.dropdownBody, "max-height", finalHeight + "px");
+    this.renderer.setStyle(this.dropdownBody, "overflow-y", "auto");
     this.isOpen = true;
   }
 
@@ -42,6 +57,7 @@ export class OpenMenuDirective implements OnInit {
     if (!this.dropdownBody) return;
 
     this.renderer.setStyle(this.dropdownBody, "max-height", "0px");
+    this.renderer.setStyle(this.dropdownBody, "overflow-y", "hidden");
     this.isOpen = false;
   }
 
