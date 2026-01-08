@@ -1,0 +1,29 @@
+.footer-content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: start;
+  justify-content: space-between;
+  gap: 1%;
+  margin-bottom: 30px;
+}
+
+app-logo {
+  order: 1;
+  width: 100%;
+}
+
+app-subscribe{
+  order: 2;
+  width: 30%;
+}
+
+app-footer-nav{
+  order: 3;
+  width: 42%;
+}
+
+app-location{
+  order: 4;
+  width: 25%;
+}

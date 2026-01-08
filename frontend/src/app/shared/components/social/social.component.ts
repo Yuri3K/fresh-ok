@@ -1,4 +1,4 @@
-import { Component, computed, input, signal } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { MEDIA_URL } from '../../../core/urls';
 import { SvgIconPipe } from '../../../core/pipes/svg-icon.pipe';
 import { MatIconModule } from '@angular/material/icon';

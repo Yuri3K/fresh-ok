@@ -1,0 +1,7 @@
+@let links = ('footer.links' | translate);
+
+<div class="links">
+  @for(link of links; track $index) {
+    <a [routerLink]="[link.route]">{{link.text}}</a>
+  }
+</div>

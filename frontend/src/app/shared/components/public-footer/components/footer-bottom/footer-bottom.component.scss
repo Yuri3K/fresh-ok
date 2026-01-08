@@ -1,0 +1,11 @@
+:host {
+  padding-top: 24px;
+  display: block;
+  border-top: 2px solid color-mix(in srgb, var(--mat-sys-primary-fixed) 10%, transparent 90%);
+}
+
+.footer-bottom{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

@@ -1,1 +1,8 @@
-<p>payment works!</p>
+<div class="payment">
+  @for(icon of paymentIcons(); track $index) {
+    <mat-icon 
+      [svgIcon]="icon | matSvgIcon" 
+      [style.color]="iconColor()"
+    />
+  }
+</div>

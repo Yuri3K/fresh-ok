@@ -1,7 +1,7 @@
 import { NgStyle } from '@angular/common';
 import { Component, input } from '@angular/core';
-import { SocialComponent } from '../../../social/social.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { SocialComponent } from '../social/social.component';
 
 @Component({
   selector: 'app-location',

@@ -159,6 +159,10 @@
   "footer": {
     "address": "Киев, ул. Шевченко, 1",
     "hotline": "Горячая линия +38(099)-445-35-63",
+    "subscribe": {
+      "placeholder": "email@example.com",
+      "submit": "Подписаться"
+    },
     "links": [
       {
         "text": "О нас",
@@ -166,31 +170,31 @@
       },
       {
         "text": "Контакты",
-        "route": "/ru/contacts"
+        "route": "/contacts"
       },
       {
         "text": "Публичная оферта",
-        "route": "/ru/public-offer"
+        "route": "/public-offer"
       },
       {
         "text": "Оплата и доставка",
-        "route": "/ru/payment-delivery"
+        "route": "/payment-delivery"
       },
       {
         "text": "Вакансии",
-        "route": "/ru/careers"
+        "route": "/careers"
       },
       {
         "text": "Акции",
-        "route": "/ru/promotions"
+        "route": "/promotions"
       },
       {
         "text": "Отзывы",
-        "route": "/ru/reviews"
+        "route": "/reviews"
       },
       {
         "text": "Новости",
-        "route": "/ru/news"
+        "route": "/news"
       }
     ]
   }
