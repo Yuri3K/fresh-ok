@@ -1,0 +1,16 @@
+.footer-nav {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5%;
+
+  @media (max-width: 576px) {
+    .footer-nav {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+.footer-nav__link {
+  color: #fff;
+  text-decoration: none;
+}
