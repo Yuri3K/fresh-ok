@@ -21,17 +21,17 @@
 	>
 		<app-mini-fab-btn
 			[iconName]="
-				nonStop.rafId
+				nonStop.rafId()
 					? 'pause'
 					: 'play_arrow'
 			"
 			[ariaLabel]="
-				nonStop.rafId
+				nonStop.rafId()
 					? 'Pause carousel'
 					: 'Play carousel'
 			"
 			[tooltipText]="
-				nonStop.rafId
+				nonStop.rafId()
 					? 'Pause carousel'
 					: 'Play carousel'
 			"

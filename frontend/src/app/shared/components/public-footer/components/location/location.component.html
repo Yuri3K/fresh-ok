@@ -1,0 +1,9 @@
+<div 
+  class="location"
+  [ngStyle]="{color: textColor()}"  
+>
+  <p class="location__address">{{'footer.address' | translate}}</p>
+  <p class="location__hotline">{{'footer.hotline' | translate}}</p>
+
+  <app-social [iconColor]="iconColor()"/>
+</div>

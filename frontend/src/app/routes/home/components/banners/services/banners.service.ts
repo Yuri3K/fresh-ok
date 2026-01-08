@@ -53,7 +53,6 @@ export class BannersService {
                 publicId: MEDIA_URL + b.publicId + '.jpg',
               }
             })
-            console.log("🔸 processedBanners:", processedBanners)
             this.banners.set(processedBanners);
           }
         }),

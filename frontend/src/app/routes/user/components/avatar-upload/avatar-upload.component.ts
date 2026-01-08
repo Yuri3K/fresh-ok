@@ -47,7 +47,6 @@ export class AvatarUploadComponent {
     })
 
     cropDialog.afterClosed().subscribe(result => {
-      console.log("!!! RESULT !!!", result)
       if(result !== undefined) {
         this.onUpload(result)
         // this.selectedFile = result

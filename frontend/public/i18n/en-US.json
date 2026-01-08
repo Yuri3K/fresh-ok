@@ -155,5 +155,43 @@
         }
       ]
     }
+  },
+  "footer": {
+    "address": "Kyiv, Shevchenko St., 1",
+    "hotline": "Hotline +38(099)-445-35-63",
+    "links": [
+      {
+        "text": "About Us",
+        "route": "/about"
+      },
+      {
+        "text": "Contacts",
+        "route": "/en/contacts"
+      },
+      {
+        "text": "Public Offer",
+        "route": "/en/public-offer"
+      },
+      {
+        "text": "Payment & Delivery",
+        "route": "/en/payment-delivery"
+      },
+      {
+        "text": "Careers",
+        "route": "/en/careers"
+      },
+      {
+        "text": "Promotions",
+        "route": "/en/promotions"
+      },
+      {
+        "text": "Reviews",
+        "route": "/en/reviews"
+      },
+      {
+        "text": "News",
+        "route": "/en/news"
+      }
+    ]
   }
 }

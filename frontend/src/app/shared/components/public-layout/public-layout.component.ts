@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
 import { HeaderMarketComponent } from '../header-market/header-market.component';
+import { PublicFooterComponent } from '../public-footer/public-footer.component';
 
 @Component({
   selector: 'app-public-layout',
@@ -13,6 +14,7 @@ import { HeaderMarketComponent } from '../header-market/header-market.component'
     MatSidenavModule,
     RouterOutlet,
     HeaderMarketComponent,
+    PublicFooterComponent
   ],
   templateUrl: './public-layout.component.html',
   styleUrl: './public-layout.component.scss',
