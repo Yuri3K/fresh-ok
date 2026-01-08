@@ -1,6 +1,7 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { catchError, filter, Observable, of, retry, take, tap } from 'rxjs';
 import { ApiService } from '../../../../../core/services/api.service';
+import { MEDIA_URL } from '../../../../../core/urls';
 
 export interface Banner {
   id: string,
@@ -9,6 +10,7 @@ export interface Banner {
   linkUrl: string,
   order: number,
   publicId: string,
+  textColor: string,
   translations: {
     en: Translation,
     ru: Translation,
@@ -43,10 +45,16 @@ export class BannersService {
         // filter(banners => banners.length > 0),
         retry(1), // Повторить 1 раз при ошибке
         take(1),
-        tap(banners => console.log("!!! BANNERS !!!", banners)),
         tap(banners => {
           if (banners.length > 0) {
-            this.banners.set(banners);
+            const processedBanners = banners.map(b => {
+              return {
+                ...b,
+                publicId: MEDIA_URL + b.publicId + '.jpg',
+              }
+            })
+            console.log("🔸 processedBanners:", processedBanners)
+            this.banners.set(processedBanners);
           }
         }),
         catchError(error => {

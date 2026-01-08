@@ -1,3 +1,7 @@
 :host {
     --carousel-height: 200px;
+
+    // Ширину контейнера делим на 2
+    --user-controls-btn-stop-right-pos: calc(50% - 1290px / 2);
+    --user-controls-btn-stop-bottom-pos: 0;
 }

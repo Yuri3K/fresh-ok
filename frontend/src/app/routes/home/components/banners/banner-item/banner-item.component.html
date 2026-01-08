@@ -1,4 +1,10 @@
-<article class="banner">
+<article 
+  class="banner"
+  [ngStyle]="{
+    backgroundImage: `url(${banner().publicId})`,
+    color: banner().textColor,
+  }"
+>
   <div class="banner__announcement">
     {{banner().translations[currentLang()].announcement}}
   </div>

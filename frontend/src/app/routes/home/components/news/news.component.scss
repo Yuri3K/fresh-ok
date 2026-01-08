@@ -16,19 +16,23 @@
   }
 
   .news__link{
+    position: relative;
     font-weight: 700;
     font-size: 0.75rem;
+    top: 0;
+    transform: top 0.2s;
 
     color: var(--mat-sys-primary);
     text-decoration: underline 2px;
     text-underline-offset: 5px;
+
+    &:hover {
+      top: -2px;
+    }
   }
 }
 
 .news__items{
-  // display: flex;
-  // align-items: stretch;
-  // flex-wrap: wrap;
   display: grid; 
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   justify-content: center;

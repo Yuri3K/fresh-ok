@@ -2,11 +2,13 @@ import { Component, computed, inject, input } from '@angular/core';
 import { Banner } from '../services/banners.service';
 import { RouterLink } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-banner-item',
   imports: [
     RouterLink,
+    NgStyle
   ],
   templateUrl: './banner-item.component.html',
   styleUrl: './banner-item.component.scss'

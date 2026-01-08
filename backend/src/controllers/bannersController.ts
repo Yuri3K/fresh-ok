@@ -8,6 +8,7 @@ interface Banner {
   linkUrl: string,
   order: number,
   publicId: string,
+  textColor: string,
   translations: {
     en: Translation,
     ru: Translation,

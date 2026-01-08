@@ -9,9 +9,4 @@ import { Sponsor } from '../services/sponsors.service';
 })
 export class SponsorsSlideComponent {
   sponsor = input.required<Partial<Sponsor>>()
-  
-  ngOnInit() {
-    
-    console.log("🔸 sponsor:", this.sponsor())
-  }
 }

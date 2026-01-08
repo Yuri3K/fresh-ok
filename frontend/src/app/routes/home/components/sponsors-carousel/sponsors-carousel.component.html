@@ -14,30 +14,30 @@
 		На самом деле, лоя этой ситуации, достаточно было бы только nonStop
 		так как эта карусель безостановочная.
 	-->
-  <ng-template 
+	<ng-template 
 		#stopBtn
 		let-autoplay="autoplay"
 		let-nonStop="nonStop"
 	>
-    <app-mini-fab-btn
-      [iconName]="
+		<app-mini-fab-btn
+			[iconName]="
 				nonStop.rafId
 					? 'pause'
 					: 'play_arrow'
 			"
-      [ariaLabel]="
+			[ariaLabel]="
 				nonStop.rafId
 					? 'Pause carousel'
 					: 'Play carousel'
 			"
-      [tooltipText]="
+			[tooltipText]="
 				nonStop.rafId
 					? 'Pause carousel'
 					: 'Play carousel'
 			"
-      (click)="autoplay.toggle(); nonStop.toggle()"
-      [isBadgeHidden]="true"
-      iconColor="var(--mat-sys-on-secondary-container)"
-    />
-  </ng-template>
+			(click)="autoplay.toggle(); nonStop.toggle()"
+			[isBadgeHidden]="true"
+			iconColor="var(--mat-sys-on-secondary-container)"
+		/>
+	</ng-template>
 </lib-ngx-carousel>

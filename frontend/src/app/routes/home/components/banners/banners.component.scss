@@ -1,0 +1,35 @@
+.banners {
+  padding-top: 70px;
+  padding-bottom: 135px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  justify-content: center;
+  gap: 30px;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: 1.5fr 1fr 1fr;
+    // grid-template-columns: repeat(2, minmax(300px, 560px));
+    // grid-template-columns: minmax(300px, 945px) minmax(300px, 630px);
+  }
+
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr 1fr;
+
+    > :first-child {
+      grid-column: 1 / -1;
+      justify-self: center;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+
+    > :last-child {
+      grid-column: auto;
+      justify-self: stretch;
+      width: 100%;
+      max-width: none;
+    }
+  }
+}
