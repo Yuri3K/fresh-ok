@@ -160,6 +160,7 @@
     "address": "Київ, вул. Шевченка, 1",
     "hotline": "Гаряча лінія +38(099)-445-35-63",
     "subscribe": {
+      "title": "Слідкуйте за нашими акціями",
       "placeholder": "email@example.com",
       "submit": "Підписатися"
     },

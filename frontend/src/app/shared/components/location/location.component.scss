@@ -1,0 +1,24 @@
+.location {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 18px;
+}
+
+.location__address,
+.location__hotline{
+  color: inherit;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  text-decoration: none;
+}
+
+.location__hotline {
+  &:hover {
+    color: var(--mat-sys-primary-fixed-dim);
+  }
+}
+
+.location__address {
+  text-transform: capitalize;
+}

@@ -1,15 +1,22 @@
-<form (ngSubmit)="onSubmit()">
-  <mat-form-field class="no-subscript">
-    <input
-      type="email"
-      matInput
-      [formControl]="subscribeField"
-      [placeholder]="'footer.subscribe.placeholder' | translate"
-    />
-  </mat-form-field>
-  <div class="submit-button">
-    <button mat-flat-button type="submit" [disabled]="!subscribeField.valid">
-      {{ 'footer.subscribe.submit' | translate }}
-    </button>
-  </div>
-</form> 
+<div class="subscribe">
+  <p class="subscribe__title">
+    {{'footer.subscribe.title' | translate}}
+  </p>
+
+  <form (ngSubmit)="onSubmit()">
+    <mat-form-field class="no-subscript">
+      <input
+        type="email"
+        matInput
+        [formControl]="subscribeField"
+        [placeholder]="'footer.subscribe.placeholder' | translate"
+      />
+    </mat-form-field>
+    <div class="submit-button">
+      <button mat-flat-button type="submit" [disabled]="!subscribeField.valid">
+        {{ 'footer.subscribe.submit' | translate }}
+      </button>
+    </div>
+  </form> 
+</div>
+

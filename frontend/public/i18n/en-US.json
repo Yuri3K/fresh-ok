@@ -160,6 +160,7 @@
     "address": "Kyiv, Shevchenko St., 1",
     "hotline": "Hotline +38(099)-445-35-63",
     "subscribe": {
+      "title": "Follow our promotions",
       "placeholder": "email@example.com",
       "submit": "Subscribe"
     },
