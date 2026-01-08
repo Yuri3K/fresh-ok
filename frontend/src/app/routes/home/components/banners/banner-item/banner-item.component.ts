@@ -1,8 +1,9 @@
-import { Component, computed, inject, input } from '@angular/core';
+import { Component, DestroyRef, inject, input, signal } from '@angular/core';
 import { Banner } from '../services/banners.service';
 import { RouterLink } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NgStyle } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-banner-item',
@@ -15,22 +16,22 @@ import { NgStyle } from '@angular/common';
 })
 export class BannerItemComponent {
   translateService = inject(TranslateService);
+  destroyRef = inject(DestroyRef)
+
   banner = input.required<Banner>()
 
-  currentLang = computed(() => {
-    const lang = this.translateService.getCurrentLang().split('-')[0] || 'en'
-    return lang as keyof Banner['translations']
-  })
+  currentLang = signal(this.normalizeLang(this.translateService.getCurrentLang()))
 
-  ngOnInit() {
-    // this.translateService.stream('hello')
-    // .subscribe(s => {
-    //   console.log("!!! CHANGED !!!")
-    // })
+  constructor() {
     this.translateService.onLangChange
-    .subscribe(lang => {
-      console.log("!!! LANG !!!", lang)
-    })
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(event => {
+        this.currentLang.set(this.normalizeLang(event.lang));
+      });
+  }
+
+  private normalizeLang(lang: string): keyof Banner['translations'] {
+    return lang.split('-')[0] as keyof Banner['translations'];
   }
 
 }

@@ -1,15 +1,10 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router, UrlTree } from '@angular/router';
 import { LangsService } from '../services/langs.service';
-import { filter, map, Observable, take } from 'rxjs';
-import { LangRouterService } from '../services/lang-router.service';
 
 export const LangGuard: CanActivateFn = (route, state): boolean | UrlTree => {
-  console.log('🔸 !!!LangGuard!!!:');
 
-  const navigateService = inject(LangRouterService);
   const langsService = inject(LangsService);
-  const langs$ = langsService.langs$;
   const router = inject(Router);
 
   // При старте приложения языки еще не получены с сервера, поэтому
@@ -26,7 +21,6 @@ export const LangGuard: CanActivateFn = (route, state): boolean | UrlTree => {
   //   take(1),
   //   map((langs) => {
       const langParam = route.params['lang']; // берем :lang из URL
-      console.log("🔸 langParam:", langParam)
 
       // Если в URL не указан язык
       if (!langParam) {
@@ -44,7 +38,6 @@ export const LangGuard: CanActivateFn = (route, state): boolean | UrlTree => {
       if (!langsService.isSupported(langParam)) {
         // Пытаемся автоматически определить язык и если не получается, то применим язык по дефолту
         const fallback = langsService.resolveTargetLang();
-        console.log("🚀 ~ ...route.url.map(s => s.path):", [fallback, ...route.url.map(s => s.path)])
 
         // Переходим на страницу используя язык, который попал в fallback
         // Используем createUrlTree для сохранения query параметров
@@ -59,10 +52,3 @@ export const LangGuard: CanActivateFn = (route, state): boolean | UrlTree => {
   //   })
   // );
 };
-
-// Вспомогательная функция для извлечения сегментов пути
-function getPathSegments(url: string): string[] {
-  // Убираем query параметры и fragment, разбиваем на сегменты
-  const path = url.split('?')[0].split('#')[0];
-  return path.split('/').filter((segment) => segment.length > 0);
-}
