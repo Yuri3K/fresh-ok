@@ -1,0 +1,35 @@
+[
+  {
+    "id": "hit",
+    "i18n": {
+      "uk": "Хіт",
+      "ru": "Хит",
+      "en": "Hit"
+    },
+    "color": "#FF9800",
+    "priority": 3,
+    "isActive": true
+  },
+  {
+    "id": "new",
+    "i18n": {
+      "uk": "Новинка",
+      "ru": "Новинка",
+      "en": "New"
+    },
+    "color": "#4CAF50",
+    "priority": 2,
+    "isActive": true
+  },
+  {
+    "id": "discount",
+    "i18n": {
+      "uk": "Знижка",
+      "ru": "Скидка",
+      "en": "Discount"
+    },
+    "color": "#F44336",
+    "priority": 1,
+    "isActive": true
+  }
+]

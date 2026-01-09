@@ -14,6 +14,14 @@ npx ts-node import-catalog.ts
 
 ---
 
+в терминале перейти в папку scripts/src/products и выполнить команду
+
+npx ts-node seed-products.ts
+
+Эта команда НАПОЛНИТ коллекцию "products" в Firestore и выполнит запись документов согласно логике скрипта
+
+---
+
 node src/export-collections.js - команду выполнять в папке /d/projects/FreshokFrontBack/scripts
 
 Результат: в папке src создаст папку gpalette-uat/backup и в нее скачает json файл для каждой коллекции. Если в коллекции будет подколлекция, то структура json будет соответствовать этой схеме
