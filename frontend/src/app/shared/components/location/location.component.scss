@@ -1,8 +1,20 @@
+.container {
+  padding: 0;
+
+  @media (max-width: 576px) {
+    padding: 0 15px;
+  }
+}
+
 .location {
   display: flex;
   flex-direction: column;
   justify-content: start;
   gap: 18px;
+
+  @media (max-width: 576px) {
+    align-items: center;
+  }
 }
 
 .location__address,

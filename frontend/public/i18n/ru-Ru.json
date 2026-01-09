@@ -170,32 +170,32 @@
         "route": "/about"
       },
       {
-        "text": "Контакты",
-        "route": "/contacts"
-      },
-      {
-        "text": "Публичная оферта",
-        "route": "/public-offer"
-      },
-      {
         "text": "Оплата и доставка",
         "route": "/payment-delivery"
-      },
-      {
-        "text": "Вакансии",
-        "route": "/careers"
-      },
-      {
-        "text": "Акции",
-        "route": "/promotions"
       },
       {
         "text": "Отзывы",
         "route": "/reviews"
       },
       {
+        "text": "Контакты",
+        "route": "/contacts"
+      },
+      {
+        "text": "Вакансии",
+        "route": "/careers"
+      },
+      {
         "text": "Новости",
         "route": "/news"
+      },
+      {
+        "text": "Публичная оферта",
+        "route": "/public-offer"
+      },
+      {
+        "text": "Акции",
+        "route": "/promotions"
       }
     ]
   }

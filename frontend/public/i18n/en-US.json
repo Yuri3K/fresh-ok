@@ -170,32 +170,32 @@
         "route": "/about"
       },
       {
-        "text": "Contacts",
-        "route": "/contacts"
-      },
-      {
-        "text": "Public Offer",
-        "route": "/public-offer"
-      },
-      {
         "text": "Payment & Delivery",
         "route": "/payment-delivery"
-      },
-      {
-        "text": "Careers",
-        "route": "/careers"
-      },
-      {
-        "text": "Promotions",
-        "route": "/promotions"
       },
       {
         "text": "Reviews",
         "route": "/reviews"
       },
       {
+        "text": "Contacts",
+        "route": "/contacts"
+      },
+      {
+        "text": "Careers",
+        "route": "/careers"
+      },
+      {
         "text": "News",
         "route": "/news"
+      },
+      {
+        "text": "Public Offer",
+        "route": "/public-offer"
+      },
+      {
+        "text": "Promotions",
+        "route": "/promotions"
       }
     ]
   }

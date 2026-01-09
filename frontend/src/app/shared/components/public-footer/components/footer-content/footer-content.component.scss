@@ -4,7 +4,7 @@
   flex-wrap: wrap;
   align-items: start;
   justify-content: space-between;
-  gap: 1%;
+  gap: 2%;
   margin-bottom: 30px;
 }
 
@@ -12,19 +12,94 @@ app-logo {
   order: 1;
   width: 100%;
   margin-bottom: 30px;
+  padding-left: 15px;
+
+  @media (max-width: 1200px) {
+    width: 19%;
+    margin-top: 20px;
+  }
+
+  @media (max-width: 992px) {
+    width: 7%;
+  }
+
+  @media (max-width: 768px) {
+    width: 38%;
+  }
+
+  @media (max-width: 576px) {
+    padding-left: 0;
+    width: 100%;
+  }
 }
 
-app-subscribe{
+app-subscribe {
   order: 2;
-  width: 30%;
+  width: 29%;
+
+  @media (max-width: 1200px) {
+    width: 53%;
+    margin-bottom: 30px;
+  }
+
+  @media (max-width: 992px) {
+    width: 56%;
+  }
+
+  @media (max-width: 768px) {
+    order: 3;
+    width: 100%;
+    margin-bottom: 50px;
+  }
+
+  @media (max-width: 576px) {
+    margin-top: 24px;
+    margin-bottom: 0;
+    padding-bottom: 24px;
+    border-bottom: 2px solid
+      color-mix(in srgb, var(--mat-sys-primary-fixed) 10%, transparent 90%);
+    width: 100%;
+  }
 }
 
-app-footer-nav{
+app-footer-nav {
   order: 3;
   width: 42%;
+
+  @media (max-width: 1200px) {
+    order: 4;
+    width: 100%;
+  }
+
+  @media (max-width: 576px) {
+    margin-top: 24px;
+    width: 100%;
+  }
 }
 
-app-location{
+app-location {
   order: 4;
-  width: 25%;
+  width: 24%;
+
+  @media (max-width: 1200px) {
+    order: 3;
+    margin-bottom: 30px;
+  }
+
+  @media (max-width: 992px) {
+    width: 33%;
+  }
+
+  @media (max-width: 768px) {
+    order: 2;
+    width: 44%;
+  }
+
+  @media (max-width: 576px) {
+    width: 100%;
+    margin-bottom: 0;
+    padding-bottom: 24px;
+    border-bottom: 2px solid
+      color-mix(in srgb, var(--mat-sys-primary-fixed) 10%, transparent 90%);
+  }
 }

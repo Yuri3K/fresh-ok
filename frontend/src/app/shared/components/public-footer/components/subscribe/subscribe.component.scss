@@ -1,7 +1,29 @@
+.container {
+  padding: 0;
+
+  @media (max-width: 576px) {
+    padding: 0 15px;
+  }
+}
+
 .subscribe{
   display: flex;
   flex-direction: column;
   gap: 18px;
+
+  @media (max-width: 1200px) {
+    width: 365px;
+    margin: auto;;
+  }
+
+  @media (max-width: 992px) {
+    width: 345px;
+  }
+
+  @media (max-width: 768px) {
+    width: auto;
+    max-width: 530px;
+  }
 }
 
 form {

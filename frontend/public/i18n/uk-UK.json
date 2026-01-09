@@ -170,32 +170,32 @@
         "route": "/about"
       },
       {
-        "text": "Контакти",
-        "route": "/contacts"
-      },
-      {
-        "text": "Публічна оферта",
-        "route": "/public-offer"
-      },
-      {
         "text": "Оплата і доставка",
         "route": "/payment-delivery"
-      },
-      {
-        "text": "Вакансії",
-        "route": "/careers"
-      },
-      {
-        "text": "Акції",
-        "route": "/promotions"
       },
       {
         "text": "Відгуки",
         "route": "/reviews"
       },
       {
+        "text": "Контакти",
+        "route": "/contacts"
+      },
+      {
+        "text": "Вакансії",
+        "route": "/careers"
+      },
+      {
         "text": "Новини",
         "route": "/news"
+      },
+      {
+        "text": "Публічна оферта",
+        "route": "/public-offer"
+      },
+      {
+        "text": "Акції",
+        "route": "/promotions"
       }
     ]
   }

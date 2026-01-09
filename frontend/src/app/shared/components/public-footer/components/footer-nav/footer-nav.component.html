@@ -1,10 +1,12 @@
 @let links = ('footer.links' | translate);
 
-<div class="footer-nav">
-  @for(link of links; track $index) {
-    <a 
-      class="footer-nav__link"
-      [routerLink]="[link.route]"
-    >{{link.text}}</a>
-  }
+<div class="container">
+  <div class="footer-nav">
+    @for(link of links; track $index) {
+      <a 
+        class="footer-nav__link"
+        [routerLink]="[link.route]"
+      >{{link.text}}</a>
+    }
+  </div>
 </div>

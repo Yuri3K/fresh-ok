@@ -1,16 +1,28 @@
+.container {
+  padding: 0;
+
+  @media (max-width: 1200px) {
+    padding: 0 15px;
+  }
+}
+
 .footer-nav {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 5%;
 
   @media (max-width: 576px) {
-    .footer-nav {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 .footer-nav__link {
   color: #fff;
   text-decoration: none;
+  margin-bottom: 18px;
+  text-align: center;
+
+  &:hover {
+    color: var(--mat-sys-primary-fixed-dim);
+  }
 }

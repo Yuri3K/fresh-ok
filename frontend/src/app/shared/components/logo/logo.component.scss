@@ -19,6 +19,12 @@
     width: auto;
     height: 50px;
   }
+
+  // @media для нижнего лого в футере
+  @media (max-width: 576px) {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 .logo__text {

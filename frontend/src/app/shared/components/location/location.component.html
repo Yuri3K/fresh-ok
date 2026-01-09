@@ -1,12 +1,13 @@
-<div class="location" [ngStyle]="{color: textColor()}">
-
-  <a 
-    class="location__hotline"
-    href="tel:+380994453563"
-  >
-    {{'footer.hotline' | translate}}
-  </a>
-  <p class="location__address">{{'footer.address' | translate}}</p>
-
-  <app-social [iconColor]="iconColor()" />
+<div class="container">
+  <div class="location" [ngStyle]="{color: textColor()}">
+    <a 
+      class="location__hotline"
+      href="tel:+380994453563"
+    >
+      {{'footer.hotline' | translate}}
+    </a>
+    <p class="location__address">{{'footer.address' | translate}}</p>
+  
+    <app-social [iconColor]="iconColor()" />
+  </div>
 </div>
