@@ -1,0 +1,201 @@
+{
+  "seo": {
+    "meta-title": "FRESHOK | Главная страница",
+    "meta-descr": "Добро пожаловать в FRESHOK онлайн-маркет. Здесь вы всегда найдете свежие и недорогие продукты."
+  },
+  "common": {
+    "close": "Закрыть",
+    "logout": "Выйти",
+    "login": "Войти",
+    "back-to-homepage": "Вернуться на домашнюю страницу",
+    "forms": {
+      "email": {
+        "enter-email": "Введите свою электронную почту",
+        "email-hint": "Подсказка: example@gmail.com",
+        "email-error-required": "Пожалуйста, введите электронную почту",
+        "email-error-invalid": "Пожалуйста, введите корректную электронную почту",
+        "email-error-exists": "Эта электронная почта уже зарегистрирована"
+      },
+      "pwd": {
+        "enter-pwd": "Введите свой пароль",
+        "show-pwd": "Показать пароль",
+        "hide-pwd": "Скрыть пароль",
+        "pwd-hint": "Подсказка: должно быть не менее 6 символов",
+        "pwd-error-required": "Пожалуйста, введите пароль",
+        "pwd-error-minlength": "Пароль должен быть не менее {{minlength}} символов. Сейчас {{currentlength}} символов"
+      },
+      "name": {
+        "enter-nick": "Введите никнейм",
+        "nick-placeholder": "Например: Пользователь",
+        "nick-hint": "Подсказка: должно быть не менее 2 символов",
+        "nick-error-required": "Пожалуйста, введите никнейм",
+        "nick-error-minlength": "Никнейм должен быть не менее {{minlength}} символов. Сейчас {{currentlength}} символов"
+      }
+    }
+  },
+  "errors": {
+    "fetch-collection-user": "Произошла ошибка при получении пользователя из коллекции"
+  },
+  "header": {
+    "user": {
+      "alt": "Аватар",
+      "greetings": "Привет, {{name}}",
+      "privacy": "Политика конфиденциальности",
+      "terms": "Условия использования"
+    }
+  },
+  "header-market": {
+    "logo": {
+      "title": "Freshok",
+      "subtitle": "онлайн-маркет"
+    },
+    "catalog": {
+      "title": "Каталог товаров",
+      "all-categories": "Все категории"
+    },
+    "search-input": {
+      "placeholder": "Найти в маркете",
+      "submit": "Найти"
+    }
+  },
+  "login-page": {
+    "title": "Вход",
+    "login-with-google": "Продолжить с Google",
+    "go-to-register": {
+      "prefix": "Еще не зарегистрированы? Перейдите на страницу ",
+      "link": "регистрации",
+      "suffix": "."
+    }
+  },
+  "register-page": {
+    "title": "Регистрация",
+    "register-error": "Не удалось зарегистрировать пользователя \"{{email}}\"",
+    "go-to-login": {
+      "prefix": "Уже есть аккаунт? Перейдите на страницу ",
+      "link": "входа",
+      "suffix": "."
+    }
+  },
+  "homepage": {
+    "slider": [
+      {
+        "title": "Свежачок вам в хату",
+        "subtitle": "скидка -50%",
+        "descr": "Только с 7 по 13 июля — скидки до 50% на сезонные фрукты и овощи. Не пропустите!",
+        "btn": "Купить сейчас",
+        "link": "/",
+        "imageUrl": "slider/slide1"
+      },
+      {
+        "title": "Сойдите с ума от помидоров",
+        "subtitle": "Акция: 3 кг по цене 1",
+        "descr": "С 12 по 15 июля наслаждайтесь скидками на домашние, сочные помидоры!",
+        "btn": "Купить сейчас",
+        "link": "/",
+        "imageUrl": "slider/slide2"
+      },
+      {
+        "title": "Заставьте всех позеленеть от зависти",
+        "subtitle": "Скидки на зелень",
+        "descr": "",
+        "btn": "Купить сейчас",
+        "link": "/",
+        "imageUrl": "slider/slide3"
+      }
+    ],
+    "advantages": [
+      {
+        "scr": "advantages/scooter",
+        "title": "Бесплатная доставка",
+        "descr": "Для заказов на сумму от 500<span class='currency'>₴</span>"
+      },
+      {
+        "scr": "advantages/return-box",
+        "title": "Возврат товара",
+        "descr": "Если товары были испорчены"
+      },
+      {
+        "scr": "advantages/24-hours",
+        "title": "Поддержка 24/7",
+        "descr": "Лучшие операторы"
+      }
+    ],
+    "news": {
+      "title": "Наши новости",
+      "all-new": "Все новости",
+      "route-page": "ru/all-news",
+      "newsItems": [
+        {
+          "src": "news/strawberry",
+          "alt": "Распродажа фруктов",
+          "descr": "Событие этого лета: распродажа сезонных фруктов в онлайн-маркете FRESHOK. Торопись, пока всё не разобрали!",
+          "date": {
+            "day": "15",
+            "month": "Июль"
+          }
+        },
+        {
+          "src": "news/mango",
+          "alt": "Шикарный выбор манго",
+          "descr": "Шикарнейший выбор манго в нашем онлайн-маркете",
+          "date": {
+            "day": "28",
+            "month": "Май"
+          }
+        },
+        {
+          "src": "news/papaya",
+          "alt": "Папайя",
+          "descr": "Всё, что вы хотели знать о папайя",
+          "date": {
+            "day": "20",
+            "month": "Февраль"
+          }
+        }
+      ]
+    }
+  },
+  "footer": {
+    "address": "Киев, ул. Шевченко, 1",
+    "hotline": "Горячая линия +38(099)-445-35-63",
+    "subscribe": {
+      "title": "Следите за нашими акциями",
+      "placeholder": "email@example.com",
+      "submit": "Подписаться"
+    },
+    "links": [
+      {
+        "text": "О нас",
+        "route": "/about"
+      },
+      {
+        "text": "Оплата и доставка",
+        "route": "/payment-delivery"
+      },
+      {
+        "text": "Отзывы",
+        "route": "/reviews"
+      },
+      {
+        "text": "Контакты",
+        "route": "/contacts"
+      },
+      {
+        "text": "Вакансии",
+        "route": "/careers"
+      },
+      {
+        "text": "Новости",
+        "route": "/news"
+      },
+      {
+        "text": "Публичная оферта",
+        "route": "/public-offer"
+      },
+      {
+        "text": "Акции",
+        "route": "/promotions"
+      }
+    ]
+  }
+}
