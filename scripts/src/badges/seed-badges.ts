@@ -18,6 +18,9 @@ async function seedBadges() {
 
   console.log(`Found ${Object.keys(badges).length} badges...`);
 
+  // В Firestore есть batch-запросы: это когда ты объединяешь 
+  // несколько операций (set, update, delete) и выполняешь их одним коммитом.
+  // batch — это объект, в котором мы накапливаем операции.
   const batch = db.batch();
 
   for (const badge of badges) {
