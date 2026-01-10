@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { db } from '../config/firebaseAdmin'
 
-type LangCode = 'en' | 'ru' | 'uk';
+export type LangCode = 'en' | 'ru' | 'uk';
 interface Lang {
   id: string;
   name: string;        // e.g. "en-US", "ru-RU"
