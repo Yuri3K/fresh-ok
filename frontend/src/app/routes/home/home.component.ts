@@ -4,11 +4,13 @@ import { NewsComponent } from './components/news/news.component';
 import { MainCarouselComponent } from './components/main-carousel/main-carousel.component';
 import { SponsorsCarouselComponent } from './components/sponsors-carousel/sponsors-carousel.component';
 import { BannersComponent } from './components/banners/banners.component';
+import { HitProductsComponent } from '../../shared/components/hit-products/hit-products.component';
 
 @Component({
   selector: 'app-home',
   imports: [
     MainCarouselComponent,
+    HitProductsComponent,
     AdvantagesComponent,
     SponsorsCarouselComponent,
     NewsComponent,

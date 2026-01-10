@@ -1,0 +1,17 @@
+[
+  {
+    "slug": "coffee-canapa",
+    "price": 1050,
+    "categories": ["tea-coffee"],
+    "isNew": true,
+    "isHit": true,
+    "hasDiscount": false,
+    "badges": ["new", "hit"],
+    "searchKeywords": ["Сoffee-canapa", "Кофе с коноплей", "Кава з коноплею"],
+    "i18n": {
+      "en": { "name": "Сoffee-canapa", "description": "Try a new hemp coffee" },
+      "ru": { "name": "Кофе с коноплей", "description": "Попробуйте новый кофе с коноплей" },
+      "uk": { "name": "Кава з коноплею", "description": "Спробуйте нову каву з коноплею" }
+    }
+  }
+]

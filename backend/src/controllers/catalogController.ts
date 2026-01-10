@@ -6,6 +6,7 @@ const getCatalogList = async (req: Request, res: Response) => {
     const snapshot = await db.collection('catalog')
     .orderBy('order', 'asc') // 'asc' - Ascending (по возрастанию)
     .get()
+     
     const catalog = snapshot.docs.map(doc => {
       return {
         id: doc.id,
