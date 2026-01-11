@@ -3,20 +3,38 @@ import { LangCode } from "../controllers/langsController";
 
 interface Product {
   id: string;
+  publicId: string;
   badges: string[];
   categories: string[];
   currency: string;
   discountPercent: number;
   hasDiscount: boolean;
-  i18n: Record<LangCode, string>;
+  i18n: Record<LangCode, ProductTexts>;
   isActive: boolean;
   isHit: boolean;
   isNew: boolean;
   price: number;
   searchKeywords: string[];
   slug: string;
+  stock: string;
+  rate: number;
   createdAt: string;
   updatedAt: string;
+}
+
+interface Stock {
+  i18n: Record<LangCode, stockStatus>;
+  slug: stockStatus;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+type stockStatus = "in stock" | "low-stock" | "out-of-stock";
+
+export interface ProductTexts {
+  name: string;
+  description: string;
 }
 
 interface Badge {
@@ -41,8 +59,18 @@ export async function getFilteredProducts(query: any) {
   });
 
   const badgesMap = await getBadgesMap();
+  const stockMap = await getStockMap();
 
-  return attachBadges(products, badgesMap);
+  const finalProducts = products.map((product) => ({
+    ...product,
+    badges: product.badges
+      .map((badgeName) => badgesMap.get(badgeName))
+      .filter(Boolean)
+      .sort((a, b) => a!.priority - b!.priority),
+    stock: stockMap.get(product.stock),
+  }));
+
+  return finalProducts;
 }
 
 // Функция для предварительной проверки query параметров в запросе
@@ -68,34 +96,14 @@ function buildQuery(filters: ReturnType<typeof parseFilters>) {
 
   if (filters.badge) {
     console.log("!!! IN BADGES !!!");
-		const badges = filters.badge.split(',')
-		
-		// getBadges(badges)
-    // q = q.where("badges", "array-contains", filters.badge);
+    const badges = filters.badge.split(",").map((b: string) => b.trim());
+    console.log("🚀 ~ badges:", badges);
+
+    q = q.where("badges", "array-contains-any", badges);
   }
 
   return q;
 }
-
-// async function getBadges(badges: string[]) {
-//   const results = new Map<string, Product>();
-
-//   for (const badge of badges) {
-//     const snapshot = await db
-//       .collection("products")
-//       .where("badges", "array-contains", badge)
-//       .get();
-
-//     snapshot.docs.forEach((doc) => {
-//       results.set(doc.id, {
-//         id: doc.id, 
-//         ...(doc.data() as any),
-//       });
-//     });
-//   }
-
-//   return Array.from(results.values());
-// }
 
 // Функция для получения с БД данных про активные бэйджи.
 //
@@ -114,18 +122,40 @@ async function getBadgesMap(): Promise<Map<string, Badge>> {
   );
 }
 
-// Функция для добавления данных о бэйдже в объект продукта
-//
-// Выполнит перебор массива product.badges и на основании названия бэйжда
-// получит из badgesMap развернутые данные о конкретном бэйдже
-function attachBadges(products: Product[], badgesMap: Map<string, Badge>) {
-  return products.map((product) => {
-    return {
-      ...product,
-      badges: product.badges
-        .map((badgeName) => badgesMap.get(badgeName))
-        .filter(Boolean)
-        .sort((a, b) => a!.priority - b!.priority),
-    };
-  });
+async function getStockMap(): Promise<Map<string, Stock>> {
+  const snapshot = await db
+    .collection("stockStatuses")
+    .where("isActive", "==", true)
+    .get();
+
+  return new Map(
+    snapshot.docs.map((doc) => {
+      return [doc.id, { id: doc.id, ...(doc.data() as Omit<Stock, "id">) }];
+    })
+  );
 }
+
+// // Функция для добавления данных о бэйдже в объект продукта
+// //
+// // Выполнит перебор массива product.badges и на основании названия бэйжда
+// // получит из badgesMap развернутые данные о конкретном бэйдже
+// function attachBadges(products: Product[], badgesMap: Map<string, Badge>) {
+//   return products.map((product) => {
+//     return {
+//       ...product,
+//       badges: product.badges
+//         .map((badgeName) => badgesMap.get(badgeName))
+//         .filter(Boolean)
+//         .sort((a, b) => a!.priority - b!.priority),
+//     };
+//   });
+// }
+
+// function attachStock(products: Product[], stockMap: Map<string, Stock>) {
+//   return products.map(product => {
+//     return {
+//       ...product,
+//       stock: stockMap.get(product.stock)
+//     }
+//   })
+// }
