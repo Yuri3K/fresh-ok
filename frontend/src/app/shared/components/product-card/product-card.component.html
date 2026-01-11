@@ -1,17 +1,13 @@
-<p>{{product().slug}}</p>
-
 <div class="product-card green">
   <div class="product-card__header">
 		<div class="product-card__badges">
 			@for(badge of product().badges; track $index) {
-				<!-- @if(currentLang()) { -->
-					<span 
-						class="product-card__badge"
-						[style.backgroundColor]="badge.color"
-					>
-						{{badge.i18n[currentLang()]}}
-					</span>
-				<!-- } -->
+				<span 
+					class="product-card__badge"
+					[style.backgroundColor]="badge.color"
+				>
+					{{badge.i18n[currentLang()]}}
+				</span>
 			}
 		</div>
 		<div class="product-card__fav">

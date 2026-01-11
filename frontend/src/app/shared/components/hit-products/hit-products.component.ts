@@ -4,11 +4,13 @@ import {
   ProductsService,
 } from '../../../core/services/products.service';
 import { ProductCardComponent } from '../product-card/product-card.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-top-products',
   imports: [
-    ProductCardComponent
+    ProductCardComponent,
+    TranslateModule,
   ],
   templateUrl: './hit-products.component.html',
   styleUrl: './hit-products.component.scss',
@@ -17,6 +19,7 @@ export class HitProductsComponent implements OnInit {
   productsService = inject(ProductsService);
 
   hitProducts = signal<Product[]>([]);
+  appliedFilter = signal('all')
   isLoading = signal(false);
 
   ngOnInit() {
@@ -30,5 +33,26 @@ export class HitProductsComponent implements OnInit {
     this.productsService
       .getProducts(queryStr)
       .subscribe((products) => this.hitProducts.set(products));
+  }
+
+  applyFilter(selector: string) {
+    if(this.appliedFilter() == selector) return
+
+    this.appliedFilter.set(selector)
+    this.isLoading.set(true)
+
+    const queryStr = ['badge=hit'];
+
+    if(selector !== 'all') {
+      queryStr.push(`category=${selector}`)
+    }
+
+    this.productsService
+      .getProducts(queryStr)
+      .subscribe((products) => {
+        this.isLoading.set(false)
+        this.hitProducts.set(products)
+      });
+
   }
 }

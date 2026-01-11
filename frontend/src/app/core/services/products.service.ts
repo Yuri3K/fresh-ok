@@ -7,7 +7,7 @@ export interface Product {
   id: string;
   publicId: string;
   badges: Badge[];
-  categories: string[];
+  category: string;
   currency: string;
   discountPercent: number;
   hasDiscount: boolean;

@@ -124,24 +124,29 @@
       "title": "Top products",
       "filters": [
         {
+          "name": "All products",
+          "order": 1,
+          "selector": "all"
+        },
+        {
           "name": "Fruits",
-          "oreder": 2,
-          "slug": "fruits"
+          "order": 2,
+          "selector": "fruits"
         },
         {
           "name": "Vegetables",
-          "oreder": 3,
-          "slug": "vegetables"
+          "order": 3,
+          "selector": "vegetables"
         },
         {
           "name": "Drinks",
-          "oreder": 4,
-          "slug": "drinks"
+          "order": 4,
+          "selector": "drinks"
         },
         {
           "name": "Groceries",
-          "oreder": 5,
-          "slug": "groceries"
+          "order": 5,
+          "selector": "groceries"
         }
       ]
     },

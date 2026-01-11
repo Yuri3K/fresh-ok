@@ -124,24 +124,29 @@
       "title": "Топовые товары",
       "filters": [
         {
+          "name": "Все товары",
+          "order": 1,
+          "selector": "all"
+        },
+        {
           "name": "Фрукты",
-          "oreder": 2,
-          "slug": "fruits"
+          "order": 2,
+          "selector": "fruits"
         },
         {
           "name": "Овощи",
-          "oreder": 3,
-          "slug": "vegetables"
+          "order": 3,
+          "selector": "vegetables"
         },
         {
           "name": "Напитки",
-          "oreder": 4,
-          "slug": "drinks"
+          "order": 4,
+          "selector": "drinks"
         },
         {
           "name": "Бакалея",
-          "oreder": 5,
-          "slug": "groceries"
+          "order": 5,
+          "selector": "groceries"
         }
       ]
     },

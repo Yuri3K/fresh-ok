@@ -124,23 +124,28 @@
       "title": "Топові товари",
       "filters": [
         {
+          "name": "Усі товари",
+          "order": 1,
+          "selector": "all"
+        },
+        {
           "name": "Фрукти",
-          "oreder": 2,
+          "order": 2,
           "slug": "fruits"
         },
         {
           "name": "Овочі",
-          "oreder": 3,
+          "order": 3,
           "slug": "vegetables"
         },
         {
           "name": "Напої",
-          "oreder": 4,
+          "order": 4,
           "slug": "drinks"
         },
         {
           "name": "Бакалія",
-          "oreder": 5,
+          "order": 5,
           "slug": "groceries"
         }
       ]

@@ -1,4 +1,21 @@
-<div class="products-hit">
+@let translates = ('homepage.hit-products' | translate);
+
+<div class="hit-products">
+  <div class="hit-products__title">
+    {{translates.title}}
+  </div>
+
+  <div class="hit-products__filters">
+    @for(filter of translates.filters; track $index) {
+      <button 
+        [class.active]="appliedFilter() === filter.selector"
+        (click)="applyFilter(filter.selector)"
+      >
+        {{filter.name}}
+      </button>
+    }
+  </div>
+
   @for(product of hitProducts(); track product.id) {
     <app-product-card [product]="product" />
   }

@@ -5,7 +5,7 @@ interface Product {
   id: string;
   publicId: string;
   badges: string[];
-  categories: string[];
+  category: string;
   currency: string;
   discountPercent: number;
   hasDiscount: boolean;
@@ -91,14 +91,11 @@ function buildQuery(filters: ReturnType<typeof parseFilters>) {
 
   if (filters.category) {
     // q = q.where('categories', '==', filters.categories)
-    q = q.where("categories", "array-contains", filters.category);
+    q = q.where("category", "==", filters.category);
   }
 
   if (filters.badge) {
-    console.log("!!! IN BADGES !!!");
     const badges = filters.badge.split(",").map((b: string) => b.trim());
-    console.log("🚀 ~ badges:", badges);
-
     q = q.where("badges", "array-contains-any", badges);
   }
 
