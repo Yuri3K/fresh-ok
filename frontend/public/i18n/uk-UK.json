@@ -122,6 +122,7 @@
     ],
     "hit-products": {
       "title": "Топові товари",
+      "not-found": "За вашим фільтром товарів не знайдено",
       "filters": [
         {
           "name": "Усі товари",
@@ -147,6 +148,11 @@
           "name": "Бакалія",
           "order": 5,
           "slug": "groceries"
+        },
+        {
+          "name": "М'ясо",
+          "order": 6,
+          "selector": "meat"
         }
       ]
     },

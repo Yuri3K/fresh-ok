@@ -4,41 +4,57 @@
 			@for(badge of product().badges; track $index) {
 				<span 
 					class="product-card__badge"
-					[style.backgroundColor]="badge.color"
+					[class]="badge.color"
 				>
 					{{badge.i18n[currentLang()]}}
 				</span>
-			}
+			} 
 		</div>
-		<div class="product-card__fav">
-			<app-mini-fab-btn
-				iconName="favorite_border"
-				ariaLabel="Favourite"
-				tooltipText="Add to favs"
-				(click)="null"
-				[isBadgeHidden]="true"
-				iconColor="var(--mat-sys-on-secondary-container)"
-			/>
-		</div>
+
+		<app-mini-fab-btn
+			class="product-card__fav"
+			iconName="favorite_border"
+			ariaLabel="Favourite"
+			tooltipText="Add to favs"
+			(click)="null"
+			[isBadgeHidden]="true"
+			iconColor="var(--mat-sys-on-secondary-container)"
+		/>
 	</div>
 	 
-	<img 
-		width="300"
-		height="215"
-		class="product-card__img"
-		[src]="imgUrl()" 
-		[alt]="product().i18n[currentLang()].name"
-	>
+	<div class="product-card__img-wrapper">
+		<img 
+			width="300"
+			height="215"
+			draggable="false"
+			class="product-card__img"
+			[src]="imgUrl()" 
+			[alt]="product().i18n[currentLang()].name"
+		>
+
+		<a 
+			draggable="false"
+			class="product-card__link"
+			[routerLink]="['product', `:${product().id}`]"
+		>
+			<span class="product-card__svg-wrapper">
+				<svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 0 24 24" width="32px"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+			</span>
+		</a>
+	</div>
 
 	<div class="product-card__content">
-		<div class="product-card__content-top">
-			<div class="product-card__stock">
-				{{product().stock.i18n[currentLang()]}}
+		@if(withStockAndRate()) {
+			<div class="product-card__content-top">
+				<div class="product-card__stock">
+					{{product().stock.i18n[currentLang()]}}
+				</div>
+				<div class="product-card__rate">
+					{{product().rate}}
+				</div>
 			</div>
-			<div class="product-card__rate">
-				{{product().rate}}
-			</div>
-		</div>
+		}
+		
 		<h3 class="product-card__title">
 			{{product().i18n[currentLang()].description}}
 		</h3>
@@ -51,26 +67,35 @@
 		
 		<div class="product-card__footer-right">
 			<div class="product-card__counter">
-				<app-mini-fab-btn
-					iconName="add"
-					ariaLabel="Add"
-					(click)="null"
-					[isBadgeHidden]="true"
-					iconColor="var(--mat-sys-on-secondary-container)"
-				/>
-
-				<div contenteditable="true" class="product-card__field">1</div>
 
 				<app-mini-fab-btn
+					width="24px"
+					borderRadius="0"
 					iconName="remove"
 					ariaLabel="Add to cart"
 					(click)="null"
 					[isBadgeHidden]="true"
 					iconColor="var(--mat-sys-on-secondary-container)"
 				/>
+
+				<mat-form-field class="example-form-field">
+					<input matInput min="1" type="number" [(ngModel)]="value">
+				</mat-form-field>
+
+				<!-- <div contenteditable="true" class="product-card__field">1</div> -->
+
+				<app-mini-fab-btn
+					width="24px"
+					borderRadius="0"
+					iconName="add"
+					ariaLabel="Add"
+					(click)="null"
+					[isBadgeHidden]="true"
+					iconColor="var(--mat-sys-on-secondary-container)"
+				/>
 			</div>
 			<app-mini-fab-btn
-				iconName="add_shopping_cart"
+				iconName="shopping_cart"
 				ariaLabel="Add to cart"
 				tooltipText="Add to cart"
 				(click)="null"

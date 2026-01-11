@@ -54,3 +54,17 @@ body {
   background-color: transparent;
 }
 // END Для выпадающих списков, которые используют OpenMenuDirective
+
+// Убрать дефолнтные стрелки у input[type='number']
+input[type='number'] {
+  /* Firefox */
+  -moz-appearance: textfield;
+  appearance: textfield;
+  
+  /* Chrome, Safari, Edge, Opera */
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}

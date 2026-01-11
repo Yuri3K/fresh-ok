@@ -122,6 +122,7 @@
     ],
     "hit-products": {
       "title": "Топовые товары",
+      "not-found": "По вашему фильтру товаров не найдено.",
       "filters": [
         {
           "name": "Все товары",
@@ -147,6 +148,11 @@
           "name": "Бакалея",
           "order": 5,
           "selector": "groceries"
+        },
+        {
+          "name": "Мясо",
+          "order": 6,
+          "selector": "meat"
         }
       ]
     },

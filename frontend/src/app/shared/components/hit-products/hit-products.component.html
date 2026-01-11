@@ -1,22 +1,37 @@
 @let translates = ('homepage.hit-products' | translate);
 
-<div class="hit-products">
-  <div class="hit-products__title">
-    {{translates.title}}
+<div class="container">
+  <div class="hit-products">
+    <app-h2-title 
+      class="news__title"
+      [text]="translates.title"
+      fz="2rem"
+    />
+  
+    <div class="hit-products__filters">
+      @for(filter of translates.filters; track $index) {
+        <button 
+          [class.active]="appliedFilter() === filter.selector"
+          (click)="applyFilter(filter.selector)"
+        >
+          {{filter.name}}
+        </button>
+      }
+    </div>
+  
+    <div class="hit-products__cards">
+      @if(isLoading()) {
+        <app-loader />
+      } @else {
+        @for(product of hitProducts(); track product.id) {
+          <app-product-card 
+            [product]="product" 
+            [withStockAndRate]="false"
+          />
+        }@empty {
+          <p>{{translates['not-found']}}/p>
+        }
+      }
+    </div>
   </div>
-
-  <div class="hit-products__filters">
-    @for(filter of translates.filters; track $index) {
-      <button 
-        [class.active]="appliedFilter() === filter.selector"
-        (click)="applyFilter(filter.selector)"
-      >
-        {{filter.name}}
-      </button>
-    }
-  </div>
-
-  @for(product of hitProducts(); track product.id) {
-    <app-product-card [product]="product" />
-  }
 </div>

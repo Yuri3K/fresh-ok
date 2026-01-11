@@ -1,7 +1,16 @@
 .hit-products {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+	flex-wrap: wrap;
+}
+
+.hit-products__cards {
+	display: flex;
+	align-items: start;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 27px;
 }

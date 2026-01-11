@@ -1,8 +1,14 @@
 @use '@angular/material' as mat;
 
 :host {
-  @include mat.badge-overrides((
+    @include mat.badge-overrides((
     background-color: var(--mat-sys-secondary-fixed),
     text-color: red,
   ));
+}
+
+.mat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

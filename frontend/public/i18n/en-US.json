@@ -122,6 +122,7 @@
     ],
     "hit-products": {
       "title": "Top products",
+      "not-found": "There are no products matching your filter.",
       "filters": [
         {
           "name": "All products",
@@ -147,6 +148,11 @@
           "name": "Groceries",
           "order": 5,
           "selector": "groceries"
+        },
+        {
+          "name": "Meat",
+          "order": 6,
+          "selector": "meat"
         }
       ]
     },

@@ -26,12 +26,25 @@
   );
 }
 
-.danger {
+.red {
   @include mat.theme(
     (
       color: (
         primary: mat.$red-palette,
         tertiary: mat.$rose-palette,
+      ),
+      typography: var(--body-font-family),
+      density: 0,
+    )
+  );
+}
+
+.blue {
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$blue-palette,
+        tertiary: mat.$azure-palette,
       ),
       typography: var(--body-font-family),
       density: 0,

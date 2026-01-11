@@ -21,6 +21,7 @@ export class MiniFabBtnComponent implements OnInit {
   @Input({ required: true }) iconName!: string;
   @Input() iconColor?: string;
   @Input() count = 0;
+  @Input() borderRadius = '10px';
   @Input() isBadgeHidden = true;
   @Input() width: string = '40px';
   @Input() fz?: string;
