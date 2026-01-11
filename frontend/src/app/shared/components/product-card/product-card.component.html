@@ -1,5 +1,87 @@
 <p>{{product().slug}}</p>
 
-<div class="product-card">
-    
+<div class="product-card green">
+  <div class="product-card__header">
+		<div class="product-card__badges">
+			@for(badge of product().badges; track $index) {
+				<!-- @if(currentLang()) { -->
+					<span 
+						class="product-card__badge"
+						[style.backgroundColor]="badge.color"
+					>
+						{{badge.i18n[currentLang()]}}
+					</span>
+				<!-- } -->
+			}
+		</div>
+		<div class="product-card__fav">
+			<app-mini-fab-btn
+				iconName="favorite_border"
+				ariaLabel="Favourite"
+				tooltipText="Add to favs"
+				(click)="null"
+				[isBadgeHidden]="true"
+				iconColor="var(--mat-sys-on-secondary-container)"
+			/>
+		</div>
+	</div>
+	 
+	<img 
+		width="300"
+		height="215"
+		class="product-card__img"
+		[src]="imgUrl()" 
+		[alt]="product().i18n[currentLang()].name"
+	>
+
+	<div class="product-card__content">
+		<div class="product-card__content-top">
+			<div class="product-card__stock">
+				{{product().stock.i18n[currentLang()]}}
+			</div>
+			<div class="product-card__rate">
+				{{product().rate}}
+			</div>
+		</div>
+		<h3 class="product-card__title">
+			{{product().i18n[currentLang()].description}}
+		</h3>
+	</div>
+
+	<div class="product-card__footer">
+		<div class="product-card__price">
+			{{product().price}} {{product().currency}}
+		</div>
+		
+		<div class="product-card__footer-right">
+			<div class="product-card__counter">
+				<app-mini-fab-btn
+					iconName="add"
+					ariaLabel="Add"
+					(click)="null"
+					[isBadgeHidden]="true"
+					iconColor="var(--mat-sys-on-secondary-container)"
+				/>
+
+				<div contenteditable="true" class="product-card__field">1</div>
+
+				<app-mini-fab-btn
+					iconName="remove"
+					ariaLabel="Add to cart"
+					(click)="null"
+					[isBadgeHidden]="true"
+					iconColor="var(--mat-sys-on-secondary-container)"
+				/>
+			</div>
+			<app-mini-fab-btn
+				iconName="add_shopping_cart"
+				ariaLabel="Add to cart"
+				tooltipText="Add to cart"
+				(click)="null"
+				[isBadgeHidden]="true"
+				iconColor="var(--mat-sys-on-secondary-container)"
+			/>
+		</div>
+	</div>
+
 </div>

@@ -1,7 +1,5 @@
-<div class="products-top">
-	@for(product of hitProducts(); track product.id) {
-		<app-product-card 
-			[product]="product"
-		/>
-	}
+<div class="products-hit">
+  @for(product of hitProducts(); track product.id) {
+    <app-product-card [product]="product" />
+  }
 </div>

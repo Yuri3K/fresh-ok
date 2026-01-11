@@ -120,6 +120,31 @@
         "descr": "Найкращі оператори"
       }
     ],
+    "hit-products": {
+      "title": "Топові товари",
+      "filters": [
+        {
+          "name": "Фрукти",
+          "oreder": 2,
+          "slug": "fruits"
+        },
+        {
+          "name": "Овочі",
+          "oreder": 3,
+          "slug": "vegetables"
+        },
+        {
+          "name": "Напої",
+          "oreder": 4,
+          "slug": "drinks"
+        },
+        {
+          "name": "Бакалія",
+          "oreder": 5,
+          "slug": "groceries"
+        }
+      ]
+    },
     "news": {
       "title": "Наші новини",
       "all-new": "Усі новини",

@@ -120,6 +120,31 @@
         "descr": "Лучшие операторы"
       }
     ],
+    "hit-products": {
+      "title": "Топовые товары",
+      "filters": [
+        {
+          "name": "Фрукты",
+          "oreder": 2,
+          "slug": "fruits"
+        },
+        {
+          "name": "Овощи",
+          "oreder": 3,
+          "slug": "vegetables"
+        },
+        {
+          "name": "Напитки",
+          "oreder": 4,
+          "slug": "drinks"
+        },
+        {
+          "name": "Бакалея",
+          "oreder": 5,
+          "slug": "groceries"
+        }
+      ]
+    },
     "news": {
       "title": "Наши новости",
       "all-new": "Все новости",

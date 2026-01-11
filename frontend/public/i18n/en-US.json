@@ -120,6 +120,31 @@
         "descr": "Best operators"
       }
     ],
+    "hit-products": {
+      "title": "Top products",
+      "filters": [
+        {
+          "name": "Fruits",
+          "oreder": 2,
+          "slug": "fruits"
+        },
+        {
+          "name": "Vegetables",
+          "oreder": 3,
+          "slug": "vegetables"
+        },
+        {
+          "name": "Drinks",
+          "oreder": 4,
+          "slug": "drinks"
+        },
+        {
+          "name": "Groceries",
+          "oreder": 5,
+          "slug": "groceries"
+        }
+      ]
+    },
     "news": {
       "title": "Our News",
       "all-new": "All News",

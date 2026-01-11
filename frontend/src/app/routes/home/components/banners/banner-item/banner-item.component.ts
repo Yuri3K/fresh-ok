@@ -31,8 +31,8 @@ export class BannerItemComponent {
       });
   }
 
-  private normalizeLang(lang: string): keyof LangCode {
-    return lang.split('-')[0] as keyof LangCode;
+  private normalizeLang(lang: string): keyof Banner['translations'] {
+    return lang.split('-')[0] as keyof Banner['translations'];
   }
 
 }
