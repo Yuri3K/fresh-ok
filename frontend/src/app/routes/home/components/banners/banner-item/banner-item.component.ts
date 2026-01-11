@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NgStyle } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { LangCode } from '../../../../../core/services/langs.service';
 
 @Component({
   selector: 'app-banner-item',
@@ -30,8 +31,8 @@ export class BannerItemComponent {
       });
   }
 
-  private normalizeLang(lang: string): keyof Banner['translations'] {
-    return lang.split('-')[0] as keyof Banner['translations'];
+  private normalizeLang(lang: string): keyof LangCode {
+    return lang.split('-')[0] as keyof LangCode;
   }
 
 }

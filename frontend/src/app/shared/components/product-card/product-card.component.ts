@@ -1,5 +1,7 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { Product } from '../../../core/services/products.service';
+import { LangsService } from '../../../core/services/langs.service';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-product-card',
@@ -8,5 +10,10 @@ import { Product } from '../../../core/services/products.service';
   styleUrl: './product-card.component.scss'
 })
 export class ProductCardComponent {
+  private readonly langsService = inject(LangsService)
+
   product = input.required<Product>()
+
+  currentLang = toSignal(this.langsService.currentLang$)
 }
+ 

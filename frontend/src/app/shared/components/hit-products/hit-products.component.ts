@@ -20,7 +20,7 @@ export class HitProductsComponent implements OnInit {
   isLoading = signal(false);
 
   ngOnInit() {
-    // this.getHitProducts();
+    this.getHitProducts();
   }
 
   private getHitProducts() {

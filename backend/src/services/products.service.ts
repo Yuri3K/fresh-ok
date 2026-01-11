@@ -67,12 +67,35 @@ function buildQuery(filters: ReturnType<typeof parseFilters>) {
   }
 
   if (filters.badge) {
-	console.log("!!! IN BADGES !!!")
-    q = q.where("badges", "array-contains", filters.badge);
+    console.log("!!! IN BADGES !!!");
+		const badges = filters.badge.split(',')
+		
+		// getBadges(badges)
+    // q = q.where("badges", "array-contains", filters.badge);
   }
 
   return q;
 }
+
+// async function getBadges(badges: string[]) {
+//   const results = new Map<string, Product>();
+
+//   for (const badge of badges) {
+//     const snapshot = await db
+//       .collection("products")
+//       .where("badges", "array-contains", badge)
+//       .get();
+
+//     snapshot.docs.forEach((doc) => {
+//       results.set(doc.id, {
+//         id: doc.id, 
+//         ...(doc.data() as any),
+//       });
+//     });
+//   }
+
+//   return Array.from(results.values());
+// }
 
 // Функция для получения с БД данных про активные бэйджи.
 //
