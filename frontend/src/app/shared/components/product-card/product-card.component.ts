@@ -14,6 +14,7 @@ import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { CounterComponent } from '../counter/counter.component';
+import { GetCurrentLangService } from '../../../core/services/get-current-lang.service';
 
 @Component({
   selector: 'app-product-card',
@@ -29,19 +30,10 @@ export class ProductCardComponent {
   withStockAndRate = input(true)
   product = input.required<Product>();
 
-  private readonly langsService = inject(LangsService);
+  readonly currentLang = inject(GetCurrentLangService).currentLang;
 
   imgUrl = computed(() => {
     return MEDIA_URL + this.product().publicId
   })
 
-  currentLang = toSignal<LangCode>(
-    this.langsService.currentLang$.pipe(
-      filter((lang): lang is Lang => !!lang),
-      map((lang) => lang.browserLang)
-    ),
-    {
-      requireSync: true,
-    }
-  );
 }

@@ -1,4 +1,10 @@
 button {
   --mat-sys-hover-state-layer-opacity: 0.5;
   white-space: nowrap;
+  font-size: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.875rem;
+  }
 }
+

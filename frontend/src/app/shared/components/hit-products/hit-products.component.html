@@ -5,17 +5,15 @@
     <app-h2-title 
       class="hit-products__title"
       [text]="translates.title"
-      fz="2rem"
-      mb="30px"
     />
   
     <div class="hit-products__filters green">
       <app-scroll-items
-        [scrollItemsData]="translates.filters"
+        [scrollItemsData]="categories()"
       >
         <ng-template #itemTemplate let-itemData>
           <app-hit-filter-btn 
-            [isActive]="appliedFilter() === itemData.selector"
+            [isActive]="appliedFilter() === itemData.slug"
             [btnData]="itemData"
             (filterBtnClicked)="applyFilter($event)"
           />
@@ -33,7 +31,10 @@
             [withStockAndRate]="false"
           />
         }@empty {
-          <p>{{translates['not-found']}}</p>
+          <div class="hit-products__empty">
+            <mat-icon>search_off</mat-icon>
+            <p>{{translates['not-found']}}</p>
+          </div>
         }
       }
     </div>

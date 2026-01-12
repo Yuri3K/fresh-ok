@@ -1,5 +1,14 @@
 h2 {
+  font-family: "Ruda", Arial, Helvetica, sans-serif;
+  font-size: 2rem;
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: 3px;
   font-weight: 500;
-  line-height: 2rem;
   color: var(--text-neutral);
+  text-transform: uppercase;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
 }

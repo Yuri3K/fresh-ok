@@ -50,8 +50,7 @@
       "subtitle": "онлайн-маркет"
     },
     "catalog": {
-      "title": "Каталог товаров",
-      "all-categories": "Все категории"
+      "title": "Каталог товаров"
     },
     "search-input": {
       "placeholder": "Найти в маркете",

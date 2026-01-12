@@ -13,14 +13,14 @@
   </button>
   <div class="catalog__body dropdown-body">
     <ul class="catalog__list dropdown-list">
-      <li class="catalog__item">
+      <!-- <li class="catalog__item">
         <button
           [class.active]="selectedCategory == 'all'"
           (click)="selectCategory('all')"
         >
           {{ "header-market.catalog.all-categories" | translate }}
         </button>
-      </li>
+      </li> -->
       @for(item of catalogList; track item.id; let i = $index) {
       <li class="catalog__item">
         <button

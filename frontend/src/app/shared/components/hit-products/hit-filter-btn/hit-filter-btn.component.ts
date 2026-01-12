@@ -1,11 +1,7 @@
-import { Component, EventEmitter, input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, input, Output } from '@angular/core';
 import { BtnFlatComponent } from '../../../ui-elems/buttons/btn-flat/btn-flat.component';
-
-interface HitFilterItem {
-  name: string;
-  order: number;
-  selector: string;
-}
+import { CatalogItem } from '../../../../core/services/catalog.service';
+import { GetCurrentLangService } from '../../../../core/services/get-current-lang.service';
 
 @Component({
   selector: 'app-hit-filter-btn',
@@ -14,9 +10,11 @@ interface HitFilterItem {
   styleUrl: './hit-filter-btn.component.scss',
 })
 export class HitFilterBtnComponent {
-  @Output() filterBtnClicked = new EventEmitter<string>()
+  @Output() filterBtnClicked = new EventEmitter<string>();
 
-  isActive = input<boolean>(false)
+  isActive = input<boolean>(false);
 
-  btnData = input.required<HitFilterItem>();
+  btnData = input.required<CatalogItem>();
+
+  readonly currentLang = inject(GetCurrentLangService).currentLang;
 }

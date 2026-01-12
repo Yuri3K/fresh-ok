@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { ApiService } from './api.service';
-import { BehaviorSubject, catchError, map, take, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, take, tap, throwError } from 'rxjs';
 
 export interface CatalogItem {
   id: string

@@ -22,7 +22,7 @@ export class BtnFlatComponent {
   @Input() iconColor = 'var(--mat-sys-on-primary)'
   @Input() tooltipText?: string
   @Input() ariaLabel?: string;
-  @Input() fz?: string;
+  @Input() fzIcon?: string;
   @Input() btnDisabled = false;
   @Input() type: string = 'button';
   @Input() textColor: string = 'var(--mat-sys-on-background)';

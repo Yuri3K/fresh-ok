@@ -31,6 +31,8 @@ export class ScrollItemsComponent<T> {
   // Порог в пикселях для различения клика и скролла
   dragThreshold = input<number>(5);
   scrollItemsData = input.required<T[]>();
+  itemsGap = input<string>('0');
+  itemsMaxWidth = input<string>('750px');
   itemTemplate = contentChild.required<TemplateRef<any>>('itemTemplate');
 
   scrollItemsList = viewChild<ElementRef<HTMLDivElement>>('scrollItemsList');

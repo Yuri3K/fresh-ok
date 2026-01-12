@@ -9,6 +9,13 @@ import { H2TitleComponent } from '../../ui-elems/typography/h2-title/h2-title.co
 import { LoaderComponent } from '../loader/loader.component';
 import { ScrollItemsComponent } from '../scroll-items/scroll-items.component';
 import { HitFilterBtnComponent } from './hit-filter-btn/hit-filter-btn.component';
+import {
+  CatalogItem,
+  CatalogService,
+} from '../../../core/services/catalog.service';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { filter, map } from 'rxjs';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-top-products',
@@ -19,16 +26,25 @@ import { HitFilterBtnComponent } from './hit-filter-btn/hit-filter-btn.component
     LoaderComponent,
     ScrollItemsComponent,
     HitFilterBtnComponent,
+    MatIconModule,
   ],
   templateUrl: './hit-products.component.html',
   styleUrl: './hit-products.component.scss',
 })
 export class HitProductsComponent implements OnInit {
   productsService = inject(ProductsService);
+  catalogService = inject(CatalogService);
 
   hitProducts = signal<Product[]>([]);
-  appliedFilter = signal('all')
+  appliedFilter = signal('all');
   isLoading = signal(false);
+
+  categories = toSignal(
+    this.catalogService.catalogList$.pipe(
+      filter((items): items is CatalogItem[] => !!items.length),
+    ),
+    { initialValue: [] }
+  );
 
   ngOnInit() {
     this.getHitProducts();
@@ -43,23 +59,20 @@ export class HitProductsComponent implements OnInit {
   }
 
   applyFilter(selector: string) {
-    if(this.appliedFilter() == selector) return
+    if (this.appliedFilter() == selector) return;
 
-    this.appliedFilter.set(selector)
-    this.isLoading.set(true)
+    this.appliedFilter.set(selector);
+    this.isLoading.set(true);
 
     const queryStr = ['badge=hit'];
 
-    if(selector !== 'all') {
-      queryStr.push(`category=${selector}`)
+    if (selector !== 'all') {
+      queryStr.push(`category=${selector}`);
     }
 
-    this.productsService
-      .getProducts(queryStr)
-      .subscribe((products) => {
-        this.isLoading.set(false)
-        this.hitProducts.set(products)
-      });
-
+    this.productsService.getProducts(queryStr).subscribe((products) => {
+      this.isLoading.set(false);
+      this.hitProducts.set(products);
+    });
   }
 }

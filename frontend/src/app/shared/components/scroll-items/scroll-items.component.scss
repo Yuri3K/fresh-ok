@@ -5,6 +5,7 @@
 .scroll-items__wrapper {
   width: 100%;
   display: flex;
+  margin: auto;
   cursor: grab;
 }
 
@@ -13,7 +14,6 @@
   margin: auto;
   align-items: center;
   justify-content: flex-start;
-  gap: 16px;
   padding-bottom: 20px;
   overflow-x: auto;
   scroll-behavior: smooth;
