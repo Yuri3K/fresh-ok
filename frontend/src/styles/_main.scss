@@ -1,3 +1,9 @@
+// Для скрлолла элементов из ScrollItemsComponent
+body.no-select,
+html.no-select {
+  user-select: none !important;
+}
+
 html,
 body {
   height: 100%;

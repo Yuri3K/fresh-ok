@@ -17,6 +17,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 })
 export class BtnFlatComponent {
   @Input({ required: true }) btnText!: string
+  @Input() btnHeight = 'auto' 
   @Input() iconName?: string
   @Input() iconColor = 'var(--mat-sys-on-primary)'
   @Input() tooltipText?: string

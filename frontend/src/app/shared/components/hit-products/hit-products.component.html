@@ -9,14 +9,24 @@
     />
   
     <div class="hit-products__filters">
-      @for(filter of translates.filters; track $index) {
+      <app-scroll-items
+        [scrollItemsData]="translates.filters"
+      >
+        <ng-template #itemTemplate let-itemData>
+          <app-hit-filter-btn 
+            [text]="itemData.name"
+          />
+        </ng-template>
+      </app-scroll-items>
+
+      <!-- @for(filter of translates.filters; track $index) {
         <button 
           [class.active]="appliedFilter() === filter.selector"
           (click)="applyFilter(filter.selector)"
         >
           {{filter.name}}
         </button>
-      }
+      } -->
     </div>
   
     <div class="hit-products__cards">
@@ -29,7 +39,7 @@
             [withStockAndRate]="false"
           />
         }@empty {
-          <p>{{translates['not-found']}}/p>
+          <p>{{translates['not-found']}}</p>
         }
       }
     </div>

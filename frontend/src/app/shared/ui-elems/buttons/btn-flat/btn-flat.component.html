@@ -6,8 +6,10 @@
   [matTooltipShowDelay]="150"
   [matTooltipHideDelay]="150"
   [type]="type"
+  [ngStyle]="{
+    '--mdc-text-button-container-height': btnHeight,
+  }"
 >
-
   @if(iconName) {
     <mat-icon
       [ngStyle]="{

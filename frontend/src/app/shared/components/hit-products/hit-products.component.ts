@@ -7,6 +7,8 @@ import { ProductCardComponent } from '../product-card/product-card.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { H2TitleComponent } from '../../ui-elems/typography/h2-title/h2-title.component';
 import { LoaderComponent } from '../loader/loader.component';
+import { ScrollItemsComponent } from '../scroll-items/scroll-items.component';
+import { HitFilterBtnComponent } from './hit-filter-btn/hit-filter-btn.component';
 
 @Component({
   selector: 'app-top-products',
@@ -15,6 +17,8 @@ import { LoaderComponent } from '../loader/loader.component';
     TranslateModule,
     H2TitleComponent,
     LoaderComponent,
+    ScrollItemsComponent,
+    HitFilterBtnComponent,
   ],
   templateUrl: './hit-products.component.html',
   styleUrl: './hit-products.component.scss',

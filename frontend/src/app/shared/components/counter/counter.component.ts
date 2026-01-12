@@ -27,7 +27,9 @@ export class CounterComponent {
 
   onInput(event: Event) {
     const target = event.target as HTMLInputElement;
-    let val = parseInt(target.value, 10); // перестраховка, чтобы получить целое число
+
+    // Перестраховка, чтобы получить целое число
+    let val = parseInt(target.value, 10); 
 
     if (val > 999) {
       val = 999;
@@ -36,5 +38,21 @@ export class CounterComponent {
     }
 
     this.counter.setValue(val.toString(), { emitEvent: false });
+  }
+
+  increase() {
+    const currentVal = (parseInt(this.counter.value || '1', 10))
+
+    if(currentVal < 999) {
+      this.counter.setValue((currentVal + 1).toString())
+    }
+  }
+
+  decrease() {
+    const currentVal = parseInt(this.counter.value || '1', 10)
+
+    if(currentVal > 1) {
+      this.counter.setValue((currentVal - 1).toString())
+    }
   }
 }

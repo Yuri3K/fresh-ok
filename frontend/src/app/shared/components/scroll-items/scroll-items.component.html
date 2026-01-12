@@ -1,0 +1,13 @@
+
+<div class="scroll-items__wrapper">
+  <div class="scroll-items__list" #scrollItemsList>
+    @for(itemData of scrollItemsData(); track $index) {
+      <div class="scroll-items__item">
+        <ng-container 
+          [ngTemplateOutlet]="itemTemplate"
+          [ngTemplateOutletContext]="{$implicit: itemData}"
+        />
+      </div>
+    }
+  </div>
+</div>
