@@ -1,0 +1,34 @@
+<div 
+	class="product-card__counter" 
+>
+  <app-mini-fab-btn
+    width="24px"
+    borderRadius="0"
+    iconName="remove"
+    ariaLabel="Add to cart"
+    (click)="(null)"
+    [isBadgeHidden]="true"
+    iconColor="var(--mat-sys-on-secondary-container)"
+  />
+
+  <mat-form-field class="no-subscript">
+    <input 
+		matInput 
+		min="1" 
+		max="999" 
+		type="number" 
+		[formControl]="counter"
+		(input)="onInput($event)"
+	/>
+  </mat-form-field>
+
+  <app-mini-fab-btn
+    width="24px"
+    borderRadius="0"
+    iconName="add"
+    ariaLabel="Add"
+    (click)="(null)"
+    [isBadgeHidden]="true"
+    iconColor="var(--mat-sys-on-secondary-container)"
+  />
+</div>

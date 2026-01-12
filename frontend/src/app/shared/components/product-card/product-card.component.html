@@ -66,34 +66,8 @@
 		</div>
 		
 		<div class="product-card__footer-right">
-			<div class="product-card__counter">
+			<app-counter />
 
-				<app-mini-fab-btn
-					width="24px"
-					borderRadius="0"
-					iconName="remove"
-					ariaLabel="Add to cart"
-					(click)="null"
-					[isBadgeHidden]="true"
-					iconColor="var(--mat-sys-on-secondary-container)"
-				/>
-
-				<mat-form-field class="example-form-field">
-					<input matInput min="1" type="number" [(ngModel)]="value">
-				</mat-form-field>
-
-				<!-- <div contenteditable="true" class="product-card__field">1</div> -->
-
-				<app-mini-fab-btn
-					width="24px"
-					borderRadius="0"
-					iconName="add"
-					ariaLabel="Add"
-					(click)="null"
-					[isBadgeHidden]="true"
-					iconColor="var(--mat-sys-on-secondary-container)"
-				/>
-			</div>
 			<app-mini-fab-btn
 				iconName="shopping_cart"
 				ariaLabel="Add to cart"

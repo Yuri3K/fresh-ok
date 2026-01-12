@@ -13,16 +13,14 @@ import { RouterLink } from '@angular/router';
 import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { CounterComponent } from '../counter/counter.component';
 
 @Component({
   selector: 'app-product-card',
   imports: [
     MiniFabBtnComponent,
     RouterLink,
-    MatFormField,
-
-
-    MatFormFieldModule, MatInputModule, FormsModule,
+    CounterComponent,
   ],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss',
@@ -32,8 +30,6 @@ export class ProductCardComponent {
   product = input.required<Product>();
 
   private readonly langsService = inject(LangsService);
-
-  value = '1';
 
   imgUrl = computed(() => {
     return MEDIA_URL + this.product().publicId
