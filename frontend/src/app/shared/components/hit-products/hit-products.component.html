@@ -3,30 +3,24 @@
 <div class="container">
   <div class="hit-products">
     <app-h2-title 
-      class="news__title"
+      class="hit-products__title"
       [text]="translates.title"
       fz="2rem"
+      mb="30px"
     />
   
-    <div class="hit-products__filters">
+    <div class="hit-products__filters green">
       <app-scroll-items
         [scrollItemsData]="translates.filters"
       >
         <ng-template #itemTemplate let-itemData>
           <app-hit-filter-btn 
-            [text]="itemData.name"
+            [isActive]="appliedFilter() === itemData.selector"
+            [btnData]="itemData"
+            (filterBtnClicked)="applyFilter($event)"
           />
         </ng-template>
       </app-scroll-items>
-
-      <!-- @for(filter of translates.filters; track $index) {
-        <button 
-          [class.active]="appliedFilter() === filter.selector"
-          (click)="applyFilter(filter.selector)"
-        >
-          {{filter.name}}
-        </button>
-      } -->
     </div>
   
     <div class="hit-products__cards">

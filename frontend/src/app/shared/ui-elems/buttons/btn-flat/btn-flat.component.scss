@@ -1,23 +1,4 @@
-:host.light {
-  button {
-    // --mdc-filled-button-label-text-color: var(--mat-sys-on-primary);
-    // --mdc-filled-button-container-color: var(--mat-sys-on-background);
-
-    --mdc-filled-button-label-text-color: var(--mat-sys-on-background);
-    --mdc-filled-button-container-color: var(--mat-sys-on-primary);
-
-    .mat-icon{
-      color: var(--mat-sys-on-background) !important;
-    }
-
-    &:hover {
-      filter: brightness(0.95);
-    }
-
-    &:active  {
-      filter: brightness(0.9);
-    }
-
-
-  }
+button {
+  --mat-sys-hover-state-layer-opacity: 0.5;
+  white-space: nowrap;
 }

@@ -4,33 +4,33 @@
 
 .scroll-items__wrapper {
   width: 100%;
+  display: flex;
   cursor: grab;
 }
 
 .scroll-items__list {
-  display: flex;
+  display: inline-flex;
+  margin: auto;
   align-items: center;
   justify-content: flex-start;
   gap: 16px;
-  padding-bottom: 5px;
+  padding-bottom: 20px;
   overflow-x: auto;
   scroll-behavior: smooth;
 
   &::-webkit-scrollbar {
-    height: 4px;
+    height: 6px;
     cursor: pointer;
   }
 
   &::-webkit-scrollbar-track {
     background: transparent;
-    border-radius: 2px;
+    border-radius: 3px;
   }
 
   &::-webkit-scrollbar-thumb {
     background-color: var(--mat-sys-primary);
-    // border-left: 2px solid var(--mat-sys-on-secondary);
-    // border-right: 2px solid var(--mat-sys-on-secondary);
-    border-radius: 2px;
+    border-radius: 3px;
   }
 
   &::-webkit-scrollbar-thumb:hover {
@@ -47,8 +47,4 @@
       pointer-events: none;
     }
   }
-}
-
-.scroll-items__item {
-
 }

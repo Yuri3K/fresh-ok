@@ -1,34 +1,34 @@
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 
 .product-card__counter {
-	--mat-fab-small-touch-target-display: none;
+  --mat-fab-small-touch-target-display: none;
 
-	display: flex;
-	align-items: center;
-	justify-content: start;
-	gap: 0;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 0;
+
+	// Обнуляем боковые padding у inpup
+	::ng-deep mat-form-field .mdc-text-field {
+    padding: 0;
+  }
 }
 
 mat-form-field {
-	--mdc-filled-text-field-container-shape: 0;
-	--mat-form-field-container-vertical-padding: 0;
-	
+  --mdc-filled-text-field-container-shape: 0;
+  --mat-form-field-container-vertical-padding: 0;
+
   width: 100%;
   max-width: 36px;
-  // height: 24px;
 
-	@include mat.form-field-overrides((
-		container-height: 24px,
-		container-text-line-height: 24px,
-	));
+  @include mat.form-field-overrides(
+    (
+      container-height: 24px,
+      container-text-line-height: 24px,
+    )
+  );
 
-	input {
-		text-align: center;
-	}
-
-	::ng-deep {
-		.mdc-text-field {
-			padding: 0;
-		}
-	}
+  input {
+    text-align: center;
+  }
 }

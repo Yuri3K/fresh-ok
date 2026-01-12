@@ -1,10 +1,18 @@
 
 <div class="scroll-items__wrapper">
-  <div class="scroll-items__list" #scrollItemsList>
+  <div class="scroll-items__list" 
+    #scrollItemsList
+    [class.grabbing]="isDragging()"
+    (pointerdown)="onPointerDown($event)"
+    (pointermove)="onPointerMove($event)"
+    (pointerup)="onPointerUp($event)"
+    (pointercancel)="onPointerUp($event)"
+    (pointerleave)="onPointerUp($event)"
+  >
     @for(itemData of scrollItemsData(); track $index) {
       <div class="scroll-items__item">
         <ng-container 
-          [ngTemplateOutlet]="itemTemplate"
+          [ngTemplateOutlet]="itemTemplate()"
           [ngTemplateOutletContext]="{$implicit: itemData}"
         />
       </div>

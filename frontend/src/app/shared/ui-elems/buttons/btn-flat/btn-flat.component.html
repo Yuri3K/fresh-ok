@@ -8,17 +8,19 @@
   [type]="type"
   [ngStyle]="{
     '--mdc-text-button-container-height': btnHeight,
+    '--mdc-filled-button-label-text-color': textColor,
+    '--mdc-filled-button-container-color': bgColor,
   }"
 >
   @if(iconName) {
-    <mat-icon
-      [ngStyle]="{
+  <mat-icon
+    [ngStyle]="{
         color: iconColor,
         fontSize: fz,
       }"
-    >
-      {{iconName}}
-    </mat-icon>
+  >
+    {{ iconName }}
+  </mat-icon>
   }
-  {{btnText}}
+  {{ btnText }}
 </button>

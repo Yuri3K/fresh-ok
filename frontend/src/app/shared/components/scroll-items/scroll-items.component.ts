@@ -1,64 +1,123 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { AfterViewInit, Component, ContentChild, DestroyRef, ElementRef, EventEmitter, HostListener, inject, input, Output, TemplateRef, ViewChild, viewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  contentChild,
+  ContentChild,
+  DestroyRef,
+  effect,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  inject,
+  input,
+  Output,
+  Renderer2,
+  signal,
+  TemplateRef,
+  ViewChild,
+  viewChild,
+} from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-scroll-items',
-  imports: [
-    NgTemplateOutlet
-  ],
+  imports: [NgTemplateOutlet],
   templateUrl: './scroll-items.component.html',
-  styleUrl: './scroll-items.component.scss'
+  styleUrl: './scroll-items.component.scss',
 })
-export class ScrollItemsComponent<T> implements AfterViewInit {
-  @Output() scrolledItemClicked = new EventEmitter<T>()
-  
-  scrollItemsData = input.required<T[]>()
+export class ScrollItemsComponent<T> {
+  // Порог в пикселях для различения клика и скролла
+  dragThreshold = input<number>(5);
+  scrollItemsData = input.required<T[]>();
+  itemTemplate = contentChild.required<TemplateRef<any>>('itemTemplate');
 
-  @ViewChild('scrollItemsList', { static: true }) 
-  scrollItemsList!: ElementRef<HTMLDivElement>;
+  scrollItemsList = viewChild<ElementRef<HTMLDivElement>>('scrollItemsList');
 
-  @ContentChild('itemTemplate', { static: true })
-  itemTemplate!: TemplateRef<any>
+  private renderer = inject(Renderer2);
+  private destroyRef = inject(DestroyRef);
 
-  private destroyRef = inject(DestroyRef)
-  private scrolledItemsBox!: HTMLElement
-  private isDragging = false
+  private scrollItemsBox!: HTMLDivElement | undefined;
+
+  isDragging = signal(false);
+  private isScrollEnough = signal(false);
+
+  private startX = 0;
+  private currentX = 0;
+  scrollStart = 0;
+
+  constructor() {
+    effect(() => {
+      this.scrollItemsBox = this.scrollItemsList()?.nativeElement;
+    });
+  }
 
   @HostListener('document:mouseup')
   documentClick() {
-    this.isDragging = false
-    this.scrolledItemsBox.classList.remove('dragging')
-    document.body.classList.remove('no-select');
+    this.isDragging.set(false);
+    this.renderer.removeClass(this.scrollItemsBox, 'dragging');
+    this.renderer.removeClass(document.body, 'no-select');
   }
 
-  ngAfterViewInit() {
-    this.initglobalFilesBoxDragging()
-    this.initCanDragging()
+  // Обработка случаев, когда pointer покидает область или отменяется
+  @HostListener('document:pointercancel', ['$event'])
+  onPointerCancel(event: PointerEvent) {
+    this.onPointerUp(event);
   }
 
-  /**
- * Initializes the drag-to-scroll behavior for the file container.
- */
-  private initglobalFilesBoxDragging() {
-    this.scrolledItemsBox = this.scrollItemsList.nativeElement
-    fromEvent<MouseEvent>(this.scrolledItemsBox, 'mousemove')
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((e: MouseEvent) => {
-        if (!this.isDragging) return
-        this.scrolledItemsBox.classList.add('dragging')
-        this.scrolledItemsBox.scrollLeft -= e.movementX
-        document.body.classList.add('no-select');
-      })
+  onPointerDown(event: PointerEvent) {
+    if (this.scrollItemsBox) {
+      this.startX = event.clientX;
+      this.scrollStart = this.scrollItemsBox.scrollLeft;
+      this.currentX = 0;
+
+      this.isDragging.set(true);
+      this.isScrollEnough.set(false);
+
+      // this.renderer.setStyle(this.scrollItemsBox, 'scroll-behavior', 'auto')
+    }
   }
 
-  /**
-   * Initializes mouse down event to enable drag mode.
-   */
-  private initCanDragging() {
-    fromEvent(this.scrolledItemsBox, 'mousedown')
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(() => this.isDragging = true)
+  onPointerMove(event: PointerEvent) {
+    this.currentX = event.clientX - this.startX;
+
+    if(!this.isDragging()) return
+
+    if (Math.abs(this.currentX) > this.dragThreshold()) {
+      this.isDragging.set(true);
+      this.isScrollEnough.set(true);
+    }
+
+    if (this.isScrollEnough() && this.scrollItemsBox) {
+      this.scrollItemsBox.setPointerCapture(event.pointerId);
+      this.renderer.addClass(this.scrollItemsBox, 'dragging');
+      this.renderer.addClass(document.body, 'no-select');
+
+      this.scrollItemsBox.scrollLeft = this.scrollStart - this.currentX;
+    }
+  }
+
+  onPointerUp(event: PointerEvent) {
+    if (!this.isDragging()) return;
+
+    if (this.scrollItemsBox) {
+      // Освобождаем pointer capture
+      if (this.scrollItemsBox.hasPointerCapture(event.pointerId)) {
+        this.scrollItemsBox.releasePointerCapture(event.pointerId);
+      }
+
+      // // Возвращаем плавную прокрутку
+      // this.renderer.setStyle(this.scrollItemsBox, 'scroll-behavior', 'smooth');
+
+      // Убираем классы
+      this.renderer.removeClass(this.scrollItemsBox, 'dragging');
+      this.renderer.removeClass(document.body, 'no-select');
+
+      // Сбрасываем состояние
+      this.isDragging.set(false);
+      this.isScrollEnough.set(false);
+      this.currentX = 0;
+    }
   }
 }
