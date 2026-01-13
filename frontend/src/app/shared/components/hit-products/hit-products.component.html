@@ -1,10 +1,10 @@
 @let translates = ('homepage.hit-products' | translate);
 
 <div class="container">
-  <div class="hit-products">
+  <section class="hit-products green">
     <app-h2-title class="hit-products__title" [text]="translates.title" />
 
-    <div class="hit-products__filters green">
+    <div class="hit-products__filters">
       <app-scroll-items [scrollItemsData]="categories()">
         <ng-template #itemTemplate let-itemData>
           <app-hit-filter-btn
@@ -19,22 +19,27 @@
     <div class="hit-products__cards">
       @if(isLoading()) {
       <app-loader />
-      } @else { @for(product of hitProducts(); track product.id) {
-      <app-product-card [product]="product" [withStockAndRate]="false" />
-      }@empty {
-      <div class="hit-products__empty">
-        <mat-icon>search_off</mat-icon>
-        <p>{{ translates["not-found"] }}</p>
-      </div>
-      } }
+      } @else { 
+        @for(product of hitProducts(); track product.id) {
+          <app-product-card [product]="product" [withStockAndRate]="false" />
+        }@empty {
+          <div class="hit-products__empty">
+            <mat-icon>search_off</mat-icon>
+            <p>{{ translates["not-found"] }}</p>
+          </div>
+        } 
+      }
     </div>
 
-    <div class="hit-products__show-more">
-      <app-btn-flat
-        [btnText]="translates['show-more']"
-        bgColor="var(--mat-sys-primary-container)"
-        (click)="showMore()"
-      />
-    </div>
-  </div>
+    @if(hitProducts().length) {
+      <div class="hit-products__show-more">
+        <app-btn-flat
+          borderRarius="6px"
+          [btnText]="translates['show-more']"
+          bgColor="var(--mat-sys-primary-container)"
+          (click)="showMore()"
+        />
+      </div>
+    }
+  </section>
 </div>

@@ -14,7 +14,7 @@ import {
   CatalogService,
 } from '../../../core/services/catalog.service';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { filter, map } from 'rxjs';
+import { filter } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { BtnFlatComponent } from '../../ui-elems/buttons/btn-flat/btn-flat.component';
 
@@ -39,7 +39,7 @@ export class HitProductsComponent implements OnInit {
 
   hitProducts = signal<Product[]>([]);
   appliedFilter = signal('all');
-  isLoading = signal(false);
+  isLoading = signal(true);
 
   categories = toSignal(
     this.catalogService.catalogList$.pipe(
@@ -57,7 +57,10 @@ export class HitProductsComponent implements OnInit {
 
     this.productsService
       .getProducts(queryStr)
-      .subscribe((products) => this.hitProducts.set(products));
+      .subscribe(products => {
+        this.isLoading.set(false)
+        this.hitProducts.set(products)
+      });
   }
 
   applyFilter(selector: string) {

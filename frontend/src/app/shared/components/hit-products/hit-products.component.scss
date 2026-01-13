@@ -26,6 +26,11 @@
   flex-wrap: wrap;
   gap: 27px;
 	min-height: 250px;
+  margin-bottom: 50px;
+}
+
+app-loader {
+  margin: auto;
 }
 
 .hit-products__empty {
