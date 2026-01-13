@@ -1,17 +1,137 @@
 [
   {
-    "slug": "coffee-canapa",
-    "price": 1050,
-    "categories": ["tea-coffee"],
+    "slug": "salmon",
+    "price": 600,
+    "category": "fish-seafood",
     "isNew": true,
     "isHit": true,
     "hasDiscount": false,
     "badges": ["new", "hit"],
-    "searchKeywords": ["Сoffee-canapa", "Кофе с коноплей", "Кава з коноплею"],
+    "searchKeywords": ["Salmon", "Лосось", "Лосось"],
+    "publickId": "",
     "i18n": {
-      "en": { "name": "Сoffee-canapa", "description": "Try a new hemp coffee" },
-      "ru": { "name": "Кофе с коноплей", "description": "Попробуйте новый кофе с коноплей" },
-      "uk": { "name": "Кава з коноплею", "description": "Спробуйте нову каву з коноплею" }
+      "en": {
+        "name": "Salmon",
+        "description": "Chilled salmon from Norwegian waters."
+      },
+      "ru": {
+        "name": "Лосось",
+        "description": "Лосось охлажденный с норвежских вод."
+      },
+      "uk": {
+        "name": "Лосось",
+        "description": "Охолоджений лосось із норвезьких вод."
+      }
+    }
+  },
+  {
+    "slug": "basket",
+    "price": 600,
+    "category": "fruits",
+    "isNew": true,
+    "isHit": true,
+    "hasDiscount": false,
+    "badges": ["new", "hit"],
+    "searchKeywords": ["Basket", "Корзина", "Кошик"],
+    "publickId": "",
+    "i18n": {
+      "en": { "name": "Basket", "description": "Fruit basket of vitamins." },
+      "ru": {
+        "name": "Корзина",
+        "description": "Фруктовая корзина витаминов."
+      },
+      "uk": { "name": "Кошик", "description": "Фруктовий кошик вітамінів." }
+    }
+  },
+  {
+    "slug": "veg-juice",
+    "price": 150,
+    "category": "drinks",
+    "isNew": true,
+    "isHit": true,
+    "hasDiscount": false,
+    "badges": ["new", "hit"],
+    "searchKeywords": ["Veg-juice", "Овощной сок", "Овочевий сік"],
+    "publickId": "",
+    "i18n": {
+      "en": {
+        "name": "Veg-juice",
+        "description": "Try a healthy juice made from natural vegetables."
+      },
+      "ru": {
+        "name": "Овощной сок",
+        "description": "Попробуйте здоровый сок из натуральных овощей."
+      },
+      "uk": {
+        "name": "Овочевий сік",
+        "description": "Спробуйте здоровий сік з натуральних овочів."
+      }
+    }
+  },
+  {
+    "slug": "mango",
+    "price": 450,
+    "category": "fruits",
+    "isNew": true,
+    "isHit": true,
+    "hasDiscount": false,
+    "badges": ["new", "hit"],
+    "searchKeywords": ["Mango", "Манго", "Манго"],
+    "publickId": "",
+    "i18n": {
+      "en": {
+        "name": "Mango",
+        "description": "Sweet mango, picked especially for you."
+      },
+      "ru": {
+        "name": "Манго",
+        "description": "Сладкий манго, собранный специально для вас."
+      },
+      "uk": {
+        "name": "Манго",
+        "description": "Солодкий манго, зібраний спеціально для вас."
+      }
+    }
+  },
+  {
+    "slug": "strawberry",
+    "price": 400,
+    "category": "fruits",
+    "isNew": true,
+    "isHit": true,
+    "hasDiscount": false,
+    "badges": ["new", "hit"],
+    "searchKeywords": ["Strawberry", "Клубника", "Лосось"],
+    "publickId": "",
+    "i18n": {
+      "en": {
+        "name": "Strawberry",
+        "description": "Freshly picked strawberries."
+      },
+      "ru": {
+        "name": "Клубника",
+        "description": "Только что собранная свежайшая клубника."
+      },
+      "uk": {
+        "name": "Полуниця",
+        "description": "Щойно зібрана найсвіжіша полуниця."
+      }
+    }
+  },
+  {
+    "slug": "pork",
+    "price": 250,
+    "category": "meat",
+    "isNew": true,
+    "isHit": true,
+    "hasDiscount": false,
+    "badges": ["new", "hit"],
+    "searchKeywords": ["Pork", "Свинина", "Свинина"],
+    "publickId": "",
+    "i18n": {
+      "en": { "name": "Pork", "description": "Chilled pork pulp." },
+      "ru": { "name": "Свинина", "description": "Свинная мякоть охлажденная." },
+      "uk": { "name": "Свинина", "description": "Свиняча м'якоть охолоджена." }
     }
   }
 ]

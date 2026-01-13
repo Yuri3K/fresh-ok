@@ -1,7 +1,15 @@
+@let translates = ('homepage.promo' | translate);
+
 <section >
   <div class="container">
     <div class="promo">
-      <!-- <app-h2-title class="hit-products__title" [text]="translates.title" /> -->
+      <app-h2-title class="hit-products__title" [text]="translates.title" />
+    </div>
+
+    <div class="promo__filters">
+      @for(filter of translates.filters; track $index) {
+        
+      }
     </div>
   </div>
 </section>

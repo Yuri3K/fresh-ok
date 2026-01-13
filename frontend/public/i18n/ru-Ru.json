@@ -7,6 +7,7 @@
     "close": "Закрыть",
     "logout": "Выйти",
     "login": "Войти",
+    "show-more": "Показать еще",
     "back-to-homepage": "Вернуться на домашнюю страницу",
     "forms": {
       "email": {
@@ -121,38 +122,25 @@
     ],
     "hit-products": {
       "title": "Топовые товары",
-      "show-more": "Показать еще",
-      "not-found": "По вашему фильтру товаров не найдено.",
+      "not-found": "По вашему фильтру товаров не найдено."
+    },
+    "promo": {
+      "title": "Акции",
       "filters": [
         {
           "name": "Все товары",
-          "order": 1,
-          "selector": "all"
+          "selector": "discount",
+          "order": 1
         },
         {
-          "name": "Фрукты",
-          "order": 2,
-          "selector": "fruits"
+          "name": "Новинки",
+          "selector": "new",
+          "order": 2
         },
         {
-          "name": "Овощи",
-          "order": 3,
-          "selector": "vegetables"
-        },
-        {
-          "name": "Напитки",
-          "order": 4,
-          "selector": "drinks"
-        },
-        {
-          "name": "Бакалея",
-          "order": 5,
-          "selector": "groceries"
-        },
-        {
-          "name": "Мясо",
-          "order": 6,
-          "selector": "meat"
+          "name": "Хиты",
+          "selector": "hit",
+          "order": 3
         }
       ]
     },

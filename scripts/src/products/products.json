@@ -2,12 +2,13 @@
   {
     "slug": "pepper",
     "price": 1.49,
-    "categories": ["fruits-vegetables"],
+    "category": "fruits-vegetables",
     "isNew": true,
     "isHit": false,
     "hasDiscount": false,
     "badges": ["new"],
     "searchKeywords": ["Pepper", "Перец", "Перець"],
+    "publickId": "",
     "i18n": {
       "en": { "name": "Pepper", "description": "Fresh pepper" },
       "ru": { "name": "Перец", "description": "Свежий перец" },
@@ -17,12 +18,13 @@
   {
     "slug": "dragon-fruit",
     "price": 4.99,
-    "categories": ["fruits-vegetables"],
+    "category": "fruits-vegetables",
     "isNew": true,
     "isHit": true,
     "hasDiscount": false,
     "badges": ["new", "hit"],
     "searchKeywords": ["Dragon Fruit", "Питахайя", "Пітахая"],
+    "publickId": "",
     "i18n": {
       "en": { "name": "Dragon Fruit", "description": "Exotic dragon fruit" },
       "ru": { "name": "Питахайя", "description": "Экзотический фрукт" },
@@ -32,13 +34,14 @@
   {
     "slug": "pineapple",
     "price": 3.29,
-    "categories": ["fruits-vegetables"],
+    "category": "fruits-vegetables",
     "isNew": false,
     "isHit": true,
     "hasDiscount": true,
     "discountPercent": 15,
     "badges": ["discount", "hit"],
     "searchKeywords": ["Pineapple", "Ананас", "Ананас"],
+    "publickId": "",
     "i18n": {
       "en": { "name": "Pineapple", "description": "Sweet pineapple" },
       "ru": { "name": "Ананас", "description": "Сладкий ананас" },
@@ -48,12 +51,13 @@
   {
     "slug": "lemon",
     "price": 0.99,
-    "categories": ["fruits-vegetables"],
+    "category": "fruits-vegetables",
     "isNew": false,
     "isHit": false,
     "hasDiscount": false,
     "badges": [],
     "searchKeywords": ["Lemon", "Лимон", "Лимон"],
+    "publickId": "",
     "i18n": {
       "en": { "name": "Lemon", "description": "Fresh lemon" },
       "ru": { "name": "Лимон", "description": "Свежий лимон" },
@@ -63,12 +67,13 @@
   {
     "slug": "juice",
     "price": 2.49,
-    "categories": ["drinks"],
+    "category": "drinks",
     "isNew": false,
     "isHit": true,
     "hasDiscount": false,
     "badges": ["hit"],
     "searchKeywords": ["Juice", "Сок", "Сік"],
+    "publickId": "",
     "i18n": {
       "en": { "name": "Juice", "description": "Natural juice" },
       "ru": { "name": "Сок", "description": "Натуральный сок" },
@@ -78,13 +83,14 @@
   {
     "slug": "ketchup",
     "price": 1.79,
-    "categories": ["groceries"],
+    "category": "groceries",
     "isNew": false,
     "isHit": false,
     "hasDiscount": true,
     "discountPercent": 10,
     "badges": ["discount"],
     "searchKeywords": ["Ketchup", "Кетчуп", "Кетчуп"],
+    "publickId": "",
     "i18n": {
       "en": { "name": "Ketchup", "description": "Tomato ketchup" },
       "ru": { "name": "Кетчуп", "description": "Томатный кетчуп" },

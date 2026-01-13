@@ -2,12 +2,21 @@
   <div class="product-card__header">
 		<div class="product-card__badges">
 			@for(badge of product().badges; track $index) {
-				<span 
-					class="product-card__badge"
-					[class]="badge.color"
-				>
-					{{badge.i18n[currentLang()]}}
-				</span>
+				@if(badge.slug === 'discount') {
+					<span 
+						class="product-card__badge"
+						[class]="badge.color"
+					>
+						-{{product().discountPercent}}%
+					</span>
+				} @else {
+					<span 
+						class="product-card__badge"
+						[class]="badge.color"
+					>
+						{{badge.i18n[currentLang()]}}
+					</span>
+				}
 			} 
 		</div>
 
@@ -61,8 +70,22 @@
 	</div>
 
 	<div class="product-card__footer">
-		<div class="product-card__price">
-			{{product().price}} {{product().currency}}
+		<div 
+			class="product-card__price"
+		>
+			@if(product().hasDiscount) {
+				<span
+					class="product-card__price-discount"
+				>
+					{{product().price | calcDiscount : product().discountPercent}} {{product().currency}}
+				</span>
+			}
+			<span
+				class="product-card__price-origin"
+				[class.cross]="product().hasDiscount"
+			>
+				{{product().price}} {{product().currency}}
+			</span>
 		</div>
 		
 		<div class="product-card__footer-right">

@@ -8,7 +8,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import { H2TitleComponent } from '../../ui-elems/typography/h2-title/h2-title.component';
 import { LoaderComponent } from '../loader/loader.component';
 import { ScrollItemsComponent } from '../scroll-items/scroll-items.component';
-import { HitFilterBtnComponent } from './hit-filter-btn/hit-filter-btn.component';
 import {
   CatalogItem,
   CatalogService,
@@ -17,6 +16,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { filter } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { BtnFlatComponent } from '../../ui-elems/buttons/btn-flat/btn-flat.component';
+import { ProductFilterBtnComponent } from '../product-filter-btn/product-filter-btn.component';
 
 @Component({
   selector: 'app-top-products',
@@ -26,7 +26,7 @@ import { BtnFlatComponent } from '../../ui-elems/buttons/btn-flat/btn-flat.compo
     H2TitleComponent,
     LoaderComponent,
     ScrollItemsComponent,
-    HitFilterBtnComponent,
+    ProductFilterBtnComponent,
     MatIconModule,
     BtnFlatComponent,
   ],

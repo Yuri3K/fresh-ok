@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { CounterComponent } from '../counter/counter.component';
 import { GetCurrentLangService } from '../../../core/services/get-current-lang.service';
+import { CalcDiscountPipe } from '../../../core/pipes/calc-discount.pipe';
 
 @Component({
   selector: 'app-product-card',
@@ -22,6 +23,7 @@ import { GetCurrentLangService } from '../../../core/services/get-current-lang.s
     MiniFabBtnComponent,
     RouterLink,
     CounterComponent,
+    CalcDiscountPipe,
   ],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss',

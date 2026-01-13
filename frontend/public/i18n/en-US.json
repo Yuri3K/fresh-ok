@@ -7,6 +7,7 @@
     "close": "Close",
     "logout": "Log Out",
     "login": "Log In",
+    "show-more": "Show more",
     "back-to-homepage": "Back to Homepage",
     "forms": {
       "email": {
@@ -121,38 +122,25 @@
     ],
     "hit-products": {
       "title": "Top products",
-      "show-more": "Show more",
-      "not-found": "There are no products matching your filter.",
+      "not-found": "There are no products matching your filter."
+    },
+    "promo": {
+      "title": "Promotions",
       "filters": [
         {
-          "name": "All products",
-          "order": 1,
-          "selector": "all"
+          "name": "All Products",
+          "selector": "discount",
+          "order": 1
         },
         {
-          "name": "Fruits",
-          "order": 2,
-          "selector": "fruits"
+          "name": "New Arrivals",
+          "selector": "new",
+          "order": 2
         },
         {
-          "name": "Vegetables",
-          "order": 3,
-          "selector": "vegetables"
-        },
-        {
-          "name": "Drinks",
-          "order": 4,
-          "selector": "drinks"
-        },
-        {
-          "name": "Groceries",
-          "order": 5,
-          "selector": "groceries"
-        },
-        {
-          "name": "Meat",
-          "order": 6,
-          "selector": "meat"
+          "name": "Best Sellers",
+          "selector": "hit",
+          "order": 3
         }
       ]
     },

@@ -7,6 +7,7 @@
     "close": "Закрити",
     "logout": "Вийти",
     "login": "Увійти",
+    "show-more": "Показати ще",
     "back-to-homepage": "Повернуться на домашню сторiнку",
     "forms": {
       "email": {
@@ -121,38 +122,25 @@
     ],
     "hit-products": {
       "title": "Топові товари",
-      "show-more": "Показати ще",
-      "not-found": "За вашим фільтром товарів не знайдено",
+      "not-found": "За вашим фільтром товарів не знайдено"
+    },
+    "promo": {
+      "title": "Акції",
       "filters": [
         {
-          "name": "Усі товари",
-          "order": 1,
-          "selector": "all"
+          "name": "Всі товари",
+          "selector": "discount",
+          "order": 1
         },
         {
-          "name": "Фрукти",
-          "order": 2,
-          "slug": "fruits"
+          "name": "Новинки",
+          "selector": "new",
+          "order": 2
         },
         {
-          "name": "Овочі",
-          "order": 3,
-          "slug": "vegetables"
-        },
-        {
-          "name": "Напої",
-          "order": 4,
-          "slug": "drinks"
-        },
-        {
-          "name": "Бакалія",
-          "order": 5,
-          "slug": "groceries"
-        },
-        {
-          "name": "М'ясо",
-          "order": 6,
-          "selector": "meat"
+          "name": "Хіти",
+          "selector": "hit",
+          "order": 3
         }
       ]
     },

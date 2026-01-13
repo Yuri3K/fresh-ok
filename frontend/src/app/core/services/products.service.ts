@@ -47,6 +47,7 @@ export interface Badge {
   updatedAt: string;
   createdAt: string;
   priority: number;
+  slug: string;
 }
 
 @Injectable({
