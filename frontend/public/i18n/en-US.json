@@ -121,6 +121,7 @@
     ],
     "hit-products": {
       "title": "Top products",
+      "show-more": "Show more",
       "not-found": "There are no products matching your filter.",
       "filters": [
         {

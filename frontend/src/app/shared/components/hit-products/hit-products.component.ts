@@ -16,6 +16,7 @@ import {
 import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, map } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
+import { BtnFlatComponent } from '../../ui-elems/buttons/btn-flat/btn-flat.component';
 
 @Component({
   selector: 'app-top-products',
@@ -27,6 +28,7 @@ import { MatIconModule } from '@angular/material/icon';
     ScrollItemsComponent,
     HitFilterBtnComponent,
     MatIconModule,
+    BtnFlatComponent,
   ],
   templateUrl: './hit-products.component.html',
   styleUrl: './hit-products.component.scss',
@@ -74,5 +76,9 @@ export class HitProductsComponent implements OnInit {
       this.isLoading.set(false);
       this.hitProducts.set(products);
     });
+  }
+
+  showMore() {
+    
   }
 }

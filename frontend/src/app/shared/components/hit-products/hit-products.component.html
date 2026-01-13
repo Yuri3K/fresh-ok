@@ -2,17 +2,12 @@
 
 <div class="container">
   <div class="hit-products">
-    <app-h2-title 
-      class="hit-products__title"
-      [text]="translates.title"
-    />
-  
+    <app-h2-title class="hit-products__title" [text]="translates.title" />
+
     <div class="hit-products__filters green">
-      <app-scroll-items
-        [scrollItemsData]="categories()"
-      >
+      <app-scroll-items [scrollItemsData]="categories()">
         <ng-template #itemTemplate let-itemData>
-          <app-hit-filter-btn 
+          <app-hit-filter-btn
             [isActive]="appliedFilter() === itemData.slug"
             [btnData]="itemData"
             (filterBtnClicked)="applyFilter($event)"
@@ -20,23 +15,26 @@
         </ng-template>
       </app-scroll-items>
     </div>
-  
+
     <div class="hit-products__cards">
       @if(isLoading()) {
-        <app-loader />
-      } @else {
-        @for(product of hitProducts(); track product.id) {
-          <app-product-card 
-            [product]="product" 
-            [withStockAndRate]="false"
-          />
-        }@empty {
-          <div class="hit-products__empty">
-            <mat-icon>search_off</mat-icon>
-            <p>{{translates['not-found']}}</p>
-          </div>
-        }
-      }
+      <app-loader />
+      } @else { @for(product of hitProducts(); track product.id) {
+      <app-product-card [product]="product" [withStockAndRate]="false" />
+      }@empty {
+      <div class="hit-products__empty">
+        <mat-icon>search_off</mat-icon>
+        <p>{{ translates["not-found"] }}</p>
+      </div>
+      } }
+    </div>
+
+    <div class="hit-products__show-more">
+      <app-btn-flat
+        [btnText]="translates['show-more']"
+        bgColor="var(--mat-sys-primary-container)"
+        (click)="showMore()"
+      />
     </div>
   </div>
 </div>

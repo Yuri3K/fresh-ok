@@ -85,12 +85,11 @@ function parseFilters(query: any) {
   };
 }
 
-// Функция для получения отфильтрованных данных по пробуктам
+// Функция для получения отфильтрованных данных по продуктам
 function buildQuery(filters: ReturnType<typeof parseFilters>) {
   let q: FirebaseFirestore.Query = db.collection("products");
 
   if (filters.category) {
-    // q = q.where('categories', '==', filters.categories)
     q = q.where("category", "==", filters.category);
   }
 
@@ -103,7 +102,6 @@ function buildQuery(filters: ReturnType<typeof parseFilters>) {
 }
 
 // Функция для получения с БД данных про активные бэйджи.
-//
 // Возвращает Map в котором id будет название бэйджа,
 // а тело - объект с данными о бэйдже (цвет, перевод, приоритет, ...)
 async function getBadgesMap(): Promise<Map<string, Badge>> {
