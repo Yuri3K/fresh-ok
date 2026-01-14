@@ -26,6 +26,7 @@ export class BtnFlatComponent {
   @Input() btnDisabled = false;
   @Input() type: string = 'button';
   @Input() borderRarius!: string;
+  @Input() btnBorder = 'none';
   @Input() textColor: string = 'var(--mat-sys-on-background)';
   @Input() bgColor: string = 'var(--mat-sys-primary-container)';
 }

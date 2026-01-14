@@ -5,7 +5,11 @@
     <app-h2-title class="hit-products__title" [text]="translates.title" />
 
     <div class="hit-products__filters">
-      <app-scroll-items [scrollItemsData]="categories()">
+      <app-scroll-items 
+        itemsGap="16px"
+        itemsMaxWidth="950px"
+        [scrollItemsData]="categories()"
+      >
         <ng-template #itemTemplate let-itemData>
           <app-product-filter-btn
             [isActive]="appliedFilter() === itemData.slug"
