@@ -1,3 +1,9 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .product-card {
   // border: 2px solid var(--mat-sys-primary-container);
   border: 1px solid var(--mat-sys-on-tertiary-container);
