@@ -6,7 +6,7 @@ import { RouterLink } from '@angular/router';
 import { CounterComponent } from '../counter/counter.component';
 import { GetCurrentLangService } from '../../../core/services/get-current-lang.service';
 import { CalcDiscountPipe } from '../../../core/pipes/calc-discount.pipe';
-import { MatTooltipModule } from '@angular/material/tooltip';
+// import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-product-card',
@@ -15,7 +15,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     RouterLink,
     CounterComponent,
     CalcDiscountPipe,
-    MatTooltipModule,
+    // MatTooltipModule,
   ],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss',
