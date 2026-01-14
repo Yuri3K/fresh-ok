@@ -64,7 +64,12 @@
 			</div>
 		}
 		
-		<h3 class="product-card__title">
+		<h3 
+			class="product-card__title" 
+			[matTooltip]="product().i18n[currentLang()].description"
+			[matTooltipShowDelay]="700"
+			matBadgePosition="above before"
+		>
 			{{product().i18n[currentLang()].description}}
 		</h3>
 	</div>
