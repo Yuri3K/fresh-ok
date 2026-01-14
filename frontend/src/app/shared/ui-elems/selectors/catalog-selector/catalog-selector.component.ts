@@ -5,6 +5,7 @@ import { OpenMenuDirective } from '../../../../core/directives/open-menu.directi
 import { AsyncPipe } from '@angular/common';
 import { CatalogService } from '../../../../core/services/catalog.service';
 import { LangsService } from '../../../../core/services/langs.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-catalog-selector',
@@ -14,10 +15,12 @@ import { LangsService } from '../../../../core/services/langs.service';
     MatIconModule,
     TranslateModule,
     OpenMenuDirective,
-    AsyncPipe
+    AsyncPipe,
+    RouterLink,
   ]
 })
 export class CatalogSelectorComponent {
+  // private readonly router = 
   currentLang$ = inject(LangsService).currentLang$
   catalogService = inject(CatalogService)
   catalogList$ = this.catalogService.catalogList$

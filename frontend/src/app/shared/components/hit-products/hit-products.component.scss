@@ -39,7 +39,6 @@
   }
 
   @media (max-width: 992px) {
-    // grid-template-columns: repeat(2, 1fr);
     > * {
       flex: 0 0 calc((100% - 27px) / 2); // 2 колонки
       max-width: calc((100% - 27px) / 2);

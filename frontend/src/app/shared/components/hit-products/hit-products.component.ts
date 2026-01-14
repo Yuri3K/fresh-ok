@@ -59,7 +59,7 @@ export class HitProductsComponent implements OnInit {
     const queryStr = ['badge=hit'];
 
     this.productsService.getProducts(queryStr).subscribe((products) => {
-      // this.isLoading.set(false);
+      this.isLoading.set(false);
       this.hitProducts.set(products.data);
       this.hitPagination.set(products.pagination);
     });

@@ -30,7 +30,10 @@
     }
   }
 
-  button {
+  button, a {
+    display: flex;
+    align-items: center;
+    color: var(--mat-sys-secondary);
     font-family: "Open Sans", Arial, Helvetica, sans-serif;
     border: none;
     width: 100%;
@@ -44,6 +47,7 @@
     text-align: left;
     position: relative;
     transition: background-color 0.3s ease;
+    text-decoration: none;
 
     &:hover {
       background-color: var(--mat-sys-outline-variant);

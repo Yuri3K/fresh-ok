@@ -13,22 +13,19 @@
   </button>
   <div class="catalog__body dropdown-body">
     <ul class="catalog__list dropdown-list">
-      <!-- <li class="catalog__item">
-        <button
-          [class.active]="selectedCategory == 'all'"
-          (click)="selectCategory('all')"
-        >
-          {{ "header-market.catalog.all-categories" | translate }}
-        </button>
-      </li> -->
       @for(item of catalogList; track item.id; let i = $index) {
       <li class="catalog__item">
-        <button
+        <a
           [class.active]="selectedCategory == item.slug"
           (click)="selectCategory(item.slug)"
+          [routerLink]="['/products']"
+          [queryParams]="{
+            category: item.slug,
+          }"
+          queryParamsHandling="merge"
         >
           {{ item.name[lang.browserLang] }}
-        </button>
+        </a>
       </li>
       }
     </ul>
