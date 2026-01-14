@@ -3,9 +3,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
   flex-wrap: wrap;
-  padding: 70px 0;
+  gap: 20px;
+  padding: 35px 0;
+
+  @media (max-width: 576px) {
+      padding: 24px 0;
+  }
 }
 
 .hit-products__title {
@@ -21,13 +25,26 @@
 }
 
 .hit-products__cards {
-  display: flex;
-  align-items: start;
-  justify-content: center;
-  flex-wrap: wrap;
+  // display: flex;
+  // align-items: start;
+  // justify-content: center;
+  // flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 27px;
 	min-height: 250px;
-  margin-bottom: 50px;
+
+  @media (max-width: 992px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 768px) {
+    gap: 10px;
+  }
+
+  @media (max-width: 576px) {
+    gap: 5px;
+  }
 }
 
 app-loader {
@@ -53,3 +70,12 @@ app-loader {
 		font-size: 1.5rem;
 	}
 }
+
+.hit-products__show-more {
+  margin-top: 30px;
+
+  @media (max-width: 576px) {
+      margin-top: 24px;
+  }
+}
+

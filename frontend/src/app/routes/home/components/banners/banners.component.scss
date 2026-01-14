@@ -1,5 +1,5 @@
 .banners {
-  padding-top: 70px;
+  padding-top: 35px;
   padding-bottom: 135px;
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
@@ -14,6 +14,7 @@
 
   @media (max-width: 992px) {
     grid-template-columns: 1fr 1fr;
+    padding-bottom: 70px;
 
     > :first-child {
       grid-column: 1 / -1;
@@ -31,5 +32,10 @@
       width: 100%;
       max-width: none;
     }
+  }
+
+  @media (max-width: 576px) {
+    padding-top: 24px;
+    padding-bottom: 50px;
   }
 }

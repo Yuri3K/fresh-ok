@@ -12,6 +12,10 @@
 	::ng-deep mat-form-field .mdc-text-field {
     padding: 0;
   }
+
+  @media (max-width: 576px) {
+    justify-content: center;
+  }
 }
 
 mat-form-field {
