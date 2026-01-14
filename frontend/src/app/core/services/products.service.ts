@@ -1,7 +1,16 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { ApiService } from './api.service';
 import { LangCode } from './langs.service';
-import { catchError, Observable, of, retry, take, tap, throwError } from 'rxjs';
+import {
+  catchError,
+  map,
+  Observable,
+  of,
+  retry,
+  take,
+  tap,
+  throwError,
+} from 'rxjs';
 
 export interface Product {
   id: string;
@@ -24,9 +33,23 @@ export interface Product {
   updatedAt: string;
 }
 
+interface PaginatedResponse<Product> {
+  data: Product[];
+  pagination: Pagination;
+}
+
+export interface Pagination {
+  currentPage: number;
+  totalPages: number;
+  totalItems: number;
+  itemsPerPage: number;
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
+}
+
 interface Stock {
   i18n: Record<LangCode, stockStatus>;
-  slug: stockStatus
+  slug: stockStatus;
   isActive: boolean;
   createdAt: string;
   updatedAt: string;
@@ -56,12 +79,13 @@ export interface Badge {
 export class ProductsService {
   private readonly apiService = inject(ApiService);
 
-  getProducts(queryStr: string[]): Observable<Product[]> {
+  getProducts(queryStr: string[]): Observable<PaginatedResponse<Product>> {
     return this.apiService
-      .getWithoutToken<Product[]>('/products', queryStr)
+      .getWithoutToken<PaginatedResponse<Product>>('/products', queryStr)
       .pipe(
         retry(1),
         take(1),
+        tap(res => console.log("!!! PRODUCTS !!!", res)),
         catchError((err) => {
           console.log(err);
           return throwError(() => err);

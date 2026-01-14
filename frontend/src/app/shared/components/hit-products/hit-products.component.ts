@@ -1,5 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import {
+  Pagination,
   Product,
   ProductsService,
 } from '../../../core/services/products.service';
@@ -38,12 +39,14 @@ export class HitProductsComponent implements OnInit {
   catalogService = inject(CatalogService);
 
   hitProducts = signal<Product[]>([]);
+  hitPagination = signal<Pagination>({} as Pagination);
   appliedFilter = signal('all');
   isLoading = signal(true);
+  isShowMoreLoading = signal(false)
 
   categories = toSignal(
     this.catalogService.catalogList$.pipe(
-      filter((items): items is CatalogItem[] => !!items.length),
+      filter((items): items is CatalogItem[] => !!items.length)
     ),
     { initialValue: [] }
   );
@@ -55,12 +58,11 @@ export class HitProductsComponent implements OnInit {
   private getHitProducts() {
     const queryStr = ['badge=hit'];
 
-    this.productsService
-      .getProducts(queryStr)
-      .subscribe(products => {
-        this.isLoading.set(false)
-        this.hitProducts.set(products)
-      });
+    this.productsService.getProducts(queryStr).subscribe((products) => {
+      this.isLoading.set(false);
+      this.hitProducts.set(products.data);
+      this.hitPagination.set(products.pagination);
+    });
   }
 
   applyFilter(selector: string) {
@@ -77,11 +79,28 @@ export class HitProductsComponent implements OnInit {
 
     this.productsService.getProducts(queryStr).subscribe((products) => {
       this.isLoading.set(false);
-      this.hitProducts.set(products);
+      this.hitProducts.set(products.data);
+      this.hitPagination.set(products.pagination);
     });
   }
 
   showMore() {
+    if (!this.hitPagination().hasNextPage) return;
+
+    const currentPage = this.hitPagination().currentPage;
+    const queryStr = ['badge=hit', `page=${currentPage + 1}`];
     
+    if (this.appliedFilter() !== 'all') {
+      queryStr.push(`category=${this.appliedFilter()}`);
+    }
+    console.log("🚀 ~ queryStr:", queryStr)
+    
+    this.isShowMoreLoading.set(true)
+
+    this.productsService.getProducts(queryStr).subscribe((products) => {
+      this.isShowMoreLoading.set(false)
+      this.hitProducts.update(v => [...v, ...products.data]);
+      this.hitPagination.set(products.pagination);
+    });
   }
 }
