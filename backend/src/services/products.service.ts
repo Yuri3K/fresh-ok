@@ -195,7 +195,7 @@ function applySorting(products: Product[], sort: string | null): Product[] {
 
 function parsePagination(query: PaginationQuery) {
   const page = Math.max(1, parseInt(String(query.page ?? 1), 10));
-  const limit = Math.min(20, parseInt(String(query.limit ?? 6), 10));
+  const limit = Math.min(18, parseInt(String(query.limit ?? 8), 10));
 
   return { page, limit };
 }

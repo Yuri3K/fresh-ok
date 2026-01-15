@@ -1,8 +1,11 @@
-import { Component, EventEmitter, inject, input, Output } from '@angular/core';
+import { Component, computed, EventEmitter, input, Output } from '@angular/core';
 import { BtnFlatComponent } from '../../ui-elems/buttons/btn-flat/btn-flat.component';
-import { GetCurrentLangService } from '../../../core/services/get-current-lang.service';
-import { CatalogItem } from '../../../core/services/catalog.service';
 
+export interface FilterData {
+  name: string;
+  selector: string;
+  order: number;
+}
 @Component({
   selector: 'app-product-filter-btn',
   imports: [BtnFlatComponent],
@@ -13,8 +16,10 @@ export class ProductFilterBtnComponent {
   @Output() filterBtnClicked = new EventEmitter<string>();
 
   isActive = input<boolean>(false);
+  btnData = input.required<FilterData>();
 
-  btnData = input.required<CatalogItem>();
-
-  readonly currentLang = inject(GetCurrentLangService).currentLang;
+  btnText = computed(() => {
+    console.log("🚀 ~ this.btnData():", this.btnData())
+    return this.btnData().name
+  })
 }

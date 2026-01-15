@@ -1,9 +1,9 @@
 <app-btn-flat 
-  [btnText]="btnData().name[currentLang()]"
+  [btnText]="btnData().name"
   btnBorder="1px solid var(--mat-sys-primary-container)"
   [bgColor]="
     isActive() 
       ? 'var(--mat-sys-primary-container)' 
       : 'transparent'"
-  (click)="filterBtnClicked.emit(btnData().slug)"
+  (click)="filterBtnClicked.emit(btnData().selector)"
 />

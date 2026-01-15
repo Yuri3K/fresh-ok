@@ -18,9 +18,10 @@ import { filter } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { BtnFlatComponent } from '../../ui-elems/buttons/btn-flat/btn-flat.component';
 import { ProductFilterBtnComponent } from '../product-filter-btn/product-filter-btn.component';
+import { GetCurrentLangService } from '../../../core/services/get-current-lang.service';
 
 @Component({
-  selector: 'app-top-products',
+  selector: 'app-hit-products',
   imports: [
     ProductCardComponent,
     TranslateModule,
@@ -37,17 +38,16 @@ import { ProductFilterBtnComponent } from '../product-filter-btn/product-filter-
 export class HitProductsComponent implements OnInit {
   productsService = inject(ProductsService);
   catalogService = inject(CatalogService);
+  readonly currentLang = inject(GetCurrentLangService).currentLang;
 
   hitProducts = signal<Product[]>([]);
   hitPagination = signal<Pagination>({} as Pagination);
   appliedFilter = signal('all');
   isLoading = signal(true);
-  isShowMoreLoading = signal(false)
+  isShowMoreLoading = signal(false);
 
   categories = toSignal(
-    this.catalogService.catalogList$.pipe(
-      filter((items): items is CatalogItem[] => !!items.length)
-    ),
+    this.catalogService.catalogList$.pipe(filter((items) => !!items.length)),
     { initialValue: [] }
   );
 
@@ -89,17 +89,17 @@ export class HitProductsComponent implements OnInit {
 
     const currentPage = this.hitPagination().currentPage;
     const queryStr = ['badge=hit', `page=${currentPage + 1}`];
-    
+
     if (this.appliedFilter() !== 'all') {
       queryStr.push(`category=${this.appliedFilter()}`);
     }
-    console.log("🚀 ~ queryStr:", queryStr)
-    
-    this.isShowMoreLoading.set(true)
+    console.log('🚀 ~ queryStr:', queryStr);
+
+    this.isShowMoreLoading.set(true);
 
     this.productsService.getProducts(queryStr).subscribe((products) => {
-      this.isShowMoreLoading.set(false)
-      this.hitProducts.update(v => [...v, ...products.data]);
+      this.isShowMoreLoading.set(false);
+      this.hitProducts.update((v) => [...v, ...products.data]);
       this.hitPagination.set(products.pagination);
     });
   }

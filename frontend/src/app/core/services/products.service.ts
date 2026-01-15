@@ -33,7 +33,7 @@ export interface Product {
   updatedAt: string;
 }
 
-interface PaginatedResponse<Product> {
+export interface PaginatedResponse<Product> {
   data: Product[];
   pagination: Pagination;
 }

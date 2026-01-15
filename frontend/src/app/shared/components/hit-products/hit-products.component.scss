@@ -34,8 +34,15 @@
   min-height: 250px;
 
   > * {
-    flex: 0 0 calc((100% - 54px) / 3); // 3 колонки с учетом gap
-    max-width: calc((100% - 54px) / 3);
+    flex: 0 0 calc((100% - 81px) / 4); // 4 колонки с учетом gap
+    max-width: calc((100% - 81px) / 4);
+  }
+
+  @media (max-width: 1200px) {
+    > * {
+      flex: 0 0 calc((100% - 54px) / 3); // 3 колонки
+      max-width: calc((100% - 54px) / 3);
+    }
   }
 
   @media (max-width: 992px) {
@@ -43,10 +50,6 @@
       flex: 0 0 calc((100% - 27px) / 2); // 2 колонки
       max-width: calc((100% - 27px) / 2);
     }
-  }
-
-  @media (max-width: 768px) {
-    gap: 10px;
   }
 
   @media (max-width: 576px) {

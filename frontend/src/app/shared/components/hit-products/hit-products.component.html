@@ -13,7 +13,11 @@
         <ng-template #itemTemplate let-itemData>
           <app-product-filter-btn
             [isActive]="appliedFilter() === itemData.slug"
-            [btnData]="itemData"
+            [btnData]="{
+              name: itemData.name[currentLang()],
+              selector: itemData.slug,
+              order: itemData.order
+            }"
             (filterBtnClicked)="applyFilter($event)"
           />
         </ng-template>

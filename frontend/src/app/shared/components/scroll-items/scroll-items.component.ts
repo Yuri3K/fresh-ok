@@ -1,25 +1,19 @@
 import { NgTemplateOutlet } from '@angular/common';
 import {
-  AfterViewInit,
   Component,
+  computed,
   contentChild,
-  ContentChild,
-  DestroyRef,
   effect,
   ElementRef,
   EventEmitter,
   HostListener,
   inject,
   input,
-  Output,
   Renderer2,
   signal,
   TemplateRef,
-  ViewChild,
   viewChild,
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-scroll-items',
@@ -30,16 +24,14 @@ import { fromEvent } from 'rxjs';
 export class ScrollItemsComponent<T> {
   // Порог в пикселях для различения клика и скролла
   dragThreshold = input<number>(5);
-  scrollItemsData = input.required<T[]>();
   itemsGap = input<string>('0');
   itemsMaxWidth = input<string>('750px');
   itemTemplate = contentChild.required<TemplateRef<any>>('itemTemplate');
+  scrollItemsData = input.required<T[]>();
 
   scrollItemsList = viewChild<ElementRef<HTMLDivElement>>('scrollItemsList');
 
   private renderer = inject(Renderer2);
-  private destroyRef = inject(DestroyRef);
-
   private scrollItemsBox!: HTMLDivElement | undefined;
 
   isDragging = signal(false);

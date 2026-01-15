@@ -11,6 +11,7 @@
     [style.gap]="itemsGap()"
     [style.maxWidth]="itemsMaxWidth()"
   >
+
     @for(itemData of scrollItemsData(); track $index) {
       <div class="scroll-items__item">
         <ng-container 

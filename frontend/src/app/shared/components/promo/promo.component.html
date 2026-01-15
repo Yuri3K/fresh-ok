@@ -7,9 +7,38 @@
     </div>
 
     <div class="promo__filters">
-      @for(filter of translates.filters; track $index) {
+      @for(filter of translates.filters; track filter.selector) {
+        <app-product-filter-btn 
+          [btnData]="filter"
+          (filterBtnClicked)="applyFilter($event)"
+        />
         
       }
     </div>
+
+    <div class="promo__cards">
+      @for(product of promoProducts(); track product.id) {
+        <app-product-card-mini 
+          [product]="product"
+        />
+      }
+    </div>
+
+    @if(promoProducts()) {
+      @if(promoPagination().hasNextPage) {
+        <div class="hit-products__show-more">
+          @if(isShowMoreLoading()) {
+            <app-loader />
+          } @else {
+            <app-btn-flat
+              borderRarius="6px"
+              [btnText]="'common.show-more' | translate"
+              bgColor="var(--mat-sys-primary-container)"
+              (click)="showMore()"
+            />
+          }
+        </div>
+      }
+    }
   </div>
 </section>
