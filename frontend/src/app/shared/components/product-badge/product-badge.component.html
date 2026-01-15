@@ -1,0 +1,21 @@
+<div class="product-card__badges">
+	@for(badge of product().badges; track $index) {
+		@if(badge.slug === 'discount') {
+			<!-- @if(showDiscount()) { -->
+				<span 
+					class="product-card__badge"
+					[class]="badge.color"
+				>
+					-{{product().discountPercent}}%
+				</span>
+			<!-- } -->
+		} @else {
+			<span 
+				class="product-card__badge"
+				[class]="badge.color"
+			>
+				{{badge.i18n[currentLang()]}}
+			</span>
+		}
+	} 
+</div>

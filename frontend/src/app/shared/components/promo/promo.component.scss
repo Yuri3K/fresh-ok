@@ -1,0 +1,33 @@
+section {
+	background-color: var(--mat-sys-outline-variant);
+	padding-bottom: 135px;
+	padding-top: 10px;
+}
+
+.promo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+	gap: 30px;
+}
+
+.promo__filters{
+	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 16px;
+}
+
+.promo__cards{
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: 27px;
+
+	@media (max-width: 768px) {
+		gap: 15px;
+	}
+}

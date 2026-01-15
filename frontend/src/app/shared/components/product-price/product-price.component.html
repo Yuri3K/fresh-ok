@@ -1,0 +1,13 @@
+<div  class="product-card__price" >
+  <span
+    class="product-card__price-origin"
+    [class.cross]="product().hasDiscount"
+  >
+    {{product().price}} {{product().currency}}
+  </span>
+  @if(product().hasDiscount) {
+    <span class="product-card__price-discount" >
+      {{product().price | calcDiscount : product().discountPercent}}{{product().currency}}
+    </span>
+  }
+</div>

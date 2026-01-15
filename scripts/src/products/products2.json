@@ -9,6 +9,7 @@
     "badges": ["new", "hit"],
     "searchKeywords": ["Salmon", "Лосось", "Лосось"],
     "publickId": "",
+    "stock": "in-stock",
     "i18n": {
       "en": {
         "name": "Salmon",
@@ -34,6 +35,7 @@
     "badges": ["new", "hit"],
     "searchKeywords": ["Basket", "Корзина", "Кошик"],
     "publickId": "",
+    "stock": "low-stock",
     "i18n": {
       "en": { "name": "Basket", "description": "Fruit basket of vitamins." },
       "ru": {
@@ -53,6 +55,7 @@
     "badges": ["new", "hit"],
     "searchKeywords": ["Veg-juice", "Овощной сок", "Овочевий сік"],
     "publickId": "",
+    "stock": "out-of-stock",
     "i18n": {
       "en": {
         "name": "Veg-juice",
@@ -78,6 +81,7 @@
     "badges": ["new", "hit"],
     "searchKeywords": ["Mango", "Манго", "Манго"],
     "publickId": "",
+    "stock": "in-stock",
     "i18n": {
       "en": {
         "name": "Mango",
@@ -103,6 +107,7 @@
     "badges": ["new", "hit"],
     "searchKeywords": ["Strawberry", "Клубника", "Лосось"],
     "publickId": "",
+    "stock": "in-stock",
     "i18n": {
       "en": {
         "name": "Strawberry",
@@ -128,6 +133,7 @@
     "badges": ["new", "hit"],
     "searchKeywords": ["Pork", "Свинина", "Свинина"],
     "publickId": "",
+    "stock": "in-stock",
     "i18n": {
       "en": { "name": "Pork", "description": "Chilled pork pulp." },
       "ru": { "name": "Свинина", "description": "Свинная мякоть охлажденная." },

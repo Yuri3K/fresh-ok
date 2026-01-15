@@ -1,24 +1,6 @@
 <div class="product-card green">
   <div class="product-card__header">
-		<div class="product-card__badges">
-			@for(badge of product().badges; track $index) {
-				@if(badge.slug === 'discount') {
-					<span 
-						class="product-card__badge"
-						[class]="badge.color"
-					>
-						-{{product().discountPercent}}%
-					</span>
-				} @else {
-					<span 
-						class="product-card__badge"
-						[class]="badge.color"
-					>
-						{{badge.i18n[currentLang()]}}
-					</span>
-				}
-			} 
-		</div>
+		<app-product-badge [product]="product()"/>
 
 		<app-mini-fab-btn
 			class="product-card__fav"
@@ -67,28 +49,14 @@
 		<!-- [matTooltip]="product().i18n[currentLang()].description"
 		[matTooltipShowDelay]="700" --> 
 		<!-- matBadgePosition="above before" -->
-		<h3 
-			class="product-card__title" 
-		>
+		<h3 class="product-card__title">
 			{{product().i18n[currentLang()].description}}
 		</h3>
 	</div>
 
 	<div class="product-card__footer">
-		<div  class="product-card__price" >
-			<span
-				class="product-card__price-origin"
-				[class.cross]="product().hasDiscount"
-			>
-				{{product().price}} {{product().currency}}
-			</span>
-			@if(product().hasDiscount) {
-				<span class="product-card__price-discount" >
-					{{product().price | calcDiscount : product().discountPercent}} {{product().currency}}
-				</span>
-			}
-		</div>
-		
+		<app-product-price [product]="product()" />
+
 		<app-counter />
 
 		<app-mini-fab-btn

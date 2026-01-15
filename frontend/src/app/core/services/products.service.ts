@@ -47,7 +47,7 @@ export interface Pagination {
   hasPreviousPage: boolean;
 }
 
-interface Stock {
+export interface Stock {
   i18n: Record<LangCode, stockStatus>;
   slug: stockStatus;
   isActive: boolean;
@@ -55,7 +55,7 @@ interface Stock {
   updatedAt: string;
 }
 
-export type stockStatus = 'in stock' | 'low-stock' | 'out-of-stock';
+export type stockStatus = 'in-stock' | 'low-stock' | 'out-of-stock';
 
 export interface ProductTexts {
   name: string;

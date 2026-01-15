@@ -51,3 +51,16 @@
     )
   );
 }
+
+.yellow {
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$yellow-palette,
+        tertiary: mat.$orange-palette,
+      ),
+      typography: var(--body-font-family),
+      density: 0,
+    )
+  );
+}

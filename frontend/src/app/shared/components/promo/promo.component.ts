@@ -10,7 +10,7 @@ import {
 } from '../../../core/services/products.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ProductFilterBtnComponent } from '../product-filter-btn/product-filter-btn.component';
-import { filter } from 'rxjs';
+import { filter, tap } from 'rxjs';
 import { ProductCardMiniComponent } from '../product-card-mini/product-card-mini.component';
 
 @Component({
@@ -29,14 +29,17 @@ import { ProductCardMiniComponent } from '../product-card-mini/product-card-mini
 export class PromoComponent {
   productsService = inject(ProductsService);
 
-  appliedFilter = signal('all');
-  isLoading = signal(false);
+  appliedFilter = signal('discount');
+  isLoading = signal(true);
   isShowMoreLoading = signal(false);
 
   promoProductsData = toSignal(
     this.productsService
       .getProducts(['badge=discount'])
-      .pipe(filter((data) => !!data.data.length)),
+      .pipe(
+        filter((data) => !!data.data.length),
+        tap(() => this.isLoading.set(false))
+      ),
     { initialValue: {} as PaginatedResponse<Product> }
   );
 
@@ -51,5 +54,28 @@ export class PromoComponent {
     console.log('🚀 ~ selector:', selector);
   }
 
-  showMore() {}
+  showMore() {
+    // if (!this.promoPagination().hasNextPage) return;
+
+    // const currentPage = this.promoPagination().currentPage;
+    // const qyeryBadges = ['discount'];
+
+    // if (this.appliedFilter() !== 'discount') {
+    //   qyeryBadges.push(this.appliedFilter());
+    // }
+
+    // const queryStr = [
+    //   `badge=${qyeryBadges.join(',')}`, 
+    //   `page=${currentPage + 1}`
+    // ];
+
+    // this.isShowMoreLoading.set(true);
+
+    // this.productsService.getProducts(queryStr).subscribe((products) => {
+    //   this.isShowMoreLoading.set(false);
+    //   this.promoProducts.update((v) => [...v, ...products.data]);
+    //   this.promoPagination.set(products.pagination);
+    // });
+
+  }
 }

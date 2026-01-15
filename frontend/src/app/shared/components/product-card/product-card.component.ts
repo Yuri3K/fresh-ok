@@ -5,7 +5,8 @@ import { MEDIA_URL } from '../../../core/urls';
 import { RouterLink } from '@angular/router';
 import { CounterComponent } from '../counter/counter.component';
 import { GetCurrentLangService } from '../../../core/services/get-current-lang.service';
-import { CalcDiscountPipe } from '../../../core/pipes/calc-discount.pipe';
+import { ProductBadgeComponent } from '../product-badge/product-badge.component';
+import { ProductPriceComponent } from '../product-price/product-price.component';
 // import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
@@ -14,7 +15,8 @@ import { CalcDiscountPipe } from '../../../core/pipes/calc-discount.pipe';
     MiniFabBtnComponent,
     RouterLink,
     CounterComponent,
-    CalcDiscountPipe,
+    ProductBadgeComponent,
+    ProductPriceComponent,
     // MatTooltipModule,
   ],
   templateUrl: './product-card.component.html',

@@ -9,6 +9,7 @@
     "badges": ["new"],
     "searchKeywords": ["Pepper", "Перец", "Перець"],
     "publickId": "",
+    "stock": "in-stock",
     "i18n": {
       "en": { "name": "Pepper", "description": "Fresh pepper" },
       "ru": { "name": "Перец", "description": "Свежий перец" },
@@ -25,6 +26,7 @@
     "badges": ["new", "hit"],
     "searchKeywords": ["Dragon Fruit", "Питахайя", "Пітахая"],
     "publickId": "",
+    "stock": "in-stock",
     "i18n": {
       "en": { "name": "Dragon Fruit", "description": "Exotic dragon fruit" },
       "ru": { "name": "Питахайя", "description": "Экзотический фрукт" },
@@ -42,6 +44,7 @@
     "badges": ["discount", "hit"],
     "searchKeywords": ["Pineapple", "Ананас", "Ананас"],
     "publickId": "",
+    "stock": "in-stock",
     "i18n": {
       "en": { "name": "Pineapple", "description": "Sweet pineapple" },
       "ru": { "name": "Ананас", "description": "Сладкий ананас" },
@@ -58,6 +61,7 @@
     "badges": [],
     "searchKeywords": ["Lemon", "Лимон", "Лимон"],
     "publickId": "",
+    "stock": "in-stock",
     "i18n": {
       "en": { "name": "Lemon", "description": "Fresh lemon" },
       "ru": { "name": "Лимон", "description": "Свежий лимон" },
@@ -73,7 +77,8 @@
     "hasDiscount": false,
     "badges": ["hit"],
     "searchKeywords": ["Juice", "Сок", "Сік"],
-    "publickId": "",
+    "publickId": "out-of-stock",
+    "stock": "low-stock",
     "i18n": {
       "en": { "name": "Juice", "description": "Natural juice" },
       "ru": { "name": "Сок", "description": "Натуральный сок" },
@@ -91,6 +96,7 @@
     "badges": ["discount"],
     "searchKeywords": ["Ketchup", "Кетчуп", "Кетчуп"],
     "publickId": "",
+    "stock": "low-stock",
     "i18n": {
       "en": { "name": "Ketchup", "description": "Tomato ketchup" },
       "ru": { "name": "Кетчуп", "description": "Томатный кетчуп" },

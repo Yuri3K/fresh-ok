@@ -1,0 +1,19 @@
+.rate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+span {
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.5px;
+}
+
+mat-icon {
+  font-size: 1rem;
+  width: auto;
+  height: auto;
+}
