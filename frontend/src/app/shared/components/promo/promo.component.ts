@@ -1,10 +1,11 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { H2TitleComponent } from '../../ui-elems/typography/h2-title/h2-title.component';
 import { LoaderComponent } from '../loader/loader.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { BtnFlatComponent } from '../../ui-elems/buttons/btn-flat/btn-flat.component';
 import {
   PaginatedResponse,
+  Pagination,
   Product,
   ProductsService,
 } from '../../../core/services/products.service';
@@ -14,7 +15,7 @@ import { filter, tap } from 'rxjs';
 import { ProductCardMiniComponent } from '../product-card-mini/product-card-mini.component';
 
 @Component({
-  selector: 'app-promo',
+  selector: 'app-promo-products',
   imports: [
     H2TitleComponent,
     LoaderComponent,
@@ -26,56 +27,82 @@ import { ProductCardMiniComponent } from '../product-card-mini/product-card-mini
   templateUrl: './promo.component.html',
   styleUrl: './promo.component.scss',
 })
-export class PromoComponent {
+export class PromoComponent implements OnInit {
   productsService = inject(ProductsService);
 
   appliedFilter = signal('discount');
   isLoading = signal(true);
   isShowMoreLoading = signal(false);
 
-  promoProductsData = toSignal(
-    this.productsService
-      .getProducts(['badge=discount'])
-      .pipe(
-        filter((data) => !!data.data.length),
-        tap(() => this.isLoading.set(false))
-      ),
-    { initialValue: {} as PaginatedResponse<Product> }
-  );
+  promoProducts = signal<Product[]>([]);
+  promoPagination = signal<Pagination>({} as Pagination);
 
-  promoProducts = computed(() => {
-    console.log("🚀 ~ this.promoProductsData():", this.promoProductsData())
-    return this.promoProductsData().data
-  });
-  promoPagination = computed(() => this.promoProductsData().pagination);
+  ngOnInit() {
+    this.getPromoProducts();
+  }
 
+  private getPromoProducts() {
+    const queryStr = ['badge=discount'];
+
+    this.productsService.getProducts(queryStr).subscribe((products) => {
+      this.isLoading.set(false);
+      this.promoProducts.set(products.data);
+      this.promoPagination.set(products.pagination);
+    });
+  }
 
   applyFilter(selector: string) {
-    console.log('🚀 ~ selector:', selector);
+    if (this.appliedFilter() == selector) return;
+
+    this.appliedFilter.set(selector);
+    this.isLoading.set(true);
+
+    const qyeryBadges = ['discount'];
+
+    if (this.appliedFilter() !== 'discount') {
+      qyeryBadges.push(this.appliedFilter());
+    }
+
+    const queryStr = [
+      `badge=${qyeryBadges.join(',')}`, 
+      'badgeMode=and'
+    ];
+
+    this.productsService.getProducts(queryStr).subscribe((products) => {
+      this.isLoading.set(false);
+      this.promoProducts.set(products.data);
+      this.promoPagination.set(products.pagination);
+    });
   }
 
   showMore() {
-    // if (!this.promoPagination().hasNextPage) return;
+    if (!this.promoPagination().hasNextPage) return;
 
-    // const currentPage = this.promoPagination().currentPage;
-    // const qyeryBadges = ['discount'];
+    const currentPage = this.promoPagination().currentPage;
+    const qyeryBadges = ['discount'];
 
-    // if (this.appliedFilter() !== 'discount') {
-    //   qyeryBadges.push(this.appliedFilter());
-    // }
+    // В случае, если применен фильтр, то поиск должен быть выполнен
+    // по фильтру discount + 'hit' | 'new'
+    if (this.appliedFilter() !== 'discount') {
+      qyeryBadges.push(this.appliedFilter());
+    }
 
-    // const queryStr = [
-    //   `badge=${qyeryBadges.join(',')}`, 
-    //   `page=${currentPage + 1}`
-    // ];
+    // Добавляем 'badgeMode=and' чтобы були найдены толко те продукты,
+    // в которых есть ВСЕ бэйджи, перечисленные в qyeryBadges.
+    // ВАЖНО, чтобы первым был всегда указан 'discount', так как
+    // бэк сначало найдет все продукты с 'discount', а потом дополнительно
+    // отфильтрует по оставшимся бэйджам
+    const queryStr = [
+      `badge=${qyeryBadges.join(',')}`,
+      'badgeMode=and',
+      `page=${currentPage + 1}`,
+    ];
 
-    // this.isShowMoreLoading.set(true);
-
-    // this.productsService.getProducts(queryStr).subscribe((products) => {
-    //   this.isShowMoreLoading.set(false);
-    //   this.promoProducts.update((v) => [...v, ...products.data]);
-    //   this.promoPagination.set(products.pagination);
-    // });
-
+    this.isShowMoreLoading.set(true);
+    this.productsService.getProducts(queryStr).subscribe((products) => {
+      this.isShowMoreLoading.set(false);
+      this.promoProducts.update((v) => [...v, ...products.data]);
+      this.promoPagination.set(products.pagination);
+    });
   }
 }

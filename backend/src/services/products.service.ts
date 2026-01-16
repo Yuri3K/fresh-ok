@@ -22,7 +22,7 @@ interface Product {
   updatedAt: string;
 }
 
-interface EnrichedProduct extends Omit<Product, 'badges' | 'stock'> {
+interface EnrichedProduct extends Omit<Product, "badges" | "stock"> {
   badges: Badge[];
   stock: Stock;
 }
@@ -35,7 +35,7 @@ interface Stock {
   updatedAt: string;
 }
 
-type stockStatus = "in stock" | "low-stock" | "out-of-stock";
+type stockStatus = "in-stock" | "low-stock" | "out-of-stock";
 
 interface ProductTexts {
   name: string;
@@ -60,7 +60,7 @@ interface PaginatedResponse<T> {
     itemsPerPage: number;
     hasNextPage: boolean;
     hasPreviousPage: boolean;
-  }
+  };
 }
 
 interface PaginationQuery {
@@ -110,15 +110,16 @@ export async function getFilteredProducts(
   const badgesMap = await getBadgesMap();
   const stockMap = await getStockMap();
 
-  const finalProducts: EnrichedProduct[] = paginatedProducts.map((product) => ({
-    ...product,
-    badges: product.badges
-      .map((badgeName) => badgesMap.get(badgeName))
-      .filter((badge): badge is Badge => badge !== undefined)
-      .sort((a, b) => a!.priority - b!.priority),
-    stock: stockMap.get(product.stock),
-  }))
-  .filter((product): product is EnrichedProduct => product !== null);
+  const finalProducts: EnrichedProduct[] = paginatedProducts
+    .map((product) => ({
+      ...product,
+      badges: product.badges
+        .map((badgeName) => badgesMap.get(badgeName))
+        .filter((badge): badge is Badge => badge !== undefined)
+        .sort((a, b) => a!.priority - b!.priority),
+      stock: stockMap.get(product.stock),
+    }))
+    .filter((product): product is EnrichedProduct => product !== null);
 
   return {
     data: finalProducts,
@@ -129,7 +130,7 @@ export async function getFilteredProducts(
       itemsPerPage: pagination.limit,
       hasNextPage: pagination.page < totalPages,
       hasPreviousPage: pagination.page > 1,
-    }
+    },
   };
 }
 
@@ -138,6 +139,19 @@ function applyClientFilters(
   filters: ReturnType<typeof parseFilters>
 ): Product[] {
   let filtered = products;
+
+  // Фильтр по бейджам в AND режиме (дополнительаня фильтрация)
+  if (filters.badge && filters.badgeMode === "and") {
+    const requiredBadges = filters.badge
+      .split(",")
+      .map((b: string) => b.trim());
+
+    if (requiredBadges.length > 1)
+      filtered = filtered.filter((p) => {
+        // Проверяем, что продукт содержит ВСЕ требуемые бейджи
+        return requiredBadges.every((b: string) => p.badges.includes(b));
+      });
+  }
 
   //Фильтр цене
   if (filters.priceMin !== null) {
@@ -194,7 +208,16 @@ function applySorting(products: Product[], sort: string | null): Product[] {
 }
 
 function parsePagination(query: PaginationQuery) {
+  // Находим максимальное значание из 1 и той цифрой, которая
+  // была передана в запросе. По умолчанию, если page
+  // не передан, то он всегда 1
   const page = Math.max(1, parseInt(String(query.page ?? 1), 10));
+
+  // Определяем количесвто продуктов, которое требуется
+  // вернуть за 1 раз. Берем наименьшее значение. из 18 и той цифрой,
+  // которая была передана в запросе как linit. Если limit был передан
+  // слишком большой, то будет применена цифра 18, как наименьшая.
+  // Если limit не был передан, то по умолчанию он равен 8
   const limit = Math.min(18, parseInt(String(query.limit ?? 8), 10));
 
   return { page, limit };
@@ -205,6 +228,13 @@ function parseFilters(query: any) {
   return {
     category: query.category ?? null,
     badge: query.badge ?? null,
+
+    // Применяется для секции "Акции". Там нужны товары с бэйджем
+    // discount и при применении фильтра - дополнительный бэйдж
+    // Если при фильтрации оставить "array-contains-any", то будут
+    // найдены бэйджи, у которых может не быть discount
+    badgeMode: query.badgeMode ?? "or", // 'or' | 'and'
+
     priceMin: query.priceMin ? parseFloat(query.priceMin) : null,
     priceMax: query.priceMax ? parseFloat(query.priceMax) : null,
     sort: query.sort ?? null,
@@ -224,7 +254,21 @@ function buildQuery(filters: ReturnType<typeof parseFilters>) {
 
   if (filters.badge) {
     const badges = filters.badge.split(",").map((b: string) => b.trim());
-    q = q.where("badges", "array-contains-any", badges);
+
+    // Проверяем был ли передан badgeMode 'and' и
+    // передано ли больше чем 1 бэйдж для фильтрации
+    if (filters.badgeMode === "and" && badges.length > 1) {
+      const mainBadge = badges[0];
+
+      // AND режим: продукт должен содержать ВСЕ указанные бейджи
+      // Firestore не поддерживает прямой array-contains-all,
+      // поэтому здесь берем первый бейдж (как основной) для базовой
+      // фильтрации и в методе applyClientFilters отфильтруем по остальным
+      // бэйджам
+      q = q.where("badges", "array-contains", mainBadge);
+    } else {
+      q = q.where("badges", "array-contains-any", badges);
+    }
   }
 
   return q;
