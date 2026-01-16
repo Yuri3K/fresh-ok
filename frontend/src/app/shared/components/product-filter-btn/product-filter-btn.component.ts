@@ -17,9 +17,4 @@ export class ProductFilterBtnComponent {
 
   isActive = input<boolean>(false);
   btnData = input.required<FilterData>();
-
-  btnText = computed(() => {
-    console.log("🚀 ~ this.btnData():", this.btnData())
-    return this.btnData().name
-  })
 }

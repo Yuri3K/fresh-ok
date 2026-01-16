@@ -1,18 +1,24 @@
 @let translates = ('homepage.promo' | translate);
 
-<section class="">
+<section class="green">
   <div class="container">
     <div class="promo">
-      <app-h2-title class="hit-products__title" [text]="translates.title" />
+      <app-h2-title class="promo__title" [text]="translates.title" />
     
       <div class="promo__filters">
-        @for(filter of translates.filters; track filter.selector) {
-          <app-product-filter-btn 
-            [btnData]="filter"
-            [isActive]="filter.selector === appliedFilter()"
-            (filterBtnClicked)="applyFilter($event)"
-          />
-        }
+        <app-scroll-items
+          itemsGap="16px"
+          itemsMaxWidth="475px"
+          [scrollItemsData]="translates.filters"
+        >
+          <ng-template #itemTemplate let-itemData>
+            <app-product-filter-btn 
+              [btnData]="itemData"
+              [isActive]="itemData.selector === appliedFilter()"
+              (filterBtnClicked)="applyFilter($event)"
+            />
+          </ng-template>
+        </app-scroll-items>
       </div>
 
       <div class="promo__cards">
@@ -29,7 +35,7 @@
 
       @if(promoProducts()) {
         @if(promoPagination().hasNextPage) {
-          <div class="hit-products__show-more">
+          <div class="promo__show-more">
             @if(isShowMoreLoading()) {
               <app-loader />
             } @else {
