@@ -85,7 +85,7 @@ export class ProductsService {
       .pipe(
         retry(1),
         take(1),
-        tap(res => console.log("!!! PRODUCTS !!!", res)),
+        // tap(res => console.log("!!! PRODUCTS !!!", res)),
         catchError((err) => {
           console.log(err);
           return throwError(() => err);

@@ -18,7 +18,7 @@
         <a
           [class.active]="selectedCategory == item.slug"
           (click)="selectCategory(item.slug)"
-          [routerLink]="['/products']"
+          [routerLink]="['/', lang.browserLang, 'products']"
           [queryParams]="{
             category: item.slug,
           }"
