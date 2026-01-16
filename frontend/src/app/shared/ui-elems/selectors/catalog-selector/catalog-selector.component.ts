@@ -20,9 +20,9 @@ import { RouterLink } from '@angular/router';
   ]
 })
 export class CatalogSelectorComponent {
-  // private readonly router = 
   currentLang$ = inject(LangsService).currentLang$
   catalogService = inject(CatalogService)
+
   catalogList$ = this.catalogService.catalogList$
   selectedCategory$ = this.catalogService.selectedCategory$
 

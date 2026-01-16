@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ProductsStateService } from '../../core/services/products-state.service';
+import { CatalogStateService } from '../../core/services/products-state.service';
 
 @Component({
   selector: 'app-products',
@@ -10,5 +10,5 @@ import { ProductsStateService } from '../../core/services/products-state.service
   styleUrl: './products.component.scss'
 })
 export class ProductsComponent {
-  stateService = inject(ProductsStateService)
+  stateService = inject(CatalogStateService)
 }

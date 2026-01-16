@@ -79,7 +79,7 @@ export async function getFilteredProducts(
 
   // Получаем все документы для подсчета общего количества
   const snapshot = await firestoreQuery.get();
-  const totalItems = snapshot.docs.length;
+  // const totalItems = snapshot.docs.length;
 
   // Складываем в массив все продукты, обрабатывая их по нужной логике
   let products: Product[] = snapshot.docs.map((doc) => {
