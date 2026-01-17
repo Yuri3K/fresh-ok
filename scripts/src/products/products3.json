@@ -1,0 +1,201 @@
+[
+  {
+    "slug": "walker-red",
+    "price": 320,
+    "category": "alcohol",
+    "isNew": false,
+    "isHit": true,
+    "hasDiscount": false,
+    "badges": ["hit"],
+    "searchKeywords": ["Walker red", "scotch", "скотч"],
+    "publickId": "alcohol/walker-red",
+    "stock": "in-stock",
+    "isActive": true,
+    "rate": 4.2,
+    "i18n": {
+      "en": {
+        "name": "Walker Red",
+        "description": "Johnnie Walker Red Label blended Scotch whisky, 0.7l"
+      },
+      "ru": {
+        "name": "Walker Red",
+        "description": "Johnnie Walker Red Label купажированный шотландский виски, 0.7л"
+      },
+      "uk": {
+        "name": "Walker Red",
+        "description": "Johnnie Walker Red Label купажований шотландський віскі, 0.7л"
+      }
+    }
+  },
+  {
+    "slug": "jack-daniels",
+    "price": 1200,
+    "category": "alcohol",
+    "isNew": false,
+    "isHit": true,
+    "hasDiscount": false,
+    "badges": ["hit"],
+    "searchKeywords": ["jack daniel's", "виски", "whiskey", "віскі"],
+    "publickId": "alcohol/jack-daniels",
+    "stock": "in-stock",
+    "isActive": true,
+    "rate": 4.8,
+    "i18n": {
+      "en": {
+        "name": "Whiskey Jack Daniel's",
+        "description": "Whiskey Jack Daniel's Old No.7 1l 40%"
+      },
+      "ru": {
+        "name": "Виски Jack Daniel's",
+        "description": "Виски Jack Daniel's Old No.7 1л 40%"
+      },
+      "uk": {
+        "name": "Віскі Jack Daniel's",
+        "description": "Віскі Jack Daniel's Old No.7 1л 40%"
+      }
+    }
+  },
+  {
+    "slug": "dalmore",
+    "price": 5500,
+    "category": "alcohol",
+    "isNew": true,
+    "isHit": false,
+    "discountPercent": 5,
+    "hasDiscount": true,
+    "badges": ["new", "dicount"],
+    "searchKeywords": ["dalmore", "виски", "whiskey", "віскі"],
+    "publickId": "alcohol/dalmore",
+    "stock": "in-stock",
+    "isActive": true,
+    "rate": 5,
+    "i18n": {
+      "en": {
+        "name": "Whiskey Dalmore",
+        "description": "Single malt whiskey Dalmore 30 Y.O 0.7l"
+      },
+      "ru": {
+        "name": "Виски Dalmore",
+        "description": "Виски односолодовые Dalmore 30 Y.O 0,7л"
+      },
+      "uk": {
+        "name": "Віскі Dalmore",
+        "description": "Віскі односолодовий Dalmore 30 Y.O 0,7л"
+      }
+    }
+  },
+  {
+    "slug": "bells",
+    "price": 320,
+    "category": "alcohol",
+    "isNew": false,
+    "isHit": false,
+    "hasDiscount": false,
+    "badges": [],
+    "searchKeywords": ["bells", "виски", "whiskey", "віскі"],
+    "publickId": "alcohol/bells",
+    "stock": "low-stock",
+    "isActive": true,
+    "rate": 4.3,
+    "i18n": {
+      "en": {
+        "name": "Bells Bells",
+        "description": "Bells Original, 40%, 0.7l"
+      },
+      "ru": {
+        "name": "Виски Bells",
+        "description": "Bells Original, 40%, 0,7л"
+      },
+      "uk": {
+        "name": "Віскі Bells",
+        "description": "Bells Original, 40%, 0,7л"
+      }
+    }
+  },
+  {
+    "slug": "papaya",
+    "price": 150,
+    "category": "fruits",
+    "isNew": true,
+    "isHit": false,
+    "discountPercent": 15,
+    "hasDiscount": true,
+    "badges": ["dicount", "new"],
+    "searchKeywords": ["papaya", "папайя", "папая"],
+    "publickId": "fruits/papaya",
+    "stock": "in-stock",
+    "isActive": true,
+    "rate": 4.4,
+    "i18n": {
+      "en": {
+        "name": "Papaya",
+        "description": "Papaya, 1 pc."
+      },
+      "ru": {
+        "name": "Папайя",
+        "description": "Папайя, 1шт"
+      },
+      "uk": {
+        "name": "Папая",
+        "description": "Папая, 1шт"
+      }
+    }
+  },
+  {
+    "slug": "tomatoes",
+    "price": 130,
+    "category": "fruits",
+    "isNew": false,
+    "isHit": true,
+    "discountPercent": 50,
+    "hasDiscount": true,
+    "badges": ["dicount", "hit"],
+    "searchKeywords": ["tomatoes", "помидоры", "помідори"],
+    "publickId": "vegetables/tomatoes",
+    "stock": "in-stock",
+    "isActive": true,
+    "rate": 4.8,
+    "i18n": {
+      "en": {
+        "name": "Tomatoes",
+        "description": "Fresh tomatoes, 1 kg"
+      },
+      "ru": {
+        "name": "Помидоры",
+        "description": "Cвежие помидрочики, 1кг"
+      },
+      "uk": {
+        "name": "Помідори",
+        "description": "свіжі помідрчики, 1кг"
+      }
+    }
+  },
+  {
+    "slug": "onion",
+    "price": 130,
+    "category": "vegetables",
+    "isNew": false,
+    "isHit": true,
+    "hasDiscount": false,
+    "badges": ["hit"],
+    "searchKeywords": ["onions", "помидоры", "помідори"],
+    "publickId": "vegetables/onion",
+    "stock": "in-stock",
+    "isActive": true,
+    "rate": 4.9,
+    "i18n": {
+      "en": {
+        "name": "Onions",
+        "description": "Onions, 1kg"
+      },
+      "ru": {
+        "name": "Лук репчатый",
+        "description": "Лук репчатый, 1кг"
+      },
+      "uk": {
+        "name": "Цибуля ріпчаста",
+        "description": "Цибуля ріпчаста, 1кг"
+      }
+    }
+  }
+]
