@@ -8,7 +8,7 @@
     "hasDiscount": false,
     "badges": ["hit"],
     "searchKeywords": ["Walker red", "scotch", "скотч"],
-    "publickId": "alcohol/walker-red",
+    "publicId": "alcohol/walker-red",
     "stock": "in-stock",
     "isActive": true,
     "rate": 4.2,
@@ -36,7 +36,7 @@
     "hasDiscount": false,
     "badges": ["hit"],
     "searchKeywords": ["jack daniel's", "виски", "whiskey", "віскі"],
-    "publickId": "alcohol/jack-daniels",
+    "publicId": "alcohol/jack-daniels",
     "stock": "in-stock",
     "isActive": true,
     "rate": 4.8,
@@ -63,9 +63,9 @@
     "isHit": false,
     "discountPercent": 5,
     "hasDiscount": true,
-    "badges": ["new", "dicount"],
+    "badges": ["new", "discount"],
     "searchKeywords": ["dalmore", "виски", "whiskey", "віскі"],
-    "publickId": "alcohol/dalmore",
+    "publicId": "alcohol/dalmore",
     "stock": "in-stock",
     "isActive": true,
     "rate": 5,
@@ -93,7 +93,7 @@
     "hasDiscount": false,
     "badges": [],
     "searchKeywords": ["bells", "виски", "whiskey", "віскі"],
-    "publickId": "alcohol/bells",
+    "publicId": "alcohol/bells",
     "stock": "low-stock",
     "isActive": true,
     "rate": 4.3,
@@ -120,9 +120,9 @@
     "isHit": false,
     "discountPercent": 15,
     "hasDiscount": true,
-    "badges": ["dicount", "new"],
+    "badges": ["discount", "new"],
     "searchKeywords": ["papaya", "папайя", "папая"],
-    "publickId": "fruits/papaya",
+    "publicId": "fruits/papaya",
     "stock": "in-stock",
     "isActive": true,
     "rate": 4.4,
@@ -149,9 +149,9 @@
     "isHit": true,
     "discountPercent": 50,
     "hasDiscount": true,
-    "badges": ["dicount", "hit"],
+    "badges": ["discount", "hit"],
     "searchKeywords": ["tomatoes", "помидоры", "помідори"],
-    "publickId": "vegetables/tomatoes",
+    "publicId": "vegetables/tomatoes",
     "stock": "in-stock",
     "isActive": true,
     "rate": 4.8,
@@ -179,7 +179,7 @@
     "hasDiscount": false,
     "badges": ["hit"],
     "searchKeywords": ["onions", "лук репчатый", "цибуля ріпчаста", "лук", "цибуля"],
-    "publickId": "vegetables/onion",
+    "publicId": "vegetables/onion",
     "stock": "in-stock",
     "isActive": true,
     "rate": 4.9,
@@ -207,7 +207,7 @@
     "hasDiscount": false,
     "badges": ["new","hit"],
     "searchKeywords": ["onions red", "лук красный", "цибуля червона", "лук", "цибуля"],
-    "publickId": "vegetables/onion",
+    "publicId": "vegetables/onion",
     "stock": "in-stock",
     "isActive": true,
     "rate": 4.9,
@@ -234,9 +234,9 @@
     "isHit": false,
     "discountPercent": 15,
     "hasDiscount": true,
-    "badges": ["dicount"],
+    "badges": ["discount"],
     "searchKeywords": ["coffee nescafe", "coffee", "nescafe", "кофе", "кава", "кофе nescafe", "кава nescafe"],
-    "publickId": "tea-coffee/coffee-nescafe",
+    "publicId": "tea-coffee/coffee-nescafe",
     "stock": "low-stock",
     "isActive": true,
     "rate": 4.7,
@@ -263,9 +263,9 @@
     "isHit": false,
     "discountPercent": 35,
     "hasDiscount": true,
-    "badges": ["dicount"],
+    "badges": ["discount"],
     "searchKeywords": ["sorrel", "щавель"],
-    "publickId": "greens/sorrel",
+    "publicId": "greens/sorrel",
     "stock": "in-stock",
     "isActive": true,
     "rate": 4.6,
@@ -292,9 +292,9 @@
     "isHit": false,
     "discountPercent": 45,
     "hasDiscount": true,
-    "badges": ["dicount", "new"],
+    "badges": ["discount", "new"],
     "searchKeywords": ["mint", "мята", "м'ята"],
-    "publickId": "greens/mint",
+    "publicId": "greens/mint",
     "stock": "low-stock",
     "isActive": true,
     "rate": 5,
@@ -321,9 +321,9 @@
     "isHit": false,
     "discountPercent": 55,
     "hasDiscount": true,
-    "badges": ["dicount"],
+    "badges": ["discount"],
     "searchKeywords": ["dill", "укроп", "кріп"],
-    "publickId": "greens/dill",
+    "publicId": "greens/dill",
     "stock": "low-stock",
     "isActive": true,
     "rate": 4.7,
@@ -350,9 +350,9 @@
     "isHit": false,
     "discountPercent": 25,
     "hasDiscount": true,
-    "badges": ["dicount"],
+    "badges": ["discount"],
     "searchKeywords": ["green onions", "зеленый лук", "зелена цибуля", "лук", "цибуля", "onions"],
-    "publickId": "greens/onion-green",
+    "publicId": "greens/onion-green",
     "stock": "in-stock",
     "isActive": true,
     "rate": 4.4,
@@ -380,7 +380,7 @@
     "hasDiscount": false,
     "badges": [],
     "searchKeywords": ["bread", "хлеб", "хліб"],
-    "publickId": "bread-bakery/bread",
+    "publicId": "bread-bakery/bread",
     "stock": "in-stock",
     "isActive": true,
     "rate": 4.8,
@@ -407,9 +407,9 @@
     "isHit": false,
     "discountPercent": 20,
     "hasDiscount": true,
-    "badges": ["dicount"],
+    "badges": ["discount"],
     "searchKeywords": ["loaf", "батон", "bread", "хлеб", "хліб"],
-    "publickId": "bread-bakery/loaf",
+    "publicId": "bread-bakery/loaf",
     "stock": "in-stock",
     "isActive": true,
     "rate": 4.6,
@@ -437,7 +437,7 @@
     "hasDiscount": false,
     "badges": ["hit"],
     "searchKeywords": ["baguette", "багет", "bread", "хлеб", "хліб"],
-    "publickId": "bread-bakery/baguette",
+    "publicId": "bread-bakery/baguette",
     "stock": "in-stock",
     "isActive": true,
     "rate": 4.9,
@@ -465,7 +465,7 @@
     "hasDiscount": false,
     "badges": [],
     "searchKeywords": ["sausages", "колбаса", "ковбаса", "braunschweig", "брауншвейгская", "брауншвейгска"],
-    "publickId": "sausages/braunschweig",
+    "publicId": "sausages/braunschweig",
     "stock": "in-stock",
     "isActive": true,
     "rate": 4.9,
@@ -492,9 +492,9 @@
     "isHit": false,
     "discountPercent": 25,
     "hasDiscount": true,
-    "badges": ["dicount"],
+    "badges": ["discount"],
     "searchKeywords": ["sausages", "колбаса", "ковбаса", "doctor's", "докторская", "лікарська"],
-    "publickId": "sausages/doctors",
+    "publicId": "sausages/doctors",
     "stock": "in-stock",
     "isActive": true,
     "rate": 4.8,
@@ -522,7 +522,7 @@
     "hasDiscount": false,
     "badges": ["new", "hit"],
     "searchKeywords": ["sausages", "колбаса", "ковбаса", "austrian", "докторская", "лікарська"],
-    "publickId": "sausages/austrian",
+    "publicId": "sausages/austrian",
     "stock": "in-stock",
     "isActive": true,
     "rate": 4.7,
@@ -549,9 +549,9 @@
     "isHit": false,
     "discountPercent": 5,
     "hasDiscount": true,
-    "badges": ["dicount"],
+    "badges": ["discount"],
     "searchKeywords": ["gourmet", "gourmet tuna", "pets", "гурмэ", "гурме"],
-    "publickId": "pet-products/gourmet-tuna",
+    "publicId": "pet-products/gourmet-tuna",
     "stock": "in-stock",
     "isActive": true,
     "rate": 4.7,
@@ -579,7 +579,7 @@
     "hasDiscount": false,
     "badges": ["hit"],
     "searchKeywords": ["gourmet", "gourmet chicken", "pets", "гурмэ", "гурме"],
-    "publickId": "pet-products/gourmet-chicken",
+    "publicId": "pet-products/gourmet-chicken",
     "stock": "in-stock",
     "isActive": true,
     "rate": 4.8,
@@ -607,7 +607,7 @@
     "hasDiscount": false,
     "badges": ["hit"],
     "searchKeywords": ["gourmet", "gourmet rabbit", "pets", "гурмэ", "гурме"],
-    "publickId": "pet-products/gourmet-rabbit",
+    "publicId": "pet-products/gourmet-rabbit",
     "stock": "out-of-stock",
     "isActive": true,
     "rate": 4.8,
@@ -635,7 +635,7 @@
     "hasDiscount": false,
     "badges": [],
     "searchKeywords": ["gourmet", "gourmet turkey", "pets", "гурмэ", "гурме"],
-    "publickId": "pet-products/gourmet-turkey",
+    "publicId": "pet-products/gourmet-turkey",
     "stock": "in-stock",
     "isActive": true,
     "rate": 4.5,
@@ -656,21 +656,21 @@
   },
   {
     "slug": "tide",
-    "price": 24,
+    "price": 300,
     "category": "cleaning-home",
     "isNew": false,
     "isHit": false,
     "hasDiscount": false,
     "badges": [],
-    "searchKeywords": ["tide", "стиральный порошок", "пральний порошок", "порошок"],
-    "publickId": "cleaning-home/tide",
+    "searchKeywords": ["tide", "гель для стирки", "гель для прання", "порошок", "гель", "washing gel"],
+    "publicId": "cleaning-home/tide",
     "stock": "in-stock",
     "isActive": true,
     "rate": 4.5,
     "i18n": {
       "en": {
         "name": "Tide",
-        "description": "Tide laundry detergent, 1L"
+        "description": "Tide washing gel, 1L"
       },
       "ru": {
         "name": "Tide",
@@ -682,4 +682,230 @@
       }
     }
   },
+  {
+    "slug": "lenor",
+    "price": 160,
+    "category": "cleaning-home",
+    "isNew": false,
+    "isHit": false,
+    "hasDiscount": false,
+    "badges": [],
+    "searchKeywords": ["lenor", "fabric softener", "ополаскиватель", "ополіскувач"],
+    "publicId": "cleaning-home/lenor",
+    "stock": "in-stock",
+    "isActive": true,
+    "rate": 4.5,
+    "i18n": {
+      "en": {
+        "name": "Fabric softener Lenor",
+        "description": "Fabric softener Lenor, 1L"
+      },
+      "ru": {
+        "name": "Ополаскиватель для стирки Lenor",
+        "description": "Ополаскиватель для стирки Lenor, 1л"
+      },
+      "uk": {
+        "name": "Ополіскувач для прання Lenor",
+        "description": "Ополіскувач для прання Lenor, 1л"
+      }
+    }
+  },
+  {
+    "slug": "ariel",
+    "price": 240,
+    "category": "cleaning-home",
+    "isNew": false,
+    "isHit": false,
+    "discountPercent": 15,
+    "hasDiscount": true,
+    "badges": ["discount"],
+    "searchKeywords": ["ariel", "гель для стирки", "гель для прання", "порошок", "гель", "washing gel"],
+    "publicId": "cleaning-home/ariel",
+    "stock": "in-stock",
+    "isActive": true,
+    "rate": 4.3,
+    "i18n": {
+      "en": {
+        "name": "Ariel",
+        "description": "Ariel washing gel, 1L"
+      },
+      "ru": {
+        "name": "Ariel",
+        "description": "Гель для стирки Ariel, 1л"
+      },
+      "uk": {
+        "name": "Ariel",
+        "description": "Гель для прання Ariel, 1л"
+      }
+    }
+  },
+  {
+    "slug": "aggs",
+    "price": 60,
+    "category": "diary-aggs",
+    "isNew": false,
+    "isHit": false,
+    "discountPercent": 15,
+    "hasDiscount": true,
+    "badges": ["discount"],
+    "searchKeywords": ["aggs", "яйца", "яйця"],
+    "publicId": "diary-aggs/aggs",
+    "stock": "in-stock",
+    "isActive": true,
+    "rate": 4.7,
+    "i18n": {
+      "en": {
+        "name": "Aggs",
+        "description": "Aggs, 10pcs"
+      },
+      "ru": {
+        "name": "Яйца",
+        "description": "Яйца, 10шт"
+      },
+      "uk": {
+        "name": "Яйця",
+        "description": "Яйця, 10шт"
+      }
+    }
+  },
+  {
+    "slug": "butter",
+    "price": 80,
+    "category": "diary-aggs",
+    "isNew": true,
+    "isHit": false,
+    "hasDiscount": false,
+    "badges": ["new"],
+    "searchKeywords": ["butter", "масло"],
+    "publicId": "diary-aggs/butter",
+    "stock": "in-stock",
+    "isActive": true,
+    "rate": 4.7,
+    "i18n": {
+      "en": {
+        "name": "Butter",
+        "description": "Butter, 200g"
+      },
+      "ru": {
+        "name": "Масло",
+        "description": "Масло, 200г"
+      },
+      "uk": {
+        "name": "Масло",
+        "description": "Масло, 200г"
+      }
+    }
+  },
+  {
+    "slug": "milk",
+    "price": 50,
+    "category": "diary-aggs",
+    "isNew": false,
+    "isHit": true,
+    "hasDiscount": false,
+    "badges": ["hit"],
+    "searchKeywords": ["milk", "молоко"],
+    "publicId": "diary-aggs/milk",
+    "stock": "in-stock",
+    "isActive": true,
+    "rate": 4.6,
+    "i18n": {
+      "en": {
+        "name": "Milk",
+        "description": "Milk, 1L"
+      },
+      "ru": {
+        "name": "Молоко",
+        "description": "Молоко, 1л"
+      },
+      "uk": {
+        "name": "Молоко",
+        "description": "Молоко, 1л"
+      }
+    }
+  },
+  {
+    "slug": "gerber-light",
+    "price": 70,
+    "category": "baby-food",
+    "isNew": false,
+    "isHit": true,
+    "hasDiscount": false,
+    "badges": ["hit"],
+    "searchKeywords": ["gerber", "гербер"],
+    "publicId": "baby-food/gerber-light",
+    "stock": "in-stock",
+    "isActive": true,
+    "rate": 4.6,
+    "i18n": {
+      "en": {
+        "name": "Gerber",
+        "description": "Gerber potatoes and zucchini, 80g"
+      },
+      "ru": {
+        "name": "Gerber",
+        "description": "Gerber картофель и кабачки, 80г"
+      },
+      "uk": {
+        "name": "Gerber",
+        "description": "Gerber картопля та кабачки, 80г"
+      }
+    }
+  },
+  {
+    "slug": "gerber-dark",
+    "price": 70,
+    "category": "baby-food",
+    "isNew": false,
+    "isHit": true,
+    "hasDiscount": false,
+    "badges": ["hit"],
+    "searchKeywords": ["gerber", "гербер"],
+    "publicId": "baby-food/gerber-dark",
+    "stock": "in-stock",
+    "isActive": true,
+    "rate": 4.6,
+    "i18n": {
+      "en": {
+        "name": "Gerber",
+        "description": "Gerber broccoli, 80g"
+      },
+      "ru": {
+        "name": "Gerber",
+        "description": "Брокколи Gerber, 80г"
+      },
+      "uk": {
+        "name": "Gerber",
+        "description": "Брокколі Gerber, 80г"
+      }
+    }
+  },
+  {
+    "slug": "cereals",
+    "price": 30,
+    "category": "groceries",
+    "isNew": false,
+    "isHit": true,
+    "hasDiscount": false,
+    "badges": ["hit"],
+    "searchKeywords": ["wheat groats", "крупа пшеничная", "крупа пшенична"],
+    "publicId": "groceries/cereals",
+    "stock": "in-stock",
+    "isActive": true,
+    "rate": 3.8,
+    "i18n": {
+      "en": {
+        "name": "Wheat groats",
+        "description": "Wheat groats, 1 kg"
+      },
+      "ru": {
+        "name": "Крупа пшеничная",
+        "description": "Крупа пшеничная, 1кг"
+      },
+      "uk": {
+        "name": "Крупа пшенична",
+        "description": "Крупа пшенична, 1кг"
+      }
+    }
+  }
 ]

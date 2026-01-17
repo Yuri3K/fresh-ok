@@ -8,23 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { distinctUntilChanged, map } from 'rxjs';
 
-// export type Sort =
-//   | 'price-asc'
-//   | 'price-desc'
-//   | 'name-asc'
-//   | 'name-desc'
-//   | 'newest'
-//   | 'rating';
-
-// export interface ProductsState {
-//   products: PaginatedResponse<Product>;
-//   category?: string;
-//   badge?: string;
-//   priceMin?: number | string;
-//   priceMax?: number | string;
-//   rating?: number | string;
-//   sort?: Sort;
-// }
+export type View = "list" | "grid"
 
 @Injectable({
   providedIn: 'root',
@@ -39,6 +23,7 @@ export class CatalogStateService {
     })
   }
 
+  appliedView = signal<View>('grid')
   products = signal<Product[]>([]);
   pagination = signal<Pagination>({} as Pagination)
   private readonly queryParams = toSignal(this.route.queryParamMap

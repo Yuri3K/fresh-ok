@@ -179,6 +179,40 @@
       ]
     }
   },
+  "products-page": {
+    "title": "Product Catalog",
+    "filters": {
+      "categories": {
+        "title": "Categories"
+      },
+      "offer": {
+        "title": "Special Offers"
+      },
+      "brand": {
+        "title": "Brand"
+      },
+      "price": {
+        "title": "Price",
+        "from": "from",
+        "to": "to"
+      }
+    },
+    "sorting": {
+      "sort-by": [
+        "By popularity",
+        "Alphabetically",
+        "By rating",
+        "Price: Low to High",
+        "Price: High to Low"
+      ],
+      "limit": [
+        "8 per page",
+        "12 per page",
+        "16 per page",
+        "20 per page"
+      ]
+    }
+  },
   "footer": {
     "address": "Kyiv, Shevchenko St., 1",
     "hotline": "Hotline +38(099)-445-35-63",

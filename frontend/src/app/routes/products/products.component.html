@@ -1,1 +1,20 @@
-<p>products works!</p>
+<div class="products">
+  <app-h2-title 
+    [text]="'products-page.title' | translate"
+  />
+  <div class="products__content">
+    <div class="products__filters"></div>
+    <div class="products__main">
+      <div class="products__top">
+        <div class="products__sorting"></div>
+        <div class="products__view"></div>
+      </div>
+      <div class="products__cards">
+        @for(card of products(); track card.id) {
+          
+        }
+      </div>
+      <div class="products__pagination"></div>
+    </div>
+  </div>
+</div>

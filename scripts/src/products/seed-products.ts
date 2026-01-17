@@ -14,7 +14,7 @@ const db = admin.firestore();
 
 async function seedProducts() {
   try {
-    const filePath = path.join(__dirname, "products2.json");
+    const filePath = path.join(__dirname, "products3.json");
     const raw = fs.readFileSync(filePath, "utf8");
     const products = JSON.parse(raw);
 
