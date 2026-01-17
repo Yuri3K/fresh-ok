@@ -144,7 +144,7 @@
   {
     "slug": "tomatoes",
     "price": 130,
-    "category": "fruits",
+    "category": "vegetables",
     "isNew": false,
     "isHit": true,
     "discountPercent": 50,
@@ -172,13 +172,13 @@
   },
   {
     "slug": "onion",
-    "price": 130,
+    "price": 30,
     "category": "vegetables",
     "isNew": false,
     "isHit": true,
     "hasDiscount": false,
     "badges": ["hit"],
-    "searchKeywords": ["onions", "помидоры", "помідори"],
+    "searchKeywords": ["onions", "лук репчатый", "цибуля ріпчаста", "лук", "цибуля"],
     "publickId": "vegetables/onion",
     "stock": "in-stock",
     "isActive": true,
@@ -197,5 +197,489 @@
         "description": "Цибуля ріпчаста, 1кг"
       }
     }
-  }
+  },
+  {
+    "slug": "onions-red",
+    "price": 50,
+    "category": "vegetables",
+    "isNew": true,
+    "isHit": true,
+    "hasDiscount": false,
+    "badges": ["new","hit"],
+    "searchKeywords": ["onions red", "лук красный", "цибуля червона", "лук", "цибуля"],
+    "publickId": "vegetables/onion",
+    "stock": "in-stock",
+    "isActive": true,
+    "rate": 4.9,
+    "i18n": {
+      "en": {
+        "name": "Onions red",
+        "description": "Onions red, 1kg"
+      },
+      "ru": {
+        "name": "Лук красный",
+        "description": "Лук красный, 1кг"
+      },
+      "uk": {
+        "name": "Цибуля червона",
+        "description": "Цибуля червона, 1кг"
+      }
+    }
+  },
+  {
+    "slug": "coffee-nescafe",
+    "price": 250,
+    "category": "tea-coffee",
+    "isNew": false,
+    "isHit": false,
+    "discountPercent": 15,
+    "hasDiscount": true,
+    "badges": ["dicount"],
+    "searchKeywords": ["coffee nescafe", "coffee", "nescafe", "кофе", "кава", "кофе nescafe", "кава nescafe"],
+    "publickId": "tea-coffee/coffee-nescafe",
+    "stock": "low-stock",
+    "isActive": true,
+    "rate": 4.7,
+    "i18n": {
+      "en": {
+        "name": "Nescafé Classic",
+        "description": "Nescafé Classic granulated, with a strong, invigorating taste, bitterness and bright aroma, 250g"
+      },
+      "ru": {
+        "name": "Nescafé Classic",
+        "description": "Nescafé Classic гранулированный, с крепким, бодрящим вкусом, горчинкой и ярким ароматом, 250г"
+      },
+      "uk": {
+        "name": "Nescafé Classic",
+        "description": "Nescafé Classic гранульований, з міцним, підбадьорливим смаком, гіркуватістю та яскравим ароматом, 250г"
+      }
+    }
+  },
+  {
+    "slug": "sorrel",
+    "price": 50,
+    "category": "greens",
+    "isNew": false,
+    "isHit": false,
+    "discountPercent": 35,
+    "hasDiscount": true,
+    "badges": ["dicount"],
+    "searchKeywords": ["sorrel", "щавель"],
+    "publickId": "greens/sorrel",
+    "stock": "in-stock",
+    "isActive": true,
+    "rate": 4.6,
+    "i18n": {
+      "en": {
+        "name": "Sorrel",
+        "description": "Sorrel, 100g"
+      },
+      "ru": {
+        "name": "Щавель",
+        "description": "Щавель, 100г"
+      },
+      "uk": {
+        "name": "Щавель",
+        "description": "Щавель, 100г"
+      }
+    }
+  },
+  {
+    "slug": "mint",
+    "price": 140,
+    "category": "greens",
+    "isNew": true,
+    "isHit": false,
+    "discountPercent": 45,
+    "hasDiscount": true,
+    "badges": ["dicount", "new"],
+    "searchKeywords": ["mint", "мята", "м'ята"],
+    "publickId": "greens/mint",
+    "stock": "low-stock",
+    "isActive": true,
+    "rate": 5,
+    "i18n": {
+      "en": {
+        "name": "Mint",
+        "description": "Mint, 100g"
+      },
+      "ru": {
+        "name": "Мята",
+        "description": "Мята, 100г"
+      },
+      "uk": {
+        "name": "М'ята",
+        "description": "М'ята, 100г"
+      }
+    }
+  },
+  {
+    "slug": "dill",
+    "price": 40,
+    "category": "greens",
+    "isNew": false,
+    "isHit": false,
+    "discountPercent": 55,
+    "hasDiscount": true,
+    "badges": ["dicount"],
+    "searchKeywords": ["dill", "укроп", "кріп"],
+    "publickId": "greens/dill",
+    "stock": "low-stock",
+    "isActive": true,
+    "rate": 4.7,
+    "i18n": {
+      "en": {
+        "name": "Dill",
+        "description": "Dill, 100g"
+      },
+      "ru": {
+        "name": "Укроп",
+        "description": "Мята, 100г"
+      },
+      "uk": {
+        "name": "Кріп",
+        "description": "Кріп, 100г"
+      }
+    }
+  },
+  {
+    "slug": "onion-green",
+    "price": 60,
+    "category": "greens",
+    "isNew": false,
+    "isHit": false,
+    "discountPercent": 25,
+    "hasDiscount": true,
+    "badges": ["dicount"],
+    "searchKeywords": ["green onions", "зеленый лук", "зелена цибуля", "лук", "цибуля", "onions"],
+    "publickId": "greens/onion-green",
+    "stock": "in-stock",
+    "isActive": true,
+    "rate": 4.4,
+    "i18n": {
+      "en": {
+        "name": "Green onions",
+        "description": "Green onions, 100g"
+      },
+      "ru": {
+        "name": "Зеленый лук",
+        "description": "Зеленый лук, 100г"
+      },
+      "uk": {
+        "name": "Зелена цибуля",
+        "description": "Зелена цибуля, 100г"
+      }
+    }
+  },
+  {
+    "slug": "bread",
+    "price": 30,
+    "category": "bread-bakery",
+    "isNew": false,
+    "isHit": false,
+    "hasDiscount": false,
+    "badges": [],
+    "searchKeywords": ["bread", "хлеб", "хліб"],
+    "publickId": "bread-bakery/bread",
+    "stock": "in-stock",
+    "isActive": true,
+    "rate": 4.8,
+    "i18n": {
+      "en": {
+        "name": "Bread",
+        "description": "Bread"
+      },
+      "ru": {
+        "name": "Хлеб",
+        "description": "Хлеб"
+      },
+      "uk": {
+        "name": "Хліб",
+        "description": "Хліб"
+      }
+    }
+  },
+  {
+    "slug": "loaf",
+    "price": 20,
+    "category": "bread-bakery",
+    "isNew": false,
+    "isHit": false,
+    "discountPercent": 20,
+    "hasDiscount": true,
+    "badges": ["dicount"],
+    "searchKeywords": ["loaf", "батон", "bread", "хлеб", "хліб"],
+    "publickId": "bread-bakery/loaf",
+    "stock": "in-stock",
+    "isActive": true,
+    "rate": 4.6,
+    "i18n": {
+      "en": {
+        "name": "Loaf",
+        "description": "Loaf"
+      },
+      "ru": {
+        "name": "Батон",
+        "description": "Батон"
+      },
+      "uk": {
+        "name": "Батон",
+        "description": "Батон"
+      }
+    }
+  },
+  {
+    "slug": "baguette",
+    "price": 20,
+    "category": "bread-bakery",
+    "isNew": false,
+    "isHit": true,
+    "hasDiscount": false,
+    "badges": ["hit"],
+    "searchKeywords": ["baguette", "багет", "bread", "хлеб", "хліб"],
+    "publickId": "bread-bakery/baguette",
+    "stock": "in-stock",
+    "isActive": true,
+    "rate": 4.9,
+    "i18n": {
+      "en": {
+        "name": "Baguette",
+        "description": "Baguette"
+      },
+      "ru": {
+        "name": "Багет",
+        "description": "Багет"
+      },
+      "uk": {
+        "name": "Багет",
+        "description": "Багет"
+      }
+    }
+  },
+  {
+    "slug": "braunschweig",
+    "price": 320,
+    "category": "sausages",
+    "isNew": false,
+    "isHit": false,
+    "hasDiscount": false,
+    "badges": [],
+    "searchKeywords": ["sausages", "колбаса", "ковбаса", "braunschweig", "брауншвейгская", "брауншвейгска"],
+    "publickId": "sausages/braunschweig",
+    "stock": "in-stock",
+    "isActive": true,
+    "rate": 4.9,
+    "i18n": {
+      "en": {
+        "name": "Braunschweig sausage",
+        "description": "Braunschweig is an elite, premium-grade dry-cured sausage, 1pc"
+      },
+      "ru": {
+        "name": "Брауншвейгская колбаса",
+        "description": "Брауншвейгская элитная сырокопченая колбаса высшего сорта, 1шт"
+      },
+      "uk": {
+        "name": "Брауншвейзька ковбаса",
+        "description": "Брауншвейзька елітна сирокопчена ковбаса вищого гатунку, 1шт"
+      }
+    }
+  },
+  {
+    "slug": "doctors",
+    "price": 160,
+    "category": "sausages",
+    "isNew": false,
+    "isHit": false,
+    "discountPercent": 25,
+    "hasDiscount": true,
+    "badges": ["dicount"],
+    "searchKeywords": ["sausages", "колбаса", "ковбаса", "doctor's", "докторская", "лікарська"],
+    "publickId": "sausages/doctors",
+    "stock": "in-stock",
+    "isActive": true,
+    "rate": 4.8,
+    "i18n": {
+      "en": {
+        "name": "Doctor's sausage",
+        "description": "Doctor's sausage is a popular Soviet variety of cooked sausage of the highest grade with a milky-meat flavor, 1 kg"
+      },
+      "ru": {
+        "name": "Докторская колбаса",
+        "description": "Докторская колбаса - популярный советский сорт варёной колбасы высшего сорта с  молочно-мясным вкусом, 1кг"
+      },
+      "uk": {
+        "name": "Лікарська ковбаса",
+        "description": "Лікарська ковбаса - популярний радянський сорт вареної ковбаси вищого ґатунку з молочно-м'ясним смаком, 1кг"
+      }
+    }
+  },
+  {
+    "slug": "austrian",
+    "price": 260,
+    "category": "sausages",
+    "isNew": true,
+    "isHit": true,
+    "hasDiscount": false,
+    "badges": ["new", "hit"],
+    "searchKeywords": ["sausages", "колбаса", "ковбаса", "austrian", "докторская", "лікарська"],
+    "publickId": "sausages/austrian",
+    "stock": "in-stock",
+    "isActive": true,
+    "rate": 4.7,
+    "i18n": {
+      "en": {
+        "name": "Austrian sausage",
+        "description": "Austrian sausage, 1 pc"
+      },
+      "ru": {
+        "name": "Австрийская колбаса",
+        "description": "Австрийская колбаса, 1шт"
+      },
+      "uk": {
+        "name": "Австрійська ковбаса",
+        "description": "Австрійська ковбаса, 1шт"
+      }
+    }
+  },
+  {
+    "slug": "gourmet-tuna",
+    "price": 24,
+    "category": "pet-products",
+    "isNew": false,
+    "isHit": false,
+    "discountPercent": 5,
+    "hasDiscount": true,
+    "badges": ["dicount"],
+    "searchKeywords": ["gourmet", "gourmet tuna", "pets", "гурмэ", "гурме"],
+    "publickId": "pet-products/gourmet-tuna",
+    "stock": "in-stock",
+    "isActive": true,
+    "rate": 4.7,
+    "i18n": {
+      "en": {
+        "name": "Gourmet Tuna",
+        "description": "Gourmet Tuna wet cat food from Purina, in the form of a delicate tuna pate, 1 pc"
+      },
+      "ru": {
+        "name": "Gourmet Tuna",
+        "description": "Gourmet Tuna влажный корм для кошек от Purina,   в виде нежного паштета с тунцом, 1шт"
+      },
+      "uk": {
+        "name": "Gourmet Tuna",
+        "description": "Gourmet Tuna вологий корм для кішок від Purina, у вигляді ніжного паштету з тунцем, 1шт"
+      }
+    }
+  },
+  {
+    "slug": "gourmet-chicken",
+    "price": 24,
+    "category": "pet-products",
+    "isNew": false,
+    "isHit": true,
+    "hasDiscount": false,
+    "badges": ["hit"],
+    "searchKeywords": ["gourmet", "gourmet chicken", "pets", "гурмэ", "гурме"],
+    "publickId": "pet-products/gourmet-chicken",
+    "stock": "in-stock",
+    "isActive": true,
+    "rate": 4.8,
+    "i18n": {
+      "en": {
+        "name": "Gourmet Chicken",
+        "description": "Gourmet Chicken wet cat food, a delicate chicken pate, 1 pc"
+      },
+      "ru": {
+        "name": "Gourmet Chicken",
+        "description": "Gourmet Chicken влажный корм для кошек от Purina, в виде нежного паштета с курицей, 1шт"
+      },
+      "uk": {
+        "name": "Gourmet Chicken",
+        "description": "Gourmet Chicken вологий корм для кішок від Purina, у вигляді ніжного паштету з куркою, 1шт"
+      }
+    }
+  },
+  {
+    "slug": "gourmet-rabbit",
+    "price": 24,
+    "category": "pet-products",
+    "isNew": false,
+    "isHit": true,
+    "hasDiscount": false,
+    "badges": ["hit"],
+    "searchKeywords": ["gourmet", "gourmet rabbit", "pets", "гурмэ", "гурме"],
+    "publickId": "pet-products/gourmet-rabbit",
+    "stock": "out-of-stock",
+    "isActive": true,
+    "rate": 4.8,
+    "i18n": {
+      "en": {
+        "name": "Gourmet Rabbit",
+        "description": "Gourmet Rabbit wet cat food, a delicate rabbit pate, 1 pc"
+      },
+      "ru": {
+        "name": "Gourmet Rabbit",
+        "description": "Gourmet Rabbit влажный корм для кошек от Purina, в виде нежного паштета с кроликом, 1шт"
+      },
+      "uk": {
+        "name": "Gourmet Rabbit",
+        "description": "Gourmet Rabbit вологий корм для кішок від Purina, у вигляді ніжного паштету з кроликом, 1шт"
+      }
+    }
+  },
+  {
+    "slug": "gourmet-turkey",
+    "price": 24,
+    "category": "pet-products",
+    "isNew": false,
+    "isHit": false,
+    "hasDiscount": false,
+    "badges": [],
+    "searchKeywords": ["gourmet", "gourmet turkey", "pets", "гурмэ", "гурме"],
+    "publickId": "pet-products/gourmet-turkey",
+    "stock": "in-stock",
+    "isActive": true,
+    "rate": 4.5,
+    "i18n": {
+      "en": {
+        "name": "Gourmet Turkey",
+        "description": "Gourmet Turkey wet cat food, a delicate turkey pate, 1 pc"
+      },
+      "ru": {
+        "name": "Gourmet Turkey",
+        "description": "Gourmet Turkey влажный корм для кошек от Purina, в виде нежного паштета с индюшкой, 1шт"
+      },
+      "uk": {
+        "name": "Gourmet Turkey",
+        "description": "Gourmet Turkey вологий корм для кішок від Purina, у вигляді ніжного паштету з індичкою, 1шт"
+      }
+    }
+  },
+  {
+    "slug": "tide",
+    "price": 24,
+    "category": "cleaning-home",
+    "isNew": false,
+    "isHit": false,
+    "hasDiscount": false,
+    "badges": [],
+    "searchKeywords": ["tide", "стиральный порошок", "пральний порошок", "порошок"],
+    "publickId": "cleaning-home/tide",
+    "stock": "in-stock",
+    "isActive": true,
+    "rate": 4.5,
+    "i18n": {
+      "en": {
+        "name": "Tide",
+        "description": "Tide laundry detergent, 1L"
+      },
+      "ru": {
+        "name": "Tide",
+        "description": "Гель для стирки Tide, 1л"
+      },
+      "uk": {
+        "name": "Tide",
+        "description": "Гель для прання Tide, 1л"
+      }
+    }
+  },
 ]
