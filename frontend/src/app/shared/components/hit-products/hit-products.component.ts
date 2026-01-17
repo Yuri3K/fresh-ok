@@ -4,7 +4,7 @@ import {
   Product,
   ProductsService,
 } from '../../../core/services/products.service';
-import { ProductCardComponent } from '../product-card/product-card.component';
+import { ProductCardComponent } from '../product-cards/product-card/product-card.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { H2TitleComponent } from '../../ui-elems/typography/h2-title/h2-title.component';
 import { LoaderComponent } from '../loader/loader.component';

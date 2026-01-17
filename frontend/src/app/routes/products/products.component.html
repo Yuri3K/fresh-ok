@@ -10,14 +10,20 @@
         <div class="products__view"></div>
       </div>
       <div class="products__cards">
-        @for(card of products(); track card.id) {
-          @if(view() == 'list') {
-            <app-product-card-list [product]="card"/>
-          } @else {
-            <app-product-card 
-              [product]="card" 
-              [withStockAndRate]="true"
-            />
+        @if(isLoading()) {
+          <app-loader />
+        } @else {
+          @for(card of products(); track card.id) {
+            @if(view() == 'list') {
+              <app-product-card-list [product]="card"/>
+            } @else {
+              <app-product-card 
+                [product]="card" 
+                [withStockAndRate]="true"
+              />
+            }
+          } @empty {
+            <p>NOT FOUND BY FILTER</p>
           }
         }
       </div>

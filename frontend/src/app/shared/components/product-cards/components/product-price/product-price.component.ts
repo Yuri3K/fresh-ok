@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
-import { Product } from '../../../core/services/products.service';
-import { CalcDiscountPipe } from '../../../core/pipes/calc-discount.pipe';
+import { Product } from '../../../../../core/services/products.service';
+import { CalcDiscountPipe } from '../../../../../core/pipes/calc-discount.pipe';
 
 @Component({
   selector: 'app-product-price',

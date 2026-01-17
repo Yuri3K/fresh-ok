@@ -20,6 +20,7 @@ export class CatalogStateService {
   }
 
   readonly productsContainerWidth = signal(0);
+  readonly isLoading = signal(false)
   private userPrefferedView = signal<View>('list');
   readonly appliedView = computed(() => {
     return this.productsContainerWidth() > 900
@@ -46,10 +47,12 @@ export class CatalogStateService {
   });
 
   getProductsByFilter() {
+    this.isLoading.set(true)
     this.productsService.getProducts(this.filterQuery())
     .pipe(debounceTime(100))
     .subscribe((res) => {
       console.log('🔸 res:', res);
+      this.isLoading.set(false)
       this.products.set(res.data);
       this.pagination.set(res.pagination);
     });

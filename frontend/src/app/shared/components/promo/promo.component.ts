@@ -12,7 +12,7 @@ import {
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ProductFilterBtnComponent } from '../product-filter-btn/product-filter-btn.component';
 import { filter, tap } from 'rxjs';
-import { ProductCardMiniComponent } from '../product-card-mini/product-card-mini.component';
+import { ProductCardMiniComponent } from '../product-cards/product-card-mini/product-card-mini.component';
 import { ScrollItemsComponent } from '../scroll-items/scroll-items.component';
 
 @Component({

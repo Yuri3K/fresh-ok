@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { MiniFabBtnComponent } from '../../ui-elems/buttons/mini-fab-btn/mini-fab-btn.component';
+import { MiniFabBtnComponent } from '../../../../ui-elems/buttons/mini-fab-btn/mini-fab-btn.component';
 
 @Component({
   selector: 'app-product-fav-btn',

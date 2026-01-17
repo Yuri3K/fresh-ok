@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
-import { MiniFabBtnComponent } from '../../ui-elems/buttons/mini-fab-btn/mini-fab-btn.component';
-import { Product } from '../../../core/services/products.service';
+import { MiniFabBtnComponent } from '../../../../ui-elems/buttons/mini-fab-btn/mini-fab-btn.component';
+import { Product } from '../../../../../core/services/products.service';
 
 @Component({
   selector: 'app-product-cart-btn',
