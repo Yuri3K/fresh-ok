@@ -1,14 +1,10 @@
 import { computed, effect, inject, Injectable, signal } from '@angular/core';
-import {
-  Pagination,
-  Product,
-  ProductsService,
-} from './products.service';
+import { Pagination, Product, ProductsService } from './products.service';
 import { ActivatedRoute } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { distinctUntilChanged, map } from 'rxjs';
+import { debounce, debounceTime, distinctUntilChanged, map, pipe } from 'rxjs';
 
-export type View = "list" | "grid"
+export type View = 'list' | 'grid';
 
 @Injectable({
   providedIn: 'root',
@@ -19,18 +15,25 @@ export class CatalogStateService {
 
   constructor() {
     effect(() => {
-      if(this.filterQuery().length) this.getProductsByFilter()
-    })
+      if (this.filterQuery().length) this.getProductsByFilter();
+    });
   }
 
-  appliedView = signal<View>('grid')
-  products = signal<Product[]>([]);
-  pagination = signal<Pagination>({} as Pagination)
-  private readonly queryParams = toSignal(this.route.queryParamMap
-    .pipe(
-      map(params => params),
-      distinctUntilChanged() //для избежания дублирующих запросов
-    ))
+  readonly productsContainerWidth = signal(0);
+  private userPrefferedView = signal<View>('list');
+  readonly appliedView = computed(() => {
+    return this.productsContainerWidth() > 900
+      ? this.userPrefferedView()
+      : 'grid';
+  });
+  readonly products = signal<Product[]>([]);
+  readonly pagination = signal<Pagination>({} as Pagination);
+  private readonly queryParams = toSignal(
+    this.route.queryParamMap.pipe(
+      map((params) => params),
+      distinctUntilChanged(), //для избежания дублирующих запросов
+    ),
+  );
 
   private readonly filterQuery = computed(() => {
     return [
@@ -39,15 +42,20 @@ export class CatalogStateService {
       `priceMin=${this.queryParams()?.get('priceMin') || ''}`,
       `priceMax=${this.queryParams()?.get('priceMax') || ''}`,
       `sort=${this.queryParams()?.get('sort') || ''}`,
-    ].filter(q => !!q.split('=')[1])
-  })
+    ].filter((q) => !!q.split('=')[1]);
+  });
 
   getProductsByFilter() {
     this.productsService.getProducts(this.filterQuery())
-      .subscribe((res) => {
-        console.log("🔸 res:", res)
-        this.products.set(res.data)
-        this.pagination.set(res.pagination)
-      });
+    .pipe(debounceTime(100))
+    .subscribe((res) => {
+      console.log('🔸 res:', res);
+      this.products.set(res.data);
+      this.pagination.set(res.pagination);
+    });
+  }
+
+  setProductsContainerWidth(width: number) {
+    this.productsContainerWidth.set(width);
   }
 }

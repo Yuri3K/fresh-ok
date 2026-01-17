@@ -20,46 +20,6 @@ app-product-badge {
   top: 5px;
 }
 
-.mini__image-wrapper {
-  position: relative;
-  flex-shrink: 0;
-  width: 100px;
-  height: 100px;
-  overflow: hidden;
-  border-radius: 6px;
-  transition: opacity 0.3s;
-
-  &:hover {
-    transition: opacity 0.3s;
-
-    .mini__link {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-      transition: opacity 0.3s;
-    }
-  }
-
-  .mini__link {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.4);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s;
-
-    .mini__svg-wrapper {
-      background-color: #fff;
-      border-radius: 50%;
-      padding: 14px;
-      fill: var(--mat-sys-primary-container);
-    }
-  }
-} 
-
 .mini__content {
   display: flex;
   flex-direction: column;
@@ -90,4 +50,3 @@ app-product-badge {
   justify-content: space-between;
   width: 100%;
 }
-

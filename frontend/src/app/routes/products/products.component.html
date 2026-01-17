@@ -2,7 +2,7 @@
   <app-h2-title 
     [text]="'products-page.title' | translate"
   />
-  <div class="products__content">
+  <div class="products__content" #productsContent>
     <div class="products__filters"></div>
     <div class="products__main">
       <div class="products__top">
@@ -11,7 +11,14 @@
       </div>
       <div class="products__cards">
         @for(card of products(); track card.id) {
-          
+          @if(view() == 'list') {
+            <app-product-card-list [product]="card"/>
+          } @else {
+            <app-product-card 
+              [product]="card" 
+              [withStockAndRate]="true"
+            />
+          }
         }
       </div>
       <div class="products__pagination"></div>

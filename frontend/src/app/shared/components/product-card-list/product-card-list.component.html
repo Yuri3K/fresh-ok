@@ -1,1 +1,29 @@
-<p>product-card-grid works!</p>
+<div class="pcl green">
+  <app-product-badge [product]="product()" />
+
+  <app-product-image 
+    [product]="product()" 
+    width="200"
+    height="144"
+  />
+
+  <div class="pcl__content">
+    <div class="pcl__top">
+      <app-product-status [status]="product().stock" />
+      <app-product-rate [rate]="product().rate" />
+    </div>
+
+    <div class="pcl__middle">
+      <h3 class="product-card__title">
+        {{ product().i18n[currentLang()].description }}
+      </h3>
+      <app-product-fav-btn [productId]="product().id" />
+    </div>
+
+    <div class="pcl__bottom">
+      <app-product-price [product]="product()" />
+      <app-counter />
+      <app-product-cart-btn [product]="product()" />
+    </div>
+  </div>
+</div>
