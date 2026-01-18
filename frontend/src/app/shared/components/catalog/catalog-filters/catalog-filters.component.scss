@@ -1,14 +1,40 @@
+@use 'mixins/castom-scrollbar' as *;
+
 .fiters {
   display: flex;
   flex-direction: column;
   width: 300px;
   height: 100%;
-  border: 1px solid red;
+}
+
+.fiters__categories {
+  --mat-expansion-container-shape: 0;
+
+  border: 1px solid var(--mat-sys-primary);
+  border-radius: 8px;
+  overflow: hidden;
+
+  &:hover {
+    box-shadow: 0 0 2px 1px var(--mat-sys-on-tertiary-container);
+  }
+
+  .mat-expansion-panel {
+    box-shadow: none;
+  }
+}
+
+.fiters__categories-body {
+  padding-bottom: 20px;
 }
 
 .fiters__categories-list {
   max-height: 300px;
+  padding-top: 20px;
   overflow-y: auto;
+  border-top: 2px solid var(--mat-sys-primary);
+
+  @include custom-scrollbar(var(--mat-sys-outline),
+    var(--mat-sys-primary-container))
 }
 
 ::ng-deep {

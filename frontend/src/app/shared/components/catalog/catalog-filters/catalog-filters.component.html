@@ -11,16 +11,18 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
 
-      <ul class="fiters__categories-list">
-        @for(category of categories(); track category.id) {
-          <li class="fiters__categories-item">
-            <app-btn-raised 
-              class="fiters__categories-btn accordion"
-              [btnText]="category.name[currentLang()]"
-            />
-          </li>
-        }
-      </ul>
+      <div class="fiters__categories-body">
+        <ul class="fiters__categories-list">
+          @for(category of categories(); track category.id) {
+            <li class="fiters__categories-item">
+              <app-btn-raised 
+                class="fiters__categories-btn accordion"
+                [btnText]="category.name[currentLang()]"
+              />
+            </li>
+          }
+        </ul>
+      </div>
     </mat-expansion-panel>
   </mat-accordion>
 </div>

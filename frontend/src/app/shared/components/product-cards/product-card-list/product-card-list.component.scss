@@ -9,6 +9,10 @@
   align-items: center;
   justify-content: flex-start;
   gap: 18px;
+
+  &:hover {
+    box-shadow: 0 0 2px 1px var(--mat-sys-on-tertiary-container);
+  }
 }
 
 app-product-badge {
@@ -18,7 +22,7 @@ app-product-badge {
   top: 5px;
 }
 
-.pcl__content{
+.pcl__content {
   width: 100%;
   display: flex;
   flex-direction: column;

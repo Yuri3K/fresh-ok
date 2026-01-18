@@ -38,7 +38,12 @@
             "scripts": [],
             "allowedCommonJsDependencies": [
               "lottie-web"
-            ]
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles"
+              ]
+            }
           },
           "configurations": {
             "production": {

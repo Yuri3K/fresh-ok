@@ -1,5 +1,11 @@
-.products {
+section {
   padding: 50px 0;
+}
+
+.products {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
 }
 
 .products__main {

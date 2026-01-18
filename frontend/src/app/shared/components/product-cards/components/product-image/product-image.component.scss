@@ -1,3 +1,7 @@
+:host {
+  flex-shrink: 0;
+}
+
 .product-card__img-wrapper {
   position: relative;
   flex-shrink: 0;

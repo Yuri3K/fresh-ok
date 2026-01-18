@@ -1,16 +1,17 @@
 :host {
   &.accordion {
     button {
-      --mdc-protected-button-container-shape: 0;
-      // --mdc-protected-button-label-text-color
       // --mdc-protected-button-container-color
-      // --mdc-protected-button-container-elevation-shadow
       // --mat-protected-button-horizontal-padding
-      // --mdc-protected-button-label-text-size
-      // --mdc-protected-button-label-text-tracking - letter-spacing
+      --mdc-protected-button-container-shape: 0;
+      --mdc-protected-button-container-elevation-shadow: none;  // тень кнопки
+      --mdc-protected-button-hover-container-elevation-shadow: none; // тень кнопки при ховере
+      --mdc-protected-button-label-text-color: var(--mat-sys-on-surface);
+      --mdc-protected-button-label-text-size: 1.125;
+      --mdc-protected-button-label-text-tracking: 0.5px; // letter-spacing
       width: 100%;
       justify-content: start;
-
+      line-height: 1.3;
     }
   }
 }
