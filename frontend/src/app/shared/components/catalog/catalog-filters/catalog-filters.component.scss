@@ -33,7 +33,8 @@
   overflow-y: auto;
   border-top: 2px solid var(--mat-sys-primary);
 
-  @include custom-scrollbar(var(--mat-sys-outline),
+  @include custom-scrollbar(
+    var(--mat-sys-outline),
     var(--mat-sys-primary-container))
 }
 

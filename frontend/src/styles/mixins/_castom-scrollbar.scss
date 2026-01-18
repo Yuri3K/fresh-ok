@@ -1,17 +1,20 @@
 @mixin custom-scrollbar ($thumb-color, $thumb-hover-color, $width: 8px, $track-color: transparent) {
   /* Webkit браузеры (Chrome, Safari, Edge) */
 
+  /* Основной контейнер скроллбара */
   &::-webkit-scrollbar {
     width: $width;
     height: $width;
   }
 
+  /* Трек (фон скроллбара) */
   &::-webkit-scrollbar-track {
     background-color: $track-color;
     margin-top: 20px;
     // margin-bottom: 20px;
   }
 
+  /* Ползунок (thumb) */
   &::-webkit-scrollbar-thumb {
     background-color: $thumb-color;
     border-radius: 4px;
@@ -21,10 +24,11 @@
     background-color: $thumb-hover-color;
   }
 
+  /* Угол (где встречаются вертикальный и горизонтальный скроллбары) */
   &::-webkit-scrollbar-corner {
     background-color: transparent;
   }
-
+  /* Убираем стрелки, если стрелки не нужны*/
   &::-webkit-scrollbar-button {
     display: none;
   }
