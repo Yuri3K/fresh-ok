@@ -1,4 +1,11 @@
 h3 {
-  line-height: 120%;
-  color: var(--text-dark);
+  font-family: "Ruda", Arial, Helvetica, sans-serif;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
+  }
 }

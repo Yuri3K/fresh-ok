@@ -1,0 +1,16 @@
+:host {
+  &.accordion {
+    button {
+      --mdc-protected-button-container-shape: 0;
+      // --mdc-protected-button-label-text-color
+      // --mdc-protected-button-container-color
+      // --mdc-protected-button-container-elevation-shadow
+      // --mat-protected-button-horizontal-padding
+      // --mdc-protected-button-label-text-size
+      // --mdc-protected-button-label-text-tracking - letter-spacing
+      width: 100%;
+      justify-content: start;
+
+    }
+  }
+}

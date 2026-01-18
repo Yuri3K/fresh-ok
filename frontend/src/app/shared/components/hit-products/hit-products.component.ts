@@ -48,7 +48,7 @@ export class HitProductsComponent implements OnInit {
 
   categories = toSignal(
     this.catalogService.catalogList$.pipe(filter((items) => !!items.length)),
-    { initialValue: [] }
+    { initialValue: [] },
   );
 
   ngOnInit() {

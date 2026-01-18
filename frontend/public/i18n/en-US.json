@@ -133,12 +133,12 @@
           "order": 1
         },
         {
-          "name": "New Arrivals",
+          "name": "New",
           "selector": "new",
           "order": 2
         },
         {
-          "name": "Best Sellers",
+          "name": "Hit",
           "selector": "hit",
           "order": 3
         }
