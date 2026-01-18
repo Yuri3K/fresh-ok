@@ -19,8 +19,10 @@ import { MatTooltip } from '@angular/material/tooltip';
 })
 export class MiniFabBtnComponent implements OnInit {
   @Input({ required: true }) iconName!: string;
-  @Input() iconColor?: string;
+  @Input() iconColor = "var(--mat-sys-on-secondary-container)";
+  @Input() bgColor = "var(--mat-sys-primary-container)";
   @Input() count = 0;
+  @Input() btnBorder = '2px solid transparent';
   @Input() borderRadius = '10px';
   @Input() isBadgeHidden = true;
   @Input() width: string = '40px';

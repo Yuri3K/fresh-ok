@@ -2,4 +2,16 @@
   iconName="apps"
   [isBadgeHidden]="true"
   ariaLabel="Grid"
+  tooltipText="Grid view"
+  (click)="applyGridView()"
+  bgColor="transparent"
+  [btnBorder]="
+    appliedView() == 'grid' 
+      ? '2px solid var(--mat-sys-primary)'
+      : '2px solid var(--mat-sys-inverse-primary)'"
+  [iconColor]="
+    appliedView() == 'grid' 
+      ? 'var(--mat-sys-primary)'
+      : 'var(--mat-sys-inverse-primary)'"
 />
+<!-- --mat-sys-primary-container -->

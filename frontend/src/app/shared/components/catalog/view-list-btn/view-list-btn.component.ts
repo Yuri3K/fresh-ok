@@ -12,8 +12,9 @@ import { CatalogStateService } from '../../../../core/services/products-state.se
 })
 export class ViewListBtnComponent {
   stateService = inject(CatalogStateService)
+  appliedView = this.stateService.appliedView
 
   applyListView() {
-    this.stateService
+    this.stateService.setUserPrefferedView('list')
   }
 }

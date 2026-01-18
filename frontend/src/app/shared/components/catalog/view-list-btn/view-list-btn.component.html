@@ -2,4 +2,15 @@
   iconName="format_list_bulleted"
   [isBadgeHidden]="true"
   ariaLabel="List"
+  tooltipText="List view"
+  (click)="applyListView()"
+  bgColor="transparent"
+  [btnBorder]="
+    appliedView() == 'list' 
+      ? '2px solid var(--mat-sys-primary)'
+      : '2px solid var(--mat-sys-inverse-primary)'"
+  [iconColor]="
+    appliedView() == 'list' 
+      ? 'var(--mat-sys-primary)'
+      : 'var(--mat-sys-inverse-primary)'"
 />

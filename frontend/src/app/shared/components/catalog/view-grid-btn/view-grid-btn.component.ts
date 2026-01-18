@@ -10,8 +10,9 @@ import { CatalogStateService } from '../../../../core/services/products-state.se
 })
 export class ViewGridBtnComponent {
   stateService = inject(CatalogStateService)
+  appliedView = this.stateService.appliedView
 
-  applyListView() {
-    this.stateService
+  applyGridView() {
+    this.stateService.setUserPrefferedView('grid')
   }
 }

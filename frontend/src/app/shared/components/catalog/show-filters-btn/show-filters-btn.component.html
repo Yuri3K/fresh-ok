@@ -2,4 +2,19 @@
   iconName="tune"
   [isBadgeHidden]="true"
   ariaLabel="Filters"
+  [tooltipText]="
+    isFiltersVisible() 
+      ? 'Hide filters'
+      : 'Show filters'
+  "
+  (click)="toggleFilters()"
+  bgColor="transparent"
+  [btnBorder]="
+    isFiltersVisible()
+      ? '2px solid var(--mat-sys-primary)'
+      : '2px solid var(--mat-sys-inverse-primary)'"
+  [iconColor]="
+    isFiltersVisible()
+      ? 'var(--mat-sys-primary)'
+      : 'var(--mat-sys-inverse-primary)'"
 />

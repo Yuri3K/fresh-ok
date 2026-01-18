@@ -1,33 +1,46 @@
-<div class="products">
-  <app-h2-title 
-    [text]="'products-page.title' | translate"
-  />
-  <div class="products__content" #productsContent>
-    <div class="products__filters"></div>
-    <div class="products__main">
-      <div class="products__top">
-        <div class="products__sorting"></div>
-        <div class="products__view"></div>
-      </div>
-      <div class="products__cards">
-        @if(isLoading()) {
-          <app-loader />
-        } @else {
-          @for(card of products(); track card.id) {
-            @if(view() == 'list') {
-              <app-product-card-list [product]="card"/>
-            } @else {
-              <app-product-card 
-                [product]="card" 
-                [withStockAndRate]="true"
-              />
+<section class="products green">
+  <div class="container">
+    <app-h2-title 
+      [text]="'products-page.title' | translate"
+    />
+    <div class="products__content" #productsContent>
+      <app-catalog-filters />
+  
+      <div class="products__main">
+        <div class="products__top">
+          <div class="products__sorting">
+            <app-sorting-by />
+            <app-limit-by />
+          </div>
+  
+          <div class="products__view">
+            <app-show-filters-btn />
+            <app-view-list-btn />
+            <app-view-grid-btn />
+          </div>
+        </div>
+  
+        <div class="products__cards">
+          @if(isLoading()) {
+            <app-loader />
+          } @else {
+            @for(card of products(); track card.id) {
+              @if(view() == 'list') {
+                <app-product-card-list [product]="card"/>
+              } @else {
+                <app-product-card 
+                  [product]="card" 
+                  [withStockAndRate]="true"
+                />
+              }
+            } @empty {
+              <p>NOT FOUND BY FILTER</p>
             }
-          } @empty {
-            <p>NOT FOUND BY FILTER</p>
           }
-        }
+        </div>
+  
+        <app-catalog-pagination />
       </div>
-      <div class="products__pagination"></div>
     </div>
   </div>
-</div>
+</section>

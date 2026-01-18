@@ -19,16 +19,18 @@ export class CatalogStateService {
     });
   }
 
-  readonly productsContainerWidth = signal(0);
   readonly isLoading = signal(false)
   private userPrefferedView = signal<View>('list');
-  readonly appliedView = computed(() => {
-    return this.productsContainerWidth() > 900
-      ? this.userPrefferedView()
-      : 'grid';
-  });
+  readonly productsContainerWidth = signal(0);
+  readonly isFiltersVisible = signal(true)
   readonly products = signal<Product[]>([]);
   readonly pagination = signal<Pagination>({} as Pagination);
+  readonly appliedView = computed(() => 
+    this.productsContainerWidth() > 900
+      ? this.userPrefferedView()
+      : 'grid'
+  );
+
   private readonly queryParams = toSignal(
     this.route.queryParamMap.pipe(
       map((params) => params),
@@ -60,5 +62,13 @@ export class CatalogStateService {
 
   setProductsContainerWidth(width: number) {
     this.productsContainerWidth.set(width);
+  }
+
+  setUserPrefferedView(selectedView: View) {
+    this.userPrefferedView.set(selectedView)
+  }
+
+  setIsFiltersVisible(isVisible: boolean) {
+    this.isFiltersVisible.set(isVisible)
   }
 }
