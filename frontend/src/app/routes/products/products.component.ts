@@ -17,10 +17,10 @@ import { LoaderComponent } from '../../shared/components/loader/loader.component
 import { ViewListBtnComponent } from '../../shared/components/catalog/view-list-btn/view-list-btn.component';
 import { ViewGridBtnComponent } from '../../shared/components/catalog/view-grid-btn/view-grid-btn.component';
 import { CatalogPaginationComponent } from '../../shared/components/catalog/catalog-pagination/catalog-pagination.component';
-import { CatalogFiltersComponent } from '../../shared/components/catalog/catalog-filters/catalog-filters.component';
 import { ShowFiltersBtnComponent } from '../../shared/components/catalog/show-filters-btn/show-filters-btn.component';
 import { SortingByComponent } from '../../shared/components/catalog/sorting-by/sorting-by.component';
 import { LimitByComponent } from '../../shared/components/catalog/limit-by/limit-by.component';
+import { CatalogFilterComponent } from '../../shared/components/catalog/catalog-filter/catalog-filter.component';
 
 @Component({
   selector: 'app-products',
@@ -33,10 +33,10 @@ import { LimitByComponent } from '../../shared/components/catalog/limit-by/limit
     ViewListBtnComponent,
     ViewGridBtnComponent,
     CatalogPaginationComponent,
-    CatalogFiltersComponent,
     ShowFiltersBtnComponent,
     SortingByComponent,
     LimitByComponent,
+    CatalogFilterComponent,
 
   ],
   templateUrl: './products.component.html',

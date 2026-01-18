@@ -1,17 +1,40 @@
 :host {
-  &.accordion {
+  &.accordion-btn {
     button {
-      // --mdc-protected-button-container-color
-      // --mat-protected-button-horizontal-padding
-      --mdc-protected-button-container-shape: 0;
-      --mdc-protected-button-container-elevation-shadow: none;  // тень кнопки
+      --mat-protected-button-horizontal-padding: 16px;  // боковые padding
+      --mdc-protected-button-container-shape: 0;  // закругления
+      --mdc-protected-button-container-elevation-shadow: none; // тень кнопки
       --mdc-protected-button-hover-container-elevation-shadow: none; // тень кнопки при ховере
-      --mdc-protected-button-label-text-color: var(--mat-sys-on-surface);
-      --mdc-protected-button-label-text-size: 1.125;
+      --mdc-protected-button-label-text-color: var(--mat-sys-on-surface); // цвет текста
+      --mdc-protected-button-label-text-size: 1.125;  // размер шрифта
       --mdc-protected-button-label-text-tracking: 0.5px; // letter-spacing
+
+      position: relative;
       width: 100%;
       justify-content: start;
       line-height: 1.3;
+      white-space: nowrap;
+    }
+
+    &.active {
+      button {
+        --mdc-protected-button-label-text-color: var(--mat-sys-primary);  // цвет текста
+        --mdc-protected-button-container-color: color-mix(
+          in srgb,
+          var(--mat-sys-primary-container) 20%,
+          transparent
+        );  // фон кнопки
+
+        //   &::before {
+        //   content: '';
+        //   position: absolute;
+        //   width: 3px;
+        //   height: 100%;
+        //   left: 0;
+        //   top: 0;
+        //   background-color: var(--mat-sys-primary);
+        // }
+      }
     }
   }
 }

@@ -1,6 +1,6 @@
 @let catalogList = (catalogList$ | async); 
 @let lang = (currentLang$ | async); 
-@let selectedCategory = (selectedCategory$ | async);
+<!-- @let selectedCategory = (selectedCategory$ | async); -->
 
 @if(catalogList && lang) {
 <div class="catalog" appOpenMenu>
@@ -15,14 +15,11 @@
     <ul class="catalog__list dropdown-list">
       @for(item of catalogList; track item.id; let i = $index) {
       <li class="catalog__item">
+        <!-- (click)="selectCategory(item.slug)" -->
         <a
-          [class.active]="selectedCategory == item.slug"
-          (click)="selectCategory(item.slug)"
           [routerLink]="['/', lang.browserLang, 'products']"
-          [queryParams]="{
-            category: item.slug,
-          }"
-          queryParamsHandling="merge"
+          [class.active]="item.slug == selectedCategory()"
+          [queryParams]="{ category: item.slug }"
         >
           {{ item.name[lang.browserLang] }}
         </a>

@@ -6,6 +6,7 @@ import { AsyncPipe } from '@angular/common';
 import { CatalogService } from '../../../../core/services/catalog.service';
 import { LangsService } from '../../../../core/services/langs.service';
 import { RouterLink } from '@angular/router';
+import { CatalogStateService } from '../../../../core/services/products-state.service';
 
 @Component({
   selector: 'app-catalog-selector',
@@ -22,11 +23,13 @@ import { RouterLink } from '@angular/router';
 export class CatalogSelectorComponent {
   currentLang$ = inject(LangsService).currentLang$
   catalogService = inject(CatalogService)
+  stateService = inject(CatalogStateService)
 
   catalogList$ = this.catalogService.catalogList$
-  selectedCategory$ = this.catalogService.selectedCategory$
+  selectedCategory = this.stateService.selectedCategory
+  // selectedCategory$ = this.catalogService.selectedCategory$
 
-  selectCategory(category: string) {
-    this.catalogService.setSelectedCategory(category)
-  }
+  // selectCategory(category: string) {
+  //   this.catalogService.setSelectedCategory(category)
+  // }
 }

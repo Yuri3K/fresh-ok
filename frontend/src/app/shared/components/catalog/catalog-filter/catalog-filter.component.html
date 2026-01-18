@@ -1,0 +1,18 @@
+@let translattes = ('products-page.filters' | translate);
+
+<app-expantion-panel
+  [title]="translattes.categories.title"
+>
+  <ul class="categories-list">
+    @for(category of categories(); track category.id) {
+      <li class="categories-item">
+        <app-btn-raised 
+          class="accordion-btn"
+          [class.active]="category.slug == selectedCategory()"
+          [btnText]="category.name[currentLang()]"
+          (click)="onCategorySelect(category.slug)"
+        />
+      </li>
+    }
+  </ul>
+</app-expantion-panel>

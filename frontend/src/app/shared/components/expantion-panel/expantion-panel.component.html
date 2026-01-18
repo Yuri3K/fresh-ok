@@ -1,1 +1,15 @@
-<p>expantion-panel works!</p>
+<mat-accordion class="accordion" >
+   <mat-expansion-panel [expanded]="expanded()">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <app-h3-title 
+          [text]="title()"
+        />
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="accordion__body">
+      <ng-content />
+    </div>
+   </mat-expansion-panel>
+</mat-accordion>

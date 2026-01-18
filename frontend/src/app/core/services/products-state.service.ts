@@ -15,20 +15,18 @@ export class CatalogStateService {
 
   constructor() {
     effect(() => {
-      if (this.filterQuery().length) this.getProductsByFilter();
+      if (this.filterQuery()) this.getProductsByFilter();
     });
   }
 
-  readonly isLoading = signal(false)
+  readonly isLoading = signal(false);
   private userPrefferedView = signal<View>('list');
   readonly productsContainerWidth = signal(0);
-  readonly isFiltersVisible = signal(true)
+  readonly isFiltersVisible = signal(true);
   readonly products = signal<Product[]>([]);
   readonly pagination = signal<Pagination>({} as Pagination);
-  readonly appliedView = computed(() => 
-    this.productsContainerWidth() > 900
-      ? this.userPrefferedView()
-      : 'grid'
+  readonly appliedView = computed(() =>
+    this.productsContainerWidth() > 900 ? this.userPrefferedView() : 'grid',
   );
 
   private readonly queryParams = toSignal(
@@ -38,9 +36,14 @@ export class CatalogStateService {
     ),
   );
 
+  readonly selectedCategory = computed(() => this.queryParams()?.get('category'));
+
   private readonly filterQuery = computed(() => {
+    const params = this.queryParams();
+    const category = params?.get('category');
+
     return [
-      `category=${this.queryParams()?.get('category') || 'all'}`,
+      `category=${category === 'all' || !category ? '' : category}`,
       `badge=${this.queryParams()?.getAll('badge').join(',') || ''}`,
       `priceMin=${this.queryParams()?.get('priceMin') || ''}`,
       `priceMax=${this.queryParams()?.get('priceMax') || ''}`,
@@ -49,15 +52,22 @@ export class CatalogStateService {
   });
 
   getProductsByFilter() {
-    this.isLoading.set(true)
-    this.productsService.getProducts(this.filterQuery())
-    .pipe(debounceTime(100))
-    .subscribe((res) => {
-      console.log('🔸 res:', res);
-      this.isLoading.set(false)
-      this.products.set(res.data);
-      this.pagination.set(res.pagination);
-    });
+    this.isLoading.set(true);
+    this.productsService
+      .getProducts(this.filterQuery())
+      .pipe(debounceTime(100))
+      .subscribe({
+        next: (res) => {
+          console.log('🔸 res:', res);
+          this.isLoading.set(false);
+          this.products.set(res.data);
+          this.pagination.set(res.pagination);
+        },
+        error: (err) => {
+          console.error('Error loading products:', err);
+          this.isLoading.set(false);
+        },
+      });
   }
 
   setProductsContainerWidth(width: number) {
@@ -65,10 +75,10 @@ export class CatalogStateService {
   }
 
   setUserPrefferedView(selectedView: View) {
-    this.userPrefferedView.set(selectedView)
+    this.userPrefferedView.set(selectedView);
   }
 
   setIsFiltersVisible(isVisible: boolean) {
-    this.isFiltersVisible.set(isVisible)
+    this.isFiltersVisible.set(isVisible);
   }
 }

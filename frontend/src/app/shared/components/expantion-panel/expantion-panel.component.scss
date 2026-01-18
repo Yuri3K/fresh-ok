@@ -1,0 +1,29 @@
+.accordion {
+  --mat-expansion-container-shape: 0;
+
+  display: flex;
+  border: 1px solid var(--mat-sys-primary);
+  border-radius: 8px;
+  overflow: hidden;
+
+  &:hover {
+    box-shadow: 0 0 2px 1px var(--mat-sys-on-tertiary-container);
+  }
+
+  .mat-expansion-panel {
+    width: 100%;
+    box-shadow: none;
+  }
+}
+
+.accordion__body {
+  padding-bottom: 20px;
+}
+
+::ng-deep {
+  .accordion {
+    .mat-expansion-panel-body {
+      padding: 0;
+    }
+  }
+}
