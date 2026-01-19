@@ -36,7 +36,7 @@ export class CatalogStateService {
     ),
   );
 
-  readonly selectedCategory = computed(() => this.queryParams()?.get('category'));
+  readonly selectedCategory = computed(() => this.queryParams()?.get('category') || 'all');
 
   private readonly filterQuery = computed(() => {
     const params = this.queryParams();

@@ -1,0 +1,15 @@
+<app-expantion-panel 
+  [title]="'products-page.filters.offer.title' | translate"
+>
+  <ul class="badges__list" [formGroup]="badgeFilter">
+    @for(badge of badges(); track badge.slug; let i = $index) {
+      <li class="badges__item">
+        <label class="badges__label">
+          <mat-checkbox [formControlName]="badge.slug">
+            {{badge.i18n[currentLang()]}}
+          </mat-checkbox>
+        </label>
+      </li>
+    }
+  </ul>
+</app-expantion-panel>

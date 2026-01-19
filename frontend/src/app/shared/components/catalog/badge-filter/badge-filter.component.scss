@@ -1,0 +1,33 @@
+.badges__list {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.badges__item {
+  &:hover {
+    background-color: color-mix(
+      in srgb,
+      var(--mat-sys-primary-container) 20%,
+      transparent
+    );
+  }
+}
+
+.badges__label {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  padding: 8px; // если нужно увеличить область клика
+  
+  // Убираем стандартные отступы mat-checkbox если нужно
+  ::ng-deep .mat-mdc-checkbox {
+    width: 100%;
+  }
+}
+
+mat-checkbox {
+  --mat-checkbox-label-text-size: 1.125rem;
+  --mat-checkbox-label-text-line-height: 1.2;
+  --mat-checkbox-label-text-tracking: 0.5px;
+}

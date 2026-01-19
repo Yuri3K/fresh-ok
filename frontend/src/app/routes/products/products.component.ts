@@ -21,6 +21,7 @@ import { ShowFiltersBtnComponent } from '../../shared/components/catalog/show-fi
 import { SortingByComponent } from '../../shared/components/catalog/sorting-by/sorting-by.component';
 import { LimitByComponent } from '../../shared/components/catalog/limit-by/limit-by.component';
 import { CatalogFilterComponent } from '../../shared/components/catalog/catalog-filter/catalog-filter.component';
+import { BadgeFilterComponent } from '../../shared/components/catalog/badge-filter/badge-filter.component';
 
 @Component({
   selector: 'app-products',
@@ -37,6 +38,7 @@ import { CatalogFilterComponent } from '../../shared/components/catalog/catalog-
     SortingByComponent,
     LimitByComponent,
     CatalogFilterComponent,
+    BadgeFilterComponent,
 
   ],
   templateUrl: './products.component.html',
@@ -65,7 +67,6 @@ export class ProductsComponent implements OnDestroy {
   private setResizeObserver() {
     this.resizeObserver = new ResizeObserver((entries) => {
       const width = entries[0].contentRect.width;
-      console.log('🚀 ~ width:', width);
       this.stateService.setProductsContainerWidth(width);
     });
   }

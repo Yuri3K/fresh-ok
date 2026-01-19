@@ -41,7 +41,7 @@ interface ProductTexts {
   name: string;
   description: string;
 }
-interface Badge {
+export interface Badge {
   color: string;
   i18n: Record<LangCode, string>;
   isActive: boolean;
