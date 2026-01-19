@@ -20,7 +20,7 @@ export class CatalogStateService {
   }
 
   readonly isLoading = signal(false);
-  private userPrefferedView = signal<View>('list');
+  private userPrefferedView = signal<View>('grid');
   readonly productsContainerWidth = signal(0);
   readonly isFiltersVisible = signal(true);
   readonly products = signal<Product[]>([]);

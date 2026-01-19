@@ -4,7 +4,10 @@
   <ul class="badges__list" [formGroup]="badgeFilter">
     @for(badge of badges(); track badge.slug; let i = $index) {
       <li class="badges__item">
-        <label class="badges__label">
+        <label 
+          class="badges__label"
+          [class.active]="badgeFilter.get(badge.slug)?.value"
+        >
           <mat-checkbox [formControlName]="badge.slug">
             {{badge.i18n[currentLang()]}}
           </mat-checkbox>

@@ -59,6 +59,7 @@ export class BadgeFilterComponent {
 
   constructor() {
     this.initBadgesFromUrl();
+    
     effect(() => {
       const values = this.badgesValues()
       if(values) {

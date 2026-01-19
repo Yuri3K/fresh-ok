@@ -22,6 +22,7 @@ import { SortingByComponent } from '../../shared/components/catalog/sorting-by/s
 import { LimitByComponent } from '../../shared/components/catalog/limit-by/limit-by.component';
 import { CatalogFilterComponent } from '../../shared/components/catalog/catalog-filter/catalog-filter.component';
 import { BadgeFilterComponent } from '../../shared/components/catalog/badge-filter/badge-filter.component';
+import { PriceFilterComponent } from '../../shared/components/catalog/price-filter/price-filter.component';
 
 @Component({
   selector: 'app-products',
@@ -39,6 +40,7 @@ import { BadgeFilterComponent } from '../../shared/components/catalog/badge-filt
     LimitByComponent,
     CatalogFilterComponent,
     BadgeFilterComponent,
+    PriceFilterComponent,
 
   ],
   templateUrl: './products.component.html',

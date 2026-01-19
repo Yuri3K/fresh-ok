@@ -19,7 +19,13 @@
   width: 100%;
   cursor: pointer;
   padding: 8px; // если нужно увеличить область клика
-  
+
+  &.active {
+    mat-checkbox {
+      --mat-checkbox-label-text-color: var(--mat-sys-primary);
+    }
+  }
+
   // Убираем стандартные отступы mat-checkbox если нужно
   ::ng-deep .mat-mdc-checkbox {
     width: 100%;

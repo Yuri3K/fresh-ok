@@ -1,0 +1,11 @@
+<app-expantion-panel 
+  [title]="'products-page.filters.price.title' | translate"
+>
+  <div class="price">
+    <mat-slider min="0" max="6000">
+      <input value="100" matSliderStartThumb />
+      <input value="5500" matSliderEndThumb />
+    </mat-slider>
+    <div class="price__numbers"></div>
+  </div>
+</app-expantion-panel>
