@@ -27,10 +27,10 @@ import { BadgeFilterComponent } from '../../shared/components/catalog/badge-filt
 import { PriceFilterComponent } from '../../shared/components/catalog/price-filter/price-filter.component';
 import {
   MatSidenav,
-  MatSidenavContainer,
   MatSidenavModule,
 } from '@angular/material/sidenav';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-products',
@@ -55,15 +55,15 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
   styleUrl: './products.component.scss',
 })
 export class ProductsComponent implements AfterViewInit, OnDestroy {
-  sidenav = viewChild.required<MatSidenav>('sidenav');
+  // productsContent = viewChild.required<ElementRef<HTMLElement>>('productsContent');
+  // sidenav = viewChild.required<MatSidenav>('sidenav');
+  @ViewChild('productsContent', { read: ElementRef }) productsContent!: ElementRef;
+  @ViewChild('sidenav') sidenav!: MatSidenav;
   stateService = inject(CatalogStateService);
   private dstroyRef = inject(DestroyRef);
-  private breakpointObserver!: BreakpointObserver;
+  private breakpointObserver = inject(BreakpointObserver);
   private resizeObserver?: ResizeObserver;
 
-  // productsContent = viewChild.required<ElementRef<HTMLElement>>('productsContent');
-  @ViewChild('productsContent', { read: ElementRef })
-  productsContent!: ElementRef;
   products = this.stateService.products;
   pagination = this.stateService.pagination;
   view = this.stateService.appliedView;
@@ -74,11 +74,32 @@ export class ProductsComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     this.setResizeObserver();
     this.resizeObserver?.observe(this.productsContent.nativeElement);
+    this.setBreakpointObserver()
+    this.stateService.setFiltersSidebar(this.sidenav)
+  }
+
+  private setBreakpointObserver() {
+    this.breakpointObserver
+      .observe(['(min-width: 1330px)'])
+      .pipe(takeUntilDestroyed(this.dstroyRef))
+      .subscribe(result => {
+        this.isLargeScreen.set(result.matches)
+        if (result.matches) {
+          // Экран >= 1360px: режим 'side', сайдбар открыт
+          this.sidenavMode.set('side');
+          this.sidenav.open();
+        } else {
+          // Экран < 1360px: режим 'over', сайдбар закрыт
+          this.sidenavMode.set('over');
+          this.sidenav.close();
+        }
+      })
   }
 
   private setResizeObserver() {
     this.resizeObserver = new ResizeObserver((entries) => {
       const width = entries[0].contentRect.width;
+      // console.log("🔸 width:", width)
       this.stateService.setProductsContainerWidth(width);
     });
   }

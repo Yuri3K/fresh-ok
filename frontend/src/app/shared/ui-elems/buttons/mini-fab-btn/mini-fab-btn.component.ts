@@ -18,7 +18,8 @@ import { MatTooltip } from '@angular/material/tooltip';
   styleUrl: './mini-fab-btn.component.scss',
 })
 export class MiniFabBtnComponent implements OnInit {
-  @Input({ required: true }) iconName!: string;
+  @Input() iconName!: string;
+  @Input() btnText!: string | number;
   @Input() iconColor = "var(--mat-sys-on-secondary-container)";
   @Input() bgColor = "var(--mat-sys-primary-container)";
   @Input() count = 0;

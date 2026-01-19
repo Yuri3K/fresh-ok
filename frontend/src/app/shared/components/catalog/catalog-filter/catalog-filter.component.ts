@@ -1,8 +1,7 @@
-import { Component, inject, viewChild } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { MatAccordion } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
-import { filter, map } from 'rxjs';
+import { filter } from 'rxjs';
 import { CatalogService } from '../../../../core/services/catalog.service';
 import { GetCurrentLangService } from '../../../../core/services/get-current-lang.service';
 import { TranslateModule } from '@ngx-translate/core';
@@ -32,7 +31,8 @@ export class CatalogFilterComponent {
   readonly selectedCategory = this.stateService.selectedCategory
 
   categories = toSignal(
-    this.catalogService.catalogList$.pipe(filter((items) => !!items.length)),
+    this.catalogService.catalogList$
+      .pipe(filter((items) => !!items.length)),
     { initialValue: [] },
   );
 

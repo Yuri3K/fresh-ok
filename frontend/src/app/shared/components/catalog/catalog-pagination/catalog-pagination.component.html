@@ -1,1 +1,27 @@
-<p>catalog-pagination works!</p>
+@if(pagination().totalPages > 1) {
+  <div class="pagination">
+    <app-mini-fab-btn
+      iconName="chevron_left"
+      (click)="prev()"
+    />
+    
+    @for(btn of [].constructor(pagination().totalPages); track $index; let i = $index) {
+      <app-mini-fab-btn
+      [class.active]="pagination().currentPage == (i + 1)"
+      [btnText]="i + 1"
+      (click)="goTo(i + 1)"
+      [bgColor]="
+        pagination().currentPage == (i + 1)
+        ? 'var(----mat-sys-primary)'
+        : 'transparent'
+      "
+      btnBorder="2px solid var(--mat-sys-primary-container)"
+    />
+    }
+    
+    <app-mini-fab-btn
+      iconName="chevron_right"
+      (click)="next()"
+    />
+  </div>
+}

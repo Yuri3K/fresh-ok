@@ -10,7 +10,7 @@
           #sidenav
           position="start"
           [mode]="sidenavMode()"
-          (opened)="isLargeScreen()"
+          [opened]="isLargeScreen()"
         >
           <div class="products__filters">
             <app-catalog-filters />
@@ -28,7 +28,7 @@
             </div>
     
             <div class="products__view">
-              <app-show-filters-btn  (click)="sidenav.toggle()"/>
+              <app-show-filters-btn (click)="sidenav.toggle()"/>
               <app-view-list-btn />
               <app-view-grid-btn />
             </div>

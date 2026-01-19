@@ -16,11 +16,17 @@
     
   }"
 >
-  <mat-icon
-    [ngStyle]="{ 
-      color: iconColor, 
-      fontSize: fz,
-    }"
-    >{{ iconName }}</mat-icon
-  >
+  @if(iconName) {
+    <mat-icon
+      [ngStyle]="{ 
+        color: iconColor, 
+        fontSize: fz,
+      }"
+      >{{ iconName }}</mat-icon
+    >
+  }
+
+  @if(btnText) {
+    <span>{{btnText}}</span>
+  }
 </button>

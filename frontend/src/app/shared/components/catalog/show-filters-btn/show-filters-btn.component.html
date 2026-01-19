@@ -3,18 +3,17 @@
   [isBadgeHidden]="true"
   ariaLabel="Filters"
   [tooltipText]="
-    isFiltersVisible() 
+    isSidebarOpened 
       ? 'Hide filters'
       : 'Show filters'
   "
-  (click)="toggleFilters()"
   bgColor="transparent"
   [btnBorder]="
-    isFiltersVisible()
+    isSidebarOpened
       ? '2px solid var(--mat-sys-primary)'
       : '2px solid var(--mat-sys-inverse-primary)'"
   [iconColor]="
-    isFiltersVisible()
+    isSidebarOpened
       ? 'var(--mat-sys-primary)'
       : 'var(--mat-sys-inverse-primary)'"
 />

@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { MiniFabBtnComponent } from '../../../ui-elems/buttons/mini-fab-btn/mini-fab-btn.component';
 import { CatalogStateService } from '../../../../core/services/products-state.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-show-filters-btn',
@@ -10,9 +11,23 @@ import { CatalogStateService } from '../../../../core/services/products-state.se
 })
 export class ShowFiltersBtnComponent {
   private stateService = inject(CatalogStateService)
-  isFiltersVisible = this.stateService.isFiltersVisible
+  private destroyRef = inject(DestroyRef)
+  filtersSidenav$ = this.stateService.filtersSidenav$
+  isSidebarOpened!: boolean
 
-  toggleFilters() {
-    this.stateService.setIsFiltersVisible(!this.isFiltersVisible())
+  ngOnInit() {
+    this.filtersSidenav$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(sidenav => {
+        if (sidenav) {
+          sidenav.openedChange
+            .pipe(takeUntilDestroyed(this.destroyRef))
+            .subscribe(res => {
+              this.isSidebarOpened = res
+            })
+        }
+      })
   }
+
+
 }

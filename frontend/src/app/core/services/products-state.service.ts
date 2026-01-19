@@ -1,8 +1,9 @@
-import { computed, effect, inject, Injectable, signal } from '@angular/core';
+import { computed, effect, inject, Injectable, Signal, signal } from '@angular/core';
 import { Pagination, Product, ProductsService } from './products.service';
 import { ActivatedRoute } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { debounce, debounceTime, distinctUntilChanged, map, pipe } from 'rxjs';
+import { BehaviorSubject, debounceTime, distinctUntilChanged, map, pipe } from 'rxjs';
+import { MatSidenav } from '@angular/material/sidenav';
 
 export type View = 'list' | 'grid';
 
@@ -19,16 +20,18 @@ export class CatalogStateService {
     });
   }
 
+  // filtersSidenav!: Signal<MatSidenav>
+  private filtersSidenavSubject = new BehaviorSubject<MatSidenav | null>(null)
+  filtersSidenav$ = this.filtersSidenavSubject.asObservable()
+
   readonly isLoading = signal(false);
   private userPrefferedView = signal<View>('list');
   readonly productsContainerWidth = signal(0);
-  readonly isFiltersVisible = signal(true);
   readonly products = signal<Product[]>([]);
   readonly pagination = signal<Pagination>({} as Pagination);
   readonly appliedView = computed(() => {
-      console.log("🚀 ~ this.productsContainerWidth():", this.productsContainerWidth())
-      return this.productsContainerWidth() > 900 ? this.userPrefferedView() : 'grid'
-    }
+    return this.productsContainerWidth() > 900 ? this.userPrefferedView() : 'grid'
+  }
   );
 
   private readonly queryParams = toSignal(
@@ -46,6 +49,7 @@ export class CatalogStateService {
 
     return [
       `category=${category === 'all' || !category ? '' : category}`,
+      `page=${this.queryParams()?.get('page') || '1'}`,
       `badge=${this.queryParams()?.getAll('badge').join(',') || ''}`,
       `priceMin=${this.queryParams()?.get('priceMin') || ''}`,
       `priceMax=${this.queryParams()?.get('priceMax') || ''}`,
@@ -77,13 +81,10 @@ export class CatalogStateService {
   }
 
   setUserPrefferedView(selectedView: View) {
-    console.log("🚀 ~ selectedView:", selectedView)
-          console.log("🚀 ~ this.productsContainerWidth():", this.productsContainerWidth())
-
     this.userPrefferedView.set(selectedView);
   }
 
-  setIsFiltersVisible(isVisible: boolean) {
-    this.isFiltersVisible.set(isVisible);
+  setFiltersSidebar(sidenav: MatSidenav) {
+    this.filtersSidenavSubject.next(sidenav)
   }
 }
