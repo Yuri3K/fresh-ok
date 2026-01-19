@@ -1,12 +1,14 @@
 import {
   AfterViewInit,
   Component,
+  DestroyRef,
   effect,
   ElementRef,
   inject,
   OnDestroy,
-  viewChild,
+  signal,
   ViewChild,
+  viewChild,
 } from '@angular/core';
 import { CatalogStateService } from '../../core/services/products-state.service';
 import { H2TitleComponent } from '../../shared/ui-elems/typography/h2-title/h2-title.component';
@@ -23,6 +25,12 @@ import { LimitByComponent } from '../../shared/components/catalog/limit-by/limit
 import { CatalogFilterComponent } from '../../shared/components/catalog/catalog-filter/catalog-filter.component';
 import { BadgeFilterComponent } from '../../shared/components/catalog/badge-filter/badge-filter.component';
 import { PriceFilterComponent } from '../../shared/components/catalog/price-filter/price-filter.component';
+import {
+  MatSidenav,
+  MatSidenavContainer,
+  MatSidenavModule,
+} from '@angular/material/sidenav';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-products',
@@ -41,29 +49,31 @@ import { PriceFilterComponent } from '../../shared/components/catalog/price-filt
     CatalogFilterComponent,
     BadgeFilterComponent,
     PriceFilterComponent,
-
+    MatSidenavModule,
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
 })
-export class ProductsComponent implements OnDestroy {
+export class ProductsComponent implements AfterViewInit, OnDestroy {
+  sidenav = viewChild.required<MatSidenav>('sidenav');
   stateService = inject(CatalogStateService);
+  private dstroyRef = inject(DestroyRef);
+  private breakpointObserver!: BreakpointObserver;
   private resizeObserver?: ResizeObserver;
 
-  // @ViewChild('productsContent') productsContent!: ElementRef<HTMLDivElement>;
-  productsContent = viewChild.required<ElementRef<HTMLDivElement>>('productsContent')
+  // productsContent = viewChild.required<ElementRef<HTMLElement>>('productsContent');
+  @ViewChild('productsContent', { read: ElementRef })
+  productsContent!: ElementRef;
   products = this.stateService.products;
   pagination = this.stateService.pagination;
   view = this.stateService.appliedView;
   isLoading = this.stateService.isLoading;
+  isLargeScreen = signal(true);
+  sidenavMode = signal<'side' | 'over'>('side');
 
- constructor() {
-    effect(() => {     
-      if (this.productsContent()?.nativeElement) {
-        this.setResizeObserver();
-        this.resizeObserver?.observe(this.productsContent().nativeElement);
-      }
-    })
+  ngAfterViewInit() {
+    this.setResizeObserver();
+    this.resizeObserver?.observe(this.productsContent.nativeElement);
   }
 
   private setResizeObserver() {

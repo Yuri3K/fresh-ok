@@ -20,13 +20,15 @@ export class CatalogStateService {
   }
 
   readonly isLoading = signal(false);
-  private userPrefferedView = signal<View>('grid');
+  private userPrefferedView = signal<View>('list');
   readonly productsContainerWidth = signal(0);
   readonly isFiltersVisible = signal(true);
   readonly products = signal<Product[]>([]);
   readonly pagination = signal<Pagination>({} as Pagination);
-  readonly appliedView = computed(() =>
-    this.productsContainerWidth() > 900 ? this.userPrefferedView() : 'grid',
+  readonly appliedView = computed(() => {
+      console.log("🚀 ~ this.productsContainerWidth():", this.productsContainerWidth())
+      return this.productsContainerWidth() > 900 ? this.userPrefferedView() : 'grid'
+    }
   );
 
   private readonly queryParams = toSignal(
@@ -75,6 +77,9 @@ export class CatalogStateService {
   }
 
   setUserPrefferedView(selectedView: View) {
+    console.log("🚀 ~ selectedView:", selectedView)
+          console.log("🚀 ~ this.productsContainerWidth():", this.productsContainerWidth())
+
     this.userPrefferedView.set(selectedView);
   }
 

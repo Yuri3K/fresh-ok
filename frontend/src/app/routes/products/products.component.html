@@ -4,14 +4,23 @@
       <app-h2-title 
         [text]="'products-page.title' | translate"
       />
-      <div class="products__content" #productsContent>
-        <div class="products__filters">
-          <app-catalog-filters />
-          <app-badge-filter />
-          <app-price-filter />
-        </div>
+      <mat-sidenav-container class="products__content" #productsContent>
+        <!-- Sidenav с фильтрами -->
+        <mat-sidenav
+          #sidenav
+          position="start"
+          [mode]="sidenavMode()"
+          (opened)="isLargeScreen()"
+        >
+          <div class="products__filters">
+            <app-catalog-filters />
+            <app-badge-filter />
+            <app-price-filter />
+          </div>
+        </mat-sidenav>
     
-        <div class="products__main">
+        <!-- Основной контент -->
+        <mat-sidenav-content class="products__main">
           <div class="products__top">
             <div class="products__sorting">
               <app-sorting-by />
@@ -19,7 +28,7 @@
             </div>
     
             <div class="products__view">
-              <app-show-filters-btn />
+              <app-show-filters-btn  (click)="sidenav.toggle()"/>
               <app-view-list-btn />
               <app-view-grid-btn />
             </div>
@@ -45,8 +54,8 @@
           </div>
     
           <app-catalog-pagination />
-        </div>
-      </div>
+        </mat-sidenav-content>
+      </mat-sidenav-container>
     </div>
   </div>
 </section>

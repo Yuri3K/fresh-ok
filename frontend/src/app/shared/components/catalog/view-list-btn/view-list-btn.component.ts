@@ -15,6 +15,7 @@ export class ViewListBtnComponent {
   appliedView = this.stateService.appliedView
 
   applyListView() {
+    console.log("CLICKED")
     this.stateService.setUserPrefferedView('list')
   }
 }
