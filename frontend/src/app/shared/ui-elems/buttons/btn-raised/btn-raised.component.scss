@@ -18,7 +18,7 @@
 
     &.active {
       button {
-        --mdc-protected-button-label-text-color: var(--mat-sys-primary);  // цвет текста
+        // --mdc-protected-button-label-text-color: var(--mat-sys-primary);  // цвет текста
         --mdc-protected-button-container-color: color-mix(
           in srgb,
           var(--mat-sys-primary-container) 20%,

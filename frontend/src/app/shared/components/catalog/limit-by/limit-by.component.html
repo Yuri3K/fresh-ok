@@ -1,1 +1,28 @@
-<p>limit-by works!</p>
+<div class="limit" appOpenMenu>
+  <button
+    class="limit__trigger"
+    mat-raised-button
+    [attr.aria-label]="'' | translate"
+    type="button"
+  >
+    <span class="limit__trigger-text">{{itemToShow()}}</span>
+    <mat-icon class="carret">arrow_drop_down</mat-icon>
+  </button>
+
+  <div class="limit__body dropdown-body">
+    <div class="dropdown-content">
+      <ul class="limit__list dropdown-list">
+        @for(limit of limits(); track $index) {
+          <li class="limit__item">
+            <app-btn-raised
+              class="accordion-btn"
+              [class.active]="itemToShow() == limit.name"
+              [btnText]="limit.name"
+              (click)="setSelectedItem(limit.slug)"
+            />
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+</div>

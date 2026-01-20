@@ -1,1 +1,29 @@
-<p>sorting-by works!</p>
+<div class="sorting" appOpenMenu>
+  <button
+    class="sorting__trigger"
+    mat-raised-button
+    [attr.aria-label]="'' | translate"
+    type="button"
+  >
+    <span class="sorting__trigger-text">{{itemToShow()}}</span>
+    <mat-icon class="carret">arrow_drop_down</mat-icon>
+  </button>
+
+  <div class="sorting__body dropdown-body">
+    <div class="dropdown-content">
+      <ul class="sorting__list dropdown-list">
+        @for(sort of sorting(); track $index) {
+          <li class="sorting__item">
+            <app-btn-raised
+              class="accordion-btn"
+              [class.active]="itemToShow() == sort.name"
+              [btnText]="sort.name"
+              (click)="setSelectedSort(sort.slug)"
+              
+            />
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+</div>

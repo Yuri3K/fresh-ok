@@ -199,17 +199,44 @@
     },
     "sorting": {
       "sort-by": [
-        "By popularity",
-        "Alphabetically",
-        "By rating",
-        "Price: Low to High",
-        "Price: High to Low"
+        {
+          "name": "By rating",
+          "slug": "rating"
+        },
+        {
+          "name": "Cheapest first",
+          "slug": "price-asc"
+        },
+        {
+          "name": "Most expensive first",
+          "slug": "price-desc"
+        },
+        {
+          "name": "By date added",
+          "slug": "newest"
+        },
+        {
+          "name": "Alphabetical A-Z",
+          "slug": "name-asc"
+        },
+        {
+          "name": "Alphabetical Z-A",
+          "slug": "name-desc"
+        }
       ],
       "limit": [
-        "8 per page",
-        "12 per page",
-        "16 per page",
-        "20 per page"
+        {
+          "name": "6 per page",
+          "slug": "6"
+        },
+        {
+          "name": "12 per page",
+          "slug": "12"
+        },
+        {
+          "name": "18 per page",
+          "slug": "18"
+        }
       ]
     }
   },

@@ -6,10 +6,6 @@
   margin-right: 10px;
 
   &.open {
-    .lang-dr__trigger-btn{
-      background-color: var(--dark-hover);
-    }
-
     .lang-dr__body {
       pointer-events: unset;
     }
