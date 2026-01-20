@@ -1,20 +1,8 @@
-import {
-  computed,
-  effect,
-  inject,
-  Injectable,
-  Signal,
-  signal,
-} from '@angular/core';
+import { computed, effect, inject, Injectable, signal } from '@angular/core';
 import { Pagination, Product, ProductsService } from './products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
-import {
-  BehaviorSubject,
-  debounceTime,
-  distinctUntilChanged,
-  map,
-} from 'rxjs';
+import { BehaviorSubject, debounceTime, distinctUntilChanged, map, catchError, of } from 'rxjs';
 import { MatSidenav } from '@angular/material/sidenav';
 
 export type View = 'list' | 'grid';
@@ -26,29 +14,29 @@ export class CatalogStateService {
   private readonly productsService = inject(ProductsService);
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
+
+  private filtersSidenavSubject = new BehaviorSubject<MatSidenav | null>(null);
+  filtersSidenav$ = this.filtersSidenavSubject.asObservable();
+
   readonly isLoading = signal(false);
   private userPrefferedView = signal<View>('list');
   readonly productsContainerWidth = signal(0);
   readonly products = signal<Product[]>([]);
   readonly pagination = signal<Pagination>({} as Pagination);
-  readonly appliedView = computed(() => {
-    return this.productsContainerWidth() > 900
-      ? this.userPrefferedView()
-      : 'grid';
-  });
-
-  private filtersSidenavSubject = new BehaviorSubject<MatSidenav | null>(null);
-  filtersSidenav$ = this.filtersSidenavSubject.asObservable();
+  
+  readonly appliedView = computed(() => 
+    this.productsContainerWidth() > 900 ? this.userPrefferedView() : 'grid'
+  );
 
   private readonly queryParams = toSignal(
     this.route.queryParamMap.pipe(
       map((params) => params),
-      distinctUntilChanged(), //для избежания дублирующих запросов
+      distinctUntilChanged(),
     ),
   );
 
-  readonly selectedCategory = computed(
-    () => this.queryParams()?.get('category') || 'all',
+  readonly selectedCategory = computed(() => 
+    this.queryParams()?.get('category') || 'all'
   );
 
   // Computed для текущей страницы
@@ -60,7 +48,7 @@ export class CatalogStateService {
   // Computed для лимита на странице
   readonly limit = computed(() => {
     const limit = this.queryParams()?.get('limit');
-    return limit ? parseInt(limit, 10) : 8;
+    return limit ? parseInt(limit, 10) : 12;
   });
 
   private readonly filterQuery = computed(() => {
@@ -73,35 +61,44 @@ export class CatalogStateService {
       `page=${page}`,
       `limit=${limit}`,
       `category=${category === 'all' || !category ? '' : category}`,
-      `badge=${this.queryParams()?.getAll('badge').join(',') || ''}`,
-      `priceMin=${this.queryParams()?.get('priceMin') || ''}`,
-      `priceMax=${this.queryParams()?.get('priceMax') || ''}`,
-      `sort=${this.queryParams()?.get('sort') || ''}`,
-    ].filter((q) => !!q.split('=')[1]);
+      `badge=${params?.getAll('badge').join(',') || ''}`,
+      `priceMin=${params?.get('priceMin') || ''}`,
+      `priceMax=${params?.get('priceMax') || ''}`,
+      `sort=${params?.get('sort') || ''}`,
+    ].filter((q) => {
+      const value = q.split('=')[1];
+      return value !== '' && value !== undefined;
+    });
   });
 
   constructor() {
+    // Автоматическая загрузка при изменении query параметров
     effect(() => {
-      if (this.filterQuery()) this.getProductsByFilter();
+      const query = this.filterQuery();
+      if (query.length > 0) {
+        this.getProductsByFilter();
+      }
     });
   }
 
-  getProductsByFilter() {
+  private getProductsByFilter() {
     this.isLoading.set(true);
-
+    
     this.productsService
       .getProducts(this.filterQuery())
-      .pipe(debounceTime(100))
+      .pipe(
+        debounceTime(100),
+        catchError((err) => {
+          console.error('Error loading products:', err);
+          this.isLoading.set(false);
+          return of({ data: [], pagination: {} as Pagination });
+        })
+      )
       .subscribe({
         next: (res) => {
-          // console.log('🔸 res:', res);
           this.isLoading.set(false);
           this.products.set(res.data);
           this.pagination.set(res.pagination);
-        },
-        error: (err) => {
-          console.error('Error loading products:', err);
-          this.isLoading.set(false);
         },
       });
   }
@@ -122,7 +119,7 @@ export class CatalogStateService {
    */
   setBadges(badges: string[]) {
     const params: Record<string, string> = { page: '1' };
-
+    
     if (badges.length > 0) {
       params['badge'] = badges.join(',');
     } else {
@@ -130,7 +127,7 @@ export class CatalogStateService {
       this.removeQueryParam('badge');
       return;
     }
-
+    
     this.updateQueryParams(params);
   }
 
@@ -139,10 +136,10 @@ export class CatalogStateService {
    */
   setPriceRange(min: string, max: string) {
     const params: Record<string, string> = { page: '1' };
-
+    
     if (min) params['priceMin'] = min;
     if (max) params['priceMax'] = max;
-
+    
     this.updateQueryParams(params);
   }
 
@@ -180,7 +177,7 @@ export class CatalogStateService {
    */
   goToPage(page: number) {
     const totalPages = this.pagination().totalPages || 1;
-
+    
     if (page < 1 || page > totalPages) {
       return;
     }
@@ -194,7 +191,7 @@ export class CatalogStateService {
   nextPage() {
     const current = this.currentPage();
     const hasNext = this.pagination().hasNextPage;
-
+    
     if (hasNext) {
       this.goToPage(current + 1);
     }
@@ -206,7 +203,7 @@ export class CatalogStateService {
   previousPage() {
     const current = this.currentPage();
     const hasPrev = this.pagination().hasPreviousPage;
-
+    
     if (hasPrev) {
       this.goToPage(current - 1);
     }

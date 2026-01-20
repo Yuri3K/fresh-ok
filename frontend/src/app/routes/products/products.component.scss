@@ -26,6 +26,10 @@ mat-sidenav {
   justify-content: space-between;
   // gap: 20px;
   min-height: 920px;
+
+  &.edge-space {
+    padding: 15px 15px 15px 0;
+  }
 }
 
 .products__filters {

@@ -55,8 +55,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   styleUrl: './products.component.scss',
 })
 export class ProductsComponent implements AfterViewInit, OnDestroy {
-  // productsContent = viewChild.required<ElementRef<HTMLElement>>('productsContent');
-  // sidenav = viewChild.required<MatSidenav>('sidenav');
+
   @ViewChild('productsContent', { read: ElementRef }) productsContent!: ElementRef;
   @ViewChild('sidenav') sidenav!: MatSidenav;
   stateService = inject(CatalogStateService);

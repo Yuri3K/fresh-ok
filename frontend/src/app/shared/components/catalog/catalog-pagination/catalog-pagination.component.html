@@ -1,27 +1,54 @@
-@if(pagination().totalPages > 1) {
-  <div class="pagination">
+@if (pagination().totalPages > 1) {
+  <nav class="pagination" aria-label="Pagination">
+    <!-- Previous Button -->
     <app-mini-fab-btn
+      width="32px"
       iconName="chevron_left"
       (click)="prev()"
+      [btnDisabled]="!hasPrevious()"
+      [ariaLabel]="'Previous page'"
     />
-    
-    @for(btn of [].constructor(pagination().totalPages); track $index; let i = $index) {
-      <app-mini-fab-btn
-      [class.active]="pagination().currentPage == (i + 1)"
-      [btnText]="i + 1"
-      (click)="goTo(i + 1)"
-      [bgColor]="
-        pagination().currentPage == (i + 1)
-        ? 'var(----mat-sys-primary)'
-        : 'transparent'
-      "
-      btnBorder="2px solid var(--mat-sys-primary-container)"
-    />
+
+    <!-- Page Numbers -->
+    @for (page of visiblePages(); track $index) {
+      @if(page === '...') {
+        <app-mini-fab-btn 
+          width="32px"
+          class="pagination__ellipsis"
+          btnText="..."
+          aria-hidden="true"
+          bgColor="transparent"
+          btnBorder="2px solid var(--mat-sys-primary-container)"
+        />
+      } @else {
+        <app-mini-fab-btn
+          width="32px"
+          [class.active]="pagination().currentPage == +page"
+          [btnText]="page"
+          (click)="goTo(page)"
+          [bgColor]="
+            currentPage() == +page
+              ? 'var(----mat-sys-primary)'
+              : 'transparent'
+            "
+          btnBorder="2px solid var(--mat-sys-primary-container)"
+          [attr.aria-label]="'Go to page ' + page"
+          [attr.aria-current]="
+            currentPage() == +page 
+              ? page 
+              : null
+            "
+        />
+      }
     }
-    
+
+    <!-- Next Button -->
     <app-mini-fab-btn
+      width="32px"
       iconName="chevron_right"
       (click)="next()"
+      [btnDisabled]="!hasNext()"
+      [ariaLabel]="'Next page'"
     />
-  </div>
+  </nav>
 }

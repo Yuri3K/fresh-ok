@@ -4,7 +4,11 @@
       <app-h2-title 
         [text]="'products-page.title' | translate"
       />
-      <mat-sidenav-container class="products__content" #productsContent>
+      <mat-sidenav-container 
+        class="products__content" 
+        #productsContent
+        [class.edge-space]="sidenavMode() == 'over'"
+      >
         <!-- Sidenav с фильтрами -->
         <mat-sidenav
           #sidenav

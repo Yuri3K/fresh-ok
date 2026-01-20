@@ -6,8 +6,9 @@ import { GetCurrentLangService } from '../../../../core/services/get-current-lan
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ActivatedRoute, Router } from '@angular/router';
-import { debounceTime, distinctUntilChanged, merge, startWith } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { debounceTime, distinctUntilChanged, merge } from 'rxjs';
+import { CatalogStateService } from '../../../../core/services/products-state.service';
 
 @Component({
   selector: 'app-badge-filter',
@@ -23,9 +24,9 @@ import { debounceTime, distinctUntilChanged, merge, startWith } from 'rxjs';
 })
 export class BadgeFilterComponent {
   private readonly badgesService = inject(BadgeService);
-  private readonly router = inject(Router);
+  private readonly stateService = inject(CatalogStateService);
   private readonly route = inject(ActivatedRoute);
-  currentLang = inject(GetCurrentLangService).currentLang;
+  readonly currentLang = inject(GetCurrentLangService).currentLang;
   badges = this.badgesService.badges;
 
   private readonly _formBuilder = inject(FormBuilder);
@@ -54,18 +55,18 @@ export class BadgeFilterComponent {
         (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr),
       ),
     ),
-    {initialValue: this.badgeFilter.value}
+    { initialValue: this.badgeFilter.value },
   );
 
   constructor() {
     this.initBadgesFromUrl();
-    
+
     effect(() => {
-      const values = this.badgesValues()
-      if(values) {
+      const values = this.badgesValues();
+      if (values) {
         this.updateQueryParams();
       }
-    })
+    });
   }
 
   private initBadgesFromUrl() {
@@ -91,11 +92,14 @@ export class BadgeFilterComponent {
       .filter(([_, isSelected]) => !!isSelected) // e.g [hit, true]; [new, true]; [discount, false]==> [hit, true]; [new, true]
       .map(([badge, _]) => badge); // e.g [hit, true]; [top, true] ==> [hit, new]
 
-      if(!selectedBadges.length) return
-      this.router.navigate([], {
-        relativeTo: this.route,
-        queryParams: {badge: selectedBadges.join(',')},
-        queryParamsHandling: 'merge'
-      })
+    // Используем метод сервиса, который автоматически сбросит page на 1
+    this.stateService.setBadges(selectedBadges);
+
+    // if(!selectedBadges.length) return
+    // this.router.navigate([], {
+    //   relativeTo: this.route,
+    //   queryParams: {badge: selectedBadges.join(',')},
+    //   queryParamsHandling: 'merge'
+    // })
   }
 }
