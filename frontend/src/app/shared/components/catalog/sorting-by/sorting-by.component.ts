@@ -48,12 +48,14 @@ export class SortingByComponent {
   itemToShow = computed(() => {
     const sorting = this.sorting();
     const selected = this.selectedSort();
+    
     return sorting.find((s) => s.slug == selected)?.name;
   });
 
   constructor() {
     effect(() => {
       const sort = this.selectedSort();
+      console.log("🔸 sort:", sort)
       if (sort) {
         this.stateService.setSort(sort);
       }

@@ -27,7 +27,7 @@ export class CatalogStateService {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   readonly isLoading = signal(false);
-  private userPrefferedView = signal<View>('list');
+  private userPrefferedView = signal<View>('grid');
   readonly productsContainerWidth = signal(0);
   readonly products = signal<Product[]>([]);
   readonly pagination = signal<Pagination>({} as Pagination);
@@ -161,7 +161,8 @@ export class CatalogStateService {
    * Устанавливает сортировку и сбрасывает страницу на 1
    */
   setSort(sort: string) {
-    this.updateQueryParams({ sort, page: '1' });
+    console.log("🔸 sort IN!!!:", sort)
+    this.updateQueryParams({ sort: sort, page: '1' });
   }
 
   /**
@@ -217,11 +218,14 @@ export class CatalogStateService {
   // ============================================
 
   private updateQueryParams(params: Record<string, string>) {
-    this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: params,
-      queryParamsHandling: 'merge',
-    });
+    console.log("🔸 params:", params)
+    setTimeout(() => {
+      this.router.navigate([], {
+        relativeTo: this.route,
+        queryParams: params,
+        queryParamsHandling: 'merge',
+      });
+    }, 0);
   }
 
   private removeQueryParam(param: string) {

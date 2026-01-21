@@ -20,7 +20,8 @@
   font-size: 1rem;
   background-color: var(--mat-sys-background);
   padding: 4px 5px 4px 10px;
-  border: 1px solid var(--mat-sys-inverse-on-surface);
+  border: 1px solid var(--mat-sys-on-background);
+  // border: 1px solid var(--mat-sys-primary);
   border-radius: 10px;
   cursor: pointer;
   min-width: 130px;
@@ -28,18 +29,20 @@
 
   &:hover {
     background-color: color-mix(
-          in srgb,
-          var(--mat-sys-primary-container) 20%,
-          transparent
-        );
+      in srgb,
+      var(--mat-sys-primary-container) 20%,
+      transparent
+    );
   }
 
   .limit__trigger-text {
+    color: var(--mat-sys-on-background);
     font-family: "Open Sans", Arial, Helvetica, sans-serif;
   }
 
   mat-icon {
-    color: var(--mat-sys-on-secondary-container);
+    // color: var(--mat-sys-on-secondary-container);
+    color: var(--mat-sys-on-background);
   }
 
   .carret {

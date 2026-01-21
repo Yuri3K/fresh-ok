@@ -8,7 +8,7 @@
   justify-content: start;
   gap: 0;
 
-	// Обнуляем боковые padding у inpup
+	// Обнуляем боковые padding у input
 	::ng-deep mat-form-field .mdc-text-field {
     padding: 0;
   }

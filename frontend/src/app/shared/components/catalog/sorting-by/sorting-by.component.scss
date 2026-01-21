@@ -20,7 +20,7 @@
   font-size: 1rem;
   background-color: var(--mat-sys-background);
   padding: 4px 5px 4px 10px;
-  border: 1px solid var(--mat-sys-inverse-on-surface);
+  border: 1px solid var(--mat-sys-on-background);
   border-radius: 10px;
   cursor: pointer;
   min-width: 200px;
@@ -39,7 +39,8 @@
   }
 
   mat-icon {
-    color: var(--mat-sys-on-secondary-container);
+    // color: var(--mat-sys-on-secondary-container);
+    color: var(--mat-sys-on-background);
   }
 
   .carret {

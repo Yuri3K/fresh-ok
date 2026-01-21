@@ -83,7 +83,7 @@
         "subtitle": "ЗНИЖКА 50%",
         "descr": "Тільки з 7 по 13 липня — знижки до 50% на сезонні фрукти та овочі. Не пропустіть!",
         "btn": "Купити зараз",
-        "link": "/",
+        "link": "/products?category=all&page=1&sort=newest&limit=6&badge=discount",
         "imageUrl": "slider/slide1"
       },
       {
@@ -91,7 +91,7 @@
         "subtitle": "Акція: 3 кг за ціною 1",
         "descr": "З 12 по 15 липня насолоджуйтесь знижками на домашні, соковиті помідори!",
         "btn": "Купити зараз",
-        "link": "/",
+        "link": "/products?category=vegetables&page=1&sort=newest&limit=6&badge=discount",
         "imageUrl": "slider/slide2"
       },
       {
@@ -99,7 +99,7 @@
         "subtitle": "Знижки на зелень",
         "descr": "",
         "btn": "Купити зараз",
-        "link": "/",
+        "link": "/products?category=greens&page=1&sort=newest&limit=6&badge=discount",
         "imageUrl": "slider/slide3"
       }
     ],

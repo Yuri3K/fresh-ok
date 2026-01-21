@@ -19,7 +19,7 @@ export class CarouselSlideComponent {
   private navigateService = inject(LangRouterService)
 
   navigateByLink(link: string) {
-      this.navigateService.navigate([link], {
+      this.navigateService.navigateByUrl(link, {
         queryParamsHandling: 'merge'
       }).then()
   }

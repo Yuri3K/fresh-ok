@@ -83,7 +83,7 @@
         "subtitle": "скидка -50%",
         "descr": "Только с 7 по 13 июля — скидки до 50% на сезонные фрукты и овощи. Не пропустите!",
         "btn": "Купить сейчас",
-        "link": "/",
+        "link": "/products?category=all&page=1&sort=newest&limit=6&badge=discount",
         "imageUrl": "slider/slide1"
       },
       {
@@ -91,7 +91,7 @@
         "subtitle": "Акция: 3 кг по цене 1",
         "descr": "С 12 по 15 июля наслаждайтесь скидками на домашние, сочные помидоры!",
         "btn": "Купить сейчас",
-        "link": "/",
+        "link": "/products?category=vegetables&page=1&sort=newest&limit=6&badge=discount",
         "imageUrl": "slider/slide2"
       },
       {
@@ -99,7 +99,7 @@
         "subtitle": "Скидки на зелень",
         "descr": "",
         "btn": "Купить сейчас",
-        "link": "/",
+        "link": "/products?category=greens&page=1&sort=newest&limit=6&badge=discount",
         "imageUrl": "slider/slide3"
       }
     ],

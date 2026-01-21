@@ -1,11 +1,52 @@
+@let translations = ('products-page.filters.price' | translate);
+
 <app-expantion-panel 
-  [title]="'products-page.filters.price.title' | translate"
+  [title]="translations.title"
 >
   <div class="price">
-    <mat-slider min="0" max="6000">
-      <input value="100" matSliderStartThumb />
-      <input value="5500" matSliderEndThumb />
+    <mat-slider [min]="priceMin" [max]="priceMax">
+      <input 
+        [(ngModel)]="startValue" 
+        (ngModelChange)="onStartValueChange($event)"
+        matSliderStartThumb 
+      />
+      <input 
+        [(ngModel)]="endValue" 
+        (ngModelChange)="onEndValueChange($event)"
+        matSliderEndThumb 
+      />
     </mat-slider>
-    <div class="price__numbers"></div>
+    <div class="price__numbers">
+      <div class="price__from">
+        <span>{{translations.from}}</span>
+        <mat-form-field class="no-subscript">
+          <input 
+            matInput 
+            type="number" 
+            [(ngModel)]="startValue"
+            (ngModelChange)="onStartInputChange($event)"
+            [min]="priceMin"
+            [max]="endValue"
+          />
+        </mat-form-field>
+        <span>₴</span>
+      </div>
+
+      <div class="price__to">
+        <span>{{translations.to}}</span>
+        <mat-form-field class="no-subscript">
+          <input 
+            matInput 
+            type="number" 
+            [(ngModel)]="endValue"
+            (ngModelChange)="onEndInputChange($event)"
+            [min]="startValue"
+            [max]="priceMax"
+          />
+        </mat-form-field>
+        <span>₴</span>
+      </div>
+
+    </div>
   </div>
 </app-expantion-panel>
