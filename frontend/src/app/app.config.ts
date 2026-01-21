@@ -11,9 +11,11 @@ import { authTokenInterceptor } from './core/interceptors/auth-token.interceptor
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { NGX_CAROUSEL_CONFIG } from 'ngx-freshok-carousel';
 import { initLangsFactory } from './core/init/langs.init';
+import { langInterceptor } from './core/interceptors/lang.interceptor';
 
 const interceptors = [
-  authTokenInterceptor
+  langInterceptor,         // 1. Сначала добавляем язык
+  authTokenInterceptor,    // 2. Потом токен
 ]
 
 export const appConfig: ApplicationConfig = {
@@ -23,8 +25,8 @@ export const appConfig: ApplicationConfig = {
     {
       provide: NGX_CAROUSEL_CONFIG,
       useValue: {
-        autoplay: true, 
-        interval: 5000, 
+        autoplay: true,
+        interval: 5000,
         loop: true,
         pauseOnHover: true,
       }
@@ -42,7 +44,7 @@ export const appConfig: ApplicationConfig = {
 
     // Дождется инициализации языков перед загрузкой приложения
     provideAppInitializer(initLangsFactory),
-    
+
 
     provideLottieOptions({
       player: () => player,

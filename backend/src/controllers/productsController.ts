@@ -3,7 +3,7 @@ import { getFilteredProducts } from "../services/products.service";
 
 async function getProducts(req: Request, res: Response) {
 	try {
-		const products = await getFilteredProducts(req.query)
+		const products = await getFilteredProducts(req.query, req.lang)
 		res.json(products)
 	} catch(err) {
 		console.log(err)

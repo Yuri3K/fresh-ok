@@ -1,5 +1,5 @@
 import { db } from "../config/firebaseAdmin";
-import { LangCode } from "../controllers/langsController";
+import { LangCode } from "../middleware/current-lang";
 
 interface Product {
   id: string;
@@ -69,7 +69,8 @@ interface PaginationQuery {
 }
 
 export async function getFilteredProducts(
-  query: any
+  query: any,
+  lang: LangCode = 'en'
 ): Promise<PaginatedResponse<EnrichedProduct>> {
   const filters = parseFilters(query);
   const pagination = parsePagination(query);
@@ -93,7 +94,7 @@ export async function getFilteredProducts(
   products = applyClientFilters(products, filters);
 
   // Применяем сортировку
-  products = applySorting(products, filters.sort);
+  products = applySorting(products, filters.sort, lang);
 
   // Общее количество после всех фильтров
   const filteredTotal = products.length;
@@ -167,7 +168,7 @@ function applyClientFilters(
     const searchToLower = filters.search.toLowerCase();
 
     filtered = filtered.filter((p) => {
-      p.searchKeywords.some((keyword) =>
+      return p.searchKeywords.some((keyword) =>
         keyword.toLocaleLowerCase().includes(searchToLower)
       );
     });
@@ -176,7 +177,7 @@ function applyClientFilters(
   return filtered;
 }
 
-function applySorting(products: Product[], sort: string | null): Product[] {
+function applySorting(products: Product[], sort: string | null, lang: LangCode): Product[] {
   if (!sort) return products;
 
   // Создаем независимую копию
@@ -189,11 +190,11 @@ function applySorting(products: Product[], sort: string | null): Product[] {
       return sortedProducts.sort((a, b) => b.price - a.price);
     case "name-asc":
       return sortedProducts.sort((a, b) =>
-        a.i18n.en.name.localeCompare(b.i18n.en.name)
+        a.i18n[lang].description.localeCompare(b.i18n[lang].description)
       );
     case "name-desc":
       return sortedProducts.sort((a, b) =>
-        b.i18n.en.name.localeCompare(a.i18n.en.name)
+        b.i18n[lang].description.localeCompare(a.i18n[lang].description)
       );
     case "newest":
       return sortedProducts.sort(
