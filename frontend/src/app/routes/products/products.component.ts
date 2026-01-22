@@ -57,7 +57,7 @@ export class ProductsComponent implements AfterViewInit, OnDestroy {
 
   @ViewChild('productsContent', { read: ElementRef }) productsContent!: ElementRef;
   @ViewChild('sidenav') sidenav!: MatSidenav;
-  
+
   private parentScrollContainer = inject(MatSidenavContent, { optional: true });
   private dstroyRef = inject(DestroyRef);
   private breakpointObserver = inject(BreakpointObserver);
@@ -79,18 +79,6 @@ export class ProductsComponent implements AfterViewInit, OnDestroy {
 
     this.setBreakpointObserver()
     this.stateService.setFiltersSidebar(this.sidenav)
-
-    // Отслеживаем открытие/закрытие sidenav
-    this.sidenav.closedStart
-      .pipe(takeUntilDestroyed(this.dstroyRef))
-      .subscribe((opened) => {
-        if (!this.sidenav.opened && this.sidenavMode() === 'over') {
-          console.log("IN")
-
-            this.restoreScroll();
-          
-        }
-      });
   }
 
   private setBreakpointObserver() {
@@ -119,23 +107,20 @@ export class ProductsComponent implements AfterViewInit, OnDestroy {
     });
   }
 
-onBackdropClick() {
+  onBackdropClick() {
     if (this.parentScrollContainer) {
       // Читаем скролл у родителя, который на самом деле и скроллится
       this.scrollPosition = this.parentScrollContainer.getElementRef().nativeElement.scrollTop;
-    } else {
-      // Если родителя нет, берем стандартное окно
-      this.scrollPosition = window.scrollY;
+      this.restoreScroll();
     }
-    console.log("🔸 Реальная позиция скролла родителя:", this.scrollPosition);
   }
 
   private restoreScroll() {
-    if (this.parentScrollContainer) {
-      this.parentScrollContainer.scrollTo({ top: this.scrollPosition });
-    } else {
-      window.scrollTo(0, this.scrollPosition);
-    }
+    requestAnimationFrame(() => {
+      if (this.parentScrollContainer) {
+        this.parentScrollContainer.scrollTo({ top: this.scrollPosition });
+      }
+    })
   }
 
   ngOnDestroy(): void {

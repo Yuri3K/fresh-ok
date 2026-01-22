@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, computed, effect, ElementRef, OnDestroy, OnInit, signal, ViewChild } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -33,6 +33,7 @@ export class PublicLayoutComponent  {
   })
 
   ngOnInit() {
+
     // this.watchHeaderHeight()
   }
 
