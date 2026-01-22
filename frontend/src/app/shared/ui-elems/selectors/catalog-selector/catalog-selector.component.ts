@@ -4,7 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { OpenMenuDirective } from '../../../../core/directives/open-menu.directive';
 import { AsyncPipe } from '@angular/common';
 import { CatalogService } from '../../../../core/services/catalog.service';
-import { LangsService } from '../../../../core/services/langs.service';
+import { LangsService } from '../../../../core/services/langs/langs.service';
 import { RouterLink } from '@angular/router';
 import { CatalogStateService } from '../../../../core/services/products-state.service';
 

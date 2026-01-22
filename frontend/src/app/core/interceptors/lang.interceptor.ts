@@ -1,7 +1,7 @@
 import { HttpEvent, HttpHandlerFn, HttpInterceptorFn, HttpRequest } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { environment } from "../../../environments/environment";
-import { LangCode } from "../services/langs.service";
+import { LangCode } from "../services/langs/langs.service";
 
 /**
  * Interceptor добавляет заголовок Accept-Language ко всем запросам на сервер.

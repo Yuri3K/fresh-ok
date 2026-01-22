@@ -1,5 +1,5 @@
 import { inject } from "@angular/core";
-import { LangsService } from "../services/langs.service";
+import { LangsService } from "../services/langs/langs.service";
 
 // Применяется в app.config.ts в APP_INITIALIZER. 
 // Используется для того, чтобы дождаться, пока будут получены доступные языки с сервера 

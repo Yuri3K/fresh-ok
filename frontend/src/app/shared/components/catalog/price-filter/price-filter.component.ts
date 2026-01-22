@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatSliderModule } from '@angular/material/slider';
 import { TranslateModule } from '@ngx-translate/core';
 import { ExpantionPanelComponent } from '../../expantion-panel/expantion-panel.component';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { CatalogStateService } from '../../../../core/services/products-state.service';
+import { PriceFacade } from './price.facade';
 
 @Component({
   selector: 'app-price-filter',
@@ -14,49 +16,23 @@ import { MatInputModule } from '@angular/material/input';
     TranslateModule,
     ExpantionPanelComponent,
   ],
+  providers: [PriceFacade],
   templateUrl: './price-filter.component.html',
   styleUrl: './price-filter.component.scss'
 })
 export class PriceFilterComponent {
-  priceMin = 0
-  priceMax = 5500
+  stateService = inject(CatalogStateService)
+  priceFacade = inject(PriceFacade)
 
-  startValue = 0
-  endValue = 5500
+  range = this.priceFacade.range
 
-  // Обработка изменения стартового значения через слайдер
-  onStartValueChange(value: number) {
-    // Проверяем, чтобы стартовое значение не превышало конечное
-    if (value > this.endValue) {
-      this.startValue = this.endValue
-    }
+  onStartValueChange(value: string) {
+    const parsedValue = parseInt(value, 10)
+    this.priceFacade.setStartValue(parsedValue)
   }
 
-  // Обработка изменения конечного значения через слайдер
-  onEndValueChange(value: number) {
-    // Проверяем, чтобы конечное значение не было меньше стартового
-    if (value < this.startValue) {
-      this.endValue = this.startValue
-    }
-  }
-
-  // Обработка изменения стартового значения через инпут
-  onStartInputChange(value: number) {
-    // Валидация границ
-    if (value < this.priceMin) {
-      this.startValue = this.priceMin
-    } else if (value > this.endValue) {
-      this.startValue = this.endValue;
-    }
-  }
-
-  // Обработка изменения конечного значения через инпут
-  onEndInputChange(value: number): void {
-    // Валидация границ
-    if (value > this.priceMax) {
-      this.endValue = this.priceMax;
-    } else if (value < this.startValue) {
-      this.endValue = this.startValue;
-    }
+  onEndValueChanged(value: string) {
+    const parsedValue = parseInt(value, 10)
+    this.priceFacade.setEndValue(parsedValue)
   }
 }

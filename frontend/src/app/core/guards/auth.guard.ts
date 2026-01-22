@@ -10,7 +10,7 @@ import {
 import { AuthService } from '../services/auth.service';
 import { filter, map, Observable, take } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { LangRouterService } from '../services/lang-router.service';
+import { LangRouterService } from '../services/langs/lang-router.service';
 
 /**
  * Применяется ТОЛЬКО к роутам, которые НЕ являются публичными и ТРЕБУЮТ авторизации.

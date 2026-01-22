@@ -1,10 +1,11 @@
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, map, Observable, switchMap, take, tap, throwError } from 'rxjs';
-import { ApiService } from './api.service';
+import { BehaviorSubject, catchError, map, Observable, switchMap, take, throwError } from 'rxjs';
+import { ApiService } from '../api.service';
 import { TranslateService } from '@ngx-translate/core';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { defineLanguageUtil } from './utils/define-langiage.util';
 
 export type LangCode = 'en' | 'ru' | 'uk';
 export interface Lang {
@@ -48,6 +49,12 @@ export class LangsService {
 
           // Определяем какой язык использовать
           const langToUse = this.resolveInitialLanguage() // en-US, ru-RU, uk-UK
+          // Назначаем currentLang
+          const langData = langs.find(l => l.name == langToUse)
+
+          if (langData) {
+            this.setCurrentLang(langData)
+          }
 
           // Передаем в translateService язык
           return this.translateService.use(langToUse) // метод use в ngx-translate - это тоже Observable
@@ -57,10 +64,9 @@ export class LangsService {
                 const langData = langs.find(l => l.name === langToUse);
 
                 if (langData) {
-                  // const langFromUrl = this.getLangFromUrl()
-                  
+
                   // записываем объект данных текущего языка в currentLangSubject
-                  this.setCurrentLang(langData); 
+                  this.setCurrentLang(langData);
 
                   // записываем язык в LS
                   localStorage.setItem(environment.lsLangKey, langData.name)
@@ -83,15 +89,6 @@ export class LangsService {
   // Записываем массив доступных языков в langsSubject
   private setLangs(langs: Lang[]) {
     this.langsSubject.next(langs)
-  }
-
-  // Получаем язык из URL, если он там есть
-  private getLangFromUrl() {
-    // получит из url первый сегмент, например /home, елси в url язык не передан или /en, если я зык передан
-    const firstSegment = this.location.path().split('/')[1]
-
-    // Проверит совпадает ли сегмент с языками, которые доступны. Если да, то вернет название языка (en, ru, uk), если нет, то вернет null
-    return this.langs.some(l => l.browserLang === firstSegment) ? firstSegment : null;
   }
 
   // Переключаем язык. Используется при смене языка в языковом дропдауне
@@ -119,33 +116,17 @@ export class LangsService {
   // Метод для определения языка. Получает язык из URL, LS, браузера (по приоритету) и проверяет на 
   // поддерживаемость. В случае удачи - вернет найденный язык. В ином случае - вернет дефолтный язык
   resolveInitialLanguage(): string {
-    let targetLang: string = ''
+    const storedLang = localStorage.getItem(environment.lsLangKey);
+    const browserLang = this.translateService.getBrowserLang();
+    const defaultLang = this.translateService.defaultLang;
 
-    // Язык в URL
-    const urlLang = this.getLangFromUrl()
-
-    // Язык из localStorage
-    const stored = localStorage.getItem(environment.lsLangKey) // en-US, ru-RU, uk-UK
-
-    // Язык браузера
-    const browserLang = this.translateService.getBrowserLang()
-
-    // Проверяем первый язык, который был определен 
-    // (по приоритету urlLang ==> stored ==> browserLang)
-    if (urlLang) {
-      const match = this.langs.find(l => l.browserLang == urlLang)
-      if (match) targetLang = match.name // en-US, ru-RU, uk-UK
-    } else if (stored && this.langs.some(l => l.name == stored)) {
-      targetLang = stored // en-US, ru-RU, uk-UK
-    } else {
-      const match = this.langs.find(l => l.browserLang == browserLang)
-      if (match) targetLang = match.name // en-US, ru-RU, uk-UK
-    }
-
-    // Если ничего не найдено, то возвращаем значение по умолчанию
-    if (!targetLang) {
-      targetLang = this.translateService.defaultLang || 'en-US'
-    }
+    const targetLang = defineLanguageUtil(
+      this.langs,
+      this.location,
+      storedLang,
+      browserLang,
+      defaultLang
+    )
 
     // Назначаем currentLang
     const langData = this.langs.find(l => l.name == targetLang)
@@ -160,21 +141,27 @@ export class LangsService {
   // Используется для получения языка в сокращенном виде.
   // Применяется в случае если в URL не будет указан язык, LangGuard будет запрашивать опредилить язык автоматически
   resolveTargetLang() {
+    // Проверяет сохранен ли уже язык
+    const current = this.currentLangSubject.getValue();
+    if (current) {
+      return current.browserLang;
+    }
+
     // Проверяем в LS наличие данных о примененном языке
     const stored = localStorage.getItem(environment.lsLangKey)
-    
+
     // Проверяем какой язык использует браузер пользователя
     const browser = this.translateService.getBrowserLang() // en, ru, uk
-    
+
     if (stored) {
       const match = this.langs.find(l => l.name === stored)
-      
+
       if (match) return match.browserLang
     } else {
       //Проверяем поддерживаем ли мы язык, который используется в браузере пользоватуля
       if (browser && this.isSupported(browser)) return browser;
     }
-    
+
     return this.translateService.defaultLang?.split('-')[0] || 'en'; // fallback
   }
 

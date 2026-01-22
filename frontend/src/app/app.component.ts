@@ -10,7 +10,7 @@ import {
   style,
   animate,
 } from '@angular/animations';
-import { LangsService } from './core/services/langs.service';
+import { LangsService } from './core/services/langs/langs.service';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment';
 import { Meta, Title } from '@angular/platform-browser';

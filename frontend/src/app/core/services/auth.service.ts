@@ -24,7 +24,7 @@ import { ApiService } from './api.service';
 import { SnackbarService } from './snackbar.service';
 import { UserAccessService } from './user-access.service';
 import { AuthRedirectService } from './auth-redirect.service';
-import { LangRouterService } from './lang-router.service';
+import { LangRouterService } from './langs/lang-router.service';
 // import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({

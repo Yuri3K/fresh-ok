@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { MiniFabBtnComponent } from '../../../../ui-elems/buttons/mini-fab-btn/mini-fab-btn.component';
-import { LangRouterService } from '../../../../../core/services/lang-router.service';
+import { LangRouterService } from '../../../../../core/services/langs/lang-router.service';
 
 @Component({
   selector: 'app-profile-btn',

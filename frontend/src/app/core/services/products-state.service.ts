@@ -161,7 +161,6 @@ export class CatalogStateService {
    * Устанавливает сортировку и сбрасывает страницу на 1
    */
   setSort(sort: string) {
-    console.log("🔸 sort IN!!!:", sort)
     this.updateQueryParams({ sort: sort, page: '1' });
   }
 
@@ -218,7 +217,6 @@ export class CatalogStateService {
   // ============================================
 
   private updateQueryParams(params: Record<string, string>) {
-    console.log("🔸 params:", params)
     setTimeout(() => {
       this.router.navigate([], {
         relativeTo: this.route,

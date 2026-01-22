@@ -4,18 +4,19 @@
   [title]="translations.title"
 >
   <div class="price">
-    <mat-slider [min]="priceMin" [max]="priceMax">
+    <mat-slider [min]="range().min" [max]="range().max">
       <input 
-        [(ngModel)]="startValue" 
+        [(ngModel)]="range().start" 
         (ngModelChange)="onStartValueChange($event)"
         matSliderStartThumb 
       />
       <input 
-        [(ngModel)]="endValue" 
-        (ngModelChange)="onEndValueChange($event)"
+        [(ngModel)]="range().end" 
+        (ngModelChange)="onEndValueChanged($event)"
         matSliderEndThumb 
       />
     </mat-slider>
+
     <div class="price__numbers">
       <div class="price__from">
         <span>{{translations.from}}</span>
@@ -23,10 +24,10 @@
           <input 
             matInput 
             type="number" 
-            [(ngModel)]="startValue"
-            (ngModelChange)="onStartInputChange($event)"
-            [min]="priceMin"
-            [max]="endValue"
+            [(ngModel)]="range().start"
+            (ngModelChange)="onStartValueChange($event)"
+            [min]="range().min"
+            [max]="range().max"
           />
         </mat-form-field>
         <span>₴</span>
@@ -38,10 +39,10 @@
           <input 
             matInput 
             type="number" 
-            [(ngModel)]="endValue"
-            (ngModelChange)="onEndInputChange($event)"
-            [min]="startValue"
-            [max]="priceMax"
+            [(ngModel)]="range().end"
+            (ngModelChange)="onEndValueChanged($event)"
+            [min]="range().min"
+            [max]="range().max"
           />
         </mat-form-field>
         <span>₴</span>

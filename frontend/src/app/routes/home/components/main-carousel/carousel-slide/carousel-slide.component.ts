@@ -1,7 +1,7 @@
 import { NgStyle } from '@angular/common';
 import { Component, inject, Input } from '@angular/core';
 import { CarouselSlide } from '../services/slider.service';
-import { LangRouterService } from '../../../../../core/services/lang-router.service';
+import { LangRouterService } from '../../../../../core/services/langs/lang-router.service';
 
 @Component({
   selector: 'app-carousel-slide',

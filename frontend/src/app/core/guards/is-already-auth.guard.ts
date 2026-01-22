@@ -2,7 +2,7 @@ import { inject } from "@angular/core";
 import { CanActivateFn, Router, UrlTree } from "@angular/router";
 import { filter, map, Observable, take } from "rxjs";
 import { AuthService } from "../services/auth.service";
-import { LangRouterService } from "../services/lang-router.service";
+import { LangRouterService } from "../services/langs/lang-router.service";
 
 // Используется для запрета доступа к страницам /login или /register
 // в случае, когда пользователь уже АУТЕНТИФИЦИРОВАН (user есть)

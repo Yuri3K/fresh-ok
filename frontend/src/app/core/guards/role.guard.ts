@@ -3,7 +3,7 @@ import { AuthService } from '../services/auth.service';
 import { inject } from '@angular/core';
 import { combineLatest, filter, map, take } from 'rxjs';
 import { UserAccessService } from '../services/user-access.service';
-import { LangRouterService } from '../services/lang-router.service';
+import { LangRouterService } from '../services/langs/lang-router.service';
 
 /**
  * Универсальный Role/Permission Guard для Angular

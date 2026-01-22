@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { Lang, LangsService } from '../../../../core/services/langs.service';
+import { Lang, LangsService } from '../../../../core/services/langs/langs.service';
 import { AsyncPipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { OpenMenuDirective } from '../../../../core/directives/open-menu.directive';
@@ -27,9 +27,6 @@ export class LangDropdownComponent {
   currentLang$ = this.langsService.currentLang$
 
   mediaUrl = MEDIA_URL
-
-  ngOnInit() {
-  }
 
   changeLang(lang: Lang) {
     this.langsService.setLanguage(lang);

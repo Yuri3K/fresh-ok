@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router, UrlTree } from '@angular/router';
-import { LangsService } from '../services/langs.service';
+import { LangsService } from '../services/langs/langs.service';
 
 export const LangGuard: CanActivateFn = (route, state): boolean | UrlTree => {
 

@@ -1,6 +1,7 @@
 import { inject, Injectable, Injector } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { LangsService } from './langs.service';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -56,9 +57,10 @@ export class LangRouterService {
 
     // Если в URL не был указан язык, то
     // 1. Определяем текущий язык
-    const lang = this.langsService.resolveInitialLanguage();
+    // const lang = this.langsService.resolveInitialLanguage();
     // 2. Извлекаем из длинного названия короткую честь
-    const shortLang = lang.split('-')[0]; // 'en-US' --> 'en'
+    // const shortLang = lang.split('-')[0]; // 'en-US' --> 'en'
+    const shortLang =  this.langsService.resolveTargetLang();
     // 3. Очищаем все элементы urlArr от ненужных '/'
     const clenedUrlArr = urlArr.map((el) => this.removeSlash(el));
 
@@ -83,9 +85,10 @@ export class LangRouterService {
 
     // Если в URL не был указан язык, то
     // 1. Определяем текущий язык
-    const lang = this.langsService.resolveInitialLanguage();
+    // const lang = this.langsService.resolveInitialLanguage();
     // 2. Извлекаем из длинного названия короткую честь
-    const shortLang = lang.split('-')[0]; // 'en-US' --> 'en'
+    // const shortLang = lang.split('-')[0]; // 'en-US' --> 'en'
+    const shortLang = this.langsService.resolveTargetLang();
 
     // Возвращаем url строку со вставленным в нее языком
     return '/' + [shortLang, ...cleanUrlArr].join('/');
@@ -94,4 +97,30 @@ export class LangRouterService {
   private removeSlash(str: string) {
     return str.startsWith('/') ? str.slice(1) : str;
   }
+
+  transformToRouterLink(url: string) {
+    const [path, queryString] = url.split('?')
+    const pathSegments = path.split('/').filter(Boolean)
+
+    return {
+      path: this.addLangInUrlArr(pathSegments),
+      queryParams: this.parseQueryString(queryString)
+    }
+
+  }
+
+  private parseQueryString(queryString: string): Record<string, string> {
+    if (queryString == '') return {}
+
+    return queryString
+      .split("&") // разбиваем строку на массив. Разделитель - &
+      .reduce((params, param) => { // params = это accum, который накапливает значения, param - текущий элемент массива
+        const [key, value] = param.split("=") // из текущего элемента массива(param) вытягиваем данные
+        if (!!key && !!value) {
+          params[key] = decodeURIComponent(value) // наполняем params(accum) значениями
+        }
+        return params
+      }, {} as Record<string, string>)
+  }
 }
+

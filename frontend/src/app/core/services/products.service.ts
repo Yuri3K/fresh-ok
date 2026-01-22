@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { ApiService } from './api.service';
-import { LangCode } from './langs.service';
+import { LangCode } from './langs/langs.service';
 import {
   catchError,
   map,

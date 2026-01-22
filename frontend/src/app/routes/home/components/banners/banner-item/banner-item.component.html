@@ -14,7 +14,11 @@
   <div class="banner__subtitle">
     {{banner().translations[currentLang()].subtitle}}
   </div>
-  <a class="banner__link" [routerLink]="banner().linkUrl">
+  <a 
+    class="banner__link" 
+    [routerLink]="routerLink().path"
+    [queryParams]="routerLink().queryParams"
+  >
     {{banner().translations[currentLang()].buttonText}}
   </a>
 </article>
