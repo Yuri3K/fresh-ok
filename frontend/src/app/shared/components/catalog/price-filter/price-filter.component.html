@@ -4,16 +4,23 @@
   [title]="translations.title"
 >
   <div class="price">
-    <mat-slider [min]="range().min" [max]="range().max">
+    <mat-slider 
+      [min]="range().min" 
+      [max]="range().max"
+    >
       <input 
         [(ngModel)]="range().start" 
         (ngModelChange)="onStartValueChange($event)"
         matSliderStartThumb 
+        (dragStart)="onDragStart()"
+        (dragEnd)="onDragEnd()"
       />
       <input 
         [(ngModel)]="range().end" 
         (ngModelChange)="onEndValueChanged($event)"
         matSliderEndThumb 
+        (dragStart)="onDragStart()"
+        (dragEnd)="onDragEnd()"
       />
     </mat-slider>
 
@@ -28,6 +35,8 @@
             (ngModelChange)="onStartValueChange($event)"
             [min]="range().min"
             [max]="range().max"
+            (focus)="onInputFocus()"
+            (blur)="onInputBlur()"
           />
         </mat-form-field>
         <span>₴</span>
@@ -43,6 +52,8 @@
             (ngModelChange)="onEndValueChanged($event)"
             [min]="range().min"
             [max]="range().max"
+            (focus)="onInputFocus()"
+            (blur)="onInputBlur()"
           />
         </mat-form-field>
         <span>₴</span>

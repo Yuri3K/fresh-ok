@@ -28,11 +28,31 @@ export class PriceFilterComponent {
 
   onStartValueChange(value: string) {
     const parsedValue = parseInt(value, 10)
-    this.priceFacade.setStartValue(parsedValue)
+    if (!isNaN(parsedValue)) {
+      this.priceFacade.setStartValue(parsedValue)
+    }
   }
 
   onEndValueChanged(value: string) {
     const parsedValue = parseInt(value, 10)
-    this.priceFacade.setEndValue(parsedValue)
+    if (!isNaN(parsedValue)) {
+      this.priceFacade.setEndValue(parsedValue)
+    }
+  }
+
+  onDragStart() {
+    this.priceFacade.setDragging(true)
+  }
+
+  onDragEnd() {
+    this.priceFacade.setDragging(false)
+  }
+
+  onInputFocus() {
+    this.priceFacade.setInputEditing(true)
+  }
+
+  onInputBlur() {
+    this.priceFacade.setInputEditing(false)
   }
 }
