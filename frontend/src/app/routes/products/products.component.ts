@@ -2,13 +2,11 @@ import {
   AfterViewInit,
   Component,
   DestroyRef,
-  effect,
   ElementRef,
   inject,
   OnDestroy,
   signal,
   ViewChild,
-  viewChild,
 } from '@angular/core';
 import { CatalogStateService } from '../../core/services/products-state.service';
 import { H2TitleComponent } from '../../shared/ui-elems/typography/h2-title/h2-title.component';
@@ -27,6 +25,7 @@ import { BadgeFilterComponent } from '../../shared/components/catalog/badge-filt
 import { PriceFilterComponent } from '../../shared/components/catalog/price-filter/price-filter.component';
 import {
   MatSidenav,
+  MatSidenavContent,
   MatSidenavModule,
 } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
@@ -58,6 +57,8 @@ export class ProductsComponent implements AfterViewInit, OnDestroy {
 
   @ViewChild('productsContent', { read: ElementRef }) productsContent!: ElementRef;
   @ViewChild('sidenav') sidenav!: MatSidenav;
+  
+  private parentScrollContainer = inject(MatSidenavContent, { optional: true });
   stateService = inject(CatalogStateService);
   private dstroyRef = inject(DestroyRef);
   private breakpointObserver = inject(BreakpointObserver);
@@ -70,11 +71,27 @@ export class ProductsComponent implements AfterViewInit, OnDestroy {
   isLargeScreen = signal(true);
   sidenavMode = signal<'side' | 'over'>('side');
 
+  private scrollPosition = 0;
+
   ngAfterViewInit() {
     this.setResizeObserver();
     this.resizeObserver?.observe(this.productsContent.nativeElement);
+
     this.setBreakpointObserver()
     this.stateService.setFiltersSidebar(this.sidenav)
+
+    // Отслеживаем открытие/закрытие sidenav
+    this.sidenav.openedChange
+      .pipe(takeUntilDestroyed(this.dstroyRef))
+      .subscribe((opened) => {
+        if (!opened && this.sidenavMode() === 'over') {
+          console.log("IN")
+          // Восстанавливаем позицию скролла после закрытия
+          setTimeout(() => {
+            this.restoreScroll();
+          }, 0);
+        }
+      });
   }
 
   private setBreakpointObserver() {
@@ -101,6 +118,25 @@ export class ProductsComponent implements AfterViewInit, OnDestroy {
       // console.log("🔸 width:", width)
       this.stateService.setProductsContainerWidth(width);
     });
+  }
+
+onBackdropClick() {
+    if (this.parentScrollContainer) {
+      // Читаем скролл у родителя, который на самом деле и скроллится
+      this.scrollPosition = this.parentScrollContainer.getElementRef().nativeElement.scrollTop;
+    } else {
+      // Если родителя нет, берем стандартное окно
+      this.scrollPosition = window.scrollY;
+    }
+    console.log("🔸 Реальная позиция скролла родителя:", this.scrollPosition);
+  }
+
+  private restoreScroll() {
+    if (this.parentScrollContainer) {
+      this.parentScrollContainer.scrollTo({ top: this.scrollPosition });
+    } else {
+      window.scrollTo(0, this.scrollPosition);
+    }
   }
 
   ngOnDestroy(): void {

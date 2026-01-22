@@ -55,7 +55,6 @@ export class SortingByComponent {
   constructor() {
     effect(() => {
       const sort = this.selectedSort();
-      console.log("🔸 sort:", sort)
       if (sort) {
         this.stateService.setSort(sort);
       }
