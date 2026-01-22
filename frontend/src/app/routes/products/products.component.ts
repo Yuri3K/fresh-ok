@@ -59,10 +59,10 @@ export class ProductsComponent implements AfterViewInit, OnDestroy {
   @ViewChild('sidenav') sidenav!: MatSidenav;
   
   private parentScrollContainer = inject(MatSidenavContent, { optional: true });
-  stateService = inject(CatalogStateService);
   private dstroyRef = inject(DestroyRef);
   private breakpointObserver = inject(BreakpointObserver);
   private resizeObserver?: ResizeObserver;
+  stateService = inject(CatalogStateService);
 
   products = this.stateService.products;
   pagination = this.stateService.pagination;
@@ -81,15 +81,14 @@ export class ProductsComponent implements AfterViewInit, OnDestroy {
     this.stateService.setFiltersSidebar(this.sidenav)
 
     // Отслеживаем открытие/закрытие sidenav
-    this.sidenav.openedChange
+    this.sidenav.closedStart
       .pipe(takeUntilDestroyed(this.dstroyRef))
       .subscribe((opened) => {
-        if (!opened && this.sidenavMode() === 'over') {
+        if (!this.sidenav.opened && this.sidenavMode() === 'over') {
           console.log("IN")
-          // Восстанавливаем позицию скролла после закрытия
-          setTimeout(() => {
+
             this.restoreScroll();
-          }, 0);
+          
         }
       });
   }
