@@ -1,11 +1,9 @@
 import {
   AfterViewInit,
   Component,
-  DestroyRef,
   ElementRef,
   inject,
   OnDestroy,
-  signal,
   ViewChild,
 } from '@angular/core';
 import { CatalogStateService } from '../../core/services/products-state.service';
@@ -28,8 +26,6 @@ import {
   MatSidenavContent,
   MatSidenavModule,
 } from '@angular/material/sidenav';
-import { BreakpointObserver } from '@angular/cdk/layout';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-products',
@@ -59,17 +55,17 @@ export class ProductsComponent implements AfterViewInit, OnDestroy {
   @ViewChild('sidenav') sidenav!: MatSidenav;
 
   private parentScrollContainer = inject(MatSidenavContent, { optional: true });
-  private dstroyRef = inject(DestroyRef);
-  private breakpointObserver = inject(BreakpointObserver);
   private resizeObserver?: ResizeObserver;
   stateService = inject(CatalogStateService);
 
   products = this.stateService.products;
   pagination = this.stateService.pagination;
   view = this.stateService.appliedView;
+  isCardsBlockThin = this.stateService.isCardsBlockThin;
+  isViewBtnsVisible = this.stateService.isViewBtnsVisible;
   isLoading = this.stateService.isLoading;
-  isLargeScreen = signal(true);
-  sidenavMode = signal<'side' | 'over'>('side');
+  isSidenavOpenByDefault = this.stateService.isSidenavOpenByDefault;
+  sidenavMode = this.stateService.sidenavMode;
 
   private scrollPosition = 0;
 
@@ -77,26 +73,8 @@ export class ProductsComponent implements AfterViewInit, OnDestroy {
     this.setResizeObserver();
     this.resizeObserver?.observe(this.productsContent.nativeElement);
 
-    this.setBreakpointObserver()
     this.stateService.setFiltersSidebar(this.sidenav)
-  }
 
-  private setBreakpointObserver() {
-    this.breakpointObserver
-      .observe(['(min-width: 1330px)'])
-      .pipe(takeUntilDestroyed(this.dstroyRef))
-      .subscribe(result => {
-        this.isLargeScreen.set(result.matches)
-        if (result.matches) {
-          // Экран >= 1360px: режим 'side', сайдбар открыт
-          this.sidenavMode.set('side');
-          this.sidenav.open();
-        } else {
-          // Экран < 1360px: режим 'over', сайдбар закрыт
-          this.sidenavMode.set('over');
-          this.sidenav.close();
-        }
-      })
   }
 
   private setResizeObserver() {

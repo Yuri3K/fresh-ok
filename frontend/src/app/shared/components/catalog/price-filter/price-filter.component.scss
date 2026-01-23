@@ -32,6 +32,16 @@ mat-slider {
   justify-content: start;
   gap: 6px;
 
+  @media (max-width: 992px) {
+    flex-wrap: wrap;
+  }
+
+  .price__text-before {
+    @media (max-width: 992px) {
+      width: 100%;
+    }
+  }
+
   mat-form-field {
     --mdc-filled-text-field-container-shape: 0;
     --mat-form-field-container-vertical-padding: 0;

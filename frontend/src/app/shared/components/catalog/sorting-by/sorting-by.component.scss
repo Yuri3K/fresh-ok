@@ -1,5 +1,6 @@
 .sorting {
   position: relative;
+  z-index: 3;
 
   &.open {
     .sorting__body {

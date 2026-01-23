@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject } from '@angular/core';
+import { Component, DestroyRef, effect, inject } from '@angular/core';
 import { MiniFabBtnComponent } from '../../../ui-elems/buttons/mini-fab-btn/mini-fab-btn.component';
 import { CatalogStateService } from '../../../../core/services/products-state.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -12,22 +12,18 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 export class ShowFiltersBtnComponent {
   private stateService = inject(CatalogStateService)
   private destroyRef = inject(DestroyRef)
-  filtersSidenav$ = this.stateService.filtersSidenav$
+  filtersSidenav = this.stateService.filtersSidenav
   isSidebarOpened!: boolean
 
-  ngOnInit() {
-    this.filtersSidenav$
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(sidenav => {
-        if (sidenav) {
-          sidenav.openedChange
-            .pipe(takeUntilDestroyed(this.destroyRef))
-            .subscribe(res => {
-              this.isSidebarOpened = res
-            })
-        }
-      })
+  constructor() {
+    effect(() => {
+      const sidenav = this.filtersSidenav()
+      if(sidenav) {
+        sidenav.openedChange
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe(isOpen => this.isSidebarOpened = isOpen)
+      }
+    })
   }
-
 
 }

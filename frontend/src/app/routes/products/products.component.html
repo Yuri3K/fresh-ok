@@ -6,7 +6,6 @@
       />
       <mat-sidenav-container 
         class="products__content" 
-        #productsContent
         [class.edge-space]="sidenavMode() == 'over'"
         (backdropClick)="onBackdropClick()"
       >
@@ -15,7 +14,7 @@
           #sidenav
           position="start"
           [mode]="sidenavMode()"
-          [opened]="isLargeScreen()"
+          [opened]="isSidenavOpenByDefault()"
         >
           <div class="products__filters">
             <app-catalog-filters />
@@ -34,12 +33,18 @@
     
             <div class="products__view">
               <app-show-filters-btn (click)="sidenav.toggle()"/>
-              <app-view-list-btn />
-              <app-view-grid-btn />
+              @if(isViewBtnsVisible()) {
+                <app-view-list-btn />
+                <app-view-grid-btn />
+              }
             </div>
           </div>
     
-          <div class="products__cards">
+          <div 
+            #productsContent
+            class="products__cards"
+            [class.thin]="isCardsBlockThin()"
+          >
             @if(isLoading()) {
               <app-loader />
             } @else {

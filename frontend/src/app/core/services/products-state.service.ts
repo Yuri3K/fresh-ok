@@ -3,7 +3,6 @@ import {
   effect,
   inject,
   Injectable,
-  Signal,
   signal,
 } from '@angular/core';
 import { Pagination, Product, ProductsService } from './products.service';
@@ -11,11 +10,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import {
   BehaviorSubject,
+  combineLatest,
   debounceTime,
   distinctUntilChanged,
   map,
+  Observable,
 } from 'rxjs';
 import { MatSidenav } from '@angular/material/sidenav';
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 export type View = 'list' | 'grid';
 
@@ -26,19 +28,48 @@ export class CatalogStateService {
   private readonly productsService = inject(ProductsService);
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
-  readonly isLoading = signal(false);
+  private breakpointObserver = inject(BreakpointObserver);
+
   private userPrefferedView = signal<View>('grid');
+  readonly isLoading = signal(false);
   readonly productsContainerWidth = signal(0);
   readonly products = signal<Product[]>([]);
   readonly pagination = signal<Pagination>({} as Pagination);
+  readonly isSidenavOpenByDefault = signal(true);
+  readonly sidenavMode = signal<'side' | 'over'>('side');
+
+  // Когда ширина блока products__cards будет ниже ширины 470px (независимо 
+  // от того открыт sidebar с фильтрами или нет), кнопки переключения вида 
+  // карточек будут скрыты
+  readonly isViewBtnsVisible = computed(() => this.productsContainerWidth() >= 470)
+
+  // Когда ширина блока products__cards будет ниже ширины 470px (независимо 
+  // от того открыт sidebar с фильтрами или нет), будет принудительно включен 
+  // вид 'grid', в противном случае будет применен вид выбранный пользователем
   readonly appliedView = computed(() => {
-    return this.productsContainerWidth() > 900
-      ? this.userPrefferedView()
-      : 'grid';
+    if (this.productsContainerWidth() >= 470) {
+      return this.userPrefferedView()
+    } else {
+      return 'grid'
+    }
   });
 
-  private filtersSidenavSubject = new BehaviorSubject<MatSidenav | null>(null);
-  filtersSidenav$ = this.filtersSidenavSubject.asObservable();
+  // Независимо от того открыт sidebar с фильтрами или нет,когда ВКЛЮЧЕН вид 'grid' 
+  // и ширина блока products__cards будет ниже ширины 605px то отображение карточек 
+  // будет в 2 колонки
+  readonly isCardsBlockThin = computed(() => {
+    const width = this.productsContainerWidth()
+    const view = this.appliedView()
+
+    return (view == 'grid' && width < 605 ) 
+  })
+
+  filtersSidenav = signal<MatSidenav | null>(null);
+
+  private isWideScreen = toSignal(
+    this.breakpointObserver.observe(['(min-width: 805px)']),
+    { requireSync: true }
+  );
 
   private readonly queryParams = toSignal(
     this.route.queryParamMap.pipe(
@@ -82,6 +113,23 @@ export class CatalogStateService {
 
   constructor() {
     effect(() => {
+      const sidenav = this.filtersSidenav();
+      const matches = this.isWideScreen().matches;
+      
+      if (sidenav) {
+        if (matches) {
+          // Экран >= 805px: режим 'side', сайдбар открыт
+          this.sidenavMode.set('side');
+          sidenav.open();
+        } else {
+          // Экран < 805px: режим 'over', сайдбар закрыт
+          this.sidenavMode.set('over');
+          sidenav.close();
+        }
+      }
+    });
+
+    effect(() => {
       if (this.filterQuery()) this.getProductsByFilter();
     });
   }
@@ -94,7 +142,6 @@ export class CatalogStateService {
       .pipe(debounceTime(100))
       .subscribe({
         next: (res) => {
-          // console.log('🔸 res:', res);
           this.isLoading.set(false);
           this.products.set(res.data);
           this.pagination.set(res.pagination);
@@ -243,6 +290,25 @@ export class CatalogStateService {
   }
 
   setFiltersSidebar(sidenav: MatSidenav) {
-    this.filtersSidenavSubject.next(sidenav);
+    this.filtersSidenav.set(sidenav);
   }
+
+  // setBreakpointObserver(): Observable<any> {
+  //   const breakpointObserver = this.breakpointObserver.observe(['(min-width: 805px)'])
+
+  //   return combineLatest([this.filtersSidenav$, breakpointObserver])
+  //     .pipe(map(([sidenav, bpObserver]) => {
+  //       if (sidenav) {
+  //         if (bpObserver.matches) {
+  //           // Экран >= 805px: режим 'side', сайдбар открыт
+  //           this.sidenavMode.set('side');
+  //           sidenav!.open();
+  //         } else {
+  //           // Экран < 805px: режим 'over', сайдбар закрыт
+  //           this.sidenavMode.set('over');
+  //           sidenav.close();
+  //         }
+  //       }
+  //     }))
+  // }
 }
