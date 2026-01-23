@@ -11,12 +11,13 @@
   
   <!-- [style.minHeight.px]="sidenavHeight()" -->
   <mat-sidenav-container #sidenavContainer
+  class="main-container"
   >
     <mat-sidenav #sidenav [mode]="'side'">
       <p>PUBLIC SIDENAV</p>
     </mat-sidenav>
 
-    <mat-sidenav-content #test>
+    <mat-sidenav-content>
       <main>
         <router-outlet />
       </main>

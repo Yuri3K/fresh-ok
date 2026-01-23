@@ -13,5 +13,4 @@ import { BannerItemComponent } from './banner-item/banner-item.component';
 export class BannersComponent {
   bannersService = inject(BannersService)
   banners = this.bannersService.banners
-
 }

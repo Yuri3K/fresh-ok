@@ -29,11 +29,10 @@
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: color-mix(
-      in srgb,
-      var(--mat-sys-primary-container) 20%,
-      transparent
-    );
+    box-shadow: 0 0 2px 1px var(--mat-sys-on-tertiary-container);
+    background-color: color-mix(in srgb,
+        var(--mat-sys-primary-container) 20%,
+        transparent);
   }
 
   .sorting__trigger-text {
@@ -41,7 +40,7 @@
     color: var(--mat-sys-primary);
     font-family: "Open Sans", Arial, Helvetica, sans-serif;
   }
-  
+
   .carret {
     color: var(--mat-sys-primary);
     transform: rotate(0);
@@ -74,10 +73,8 @@
 
 .sorting__item {
   &.active {
-    background-color: color-mix(
-      in srgb,
-      var(--mat-sys-primary-container) 15%,
-      transparent
-    );
+    background-color: color-mix(in srgb,
+        var(--mat-sys-primary-container) 15%,
+        transparent);
   }
 }

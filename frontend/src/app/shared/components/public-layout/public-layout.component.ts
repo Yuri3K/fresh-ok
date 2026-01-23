@@ -1,10 +1,13 @@
-import { Component, computed } from '@angular/core';
+import { AfterViewInit, Component, computed, DestroyRef, inject, ViewChild } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { RouterOutlet } from '@angular/router';
+import { MatSidenavContainer, MatSidenavModule } from '@angular/material/sidenav';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { HeaderMarketComponent } from '../header-market/header-market.component';
 import { PublicFooterComponent } from '../public-footer/public-footer.component';
+import { filter, pairwise, startWith } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { RestoreScrollService } from '../../../core/services/restore-scroll.service';
 
 @Component({
   selector: 'app-public-layout',
@@ -19,40 +22,25 @@ import { PublicFooterComponent } from '../public-footer/public-footer.component'
   templateUrl: './public-layout.component.html',
   styleUrl: './public-layout.component.scss',
 })
-export class PublicLayoutComponent  {
-  // @ViewChild('headerMain', { read: ElementRef }) headerMainRef!: ElementRef
-  // @ViewChild('headerMarket', { read: ElementRef }) headerMarketRef!: ElementRef
-  // private resizeObserver!: ResizeObserver
+export class PublicLayoutComponent implements AfterViewInit {
+  @ViewChild(MatSidenavContainer) sidenavContainer!: MatSidenavContainer;
+  private scrollService = inject(RestoreScrollService);
 
-  // private headerMainHeight = signal(0)
-  // private headerMarketHeight = signal(0)
-
-  sidenavHeight = computed(() => {
-    // const headersHeight = this.headerMainHeight() + this.headerMarketHeight()
-    // return `calc(100% - ${headersHeight}px)`
-  })
-
-  ngOnInit() {
-
-    // this.watchHeaderHeight()
-  }
+  private router = inject(Router)
+  private destroyRef = inject(DestroyRef)
 
   ngAfterViewInit() {
-    // this.resizeObserver.observe(this.headerMainRef.nativeElement)
-    // this.resizeObserver.observe(this.headerMarketRef.nativeElement)
-  }
-  
-  // private watchHeaderHeight() {
-  //   this.resizeObserver = new ResizeObserver((entries) => {
-  //     const headerMainHeight = entries[0].contentRect.height
-  //     const headerMarketHeight = entries[0].contentRect.height
-  
-  //     this.headerMainHeight.set(headerMainHeight)
-  //     this.headerMarketHeight.set(headerMarketHeight)
-  //   })
-  // }
+    const scrollableEl = this.sidenavContainer.scrollable.getElementRef().nativeElement;
+    // Регистрируем элемент в сервисе
+    this.scrollService.setContainer(scrollableEl);
 
-  ngOnDestroy() {
-    // this.resizeObserver?.disconnect()
+    this.router.events.pipe(
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+      // pairwise(), //получаем предыдущее и текущее событие навигации
+      takeUntilDestroyed(this.destroyRef),
+    ).subscribe(() => {
+        const scrollableElement = this.sidenavContainer.scrollable.getElementRef().nativeElement;
+        scrollableElement.scrollTo(0, 0);
+    });
   }
 }

@@ -16,6 +16,7 @@ import { environment } from '../environments/environment';
 import { Meta, Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { RestoreScrollService } from './core/services/restore-scroll.service';
 @Component({
   selector: 'app-root',
   imports: [

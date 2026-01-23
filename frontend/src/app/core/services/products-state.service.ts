@@ -9,15 +9,13 @@ import { Pagination, Product, ProductsService } from './products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import {
-  BehaviorSubject,
-  combineLatest,
   debounceTime,
   distinctUntilChanged,
   map,
-  Observable,
 } from 'rxjs';
 import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { RestoreScrollService } from './restore-scroll.service';
 
 export type View = 'list' | 'grid';
 
@@ -29,6 +27,7 @@ export class CatalogStateService {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private breakpointObserver = inject(BreakpointObserver);
+  private restoreScrollService = inject(RestoreScrollService)
 
   private userPrefferedView = signal<View>('grid');
   readonly isLoading = signal(false);
@@ -61,7 +60,7 @@ export class CatalogStateService {
     const width = this.productsContainerWidth()
     const view = this.appliedView()
 
-    return (view == 'grid' && width < 605 ) 
+    return (view == 'grid' && width < 605)
   })
 
   filtersSidenav = signal<MatSidenav | null>(null);
@@ -115,7 +114,7 @@ export class CatalogStateService {
     effect(() => {
       const sidenav = this.filtersSidenav();
       const matches = this.isWideScreen().matches;
-      
+
       if (sidenav) {
         if (matches) {
           // Экран >= 805px: режим 'side', сайдбар открыт
@@ -201,6 +200,8 @@ export class CatalogStateService {
       relativeTo: this.route,
       queryParams: { priceMin: null, priceMax: null, page: '1' },
       queryParamsHandling: 'merge',
+      skipLocationChange: false,
+      replaceUrl: true
     });
   }
 
@@ -264,21 +265,28 @@ export class CatalogStateService {
   // ============================================
 
   private updateQueryParams(params: Record<string, string>) {
+    // setTimeout нужен для того, что когда регистрируются компоненты,
+    // например sort-by и limit-by (и остальные фильтры, которые добавляют
+    // в url свои queryParams для фильтрации), то они практически одновременно
+    // переписывают url и перезатирают сами друг друга, что приводит к потере 
+    // некоторых queryParams в url. setTimeout решает эту проблему
     setTimeout(() => {
       this.router.navigate([], {
         relativeTo: this.route,
         queryParams: params,
         queryParamsHandling: 'merge',
-      });
+      }).then(() => this.restoreScrollService.restoreScroll());
     }, 0);
   }
 
   private removeQueryParam(param: string) {
-    this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: { [param]: null, page: '1' },
-      queryParamsHandling: 'merge',
-    });
+    setTimeout(() => {
+      this.router.navigate([], {
+        relativeTo: this.route,
+        queryParams: { [param]: null, page: '1' },
+        queryParamsHandling: 'merge',
+      }).then(() => this.restoreScrollService.restoreScroll());
+    }, 0);
   }
 
   setProductsContainerWidth(width: number) {

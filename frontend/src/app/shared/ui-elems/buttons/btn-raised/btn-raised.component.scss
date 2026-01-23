@@ -1,12 +1,12 @@
 :host {
   &.accordion-btn {
     button {
-      --mat-protected-button-horizontal-padding: 16px;  // боковые padding
-      --mdc-protected-button-container-shape: 0;  // закругления
+      --mat-protected-button-horizontal-padding: 16px; // боковые padding
+      --mdc-protected-button-container-shape: 0; // закругления
       --mdc-protected-button-container-elevation-shadow: none; // тень кнопки
       --mdc-protected-button-hover-container-elevation-shadow: none; // тень кнопки при ховере
       --mdc-protected-button-label-text-color: var(--mat-sys-on-surface); // цвет текста
-      --mdc-protected-button-label-text-size: 1.125;  // размер шрифта
+      --mdc-protected-button-label-text-size: 1.125; // размер шрифта
       --mdc-protected-button-label-text-tracking: 0.5px; // letter-spacing
 
       position: relative;
@@ -19,11 +19,9 @@
     &.active {
       button {
         // --mdc-protected-button-label-text-color: var(--mat-sys-primary);  // цвет текста
-        --mdc-protected-button-container-color: color-mix(
-          in srgb,
-          var(--mat-sys-primary-container) 60%,
-          transparent
-        );  // фон кнопки
+        --mdc-protected-button-container-color: color-mix(in srgb,
+            var(--mat-sys-primary-container) 60%,
+            transparent); // фон кнопки
 
         //   &::before {
         //   content: '';

@@ -28,11 +28,10 @@
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: color-mix(
-      in srgb,
-      var(--mat-sys-primary-container) 20%,
-      transparent
-    );
+    box-shadow: 0 0 2px 1px var(--mat-sys-on-tertiary-container);
+    background-color: color-mix(in srgb,
+        var(--mat-sys-primary-container) 20%,
+        transparent);
   }
 
   .limit__trigger-text {
@@ -73,10 +72,8 @@
 
 .sorting__item {
   &.active {
-    background-color: color-mix(
-      in srgb,
-      var(--mat-sys-primary-container) 15%,
-      transparent
-    );
+    background-color: color-mix(in srgb,
+        var(--mat-sys-primary-container) 15%,
+        transparent);
   }
 }

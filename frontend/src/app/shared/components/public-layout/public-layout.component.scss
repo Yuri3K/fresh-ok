@@ -12,3 +12,21 @@ mat-sidenav-container{
   flex: 1;
   // min-height: calc(100% - 64px - 90px);
 }
+
+// НСЛИ НУЖЕН БУДЕТ НЕ ЛИПКИЙ ХЕДЕР
+// .main-container {
+//   height: auto !important;
+//   min-height: 100vh;
+//   overflow: visible !important;
+
+//   // Отключаем внутренний скролл у контентной части
+//   ::ng-deep .mat-sidenav-content {
+//     height: auto !important;
+//     overflow: visible !important;
+//   }
+// }
+
+// .public-container {
+//   display: flex;
+//   flex-direction: column;
+// }
