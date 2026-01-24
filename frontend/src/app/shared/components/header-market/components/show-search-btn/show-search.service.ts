@@ -11,17 +11,7 @@ export class ShowSearchService {
     this.isSearchVisible.update(v => !v)
   }
 
-  // show() {
-  //   if(this.isSearchVisible()) {
-  //     this.close()
-  //     return
-  //   }
-
-  //   this.isSearchVisible.set(true)
-  // }
-
   close() {
     this.isSearchVisible.set(false)
-    // console.log("CLOSE SEARCH", this.isSearchVisible())
   }
 }

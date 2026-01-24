@@ -11,17 +11,8 @@ export class ShowCatalogService {
     this.isCatalogVisible.update(v => !v)
   }
 
-  // show() {
-  //   if (this.isCatalogVisible()) {
-  //     this.close()
-  //     return
-  //   }
-
-  //   this.isCatalogVisible.set(true)
-  // }
 
   close() {
     this.isCatalogVisible.set(false)
-    // console.log("CLOSE CATALOG", this.isCatalogVisible())
   }
 }

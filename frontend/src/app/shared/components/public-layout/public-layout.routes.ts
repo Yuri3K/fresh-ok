@@ -16,7 +16,8 @@ export const routes: Routes = [
       },
       {
         path: 'home',
-        component: HomeComponent
+        component: HomeComponent,
+        data: {breadcrumb: 'homepage'}
       },
       {
         path: 'products',

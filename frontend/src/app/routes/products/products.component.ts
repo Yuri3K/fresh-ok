@@ -26,6 +26,8 @@ import {
   MatSidenavContent,
   MatSidenavModule,
 } from '@angular/material/sidenav';
+import { BreadcrumbsComponent } from '../../shared/components/breadcrumbs/breadcrumbs.component';
+import { Breadcrumb } from '../../shared/components/breadcrumbs/breadcrumbs.service';
 
 @Component({
   selector: 'app-products',
@@ -45,6 +47,7 @@ import {
     BadgeFilterComponent,
     PriceFilterComponent,
     MatSidenavModule,
+    BreadcrumbsComponent,
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
@@ -53,6 +56,12 @@ export class ProductsComponent implements AfterViewInit, OnDestroy {
 
   @ViewChild('productsContent', { read: ElementRef }) productsContent!: ElementRef;
   @ViewChild('sidenav') sidenav!: MatSidenav;
+
+  // breadcrumbs: Breadcrumb[] = [
+  //   { label: 'Каталог', url: '/catalog' },
+  //   { label: 'Электроника', url: '/catalog/electronics' },
+  //   { label: 'Смартфоны' }
+  // ];
 
   private parentScrollContainer = inject(MatSidenavContent, { optional: true });
   private resizeObserver?: ResizeObserver;

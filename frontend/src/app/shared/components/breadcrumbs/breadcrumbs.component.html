@@ -1,0 +1,31 @@
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol class="breadcrumbs__list">
+    @for(breadcrumb of breadcrumbs(); track $index) {
+      <li class="breadcrumbs__item">
+        @if(!isLast($index) && breadcrumb.url) {
+          <a 
+            [routerLink]="breadcrumb.url"
+            [queryParams]="breadcrumb.queryParams"
+            class="breadcrumbs__link"
+          >
+            @if(breadcrumb.icon) {
+              <mat-icon>{{breadcrumb.icon}}</mat-icon>
+            }
+            <span class="breadcrumbs__label">{{ breadcrumb.label }}</span>
+          </a>
+        } @else {
+          <span class="breadcrumbs__current" aria-current="page">
+            @if (breadcrumb.icon) {
+              <mat-icon class="breadcrumbs__icon">{{ breadcrumb.icon }}</mat-icon>
+            }
+            <span class="breadcrumbs__label">{{ breadcrumb.label }}</span>
+          </span>
+        }
+
+        @if (!isLast($index)) {
+          <mat-icon class="breadcrumbs__separator">{{ separator() }}</mat-icon>
+        }
+      </li>
+    }
+  </ol>
+</nav>

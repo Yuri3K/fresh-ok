@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { LogoComponent } from '../logo/logo.component';
 import { FavsBtnComponent } from './components/favs-btn/favs-btn.component';
 import { SearchInMarketComponent } from './components/search-in-market/search-in-market.component';
@@ -38,59 +38,36 @@ export class HeaderMarketComponent {
   elToShowName = signal('')
 
   constructor() {
+    // Effect, который контролирует панель поиска на мобильных экранах
     effect(() => {
       const isSearchVisible = this.showSearchService.isSearchVisible()
 
       if (isSearchVisible) {
         this.showCatalogService.close()
         this.elToShowName.set('search')
-      } else if(!this.showCatalogService.isCatalogVisible()) {
+        // !!! ПРИМЕНЯТЬ ИМЕННО this.showCatalogService.isCatalogVisible(), 
+        // А НЕ const isCatalogVisible = this.showCatalogService.isCatalogVisible(),
+        // ПОТОМУ ЧТО EFFECT НАЧНЕТ РЕАГИРОВАТЬ НА isCatalogVisible КАК НА SIGNAL
+      } else if (!this.showCatalogService.isCatalogVisible()) {
         this.elToShowName.set('')
       }
-
-
-      console.log("EFFECT SEARCH", isSearchVisible)
     })
 
+    // Effect, который контролирует панель каталога на мобильных экранах
     effect(() => {
       const isCatalogVisible = this.showCatalogService.isCatalogVisible()
 
       if (isCatalogVisible) {
         this.showSearchService.close()
         this.elToShowName.set('catalog')
-      } else if (!this.showSearchService.isSearchVisible()){
+        // !!! ПРИМЕНЯТЬ ИМЕННО this.showSearchService.isSearchVisible(), 
+        // А НЕ const isSearchVisible = this.showSearchService.isSearchVisible(),
+        // ПОТОМУ ЧТО EFFECT НАЧНЕТ РЕАГИРОВАТЬ НА isSearchVisible КАК НА SIGNAL
+      } else if (!this.showSearchService.isSearchVisible()) {
         this.elToShowName.set('')
       }
-
-      console.log("EFFECT CATALOG", isCatalogVisible)
     })
 
-
-    // effect(() => {
-    //   const isSearchVisible = this.showSearchService.isSearchVisible()
-    //   const isCatalogVisible = this.showCatalogService.isCatalogVisible()
-
-    //   // Перед тем как что-то открыть - все закрываем, чтобы не было наложений
-    //   // this.showSearchService.close()
-    //   // this.showCatalogService.close()
-
-    //   if (isSearchVisible) {
-    //     this.showCatalogService.close()
-    //     this.elToShowName.set('search')
-    //   } else if (isCatalogVisible) {
-    //     this.showSearchService.close()
-    //     this.elToShowName.set('catalog')
-    //   } else {
-    //     // Если ничего не было выбрано, принудительно все закрываем
-    //     // this.showSearchService.close()
-    //     // this.showCatalogService.close()
-    //     this.elToShowName.set('')
-    //   }
-
-
-    //   console.log("EFFECT", this.elToShowName())
-
-    // })
   }
 
 }
