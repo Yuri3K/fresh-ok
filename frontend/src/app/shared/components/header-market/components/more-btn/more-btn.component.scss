@@ -36,4 +36,12 @@
       display: block;
     }
   }
+
+  app-show-catalog-btn {
+    display: none;
+
+    @media (max-width: 576px) {
+      display: block;
+    }
+  }
 }

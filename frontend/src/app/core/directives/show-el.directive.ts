@@ -12,15 +12,14 @@ import {
   selector: '[appShowEl]',
 })
 export class ShowElDirective implements OnInit {
-  @HostBinding('class.show') isShow = false;
+  @HostBinding('class.show') elemName = '';
 
-  private elemBody!: HTMLElement | null;
+  private elemBodies!: HTMLElement[] | null;
   private elemContent!: HTMLElement | null;
-  // private elemToggle!: HTMLElement | null;
 
   @Input()
-  set appShowEl(value: boolean) {
-    this.isShow = value;
+  set appShowEl(value: string) {
+    this.elemName = value;
 
     queueMicrotask(() => {
       value ? this.showEl() : this.hideEl();
@@ -31,11 +30,10 @@ export class ShowElDirective implements OnInit {
 
   ngOnInit() {
     const host = this.elRef.nativeElement;
-    this.elemBody = host.querySelector('.elem-body');
+    this.elemBodies = Array.from(host.querySelectorAll('.elem-body'));
     this.elemContent = host.querySelector('.elem-content');
-    // this.elemToggle = host.querySelector('.elem-toggle');
 
-    if (!this.elemBody || !this.elemContent) {
+    if (!this.elemBodies || !this.elemContent) {
       console.warn(
         "Directive 'appShowEl' can not find elemBody with class 'show'"
       );
@@ -43,22 +41,34 @@ export class ShowElDirective implements OnInit {
   }
 
   private showEl() {
-    if (!this.elemBody || !this.elemContent) return;
+    if (!this.elemBodies?.length || !this.elemContent) return;
+    const elemBody = this.elemBodies.find(b => b.classList.contains(this.elemName))
 
-    const height = this.elemContent.getBoundingClientRect().height;
-    this.renderer.setStyle(this.elemBody, 'max-height', height + 'px');
-    this.isShow = true;
+    this.hideEl() // закрываем все открытые панели перед открытием выбранной
+
+    if (elemBody) {
+      const height = this.elemContent.getBoundingClientRect().height;
+      this.renderer.setStyle(elemBody, 'max-height', height + 'px');
+      this.renderer.setStyle(elemBody, 'overflow', 'unset');
+    }
   }
 
   private hideEl() {
-    if (!this.elemBody || !this.elemContent) return;
+    if (!this.elemBodies || !this.elemContent) return;
 
-    this.renderer.setStyle(this.elemBody, 'max-height', '0px');
-    this.isShow = false;
+    this.elemBodies.forEach(b => {
+      if (b) {
+        this.renderer.setStyle(b, 'max-height', '0px');
+        this.renderer.setStyle(b, 'overflow', 'hidden');
+      }
+
+    })
+
+    this.elemName = ''
   }
 
   private toggle() {
-    this.isShow ? this.hideEl() : this.showEl();
+    this.elemName ? this.hideEl() : this.showEl();
   }
 
   @HostListener('click', ['$event'])

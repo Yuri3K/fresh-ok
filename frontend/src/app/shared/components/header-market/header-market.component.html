@@ -1,5 +1,5 @@
 <mat-toolbar
-  [appShowEl]="showSearchService.isSearchVisible()"
+  [appShowEl]="elToShowName()"
 >
   <div class="hm__top">
     <div class="hm__left">
@@ -19,7 +19,11 @@
     </div>
   </div>
 
-  <div class="hm__bottom elem-body">
+  <div class="hm__bottom elem-body search">
     <app-search-in-market class="elem-content"/>
+  </div>
+  
+  <div class="hm__bottom elem-body catalog">
+    <app-catalog-selector class="elem-content"/>
   </div>
 </mat-toolbar>

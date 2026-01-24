@@ -4,6 +4,7 @@ import { OpenMenuDirective } from '../../../../../core/directives/open-menu.dire
 import { ShowSearchBtnComponent } from '../show-search-btn/show-search-btn.component';
 import { ProfileBtnComponent } from '../profile-btn/profile-btn.component';
 import { FavsBtnComponent } from '../favs-btn/favs-btn.component';
+import { ShowCatalogBtnComponent } from '../show-catalog-btn/show-catalog-btn.component';
 
 @Component({
   selector: 'app-more-btn',
@@ -13,6 +14,7 @@ import { FavsBtnComponent } from '../favs-btn/favs-btn.component';
     ShowSearchBtnComponent,
     FavsBtnComponent,
     ProfileBtnComponent,
+    ShowCatalogBtnComponent
   ],
   templateUrl: './more-btn.component.html',
   styleUrl: './more-btn.component.scss',
