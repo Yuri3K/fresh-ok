@@ -179,7 +179,7 @@
       ]
     }
   },
-  "products-page": {
+  "catalog-page": {
     "title": "Product Catalog",
     "filters": {
       "categories": {
@@ -236,6 +236,24 @@
         {
           "name": "18 per page",
           "slug": "18"
+        }
+      ]
+    }
+  },
+  "product-page": {
+    "tabs": {
+      "labels": [
+        {
+          "name": "Description",
+          "order": 1
+        },
+        {
+          "name": "Specifications",
+          "order": 2
+        },
+        {
+          "name": "Reviews ({{quantity}})",
+          "order": 3
         }
       ]
     }

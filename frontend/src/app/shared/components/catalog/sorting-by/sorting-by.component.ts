@@ -36,7 +36,7 @@ export class SortingByComponent {
 
   sorting = toSignal<Sort[]>(
     this.translateService
-      .stream('products-page.sorting.sort-by')
+      .stream('catalog-page.sorting.sort-by')
       .pipe(
         filter((res): res is Sort[] => Array.isArray(res) && res.length > 0),
       ),

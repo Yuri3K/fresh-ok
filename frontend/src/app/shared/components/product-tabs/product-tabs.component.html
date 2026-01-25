@@ -1,0 +1,26 @@
+@let labels = ('product-page.tabs.labels' | translate);
+
+@if(product()) {
+  <app-tabs>
+    <ng-template [appTabs]="labels[0]['name']">
+      <app-product-descr 
+        [descr]="product()!.description[currentLang()]"
+      />
+    </ng-template>
+    <ng-template [appTabs]="labels[1]['name']">
+      <app-product-characteristics 
+        [characteristics]="product()!.characteristics[currentLang()]"
+      />
+    </ng-template>
+    <ng-template [appTabs]="
+      ('product-page.tabs.labels' 
+      | translate 
+      : {quantity: product().reviewsCount})
+      [2]['name'] 
+    ">
+      <app-product-reviews 
+        [reviews]="product().reviews"
+      />
+    </ng-template>
+  </app-tabs>
+}

@@ -3,12 +3,9 @@ import { ApiService } from './api.service';
 import { LangCode } from './langs/langs.service';
 import {
   catchError,
-  map,
   Observable,
-  of,
   retry,
   take,
-  tap,
   throwError,
 } from 'rxjs';
 
@@ -21,6 +18,8 @@ export interface Product {
   discountPercent: number;
   hasDiscount: boolean;
   i18n: Record<LangCode, ProductTexts>;
+  description: Record<LangCode, string>;
+  characteristics: Record<LangCode, Record<string, string>>;
   isActive: boolean;
   isHit: boolean;
   isNew: boolean;
@@ -29,8 +28,20 @@ export interface Product {
   slug: string;
   stock: Stock;
   rate: number;
+  reviewsCount: number;
+  reviews: Review[];
   createdAt: string;
   updatedAt: string;
+}
+
+export interface Review {
+  productId: string;
+  userId: string;
+  userAvatar: string;
+  userName: string;
+  text: string;
+  rating: number;
+  createdAt: string;
 }
 
 export interface PaginatedResponse<Product> {
@@ -83,7 +94,7 @@ export class ProductsService {
     return this.apiService
       .getWithoutToken<PaginatedResponse<Product>>('/products', queryStr)
       .pipe(
-        retry(1),
+        retry(1), // при неeдачном запросе попробовать еще раз
         take(1),
         // tap(res => console.log("!!! PRODUCTS !!!", res)),
         catchError((err) => {
@@ -91,5 +102,17 @@ export class ProductsService {
           return throwError(() => err);
         })
       );
+  }
+
+  getProductBySlug(productSlug: string): Observable<Product> {
+    return this.apiService.getWithoutToken<Product>(`/products/${productSlug}`)
+      .pipe(
+        retry(1),
+        take(1),
+        catchError((err) => {
+          console.log(err);
+          return throwError(() => err);
+        })
+      )
   }
 }

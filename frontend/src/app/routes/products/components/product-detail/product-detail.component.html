@@ -1,2 +1,6 @@
 <app-breadcrumbs />
-<p>product-detail works!</p>
+@if(product().id) {
+  <app-product-tabs 
+    [product]="product()"
+  />
+}

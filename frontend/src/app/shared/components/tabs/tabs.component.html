@@ -1,0 +1,10 @@
+<mat-tab-group dynamicHeight>
+  @for(tab of tabs(); track $index) {
+    <mat-tab [label]="tab.appTabs()">
+      <div class="example-small-box mat-elevation-z4">
+        <ng-container [ngTemplateOutlet]="tab.tempalte"/>
+      </div>
+    </mat-tab>
+  }
+</mat-tab-group>
+

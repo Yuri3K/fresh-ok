@@ -179,7 +179,7 @@
       ]
     }
   },
-  "products-page": {
+  "catalog-page": {
     "title": "Каталог товарів",
     "filters": {
       "categories": {
@@ -236,6 +236,24 @@
         {
           "name": "по 18",
           "slug": "18"
+        }
+      ]
+    }
+  },
+  "product-page": {
+    "tabs": {
+      "labels": [
+        {
+          "name": "Опис",
+          "order": 1
+        },
+        {
+          "name": "Характеристики",
+          "order": 2
+        },
+        {
+          "name": "Відгуки ({{quantity}})",
+          "order": 3
         }
       ]
     }

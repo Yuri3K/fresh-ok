@@ -30,7 +30,7 @@ export class LimitByComponent {
 
   limits = toSignal<Limit[]>(
     this.translateService
-      .stream('products-page.sorting.limit')
+      .stream('catalog-page.sorting.limit')
       .pipe(
         filter((res): res is Limit[] => Array.isArray(res) && res.length > 0)),
     { requireSync: true }, // гарантирует синхронное значение

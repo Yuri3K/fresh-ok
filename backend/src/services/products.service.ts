@@ -1,7 +1,7 @@
 import { db } from "../config/firebaseAdmin";
 import { LangCode } from "../middleware/current-lang";
 
-interface Product {
+export interface Product {
   id: string;
   publicId: string;
   badges: string[];
@@ -10,6 +10,8 @@ interface Product {
   discountPercent: number;
   hasDiscount: boolean;
   i18n: Record<LangCode, ProductTexts>;
+  description: Record<LangCode, string>;
+  characteristics: Record<LangCode, Record<string, string>>;
   isActive: boolean;
   isHit: boolean;
   isNew: boolean;
@@ -18,8 +20,20 @@ interface Product {
   slug: string;
   stock: string;
   rate: number;
+  reviewsCount: number;
+  reviews: Review[],
   createdAt: string;
   updatedAt: string;
+}
+
+interface Review {
+  productId: string;
+  userId: string;
+  userAvatar: string;
+  userName: string;
+  text: string;
+  rating: number;
+  createdAt: string;
 }
 
 interface EnrichedProduct extends Omit<Product, "badges" | "stock"> {
