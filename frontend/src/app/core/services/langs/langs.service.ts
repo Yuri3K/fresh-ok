@@ -40,7 +40,7 @@ export class LangsService {
  * определяет стартовый язык и выполняет translate.use(...).
  */
   init(): Observable<unknown> {
-    console.log('init')
+    // console.log('init')
     return this.apiService.getWithoutToken<Lang[]>('/langs') // получаем языки с сервера
       .pipe(
         take(1),

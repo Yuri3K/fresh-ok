@@ -12,10 +12,4 @@ export class ProductCharacteristicsComponent {
   characteristics = input.required<CharacteristicItem[]>()
 
   currentlang = inject(GetCurrentLangService).currentLang
-
-  constructor() {
-    effect(() => {
-      console.log('characteristics', this.characteristics())
-    })
-  }
 }

@@ -20,7 +20,7 @@ export interface Product {
   hasDiscount: boolean;
   i18n: Record<LangCode, ProductTexts>;
   description: Record<LangCode, string>;
-  characteristics: Record<LangCode, CharacteristicItem>;
+  characteristics: Record<LangCode, CharacteristicItem[]>;
   isActive: boolean;
   isHit: boolean;
   isNew: boolean;
@@ -111,12 +111,11 @@ export class ProductsService {
   }
 
   getProductBySlug(productSlug: string): Observable<Product> {
-    console.log("🔸 productSlug:", productSlug)
     return this.apiService.getWithoutToken<Product>(`/products/${productSlug}`)
       .pipe(
         retry(1),
         take(1),
-        tap((prod) => console.log(prod)),
+        // tap((prod) => console.log(prod)),
         catchError((err) => {
           console.log(err);
           return throwError(() => err);

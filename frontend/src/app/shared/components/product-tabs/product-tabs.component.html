@@ -4,12 +4,12 @@
   <app-tabs>
     <ng-template [appTabs]="labels[0]['name']">
       <app-product-descr 
-        [descr]="product()!.description[currentLang()]"
+        [descr]="product().description[currentLang()]"
       />
     </ng-template>
     <ng-template [appTabs]="labels[1]['name']">
       <app-product-characteristics 
-        [characteristics]="product()!.characteristics[currentLang()]"
+        [characteristics]="product().characteristics[currentLang()]"
       />
     </ng-template>
     <ng-template [appTabs]="

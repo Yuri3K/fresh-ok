@@ -11,7 +11,7 @@ export interface Product {
   hasDiscount: boolean;
   i18n: Record<LangCode, ProductTexts>;
   description: Record<LangCode, string>;
-  characteristics: Record<LangCode, CharacteristicItem>;
+  characteristics: Record<LangCode, CharacteristicItem[]>;
   isActive: boolean;
   isHit: boolean;
   isNew: boolean;
