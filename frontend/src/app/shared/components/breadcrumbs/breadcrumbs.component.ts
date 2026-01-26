@@ -80,42 +80,42 @@ export class BreadcrumbsComponent {
     return [home, ...breadcrumbs]
   }
 
+
   private buildBreadcrumbs(): Breadcrumb[] {
-    const breadcrumbs: Breadcrumb[] = []
-    let route = this.route.root
-    console.log("🔸 route:", this.route.root)
-    let url = ''
+    const breadcrumbs: Breadcrumb[] = [];
+    let route: ActivatedRoute | null = this.route.root;
+    const urlSegments: string[] = [];
 
     while (route) {
+      // Собираем URL сегменты
+      route.snapshot.url.forEach(segment => {
+        urlSegments.push(segment.path);
+      });
+
+      // Если есть breadcrumb в data
       if (route.routeConfig?.data?.['breadcrumb']) {
-        console.log("IN BRCR")
-        const breadcrumbData = route.routeConfig?.data?.['breadcrumb']
-        console.log("🔸 breadcrumbData:", breadcrumbData)
-        const routeUrl = route.snapshot.url.map(segment => segment.path).join('/')
+        const breadcrumbData = route.routeConfig.data['breadcrumb'];
 
-        if (routeUrl) {
-          url += `/${routeUrl}`
-        }
-
-        // Поддержка функции для динамических breadcrumbs
-        console.log("!!! LABEL !!!", typeof breadcrumbs == 'function')
-        const label = typeof breadcrumbs == 'function'
+        const label = typeof breadcrumbData === 'function'
           ? breadcrumbData(route.snapshot.data, route.snapshot.params)
-          : breadcrumbData
+          : breadcrumbData;
 
         if (label) {
+          const url = urlSegments.length > 0 ? '/' + urlSegments.join('/') : undefined;
           breadcrumbs.push({
             label,
-            url: url || undefined
-          })
+            url
+          });
         }
       }
-
-      route = route.firstChild!
-      // console.log("🔸 route.firstChild:", route.firstChild)
+      
+      
+      route = route.firstChild;
     }
+    console.log("🔸 breadcrumbs:", breadcrumbs)
+        console.log("🔸 urlSegments:", urlSegments)
 
-    return breadcrumbs
+    return breadcrumbs;
   }
 
   isLast(index: number): boolean {

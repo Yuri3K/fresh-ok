@@ -1,21 +1,23 @@
 import { Data, Params, Routes } from "@angular/router";
-import { ProductsComponent } from "./products.component";
 
 export const routes: Routes = [
   {
     path: '',
-    component: ProductsComponent,
-    data: {breadcrumb: 'products'}
-  },
-  {
-    path: ':slug',
-    loadComponent: () => import('./components/product-detail/product-detail.component').then(m => m.ProductDetailComponent),
-    data: {
-      breadcrumd: (data: Data, params: Params) => {
-        console.log("🔸 params:", params)
-        console.log("🔸 data:", data)
-        return 'Hello World'
+    data: {breadcrumb: 'products'},
+    children: [
+      {
+        path: '',
+        loadComponent: () => import('./products.component').then(m => m.ProductsComponent),
+      },
+      {
+        path: ':slug',
+        loadComponent: () => import('./components/product-detail/product-detail.component').then(m => m.ProductDetailComponent),
+        data: {
+          breadcrumb: (data: Data, params: Params) => {
+            return params['slug']
+          }
+        }
       }
-    }
-  }
+    ]
+  },
 ]

@@ -3,7 +3,6 @@ import { BreadcrumbsComponent } from '../../../../shared/components/breadcrumbs/
 import { ProductTabsComponent } from '../../../../shared/components/product-tabs/product-tabs.component';
 import { Product, ProductsService } from '../../../../core/services/products.service';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product-detail',

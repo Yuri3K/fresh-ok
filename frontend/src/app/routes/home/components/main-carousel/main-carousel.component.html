@@ -1,7 +1,7 @@
 @let slidesList = (slides$ | async); @if(slidesList && slidesList.length) {
 <!-- Тэг для карусели. Передаем json объект со слайдами и настройки карусели (config)  -->
 <lib-ngx-carousel
-  class="green carousel-main"
+  class="carousel-main"
   [slides]="slidesList"
   [config]="config"
 >

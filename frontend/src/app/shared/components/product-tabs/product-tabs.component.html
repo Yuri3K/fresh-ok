@@ -15,8 +15,7 @@
     <ng-template [appTabs]="
       ('product-page.tabs.labels' 
       | translate 
-      : {quantity: product().reviewsCount})
-      [2]['name'] 
+      : {quantity: product().reviewsCount})[2]['name'] 
     ">
       <app-product-reviews 
         [reviews]="product().reviews"
