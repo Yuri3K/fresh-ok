@@ -1,6 +1,7 @@
 import {
   AfterViewInit,
   Component,
+  DestroyRef,
   ElementRef,
   inject,
   OnDestroy,
@@ -8,7 +9,7 @@ import {
 } from '@angular/core';
 import { CatalogStateService } from '../../core/services/products-state.service';
 import { H2TitleComponent } from '../../shared/ui-elems/typography/h2-title/h2-title.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ProductCardListComponent } from '../../shared/components/product-cards/product-card-list/product-card-list.component';
 import { ProductCardComponent } from '../../shared/components/product-cards/product-card/product-card.component';
 import { LoaderComponent } from '../../shared/components/loader/loader.component';
@@ -27,7 +28,8 @@ import {
   MatSidenavModule,
 } from '@angular/material/sidenav';
 import { BreadcrumbsComponent } from '../../shared/components/breadcrumbs/breadcrumbs.component';
-import { Breadcrumb } from '../../shared/components/breadcrumbs/breadcrumbs.service';
+import { Breadcrumb, BreadcrumbsService } from '../../shared/components/breadcrumbs/breadcrumbs.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-products',
@@ -64,8 +66,12 @@ export class ProductsComponent implements AfterViewInit, OnDestroy {
   // ];
 
   private parentScrollContainer = inject(MatSidenavContent, { optional: true });
-  private resizeObserver?: ResizeObserver;
+  private translateService = inject(TranslateService)
+  private destroyRef = inject(DestroyRef)
+  private breadcrumbsService = inject(BreadcrumbsService)
   stateService = inject(CatalogStateService);
+
+  private resizeObserver?: ResizeObserver;
 
   products = this.stateService.products;
   pagination = this.stateService.pagination;
@@ -84,6 +90,27 @@ export class ProductsComponent implements AfterViewInit, OnDestroy {
 
     this.stateService.setFiltersSidebar(this.sidenav)
 
+    this.defineBreadcrumbs()
+
+  }
+
+  private defineBreadcrumbs() {
+    this.translateService
+      .stream('breadcrumbs')
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(brcrs => {
+        const breadcrumbs: Breadcrumb[] = [
+          {
+            label: brcrs.homepage.name,
+            url: brcrs.homepage.url,
+            icon: 'home',
+          },
+          {
+            label: brcrs.products.name,
+          },
+        ]
+        this.breadcrumbsService.setBreadcrumbs(breadcrumbs)
+      })
   }
 
   private setResizeObserver() {

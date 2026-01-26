@@ -6,6 +6,7 @@ import {
   Observable,
   retry,
   take,
+  tap,
   throwError,
 } from 'rxjs';
 
@@ -105,10 +106,12 @@ export class ProductsService {
   }
 
   getProductBySlug(productSlug: string): Observable<Product> {
+    console.log("🔸 productSlug:", productSlug)
     return this.apiService.getWithoutToken<Product>(`/products/${productSlug}`)
       .pipe(
         retry(1),
         take(1),
+        tap((prod) => console.log(prod)),
         catchError((err) => {
           console.log(err);
           return throwError(() => err);

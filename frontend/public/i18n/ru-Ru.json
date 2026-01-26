@@ -3,6 +3,16 @@
     "meta-title": "FRESHOK | Главная страница",
     "meta-descr": "Добро пожаловать в FRESHOK онлайн-маркет. Здесь вы всегда найдете свежие и недорогие продукты."
   },
+  "breadcrumbs": {
+    "homepage": {
+      "name": "Главная",
+      "url": "/ru"
+    },
+    "products": {
+      "name": "Каталог",
+      "url": "/ru/products"
+    }
+  },
   "common": {
     "close": "Закрыть",
     "logout": "Выйти",

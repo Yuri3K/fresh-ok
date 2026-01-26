@@ -1,0 +1,15 @@
+:host {
+  ::ng-deep {
+    .mat-mdc-tab-labels{
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .mat-mdc-tab{
+      @media (max-width: 576px) {
+        max-width: 50%;
+        width: 50%;
+      }
+    }
+  }
+}

@@ -3,6 +3,16 @@
     "meta-title": "FRESHOK | Main Page",
     "meta-descr": "Welcome to the FRESHOK online marketplace. Here you can always find fresh and affordable groceries."
   },
+  "breadcrumbs": {
+    "homepage": {
+      "name": "Homepage",
+      "url": "/en"
+    },
+    "products": {
+      "name": "Catalog",
+      "url": "/en/products"
+    }
+  },
   "common": {
     "close": "Close",
     "logout": "Log Out",
