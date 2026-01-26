@@ -59,12 +59,6 @@ export class ProductsComponent implements AfterViewInit, OnDestroy {
   @ViewChild('productsContent', { read: ElementRef }) productsContent!: ElementRef;
   @ViewChild('sidenav') sidenav!: MatSidenav;
 
-  // breadcrumbs: Breadcrumb[] = [
-  //   { label: 'Каталог', url: '/catalog' },
-  //   { label: 'Электроника', url: '/catalog/electronics' },
-  //   { label: 'Смартфоны' }
-  // ];
-
   private parentScrollContainer = inject(MatSidenavContent, { optional: true });
   private translateService = inject(TranslateService)
   private destroyRef = inject(DestroyRef)

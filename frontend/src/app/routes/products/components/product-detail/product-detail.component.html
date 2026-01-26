@@ -1,6 +1,11 @@
 <app-breadcrumbs />
-@if(product().id) {
-  <app-product-tabs 
-    [product]="product()"
-  />
-}
+
+<div class="product-details">
+  <div class="container">
+    @if(product().id) {
+      <app-product-tabs 
+        [product]="product()"
+      />
+    }
+  </div>
+</div>

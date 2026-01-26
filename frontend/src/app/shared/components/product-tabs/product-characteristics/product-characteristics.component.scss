@@ -1,0 +1,14 @@
+.charactiristics{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .charactiristics__name{
+    font-weight: 700;
+  }
+}

@@ -27,14 +27,9 @@ export class ProductDetailComponent {
     { initialValue: {} as Product }
   )
 
-  productName = computed(() => {
-    return this.product()?.id
-      ? this.product()?.i18n[this.currentLang()].name
-      : ''
-
-  })
-
   constructor() {
+
+    // Формируем хлебные крошки после получения product() с сервера
     effect(() => {
       const isProduct = this.product().id
       if (isProduct) {

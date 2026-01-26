@@ -1,38 +1,40 @@
-<nav class="breadcrumbs" aria-label="Breadcrumbs">
-  <ul class="breadcrumbs__list">
-    @for(breadcrumb of breadcrumbs(); track $index) {
-      <li class="breadcrumbs__item">
-        <!-- Если элемент НЕ последний, то элемент будет ссылкой -->
-        @if(!isLast($index) && breadcrumb.url) {
-          <a 
-            [routerLink]="breadcrumb.url"
-            [queryParams]="breadcrumb.queryParams"
-            class="breadcrumbs__link"
-          >
-            <!-- Добавляем иконку, если она есть -->
-            @if(breadcrumb.icon) {
-              <mat-icon>{{breadcrumb.icon}}</mat-icon>
-            }
-            <!-- Указыаем название злебной крошки -->
-            <span class="breadcrumbs__label">{{ breadcrumb.label }}</span>
-          </a>
-          <!-- Если элемент ПОСЛЕДНИЙ, то он будет span-ом-->
-        } @else {
-          <span class="breadcrumbs__current" aria-current="page">
-            <!-- Добавляем иконку, если она есть -->
-            @if (breadcrumb.icon) {
-              <mat-icon class="breadcrumbs__icon">{{ breadcrumb.icon }}</mat-icon>
-            }
-            <!-- Указыаем название злебной крошки -->
-            <span class="breadcrumbs__label">{{ breadcrumb.label }}</span>
-          </span>
-        }
-
-        <!-- Если элемент НЕ последний, то добавляем разделитель -->
-        @if (!isLast($index)) {
-          <mat-icon class="breadcrumbs__separator">{{ separator() }}</mat-icon>
-        }
-      </li>
-    }
-  </ul>
-</nav>
+<div class="container">
+  <nav class="breadcrumbs" aria-label="Breadcrumbs">
+    <ul class="breadcrumbs__list">
+      @for(breadcrumb of breadcrumbs(); track $index) {
+        <li class="breadcrumbs__item">
+          <!-- Если элемент НЕ последний, то элемент будет ссылкой -->
+          @if(!isLast($index) && breadcrumb.url) {
+            <a 
+              [routerLink]="breadcrumb.url"
+              [queryParams]="breadcrumb.queryParams"
+              class="breadcrumbs__link"
+            >
+              <!-- Добавляем иконку, если она есть -->
+              @if(breadcrumb.icon) {
+                <mat-icon>{{breadcrumb.icon}}</mat-icon>
+              }
+              <!-- Указыаем название злебной крошки -->
+              <span class="breadcrumbs__label">{{ breadcrumb.label }}</span>
+            </a>
+            <!-- Если элемент ПОСЛЕДНИЙ, то он будет span-ом-->
+          } @else {
+            <span class="breadcrumbs__current" aria-current="page">
+              <!-- Добавляем иконку, если она есть -->
+              @if (breadcrumb.icon) {
+                <mat-icon class="breadcrumbs__icon">{{ breadcrumb.icon }}</mat-icon>
+              }
+              <!-- Указыаем название злебной крошки -->
+              <span class="breadcrumbs__label">{{ breadcrumb.label }}</span>
+            </span>
+          }
+  
+          <!-- Если элемент НЕ последний, то добавляем разделитель -->
+          @if (!isLast($index)) {
+            <mat-icon class="breadcrumbs__separator">{{ separator() }}</mat-icon>
+          }
+        </li>
+      }
+    </ul>
+  </nav>
+</div>

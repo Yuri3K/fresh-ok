@@ -1,1 +1,5 @@
-<p>product-descr works!</p>
+<div class="descr">
+  @for(paragraph of content(); track $index) {
+    <p class="descr__text">{{paragraph}}</p>
+  }
+</div>

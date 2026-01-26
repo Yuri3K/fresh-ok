@@ -1,1 +1,5 @@
-<p>product-characteristics works!</p>
+<div class="charactiristics">
+  @for(item of characteristics(); track $index) {
+    <p><span class="charactiristics__name">{{item.name}}</span> {{item.value}}</p>
+  }
+</div>

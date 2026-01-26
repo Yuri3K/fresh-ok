@@ -3,7 +3,7 @@
     "meta-title": "FRESHOK | Головна сторінка",
     "meta-descr": "Ласкаво просимо на онлайн-платформу FRESHOK. Тут ви завжди знайдете свіжі та недорогі продукти."
   },
-    "breadcrumbs": {
+  "breadcrumbs": {
     "homepage": {
       "name": "Головна",
       "url": "/uk"
@@ -251,6 +251,15 @@
     }
   },
   "product-page": {
+    "opinions": "Відгуки наших клієнтів",
+    "leave-review": "Залишити відгук",
+    "your-tating": "Ваша оцінка*",
+    "form": {
+      "your-review": "Ваш відгук*",
+      "name": "Ім’я",
+      "email": "Email*",
+      "agreement": "Я погоджуюся з політикою обробки моїх даних"
+    },
     "tabs": {
       "labels": [
         {

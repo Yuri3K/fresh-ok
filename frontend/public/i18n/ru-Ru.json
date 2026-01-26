@@ -251,6 +251,15 @@
     }
   },
   "product-page": {
+    "opinions": "Мнения наших клиентов",
+    "leave-review": "Оставить отзыв",
+    "your-tating": "Ваша оченка*",
+    "form": {
+      "your-review": "Ваш отзыв*",
+      "name": "Имя",
+      "email": "Email*",
+      "agreement": "Я согласен с политикой обработки моих данных"
+    },
     "tabs": {
       "labels": [
         {

@@ -251,6 +251,15 @@
     }
   },
   "product-page": {
+    "opinions": "Our customers' opinions",
+    "leave-review": "Leave a review",
+    "your-tating": "Your rating*",
+    "form": {
+      "your-review": "Your review*",
+      "name": "Name",
+      "email": "Email*",
+      "agreement": "I agree with the data processing policy"
+    },
     "tabs": {
       "labels": [
         {

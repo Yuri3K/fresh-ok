@@ -20,7 +20,7 @@ export interface Product {
   hasDiscount: boolean;
   i18n: Record<LangCode, ProductTexts>;
   description: Record<LangCode, string>;
-  characteristics: Record<LangCode, Record<string, string>>;
+  characteristics: Record<LangCode, CharacteristicItem>;
   isActive: boolean;
   isHit: boolean;
   isNew: boolean;
@@ -33,6 +33,11 @@ export interface Product {
   reviews: Review[];
   createdAt: string;
   updatedAt: string;
+}
+
+export interface CharacteristicItem {
+  name: string,
+  value: string
 }
 
 export interface Review {

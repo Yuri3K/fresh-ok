@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
 @Component({
   selector: 'app-product-descr',
@@ -7,5 +7,12 @@ import { Component, input } from '@angular/core';
   styleUrl: './product-descr.component.scss'
 })
 export class ProductDescrComponent {
-  descr = input.required()
+  descr = input.required<string>()
+
+  content = computed(() => {
+    const parser = new DOMParser()
+    const doc = parser.parseFromString(this.descr(), 'text/html')
+    
+    return Array.from(doc.querySelectorAll('p')).map(par => par.textContent?.trim() || '')
+  })
 }
