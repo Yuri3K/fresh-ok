@@ -1,1 +1,17 @@
-<p>product-reviews works!</p>
+@let translations = ('product-page' | translate);
+
+<div class="reviews">
+  <app-h4-title [text]="translations.opinions"/>
+
+  <div class="reviews__cards">
+    @for(review of sortedReviews(); track $index) {
+      <app-review-card 
+        [review]="review"
+      />
+    }
+  </div>
+
+  <app-h4-title [text]="translations['leave-review']"/>
+
+  <app-review-form />
+</div>

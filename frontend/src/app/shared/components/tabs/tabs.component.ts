@@ -1,4 +1,4 @@
-import { Component, contentChildren } from '@angular/core';
+import { Component, contentChildren, signal } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { TabsDirective } from './tabs.directive';
 import { NgTemplateOutlet } from '@angular/common';
@@ -11,4 +11,10 @@ import { NgTemplateOutlet } from '@angular/common';
 })
 export class TabsComponent {
   tabs = contentChildren(TabsDirective)
+
+  selectedIndex = signal(0)
+
+  onTabChange(index: number) {
+    this.selectedIndex.set(index)
+  }
 }

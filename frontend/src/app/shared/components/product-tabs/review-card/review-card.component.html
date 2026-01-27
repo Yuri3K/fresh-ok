@@ -1,1 +1,28 @@
-<p>review-card works!</p>
+<div class="review">
+  <div class="review__header">
+    <div class="review__useravatar">
+      <img 
+        [src]="avatar()" 
+        [alt]="review().userName"
+        width="70"
+        height="70"
+      >
+    </div>
+
+    <div class="review__user">
+      <div class="review__username">{{review().userName}}</div>
+      <div class="review__date">{{date() | date:'dd.MM.yyyy' }}</div>
+    </div>
+
+    <div class="review__rate">
+      @for(start of [].constructor(5); track $index) {
+        @if($index + 1 > review().rating) {
+          <mat-icon class="gray">star</mat-icon>
+        } @else {
+          <mat-icon class="yellow">star</mat-icon>
+        }
+      }
+    </div>
+  </div>
+  <p class="review__text">{{review().text}}</p>
+</div>

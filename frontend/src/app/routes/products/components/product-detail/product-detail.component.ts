@@ -6,6 +6,7 @@ import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { Breadcrumb, BreadcrumbsService } from '../../../../shared/components/breadcrumbs/breadcrumbs.service';
 import { TranslateService } from '@ngx-translate/core';
 import { GetCurrentLangService } from '../../../../core/services/get-current-lang.service';
+import { ProductReviewsComponent } from '../../../../shared/components/product-tabs/product-reviews/product-reviews.component';
 @Component({
   selector: 'app-product-detail',
   imports: [

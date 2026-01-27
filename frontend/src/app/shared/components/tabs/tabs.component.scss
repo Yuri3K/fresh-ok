@@ -1,4 +1,7 @@
 :host {
+  --mat-tab-header-active-label-text-color: var(--mat-sys-primary);
+  --mat-tab-header-active-focus-label-text-color: var(--mat-sys-primary);
+
   .tab__content {
     padding-top: 50px;
     font-size: 1rem;
