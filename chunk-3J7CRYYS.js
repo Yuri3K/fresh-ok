@@ -1,0 +1,2 @@
+import{$a as n,Kb as o,Lb as a,ec as s,gc as p,nb as i}from"./chunk-UGBA3IA3.js";var l=class e{text;static \u0275fac=function(t){return new(t||e)};static \u0275cmp=i({type:e,selectors:[["app-h2-title"]],inputs:{text:"text"},decls:2,vars:1,template:function(t,r){t&1&&(o(0,"h2"),s(1),a()),t&2&&(n(),p(" ",r.text,`
+`))},styles:["h2[_ngcontent-%COMP%]{font-family:Ruda,Arial,Helvetica,sans-serif;font-size:2rem;line-height:1.4;letter-spacing:3px;font-weight:500;text-transform:uppercase}@media (max-width: 768px){h2[_ngcontent-%COMP%]{font-size:1.5rem}}"]})};export{l as a};

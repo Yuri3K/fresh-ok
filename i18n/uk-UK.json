@@ -1,0 +1,323 @@
+{
+  "seo": {
+    "meta-title": "FRESHOK | Головна сторінка",
+    "meta-descr": "Ласкаво просимо на онлайн-платформу FRESHOK. Тут ви завжди знайдете свіжі та недорогі продукти."
+  },
+  "breadcrumbs": {
+    "homepage": {
+      "name": "Головна",
+      "url": "/uk"
+    },
+    "products": {
+      "name": "Каталог",
+      "url": "/uk/products"
+    }
+  },
+  "common": {
+    "close": "Закрити",
+    "logout": "Вийти",
+    "login": "Увійти",
+    "show-more": "Показати ще",
+    "back-to-homepage": "Повернуться на домашню сторiнку",
+    "forms": {
+      "email": {
+        "enter-email": "Введіть свою електронну пошту",
+        "email-hint": "Підказка: example@gmail.com",
+        "email-error-required": "Будь ласка, введіть електронну пошту",
+        "email-error-invalid": "Будь ласка, введіть коректну електронну пошту",
+        "email-error-exists": "Ця електронна пошта вже зареєстрована"
+      },
+      "pwd": {
+        "enter-pwd": "Введіть свій пароль",
+        "show-pwd": "Показати пароль",
+        "hide-pwd": "Приховати пароль",
+        "pwd-hint": "Підказка: має бути не менше 6 символів",
+        "pwd-error-required": "Будь ласка, введіть пароль",
+        "pwd-error-minlength": "Пароль має бути не менше {{minlength}} символів. Зараз {{currentlength}} символ(ів)"
+      },
+      "name": {
+        "enter-nick": "Введіть нікнейм",
+        "nick-placeholder": "Наприклад: Користувач",
+        "nick-hint": "Підказка: має бути не менше 2 символів",
+        "nick-error-required": "Будь ласка, введіть нікнейм",
+        "nick-error-minlength": "Нікнейм має бути не менше {{minlength}} символів. Зараз {{currentlength}} символ"
+      }
+    }
+  },
+  "errors": {
+    "fetch-collection-user": "Сталася помилка при отриманні користувача з колекції"
+  },
+  "header": {
+    "user": {
+      "alt": "Аватар",
+      "greetings": "Привіт, {{name}}",
+      "privacy": "Політика конфіденційності",
+      "terms": "Умови використання"
+    }
+  },
+  "header-market": {
+    "logo": {
+      "title": "Freshok",
+      "subtitle": "онлайн-маркет"
+    },
+    "catalog": {
+      "title": "Каталог товарів"
+    },
+    "search-input": {
+      "placeholder": "Знайти в маркеті",
+      "submit": "Знайти"
+    }
+  },
+  "login-page": {
+    "title": "Вхід",
+    "login-with-google": "Продовжити з Google",
+    "go-to-register": {
+      "prefix": "Ще не зареєстровані? Перейдіть на сторінку ",
+      "link": "реєстрації",
+      "suffix": "."
+    }
+  },
+  "register-page": {
+    "title": "Реєстрація",
+    "register-error": "Не вдалося зареєструвати користувача \"{{email}}\"",
+    "go-to-login": {
+      "prefix": "Вже маєте обліковий запис? Перейдіть на сторінку ",
+      "link": "входу",
+      "suffix": "."
+    }
+  },
+  "homepage": {
+    "slider": [
+      {
+        "title": "Свіжість прямо до ваших дверей",
+        "subtitle": "ЗНИЖКА 50%",
+        "descr": "Тільки з 7 по 13 липня — знижки до 50% на сезонні фрукти та овочі. Не пропустіть!",
+        "btn": "Купити зараз",
+        "link": "/products?category=all&page=1&sort=newest&limit=6&badge=discount",
+        "imageUrl": "slider/slide1"
+      },
+      {
+        "title": "Зійдіть з розуму від помідорів",
+        "subtitle": "Акція: 3 кг за ціною 1",
+        "descr": "З 12 по 15 липня насолоджуйтесь знижками на домашні, соковиті помідори!",
+        "btn": "Купити зараз",
+        "link": "/products?category=vegetables&page=1&sort=newest&limit=6&badge=discount",
+        "imageUrl": "slider/slide2"
+      },
+      {
+        "title": "Зробіть так, щоб усі заздрили",
+        "subtitle": "Знижки на зелень",
+        "descr": "",
+        "btn": "Купити зараз",
+        "link": "/products?category=greens&page=1&sort=newest&limit=6&badge=discount",
+        "imageUrl": "slider/slide3"
+      }
+    ],
+    "advantages": [
+      {
+        "scr": "advantages/scooter",
+        "title": "Безкоштовна доставка",
+        "descr": "Для замовлень на суму від 500<span class='currency'>₴</span>"
+      },
+      {
+        "scr": "advantages/return-box",
+        "title": "Повернення товару",
+        "descr": "Якщо товари були зіпсовані"
+      },
+      {
+        "scr": "advantages/24-hours",
+        "title": "Підтримка 24/7",
+        "descr": "Найкращі оператори"
+      }
+    ],
+    "hit-products": {
+      "title": "Топові товари",
+      "not-found": "За вашим фільтром товарів не знайдено"
+    },
+    "promo": {
+      "title": "Акції",
+      "filters": [
+        {
+          "name": "Всі товари",
+          "selector": "discount",
+          "order": 1
+        },
+        {
+          "name": "Новинки",
+          "selector": "new",
+          "order": 2
+        },
+        {
+          "name": "Хіти",
+          "selector": "hit",
+          "order": 3
+        }
+      ]
+    },
+    "news": {
+      "title": "Наші новини",
+      "all-new": "Усі новини",
+      "route-page": "uk/all-news",
+      "newsItems": [
+        {
+          "src": "news/strawberry",
+          "alt": "Розпродаж фруктів",
+          "descr": "Подія цього літа: розпродаж сезонних фруктів в онлайн-маркеті FRESHOK. Поспішай, поки все не розібрали!",
+          "date": {
+            "day": "15",
+            "month": "Липень"
+          }
+        },
+        {
+          "src": "news/mango",
+          "alt": "Чудовий вибір манго",
+          "descr": "Чудовий вибір манго в нашому онлайн-маркеті",
+          "date": {
+            "day": "28",
+            "month": "Травень"
+          }
+        },
+        {
+          "src": "news/papaya",
+          "alt": "Папая",
+          "descr": "Усе, що ви хотіли знати про папаю",
+          "date": {
+            "day": "20",
+            "month": "Лютий"
+          }
+        }
+      ]
+    }
+  },
+  "catalog-page": {
+    "title": "Каталог товарів",
+    "filters": {
+      "categories": {
+        "title": "Категорії"
+      },
+      "offer": {
+        "title": "Пропозиції"
+      },
+      "brand": {
+        "title": "Бренд"
+      },
+      "price": {
+        "title": "Ціна",
+        "from": "від",
+        "to": "до"
+      }
+    },
+    "sorting": {
+      "sort-by": [
+        {
+          "name": "За рейтингом",
+          "slug": "rating"
+        },
+        {
+          "name": "Спочатку дешеві",
+          "slug": "price-asc"
+        },
+        {
+          "name": "Спочатку дорогі",
+          "slug": "price-desc"
+        },
+        {
+          "name": "За датою появи",
+          "slug": "newest"
+        },
+        {
+          "name": "За абеткою А-Я",
+          "slug": "name-asc"
+        },
+        {
+          "name": "За абеткою Я-А",
+          "slug": "name-desc"
+        }
+      ],
+      "limit": [
+        {
+          "name": "по 6",
+          "slug": "6"
+        },
+        {
+          "name": "по 12",
+          "slug": "12"
+        },
+        {
+          "name": "по 18",
+          "slug": "18"
+        }
+      ]
+    }
+  },
+  "product-page": {
+    "opinions": "Відгуки наших клієнтів",
+    "leave-review": "Залишити відгук",
+    "your-tating": "Ваша оцінка*",
+    "form": {
+      "your-review": "Ваш відгук*",
+      "name": "Ім’я",
+      "email": "Email*",
+      "agreement": "Я погоджуюся з політикою обробки моїх даних"
+    },
+    "tabs": {
+      "labels": [
+        {
+          "name": "Опис",
+          "order": 1
+        },
+        {
+          "name": "Характеристики",
+          "order": 2
+        },
+        {
+          "name": "Відгуки ({{quantity}})",
+          "order": 3
+        }
+      ]
+    }
+  },
+  "footer": {
+    "address": "Київ, вул. Шевченка, 1",
+    "hotline": "Гаряча лінія +38(099)-445-35-63",
+    "subscribe": {
+      "title": "Слідкуйте за нашими акціями",
+      "placeholder": "email@example.com",
+      "submit": "Підписатися"
+    },
+    "links": [
+      {
+        "text": "Про нас",
+        "route": "/about"
+      },
+      {
+        "text": "Оплата і доставка",
+        "route": "/payment-delivery"
+      },
+      {
+        "text": "Відгуки",
+        "route": "/reviews"
+      },
+      {
+        "text": "Контакти",
+        "route": "/contacts"
+      },
+      {
+        "text": "Вакансії",
+        "route": "/careers"
+      },
+      {
+        "text": "Новини",
+        "route": "/news"
+      },
+      {
+        "text": "Публічна оферта",
+        "route": "/public-offer"
+      },
+      {
+        "text": "Акції",
+        "route": "/promotions"
+      }
+    ]
+  }
+}
