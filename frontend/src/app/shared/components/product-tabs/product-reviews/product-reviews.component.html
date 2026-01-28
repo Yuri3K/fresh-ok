@@ -11,7 +11,10 @@
     }
   </div>
 
-  <app-h4-title [text]="translations['leave-review']"/>
-
-  <app-review-form />
+  <app-btn-flat
+    borderRarius="6px"
+    [btnText]="translations['leave-review']"
+    bgColor="var(--mat-sys-primary-container)"
+    (click)="addReview()"
+  />
 </div>

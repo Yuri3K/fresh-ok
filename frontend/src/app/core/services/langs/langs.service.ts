@@ -4,7 +4,7 @@ import { ApiService } from '../api.service';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../../../../environments/environment';
 import { Location } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { defineLanguageUtil } from './utils/define-langiage.util';
 
 export type LangCode = 'en' | 'ru' | 'uk';
@@ -23,6 +23,7 @@ export class LangsService {
   private readonly translateService = inject(TranslateService)
   private location = inject(Location)
   private router = inject(Router)
+  private route = inject(ActivatedRoute)
 
   private readonly langsSubject = new BehaviorSubject<Lang[]>([])
   private readonly currentLangSubject = new BehaviorSubject<Lang | null>(null)
@@ -104,7 +105,13 @@ export class LangsService {
       .subscribe(() => {
         this.setCurrentLang(lang); // сохраняем объект с данными про выбранный язык в currentLangSubject
         localStorage.setItem(environment.lsLangKey, lang.name); // записываем в LS en-US / ru-RU / uk-UK
-        this.router.navigateByUrl(segments.join('/')); // переходим по новому URL
+        // this.router.navigateByUrl(segments.join('/')); // переходим по новому URL
+        this.router.navigate([], {
+          relativeTo: this.route,
+          queryParamsHandling: 'merge',
+          skipLocationChange: false, // чтобы страница не скроллилась наверх при изменении языка
+          replaceUrl: true // чтобы страница не скроллилась наверх при изменении языка
+        })
       });
   }
 

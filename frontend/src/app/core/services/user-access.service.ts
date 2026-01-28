@@ -15,9 +15,7 @@ export interface dbUser {
   providedIn: 'root'
 })
 export class UserAccessService {
-  private readonly apiService = inject(ApiService
-
-  )
+  private readonly apiService = inject(ApiService)
   private readonly dbUserSubject = new BehaviorSubject<dbUser | null | undefined>(undefined)
 
   readonly dbUser$ = this.dbUserSubject.asObservable()

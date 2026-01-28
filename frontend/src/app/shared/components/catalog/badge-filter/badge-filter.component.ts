@@ -94,12 +94,5 @@ export class BadgeFilterComponent {
 
     // Используем метод сервиса, который автоматически сбросит page на 1
     this.stateService.setBadges(selectedBadges);
-
-    // if(!selectedBadges.length) return
-    // this.router.navigate([], {
-    //   relativeTo: this.route,
-    //   queryParams: {badge: selectedBadges.join(',')},
-    //   queryParamsHandling: 'merge'
-    // })
   }
 }
