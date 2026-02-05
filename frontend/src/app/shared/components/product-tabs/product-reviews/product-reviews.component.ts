@@ -1,4 +1,4 @@
-import { Component, computed, inject, input } from '@angular/core';
+import { Component, computed, effect, inject, input } from '@angular/core';
 import { Review } from '../../../../core/services/products.service';
 import { ReviewCardComponent } from '../review-card/review-card.component';
 import { TranslateModule } from '@ngx-translate/core';
@@ -36,10 +36,29 @@ export class ProductReviewsComponent {
     { initialValue: null }
   )
 
+  constructor() {
+    effect(() => {
+      const user = this.user()
+      const loginPopupRef = this.dialog.openDialogs
+        .find(d => d.componentInstance instanceof LoginPopupComponent)
+      console.log("🔸 isLoginPopupOpened:", loginPopupRef)
+
+      if (user) {
+        console.log("USER EXISTS!!!")
+        if (loginPopupRef) {
+          loginPopupRef.close()
+          this.addReview()
+        }
+      }
+    })
+  }
+
   addReview() {
     if (!this.user()) {
+      localStorage.setItem('saved-url', '/en/products/pineapple')
       const loginDialogRef = this.dialog.open(LoginPopupComponent, {
         panelClass: 'login-dialog',
+        maxWidth: '700px',
         // width: '100vw',
         // position: {
         //   bottom: '0',
@@ -58,13 +77,13 @@ export class ProductReviewsComponent {
     } else {
       const reviewDialogRef = this.dialog.open(LeaveReviewPopupComponent, {
         panelClass: 'review-dialog',
+        // maxWidth: '500px',
         // width: '100vw',
         // position: {
         //   bottom: '0',
         //   left: '0',
         // },
         data: {
-          maxWidth: '500px',
         }
       })
 

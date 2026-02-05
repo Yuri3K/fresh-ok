@@ -5,7 +5,6 @@ import { Error404Component } from './shared/components/404/404.component';
 import { LangGuard } from './core/guards/lang.guard';
 import { inject } from '@angular/core';
 import { LangsService } from './core/services/langs/langs.service';
-import { filter, map, take } from 'rxjs';
 
 export const routes: Routes = [
   {
