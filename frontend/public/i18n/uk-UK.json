@@ -41,6 +41,9 @@
         "nick-hint": "Підказка: має бути не менше 2 символів",
         "nick-error-required": "Будь ласка, введіть нікнейм",
         "nick-error-minlength": "Нікнейм має бути не менше {{minlength}} символів. Зараз {{currentlength}} символ"
+      },
+      "textarea": {
+        "textarea-error-required": "Будь-ласка, напишіть відгук"
       }
     }
   },
@@ -253,7 +256,7 @@
   "product-page": {
     "opinions": "Відгуки наших клієнтів",
     "leave-review": "Залишити відгук",
-    "your-tating": "Ваша оцінка*",
+    "your-rating": "Ваша оцінка*",
     "form": {
       "your-review": "Ваш відгук*",
       "name": "Ім’я",

@@ -1,0 +1,26 @@
+.stars {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  
+}
+
+.stars__selector {
+  display: flex;
+  align-items: center;
+}
+
+.star {
+  display: flex;
+  padding: 3px;
+  
+  .mat-icon {
+    color: gray;
+  }
+
+  &.active {
+    .mat-icon {
+      color: yellow;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+<div class="stars">
+  <span class="stars__text">{{'product-page.your-rating' | translate}}</span>
+
+
+  <div class="stars__selector">
+    @for(star of [].constructor(starsCount()); track $index) {
+      <button
+        #star
+        type="button"
+        class="star"
+        [class.active]="isActive($index)"
+        (click)="starClicked($index + 1)"
+        (mouseenter)="starHovered($index)"
+        (mouseleave)="starLeave()"
+      >
+        <mat-icon>star</mat-icon>
+      </button>
+    }
+  </div>
+</div>

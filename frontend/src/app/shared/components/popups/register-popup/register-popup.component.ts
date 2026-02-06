@@ -4,12 +4,14 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LoginPopupComponent } from '../login-popup/login-popup.component';
 import { RegisterComponent } from '../../../../routes/register/register.component';
 import { BtnIconComponent } from '../../../ui-elems/buttons/btn-icon/btn-icon.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register-popup',
   imports: [
     RegisterComponent,
-    BtnIconComponent
+    BtnIconComponent,
+    TranslateModule,
   ],
   templateUrl: './register-popup.component.html',
   styleUrl: './register-popup.component.scss'
@@ -17,7 +19,7 @@ import { BtnIconComponent } from '../../../ui-elems/buttons/btn-icon/btn-icon.co
 export class RegisterPopupComponent {
   heroImg = `${MEDIA_URL}heroes/alex`
 
-  private dialogRef = inject(MatDialogRef<RegisterPopupComponent>)
+  dialogRef = inject(MatDialogRef<RegisterPopupComponent>)
   private dialog = inject(MatDialog)
 
   goToLoginPopup() {

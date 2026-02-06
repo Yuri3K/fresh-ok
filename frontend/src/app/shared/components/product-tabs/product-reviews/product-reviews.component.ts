@@ -9,6 +9,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { LoginPopupComponent } from '../../popups/login-popup/login-popup.component';
 import { LeaveReviewPopupComponent } from '../../popups/leave-review-popup/leave-review-popup.component';
 import { BtnFlatComponent } from '../../../ui-elems/buttons/btn-flat/btn-flat.component';
+import { RegisterPopupComponent } from '../../popups/register-popup/register-popup.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-reviews',
@@ -26,6 +28,7 @@ export class ProductReviewsComponent {
 
   private readonly userService = inject(UserAccessService)
   private readonly dialog = inject(MatDialog)
+  private readonly router = inject(Router)
 
   sortedReviews = computed(() => this.reviews().sort((a, b) =>
     b.createdAt._seconds - a.createdAt._seconds
@@ -39,14 +42,17 @@ export class ProductReviewsComponent {
   constructor() {
     effect(() => {
       const user = this.user()
+
       const loginPopupRef = this.dialog.openDialogs
         .find(d => d.componentInstance instanceof LoginPopupComponent)
-      console.log("🔸 isLoginPopupOpened:", loginPopupRef)
+      const registerPopupRef = this.dialog.openDialogs
+        .find(d => d.componentInstance instanceof RegisterPopupComponent)
+      
 
       if (user) {
-        console.log("USER EXISTS!!!")
-        if (loginPopupRef) {
-          loginPopupRef.close()
+        if (loginPopupRef || registerPopupRef) {
+          loginPopupRef?.close()
+          registerPopupRef?.close()
           this.addReview()
         }
       }
@@ -55,30 +61,18 @@ export class ProductReviewsComponent {
 
   addReview() {
     if (!this.user()) {
-      localStorage.setItem('saved-url', '/en/products/pineapple')
-      const loginDialogRef = this.dialog.open(LoginPopupComponent, {
+      const currentUrl = this.router.url
+      localStorage.setItem('saved-url', currentUrl)
+      this.dialog.open(LoginPopupComponent, {
         panelClass: 'login-dialog',
         maxWidth: '700px',
-        // width: '100vw',
-        // position: {
-        //   bottom: '0',
-        //   left: '0',
-        // },
-        data: {
-
-        }
-      })
-
-      loginDialogRef.afterClosed().subscribe((result) => {
-        if (result) {
-
-        }
+        width: '100vw',
       })
     } else {
       const reviewDialogRef = this.dialog.open(LeaveReviewPopupComponent, {
         panelClass: 'review-dialog',
-        // maxWidth: '500px',
-        // width: '100vw',
+        maxWidth: '700px',
+        width: '100vw',
         // position: {
         //   bottom: '0',
         //   left: '0',

@@ -41,6 +41,9 @@
         "nick-hint": "Подсказка: должно быть не менее 2 символов",
         "nick-error-required": "Пожалуйста, введите никнейм",
         "nick-error-minlength": "Никнейм должен быть не менее {{minlength}} символов. Сейчас {{currentlength}} символов"
+      },
+      "textarea": {
+        "textarea-error-required": "Пожалуйста, напишите отзыв"
       }
     }
   },
@@ -253,7 +256,7 @@
   "product-page": {
     "opinions": "Мнения наших клиентов",
     "leave-review": "Оставить отзыв",
-    "your-tating": "Ваша оченка*",
+    "your-rating": "Ваша оценка*",
     "form": {
       "your-review": "Ваш отзыв*",
       "name": "Имя",

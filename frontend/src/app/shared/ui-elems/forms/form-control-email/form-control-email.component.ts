@@ -22,6 +22,4 @@ export class FormControlEmailComponent {
   @Input() label?: string
   @Input() placeholder = ''
   @Input() hint?: string
-  @Input() errorEmailRequired?: string
-  @Input() errorEmailInvalid?: string
 }

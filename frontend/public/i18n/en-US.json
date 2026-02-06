@@ -41,6 +41,9 @@
         "nick-hint": "Hint: must be at least 2 characters long",
         "nick-error-required": "Please enter nickname",
         "nick-error-minlength": "Nickname must be at least {{minlength}} characters. Now is {{currentlength}} character(s)"
+      },
+      "textarea": {
+        "textarea-error-required": "Please write your review"
       }
     }
   },
@@ -253,7 +256,7 @@
   "product-page": {
     "opinions": "Our customers' opinions",
     "leave-review": "Leave a review",
-    "your-tating": "Your rating*",
+    "your-rating": "Your rating*",
     "form": {
       "your-review": "Your review*",
       "name": "Name",

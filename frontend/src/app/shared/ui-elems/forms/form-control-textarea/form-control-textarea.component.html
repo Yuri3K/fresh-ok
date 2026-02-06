@@ -1,0 +1,27 @@
+@let translations = ('common.forms.textarea' | translate);
+
+<mat-form-field
+  appearance="outline"
+  class="form-control"
+>
+  @if(label()) {
+    <mat-label>{{label()}}</mat-label>
+  }
+
+  <textarea 
+    matInput
+    #input
+    (input)="onInput($event)"
+    maxlength="255"
+    [placeholder]="placeholder()"
+    [formControl]="textareaControl()"
+  ></textarea>
+
+  <mat-hint align="end">{{value().length}}/255</mat-hint>
+
+  @if(textareaControl().hasError('required') && textareaControl().touched){
+    <mat-error>
+      {{translations['textarea-error-required'] | translate}}
+    </mat-error>
+  }
+</mat-form-field>

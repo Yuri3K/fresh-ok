@@ -1,3 +1,5 @@
+@let translations = ('common.forms.email' | translate);
+
 <mat-form-field
   appearance="outline"
   class="form-control"
@@ -23,19 +25,19 @@
 
   @if(emailControl.hasError('required') && emailControl.touched){
     <mat-error>
-      {{'common.forms.email.email-error-required' | translate}}
+      {{translations['email-error-required'] | translate}}
     </mat-error>
   }
 
   @if(emailControl.hasError('email') && emailControl.touched) {
     <mat-error>
-      {{'common.forms.email.email-error-invalid' | translate}}
+      {{translations['email-error-invalid'] | translate}}
     </mat-error>
   }
 
   @if(emailControl.hasError('emailExists')) {
     <mat-error>
-      {{'common.forms.email.email-error-exists' | translate}}
+      {{translations['email-error-exists'] | translate}}
     </mat-error>
   }
 

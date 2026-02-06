@@ -1,0 +1,15 @@
+@use 'mixins/castom-scrollbar' as *;
+
+mat-form-field {
+  width: 100%;
+  
+  textarea {
+    min-height: 134px;
+    resize: none;
+
+    @include custom-scrollbar(
+      var(--mat-sys-outline),
+      var(--mat-sys-primary-container),
+      0,)
+  }
+}

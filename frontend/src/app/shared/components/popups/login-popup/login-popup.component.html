@@ -1,6 +1,10 @@
+@let translations = ('common' | translate);
+
 <div class="login-popup">
   <app-btn-icon 
     iconName="close"
+    (click)="dialogRef.close()"
+    [tooltipText]="translations.close"
   />
 
   <div class="login-popup__hero">

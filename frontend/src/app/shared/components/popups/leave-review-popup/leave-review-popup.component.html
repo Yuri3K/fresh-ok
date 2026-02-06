@@ -1,1 +1,14 @@
-<p>leave-review-popup works!</p>
+<div class="review">
+  <app-btn-icon 
+    class="review__close"
+    iconName="close"
+    [tooltipText]="'common.close' | translate"
+    (click)="dialogRef.close()"
+  />
+
+  <app-h3-title 
+    [text]="'product-page.leave-review' | translate"
+  />
+
+  <app-review-form />
+</div>

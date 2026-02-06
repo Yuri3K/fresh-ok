@@ -17,10 +17,8 @@ export class GoToRegisterComponent {
 
   onRegisterClick(e: MouseEvent) {
     if(!this.isPopup()) return
-
-    console.log("POPUP")
+    
     e.preventDefault();
     this.openRegisterPopup.emit()
   }
 }
-// zcxklj zxklcjv

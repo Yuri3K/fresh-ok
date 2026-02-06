@@ -1,1 +1,40 @@
-<p>review-form works!</p>
+@if(submitting()) {
+  <app-loader />
+} @else {
+  <form
+    [formGroup]="reviewForm"
+    (ngSubmit)="onSubmit()"
+    class="review__form"
+  >
+    <app-form-control-rating 
+      [starsControl]="starsControl"
+    />
+    
+    <div class="review__fields">
+      <div class="review__left">
+        <div class="review__control">
+          <span class="review__label">{{'product-page.form.your-review' | translate}}</span>
+          <app-form-control-textarea [textareaControl]="textareaControl" />
+        </div>
+      </div>
+
+      <div class="review__right">
+        <div class="review__control">
+          <span class="review__label">{{'product-page.form.name' | translate}}</span>
+          <app-form-control-name [nameControl]="nameControl" />
+        </div>
+    
+        <div class="review__control">
+          <span class="review__label">{{'product-page.form.email' | translate}}</span>
+          <app-form-control-email [emailControl]="emailControl" />
+        </div>
+      </div>
+    </div>
+
+    <app-btn-flat 
+      [btnText]="'product-page.leave-review' | translate"
+      type="submit"
+      [btnDisabled]="reviewForm.invalid"
+    />
+  </form>
+}
