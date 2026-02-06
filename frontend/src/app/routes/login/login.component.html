@@ -7,5 +7,8 @@
   
   <app-google-btn />
 
-  <app-go-to-register />
+  <app-go-to-register 
+    (openRegisterPopup)="switchToRegisterPopup()"
+    [isPopup]="isPopup()"
+  />
 </div>

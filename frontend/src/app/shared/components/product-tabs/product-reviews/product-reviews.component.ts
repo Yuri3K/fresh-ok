@@ -95,5 +95,3 @@ export class ProductReviewsComponent {
     }
   }
 }
-
-// sdf asd f 

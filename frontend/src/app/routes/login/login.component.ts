@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { H2TitleComponent } from "../../shared/ui-elems/typography/h2-title/h2-title.component";
 import { TranslateModule } from '@ngx-translate/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -20,5 +20,10 @@ import { GoogleBtnComponent } from '../../shared/ui-elems/buttons/google-btn/goo
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+  isPopup = input(false)
+  openRegisterPopup = output<void>()
 
+  switchToRegisterPopup() {
+    this.openRegisterPopup.emit()
+  }
 }

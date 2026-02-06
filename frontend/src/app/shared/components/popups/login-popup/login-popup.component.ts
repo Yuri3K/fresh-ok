@@ -2,8 +2,9 @@ import { Component, inject } from '@angular/core';
 import { MEDIA_URL } from '../../../../core/urls';
 import { BtnIconComponent } from '../../../ui-elems/buttons/btn-icon/btn-icon.component';
 import { LoginComponent } from '../../../../routes/login/login.component';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { UserAccessService } from '../../../../core/services/user-access.service';
+import { MatDialogRef, MatDialog} from '@angular/material/dialog';
+import { RegisterPopupComponent } from '../register-popup/register-popup.component';
+// import { UserAccessService } from '../../../../core/services/user-access.service';
 
 @Component({
   selector: 'app-login-popup',
@@ -15,12 +16,17 @@ import { UserAccessService } from '../../../../core/services/user-access.service
   styleUrl: './login-popup.component.scss'
 })
 export class LoginPopupComponent {
-  private userAccessService = inject(UserAccessService)
-
   heroImg = `${MEDIA_URL}heroes/donna`
 
-  user = toSignal(
-    this.userAccessService.dbUser$,
-    {initialValue: null}
-  )
+  private dialogRef = inject(MatDialogRef<LoginPopupComponent>)
+  private dialog = inject(MatDialog)
+
+  goToRegisterPopup() {
+    this.dialogRef.close()
+    this.dialog.open(RegisterPopupComponent, {
+      panelClass: 'register-dialog',
+      maxWidth: '700px',
+      width: '100vw'
+    })
+  }
 }

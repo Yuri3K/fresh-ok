@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -12,5 +12,15 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './go-to-register.component.scss'
 })
 export class GoToRegisterComponent {
+  isPopup = input(false)
+  openRegisterPopup = output<void>()
 
+  onRegisterClick(e: MouseEvent) {
+    if(!this.isPopup()) return
+
+    console.log("POPUP")
+    e.preventDefault();
+    this.openRegisterPopup.emit()
+  }
 }
+// zcxklj zxklcjv

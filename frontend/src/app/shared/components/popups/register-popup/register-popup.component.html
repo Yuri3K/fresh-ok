@@ -1,9 +1,9 @@
-<div class="login-popup">
+<div class="register-popup">
   <app-btn-icon 
     iconName="close"
   />
 
-  <div class="login-popup__hero">
+  <div class="register-popup__hero">
     <img 
       [src]="heroImg" 
       alt="hero"
@@ -12,8 +12,8 @@
     >
   </div>
 
-  <app-login 
-    (openRegisterPopup)="goToRegisterPopup()"
+  <app-register 
+    (openLoginPopup)="goToLoginPopup()"
     [isPopup]="true"
   />
 </div>

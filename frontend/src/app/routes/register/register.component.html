@@ -3,7 +3,10 @@
     [text]="'register-page.title' | translate"
   />
   <app-register-form />
-  <app-go-to-login />
+  <app-go-to-login 
+    (openLoginPopup)="switchToLoginPopup()"
+    [isPopup]="isPopup()"
+  />
 
   <app-google-btn />
 </div>

@@ -1,7 +1,11 @@
   <p>
     {{'login-page.go-to-register.prefix' | translate}}
     
-    <a [routerLink]="['/register']">
+    <a 
+      class="register__link"
+      [routerLink]="isPopup() ? null : ['/register']"
+      (click)="onRegisterClick($event)"
+    >
       {{'login-page.go-to-register.link' | translate}}
     </a>
     
