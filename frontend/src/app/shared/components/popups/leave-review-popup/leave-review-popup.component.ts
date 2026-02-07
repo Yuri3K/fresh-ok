@@ -20,9 +20,4 @@ import { dbUser } from '../../../../core/services/user-access.service';
 export class LeaveReviewPopupComponent {
   readonly dialogRef = inject(MatDialogRef)
   readonly data = inject(MAT_DIALOG_DATA);
-  
-  ngOnInit() {
-    console.log("🔸 MAT_DIALOG_DATA:", this.data.user)
-    
-  }
 }

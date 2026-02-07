@@ -1,7 +1,7 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NavigationStart, Router } from '@angular/router';
-import { filter, tap } from 'rxjs';
+import { filter } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,13 +16,11 @@ export class RestoreScrollService {
   constructor() {
     this.router.events.pipe(
       filter(event => event instanceof NavigationStart),
-      // tap(() => console.log("PREV SCROLL", this.savedScroll())),
       takeUntilDestroyed()
     ).subscribe(() => {
       if (this.scrollContainer) {
         this.savedScroll.set(this.scrollContainer.scrollTop);
       }
-      // tap(() => console.log("AFTER SCROLL", this.savedScroll()))
     });
   }
 
@@ -32,6 +30,7 @@ export class RestoreScrollService {
   }
 
   restoreScroll() {
+    if (!this.scrollContainer) return;
     const savedScroll = this.savedScroll();
 
     // Используем requestAnimationFrame, чтобы DOM успел отрендериться

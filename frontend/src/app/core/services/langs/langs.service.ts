@@ -6,6 +6,7 @@ import { environment } from '../../../../environments/environment';
 import { Location, ViewportScroller } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { defineLanguageUtil } from './utils/define-langiage.util';
+import { RestoreScrollService } from '../restore-scroll.service';
 
 export type LangCode = 'en' | 'ru' | 'uk';
 export interface Lang {
@@ -23,8 +24,7 @@ export class LangsService {
   private readonly translateService = inject(TranslateService)
   private location = inject(Location)
   private router = inject(Router)
-  private route = inject(ActivatedRoute)
-  private viewportScroller = inject(ViewportScroller);
+  private restoreScrollService = inject(RestoreScrollService)
 
   private readonly langsSubject = new BehaviorSubject<Lang[]>([])
   private readonly currentLangSubject = new BehaviorSubject<Lang | null>(null)
@@ -100,8 +100,6 @@ export class LangsService {
 
     // Заменяем сегмент языка: /en/home -> /ru/home
     segments[0] = lang.browserLang;
-    const scrollContainer = document.querySelector('.mat-sidenav-content') as HTMLElement;
-    const scrollPosition = scrollContainer?.scrollTop || 0;
 
     this.translateService.use(lang.name) // en-US, ru-RU, uk-UK
       .pipe(take(1))
@@ -113,21 +111,7 @@ export class LangsService {
         this.router.navigateByUrl(segments.join('/'), {
           skipLocationChange: false,
           replaceUrl: true
-        }).then(() => {
-          requestAnimationFrame(() => {
-            if (scrollContainer) {
-              scrollContainer.scrollTop = scrollPosition;
-            }
-          });
-        }); 
-
-
-        // this.router.navigate([], {
-        //   relativeTo: this.route,
-        //   queryParamsHandling: 'merge',
-        //   skipLocationChange: false, // чтобы страница не скроллилась наверх при изменении языка
-        //   replaceUrl: true // чтобы страница не скроллилась наверх при изменении языка
-        // })
+        }).then(() => this.restoreScrollService.restoreScroll());
       });
   }
 

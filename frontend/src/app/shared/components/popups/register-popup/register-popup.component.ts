@@ -25,7 +25,7 @@ export class RegisterPopupComponent {
   goToLoginPopup() {
     this.dialogRef.close()
     this.dialog.open(LoginPopupComponent, {
-      panelClass: 'login-dialog',
+      panelClass: ['login-dialog', 'green'],
       maxWidth: '700px',
       width: '100vw'
     })

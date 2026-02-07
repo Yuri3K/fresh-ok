@@ -40,7 +40,7 @@ export class AvatarUploadComponent {
 
   private openCropDialog(event: Event) {
     const cropDialog = this.dialog.open(AvatarCropDialogComponent, {
-      panelClass: 'crop-dialog',
+      panelClass: ['crop-dialog', 'green'],
       data: {
         event: event
       }

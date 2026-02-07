@@ -64,14 +64,13 @@ export class ProductReviewsComponent {
       const currentUrl = this.router.url
       localStorage.setItem('saved-url', currentUrl)
       this.dialog.open(LoginPopupComponent, {
-        panelClass: 'login-dialog',
+        panelClass: ['login-dialog', 'green'],
         maxWidth: '700px',
         width: '100vw',
       })
     } else {
-      console.log("🔸 this.user():", this.user())
       const reviewDialogRef = this.dialog.open(LeaveReviewPopupComponent, {
-        panelClass: 'review-dialog',
+        panelClass: ['review-dialog', 'green'],
         maxWidth: '700px',
         width: '100vw',
         // position: {

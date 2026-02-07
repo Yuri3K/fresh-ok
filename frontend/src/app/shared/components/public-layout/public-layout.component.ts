@@ -5,7 +5,7 @@ import { MatSidenavContainer, MatSidenavModule } from '@angular/material/sidenav
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { HeaderMarketComponent } from '../header-market/header-market.component';
 import { PublicFooterComponent } from '../public-footer/public-footer.component';
-import { filter, pairwise, startWith } from 'rxjs';
+import { filter} from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RestoreScrollService } from '../../../core/services/restore-scroll.service';
 
@@ -36,7 +36,6 @@ export class PublicLayoutComponent implements AfterViewInit {
 
     this.router.events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-      // pairwise(), //получаем предыдущее и текущее событие навигации
       takeUntilDestroyed(this.destroyRef),
     ).subscribe(() => {
         const scrollableElement = this.sidenavContainer.scrollable.getElementRef().nativeElement;

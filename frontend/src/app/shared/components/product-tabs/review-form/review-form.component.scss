@@ -13,7 +13,11 @@
   width: 100%;
 
   .review__left{
-    width: 100%;
+    flex: 1;
+  }
+
+  .review__right{
+    flex: 1;
   }
 }
 

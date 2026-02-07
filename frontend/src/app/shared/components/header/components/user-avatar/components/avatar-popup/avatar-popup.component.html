@@ -1,12 +1,13 @@
 @let dbUser = (dbUser$ | async);
 
 <mat-card 
-  class="avatar-popup"
+  class="avatar-popup green"
   appearance="outlined"
 >
   <app-btn-icon 
     class="avatar-popup__close"
     iconName="close" 
+    [tooltipText]="'common.close' | translate"
     [ariaLabel]="'common.close' | translate" 
     (click)="closePopup.emit()"
   />
@@ -38,6 +39,8 @@
       class="light"
       [btnText]="'common.logout' | translate"
       iconName="logout"
+      iconColor="var(--mat-sys-on-background)"
+      borderRarius="6px"
       (click)="logout.emit()"
     />
   </mat-card-content>
