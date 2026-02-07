@@ -31,8 +31,13 @@
       </div>
     </div>
 
+    <app-form-control-checkbox 
+      [checkboxControl]="agreementControl"
+      [label]="'product-page.form.agreement' | translate"
+    />
+
     <app-btn-flat 
-      [btnText]="'product-page.leave-review' | translate"
+      [btnText]="'product-page.form.send-review' | translate"
       type="submit"
       [btnDisabled]="reviewForm.invalid"
     />

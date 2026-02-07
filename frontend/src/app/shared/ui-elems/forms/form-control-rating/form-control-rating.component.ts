@@ -21,7 +21,7 @@ export class FormControlRatingComponent {
 
   starClicked(index: number) {
     this.rate.set(index)
-    this.starsControl().setValue(index + 1)
+    this.starsControl().setValue(index)
   }
 
   starHovered(index: number) {

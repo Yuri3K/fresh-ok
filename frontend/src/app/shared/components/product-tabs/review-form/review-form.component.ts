@@ -1,14 +1,16 @@
-import { Component, inject, signal } from "@angular/core"
-import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from "@angular/forms"
+import { Component, effect, inject, input, signal } from "@angular/core"
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms"
 import { BtnFlatComponent } from "../../../ui-elems/buttons/btn-flat/btn-flat.component"
 import { FormControlNameComponent } from "../../../ui-elems/forms/form-control-name/form-control-name.component"
 import { FormControlTextareaComponent } from "../../../ui-elems/forms/form-control-textarea/form-control-textarea.component"
 import { TranslateModule } from "@ngx-translate/core"
 import { LoaderComponent } from "../../loader/loader.component"
 import { FormControlEmailComponent } from "../../../ui-elems/forms/form-control-email/form-control-email.component"
-import { UserAccessService } from "../../../../core/services/user-access.service"
-import { toSignal } from "@angular/core/rxjs-interop"
+import { dbUser } from "../../../../core/services/user-access.service"
 import { FormControlRatingComponent } from "../../../ui-elems/forms/form-control-rating/form-control-rating.component"
+import { FormControlCheckboxComponent } from "../../../ui-elems/forms/form-control-checkbox/form-control-checkbox.component"
+import { MatDialogRef } from "@angular/material/dialog"
+import { LeaveReviewPopupComponent } from "../../popups/leave-review-popup/leave-review-popup.component"
 
 
 @Component({
@@ -20,6 +22,7 @@ import { FormControlRatingComponent } from "../../../ui-elems/forms/form-control
     FormControlNameComponent,
     FormControlTextareaComponent,
     FormControlRatingComponent,
+    FormControlCheckboxComponent,
     TranslateModule,
     LoaderComponent,
   ],
@@ -27,22 +30,28 @@ import { FormControlRatingComponent } from "../../../ui-elems/forms/form-control
   styleUrl: './review-form.component.scss'
 })
 export class ReviewFormComponent {
+  user = input.required<dbUser>()
   private fb = inject(FormBuilder)
-  private userAccessService = inject(UserAccessService)
+  private dialogRef = inject(MatDialogRef<LeaveReviewPopupComponent>)
 
   submitting = signal(false)
-  user = toSignal(
-    this.userAccessService.dbUser$,
-    {initialValue: null}
-  )
+  reviewForm!: FormGroup
 
-  reviewForm = this.fb.group({
-    stars: [0, [Validators.required]],
-    name: [this.user()?.displayName],
-    email: [this.user()?.email, [Validators.required]],
-    textarea: ['', [Validators.required]],
-    agreement: [false, [Validators.required]]
-  })
+  constructor() {
+    effect(() => {
+      const currentUser = this.user()
+
+      if (currentUser) {
+        this.reviewForm = this.fb.group({
+          stars: [0, [Validators.required, Validators.min(1)]],
+          name: [this.user()?.displayName],
+          email: [this.user()?.email, [Validators.required]],
+          textarea: ['', [Validators.required]],
+          agreement: [false, [Validators.requiredTrue]]
+        })
+      }
+    })
+  }
 
   get starsControl(): FormControl<number> {
     return this.reviewForm.get('stars') as FormControl<number>
@@ -65,7 +74,10 @@ export class ReviewFormComponent {
   }
 
   onSubmit() {
-    if(this.reviewForm.invalid) return
+    if (this.reviewForm.invalid) return
+    this.dialogRef.close({
+      user: this.user(),
+      review: this.reviewForm.value
+    })
   }
 }
-// asdf

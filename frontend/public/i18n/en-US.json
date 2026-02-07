@@ -261,7 +261,8 @@
       "your-review": "Your review*",
       "name": "Name",
       "email": "Email*",
-      "agreement": "I agree with the data processing policy"
+      "agreement": "I agree with the data processing policy",
+      "send-review": "Send Review"
     },
     "tabs": {
       "labels": [

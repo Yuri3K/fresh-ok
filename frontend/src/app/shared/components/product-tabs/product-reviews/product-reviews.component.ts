@@ -47,7 +47,7 @@ export class ProductReviewsComponent {
         .find(d => d.componentInstance instanceof LoginPopupComponent)
       const registerPopupRef = this.dialog.openDialogs
         .find(d => d.componentInstance instanceof RegisterPopupComponent)
-      
+
 
       if (user) {
         if (loginPopupRef || registerPopupRef) {
@@ -69,6 +69,7 @@ export class ProductReviewsComponent {
         width: '100vw',
       })
     } else {
+      console.log("🔸 this.user():", this.user())
       const reviewDialogRef = this.dialog.open(LeaveReviewPopupComponent, {
         panelClass: 'review-dialog',
         maxWidth: '700px',
@@ -78,11 +79,13 @@ export class ProductReviewsComponent {
         //   left: '0',
         // },
         data: {
+          user: this.user()
         }
       })
 
       reviewDialogRef.afterClosed().subscribe((result) => {
         if (result) {
+          console.log("🔸 result:", result)
 
         }
       })
