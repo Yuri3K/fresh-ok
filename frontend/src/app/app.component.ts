@@ -50,10 +50,7 @@ export class AppComponent implements OnInit, OnDestroy {
   readonly authInitializing$: Observable<boolean> = this.authService.authInitializing$
   readonly langs$ = this.langsService.langs$
 
-  // definedLang$!: Observable<string>
-
   async ngOnInit() {
-    // this.langsService.init().subscribe()
     this.switchModeService.init()
     this.applySeo()
   }

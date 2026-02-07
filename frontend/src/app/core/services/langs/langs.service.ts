@@ -3,7 +3,7 @@ import { BehaviorSubject, catchError, map, Observable, switchMap, take, throwErr
 import { ApiService } from '../api.service';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../../../../environments/environment';
-import { Location } from '@angular/common';
+import { Location, ViewportScroller } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { defineLanguageUtil } from './utils/define-langiage.util';
 
@@ -24,6 +24,7 @@ export class LangsService {
   private location = inject(Location)
   private router = inject(Router)
   private route = inject(ActivatedRoute)
+  private viewportScroller = inject(ViewportScroller);
 
   private readonly langsSubject = new BehaviorSubject<Lang[]>([])
   private readonly currentLangSubject = new BehaviorSubject<Lang | null>(null)
@@ -99,19 +100,34 @@ export class LangsService {
 
     // Заменяем сегмент языка: /en/home -> /ru/home
     segments[0] = lang.browserLang;
+    const scrollContainer = document.querySelector('.mat-sidenav-content') as HTMLElement;
+    const scrollPosition = scrollContainer?.scrollTop || 0;
 
     this.translateService.use(lang.name) // en-US, ru-RU, uk-UK
       .pipe(take(1))
       .subscribe(() => {
         this.setCurrentLang(lang); // сохраняем объект с данными про выбранный язык в currentLangSubject
         localStorage.setItem(environment.lsLangKey, lang.name); // записываем в LS en-US / ru-RU / uk-UK
-        // this.router.navigateByUrl(segments.join('/')); // переходим по новому URL
-        this.router.navigate([], {
-          relativeTo: this.route,
-          queryParamsHandling: 'merge',
-          skipLocationChange: false, // чтобы страница не скроллилась наверх при изменении языка
-          replaceUrl: true // чтобы страница не скроллилась наверх при изменении языка
-        })
+
+        // Переходим по новому URL
+        this.router.navigateByUrl(segments.join('/'), {
+          skipLocationChange: false,
+          replaceUrl: true
+        }).then(() => {
+          requestAnimationFrame(() => {
+            if (scrollContainer) {
+              scrollContainer.scrollTop = scrollPosition;
+            }
+          });
+        }); 
+
+
+        // this.router.navigate([], {
+        //   relativeTo: this.route,
+        //   queryParamsHandling: 'merge',
+        //   skipLocationChange: false, // чтобы страница не скроллилась наверх при изменении языка
+        //   replaceUrl: true // чтобы страница не скроллилась наверх при изменении языка
+        // })
       });
   }
 
