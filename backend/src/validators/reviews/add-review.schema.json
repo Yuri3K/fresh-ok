@@ -1,0 +1,50 @@
+{
+  "$id": "validators/reviews/add-review.schema.json",
+  "title": "Add Review Request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "productId",
+    "userId",
+    "userAvatar",
+    "userName",
+    "text",
+    "rating"
+  ],
+  "properties": {
+    "productId": {
+      "type": "string",
+      "minLength": 1,
+      "description": "ID of the product being reviewed"
+    },
+    "userId": {
+      "type": "string",
+      "minLength": 1,
+      "description": "ID of the user who left the review"
+    },
+    "userAvatar": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "description": "User avatar storage path or identifier"
+    },
+    "userName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Display name of the user"
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "description": "Review text"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Rating value from 1 to 5"
+    }
+  }
+}

@@ -10,6 +10,7 @@ import sponsorsRoutes from './sponsorsRoutes'
 import bannersRoutes from './bannersRoutes'
 import productsRoute from './productsRoutes'
 import badgesRoutes from './badgesRoutes'
+import reviewsRoutes from './reviewsRoutes'
 
 const router = express.Router()
 
@@ -24,5 +25,6 @@ router.use('/sponsors', sponsorsRoutes)
 router.use('/banners', bannersRoutes)
 router.use('/products',  productsRoute)
 router.use('/badges',  badgesRoutes)
+router.use('/reviews',  reviewsRoutes)
 
 export default router

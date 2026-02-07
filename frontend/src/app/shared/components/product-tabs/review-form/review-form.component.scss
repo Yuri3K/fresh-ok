@@ -12,11 +12,8 @@
   gap: 30px;
   width: 100%;
 
-  .review__left{
-    flex: 1;
-  }
-
-  .review__right{
+  .review__left,
+  .review__right {
     flex: 1;
   }
 }

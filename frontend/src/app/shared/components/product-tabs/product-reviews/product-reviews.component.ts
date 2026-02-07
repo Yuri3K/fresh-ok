@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, input, signal } from '@angular/core';
 import { Review } from '../../../../core/services/products.service';
 import { ReviewCardComponent } from '../review-card/review-card.component';
 import { TranslateModule } from '@ngx-translate/core';
@@ -11,6 +11,7 @@ import { LeaveReviewPopupComponent } from '../../popups/leave-review-popup/leave
 import { BtnFlatComponent } from '../../../ui-elems/buttons/btn-flat/btn-flat.component';
 import { RegisterPopupComponent } from '../../popups/register-popup/register-popup.component';
 import { Router } from '@angular/router';
+import { ApiService } from '../../../../core/services/api.service';
 
 @Component({
   selector: 'app-product-reviews',
@@ -21,18 +22,28 @@ import { Router } from '@angular/router';
     BtnFlatComponent,
   ],
   templateUrl: './product-reviews.component.html',
-  styleUrl: './product-reviews.component.scss'
+  styleUrl: './product-reviews.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
+
 export class ProductReviewsComponent {
   reviews = input.required<Review[]>()
+  productId = input.required<string>()
 
   private readonly userService = inject(UserAccessService)
   private readonly dialog = inject(MatDialog)
   private readonly router = inject(Router)
+  private apiService = inject(ApiService)
 
-  sortedReviews = computed(() => this.reviews().sort((a, b) =>
-    b.createdAt._seconds - a.createdAt._seconds
-  ))
+  private localReviews = signal<Review[]>([])
+  sortedReviews = computed(() => {
+    const serverReviews = this.reviews()
+    const local = this.localReviews()
+
+    return [...local, ...serverReviews].sort((a, b) =>
+      b.createdAt._seconds - a.createdAt._seconds
+    )
+  })
 
   user = toSignal(
     this.userService.dbUser$,
@@ -84,8 +95,26 @@ export class ProductReviewsComponent {
 
       reviewDialogRef.afterClosed().subscribe((result) => {
         if (result) {
-          console.log("🔸 result:", result)
+          const newReview: Omit<Review, 'createdAt'> = {
+            productId: this.productId(),
+            userId: this.user()!.uid,
+            userAvatar: `avatars/${this.user()!.uid}`,
+            userName: result.review.name,
+            text: result.review.textarea,
+            rating: result.review.stars,
+          }
 
+          this.localReviews.update(v => [
+            {
+              ...newReview,
+              createdAt: {
+                _seconds: Math.floor(Date.now() / 1000),
+                _nanoseconds: 0
+              }
+            },
+            ...v])
+
+            this.apiService.post('/reviews/addReview', newReview).subscribe()
         }
       })
     }

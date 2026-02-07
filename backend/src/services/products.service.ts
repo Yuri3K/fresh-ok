@@ -22,8 +22,13 @@ export interface Product {
   rate: number;
   reviewsCount: number;
   reviews: Review[],
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
+}
+
+export interface Timestamp {
+  _seconds: number
+  _nanoseconds: number
 }
 
 interface CharacteristicItem {
@@ -31,14 +36,14 @@ interface CharacteristicItem {
   value: string
 }
 
-interface Review {
+export interface Review {
   productId: string;
   userId: string;
   userAvatar: string;
   userName: string;
   text: string;
   rating: number;
-  createdAt: string;
+  createdAt: Timestamp;
 }
 
 interface EnrichedProduct extends Omit<Product, "badges" | "stock"> {
@@ -50,8 +55,8 @@ interface Stock {
   i18n: Record<LangCode, stockStatus>;
   slug: stockStatus;
   isActive: boolean;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
 }
 
 type stockStatus = "in-stock" | "low-stock" | "out-of-stock";
@@ -65,7 +70,7 @@ export interface Badge {
   i18n: Record<LangCode, string>;
   isActive: boolean;
   updatedAt: string;
-  createdAt: string;
+  createdAt: Timestamp;
   priority: number;
   slug: string;
 }
@@ -218,7 +223,7 @@ function applySorting(products: Product[], sort: string | null, lang: LangCode):
     case "newest":
       return sortedProducts.sort(
         (a, b) =>
-          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          b.createdAt._seconds - a.createdAt._seconds
       );
     case "rating":
       return sortedProducts.sort((a, b) => b.rate - a.rate);

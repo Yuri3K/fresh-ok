@@ -2,7 +2,8 @@
  * scripts/generate-types.ts
  * Генерирует TypeScript определения из JSON Schema, рекурсивно проходя src/validators.
  *
- * Запуск: npx ts-node scripts/generate-types.ts
+ * Запуск: из папки backend 
+ * Команда: npx ts-node src/utils/generate-types.ts
  */
 
 import fs from "fs";
