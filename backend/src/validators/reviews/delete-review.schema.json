@@ -1,0 +1,14 @@
+{
+  "$id": "reviews/delete-review.schema.json",
+  "title": "Delete Review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Firebase ID of the review to delete"
+    }
+  }
+}

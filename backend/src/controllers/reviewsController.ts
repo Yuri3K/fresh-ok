@@ -2,6 +2,7 @@ import { Response } from "express";
 import { AuthRequest } from "../middleware/verify-token";
 import { admin, db } from "../config/firebaseAdmin";
 import { Review } from "../services/products.service";
+import { DeleteReview } from "../types/schemas/reviews/delete-review";
 
 async function addReview(req: AuthRequest, res: Response) {
   try {
@@ -59,7 +60,12 @@ async function addReview(req: AuthRequest, res: Response) {
       const newRate = (currentRate * currentReviewsCount + numericRating) / newReviewsCount
       const createdAt = admin.firestore.Timestamp.now()
 
+      const newReviewRef = reviewsRef.doc() // создаем новый док для отзыва
+      // генерируем id заранее
+      const reviewId = newReviewRef.id
+
       const reviewData = {
+        id: reviewId,
         productId,
         userId,
         userAvatar,
@@ -69,19 +75,14 @@ async function addReview(req: AuthRequest, res: Response) {
         createdAt
       }
 
-      // Save review
-      const newReviewRef = reviewsRef.doc() // создаем новый док для отзыва
+      // Сохраняем отзыв
       tx.set(newReviewRef, reviewData) // записываем в новый док отзыв в рамках транзакции
 
       // Добавляем новый отзыв в массив отзывов для продукта 
       // (храним последние 3 отзыва, чтобы иметь их сразу без доп запроса)
-      const updatedReviews = ([
-        { ...reviewData },
-        ...currentReviews
-      ] as Review[]).sort((a, b) => {
-        if (!a.createdAt || !b.createdAt) return 0
-        return b.createdAt._seconds - a.createdAt._seconds
-      }).slice(0, 3)
+      const updatedReviews = ([reviewData, ...currentReviews] as Review[])
+        .sort((a, b) => b.createdAt._seconds - a.createdAt._seconds)
+        .slice(0, 3)
 
       tx.update(productRef, {
         reviews: updatedReviews,
@@ -102,6 +103,11 @@ async function addReview(req: AuthRequest, res: Response) {
   }
 }
 
+async function deleteReview(req: AuthRequest<DeleteReview>, res: Response) {
+
+}
+
 export {
-  addReview
+  addReview,
+  deleteReview
 }
