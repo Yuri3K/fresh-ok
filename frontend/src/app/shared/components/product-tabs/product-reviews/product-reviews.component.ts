@@ -95,7 +95,7 @@ export class ProductReviewsComponent {
 
       reviewDialogRef.afterClosed().subscribe((result) => {
         if (result) {
-          const newReview: Omit<Review, 'createdAt'> = {
+          const newReview: Omit<Review, 'id' | 'createdAt'> = {
             productId: this.productId(),
             userId: this.user()!.uid,
             userAvatar: `avatars/${this.user()!.uid}`,
@@ -107,6 +107,7 @@ export class ProductReviewsComponent {
           this.localReviews.update(v => [
             {
               ...newReview,
+              id: Date.now().toString(),
               createdAt: {
                 _seconds: Math.floor(Date.now() / 1000),
                 _nanoseconds: 0

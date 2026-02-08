@@ -46,6 +46,7 @@ export interface CharacteristicItem {
 }
 
 export interface Review {
+  id: string;
   productId: string;
   userId: string;
   userAvatar: string;

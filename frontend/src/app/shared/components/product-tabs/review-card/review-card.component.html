@@ -24,5 +24,13 @@
       }
     </div>
   </div>
+
   <p class="review__text">{{review().text}}</p>
+
+  <app-btn-flat
+    borderRarius="6px"
+    [btnText]="'common.delete' | translate"
+    bgColor="var(--mat-sys-primary-container)"
+    (click)="deleteReview()"
+  />
 </div>

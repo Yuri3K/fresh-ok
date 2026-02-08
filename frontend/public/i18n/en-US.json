@@ -18,6 +18,7 @@
     "logout": "Log Out",
     "login": "Log In",
     "show-more": "Show more",
+    "delete": "Delete",
     "back-to-homepage": "Back to Homepage",
     "forms": {
       "email": {

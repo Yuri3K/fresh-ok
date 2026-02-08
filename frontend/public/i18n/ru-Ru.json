@@ -18,6 +18,7 @@
     "logout": "Выйти",
     "login": "Войти",
     "show-more": "Показать еще",
+    "delete": "Удалить",
     "back-to-homepage": "Вернуться на домашнюю страницу",
     "forms": {
       "email": {
