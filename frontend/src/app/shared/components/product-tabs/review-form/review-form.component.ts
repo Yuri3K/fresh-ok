@@ -10,7 +10,7 @@ import { dbUser } from "../../../../core/services/user-access.service"
 import { FormControlRatingComponent } from "../../../ui-elems/forms/form-control-rating/form-control-rating.component"
 import { FormControlCheckboxComponent } from "../../../ui-elems/forms/form-control-checkbox/form-control-checkbox.component"
 import { MatDialogRef } from "@angular/material/dialog"
-import { LeaveReviewPopupComponent } from "../../popups/leave-review-popup/leave-review-popup.component"
+import { LeaveReviewPopupComponent } from "../../dialogs/leave-review-popup/leave-review-popup.component"
 
 
 @Component({

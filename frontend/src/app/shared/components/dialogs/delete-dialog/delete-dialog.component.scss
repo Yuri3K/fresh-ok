@@ -1,0 +1,18 @@
+.delete-dialog {
+  border: 1px solid var(--mat-sys-primary);
+  border-radius: 30px;
+}
+
+.delete-dialog__close{
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 1;
+}
+
+.delete-dialog__question {
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}

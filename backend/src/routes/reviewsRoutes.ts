@@ -16,7 +16,7 @@ router.post(
 )
 
 router.delete(
-  '/:id',
+  '/delete/:id',
   verifyToken(),
   checkPermission.all(['customer']), 
   validateRequest<DeleteReview>('reviews/delete-review.schema.json', 'params'),

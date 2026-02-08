@@ -19,6 +19,7 @@
     "login": "Log In",
     "show-more": "Show more",
     "delete": "Delete",
+    "cancel": "Cancel",
     "back-to-homepage": "Back to Homepage",
     "forms": {
       "email": {
@@ -280,6 +281,12 @@
           "order": 3
         }
       ]
+    },
+    "review": {
+      "delete-dialog": {
+        "title": "Delete review",
+        "question":"Are you sure you want to delete your review?"
+      }
     }
   },
   "footer": {

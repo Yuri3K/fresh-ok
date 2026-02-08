@@ -104,7 +104,7 @@ async function addReview(req: AuthRequest, res: Response) {
 }
 
 async function deleteReview(req: AuthRequest<DeleteReview>, res: Response) {
-
+  console.log("!!!DELETE!!!")
 }
 
 export {

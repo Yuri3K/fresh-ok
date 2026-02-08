@@ -45,4 +45,9 @@ export class ApiService {
       context: new HttpContext().set(SKIP_AUTH, true)
     }))
   }
+
+  
+  delete<T>(url: string): Observable<T> {
+    return this.handle(this.http.delete<T>(`${this.serverUrl}${url}`))
+  }
 }

@@ -6,10 +6,10 @@ import { H4TitleComponent } from '../../../ui-elems/typography/h4-title/h4-title
 import { UserAccessService } from '../../../../core/services/user-access.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatDialog } from '@angular/material/dialog';
-import { LoginPopupComponent } from '../../popups/login-popup/login-popup.component';
-import { LeaveReviewPopupComponent } from '../../popups/leave-review-popup/leave-review-popup.component';
+import { LoginPopupComponent } from '../../dialogs/login-popup/login-popup.component';
+import { LeaveReviewPopupComponent } from '../../dialogs/leave-review-popup/leave-review-popup.component';
 import { BtnFlatComponent } from '../../../ui-elems/buttons/btn-flat/btn-flat.component';
-import { RegisterPopupComponent } from '../../popups/register-popup/register-popup.component';
+import { RegisterPopupComponent } from '../../dialogs/register-popup/register-popup.component';
 import { Router } from '@angular/router';
 import { ApiService } from '../../../../core/services/api.service';
 

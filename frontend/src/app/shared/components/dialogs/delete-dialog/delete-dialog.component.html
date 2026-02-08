@@ -1,1 +1,23 @@
-<p>delete-dialog works!</p>
+<div class="delete-dialog">
+  <app-btn-icon 
+    mat-dialog-close
+    class="delete-dialog__close"
+    iconName="close"
+    [tooltipText]="'common.close' | translate"
+  />
+
+  <app-h3-title mat-dialog-title [text]="translations().title" />
+
+  <mat-dialog-content>
+    <p class="delete-dialog__question">{{translations().question | translate}}</p>
+    @if(str()) {
+      <p class="delete-dialog__substr">"{{str()}}"</p>
+    }
+  </mat-dialog-content>
+
+  <!--align = 'start' | 'center' | 'end' -->
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close cdkFocusInitial>{{'common.cancel' | translate}}</button>
+    <button mat-button [mat-dialog-close]="data.info.id">{{'common.delete' | translate}}</button>
+  </mat-dialog-actions>
+</div>
