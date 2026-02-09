@@ -20,6 +20,7 @@ async function addReview(req: AuthRequest, res: Response) {
 
     const productRef = db.collection("products").doc(productId);
     const reviewsRef = db.collection("reviews");
+    let reviewData!: Review
 
     // runTransaction — это способ сказать Firestore:
     // «Я собираюсь прочитать данные, что-то посчитать и записать результат.
@@ -87,7 +88,7 @@ async function addReview(req: AuthRequest, res: Response) {
       // генерируем id заранее
       const reviewId = newReviewRef.id;
 
-      const reviewData: Review = {
+      reviewData = {
         id: reviewId,
         productId,
         userId,
@@ -118,7 +119,10 @@ async function addReview(req: AuthRequest, res: Response) {
       });
     });
 
-    return res.status(201).json({ message: "Review added successfully" });
+    return res.status(201).json({ 
+      message: "Review added successfully",
+      review: reviewData 
+    });
   } catch (err: any) {
     if (err.message === "PRODUCT_NOT_FOUND") {
       return res.status(404).json({ message: "Product not found" });
@@ -145,7 +149,6 @@ async function deleteReview(req: AuthRequest<DeleteReview>, res: Response) {
     }
 
     const { reviewId } = req.params;
-    console.log("🚀 ~ reviewId:", reviewId);
 
     if (!reviewId) {
       return res.status(400).json({ message: "Review id is required" });

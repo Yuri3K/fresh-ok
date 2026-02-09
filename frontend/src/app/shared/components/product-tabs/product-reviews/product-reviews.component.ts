@@ -23,9 +23,14 @@ import { ApiService } from '../../../../core/services/api.service';
 import { Timestamp } from 'firebase/firestore';
 import { InfoDialogComponent } from '../../dialogs/info-dialog/info-dialog.component';
 
-interface ApiResponse {
+export interface CheckReviewApiResponse {
   canReview?: boolean;
   review?: Review;
+}
+
+export interface AddReviewApiResponse {
+  message: string,
+  review: Review,
 }
 
 @Component({
@@ -88,100 +93,106 @@ export class ProductReviewsComponent {
 
   addReview() {
     if (!this.user()) {
-      const currentUrl = this.router.url;
-      localStorage.setItem('saved-url', currentUrl);
-      this.dialog.open(LoginPopupComponent, {
-        panelClass: ['login-dialog', 'green'],
-        maxWidth: '700px',
-        width: '100vw',
-      });
+      this.openLoginDialog();
     } else {
       this.apiService
-        .get<ApiResponse>(`/reviews/check-review/${this.productId()}`)
+        .get<CheckReviewApiResponse>(`/reviews/check-review/${this.productId()}`)
         .subscribe({
           next: (res) => {
-            console.log('🚀 ~ res:', res);
             if (res.canReview) {
-              const reviewDialogRef = this.dialog.open(
-                LeaveReviewPopupComponent,
-                {
-                  panelClass: ['review-dialog', 'green'],
-                  maxWidth: '700px',
-                  width: '100vw',
-                  // position: {
-                  //   bottom: '0',
-                  //   left: '0',
-                  // },
-                  data: {
-                    user: this.user(),
-                  },
-                },
-              );
-
-              reviewDialogRef.afterClosed().subscribe((result) => {
-                if (result) {
-                  const newReview: Omit<Review, 'id' | 'createdAt'> = {
-                    productId: this.productId(),
-                    userId: this.user()!.uid,
-                    userName: result.review.name,
-                    text: result.review.textarea,
-                    rating: result.review.stars,
-                  };
-
-                  if (this.user()?.avatarId) {
-                    newReview.userAvatar = this.user()?.avatarId;
-                  }
-
-                  this.apiService
-                    .post('/reviews/addReview', newReview)
-                    .subscribe({
-                      next: (res) => {
-                        this.localReviews.update((v) => [
-                          {
-                            ...newReview,
-                            id: Date.now().toString(),
-                            createdAt: Timestamp.now().toMillis(),
-                          },
-                          ...v,
-                        ]);
-                      },
-                      // error: (err) => {
-                      //   if (err.status === 409) {
-                      //     this.dialog.open(InfoDialogComponent, {
-                      //       panelClass: ['green'],
-                      //       maxWidth: '700px',
-                      //       width: '100vw',
-                      //       enterAnimationDuration: '300ms',
-                      //       exitAnimationDuration: '300ms',
-                      //       data: {
-                      //         translations: this.translateService.instant(
-                      //           'product-page.review.review-exists',
-                      //         ),
-                      //       },
-                      //     });
-                      //   }
-                      // },
-                    });
-                }
-              });
+              this.openReviewDialog();
             } else {
-              this.dialog.open(InfoDialogComponent, {
-                panelClass: ['green'],
-                maxWidth: '700px',
-                width: '100vw',
-                enterAnimationDuration: '300ms',
-                exitAnimationDuration: '300ms',
-                data: {
-                  translations: this.translateService.instant(
-                    'product-page.review.review-exists',
-                  ),
-                },
-              });
+              this.openInfoDialog(res.review!);
             }
           },
           error: (err) => {},
         });
     }
+  }
+
+  private openLoginDialog() {
+    const currentUrl = this.router.url;
+    localStorage.setItem('saved-url', currentUrl);
+
+    this.dialog.open(LoginPopupComponent, {
+      panelClass: ['login-dialog', 'green'],
+      maxWidth: '700px',
+      width: '100vw',
+    });
+  }
+
+  private openReviewDialog(review?: Review) {
+    const reviewDialogRef = this.dialog.open(LeaveReviewPopupComponent, {
+      panelClass: ['review-dialog', 'green'],
+      maxWidth: '700px',
+      width: '100vw',
+      data: {
+        user: this.user(),
+        review: review ?? null,
+      },
+    });
+
+    reviewDialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        const newReview: Omit<Review, 'id' | 'createdAt'> = {
+          productId: this.productId(),
+          userId: this.user()!.uid,
+          userName: result.review.name,
+          text: result.review.textarea,
+          rating: result.review.stars,
+        };
+
+        if (this.user()?.avatarId) {
+          newReview.userAvatar = this.user()?.avatarId;
+        }
+
+        this.apiService.post<AddReviewApiResponse>('/reviews/addReview', newReview).subscribe({
+          next: (res) => {
+            this.localReviews.update((v) => [
+              res.review,
+              ...v,
+            ]);
+          },
+          // error: (err) => {
+          //   if (err.status === 409) {
+          //     this.dialog.open(InfoDialogComponent, {
+          //       panelClass: ['green'],
+          //       maxWidth: '700px',
+          //       width: '100vw',
+          //       enterAnimationDuration: '300ms',
+          //       exitAnimationDuration: '300ms',
+          //       data: {
+          //         translations: this.translateService.instant(
+          //           'product-page.review.review-exists',
+          //         ),
+          //       },
+          //     });
+          //   }
+          // },
+        });
+      }
+    });
+  }
+
+  private openInfoDialog(review: Review) {
+    const infoDialog = this.dialog.open(InfoDialogComponent, {
+      panelClass: ['green'],
+      maxWidth: '700px',
+      width: '100vw',
+      enterAnimationDuration: '300ms',
+      exitAnimationDuration: '300ms',
+      data: {
+        translations: this.translateService.instant(
+          'product-page.review.review-exists',
+        ),
+      },
+    });
+
+    infoDialog.afterClosed().subscribe((result) => {
+      if (result) {
+        this.openReviewDialog(review);
+      }
+    });
   }
 
   addDeletedId(id: string) {

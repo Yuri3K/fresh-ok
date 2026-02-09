@@ -86,3 +86,10 @@
   font-size: 1rem;
   line-height: 1.6;
 }
+
+.review__actions {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 16px;
+}

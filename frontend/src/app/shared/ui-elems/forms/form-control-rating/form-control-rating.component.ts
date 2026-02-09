@@ -1,4 +1,4 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, effect, input, signal } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
@@ -18,6 +18,19 @@ export class FormControlRatingComponent {
 
   rate = signal(0)
   hoveredIndex = signal<number>(-1);
+
+  constructor() {
+    effect(() => {
+      if(!isNaN(this.starsControl().value)) {
+        const currentRate = this.starsControl().value
+        if(currentRate > 0) {
+          this.rate.set(currentRate)
+        } else {
+          this.rate.set(0)
+        }
+      }
+    })
+  }
 
   starClicked(index: number) {
     this.rate.set(index)

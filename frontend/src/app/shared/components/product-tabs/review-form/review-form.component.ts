@@ -1,4 +1,4 @@
-import { Component, effect, inject, input, signal } from "@angular/core"
+import { Component, computed, effect, inject, input, signal } from "@angular/core"
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms"
 import { BtnFlatComponent } from "../../../ui-elems/buttons/btn-flat/btn-flat.component"
 import { FormControlNameComponent } from "../../../ui-elems/forms/form-control-name/form-control-name.component"
@@ -11,6 +11,7 @@ import { FormControlRatingComponent } from "../../../ui-elems/forms/form-control
 import { FormControlCheckboxComponent } from "../../../ui-elems/forms/form-control-checkbox/form-control-checkbox.component"
 import { MatDialogRef } from "@angular/material/dialog"
 import { LeaveReviewPopupComponent } from "../../dialogs/leave-review-popup/leave-review-popup.component"
+import { Review } from "../../../../core/services/products.service"
 
 
 @Component({
@@ -31,9 +32,16 @@ import { LeaveReviewPopupComponent } from "../../dialogs/leave-review-popup/leav
 })
 export class ReviewFormComponent {
   user = input.required<dbUser>()
+  review = input<Review | null>(null)
+
   private fb = inject(FormBuilder)
   private dialogRef = inject(MatDialogRef<LeaveReviewPopupComponent>)
 
+  stars = computed(() => this.review()?.rating || 0)
+  name = computed(() => this.review()?.userName || this.user()?.displayName)
+  textarea = computed(() => this.review()?.text || '')
+  agreement = computed(() => !!this.review())
+  
   submitting = signal(false)
   reviewForm!: FormGroup
 
@@ -43,11 +51,11 @@ export class ReviewFormComponent {
 
       if (currentUser) {
         this.reviewForm = this.fb.group({
-          stars: [0, [Validators.required, Validators.min(1)]],
-          name: [this.user()?.displayName],
+          stars: [this.stars(), [Validators.required, Validators.min(1)]],
+          name: [this.name()],
           email: [this.user()?.email, [Validators.required]],
-          textarea: ['', [Validators.required]],
-          agreement: [false, [Validators.requiredTrue]]
+          textarea: [this.textarea(), [Validators.required]],
+          agreement: [this.agreement(), [Validators.requiredTrue]]
         })
       }
     })
@@ -75,9 +83,16 @@ export class ReviewFormComponent {
 
   onSubmit() {
     if (this.reviewForm.invalid) return
+
     this.dialogRef.close({
       user: this.user(),
-      review: this.reviewForm.value
+      review: {
+        ...this.reviewForm.value,
+        id: this.review()?.id || '',
+        productId: this.review()?.productId || '',
+        userId: this.review()?.userId || '',
+        userAvatar: this.review()?.userAvatar || '',
+      }
     })
   }
 }

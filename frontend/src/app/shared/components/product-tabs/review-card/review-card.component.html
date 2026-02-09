@@ -4,7 +4,7 @@
       @if(avatar()) {
         <img 
           [src]="avatar()" 
-          [alt]="review().userName"
+          [alt]="currentReview().userName"
           width="70"
           height="70"
         >
@@ -14,13 +14,13 @@
     </div>
 
     <div class="review__user">
-      <div class="review__username">{{review().userName}}</div>
+      <div class="review__username">{{currentReview().userName}}</div>
       <div class="review__date">{{date() | date:'dd.MM.yyyy' }}</div>
     </div>
 
     <div class="review__rate">
       @for(start of [].constructor(5); track $index) {
-        @if($index + 1 > review().rating) {
+        @if($index + 1 > currentReview().rating) {
           <mat-icon class="gray">star</mat-icon>
         } @else {
           <mat-icon class="yellow">star</mat-icon>
@@ -29,14 +29,24 @@
     </div>
   </div>
 
-  <p class="review__text">{{review().text}}</p>
+  <p class="review__text">{{currentReview().text}}</p>
 
-  @if(user() && (review().userId === user()?.uid)) {
-    <app-btn-flat
-      borderRarius="6px"
-      [btnText]="'common.delete' | translate"
-      bgColor="var(--mat-sys-primary-container)"
-      (click)="deleteReview('150ms', '150ms')"
-    />
+  @if(user() && (currentReview().userId === user()?.uid)) {
+    <div class="review__actions">
+      <app-mini-fab-btn
+        iconName="edit"
+        [tooltipText]="'common.edit' | translate"
+        bgColor="var(--mat-sys-primary-container)"
+        (click)="openReviewPopup('150ms', '150ms')"
+      />
+
+      <app-mini-fab-btn
+        iconName="delete"
+        [tooltipText]="'common.delete' | translate"
+        bgColor="var(--mat-sys-primary-container)"
+        (click)="deleteReview('150ms', '150ms')"
+      /> 
+  
+    </div>
   }
 </div>

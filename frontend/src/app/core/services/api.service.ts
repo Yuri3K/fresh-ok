@@ -46,8 +46,11 @@ export class ApiService {
     }))
   }
 
-  
   delete<T>(url: string): Observable<T> {
     return this.handle(this.http.delete<T>(`${this.serverUrl}${url}`))
+  }
+  
+  patch<T>(url: string, body: any): Observable<T> {
+    return this.handle(this.http.patch<T>(`${this.serverUrl}${url}`, body))
   }
 }
