@@ -1,0 +1,14 @@
+{
+  "$id": "reviews/update-review.schema.json",
+  "title": "Update Review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["reviewId"],
+  "properties": {
+    "reviewId": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Firebase ID of the review to update"
+    }
+  }
+}

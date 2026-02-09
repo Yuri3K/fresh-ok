@@ -20,7 +20,7 @@ async function addReview(req: AuthRequest, res: Response) {
 
     const productRef = db.collection("products").doc(productId);
     const reviewsRef = db.collection("reviews");
-    let reviewData!: Review
+    let reviewData!: Review;
 
     // runTransaction — это способ сказать Firestore:
     // «Я собираюсь прочитать данные, что-то посчитать и записать результат.
@@ -119,9 +119,9 @@ async function addReview(req: AuthRequest, res: Response) {
       });
     });
 
-    return res.status(201).json({ 
+    return res.status(201).json({
       message: "Review added successfully",
-      review: reviewData 
+      review: reviewData,
     });
   } catch (err: any) {
     if (err.message === "PRODUCT_NOT_FOUND") {
@@ -271,4 +271,122 @@ async function getUserReviewForProduct(
   }
 }
 
-export { addReview, deleteReview, getUserReviewForProduct };
+async function updateReview(req: AuthRequest<DeleteReview>, res: Response) {
+  try {
+    const user = req.user;
+
+    if (!user) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    const { reviewId } = req.params;
+
+    if (!reviewId) {
+      return res.status(400).json({ message: "Review id is required" });
+    }
+
+    const { text, rating, userName, userAvatar } = req.body;
+    const reviewRef = db.collection("reviews").doc(reviewId);
+
+    let updatedReview!: Review;
+
+    await db.runTransaction(async (tx) => {
+      // Получаем отзыв
+      const reviewSnap = await tx.get(reviewRef);
+
+      if (!reviewSnap.exists) {
+        throw new Error("REVIEW_NOT_FOUND");
+      }
+
+      const reviewData = reviewSnap.data() as Review;
+
+      // Проверка владельца
+      if (reviewData.userId !== user.uid) {
+        throw new Error("FORBIDDEN");
+      }
+
+      const productRef = db.collection("products").doc(reviewData.productId);
+
+      // Получаем продукт
+      const productSnap = await tx.get(productRef);
+
+      if (!productSnap.exists) {
+        throw new Error("PRODUCT_NOT_FOUND");
+      }
+
+      const productData = productSnap.data()!;
+
+      const currentRate: number = productData.rate ?? 0;
+      const reviewsCount: number = productData.reviewsCount ?? 0;
+      const currentReviews: Review[] = productData.reviews ?? [];
+
+      const oldRating = reviewData.rating;
+      const newRating = Number(rating);
+
+      // Пересчёт рейтинга продукта
+      let newRate = currentRate;
+      newRate =
+        (currentRate * reviewsCount - oldRating + newRating) / reviewsCount;
+
+      const updatedAt = admin.firestore.Timestamp.now().toMillis();
+
+      // 5️⃣ Обновлённый отзыв
+      updatedReview = {
+        ...reviewData,
+        text,
+        rating: newRating,
+        userName,
+        ...(userAvatar ? { userAvatar } : {}),
+      };
+
+      // Обновляем отзыв в коллекции reviews
+      tx.update(reviewRef, {
+        text,
+        rating: newRating,
+        userName,
+        ...(userAvatar ? { userAvatar } : {}),
+        updatedAt,
+      });
+
+      // Обновляем массив отзывов продукта
+      const reviewsWithoutCurrent = currentReviews.filter(
+        (r) => r.id !== reviewId,
+      );
+
+      const updatedReviews = (
+        [updatedReview, ...reviewsWithoutCurrent] as Review[]
+      )
+        .sort((a, b) => b.createdAt - a.createdAt)
+        .slice(0, 3);
+
+      // Обновляем продукт
+      tx.update(productRef, {
+        reviews: updatedReviews,
+        rate: Number(newRate.toFixed(1)),
+        updatedAt,
+      });
+    });
+
+    return res.status(200).json({
+      message: "Review updated successfully",
+      review: updatedReview,
+    });
+  } catch (err: any) {
+    if (err.message === "REVIEW_NOT_FOUND") {
+      return res.status(404).json({ message: "Review not found" });
+    }
+
+    if (err.message === "PRODUCT_NOT_FOUND") {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    if (err.message === "FORBIDDEN") {
+      return res.status(403).json({ message: "Forbidden" });
+    }
+
+    console.error("Edit review error:", err);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+}
+
+export { addReview, deleteReview, getUserReviewForProduct, updateReview };

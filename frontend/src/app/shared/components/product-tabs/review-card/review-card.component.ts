@@ -11,20 +11,18 @@ import { Review } from '../../../../core/services/products.service';
 import { MEDIA_URL } from '../../../../core/urls';
 import { MatIconModule } from '@angular/material/icon';
 import { DatePipe } from '@angular/common';
-import { BtnFlatComponent } from '../../../ui-elems/buttons/btn-flat/btn-flat.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../../dialogs/delete-dialog/delete-dialog.component';
 import { ApiService } from '../../../../core/services/api.service';
 import { dbUser } from '../../../../core/services/user-access.service';
-import { Timestamp } from 'firebase/firestore';
 import { LeaveReviewPopupComponent } from '../../dialogs/leave-review-popup/leave-review-popup.component';
 import { AddReviewApiResponse } from '../product-reviews/product-reviews.component';
 import { MiniFabBtnComponent } from "../../../ui-elems/buttons/mini-fab-btn/mini-fab-btn.component";
 
 @Component({
   selector: 'app-review-card',
-  imports: [MatIconModule, DatePipe, BtnFlatComponent, TranslateModule, MiniFabBtnComponent],
+  imports: [MatIconModule, DatePipe, TranslateModule, MiniFabBtnComponent],
   templateUrl: './review-card.component.html',
   styleUrl: './review-card.component.scss',
 })

@@ -86,6 +86,7 @@ export class ReviewFormComponent {
 
     this.dialogRef.close({
       user: this.user(),
+      isEditing: !!this.review(), // если был передан отзыв, значит мы в режиме редактирования
       review: {
         ...this.reviewForm.value,
         id: this.review()?.id || '',

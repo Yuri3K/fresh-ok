@@ -29,8 +29,8 @@ export interface CheckReviewApiResponse {
 }
 
 export interface AddReviewApiResponse {
-  message: string,
-  review: Review,
+  message: string;
+  review: Review;
 }
 
 @Component({
@@ -55,7 +55,7 @@ export class ProductReviewsComponent {
   private apiService = inject(ApiService);
   private readonly translateService = inject(TranslateService);
 
-  private localReviews = signal<Review[]>([]);
+  private localReviews = signal<Review | null>(null);
   private deletedReviewsIds = signal<string[]>([]);
 
   sortedReviews = computed(() => {
@@ -63,7 +63,18 @@ export class ProductReviewsComponent {
     const local = this.localReviews();
     const deleted = this.deletedReviewsIds();
 
-    return [...local, ...serverReviews]
+    let finalReviews = [...serverReviews]; 
+    if (local) { 
+      const idx = finalReviews.findIndex(r => r.id === local.id); 
+      if (idx >= 0) { 
+        // заменяем существующий 
+        finalReviews[idx] = local; 
+      } else { 
+        // если это новый отзыв — добавляем 
+        finalReviews.push(local); 
+       } }
+
+    return finalReviews
       .filter((r) => !deleted.includes(r.id))
       .sort((a, b) => b.createdAt - a.createdAt);
   });
@@ -96,7 +107,9 @@ export class ProductReviewsComponent {
       this.openLoginDialog();
     } else {
       this.apiService
-        .get<CheckReviewApiResponse>(`/reviews/check-review/${this.productId()}`)
+        .get<CheckReviewApiResponse>(
+          `/reviews/check-review/${this.productId()}`,
+        )
         .subscribe({
           next: (res) => {
             if (res.canReview) {
@@ -133,6 +146,9 @@ export class ProductReviewsComponent {
     });
 
     reviewDialogRef.afterClosed().subscribe((result) => {
+      console.log("🚀 ~ result:", result)
+      console.log("🚀 ~ result.isEditing:", result.isEditing)
+      // return
       if (result) {
         const newReview: Omit<Review, 'id' | 'createdAt'> = {
           productId: this.productId(),
@@ -146,30 +162,25 @@ export class ProductReviewsComponent {
           newReview.userAvatar = this.user()?.avatarId;
         }
 
-        this.apiService.post<AddReviewApiResponse>('/reviews/addReview', newReview).subscribe({
-          next: (res) => {
-            this.localReviews.update((v) => [
-              res.review,
-              ...v,
-            ]);
-          },
-          // error: (err) => {
-          //   if (err.status === 409) {
-          //     this.dialog.open(InfoDialogComponent, {
-          //       panelClass: ['green'],
-          //       maxWidth: '700px',
-          //       width: '100vw',
-          //       enterAnimationDuration: '300ms',
-          //       exitAnimationDuration: '300ms',
-          //       data: {
-          //         translations: this.translateService.instant(
-          //           'product-page.review.review-exists',
-          //         ),
-          //       },
-          //     });
-          //   }
-          // },
-        });
+        if (result.isEditing) {
+          console.log("IN EDITING")
+          this.apiService
+            .patch<AddReviewApiResponse>(`/reviews/updateReview/${result.review.id}`, newReview)
+            .subscribe({
+              next: (res) => {
+                this.localReviews.set(res.review);
+              },
+            });
+        } else {
+          console.log("IN ADD REVIEW")
+          this.apiService
+            .post<AddReviewApiResponse>('/reviews/addReview', newReview)
+            .subscribe({
+              next: (res) => {
+                this.localReviews.set(res.review);
+              },
+            });
+        }
       }
     });
   }
