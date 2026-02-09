@@ -330,7 +330,7 @@ async function updateReview(req: AuthRequest<DeleteReview>, res: Response) {
 
       const updatedAt = admin.firestore.Timestamp.now().toMillis();
 
-      // 5️⃣ Обновлённый отзыв
+      // Обновлённый отзыв
       updatedReview = {
         ...reviewData,
         text,

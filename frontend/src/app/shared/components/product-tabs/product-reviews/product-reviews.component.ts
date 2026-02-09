@@ -52,7 +52,7 @@ export class ProductReviewsComponent {
   private readonly userService = inject(UserAccessService);
   private readonly dialog = inject(MatDialog);
   private readonly router = inject(Router);
-  private apiService = inject(ApiService);
+  private readonly apiService = inject(ApiService);
   private readonly translateService = inject(TranslateService);
 
   private localReviews = signal<Review | null>(null);
@@ -146,9 +146,6 @@ export class ProductReviewsComponent {
     });
 
     reviewDialogRef.afterClosed().subscribe((result) => {
-      console.log("🚀 ~ result:", result)
-      console.log("🚀 ~ result.isEditing:", result.isEditing)
-      // return
       if (result) {
         const newReview: Omit<Review, 'id' | 'createdAt'> = {
           productId: this.productId(),
@@ -163,7 +160,6 @@ export class ProductReviewsComponent {
         }
 
         if (result.isEditing) {
-          console.log("IN EDITING")
           this.apiService
             .patch<AddReviewApiResponse>(`/reviews/updateReview/${result.review.id}`, newReview)
             .subscribe({
@@ -172,7 +168,6 @@ export class ProductReviewsComponent {
               },
             });
         } else {
-          console.log("IN ADD REVIEW")
           this.apiService
             .post<AddReviewApiResponse>('/reviews/addReview', newReview)
             .subscribe({
