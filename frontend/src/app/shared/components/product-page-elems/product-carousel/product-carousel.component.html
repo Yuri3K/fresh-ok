@@ -1,5 +1,10 @@
-<!-- <lib-ngx-carousel 
-  class="product-carousel"
-  [slides]="slidesList"
-  [config]="config"
-/> -->
+<div class="product-carousel">
+  <lib-ngx-carousel 
+    [slides]="slides()"
+    [config]="config"
+  >
+    <ng-template #slideTemplate let-slide>
+      <app-product-slide [slide]="slide" />
+    </ng-template>
+  </lib-ngx-carousel>
+</div>

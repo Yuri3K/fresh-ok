@@ -1,4 +1,4 @@
-import { Component, computed, DestroyRef, effect, inject } from '@angular/core';
+import { Component, DestroyRef, effect, inject } from '@angular/core';
 import { BreadcrumbsComponent } from '../../../../shared/components/breadcrumbs/breadcrumbs.component';
 import { ProductTabsComponent } from '../../../../shared/components/product-tabs/product-tabs.component';
 import { Product, ProductsService } from '../../../../core/services/products.service';
@@ -6,12 +6,13 @@ import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { Breadcrumb, BreadcrumbsService } from '../../../../shared/components/breadcrumbs/breadcrumbs.service';
 import { TranslateService } from '@ngx-translate/core';
 import { GetCurrentLangService } from '../../../../core/services/get-current-lang.service';
-import { ProductReviewsComponent } from '../../../../shared/components/product-tabs/product-reviews/product-reviews.component';
+import { ProductCarouselComponent } from '../../../../shared/components/product-page-elems/product-carousel/product-carousel.component';
 @Component({
   selector: 'app-product-detail',
   imports: [
     BreadcrumbsComponent,
     ProductTabsComponent,
+    ProductCarouselComponent,
   ],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.scss'

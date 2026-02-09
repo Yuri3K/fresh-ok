@@ -3,9 +3,15 @@
 <div class="product-details">
   <div class="container">
     @if(product().id) {
+      <app-product-carousel 
+        [product]="product()"
+      />
+      
       <app-product-tabs 
         [product]="product()"
       />
+
+      
 
     }
 
