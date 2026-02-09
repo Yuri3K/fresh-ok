@@ -5,5 +5,5 @@ export interface DeleteReview {
   /**
    * Firebase ID of the review to delete
    */
-  id: string;
+  reviewId: string;
 }

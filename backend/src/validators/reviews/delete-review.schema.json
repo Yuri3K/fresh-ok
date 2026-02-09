@@ -3,9 +3,9 @@
   "title": "Delete Review",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id"],
+  "required": ["reviewId"],
   "properties": {
-    "id": {
+    "reviewId": {
       "type": "string",
       "minLength": 1,
       "description": "Firebase ID of the review to delete"

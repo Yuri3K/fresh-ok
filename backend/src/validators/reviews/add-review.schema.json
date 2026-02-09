@@ -6,7 +6,6 @@
   "required": [
     "productId",
     "userId",
-    "userAvatar",
     "userName",
     "text",
     "rating"

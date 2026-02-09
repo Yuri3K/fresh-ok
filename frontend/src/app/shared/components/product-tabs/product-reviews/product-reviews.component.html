@@ -7,6 +7,8 @@
     @for(review of sortedReviews(); track $index) {
       <app-review-card 
         [review]="review"
+        [user]="user()"
+        (onDeleteReview)="addDeletedId($event)"
       />
     }
   </div>

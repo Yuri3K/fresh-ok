@@ -19,8 +19,9 @@ export const checkPermission = {
       }
 
       const {role, permissions = []} = user
+      const isHasAll = hasAll(permissions, required)
 
-      if(role === 'superAdmin' || hasAll(permissions, required)) {
+      if(role === 'superAdmin' || isHasAll) {
         return next()
       }
 

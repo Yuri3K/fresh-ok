@@ -13,7 +13,7 @@ export interface AddReviewRequest {
   /**
    * User avatar storage path or identifier
    */
-  userAvatar: string;
+  userAvatar?: string;
   /**
    * Display name of the user
    */

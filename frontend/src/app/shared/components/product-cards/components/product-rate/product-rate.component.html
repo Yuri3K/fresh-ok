@@ -1,4 +1,6 @@
 <div class="rate">
-  <span>{{rate()}}</span>
-  <mat-icon class="yellow">star</mat-icon>
+  @if(rate() > 0) {
+    <span>{{rate()}}</span>
+    <mat-icon class="yellow">star</mat-icon>
+  }
 </div>

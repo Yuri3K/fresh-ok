@@ -1,0 +1,22 @@
+<div class="info-dialog">
+  <app-btn-icon 
+    iconName="close"
+    class="info-dialog__close"
+    [tooltipText]="'common.close' | translate"
+    [ariaLabel]="'common.close' | translate"
+  />
+
+  <app-h3-title 
+    mat-dialog-title
+    [text]="data.translations.title"
+  />
+
+  <mat-dialog-content>
+    <p class="info-dialog__message">{{data.translations.message}}</p>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <!-- <button mat-button mat-dialog-close>{{'common.cancel' | translate}}</button> -->
+    <button mat-button [mat-dialog-close]="true">{{data.translations.action}}</button>
+  </mat-dialog-actions>
+</div>

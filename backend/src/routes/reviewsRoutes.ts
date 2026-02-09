@@ -1,10 +1,11 @@
-import { addReview, deleteReview } from "../controllers/reviewsController"
+import { addReview, deleteReview, getUserReviewForProduct } from "../controllers/reviewsController"
 import express from 'express'
 import verifyToken from "../middleware/verify-token"
 import { AddReviewRequest } from "../types/schemas/reviews/add-review"
 import validateRequest from "../middleware/validateRequest"
 import { checkPermission } from "../middleware/checkPermission"
 import { DeleteReview } from "../types/schemas/reviews/delete-review"
+import { CheckUserReview } from "../types/schemas/reviews/check-user-review"
 
 const router = express.Router()
 
@@ -16,11 +17,18 @@ router.post(
 )
 
 router.delete(
-  '/delete/:id',
+  '/delete/:reviewId',
   verifyToken(),
-  checkPermission.all(['customer']), 
   validateRequest<DeleteReview>('reviews/delete-review.schema.json', 'params'),
   deleteReview,
+)
+
+router.get(
+  '/check-review/:productId',
+  verifyToken(),
+  validateRequest<CheckUserReview>('reviews/check-user-review.schema.json', 'params'),
+  getUserReviewForProduct
+
 )
 
 export default router

@@ -286,6 +286,11 @@
       "delete-dialog": {
         "title": "Delete review",
         "question":"Are you sure you want to delete your review?"
+      },
+      "review-exists": {
+        "title": "Information",
+        "message": "You have already left a review for this product.",
+        "action": "Edit review"
       }
     }
   },

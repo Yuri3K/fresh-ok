@@ -1,12 +1,16 @@
 <div class="review">
   <div class="review__header">
     <div class="review__useravatar">
-      <img 
-        [src]="avatar()" 
-        [alt]="review().userName"
-        width="70"
-        height="70"
-      >
+      @if(avatar()) {
+        <img 
+          [src]="avatar()" 
+          [alt]="review().userName"
+          width="70"
+          height="70"
+        >
+      } @else {
+        <mat-icon>person</mat-icon>
+      }
     </div>
 
     <div class="review__user">
@@ -27,10 +31,12 @@
 
   <p class="review__text">{{review().text}}</p>
 
-  <app-btn-flat
-    borderRarius="6px"
-    [btnText]="'common.delete' | translate"
-    bgColor="var(--mat-sys-primary-container)"
-    (click)="deleteReview('150ms', '150ms')"
-  />
+  @if(user() && (review().userId === user()?.uid)) {
+    <app-btn-flat
+      borderRarius="6px"
+      [btnText]="'common.delete' | translate"
+      bgColor="var(--mat-sys-primary-container)"
+      (click)="deleteReview('150ms', '150ms')"
+    />
+  }
 </div>

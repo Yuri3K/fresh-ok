@@ -31,13 +31,8 @@ export interface Product {
   rate: number;
   reviewsCount: number;
   reviews: Review[];
-  createdAt: Timestamp;
-  updatedAt: Timestamp;
-}
-
-export interface Timestamp {
-  _seconds: number
-  _nanoseconds: number
+  createdAt: number;
+  updatedAt: number;
 }
 
 export interface CharacteristicItem {
@@ -49,11 +44,11 @@ export interface Review {
   id: string;
   productId: string;
   userId: string;
-  userAvatar: string;
+  userAvatar?: string;
   userName: string;
   text: string;
   rating: number;
-  createdAt: Timestamp;
+  createdAt: number;
 }
 
 export interface PaginatedResponse<Product> {
@@ -74,8 +69,8 @@ export interface Stock {
   i18n: Record<LangCode, stockStatus>;
   slug: stockStatus;
   isActive: boolean;
-  createdAt: Timestamp;
-  updatedAt: Timestamp;
+  createdAt: number;
+  updatedAt: number;
 }
 
 export type stockStatus = 'in-stock' | 'low-stock' | 'out-of-stock';
@@ -92,8 +87,8 @@ export interface Badge {
   isActive: boolean;
   priority: number;
   slug: string;
-  updatedAt: Timestamp;
-  createdAt: Timestamp;
+  updatedAt: number;
+  createdAt: number;
 }
 
 @Injectable({

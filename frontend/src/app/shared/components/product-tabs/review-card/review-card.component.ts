@@ -1,4 +1,4 @@
-import { Component, computed, inject, input } from '@angular/core';
+import { Component, computed, inject, input, output, signal } from '@angular/core';
 import { Review } from '../../../../core/services/products.service';
 import { MEDIA_URL } from '../../../../core/urls';
 import { MatIconModule } from '@angular/material/icon';
@@ -8,6 +8,8 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../../dialogs/delete-dialog/delete-dialog.component';
 import { ApiService } from '../../../../core/services/api.service';
+import { dbUser } from '../../../../core/services/user-access.service';
+import { Timestamp } from 'firebase/firestore';
 
 @Component({
   selector: 'app-review-card',
@@ -22,17 +24,23 @@ import { ApiService } from '../../../../core/services/api.service';
 })
 export class ReviewCardComponent {
   review = input.required<Review>()
+  user = input.required<dbUser | null|  undefined>()
+
+  onDeleteReview = output<string>()
 
   private readonly dialog = inject(MatDialog)
   private  readonly translateService = inject(TranslateService)
   private readonly apiService = inject(ApiService)
 
+
   avatar = computed(() => {
-    return `${MEDIA_URL}${this.review().userAvatar}`
+    return this.review().userAvatar
+      ? `${MEDIA_URL}${this.review().userAvatar}`
+      : ''
   })
 
   date = computed(() => {
-    return new Date(this.review().createdAt._seconds * 1000 + this.review().createdAt._nanoseconds / 1e6)
+    return new Date(this.review().createdAt)
   })
 
   deleteReview(enterAnimationDuration: string, exitAnimationDuration: string) {
@@ -49,11 +57,11 @@ export class ReviewCardComponent {
     })
 
     deleteDialog.afterClosed().subscribe((result) => {
-      console.log("🚀 ~ result:", result)
       if(result) {
         this.apiService.delete(`/reviews/delete/${result}`).subscribe()
+        this.onDeleteReview.emit(result)
       }
     })
   }
+
 }
-// sdf 
