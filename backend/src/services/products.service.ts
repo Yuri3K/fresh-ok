@@ -1,5 +1,7 @@
 import { db } from "../config/firebaseAdmin";
 import { LangCode } from "../middleware/current-lang";
+import { getBadgesMap } from "../utils/get-badges-map";
+import { getStockMap } from "../utils/get-stock-map";
 
 export interface Product {
   id: string;
@@ -47,7 +49,7 @@ interface EnrichedProduct extends Omit<Product, "badges" | "stock"> {
   stock: Stock;
 }
 
-interface Stock {
+export interface Stock {
   i18n: Record<LangCode, stockStatus>;
   slug: stockStatus;
   isActive: boolean;
@@ -295,34 +297,9 @@ function buildQuery(filters: ReturnType<typeof parseFilters>) {
   return q;
 }
 
-// Функция для получения с БД данных про активные бэйджи.
-// Возвращает Map в котором id будет название бэйджа,
-// а тело - объект с данными о бэйдже (цвет, перевод, приоритет, ...)
-async function getBadgesMap(): Promise<Map<string, Badge>> {
-  const snapshot = await db
-    .collection("badges")
-    .where("isActive", "==", true)
-    .get();
 
-  return new Map(
-    snapshot.docs.map((doc) => {
-      return [doc.id, { id: doc.id, ...(doc.data() as Omit<Badge, "id">) }];
-    })
-  );
-}
 
-async function getStockMap(): Promise<Map<string, Stock>> {
-  const snapshot = await db
-    .collection("stockStatuses")
-    .where("isActive", "==", true)
-    .get();
 
-  return new Map(
-    snapshot.docs.map((doc) => {
-      return [doc.id, { id: doc.id, ...(doc.data() as Omit<Stock, "id">) }];
-    })
-  );
-}
 
 // // Функция для добавления данных о бэйдже в объект продукта
 // //

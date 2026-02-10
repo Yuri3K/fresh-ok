@@ -1,1 +1,18 @@
-<p>product-content works!</p>
+<div class="product-content">
+  @if(product$().id) {
+    <app-h2-title 
+      [text]="product$().i18n[currentLang()].name"
+    />
+
+    <div class="product-content__badges">
+      @for(badge of product$().badges; track $index) {
+        <app-badge 
+          class="big"
+          [badge]="badge"
+          [discountPercent]="product$().discountPercent || 0"
+        />
+      }
+    </div>
+  }
+  
+</div>

@@ -1,0 +1,21 @@
+:host{
+  &.big {
+    font-size: 1rem;
+    padding: 5px 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+}
+
+.product-card__badge {
+  display: block;
+  padding: 3px 6px;
+  border-radius: 6px;
+  color: var(--mat-sys-on-background);
+  background-color: var(--mat-sys-primary-container);
+  background-color: var(--mat-sys-inverse-primary);
+  font-size: 0.625rem;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 1px;
+}

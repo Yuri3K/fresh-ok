@@ -17,6 +17,7 @@
   <a 
     draggable="false"
     class="product-card__link"
+    (click)="setCurrentProduct()"
     [routerLink]="['/', currentLang(), 'products', product().slug]"
   >
     <span class="product-card__svg-wrapper">

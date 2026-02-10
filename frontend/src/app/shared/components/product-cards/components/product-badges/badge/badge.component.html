@@ -1,0 +1,15 @@
+@if(badge().slug === 'discount') {
+	<span 
+		class="product-card__badge"
+		[class]="badge().color"
+	>
+		-{{discountPercent()}}%
+	</span>
+} @else {
+	<span 
+		class="product-card__badge"
+		[class]="badge().color"
+	>TEST
+		<!-- {{badge().i18n[currentLang()]}} -->
+	</span>
+}

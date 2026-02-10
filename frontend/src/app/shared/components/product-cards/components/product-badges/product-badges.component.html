@@ -1,0 +1,8 @@
+<div class="product-card__badges">
+	@for(badge of product().badges; track $index) {
+		<app-badge 
+			[badge]="badge"
+			[discountPercent]="product().discountPercent || 0"
+		/>
+	} 
+</div>

@@ -1,17 +1,16 @@
-import { Component, computed, inject, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { Product } from '../../../../core/services/products.service';
 import { GetCurrentLangService } from '../../../../core/services/get-current-lang.service';
-import { ProductBadgeComponent } from '../components/product-badge/product-badge.component';
-import { MEDIA_URL } from '../../../../core/urls';
 import { ProductStatusComponent } from '../components/product-status/product-status.component';
 import { ProductPriceComponent } from '../components/product-price/product-price.component';
 import { ProductRateComponent } from '../components/product-rate/product-rate.component';
 import { ProductImageComponent } from '../components/product-image/product-image.component';
+import { ProductBadgesComponent } from '../components/product-badges/product-badges.component';
 
 @Component({
   selector: 'app-product-card-mini',
   imports: [
-    ProductBadgeComponent,
+    ProductBadgesComponent,
     ProductStatusComponent,
     ProductPriceComponent,
     ProductRateComponent,

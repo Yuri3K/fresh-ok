@@ -1,0 +1,11 @@
+.product-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.product-content__badges {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}

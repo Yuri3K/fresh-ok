@@ -8,12 +8,14 @@ import { TranslateService } from '@ngx-translate/core';
 import { GetCurrentLangService } from '../../../../core/services/get-current-lang.service';
 import { ProductCarouselComponent } from '../../../../shared/components/product-page-elems/product-carousel/product-carousel.component';
 import { ProductStateService } from '../../../../core/services/product-state.service';
+import { ProductContentComponent } from '../../../../shared/components/product-page-elems/product-content/product-content.component';
 @Component({
   selector: 'app-product-detail',
   imports: [
     BreadcrumbsComponent,
     ProductTabsComponent,
     ProductCarouselComponent,
+    ProductContentComponent,
   ],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.scss'
