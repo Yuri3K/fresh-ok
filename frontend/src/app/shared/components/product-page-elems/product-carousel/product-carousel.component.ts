@@ -35,19 +35,19 @@ export class ProductCarouselComponent {
     effect(() => {
       const product = this.product$()
 
-      if(product !== null) {
+      if(product.isActive) {
         this.slides.set([
           {
-            imgUrl: `${MEDIA_URL}${this.product$()!.publicId}-mini`,
-            alt: this.product$()!.i18n[this.currentLang()].name
+            imgUrl: `${MEDIA_URL}${this.product$().publicId}-mini`,
+            alt: this.product$().i18n[this.currentLang()].name
           },
           {
             imgUrl: `${MEDIA_URL}${this.product$()!.publicId}-1`,
-            alt: this.product$()!.i18n[this.currentLang()].name
+            alt: this.product$().i18n[this.currentLang()].name
           },
           {
             imgUrl: `${MEDIA_URL}${this.product$()!.publicId}-2`,
-            alt: this.product$()!.i18n[this.currentLang()].name
+            alt: this.product$().i18n[this.currentLang()].name
           },
         ])
       }

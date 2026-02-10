@@ -26,7 +26,4 @@ export class ProductTabsComponent {
   
   product$ = this.productStateService.currentProduct$
   currentLang = inject(GetCurrentLangService).currentLang
-
-  currentProduct = computed(() => this.product$())
-
 }
