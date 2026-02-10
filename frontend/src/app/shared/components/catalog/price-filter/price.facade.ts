@@ -1,5 +1,5 @@
 import { computed, effect, inject, Injectable, signal } from "@angular/core";
-import { CatalogStateService } from "../../../../core/services/products-state.service";
+import { CatalogStateService } from "../../../../core/services/catalog-state.service";
 
 export interface PriceRange {
   min: number;

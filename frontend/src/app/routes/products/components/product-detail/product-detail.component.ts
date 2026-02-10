@@ -1,4 +1,4 @@
-import { Component, DestroyRef, effect, inject } from '@angular/core';
+import { Component, DestroyRef, effect, inject, OnDestroy } from '@angular/core';
 import { BreadcrumbsComponent } from '../../../../shared/components/breadcrumbs/breadcrumbs.component';
 import { ProductTabsComponent } from '../../../../shared/components/product-tabs/product-tabs.component';
 import { Product, ProductsService } from '../../../../core/services/products.service';
@@ -7,6 +7,7 @@ import { Breadcrumb, BreadcrumbsService } from '../../../../shared/components/br
 import { TranslateService } from '@ngx-translate/core';
 import { GetCurrentLangService } from '../../../../core/services/get-current-lang.service';
 import { ProductCarouselComponent } from '../../../../shared/components/product-page-elems/product-carousel/product-carousel.component';
+import { ProductStateService } from '../../../../core/services/product-state.service';
 @Component({
   selector: 'app-product-detail',
   imports: [
@@ -17,12 +18,13 @@ import { ProductCarouselComponent } from '../../../../shared/components/product-
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.scss'
 })
-export class ProductDetailComponent {
+export class ProductDetailComponent implements OnDestroy{
   private translateService = inject(TranslateService)
   private destroyRef = inject(DestroyRef)
   private breadcrumbsService = inject(BreadcrumbsService)
-  private productsService = inject(ProductsService)
-  currentLang = inject(GetCurrentLangService).currentLang
+  private readonly productsService = inject(ProductsService)
+  private readonly productStateService = inject(ProductStateService)
+  private readonly currentLang = inject(GetCurrentLangService).currentLang
 
   product = toSignal(
     this.productsService.getProductBySlug('pineapple'),
@@ -35,6 +37,8 @@ export class ProductDetailComponent {
     effect(() => {
       const isProduct = this.product().id
       if (isProduct) {
+        this.productStateService.setCurrentPruduct(this.product())
+
         this.translateService
           .stream('breadcrumbs')
           .pipe(takeUntilDestroyed(this.destroyRef))
@@ -57,5 +61,9 @@ export class ProductDetailComponent {
           })
       }
     })
+  }
+
+  ngOnDestroy(): void {
+    this.productStateService.resetCurrentProduct()
   }
 }

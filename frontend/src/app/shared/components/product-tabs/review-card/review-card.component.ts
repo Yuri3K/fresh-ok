@@ -19,6 +19,7 @@ import { dbUser } from '../../../../core/services/user-access.service';
 import { LeaveReviewPopupComponent } from '../../dialogs/leave-review-popup/leave-review-popup.component';
 import { AddReviewApiResponse } from '../product-reviews/product-reviews.component';
 import { MiniFabBtnComponent } from "../../../ui-elems/buttons/mini-fab-btn/mini-fab-btn.component";
+import { ProductStateService } from '../../../../core/services/product-state.service';
 
 @Component({
   selector: 'app-review-card',
@@ -32,11 +33,12 @@ export class ReviewCardComponent {
 
   currentReview = signal<Review>({} as Review)
 
-  onDeleteReview = output<string>();
+  // onDeleteReview = output<string>();
 
   private readonly dialog = inject(MatDialog);
   private readonly translateService = inject(TranslateService);
   private readonly apiService = inject(ApiService);
+  private readonly productStateService = inject(ProductStateService)
 
   avatar = computed(() => {
     return this.currentReview().userAvatar
@@ -75,8 +77,10 @@ export class ReviewCardComponent {
 
     deleteDialog.afterClosed().subscribe((result) => {
       if (result) {
-        this.apiService.delete(`/reviews/delete/${result}`).subscribe();
-        this.onDeleteReview.emit(result);
+        this.apiService.delete(`/reviews/delete/${result}`).subscribe(() => {
+          this.productStateService.removeReview(result)
+        });
+        // this.onDeleteReview.emit(result);
       }
     });
   }
@@ -111,7 +115,8 @@ export class ReviewCardComponent {
 
         this.apiService.patch<AddReviewApiResponse>(`/reviews/updateReview/${result.review.id}`, updatedReview).subscribe({
           next: (res) => {
-            this.currentReview.set(res.review)
+            this.productStateService.updateReview(res.review)
+            // this.currentReview.set(res.review)
           },
           error: (err) => {},
         });

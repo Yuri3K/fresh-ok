@@ -4,7 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ExpantionPanelComponent } from '../../expantion-panel/expantion-panel.component';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { CatalogStateService } from '../../../../core/services/products-state.service';
+import { CatalogStateService } from '../../../../core/services/catalog-state.service';
 import { PriceFacade } from './price.facade';
 
 @Component({

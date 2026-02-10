@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { MiniFabBtnComponent } from '../../../ui-elems/buttons/mini-fab-btn/mini-fab-btn.component';
-import { CatalogStateService } from '../../../../core/services/products-state.service';
+import { CatalogStateService } from '../../../../core/services/catalog-state.service';
 
 @Component({
   selector: 'app-view-list-btn',

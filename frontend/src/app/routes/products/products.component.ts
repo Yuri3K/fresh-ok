@@ -7,7 +7,7 @@ import {
   OnDestroy,
   ViewChild,
 } from '@angular/core';
-import { CatalogStateService } from '../../core/services/products-state.service';
+import { CatalogStateService } from '../../core/services/catalog-state.service';
 import { H2TitleComponent } from '../../shared/ui-elems/typography/h2-title/h2-title.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ProductCardListComponent } from '../../shared/components/product-cards/product-card-list/product-card-list.component';

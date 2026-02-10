@@ -8,7 +8,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { debounceTime, distinctUntilChanged, merge } from 'rxjs';
-import { CatalogStateService } from '../../../../core/services/products-state.service';
+import { CatalogStateService } from '../../../../core/services/catalog-state.service';
 
 @Component({
   selector: 'app-badge-filter',

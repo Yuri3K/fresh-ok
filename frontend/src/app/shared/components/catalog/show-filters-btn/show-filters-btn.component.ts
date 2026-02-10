@@ -1,6 +1,6 @@
 import { Component, DestroyRef, effect, inject } from '@angular/core';
 import { MiniFabBtnComponent } from '../../../ui-elems/buttons/mini-fab-btn/mini-fab-btn.component';
-import { CatalogStateService } from '../../../../core/services/products-state.service';
+import { CatalogStateService } from '../../../../core/services/catalog-state.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({

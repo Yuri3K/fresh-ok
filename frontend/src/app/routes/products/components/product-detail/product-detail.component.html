@@ -2,14 +2,10 @@
 
 <div class="product-details">
   <div class="container">
-    @if(product().id) {
-      <app-product-carousel 
-        [product]="product()"
-      />
+    @if(product()) {
+      <app-product-carousel/>
       
-      <app-product-tabs 
-        [product]="product()"
-      />
+      <app-product-tabs />
 
       
 

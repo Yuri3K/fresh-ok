@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { BtnRaisedComponent } from '../../../ui-elems/buttons/btn-raised/btn-raised.component';
 import { filter, tap } from 'rxjs';
-import { CatalogStateService } from '../../../../core/services/products-state.service';
+import { CatalogStateService } from '../../../../core/services/catalog-state.service';
 
 type LimitType = "6" | "12" | "18"
 interface Limit {

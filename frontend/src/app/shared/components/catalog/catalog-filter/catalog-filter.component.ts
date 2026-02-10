@@ -7,7 +7,7 @@ import { GetCurrentLangService } from '../../../../core/services/get-current-lan
 import { TranslateModule } from '@ngx-translate/core';
 import { BtnRaisedComponent } from '../../../ui-elems/buttons/btn-raised/btn-raised.component';
 import { ExpantionPanelComponent } from '../../expantion-panel/expantion-panel.component';
-import { CatalogStateService } from '../../../../core/services/products-state.service';
+import { CatalogStateService } from '../../../../core/services/catalog-state.service';
 
 @Component({
   selector: 'app-catalog-filters',

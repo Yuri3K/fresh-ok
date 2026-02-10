@@ -1,4 +1,4 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { LangCode } from './langs/langs.service';
 import {
@@ -6,7 +6,6 @@ import {
   Observable,
   retry,
   take,
-  tap,
   throwError,
 } from 'rxjs';
 
@@ -103,7 +102,6 @@ export class ProductsService {
       .pipe(
         retry(1), // при неeдачном запросе попробовать еще раз
         take(1),
-        // tap(res => console.log("!!! PRODUCTS !!!", res)),
         catchError((err) => {
           console.log(err);
           return throwError(() => err);
@@ -116,7 +114,6 @@ export class ProductsService {
       .pipe(
         retry(1),
         take(1),
-        // tap((prod) => console.log(prod)),
         catchError((err) => {
           console.log(err);
           return throwError(() => err);

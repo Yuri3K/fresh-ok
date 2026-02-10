@@ -1,9 +1,9 @@
-import { Component, effect, inject, input, signal } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { NgxCarouselComponent, NgxCarouselConfig } from 'ngx-freshok-carousel';
-import { Product } from '../../../../core/services/products.service';
 import { MEDIA_URL } from '../../../../core/urls';
 import { GetCurrentLangService } from '../../../../core/services/get-current-lang.service';
 import { ProductSlide, ProductSlideComponent } from './product-slide/product-slide.component';
+import { ProductStateService } from '../../../../core/services/product-state.service';
 
 
 @Component({
@@ -16,7 +16,7 @@ import { ProductSlide, ProductSlideComponent } from './product-slide/product-sli
   styleUrl: './product-carousel.component.scss'
 })
 export class ProductCarouselComponent {
-  product = input.required<Product>()
+  product$ = inject(ProductStateService).currentProduct$
 
   private readonly currentLang = inject(GetCurrentLangService).currentLang;
   
@@ -33,25 +33,21 @@ export class ProductCarouselComponent {
 
   constructor() {
     effect(() => {
-      const product = this.product()
+      const product = this.product$()
 
-      if(product) {
+      if(product !== null) {
         this.slides.set([
-          // {
-          //   imgUrl: `${MEDIA_URL}${this.product().publicId}-mini`,
-          //   alt: this.product().i18n[this.currentLang()].name
-          // },
           {
-            imgUrl: `${MEDIA_URL}${this.product().publicId}-1`,
-            alt: this.product().i18n[this.currentLang()].name
+            imgUrl: `${MEDIA_URL}${this.product$()!.publicId}-mini`,
+            alt: this.product$()!.i18n[this.currentLang()].name
           },
           {
-            imgUrl: `${MEDIA_URL}${this.product().publicId}-2`,
-            alt: this.product().i18n[this.currentLang()].name
+            imgUrl: `${MEDIA_URL}${this.product$()!.publicId}-1`,
+            alt: this.product$()!.i18n[this.currentLang()].name
           },
           {
-            imgUrl: `${MEDIA_URL}${this.product().publicId}-3`,
-            alt: this.product().i18n[this.currentLang()].name
+            imgUrl: `${MEDIA_URL}${this.product$()!.publicId}-2`,
+            alt: this.product$()!.i18n[this.currentLang()].name
           },
         ])
       }

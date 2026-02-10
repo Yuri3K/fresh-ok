@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { BtnRaisedComponent } from '../../../ui-elems/buttons/btn-raised/btn-raised.component';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { filter } from 'rxjs';
-import { CatalogStateService } from '../../../../core/services/products-state.service';
+import { CatalogStateService } from '../../../../core/services/catalog-state.service';
 
 type SortingType =
   | 'rating'

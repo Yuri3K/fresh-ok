@@ -4,11 +4,10 @@
   <app-h4-title [text]="translations.opinions"/>
 
   <div class="reviews__cards">
-    @for(review of sortedReviews(); track $index) {
+    @for(review of reviews$(); track $index) {
       <app-review-card 
         [review]="review"
         [user]="user()"
-        (onDeleteReview)="addDeletedId($event)"
       />
     }
   </div>

@@ -20,8 +20,8 @@ import { BtnFlatComponent } from '../../../ui-elems/buttons/btn-flat/btn-flat.co
 import { RegisterPopupComponent } from '../../dialogs/register-popup/register-popup.component';
 import { Router } from '@angular/router';
 import { ApiService } from '../../../../core/services/api.service';
-import { Timestamp } from 'firebase/firestore';
 import { InfoDialogComponent } from '../../dialogs/info-dialog/info-dialog.component';
+import { ProductStateService } from '../../../../core/services/product-state.service';
 
 export interface CheckReviewApiResponse {
   canReview?: boolean;
@@ -54,30 +54,9 @@ export class ProductReviewsComponent {
   private readonly router = inject(Router);
   private readonly apiService = inject(ApiService);
   private readonly translateService = inject(TranslateService);
+  private readonly productStateService = inject(ProductStateService)
 
-  private localReviews = signal<Review | null>(null);
-  private deletedReviewsIds = signal<string[]>([]);
-
-  sortedReviews = computed(() => {
-    const serverReviews = this.reviews();
-    const local = this.localReviews();
-    const deleted = this.deletedReviewsIds();
-
-    let finalReviews = [...serverReviews]; 
-    if (local) { 
-      const idx = finalReviews.findIndex(r => r.id === local.id); 
-      if (idx >= 0) { 
-        // заменяем существующий 
-        finalReviews[idx] = local; 
-      } else { 
-        // если это новый отзыв — добавляем 
-        finalReviews.push(local); 
-       } }
-
-    return finalReviews
-      .filter((r) => !deleted.includes(r.id))
-      .sort((a, b) => b.createdAt - a.createdAt);
-  });
+  reviews$ = this.productStateService.reviews$
 
   user = toSignal(this.userService.dbUser$, { initialValue: null });
 
@@ -164,7 +143,7 @@ export class ProductReviewsComponent {
             .patch<AddReviewApiResponse>(`/reviews/updateReview/${result.review.id}`, newReview)
             .subscribe({
               next: (res) => {
-                this.localReviews.set(res.review);
+                this.productStateService.updateReview(res.review)
               },
             });
         } else {
@@ -172,7 +151,7 @@ export class ProductReviewsComponent {
             .post<AddReviewApiResponse>('/reviews/addReview', newReview)
             .subscribe({
               next: (res) => {
-                this.localReviews.set(res.review);
+                this.productStateService.addReview(res.review)
               },
             });
         }
@@ -199,9 +178,5 @@ export class ProductReviewsComponent {
         this.openReviewDialog(review);
       }
     });
-  }
-
-  addDeletedId(id: string) {
-    this.deletedReviewsIds.update((ids) => [...ids, id]);
   }
 }
