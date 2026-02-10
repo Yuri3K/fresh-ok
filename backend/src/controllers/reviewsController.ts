@@ -289,6 +289,7 @@ async function updateReview(req: AuthRequest<DeleteReview>, res: Response) {
     const reviewRef = db.collection("reviews").doc(reviewId);
 
     let updatedReview!: Review;
+    let newRate!: number
 
     await db.runTransaction(async (tx) => {
       // Получаем отзыв
@@ -324,7 +325,7 @@ async function updateReview(req: AuthRequest<DeleteReview>, res: Response) {
       const newRating = Number(rating);
 
       // Пересчёт рейтинга продукта
-      let newRate = currentRate;
+      newRate = currentRate;
       newRate =
         (currentRate * reviewsCount - oldRating + newRating) / reviewsCount;
 
@@ -370,6 +371,7 @@ async function updateReview(req: AuthRequest<DeleteReview>, res: Response) {
     return res.status(200).json({
       message: "Review updated successfully",
       review: updatedReview,
+      newRate: newRate
     });
   } catch (err: any) {
     if (err.message === "REVIEW_NOT_FOUND") {

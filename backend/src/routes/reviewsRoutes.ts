@@ -3,7 +3,6 @@ import express from 'express'
 import verifyToken from "../middleware/verify-token"
 import { AddReviewRequest } from "../types/schemas/reviews/add-review"
 import validateRequest from "../middleware/validateRequest"
-import { checkPermission } from "../middleware/checkPermission"
 import { DeleteReview } from "../types/schemas/reviews/delete-review"
 import { CheckUserReview } from "../types/schemas/reviews/check-user-review"
 import { UpdateReview } from "../types/schemas/reviews/update-review"

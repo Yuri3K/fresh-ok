@@ -1,5 +1,5 @@
 <div class="product-content">
-  @if(product$().id) {
+  @if(product$().isActive) {
     <app-h2-title 
       [text]="product$().i18n[currentLang()].name"
     />
@@ -13,6 +13,27 @@
         />
       }
     </div>
+
+    <div class="product-content__info">
+      <div class="product-content__info-left">
+        <app-product-code
+          [code]="product$().code"
+        />
+        <app-product-stars
+          [starsCount]="product$().rate"
+        />
+      </div>
+      <div class="product-content__info-right">
+        <app-product-status 
+          class="big"
+          [status]="product$().stock"
+        />
+      </div>
+    </div>
+    <app-product-price
+      class="big"
+      [product]="product$()"
+    />
   }
   
 </div>

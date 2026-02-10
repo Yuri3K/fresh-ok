@@ -1,0 +1,18 @@
+<div class="stars">
+  @for(star of [].constructor(5); track $index) {
+    <mat-icon [class.active]="$index + 1 <= starsCount()">
+      star
+    </mat-icon>
+  }
+</div>
+
+
+<!-- <div class="stars">
+ @for(fill of starFill(); track $index) {
+    <mat-icon 
+      [style.background]="getGradient(fill)"
+    >
+      star
+    </mat-icon>
+  }
+</div> -->

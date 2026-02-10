@@ -9,6 +9,7 @@ export interface Product {
   badges: string[];
   category: string;
   currency: string;
+  code: string;
   discountPercent: number;
   hasDiscount: boolean;
   i18n: Record<LangCode, ProductTexts>;

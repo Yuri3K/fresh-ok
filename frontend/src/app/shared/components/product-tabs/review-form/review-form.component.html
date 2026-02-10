@@ -13,19 +13,19 @@
     <div class="review__fields">
       <div class="review__left">
         <div class="review__control">
-          <span class="review__label">{{'product-page.form.your-review' | translate}}</span>
+          <span class="review__label">{{'product-page.tabs.form-review.your-review' | translate}}</span>
           <app-form-control-textarea [textareaControl]="textareaControl" />
         </div>
       </div>
 
       <div class="review__right">
         <div class="review__control">
-          <span class="review__label">{{'product-page.form.name' | translate}}</span>
+          <span class="review__label">{{'product-page.tabs.form-review.name' | translate}}</span>
           <app-form-control-name [nameControl]="nameControl" />
         </div>
     
         <div class="review__control">
-          <span class="review__label">{{'product-page.form.email' | translate}}</span>
+          <span class="review__label">{{'product-page.tabs.form-review.email' | translate}}</span>
           <app-form-control-email [emailControl]="emailControl" />
         </div>
       </div>
@@ -33,11 +33,11 @@
 
     <app-form-control-checkbox 
       [checkboxControl]="agreementControl"
-      [label]="'product-page.form.agreement' | translate"
+      [label]="'product-page.tabs.form-review.agreement' | translate"
     />
 
     <app-btn-flat 
-      [btnText]="'product-page.form.send-review' | translate"
+      [btnText]="'product-page.tabs.form-review.send-review' | translate"
       type="submit"
       borderRarius="6px"
       [btnDisabled]="reviewForm.invalid"

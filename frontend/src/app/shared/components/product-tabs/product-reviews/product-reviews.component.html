@@ -1,7 +1,7 @@
 @let translations = ('product-page' | translate);
 
 <div class="reviews">
-  <app-h4-title [text]="translations.opinions"/>
+  <app-h4-title [text]="translations.tabs.opinions"/>
 
   <div class="reviews__cards">
     @for(review of reviews$(); track $index) {
@@ -14,7 +14,7 @@
 
   <app-btn-flat
     borderRarius="6px"
-    [btnText]="translations['leave-review']"
+    [btnText]="translations.tabs['leave-review']"
     bgColor="var(--mat-sys-primary-container)"
     (click)="addReview()"
   />

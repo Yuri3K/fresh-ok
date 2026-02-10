@@ -22,6 +22,8 @@
     "edit": "Edit",
     "updte": "Update",
     "cancel": "Cancel",
+    "add-to-cart": "Add to cart",
+    "add-to-favs": "Add to favs",
     "back-to-homepage": "Back to Homepage",
     "forms": {
       "email": {
@@ -258,17 +260,14 @@
     }
   },
   "product-page": {
-    "opinions": "Our customers' opinions",
-    "leave-review": "Leave a review",
-    "your-rating": "Your rating*",
-    "form": {
-      "your-review": "Your review*",
-      "name": "Name",
-      "email": "Email*",
-      "agreement": "I agree with the data processing policy",
-      "send-review": "Send Review"
+    "main-content": {
+      "code": "Code: ",
+      "learn-more": "Подробнее"
     },
     "tabs": {
+      "opinions": "Our customers' opinions",
+      "leave-review": "Leave a review",
+      "your-rating": "Your rating*",
       "labels": [
         {
           "name": "Description",
@@ -282,18 +281,81 @@
           "name": "Reviews ({{quantity}})",
           "order": 3
         }
-      ]
+      ],
+      "form-review": {
+        "your-review": "Your review*",
+        "name": "Name",
+        "email": "Email*",
+        "agreement": "I agree with the data processing policy",
+        "send-review": "Send Review"
+      }
     },
     "review": {
       "delete-dialog": {
         "title": "Delete review",
-        "question":"Are you sure you want to delete your review?"
+        "question": "Are you sure you want to delete your review?"
       },
       "review-exists": {
         "title": "Information",
         "message": "You have already left a review for this product.",
         "action": "Edit review"
       }
+    }
+  },
+  "payment-and-delivery": {
+    "lines": [
+      "Minimum order amount - 300 UAH.",
+      "Delivery time - 60-120 minutes.",
+      "Payment is accepted only by bank card.",
+      "The final order amount is calculated after items are collected."
+    ],
+    "learn-more": {
+      "title": "Delivery and Payment Terms",
+      "sections": [
+        {
+          "subtitle": "Delivery zones and cost",
+          "text": [
+            {
+              "question": "Green zone (up to 5 km): ",
+              "answer": "Free for orders from 500₴. (otherwise — 150₴)."
+            },
+            {
+              "question": "Yellow zone (up to 15 km): ",
+              "answer": "200₴."
+            },
+            {
+              "question": "Time: ",
+              "answer": "We deliver orders daily from 08:00 to 23:00."
+            }
+          ]
+        },
+        {
+          "subtitle": "Payment and order assembly",
+          "text": [
+            {
+              "question": "Why can the price change? ",
+              "answer": "When ordering weight-based products (vegetables, fruits, meat), the final weight may slightly differ from the stated one."
+            },
+            {
+              "question": "Funds reservation: ",
+              "answer": "At checkout, an amount with a 10% reserve is frozen on the card. The final charge will be made only after the collector weighs all products. Extra funds will be returned immediately."
+            },
+            {
+              "question": "If an item is out of stock ",
+              "answer": "Our collector will call you and offer a replacement."
+            }
+          ]
+        },
+        {
+          "subtitle": "Product return",
+          "text": [
+            {
+              "question": "",
+              "answer": "You have the right to refuse any product at the time of delivery if you are not satisfied with its quality or expiration date."
+            }
+          ]
+        }
+      ]
     }
   },
   "footer": {

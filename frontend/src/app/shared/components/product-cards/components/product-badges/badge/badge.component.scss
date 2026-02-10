@@ -1,9 +1,12 @@
-:host{
+:host {
   &.big {
-    font-size: 1rem;
-    padding: 5px 10px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
+    .product-card__badge {
+      font-size: 1rem;
+      padding: 5px 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+    }
   }
 }
 

@@ -21,11 +21,50 @@
       }
     }
 
-    .product-card__price-discount{
+    .product-card__price-discount {
       font-size: 0.875rem;
       font-weight: 600;
       line-height: 1;
       letter-spacing: 0.5px;
+    }
+  }
+
+  &.big {
+    .product-card__price {
+      display: flex;
+      flex-direction: row;
+      align-items: end;
+      justify-content: start;
+      gap: 8px;
+    }
+
+    .product-card__price-origin {
+      font-size: 1.875rem;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 1px;
+      color: var(--mat-sys-primary);
+
+      &.cross {
+        font-size: 1.25rem;
+        letter-spacing: 0.5px;
+        color: inherit;
+
+        &::after {
+          background: linear-gradient(to bottom right,
+              transparent calc(45% - 2px),
+              var(--mat-sys-on-background) 50%,
+              transparent calc(55% + 2px));
+        }
+      }
+    }
+
+    .product-card__price-discount {
+      font-size: 1.875rem;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0.5px;
+      color: var(--mat-sys-primary);
     }
   }
 }
@@ -54,12 +93,10 @@
       right: 0;
       bottom: 0;
       left: 0;
-      background: linear-gradient(
-        to bottom right,
-        transparent calc(50% - 1px),
-        var(--mat-sys-on-background) calc(50%),
-        transparent calc(50% + 1px)
-      );
+      background: linear-gradient(to bottom right,
+          transparent calc(49% - 3px),
+          var(--mat-sys-on-background) calc(50%),
+          transparent calc(51% + 3px));
       pointer-events: none;
     }
   }

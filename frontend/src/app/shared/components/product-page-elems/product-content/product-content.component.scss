@@ -9,3 +9,17 @@
   align-items: center;
   gap: 16px;
 }
+
+.product-content__info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.product-content__info-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+}

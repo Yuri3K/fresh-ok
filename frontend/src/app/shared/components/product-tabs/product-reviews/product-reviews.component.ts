@@ -33,6 +33,10 @@ export interface AddReviewApiResponse {
   review: Review;
 }
 
+export interface UpdateReviewApiResponse extends AddReviewApiResponse {
+  newRate: number
+}
+
 @Component({
   selector: 'app-product-reviews',
   imports: [
@@ -140,10 +144,10 @@ export class ProductReviewsComponent {
 
         if (result.isEditing) {
           this.apiService
-            .patch<AddReviewApiResponse>(`/reviews/updateReview/${result.review.id}`, newReview)
+            .patch<UpdateReviewApiResponse>(`/reviews/updateReview/${result.review.id}`, newReview)
             .subscribe({
               next: (res) => {
-                this.productStateService.updateReview(res.review)
+                this.productStateService.updateReview(res.review, res.newRate)
               },
             });
         } else {

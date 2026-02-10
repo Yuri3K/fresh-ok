@@ -8,6 +8,7 @@ const EMPTY_PRODUCT: Product = {
   badges: [], 
   category: '', 
   currency: '', 
+  code: '',
   discountPercent: 0, 
   hasDiscount: false, 
   i18n: {} as Record<LangCode, ProductTexts>, 
@@ -75,7 +76,7 @@ export class ProductStateService {
     })
   }
 
-  updateReview(review: Review) {
+  updateReview(review: Review, newRate: number) {
     this.reviews.update(prev => {
       const filteredReviews = prev.filter(r => r.id !== review.id)
       return [review, ...filteredReviews]
@@ -83,6 +84,7 @@ export class ProductStateService {
 
     this.updateCurrentProduct({
       reviews: this.reviews(),
+      rate: newRate
     })
   }
 
