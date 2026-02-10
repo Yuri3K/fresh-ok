@@ -1,0 +1,342 @@
+{
+  "seo": {
+    "meta-title": "FRESHOK | Главная страница",
+    "meta-descr": "Добро пожаловать в FRESHOK онлайн-маркет. Здесь вы всегда найдете свежие и недорогие продукты."
+  },
+  "breadcrumbs": {
+    "homepage": {
+      "name": "Главная",
+      "url": "/ru"
+    },
+    "products": {
+      "name": "Каталог",
+      "url": "/ru/products"
+    }
+  },
+  "common": {
+    "close": "Закрыть",
+    "logout": "Выйти",
+    "login": "Войти",
+    "show-more": "Показать еще",
+    "delete": "Удалить",
+    "edit": "Редактировать",
+    "updte": "Обновить",
+    "cancel": "Отмена",
+    "back-to-homepage": "Вернуться на домашнюю страницу",
+    "forms": {
+      "email": {
+        "enter-email": "Введите свою электронную почту",
+        "email-hint": "Подсказка: example@gmail.com",
+        "email-error-required": "Пожалуйста, введите электронную почту",
+        "email-error-invalid": "Пожалуйста, введите корректную электронную почту",
+        "email-error-exists": "Эта электронная почта уже зарегистрирована"
+      },
+      "pwd": {
+        "enter-pwd": "Введите свой пароль",
+        "show-pwd": "Показать пароль",
+        "hide-pwd": "Скрыть пароль",
+        "pwd-hint": "Подсказка: должно быть не менее 6 символов",
+        "pwd-error-required": "Пожалуйста, введите пароль",
+        "pwd-error-minlength": "Пароль должен быть не менее {{minlength}} символов. Сейчас {{currentlength}} символов"
+      },
+      "name": {
+        "enter-nick": "Введите никнейм",
+        "nick-placeholder": "Например: Пользователь",
+        "nick-hint": "Подсказка: должно быть не менее 2 символов",
+        "nick-error-required": "Пожалуйста, введите никнейм",
+        "nick-error-minlength": "Никнейм должен быть не менее {{minlength}} символов. Сейчас {{currentlength}} символов"
+      },
+      "textarea": {
+        "textarea-error-required": "Пожалуйста, напишите отзыв"
+      }
+    }
+  },
+  "errors": {
+    "fetch-collection-user": "Произошла ошибка при получении пользователя из коллекции"
+  },
+  "header": {
+    "user": {
+      "alt": "Аватар",
+      "greetings": "Привет, {{name}}",
+      "privacy": "Политика конфиденциальности",
+      "terms": "Условия использования"
+    }
+  },
+  "header-market": {
+    "logo": {
+      "title": "Freshok",
+      "subtitle": "онлайн-маркет"
+    },
+    "catalog": {
+      "title": "Каталог товаров"
+    },
+    "search-input": {
+      "placeholder": "Найти в маркете",
+      "submit": "Найти"
+    }
+  },
+  "login-page": {
+    "title": "Вход",
+    "login-with-google": "Продолжить с Google",
+    "go-to-register": {
+      "prefix": "Еще не зарегистрированы? Перейдите на страницу ",
+      "link": "регистрации",
+      "suffix": "."
+    }
+  },
+  "register-page": {
+    "title": "Регистрация",
+    "register-error": "Не удалось зарегистрировать пользователя \"{{email}}\"",
+    "go-to-login": {
+      "prefix": "Уже есть аккаунт? Перейдите на страницу ",
+      "link": "входа",
+      "suffix": "."
+    }
+  },
+  "homepage": {
+    "slider": [
+      {
+        "title": "Свежачок вам в хату",
+        "subtitle": "скидка -50%",
+        "descr": "Только с 7 по 13 июля — скидки до 50% на сезонные фрукты и овощи. Не пропустите!",
+        "btn": "Купить сейчас",
+        "link": "/products?category=all&page=1&sort=newest&limit=6&badge=discount",
+        "imageUrl": "slider/slide1"
+      },
+      {
+        "title": "Сойдите с ума от помидоров",
+        "subtitle": "Акция: 3 кг по цене 1",
+        "descr": "С 12 по 15 июля наслаждайтесь скидками на домашние, сочные помидоры!",
+        "btn": "Купить сейчас",
+        "link": "/products?category=vegetables&page=1&sort=newest&limit=6&badge=discount",
+        "imageUrl": "slider/slide2"
+      },
+      {
+        "title": "Заставьте всех позеленеть от зависти",
+        "subtitle": "Скидки на зелень",
+        "descr": "",
+        "btn": "Купить сейчас",
+        "link": "/products?category=greens&page=1&sort=newest&limit=6&badge=discount",
+        "imageUrl": "slider/slide3"
+      }
+    ],
+    "advantages": [
+      {
+        "scr": "advantages/scooter",
+        "title": "Бесплатная доставка",
+        "descr": "Для заказов на сумму от 500<span class='currency'>₴</span>"
+      },
+      {
+        "scr": "advantages/return-box",
+        "title": "Возврат товара",
+        "descr": "Если товары были испорчены"
+      },
+      {
+        "scr": "advantages/24-hours",
+        "title": "Поддержка 24/7",
+        "descr": "Лучшие операторы"
+      }
+    ],
+    "hit-products": {
+      "title": "Топовые товары",
+      "not-found": "По вашему фильтру товаров не найдено."
+    },
+    "promo": {
+      "title": "Акции",
+      "filters": [
+        {
+          "name": "Все товары",
+          "selector": "discount",
+          "order": 1
+        },
+        {
+          "name": "Новинки",
+          "selector": "new",
+          "order": 2
+        },
+        {
+          "name": "Хиты",
+          "selector": "hit",
+          "order": 3
+        }
+      ]
+    },
+    "news": {
+      "title": "Наши новости",
+      "all-new": "Все новости",
+      "route-page": "ru/all-news",
+      "newsItems": [
+        {
+          "src": "news/strawberry",
+          "alt": "Распродажа фруктов",
+          "descr": "Событие этого лета: распродажа сезонных фруктов в онлайн-маркете FRESHOK. Торопись, пока всё не разобрали!",
+          "date": {
+            "day": "15",
+            "month": "Июль"
+          }
+        },
+        {
+          "src": "news/mango",
+          "alt": "Шикарный выбор манго",
+          "descr": "Шикарнейший выбор манго в нашем онлайн-маркете",
+          "date": {
+            "day": "28",
+            "month": "Май"
+          }
+        },
+        {
+          "src": "news/papaya",
+          "alt": "Папайя",
+          "descr": "Всё, что вы хотели знать о папайя",
+          "date": {
+            "day": "20",
+            "month": "Февраль"
+          }
+        }
+      ]
+    }
+  },
+  "catalog-page": {
+    "title": "Каталог товаров",
+    "filters": {
+      "categories": {
+        "title": "Категории"
+      },
+      "offer": {
+        "title": "Предложения"
+      },
+      "brand": {
+        "title": "Бренд"
+      },
+      "price": {
+        "title": "Цена",
+        "from": "от",
+        "to": "до"
+      }
+    },
+    "sorting": {
+      "sort-by": [
+        {
+          "name": "По рейтингу",
+          "slug": "rating"
+        },
+        {
+          "name": "Сначало дешевые",
+          "slug": "price-asc"
+        },
+        {
+          "name": "Сначало дорогие",
+          "slug": "price-desc"
+        },
+        {
+          "name": "По дате появления",
+          "slug": "newest"
+        },
+        {
+          "name": "По алфавиту A-Я",
+          "slug": "name-asc"
+        },
+        {
+          "name": "По алфавиту Я-А",
+          "slug": "name-desc"
+        }
+      ],
+      "limit": [
+        {
+          "name": "по 6",
+          "slug": "6"
+        },
+        {
+          "name": "по 12",
+          "slug": "12"
+        },
+        {
+          "name": "по 18",
+          "slug": "18"
+        }
+      ]
+    }
+  },
+  "product-page": {
+    "opinions": "Мнения наших клиентов",
+    "leave-review": "Оставить отзыв",
+    "your-rating": "Ваша оценка*",
+    "form": {
+      "your-review": "Ваш отзыв*",
+      "name": "Имя",
+      "email": "Email*",
+      "agreement": "Я согласен с политикой обработки моих данных",
+      "send-review": "Отправить отзыв"
+    },
+    "tabs": {
+      "labels": [
+        {
+          "name": "Описание",
+          "order": 1
+        },
+        {
+          "name": "Характеристики",
+          "order": 2
+        },
+        {
+          "name": "Отзывы ({{quantity}})",
+          "order": 3
+        }
+      ]
+    },
+    "review": {
+      "delete-dialog": {
+        "title": "Удалить отзыв",
+        "question":"Вы действительно хотите удалить свой отзыв?"
+      },
+      "review-exists": {
+        "title": "Информация",
+        "message": "Вы уже оставили отзыв об этом товаре.",
+        "action": "Редактировать отзыв"
+      }
+    }
+  },
+  "footer": {
+    "address": "Киев, ул. Шевченко, 1",
+    "hotline": "Горячая линия +38(099)-445-35-63",
+    "subscribe": {
+      "title": "Следите за нашими акциями",
+      "placeholder": "email@example.com",
+      "submit": "Подписаться"
+    },
+    "links": [
+      {
+        "text": "О нас",
+        "route": "/about"
+      },
+      {
+        "text": "Оплата и доставка",
+        "route": "/payment-delivery"
+      },
+      {
+        "text": "Отзывы",
+        "route": "/reviews"
+      },
+      {
+        "text": "Контакты",
+        "route": "/contacts"
+      },
+      {
+        "text": "Вакансии",
+        "route": "/careers"
+      },
+      {
+        "text": "Новости",
+        "route": "/news"
+      },
+      {
+        "text": "Публичная оферта",
+        "route": "/public-offer"
+      },
+      {
+        "text": "Акции",
+        "route": "/promotions"
+      }
+    ]
+  }
+}
