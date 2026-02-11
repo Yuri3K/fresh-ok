@@ -1,8 +1,11 @@
 <app-mini-fab-btn
+  [height]="btnHeight()"
+  [width]="btnWidth()"
   iconName="shopping_cart"
-  ariaLabel="Add to cart"
-  tooltipText="Add to cart"
+  [tooltipText]="'common.add-to-cart' | translate"
+  [tooltipText]="'common.add-to-cart' | translate"
   (click)="addToCart()"
   [isBadgeHidden]="true"
+  [btnText]="size() == 'default' ? '' : 'common.add-to-cart' | translate"
   iconColor="var(--mat-sys-on-secondary-container)"
-/>
+  />

@@ -1,24 +1,27 @@
 .stars {
   display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stars__view {
+  display: flex;
   gap: 6px;
 }
 
 .mat-icon {
-  color: gray;
+  color: lightgray;
 
   &.active {
-    color: yellow
+    background: linear-gradient(90deg, gold var(--fill-percentage), lightgray var(--fill-percentage)); 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+    background-clip: text;
+    color: transparent;
   }
 }
 
-// .mat-icon {
-//   color: gray;
-
-  // &.active {
-  //   background: linear-gradient(90deg, gold 50%, #ccc 50%); 
-  //   -webkit-background-clip: text; 
-  //   -webkit-text-fill-color: transparent; 
-  //   background-clip: text; /* для Firefox */ 
-  //   color: transparent; /* обязательно для Firefox */
-  // }
-// }
+.stars__rate {
+  font-size: 1.25rem;
+  font-weight: 600;
+}

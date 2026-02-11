@@ -1,8 +1,9 @@
 <app-mini-fab-btn
   class="product-card__fav"
+  [width]="btnWidth()"
   iconName="favorite_border"
-  ariaLabel="Favourite"
-  tooltipText="Add to favs"
+  [tooltipText]="'common.add-to-favs' | translate"
+  [tooltipText]="'common.add-to-favs' | translate"
   (click)="addToFavs()"
   [isBadgeHidden]="true"
   iconColor="var(--mat-sys-on-secondary-container)"

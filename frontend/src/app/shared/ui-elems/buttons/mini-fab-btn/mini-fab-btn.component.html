@@ -1,5 +1,6 @@
 <button
   type="button"
+  class="mini-fab__btn"
   mat-mini-fab
   [attr.aria-label]="ariaLabel"
   [matBadge]="count"
@@ -10,14 +11,17 @@
   [style.--mdc-fab-small-container-shape]="borderRadius"
   [ngStyle]="{
     width: width,
-    height: width,
+    height: height || width,
     border: btnBorder,
+    fontSize: fzText,
+    padding: btnText ? '10px' : 'inherit',
     '--mdc-fab-small-container-color': bgColor
     
   }"
 >
   @if(iconName) {
     <mat-icon
+      class="mini-fab__icon"
       [ngStyle]="{ 
         color: iconColor, 
         fontSize: fz,
@@ -27,6 +31,11 @@
   }
 
   @if(btnText) {
-    <span>{{btnText}}</span>
+    <span 
+      class="mini-fab__text"
+      [ngStyle]="{ 
+        color: iconColor, 
+      }"
+    >{{btnText}}</span>
   }
 </button>

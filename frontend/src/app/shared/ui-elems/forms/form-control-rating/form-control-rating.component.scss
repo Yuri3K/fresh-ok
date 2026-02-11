@@ -15,12 +15,12 @@
   padding: 3px;
   
   .mat-icon {
-    color: gray;
+    color: lightgray;
   }
 
   &.active {
     .mat-icon {
-      color: yellow;
+      color: gold;
     }
   }
 }

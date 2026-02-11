@@ -1,3 +1,7 @@
+:host {
+  flex: 1;
+}
+
 .product-content {
   display: flex;
   flex-direction: column;
@@ -20,6 +24,20 @@
 .product-content__info-left {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 30px;
+  flex: 1;
+}
+
+.product-content__actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+
+  @media (max-width: 1280px) {
+    gap: 16px;
+  }
+}
+
+app-product-cart-btn {
   flex: 1;
 }

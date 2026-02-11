@@ -17,7 +17,7 @@
       <h3 class="product-card__title">
         {{ product().i18n[currentLang()].description }}
       </h3>
-      <app-product-fav-btn [productId]="product().id" />
+      <app-product-fav-btn [product]="product()" />
     </div>
 
     <div class="pcl__bottom">

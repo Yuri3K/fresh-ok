@@ -2,6 +2,17 @@
   padding: 50px 0;
 }
 
+.product-details__main{
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  gap: 24px;
+
+  @media (max-width: 1280px) {
+    gap: 16px;
+  }
+}
+
 app-product-tabs {
   margin: 0 auto;
   display: block;

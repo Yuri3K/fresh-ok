@@ -1,8 +1,9 @@
 <div 
 	class="product-card__counter" 
+  [class.big]="size() == 'big'"
 >
   <app-mini-fab-btn
-    width="24px"
+    [width]="btnWidth()"
     borderRadius="0"
     iconName="remove"
     ariaLabel="Add to cart"
@@ -23,7 +24,7 @@
   </mat-form-field>
 
   <app-mini-fab-btn
-    width="24px"
+    [width]="btnWidth()"
     borderRadius="0"
     iconName="add"
     ariaLabel="Add"

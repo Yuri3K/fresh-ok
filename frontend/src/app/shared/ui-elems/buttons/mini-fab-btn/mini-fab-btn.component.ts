@@ -27,7 +27,9 @@ export class MiniFabBtnComponent implements OnInit {
   @Input() borderRadius = '10px';
   @Input() isBadgeHidden = true;
   @Input() width: string = '40px';
+  @Input() height?: string;
   @Input() fz?: string;
+  @Input() fzText?: string = '1rem';
   @Input() ariaLabel: string = '';
   @Input() btnDisabled = false;
   @Input() tooltipShowDelay = 150;
@@ -37,6 +39,10 @@ export class MiniFabBtnComponent implements OnInit {
   ngOnInit() {
     if (!this.fz) {
       this.fz = `${Math.round(parseInt(this.width) * 0.6) / 16}rem`;
+    }
+
+    if(this.btnText) {
+
     }
   }
 }

@@ -1,18 +1,14 @@
 <div class="stars">
-  @for(star of [].constructor(5); track $index) {
-    <mat-icon [class.active]="$index + 1 <= starsCount()">
-      star
-    </mat-icon>
-  }
+  <div class="stars__view">
+    @for(star of stars(); track $index) {
+      <mat-icon 
+        [class.active]="star.fillPercentage > 0"
+        [style.--fill-percentage]="star.fillPercentage + '%'">
+        star
+      </mat-icon>
+    }
+  </div>
+  <div class="stars__rate">
+    {{starsCount()}}
+  </div>
 </div>
-
-
-<!-- <div class="stars">
- @for(fill of starFill(); track $index) {
-    <mat-icon 
-      [style.background]="getGradient(fill)"
-    >
-      star
-    </mat-icon>
-  }
-</div> -->

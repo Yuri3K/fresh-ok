@@ -3,9 +3,10 @@
 <div class="product-details">
   <div class="container">
     @if(product()) {
-      <app-product-content />
-      
-      <app-product-carousel/>
+      <div class="product-details__main">
+        <app-product-carousel/>
+        <app-product-content />
+      </div>
       
       <app-product-tabs />
 

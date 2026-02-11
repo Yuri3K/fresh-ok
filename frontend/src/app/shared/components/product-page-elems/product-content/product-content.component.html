@@ -30,10 +30,17 @@
         />
       </div>
     </div>
+
     <app-product-price
       class="big"
       [product]="product$()"
     />
+
+    <div class="product-content__actions">
+      <app-counter size="big"/>
+      <app-product-cart-btn size="big" [product]="product$()"/>
+      <app-product-fav-btn size="big" [product]="product$()"/>
+    </div>
   }
   
 </div>

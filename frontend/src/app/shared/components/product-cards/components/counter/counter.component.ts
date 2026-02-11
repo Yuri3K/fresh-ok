@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed, HostBinding, input } from '@angular/core';
 import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {
@@ -23,6 +23,10 @@ import { MiniFabBtnComponent } from '../../../../ui-elems/buttons/mini-fab-btn/m
   styleUrl: './counter.component.scss',
 })
 export class CounterComponent {
+  size = input<'default' | 'big'>('default')
+
+  btnWidth = computed(() => this.size() == 'default' ? '24px' : '44px')
+
   counter = new FormControl('1', [Validators.min(1), Validators.max(999)]);
 
   onInput(event: Event) {
