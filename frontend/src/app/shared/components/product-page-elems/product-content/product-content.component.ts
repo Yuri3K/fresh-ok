@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { ProductStateService } from '../../../../core/services/product-state.service';
 import { H2TitleComponent } from '../../../ui-elems/typography/h2-title/h2-title.component';
 import { GetCurrentLangService } from '../../../../core/services/get-current-lang.service';
@@ -33,4 +33,6 @@ import { DeliveryAndPaymentComponent } from '../../delivery-and-payment/delivery
 export class ProductContentComponent {
   readonly currentLang = inject(GetCurrentLangService).currentLang
   readonly product$ = inject(ProductStateService).currentProduct$
+
+  productRate = computed(() => +this.product$().rate.toFixed(1).toString())
 }

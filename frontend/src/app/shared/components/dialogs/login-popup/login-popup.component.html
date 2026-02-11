@@ -7,17 +7,21 @@
     [tooltipText]="translations.close"
   />
 
-  <div class="login-popup__hero">
-    <img 
-      [src]="heroImg" 
-      alt="hero"
-      width="171"
-      height="450"
-    >
-  </div>
-
-  <app-login 
-    (openRegisterPopup)="goToRegisterPopup()"
-    [isPopup]="true"
-  />
+  <mat-dialog-content>
+    <div class="login-popup__content">
+      <div class="login-popup__hero">
+        <img 
+          [src]="heroImg" 
+          alt="hero"
+          width="171"
+          height="450"
+        >
+      </div>
+    
+      <app-login 
+        (openRegisterPopup)="goToRegisterPopup()"
+        [isPopup]="true"
+      />
+    </div>
+  </mat-dialog-content>
 </div>

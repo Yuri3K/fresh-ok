@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { MEDIA_URL } from '../../../../core/urls';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { LoginPopupComponent } from '../login-popup/login-popup.component';
 import { RegisterComponent } from '../../../../routes/register/register.component';
 import { BtnIconComponent } from '../../../ui-elems/buttons/btn-icon/btn-icon.component';
@@ -12,6 +12,7 @@ import { TranslateModule } from '@ngx-translate/core';
     RegisterComponent,
     BtnIconComponent,
     TranslateModule,
+    MatDialogModule,
   ],
   templateUrl: './register-popup.component.html',
   styleUrl: './register-popup.component.scss'

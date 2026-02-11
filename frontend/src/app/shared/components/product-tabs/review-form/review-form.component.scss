@@ -12,6 +12,14 @@
   gap: 30px;
   width: 100%;
 
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+  }
+
+  @media (max-width: 576px) {
+    gap: 16px;
+  }
+
   .review__left,
   .review__right {
     flex: 1;

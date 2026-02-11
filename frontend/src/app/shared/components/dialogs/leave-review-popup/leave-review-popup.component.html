@@ -7,11 +7,14 @@
   />
 
   <app-h3-title 
+    mat-dialog-title
     [text]="'product-page.tabs.leave-review' | translate"
   />
 
-  <app-review-form 
-    [user]="data.user"
-    [review]="review()"
-  />
+  <mat-dialog-content>
+    <app-review-form 
+      [user]="data.user"
+      [review]="review()"
+    />
+  </mat-dialog-content>
 </div>

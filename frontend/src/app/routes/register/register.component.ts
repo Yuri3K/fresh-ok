@@ -12,7 +12,7 @@ import { GoogleBtnComponent } from '../../shared/ui-elems/buttons/google-btn/goo
     H2TitleComponent,
     RegisterFormComponent,
     GoToLoginComponent,
-    GoogleBtnComponent
+    GoogleBtnComponent,
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'

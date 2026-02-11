@@ -1,24 +1,24 @@
 .register-popup {
-  padding: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 30px;
+  padding: 15px 0;
+
   border: 1px solid var(--mat-sys-primary);
   border-radius: 28px;
-  
-  @media (max-width: 768px) {
-    padding: 30px;
-  }
 
   @media (max-width: 576px) {
-    padding: 20px;
+    padding-top: 45px;
   }
 
   app-btn-icon {
     position: absolute;
     top: 10px;
     right: 10px;
+  }
+
+  .register-popup__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
   }
 
   .register-popup__hero {

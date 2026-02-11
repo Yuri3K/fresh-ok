@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { MEDIA_URL } from '../../../../core/urls';
 import { BtnIconComponent } from '../../../ui-elems/buttons/btn-icon/btn-icon.component';
 import { LoginComponent } from '../../../../routes/login/login.component';
-import { MatDialogRef, MatDialog} from '@angular/material/dialog';
+import { MatDialogRef, MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { RegisterPopupComponent } from '../register-popup/register-popup.component';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -12,6 +12,7 @@ import { TranslateModule } from '@ngx-translate/core';
     BtnIconComponent,
     LoginComponent,
     TranslateModule,
+    MatDialogModule,
   ],
   templateUrl: './login-popup.component.html',
   styleUrl: './login-popup.component.scss'
@@ -31,3 +32,4 @@ export class LoginPopupComponent {
     })
   }
 }
+// sdsf 
