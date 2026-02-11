@@ -1,0 +1,25 @@
+@let translations = ('delivery-and-payment' | translate);
+
+<div class="d-and-p">
+  <app-h4-title 
+    class="d-and-p__title"
+    [text]="translations.title"
+  />
+
+  <ul class="d-and-p__list">
+    @for(line of translations.lines; track $index) {
+      <li>
+        <p class="d-and-p__line">{{line}}</p>
+      </li>
+    }
+  </ul>
+
+  <button 
+    class="d-and-p__learn-more"
+    (click)="openDeliveryAndPaymentDialog()"
+  >
+    {{'common.learn-more' | translate}}
+  </button>
+</div>
+
+

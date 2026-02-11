@@ -1,0 +1,55 @@
+@let translations = ('delivery-and-payment.learn-more' | translate);
+
+
+<div class="d-and-p-info">
+  <app-btn-icon 
+    class="d-and-p-info__close"
+    iconName="close"
+    [tooltipText]="'common.close' | translate"
+    (click)="dialogRef.close()"
+  />
+
+  <mat-dialog-content>
+    <div class="d-and-p-info__hero">
+      <img 
+        [src]="heroImg" 
+        alt="hero"
+        width="171"
+        height="373"
+      >
+    </div>
+
+    <div class="d-and-p-info__content">
+      <app-h3-title 
+        class="d-and-p-info__title"
+        mat-dialog-title
+        [text]="translations.title"
+      />
+  
+    
+      @for(section of translations.sections; track $index) {
+        <div class="d-and-p-info__section section">
+          <app-h5-title 
+            class="section__title"
+            [text]="section.subtitle"
+          />
+          
+          <ul class="section__list">
+            @for(text of section.text; track $index) {
+              <li>
+                <p class="section__text">
+                  <span class="section__question">
+                    {{text.question}}
+                  </span>
+                  <span class="section__answer">
+                     {{text.answer}}
+                  </span>
+                </p>
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  </mat-dialog-content>
+</div>

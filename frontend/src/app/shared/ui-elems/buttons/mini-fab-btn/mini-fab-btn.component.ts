@@ -40,9 +40,5 @@ export class MiniFabBtnComponent implements OnInit {
     if (!this.fz) {
       this.fz = `${Math.round(parseInt(this.width) * 0.6) / 16}rem`;
     }
-
-    if(this.btnText) {
-
-    }
   }
 }

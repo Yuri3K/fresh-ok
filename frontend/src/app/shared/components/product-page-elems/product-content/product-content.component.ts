@@ -10,6 +10,7 @@ import { ProductStatusComponent } from '../../product-cards/components/product-s
 import { CounterComponent } from '../../product-cards/components/counter/counter.component';
 import { ProductCartBtnComponent } from '../../product-cards/components/product-cart-btn/product-cart-btn.component';
 import { ProductFavBtnComponent } from '../../product-cards/components/product-fav-btn/product-fav-btn.component';
+import { DeliveryAndPaymentComponent } from '../../delivery-and-payment/delivery-and-payment.component';
 
 @Component({
   selector: 'app-product-content',
@@ -23,6 +24,7 @@ import { ProductFavBtnComponent } from '../../product-cards/components/product-f
     CounterComponent,
     ProductCartBtnComponent,
     ProductFavBtnComponent,
+    DeliveryAndPaymentComponent
 
   ],
   templateUrl: './product-content.component.html',

@@ -1,0 +1,47 @@
+@use 'mixins/castom-scrollbar' as *;
+
+.d-and-p-info {
+  border: 1px solid var(--mat-sys-primary);
+  border-radius: 28px;
+}
+
+mat-dialog-content {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+
+  @include custom-scrollbar(
+  'transparent',
+  'transparent',
+  0,)
+}
+
+.d-and-p-info__close{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+}
+
+.d-and-p-info__title {
+  margin-bottom: 30px;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.section__list {
+  margin-top: 10px;
+  margin-bottom: 24px;
+  list-style-type: circle;
+  padding-left: 15px;
+}
+
+.section__text {
+  line-height: 1.6;
+}
+
+.section__question {
+  font-weight: 600;
+}

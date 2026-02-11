@@ -18,6 +18,7 @@
     "logout": "Log Out",
     "login": "Log In",
     "show-more": "Show more",
+    "learn-more": "Learn more",
     "delete": "Delete",
     "edit": "Edit",
     "updte": "Update",
@@ -261,8 +262,7 @@
   },
   "product-page": {
     "main-content": {
-      "code": "Code: ",
-      "learn-more": "Подробнее"
+      "code": "Code: "
     },
     "tabs": {
       "opinions": "Our customers' opinions",
@@ -302,7 +302,8 @@
       }
     }
   },
-  "payment-and-delivery": {
+  "delivery-and-payment": {
+    "title": "Delivery and payment",
     "lines": [
       "Minimum order amount - 300 UAH.",
       "Delivery time - 60-120 minutes.",

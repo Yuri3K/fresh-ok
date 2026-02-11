@@ -9,6 +9,7 @@ import { GetCurrentLangService } from '../../../../core/services/get-current-lan
 import { ProductCarouselComponent } from '../../../../shared/components/product-page-elems/product-carousel/product-carousel.component';
 import { ProductStateService } from '../../../../core/services/product-state.service';
 import { ProductContentComponent } from '../../../../shared/components/product-page-elems/product-content/product-content.component';
+import { H2TitleComponent } from '../../../../shared/ui-elems/typography/h2-title/h2-title.component';
 @Component({
   selector: 'app-product-detail',
   imports: [
@@ -16,17 +17,18 @@ import { ProductContentComponent } from '../../../../shared/components/product-p
     ProductTabsComponent,
     ProductCarouselComponent,
     ProductContentComponent,
+    H2TitleComponent,
   ],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.scss'
 })
 export class ProductDetailComponent implements OnDestroy{
+  readonly currentLang = inject(GetCurrentLangService).currentLang
   private translateService = inject(TranslateService)
   private destroyRef = inject(DestroyRef)
   private breadcrumbsService = inject(BreadcrumbsService)
   private readonly productsService = inject(ProductsService)
   private readonly productStateService = inject(ProductStateService)
-  private readonly currentLang = inject(GetCurrentLangService).currentLang
 
   product = toSignal(
     this.productsService.getProductBySlug('pineapple'),

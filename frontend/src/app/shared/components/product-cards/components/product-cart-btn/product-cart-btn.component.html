@@ -6,6 +6,6 @@
   [tooltipText]="'common.add-to-cart' | translate"
   (click)="addToCart()"
   [isBadgeHidden]="true"
-  [btnText]="size() == 'default' ? '' : 'common.add-to-cart' | translate"
+  [btnText]="btnText() | async"
   iconColor="var(--mat-sys-on-secondary-container)"
   />

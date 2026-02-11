@@ -6,6 +6,13 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  margin-bottom: 30px;
+}
+
+app-h2-title {
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 .product-content__badges {
@@ -19,6 +26,22 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    align-items: start;
+    gap: 24px;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  @media (max-width: 576px) {
+    flex-direction: column;
+    align-items: start;
+  }
 }
 
 .product-content__info-left {
@@ -28,10 +51,19 @@
   flex: 1;
 }
 
+app-product-price{
+  margin-bottom: 44px;
+
+  @media (max-width: 1024px) {
+    margin-bottom: 6px;
+  }
+}
+
 .product-content__actions {
   display: flex;
   align-items: center;
   gap: 24px;
+  margin-bottom: 6px;
 
   @media (max-width: 1280px) {
     gap: 16px;

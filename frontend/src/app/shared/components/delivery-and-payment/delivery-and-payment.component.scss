@@ -1,0 +1,23 @@
+app-h4-title {
+  display: block;
+  padding-bottom: 18px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--mat-sys-on-secondary-container);
+}
+
+.d-and-p__list {
+  margin-bottom: 18px;
+}
+
+.d-and-p__line {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  letter-spacing: 0.4px;
+}
+
+.d-and-p__learn-more {
+  font-size: 1rem;
+  line-height: 1.2;
+  letter-spacing: 0.4px;
+  color: var(--mat-sys-primary);
+}
