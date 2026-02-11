@@ -6,25 +6,46 @@
 }
 
 mat-dialog-content {
-  display: flex;
-  align-items: center;
-  gap: 30px;
 
-  @include custom-scrollbar(
-  'transparent',
-  'transparent',
-  0,)
+
+  @include custom-scrollbar('transparent',
+    'transparent',
+    0, )
 }
 
-.d-and-p-info__close{
+.d-and-p-info__close {
   position: absolute;
   top: 10px;
   right: 10px;
   z-index: 1;
+
+  @media (max-width: 576px) {
+    display: none;
+  }
+}
+
+.d-and-p-info__inner {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.d-and-p-info__hero {
+  width: 171px;
+  height: 373px;
+  flex-shrink: 0;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 .d-and-p-info__title {
-  margin-bottom: 30px;
+  text-align: center;
+}
+
+.d-and-p-info__inner {
+  margin-top: 30px;
 }
 
 .section {

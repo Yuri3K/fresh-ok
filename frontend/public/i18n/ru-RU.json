@@ -84,7 +84,7 @@
     "go-to-register": {
       "prefix": "Еще не зарегистрированы? Перейдите на страницу ",
       "link": "регистрации",
-      "suffix": "."
+      "suffix": ""
     }
   },
   "register-page": {
@@ -93,7 +93,7 @@
     "go-to-login": {
       "prefix": "Уже есть аккаунт? Перейдите на страницу ",
       "link": "входа",
-      "suffix": "."
+      "suffix": ""
     }
   },
   "homepage": {

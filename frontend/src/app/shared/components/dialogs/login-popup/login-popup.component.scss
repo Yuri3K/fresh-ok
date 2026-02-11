@@ -7,6 +7,14 @@
   border: 1px solid var(--mat-sys-primary);
   border-radius: 28px;
 
+  @media (max-width: 768px) {
+    padding: 30px;
+  }
+
+  @media (max-width: 576px) {
+    padding: 20px;
+  }
+
   app-btn-icon {
     position: absolute;
     top: 10px;
@@ -17,6 +25,10 @@
     width: 171px;
     height: 450px;
     flex-shrink: 0;
+
+    @media (max-width: 576px) {
+      display: none;
+    }
 
     img {
       width: 100%;

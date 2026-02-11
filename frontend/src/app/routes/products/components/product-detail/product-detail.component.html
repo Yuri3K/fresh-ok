@@ -2,7 +2,7 @@
 
 <div class="product-details">
   <div class="container">
-    @if(product()) {
+    @if(product().id) {
       <app-h2-title 
         [text]="product().i18n[currentLang()].name"
       />

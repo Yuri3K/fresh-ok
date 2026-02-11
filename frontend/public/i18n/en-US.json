@@ -84,7 +84,7 @@
     "go-to-register": {
       "prefix": "Not registered yet? Go to ",
       "link": "registration",
-      "suffix": " page."
+      "suffix": " page"
     }
   },
   "register-page": {
@@ -93,7 +93,7 @@
     "go-to-login": {
       "prefix": "Already have an account? Go to ",
       "link": "login",
-      "suffix": " page."
+      "suffix": " page"
     }
   },
   "homepage": {
