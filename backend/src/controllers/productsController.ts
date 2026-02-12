@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
-import { Badge, getFilteredProducts } from "../services/products.service";
+import { getFilteredProducts } from "../services/products.service";
 import { db } from "../config/firebaseAdmin";
 import { getBadgesMap } from "../utils/get-badges-map";
 import { getStockMap } from "../utils/get-stock-map";
+import { Badge } from "../types/models";
 
 async function getProducts(req: Request, res: Response) {
 	try {

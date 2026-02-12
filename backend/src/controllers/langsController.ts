@@ -1,13 +1,6 @@
 import { Request, Response } from 'express';
 import { db } from '../config/firebaseAdmin'
-import { LangCode } from '../middleware/current-lang';
-
-interface Lang {
-  id: string;
-  name: string;        // e.g. "en-US", "ru-RU"
-  browserLang: LangCode; // e.g. "en", "ru",
-  order: number
-}
+import { Lang } from '../types/models';
 
 const getLangs = async (req: Request, res: Response) => {
   try {

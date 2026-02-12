@@ -2,7 +2,7 @@
 // Возвращает Map в котором id будет название бэйджа,
 
 import { db } from "../config/firebaseAdmin";
-import { Badge } from "../services/products.service";
+import { Badge } from "../types/models";
 
 // а тело - объект с данными о бэйдже (цвет, перевод, приоритет, ...)
 export async function getBadgesMap(): Promise<Map<string, Badge>> {

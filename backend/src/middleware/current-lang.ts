@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-
-export type LangCode = 'en' | 'ru' | 'uk';
+import { LangCode } from "../types/models";
 
 declare global {
   namespace Express {

@@ -1,9 +1,9 @@
 import { Response } from "express";
 import { AuthRequest } from "../middleware/verify-token";
 import { admin, db } from "../config/firebaseAdmin";
-import { Review } from "../services/products.service";
 import { DeleteReview } from "../types/schemas/reviews/delete-review";
 import { CheckUserReview } from "../types/schemas/reviews/check-user-review";
+import { Review } from "../types/models";
 
 async function addReview(req: AuthRequest, res: Response) {
   try {

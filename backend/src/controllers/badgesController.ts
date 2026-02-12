@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { db } from "../config/firebaseAdmin";
-import { Badge } from "../services/products.service";
+import { Badge } from "../types/models";
 
 const getBadges = async (req: Request, res: Response) => {
   const snapshot = await db.collection('badges').get()

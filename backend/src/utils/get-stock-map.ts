@@ -1,5 +1,5 @@
 import { db } from "../config/firebaseAdmin";
-import { Stock } from "../services/products.service";
+import { Stock } from "../types/models";
 
 export async function getStockMap(): Promise<Map<string, Stock>> {
   const snapshot = await db
