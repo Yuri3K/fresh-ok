@@ -43,4 +43,3 @@ export class ProductCartBtnComponent {
 
   addToCart() { }
 }
-// sdf

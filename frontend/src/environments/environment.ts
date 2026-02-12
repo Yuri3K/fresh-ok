@@ -5,6 +5,7 @@ export const environment = {
   cloudinary_url: 'https://res.cloudinary.com/dmvfgc2l0/image/upload/',
   lsSavedUrlKey: 'saved-url',
   lsLangKey: 'saved-lang',
+  lsSavedCart: 'cart',
   firebaseConfig: {
     apiKey: "AIzaSyDQzDOAYhh_bxa0iQ7xMLKUuHXq2shG-ew",
     authDomain: "freshok-market.firebaseapp.com",
