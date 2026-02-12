@@ -1,19 +1,13 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { H2TitleComponent } from '../../ui-elems/typography/h2-title/h2-title.component';
 import { LoaderComponent } from '../loader/loader.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { BtnFlatComponent } from '../../ui-elems/buttons/btn-flat/btn-flat.component';
-import {
-  PaginatedResponse,
-  Pagination,
-  Product,
-  ProductsService,
-} from '../../../core/services/products.service';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { ProductFilterBtnComponent } from '../product-filter-btn/product-filter-btn.component';
-import { filter, tap } from 'rxjs';
 import { ProductCardMiniComponent } from '../product-cards/product-card-mini/product-card-mini.component';
 import { ScrollItemsComponent } from '../scroll-items/scroll-items.component';
+import { ProductsService } from '@core/services/products.service';
+import { Pagination, Product } from '@shared/models';
 
 @Component({
   selector: 'app-promo-products',

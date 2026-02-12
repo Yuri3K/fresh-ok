@@ -3,18 +3,11 @@ import { BehaviorSubject, catchError, map, Observable, switchMap, take, throwErr
 import { ApiService } from '../api.service';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../../../../environments/environment';
-import { Location, ViewportScroller } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 import { defineLanguageUtil } from './utils/define-langiage.util';
 import { RestoreScrollService } from '../restore-scroll.service';
-
-export type LangCode = 'en' | 'ru' | 'uk';
-export interface Lang {
-  id: string;
-  name: string;        // e.g. "en-US", "ru-RU"
-  browserLang: LangCode; // e.g. "en", "ru",
-  order: number
-}
+import { Lang } from '@shared/models';
 
 @Injectable({
   providedIn: 'root'

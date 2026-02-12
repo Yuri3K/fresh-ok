@@ -6,12 +6,11 @@ import { FormControlTextareaComponent } from "../../../ui-elems/forms/form-contr
 import { TranslateModule } from "@ngx-translate/core"
 import { LoaderComponent } from "../../loader/loader.component"
 import { FormControlEmailComponent } from "../../../ui-elems/forms/form-control-email/form-control-email.component"
-import { dbUser } from "../../../../core/services/user-access.service"
 import { FormControlRatingComponent } from "../../../ui-elems/forms/form-control-rating/form-control-rating.component"
 import { FormControlCheckboxComponent } from "../../../ui-elems/forms/form-control-checkbox/form-control-checkbox.component"
 import { MatDialogRef } from "@angular/material/dialog"
 import { LeaveReviewPopupComponent } from "../../dialogs/leave-review-popup/leave-review-popup.component"
-import { Review } from "../../../../core/services/products.service"
+import { Review, DbUser } from "@shared/models"
 
 
 @Component({
@@ -31,7 +30,7 @@ import { Review } from "../../../../core/services/products.service"
   styleUrl: './review-form.component.scss'
 })
 export class ReviewFormComponent {
-  user = input.required<dbUser>()
+  user = input.required<DbUser>()
   review = input<Review | null>(null)
 
   private fb = inject(FormBuilder)
@@ -41,7 +40,7 @@ export class ReviewFormComponent {
   name = computed(() => this.review()?.userName || this.user()?.displayName)
   textarea = computed(() => this.review()?.text || '')
   agreement = computed(() => !!this.review())
-  
+
   submitting = signal(false)
   reviewForm!: FormGroup
 

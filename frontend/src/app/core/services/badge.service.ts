@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { filter } from 'rxjs';
-import { Badge } from './products.service';
+import { Badge } from '@shared/models';
 
 @Injectable({
   providedIn: 'root',

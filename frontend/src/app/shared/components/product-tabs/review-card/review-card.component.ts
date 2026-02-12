@@ -4,10 +4,8 @@ import {
   effect,
   inject,
   input,
-  output,
   signal,
 } from '@angular/core';
-import { Review } from '../../../../core/services/products.service';
 import { MEDIA_URL } from '../../../../core/urls';
 import { MatIconModule } from '@angular/material/icon';
 import { DatePipe } from '@angular/common';
@@ -15,11 +13,11 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../../dialogs/delete-dialog/delete-dialog.component';
 import { ApiService } from '../../../../core/services/api.service';
-import { dbUser } from '../../../../core/services/user-access.service';
 import { LeaveReviewPopupComponent } from '../../dialogs/leave-review-popup/leave-review-popup.component';
-import { AddReviewApiResponse, UpdateReviewApiResponse } from '../product-reviews/product-reviews.component';
+import { UpdateReviewApiResponse } from '../product-reviews/product-reviews.component';
 import { MiniFabBtnComponent } from "../../../ui-elems/buttons/mini-fab-btn/mini-fab-btn.component";
 import { ProductStateService } from '../../../../core/services/product-state.service';
+import { Review, DbUser } from '@shared/models';
 
 @Component({
   selector: 'app-review-card',
@@ -29,7 +27,7 @@ import { ProductStateService } from '../../../../core/services/product-state.ser
 })
 export class ReviewCardComponent {
   review = input.required<Review>();
-  user = input.required<dbUser | null | undefined>();
+  user = input.required<DbUser | null | undefined>();
 
   currentReview = signal<Review>({} as Review)
 

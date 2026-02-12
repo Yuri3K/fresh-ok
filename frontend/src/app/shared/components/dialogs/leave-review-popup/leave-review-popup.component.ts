@@ -4,8 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { H3TitleComponent } from '../../../ui-elems/typography/h3-title/h3-title.component';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { BtnIconComponent } from '../../../ui-elems/buttons/btn-icon/btn-icon.component';
-import { dbUser } from '../../../../core/services/user-access.service';
-import { Review } from '../../../../core/services/products.service';
+import { Review } from '@shared/models';
 
 @Component({
   selector: 'app-leave-review-popup',

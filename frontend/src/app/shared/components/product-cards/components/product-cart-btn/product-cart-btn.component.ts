@@ -1,9 +1,9 @@
 import { Component, computed, DestroyRef, HostListener, inject, input, signal } from '@angular/core';
 import { MiniFabBtnComponent } from '../../../../ui-elems/buttons/mini-fab-btn/mini-fab-btn.component';
-import { Product } from '../../../../../core/services/products.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { of } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { Product } from '@shared/models';
 
 @Component({
   selector: 'app-product-cart-btn',

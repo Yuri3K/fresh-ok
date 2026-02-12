@@ -1,5 +1,5 @@
-import { Lang } from "../langs.service";
 import { Location } from '@angular/common';
+import { Lang } from '@shared/models';
 
 // Получаем язык из URL, если он там есть
 export function getLangFromUrlUtil(langs: Lang[], location: Location) {

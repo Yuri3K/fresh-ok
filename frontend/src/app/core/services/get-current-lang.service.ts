@@ -1,7 +1,8 @@
 import { inject, Injectable } from '@angular/core';
-import { Lang, LangsService } from './langs/langs.service';
+import { LangsService } from './langs/langs.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, map } from 'rxjs';
+import { Lang } from '@shared/models';
 
 @Injectable({
   providedIn: 'root'

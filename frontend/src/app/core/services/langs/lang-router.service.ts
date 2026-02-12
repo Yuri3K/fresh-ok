@@ -1,7 +1,6 @@
 import { inject, Injectable, Injector } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { LangsService } from './langs.service';
-import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',

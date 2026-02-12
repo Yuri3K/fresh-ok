@@ -1,13 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  computed,
   effect,
   inject,
   input,
-  signal,
 } from '@angular/core';
-import { Review } from '../../../../core/services/products.service';
 import { ReviewCardComponent } from '../review-card/review-card.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { H4TitleComponent } from '../../../ui-elems/typography/h4-title/h4-title.component';
@@ -22,6 +19,7 @@ import { Router } from '@angular/router';
 import { ApiService } from '../../../../core/services/api.service';
 import { InfoDialogComponent } from '../../dialogs/info-dialog/info-dialog.component';
 import { ProductStateService } from '../../../../core/services/product-state.service';
+import { Review } from '@shared/models';
 
 export interface CheckReviewApiResponse {
   canReview?: boolean;

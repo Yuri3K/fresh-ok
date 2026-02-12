@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input, ViewEncapsulation } from '@angular/core';
-import { Product } from '../../../../../core/services/products.service';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import { MEDIA_URL } from '../../../../../core/urls';
 import { GetCurrentLangService } from '../../../../../core/services/get-current-lang.service';
 import { RouterLink } from '@angular/router';
 import { ProductStateService } from '../../../../../core/services/product-state.service';
+import { Product } from '@shared/models';
 
 export type cardType = 'default' | 'mini';
 

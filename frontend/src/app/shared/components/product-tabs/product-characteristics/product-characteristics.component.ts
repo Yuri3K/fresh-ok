@@ -1,6 +1,6 @@
-import { Component, effect, inject, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { GetCurrentLangService } from '../../../../core/services/get-current-lang.service';
-import { CharacteristicItem } from '../../../../core/services/products.service';
+import { CharacteristicItem } from '@shared/models';
 
 @Component({
   selector: 'app-product-characteristics',

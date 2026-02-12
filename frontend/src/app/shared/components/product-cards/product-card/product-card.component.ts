@@ -1,5 +1,4 @@
 import { Component, computed, inject, input } from '@angular/core';
-import { Product } from '../../../../core/services/products.service';
 import { MEDIA_URL } from '../../../../core/urls';
 import { GetCurrentLangService } from '../../../../core/services/get-current-lang.service';
 import { ProductPriceComponent } from '../components/product-price/product-price.component';
@@ -10,6 +9,7 @@ import { ProductFavBtnComponent } from '../components/product-fav-btn/product-fa
 import { ProductCartBtnComponent } from "../components/product-cart-btn/product-cart-btn.component";
 import { CounterComponent } from '../components/counter/counter.component';
 import { ProductBadgesComponent } from '../components/product-badges/product-badges.component';
+import { Product } from '@shared/models';
 
 @Component({
   selector: 'app-product-card',

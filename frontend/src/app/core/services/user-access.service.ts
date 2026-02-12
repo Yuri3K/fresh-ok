@@ -1,32 +1,23 @@
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { ApiService } from './api.service';
-
-export interface dbUser {
-  uid: string
-  email: string
-  displayName: string
-  role: string
-  permissions: string[]
-  avatarId?: string
-}
+import { DbUser } from '@shared/models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserAccessService {
   private readonly apiService = inject(ApiService)
-  private readonly dbUserSubject = new BehaviorSubject<dbUser | null | undefined>(undefined)
+  private readonly dbUserSubject = new BehaviorSubject<DbUser | null | undefined>(undefined)
 
   readonly dbUser$ = this.dbUserSubject.asObservable()
 
-  setDbUser(user: dbUser | null) {
-    // console.log("🔸 DBuser:", user)
+  setDbUser(user: DbUser | null) {
     this.dbUserSubject.next(user)
   }
 
-  fetchDbUser(): Observable<dbUser> {
-    return this.apiService.get<dbUser>('/users/me')
+  fetchDbUser(): Observable<DbUser> {
+    return this.apiService.get<DbUser>('/users/me')
       .pipe(
         tap((user => this.setDbUser(user)))
       )

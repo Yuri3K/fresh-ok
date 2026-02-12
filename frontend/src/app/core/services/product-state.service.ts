@@ -1,6 +1,6 @@
 import { computed, effect, Injectable, signal } from '@angular/core';
-import { CharacteristicItem, Product, ProductTexts, Review, Stock } from './products.service';
-import { LangCode } from './langs/langs.service';
+import { LangCode } from '@shared/models/lang.model';
+import { CharacteristicItem, Product, ProductTexts, Review, Stock } from '@shared/models';
 
 const EMPTY_PRODUCT: Product = { 
   id: '', 

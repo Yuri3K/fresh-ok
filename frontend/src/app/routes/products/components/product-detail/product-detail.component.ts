@@ -1,7 +1,7 @@
 import { Component, DestroyRef, effect, inject, OnDestroy } from '@angular/core';
 import { BreadcrumbsComponent } from '../../../../shared/components/breadcrumbs/breadcrumbs.component';
 import { ProductTabsComponent } from '../../../../shared/components/product-tabs/product-tabs.component';
-import { Product, ProductsService } from '../../../../core/services/products.service';
+import { ProductsService } from '../../../../core/services/products.service';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { Breadcrumb, BreadcrumbsService } from '../../../../shared/components/breadcrumbs/breadcrumbs.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -10,6 +10,7 @@ import { ProductCarouselComponent } from '../../../../shared/components/product-
 import { ProductStateService } from '../../../../core/services/product-state.service';
 import { ProductContentComponent } from '../../../../shared/components/product-page-elems/product-content/product-content.component';
 import { H2TitleComponent } from '../../../../shared/ui-elems/typography/h2-title/h2-title.component';
+import { Product } from '@shared/models';
 @Component({
   selector: 'app-product-detail',
   imports: [

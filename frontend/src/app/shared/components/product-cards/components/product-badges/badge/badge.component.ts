@@ -1,6 +1,6 @@
 import { Component, inject, input } from '@angular/core';
-import { Badge } from '../../../../../../core/services/products.service';
 import { GetCurrentLangService } from '../../../../../../core/services/get-current-lang.service';
+import { Badge } from '@shared/models';
 
 @Component({
   selector: 'app-badge',

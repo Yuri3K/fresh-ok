@@ -1,7 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import {
-  Pagination,
-  Product,
   ProductsService,
 } from '../../../core/services/products.service';
 import { ProductCardComponent } from '../product-cards/product-card/product-card.component';
@@ -10,7 +8,6 @@ import { H2TitleComponent } from '../../ui-elems/typography/h2-title/h2-title.co
 import { LoaderComponent } from '../loader/loader.component';
 import { ScrollItemsComponent } from '../scroll-items/scroll-items.component';
 import {
-  CatalogItem,
   CatalogService,
 } from '../../../core/services/catalog.service';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -19,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { BtnFlatComponent } from '../../ui-elems/buttons/btn-flat/btn-flat.component';
 import { ProductFilterBtnComponent } from '../product-filter-btn/product-filter-btn.component';
 import { GetCurrentLangService } from '../../../core/services/get-current-lang.service';
+import { Pagination, Product } from '@shared/models';
 
 @Component({
   selector: 'app-hit-products',

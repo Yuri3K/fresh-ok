@@ -1,7 +1,7 @@
 import { Component, computed, input } from '@angular/core';
 import { MiniFabBtnComponent } from '../../../../ui-elems/buttons/mini-fab-btn/mini-fab-btn.component';
-import { Product } from '../../../../../core/services/products.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { Product } from '@shared/models';
 
 @Component({
   selector: 'app-product-fav-btn',

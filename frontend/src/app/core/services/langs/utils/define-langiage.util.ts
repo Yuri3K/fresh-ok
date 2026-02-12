@@ -1,7 +1,7 @@
 
 import { Location } from "@angular/common"
-import { Lang } from "../langs.service"
 import { getLangFromUrlUtil } from "./get-lang-from-url.util"
+import { Lang } from "@shared/models"
 
 // Метод для определения языка. Получает язык из URL, LS, браузера (по приоритету) и проверяет на 
 // поддерживаемость. В случае удачи - вернет найденный язык. В ином случае - вернет дефолтный язык

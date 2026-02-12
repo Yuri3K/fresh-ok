@@ -5,7 +5,7 @@ import {
   Injectable,
   signal,
 } from '@angular/core';
-import { Pagination, Product, ProductsService } from './products.service';
+import { ProductsService } from './products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import {
@@ -16,6 +16,7 @@ import {
 import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { RestoreScrollService } from './restore-scroll.service';
+import { Pagination, Product } from '@shared/models';
 
 export type View = 'list' | 'grid';
 

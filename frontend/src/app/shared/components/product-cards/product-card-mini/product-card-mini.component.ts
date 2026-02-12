@@ -1,11 +1,11 @@
 import { Component, inject, input } from '@angular/core';
-import { Product } from '../../../../core/services/products.service';
 import { GetCurrentLangService } from '../../../../core/services/get-current-lang.service';
 import { ProductStatusComponent } from '../components/product-status/product-status.component';
 import { ProductPriceComponent } from '../components/product-price/product-price.component';
 import { ProductRateComponent } from '../components/product-rate/product-rate.component';
 import { ProductImageComponent } from '../components/product-image/product-image.component';
 import { ProductBadgesComponent } from '../components/product-badges/product-badges.component';
+import { Product } from '@shared/models';
 
 @Component({
   selector: 'app-product-card-mini',
