@@ -14,7 +14,8 @@
     height: height || width,
     border: btnBorder,
     fontSize: fzText,
-    padding: btnText !== '' ? '8px' : 'inherit',
+    padding: btnPadding,
+    gap: (iconName && btnText) ? '10px' : 0,
     '--mdc-fab-small-container-color': bgColor
     
   }"

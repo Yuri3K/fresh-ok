@@ -24,6 +24,7 @@ export class MiniFabBtnComponent implements OnInit {
   @Input() bgColor = "var(--mat-sys-primary-container)";
   @Input() count = 0;
   @Input() btnBorder = '2px solid transparent';
+  @Input() btnPadding?: string;
   @Input() borderRadius = '10px';
   @Input() isBadgeHidden = true;
   @Input() width: string = '40px';
