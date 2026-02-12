@@ -1,0 +1,1 @@
+import{Kb as n,Lb as p,ec as r,nb as a}from"./chunk-UOD2VZPB.js";import"./chunk-RA2WU32H.js";var e=class o{static \u0275fac=function(t){return new(t||o)};static \u0275cmp=a({type:o,selectors:[["app-cart-page"]],decls:2,vars:0,template:function(t,s){t&1&&(n(0,"p"),r(1,"cart-page works!"),p())},encapsulation:2})};var g=[{path:"",component:e}];export{g as routes};
