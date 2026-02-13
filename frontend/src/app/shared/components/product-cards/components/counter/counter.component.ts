@@ -1,4 +1,4 @@
-import { Component, computed, HostBinding, input } from '@angular/core';
+import { Component, computed, HostBinding, input, output } from '@angular/core';
 import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {
@@ -24,6 +24,7 @@ import { MiniFabBtnComponent } from '../../../../ui-elems/buttons/mini-fab-btn/m
 })
 export class CounterComponent {
   size = input<'default' | 'big'>('default')
+  quantityChange = output<number>()
 
   btnWidth = computed(() => this.size() == 'default' ? '24px' : '44px')
 
@@ -48,7 +49,9 @@ export class CounterComponent {
     const currentVal = (parseInt(this.counter.value || '1', 10))
 
     if(currentVal < 999) {
-      this.counter.setValue((currentVal + 1).toString())
+      const next = currentVal + 1
+      this.counter.setValue(next.toString())
+      this.quantityChange.emit(next)
     }
   }
 
@@ -56,7 +59,9 @@ export class CounterComponent {
     const currentVal = parseInt(this.counter.value || '1', 10)
 
     if(currentVal > 1) {
-      this.counter.setValue((currentVal - 1).toString())
+      const prev = currentVal - 1
+      this.counter.setValue(prev.toString())
+      this.quantityChange.emit(prev)
     }
   }
 }

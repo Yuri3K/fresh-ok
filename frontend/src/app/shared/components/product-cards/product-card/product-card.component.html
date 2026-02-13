@@ -21,7 +21,14 @@
 
   <div class="product-card__footer">
     <app-product-price [product]="product()" />
-    <app-counter />
-    <app-product-cart-btn [product]="product()" />
+
+    <app-counter 
+      (quantityChange)="onQuantityChange($event)"
+    />
+
+    <app-product-cart-btn 
+      [product]="product()" 
+      [quantity]="currentQuantity()"
+    />
   </div>
 </div>

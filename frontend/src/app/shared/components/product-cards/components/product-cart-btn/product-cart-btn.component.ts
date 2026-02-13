@@ -4,6 +4,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { of } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { Product } from '@shared/models';
+import { CartService } from '@core/services/cart.service';
 
 @Component({
   selector: 'app-product-cart-btn',
@@ -17,15 +18,22 @@ import { Product } from '@shared/models';
 })
 export class ProductCartBtnComponent {
   product = input.required<Product>()
+  quantity = input<number>(1)
   size = input<'default' | 'big'>('default')
 
   @HostListener('window:resize')
   OnResize() {
     this.windowWidth.set(window.innerWidth)
   }
+  @HostListener('click', ['$event'])
+  handleClick() {
+    console.log("HANDLE CLICK !!!")
+    this.addToCart()
+  }
 
   translateService = inject(TranslateService)
   destroyRef = inject(DestroyRef)
+  cartService = inject(CartService)
 
   translations = this.translateService.stream('common.add-to-cart')
 
@@ -41,5 +49,7 @@ export class ProductCartBtnComponent {
   })
 
 
-  addToCart() { }
+  addToCart() {
+    this.cartService.addItem(this.product(), this.quantity())
+  }
 }

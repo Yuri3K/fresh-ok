@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { ProductStateService } from '../../../../core/services/product-state.service';
 import { H2TitleComponent } from '../../../ui-elems/typography/h2-title/h2-title.component';
 import { GetCurrentLangService } from '../../../../core/services/get-current-lang.service';
@@ -35,4 +35,10 @@ export class ProductContentComponent {
   readonly product$ = inject(ProductStateService).currentProduct$
 
   productRate = computed(() => +this.product$().rate.toFixed(1).toString())
+
+  readonly currentQuantity = signal(1)
+
+  onQuantityChange(quantity: number) {
+    this.currentQuantity.set(quantity)
+  }
 }

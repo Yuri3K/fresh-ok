@@ -1,4 +1,4 @@
-import { Component, computed, inject, input } from '@angular/core';
+import { Component, computed, inject, input, signal } from '@angular/core';
 import { MEDIA_URL } from '../../../../core/urls';
 import { GetCurrentLangService } from '../../../../core/services/get-current-lang.service';
 import { ProductPriceComponent } from '../components/product-price/product-price.component';
@@ -29,11 +29,16 @@ import { Product } from '@shared/models';
 export class ProductCardComponent {
   withStockAndRate = input(true)
   product = input.required<Product>();
-
   readonly currentLang = inject(GetCurrentLangService).currentLang;
+
+  readonly currentQuantity = signal(1)
 
   imgUrl = computed(() => {
     return MEDIA_URL + this.product().publicId
   })
+
+  onQuantityChange(quantity: number) {
+    this.currentQuantity.set(quantity)
+  }
 
 }

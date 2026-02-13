@@ -4,6 +4,7 @@ import { clearCart, getCart, removeCartItem, saveCart, upsertCartItem } from '..
 import validateRequest from '../middleware/validateRequest'
 import { UpdateItemInCartRequest } from '../types/schemas/cart/update-item'
 import { SaveCartRequest } from '../types/schemas/cart/save-cart'
+import { DeleteCartItemParams } from '../types/models'
 
 const router = express.Router()
 
@@ -23,7 +24,7 @@ router.patch(
 router.delete(
   '/:productId',
   verifyToken(),
-  validateRequest('cart/delete-item.schema.json', 'params'),
+  validateRequest<DeleteCartItemParams>('cart/delete-item.schema.json', 'params'),
   removeCartItem
 )
 

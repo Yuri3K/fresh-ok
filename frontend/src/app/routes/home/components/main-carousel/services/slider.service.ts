@@ -25,7 +25,7 @@ export class SliderService {
   private readonly translateService = inject(TranslateService)
 
   readonly config: NgxCarouselConfig = {
-    autoplay: false, 
+    autoplay: true, 
     breakpoints: [
       {
         breakpoint: 0, // до 768
@@ -35,12 +35,12 @@ export class SliderService {
       {
         breakpoint: 768, // от 768
         showArrows: true,
-        showDots: false,
+        showDots: true,
       },
       {
         breakpoint: 1024, // от 1024
         showArrows: true,
-        showDots: false,
+        showDots: true,
       },
     ]
   }

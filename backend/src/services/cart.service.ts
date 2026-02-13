@@ -25,11 +25,11 @@ export const cartService = {
     const doc = await ref.get()
 
     let items: CartItemBody[] = doc.exists
-      ? (doc.data()?.items || [])
-      : []
-
+    ? (doc.data()?.items || [])
+    : []
+    
     const existingIndex = items.findIndex(i => i.productId == newItem.productId)
-
+    
     if(existingIndex !== -1) {
       // Товар уже есть в корзине — увеличиваем quantity
       items[existingIndex].quantity += newItem.quantity
@@ -44,7 +44,7 @@ export const cartService = {
       updatedAt: admin.firestore.Timestamp.now().toMillis(),
     }
 
-    await ref.set({cart})
+    await ref.set(cart)
 
     return cart
   },

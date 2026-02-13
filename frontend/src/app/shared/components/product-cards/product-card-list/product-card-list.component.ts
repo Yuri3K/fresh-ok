@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { ProductImageComponent } from '../components/product-image/product-image.component';
 import { ProductStatusComponent } from '../components/product-status/product-status.component';
 import { ProductRateComponent } from '../components/product-rate/product-rate.component';
@@ -29,4 +29,10 @@ export class ProductCardListComponent {
   currentLang = inject(GetCurrentLangService).currentLang
 
   product = input.required<Product>()
+
+  readonly currentQuantity = signal(1)
+  
+  onQuantityChange(quantity: number) {
+    this.currentQuantity.set(quantity)
+  }
 }
