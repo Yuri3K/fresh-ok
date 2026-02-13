@@ -45,7 +45,9 @@ export class CartService {
       const user = this.dbUser()
 
       // Если еше не известно залогинен ли пользователь
-      if (user == undefined) return
+      if (user === undefined) {
+        return
+      }
 
       if (user) {
         // Пользователь залогинился — мержим и загружаем с сервера
@@ -145,6 +147,7 @@ export class CartService {
       quantity,
       priceSnapshot: product.price,
       discountPercent: product.discountPercent,
+      currency: product.currency,
       publicId: product.publicId,
       slug: product.slug,
       i18n: product.i18n

@@ -1,0 +1,64 @@
+<div class="cart-item">
+
+  <img
+    class="cart-item__image"
+    [src]="MEDIA_URL + item().publicId"
+    [alt]="item().i18n[currentLang()].name"
+    (click)="navigateToProduct()"
+  />
+
+  <div class="cart-item__info">
+    <h3
+      class="cart-item__name"
+      (click)="navigateToProduct()"
+    >
+      {{ item().i18n[currentLang()].name }}
+    </h3>
+
+    <div class="cart-item__price">
+      <span
+        class="cart-item__price-origin"
+        [class.cross]="hasDiscount"
+      >
+        {{ item().priceSnapshot }} {{ item().currency }}
+      </span>
+
+      @if (hasDiscount) {
+        <span class="cart-item__price-discount">
+          {{ item().priceSnapshot | calcDiscount: item().discountPercent }}
+          {{ item().currency }}
+        </span>
+      }
+    </div>
+  </div>
+
+  <div class="cart-item__controls">
+    <div class="cart-item__counter">
+      <button mat-icon-button (click)="decrease()">
+        <mat-icon>remove</mat-icon>
+      </button>
+
+      <input
+        class="cart-item__qty-input"
+        type="number"
+        min="1"
+        max="999"
+        [value]="quantity()"
+        (input)="onInput($event)"
+      />
+
+      <button mat-icon-button (click)="increase()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+
+    <button
+      class="cart-item__remove"
+      mat-icon-button
+      (click)="remove()"
+    >
+      <mat-icon>delete_outline</mat-icon>
+    </button>
+  </div>
+
+</div>

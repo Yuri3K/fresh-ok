@@ -6,6 +6,7 @@ export interface CartItem {
   quantity: number;
   priceSnapshot: number;
   discountPercent: number;
+  currency: string
   publicId: string;
   slug: string;
   i18n: Record<LangCode, ProductTexts>;

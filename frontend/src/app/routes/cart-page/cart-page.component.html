@@ -1,1 +1,24 @@
-<p>cart-page works!</p>
+<div class="cart-page">
+  <h1 class="cart-page__title">{{ 'cart.title' | translate }}</h1>
+
+  @if (cartService.isEmpty()) {
+    <div class="cart-page__empty">
+      <p>{{ 'cart.empty' | translate }}</p>
+      <button mat-flat-button (click)="goToCatalog()">
+        {{ 'cart.go-to-catalog' | translate }}
+      </button>
+    </div>
+  } @else {
+    <div class="cart-page__content">
+      <div class="cart-page__items">
+        @for (item of cartService.items(); track item.productId) {
+          <app-cart-item [item]="item" />
+        }
+      </div>
+
+      <aside class="cart-page__summary">
+        <app-cart-summary />
+      </aside>
+    </div>
+  }
+</div>

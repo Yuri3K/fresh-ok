@@ -27,7 +27,6 @@ export class ProductCartBtnComponent {
   }
   @HostListener('click', ['$event'])
   handleClick() {
-    console.log("HANDLE CLICK !!!")
     this.addToCart()
   }
 

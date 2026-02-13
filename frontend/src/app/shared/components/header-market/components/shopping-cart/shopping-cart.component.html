@@ -3,5 +3,5 @@
   (click)="navigateToCart()"
   [isBadgeHidden]="false"
   iconColor="var(--mat-sys-on-secondary-container)"
-  [count]="17"
+  [count]="cartService.totalItems()"
 />
