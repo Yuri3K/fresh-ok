@@ -2,7 +2,16 @@
   "$id": "validators/cart/update-item.schema.json",
   "title": "Update item in Cart Request",
   "type": "object",
-  "required": ["productId", "quantity", "priceSnapshot", "discountPercent", "publicId", "slug", "i18n"],
+  "required": [
+    "productId",
+    "quantity",
+    "priceSnapshot",
+    "discountPercent",
+    "currency",
+    "publicId",
+    "slug",
+    "i18n"
+  ],
   "additionalProperties": false,
   "properties": {
     "productId": {
@@ -26,6 +35,11 @@
       "maximum": 100,
       "description": ""
     },
+    "currency": {
+      "type": "string",
+      "minLength": 1,
+      "description": ""
+    },
     "publicId": {
       "type": "string",
       "minLength": 1,
@@ -40,10 +54,19 @@
       "type": "object",
       "additionalProperties": {
         "type": "object",
-        "required": ["name", "description"],
+        "required": [
+          "name",
+          "description"
+        ],
         "properties": {
-          "name": { "type": "string", "description": "" },
-          "description": { "type": "string", "description": "" }
+          "name": {
+            "type": "string",
+            "description": ""
+          },
+          "description": {
+            "type": "string",
+            "description": ""
+          }
         }
       }
     }

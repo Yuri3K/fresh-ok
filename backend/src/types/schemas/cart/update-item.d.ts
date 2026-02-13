@@ -6,6 +6,7 @@ export interface UpdateItemInCartRequest {
   quantity: number;
   priceSnapshot: number;
   discountPercent: number;
+  currency: string;
   publicId: string;
   slug: string;
   i18n: {

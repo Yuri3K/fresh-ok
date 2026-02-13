@@ -9,13 +9,14 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["productId", "quantity", "priceSnapshot", "discountPercent", "publicId", "slug", "i18n"],
+        "required": ["productId", "quantity", "priceSnapshot", "discountPercent", "currency" ,"publicId", "slug", "i18n"],
         "additionalProperties": false,
         "properties": {
           "productId": { "type": "string", "minLength": 1 },
           "quantity": { "type": "integer", "minimum": 1, "maximum": 999 },
           "priceSnapshot": { "type": "number", "minimum": 0 },
           "discountPercent": { "type": "number", "minimum": 0, "maximum": 100 },
+          "currency": { "type": "string", "minLength": 1 },
           "publicId": { "type": "string", "minLength": 1 },
           "slug": { "type": "string", "minLength": 1 },
           "i18n": {

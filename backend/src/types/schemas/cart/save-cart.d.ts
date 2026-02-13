@@ -7,6 +7,7 @@ export interface SaveCartRequest {
     quantity: number;
     priceSnapshot: number;
     discountPercent: number;
+    currency: string;
     publicId: string;
     slug: string;
     i18n: {

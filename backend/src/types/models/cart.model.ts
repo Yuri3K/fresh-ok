@@ -5,6 +5,7 @@ export interface CartItemBody {
   quantity: number
   priceSnapshot: number
   discountPercent: number
+  currency: string
   publicId: string
   slug: string
   i18n: Record<LangCode, { name: string; description: string }>
