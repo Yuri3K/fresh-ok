@@ -33,7 +33,7 @@ export class CartService {
   // Итоговая сумма с учётом скидок
   readonly totalPrice = computed(() => {
     return this._items().reduce((sum, item) => {
-      const discounted = item.priceSnapshot * (1 - item.discountPercent / 100)
+      const discounted = item.price * (1 - item.discountPercent / 100)
       return sum + discounted * item.quantity
     }, 0)
   })
@@ -144,8 +144,10 @@ export class CartService {
   addItem(product: Product, quantity = 1) {
     const newItem: CartItem = {
       productId: product.id,
+      badges: product.badges,
       quantity,
-      priceSnapshot: product.price,
+      price: product.price,
+      hasDiscount: product.hasDiscount,
       discountPercent: product.discountPercent,
       currency: product.currency,
       publicId: product.publicId,
@@ -200,8 +202,8 @@ export class CartService {
   // Мгновенно обновит данные на UI
   // Затем проверит залогинен ли пользоватль. Если да, то отправит данные на сервер
   // Елси нет, то обновит данные в localStorage
-  updateQuantity(productId: string, quantity: string) {
-    const count = parseInt(quantity, 10)
+  updateQuantity(productId: string, quantity: number) {
+    const count = quantity
 
     if (!count) return
 

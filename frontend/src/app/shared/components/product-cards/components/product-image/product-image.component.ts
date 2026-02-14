@@ -20,7 +20,7 @@ export class ProductImageComponent {
   readonly currentLang = inject(GetCurrentLangService).currentLang;
   private readonly productStateService = inject(ProductStateService)
 
-  product = input.required<Product>();
+  product = input.required<Pick<Product, 'publicId' | 'i18n' | 'slug'>>();
   cardType = input<cardType>('default');
   width = input('300');
   height = input('215');
@@ -31,7 +31,7 @@ export class ProductImageComponent {
       : `${MEDIA_URL}${this.product().publicId}`;
   });
 
-  setCurrentProduct() {
-    this.productStateService.setCurrentPruduct(this.product())
-  }
+  // setCurrentProduct() {
+    // this.productStateService.setCurrentPruduct(this.product())
+  // }
 }

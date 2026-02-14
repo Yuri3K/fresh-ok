@@ -1,7 +1,12 @@
 import { Component, input } from '@angular/core';
 import { CalcDiscountPipe } from '../../../../../core/pipes/calc-discount.pipe';
-import { Product } from '@shared/models';
 
+interface PriceData {
+  hasDiscount?: boolean
+  price: number
+  currency: string
+  discountPercent: number
+}
 @Component({
   selector: 'app-product-price',
   imports: [
@@ -11,5 +16,5 @@ import { Product } from '@shared/models';
   styleUrl: './product-price.component.scss'
 })
 export class ProductPriceComponent {
-  readonly product = input.required<Product>()
+  readonly product = input.required<PriceData>()
 }

@@ -9,6 +9,8 @@ import { filter} from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RestoreScrollService } from '../../../core/services/restore-scroll.service';
 import { SidebarService } from '@core/services/sidebar.service';
+import { SidenavMenuComponent } from '../sidenav-menu/sidenav-menu.component';
+import { SidenavCartComponent } from '../sidenav-cart/sidenav-cart.component';
 
 @Component({
   selector: 'app-public-layout',
@@ -18,7 +20,9 @@ import { SidebarService } from '@core/services/sidebar.service';
     MatSidenavModule,
     RouterOutlet,
     HeaderMarketComponent,
-    PublicFooterComponent
+    PublicFooterComponent,
+    SidenavMenuComponent,
+    SidenavCartComponent,
   ],
   templateUrl: './public-layout.component.html',
   styleUrl: './public-layout.component.scss',

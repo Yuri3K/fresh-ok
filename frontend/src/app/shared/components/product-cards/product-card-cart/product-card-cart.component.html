@@ -1,0 +1,23 @@
+<div class="pcc">
+  <app-product-badges [product]="cartItem()" />
+
+  <app-product-image 
+    [product]="cartItem()"
+    width="200"
+    height="144"
+  />
+
+  <div class="pcc__content">
+    <h3 class="product-card__title">
+      {{ cartItem().i18n[currentLang()].description }}
+    </h3>
+
+    <app-product-price [product]="cartItem()" />
+
+    <app-counter 
+      (quantityChange)="quantityChanged$.next($event)"
+      [quantity]="cartItem().quantity"
+    />
+  </div>
+
+</div>

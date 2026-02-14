@@ -20,12 +20,12 @@
         class="cart-item__price-origin"
         [class.cross]="hasDiscount"
       >
-        {{ item().priceSnapshot }} {{ item().currency }}
+        {{ item().price }} {{ item().currency }}
       </span>
 
       @if (hasDiscount) {
         <span class="cart-item__price-discount">
-          {{ item().priceSnapshot | calcDiscount: item().discountPercent }}
+          {{ item().price | calcDiscount: item().discountPercent }}
           {{ item().currency }}
         </span>
       }

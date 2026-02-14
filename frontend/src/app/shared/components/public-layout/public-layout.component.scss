@@ -13,6 +13,10 @@ mat-sidenav-container{
   // min-height: calc(100% - 64px - 90px);
 }
 
+mat-sidenav {
+  --mat-sidenav-container-shape: 0;
+}
+
 // НСЛИ НУЖЕН БУДЕТ НЕ ЛИПКИЙ ХЕДЕР
 // .main-container {
 //   height: auto !important;

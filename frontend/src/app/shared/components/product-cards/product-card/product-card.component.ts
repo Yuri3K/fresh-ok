@@ -22,7 +22,7 @@ import { Product } from '@shared/models';
     ProductImageComponent,
     ProductFavBtnComponent,
     ProductCartBtnComponent,
-],
+  ],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss',
 })

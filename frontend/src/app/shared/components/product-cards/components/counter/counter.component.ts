@@ -1,4 +1,4 @@
-import { Component, computed, HostBinding, input, output } from '@angular/core';
+import { Component, computed, effect, input, output } from '@angular/core';
 import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {
@@ -24,17 +24,25 @@ import { MiniFabBtnComponent } from '../../../../ui-elems/buttons/mini-fab-btn/m
 })
 export class CounterComponent {
   size = input<'default' | 'big'>('default')
+  quantity = input<number>(1)
+
   quantityChange = output<number>()
 
   btnWidth = computed(() => this.size() == 'default' ? '24px' : '44px')
 
-  counter = new FormControl('1', [Validators.min(1), Validators.max(999)]);
+  counter = new FormControl(this.quantity(), [Validators.min(1), Validators.max(999)]);
+
+  constructor() {
+    effect(() => {
+      this.counter.setValue(this.quantity(), { emitEvent: false });
+    });
+  }
 
   onInput(event: Event) {
     const target = event.target as HTMLInputElement;
 
     // Перестраховка, чтобы получить целое число
-    let val = parseInt(target.value, 10); 
+    let val = parseInt(target.value, 10);
 
     if (val > 999) {
       val = 999;
@@ -42,25 +50,25 @@ export class CounterComponent {
       val = 1;
     }
 
-    this.counter.setValue(val.toString(), { emitEvent: false });
+    this.counter.setValue(val, { emitEvent: false });
   }
 
   increase() {
-    const currentVal = (parseInt(this.counter.value || '1', 10))
+    const currentVal = this.counter.value || 1
 
-    if(currentVal < 999) {
+    if (currentVal < 999) {
       const next = currentVal + 1
-      this.counter.setValue(next.toString())
+      this.counter.setValue(next)
       this.quantityChange.emit(next)
     }
   }
 
   decrease() {
-    const currentVal = parseInt(this.counter.value || '1', 10)
+    const currentVal = this.counter.value || 1
 
-    if(currentVal > 1) {
+    if (currentVal > 1) {
       const prev = currentVal - 1
-      this.counter.setValue(prev.toString())
+      this.counter.setValue(prev)
       this.quantityChange.emit(prev)
     }
   }

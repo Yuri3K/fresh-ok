@@ -34,7 +34,7 @@ export class CartItemComponent {
   protected readonly quantity = signal(1)
 
   // Subject для debounce — отправляем на сервер только после паузы
-  private readonly quantityChange$ = new Subject<number>()
+  quantityChange$ = new Subject<number>()
 
   constructor() {
     // Когда item придёт — инициализируем локальный quantity
@@ -46,7 +46,7 @@ export class CartItemComponent {
       debounceTime(600),
       takeUntilDestroyed()
     ).subscribe(qty => {
-      this.cartService.updateQuantity(this.item().productId, qty.toString())
+      this.cartService.updateQuantity(this.item().productId, qty)
     })
   }
 

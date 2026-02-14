@@ -1,0 +1,6 @@
+
+@for(item of cartItems(); track item.productId) {
+  <app-product-card-cart 
+    [cartItem]="item"
+  />
+}

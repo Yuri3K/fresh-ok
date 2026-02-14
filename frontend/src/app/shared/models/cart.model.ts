@@ -1,10 +1,12 @@
 import { LangCode } from './lang.model';
-import { ProductTexts } from './product.model';
+import { Badge, ProductTexts } from './product.model';
 
 export interface CartItem {
   productId: string;
   quantity: number;
-  priceSnapshot: number;
+  badges: Badge[];
+  price: number;
+  hasDiscount: boolean;
   discountPercent: number;
   currency: string
   publicId: string;

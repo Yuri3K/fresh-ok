@@ -5,7 +5,9 @@
   "required": [
     "productId",
     "quantity",
-    "priceSnapshot",
+    "badges",
+    "price",
+    "hasDiscount",
     "discountPercent",
     "currency",
     "publicId",
@@ -16,56 +18,181 @@
   "properties": {
     "productId": {
       "type": "string",
-      "minLength": 1
+      "minLength": 1,
+      "description": "Unique product identifier (Firebase ID)"
     },
     "quantity": {
       "type": "integer",
       "minimum": 1,
       "maximum": 999,
-      "description": ""
+      "description": "Number of product units in the cart"
     },
-    "priceSnapshot": {
+    "badges": {
+      "type": "array",
+      "description": "Array of badges associated with the product",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "color",
+          "i18n",
+          "isActive",
+          "priority",
+          "slug",
+          "updatedAt",
+          "createdAt"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Badge identifier"
+          },
+          "color": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Badge color (hex or name)"
+          },
+          "i18n": {
+            "type": "object",
+            "description": "Localized badge texts",
+            "properties": {
+              "en": {
+                "type": "string",
+                "description": "Badge text in English"
+              },
+              "ru": {
+                "type": "string",
+                "description": "Badge text in Russian"
+              },
+              "uk": {
+                "type": "string",
+                "description": "Badge text in Ukrainian"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "en",
+              "ru",
+              "uk"
+            ]
+          },
+          "isActive": {
+            "type": "boolean",
+            "description": "Flag indicating if badge is active"
+          },
+          "priority": {
+            "type": "integer",
+            "description": "Badge display priority"
+          },
+          "slug": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Badge slug for SEO/URL"
+          },
+          "updatedAt": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Badge last update timestamp"
+          },
+          "createdAt": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Badge creation timestamp"
+          }
+        }
+      }
+    },
+    "price": {
       "type": "number",
       "minimum": 0,
-      "description": ""
+      "description": "Product price at the time of updating the cart"
+    },
+    "hasDiscount": {
+      "type": "boolean",
+      "description": "Flag indicating if product has a discount"
     },
     "discountPercent": {
       "type": "number",
       "minimum": 0,
       "maximum": 100,
-      "description": ""
+      "description": "Discount percentage applied to the product"
     },
     "currency": {
       "type": "string",
       "minLength": 1,
-      "description": ""
+      "description": "Currency of the product price (e.g., USD, EUR, UAH)"
     },
     "publicId": {
       "type": "string",
       "minLength": 1,
-      "description": ""
+      "description": "Public identifier of the product"
     },
     "slug": {
       "type": "string",
       "minLength": 1,
-      "description": ""
+      "description": "Product slug for SEO/URL"
     },
     "i18n": {
       "type": "object",
-      "additionalProperties": {
-        "type": "object",
-        "required": [
-          "name",
-          "description"
-        ],
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": ""
-          },
-          "description": {
-            "type": "string",
-            "description": ""
+      "description": "Localized product texts",
+      "additionalProperties": false,
+      "required": [
+        "en",
+        "ru",
+        "uk"
+      ],
+      "properties": {
+        "en": {
+          "type": "object",
+          "required": [
+            "name",
+            "description"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Product name in English"
+            },
+            "description": {
+              "type": "string",
+              "description": "Product description in English"
+            }
+          }
+        },
+        "ru": {
+          "type": "object",
+          "required": [
+            "name",
+            "description"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Product name in Russian"
+            },
+            "description": {
+              "type": "string",
+              "description": "Product description in Russian"
+            }
+          }
+        },
+        "uk": {
+          "type": "object",
+          "required": [
+            "name",
+            "description"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Product name in Ukrainian"
+            },
+            "description": {
+              "type": "string",
+              "description": "Product description in Ukrainian"
+            }
           }
         }
       }
