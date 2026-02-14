@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -7,6 +7,7 @@ import { UserAvatarComponent } from './components/user-avatar/user-avatar.compon
 import { LangDropdownComponent } from '../../ui-elems/selectors/lang-dropdown/lang-dropdown.component';
 import { BtnIconComponent } from '../../ui-elems/buttons/btn-icon/btn-icon.component';
 import { AdminBtnComponent } from './components/admin-btn/admin-btn.component';
+import { SidebarService } from '@core/services/sidebar.service';
 
 @Component({
   selector: 'app-header',
@@ -24,5 +25,5 @@ import { AdminBtnComponent } from './components/admin-btn/admin-btn.component';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  @Output() toggleSidenav = new EventEmitter<void>();
+  protected readonly sidebarService = inject(SidebarService)
 }

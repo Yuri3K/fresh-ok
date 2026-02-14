@@ -1,7 +1,7 @@
 <mat-toolbar>
   <app-btn-icon
     iconColor="var(--mat-sys-primary-fixed-dim)"
-    (click)="toggleSidenav.emit()"
+    (click)="sidebarService.toggle('menu')"
     tooltipText="Menu Open Menu Close"
     [tooltipShowDelay]="500"
     iconName="menu"

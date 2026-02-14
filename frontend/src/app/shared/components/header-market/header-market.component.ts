@@ -33,8 +33,9 @@ import { ShowCatalogService } from './components/show-catalog-btn/show-catalog.s
 })
 
 export class HeaderMarketComponent {
-  showSearchService = inject(ShowSearchService)
-  showCatalogService = inject(ShowCatalogService)
+  private readonly showSearchService = inject(ShowSearchService)
+  private readonly showCatalogService = inject(ShowCatalogService)
+
   elToShowName = signal('')
 
   constructor() {

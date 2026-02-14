@@ -1,7 +1,8 @@
 <app-mini-fab-btn 
   iconName="shopping_cart"
-  (click)="navigateToCart()"
   [isBadgeHidden]="false"
+  (click)="sidebarService.toggle('cart')"
   iconColor="var(--mat-sys-on-secondary-container)"
   [count]="cartService.totalItems()"
-/>
+  />
+  <!-- (click)="navigateToCart()" -->

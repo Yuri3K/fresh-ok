@@ -1,8 +1,7 @@
 <div class="public-container">
   <app-header 
     #headerMain
-    (toggleSidenav)="sidenav.toggle()" 
-  />
+    />
   <app-header-market 
     #headerMarket
     class="green" 
@@ -11,8 +10,12 @@
   <mat-sidenav-container #sidenavContainer
     class="main-container green"
   >
-    <mat-sidenav #sidenav [mode]="'side'">
+    <mat-sidenav #sidenavMenu [mode]="'over'" position="start">
       <p>PUBLIC SIDENAV</p>
+    </mat-sidenav>
+
+    <mat-sidenav #sidenavCart [mode]="'over'" position="end">
+      <p>PUBLIC SIDENAV CART</p>
     </mat-sidenav>
 
     <mat-sidenav-content>
