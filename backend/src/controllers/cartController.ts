@@ -25,17 +25,18 @@ const getCart = async (req: AuthRequest, res: Response) => {
 //   TResBody = any                       // тело ответа — нас не интересует, ставим any
 //   TReqBody = { items: CartItemBody[] } // req.body — вот это нам важно!
 // >
-const upsertCartItem = async (req: AuthRequest<{}, any, CartItemBody>, res: Response) => {
-  console.log("BACK UPSERT CART")
+const upsertCartItem = async (
+  req: AuthRequest<{}, any, CartItemBody>,
+  res: Response
+) => {
   try {
     const user = req.user
 
     if (!user) {
       return res.status(401).json({ message: "Unauthorized" });
     }
-    
+
     const newItem = req.body
-    console.log("🔸 newItem:", newItem)
 
     const cart = await cartService.upsertItem(user.uid, newItem)
     return res.json(cart)

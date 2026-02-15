@@ -8,6 +8,7 @@ import { CounterComponent } from '../components/counter/counter.component';
 import { ProductBadgesComponent } from '../components/product-badges/product-badges.component';
 import { ProductPriceComponent } from '../components/product-price/product-price.component';
 import { ProductImageComponent } from '../components/product-image/product-image.component';
+import { ProductDeleteBtnComponent } from "../components/product-delete-btn/product-delete-btn.component";
 
 @Component({
   selector: 'app-product-card-cart',
@@ -16,6 +17,7 @@ import { ProductImageComponent } from '../components/product-image/product-image
     ProductBadgesComponent,
     ProductPriceComponent,
     ProductImageComponent,
+    ProductDeleteBtnComponent
   ],
   templateUrl: './product-card-cart.component.html',
   styleUrl: './product-card-cart.component.scss'
@@ -27,13 +29,9 @@ export class ProductCardCartComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef)
   private readonly cartService = inject(CartService)
 
-  // readonly currentQuantity = signal(1)
-
   protected readonly quantityChanged$ = new Subject<number>()
 
   ngOnInit() {
-    // this.currentQuantity.set(this.cartItem().quantity)
-
     this.quantityChanged$
       .pipe(
         debounceTime(600),
@@ -42,23 +40,5 @@ export class ProductCardCartComponent implements OnInit {
         this.cartService.updateQuantity(this.cartItem().productId, quantity)
       })
   }
-
-  // increase() {
-  //   const current = this.currentQuantity()
-
-  //   if (current < 999) {
-  //     const next = current + 1
-  //     this.currentQuantity.set(next)
-  //     this.quantityChanged$.next(next)
-  //   }
-  // }
-
-  // decrease() {
-  //   const current = this.currentQuantity()
-  //   if (current > 1) {
-  //     const prev = current - 1
-  //     this.currentQuantity.set(prev)
-  //     this.quantityChanged$.next(prev)
-  //   }
-  // }
 }
+// sd 

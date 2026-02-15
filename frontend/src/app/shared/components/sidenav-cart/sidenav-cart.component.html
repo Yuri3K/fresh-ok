@@ -1,6 +1,53 @@
 
-@for(item of cartItems(); track item.productId) {
-  <app-product-card-cart 
-    [cartItem]="item"
+<div class="sidenav-cart">
+  <div class="sidenav-cart__header">
+    <app-h3-title 
+      [text]="'sidenav-cart.title' | translate"
+      class="sidenav-cart__title"
+    />
+
+    <app-btn-icon 
+      iconName="close"
+      class="sidenav-cart__close"
+      [tooltipText]="'common.close' | translate"
+      [ariaLabel]="'common.close' | translate"
+      (click)="closeSidebar()"
+    />
+
+    @if(cartItems().length) {
+      <app-btn-flat 
+        [btnText]="'sidenav-cart.clear-cart' | translate"
+        (click)="clearCart()"
+        class="sidenav-cart__clear"
+        bgColor="transparent"
+        fzText="0.875rem"
+      />
+    }
+  </div>
+
+  <div class="sidenav-cart__items">
+    @for(item of cartItems(); track item.productId) {
+      <app-product-card-cart 
+        [cartItem]="item"
+        class="sidenav-cart__item"
+      />
+    }
+  </div>
+
+  @if(!cartService.isEmpty()) {
+    <p class="sidenav-cart__total">
+      {{'sidenav-cart.total' | translate}}
+      {{cartService.totalPrice()}}₴
+    </p>
+  }
+
+  <app-btn-flat 
+    [btnText]="'sidenav-cart.place-order' | translate"
+    (click)="navigateToCartPage()"
+    class="sidenav-cart__order"
+    borderRarius="0"
+    btnWidth="100%"
+    btnHeight="50px"
+    [btnDisabled]="cartItems().length < 1"
   />
-}
+</div>

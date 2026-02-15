@@ -65,7 +65,7 @@ export interface Badge {
   color: string;
   i18n: Record<LangCode, string>;
   isActive: boolean;
-  updatedAt: string;
+  updatedAt: number;
   createdAt: number;
   priority: number;
   slug: string;

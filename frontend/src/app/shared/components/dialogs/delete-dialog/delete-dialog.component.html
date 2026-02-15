@@ -9,7 +9,7 @@
   <app-h3-title mat-dialog-title [text]="translations().title" />
 
   <mat-dialog-content>
-    <p class="delete-dialog__question">{{translations().question | translate}}</p>
+    <p class="delete-dialog__question">{{translations().question}}</p>
     @if(str()) {
       <p class="delete-dialog__substr">"{{str()}}"</p>
     }
@@ -18,6 +18,6 @@
   <!--align = 'start' | 'center' | 'end' -->
   <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close cdkFocusInitial>{{'common.cancel' | translate}}</button>
-    <button mat-button [mat-dialog-close]="data.info.id">{{'common.delete' | translate}}</button>
+    <button mat-button [mat-dialog-close]="data.info?.id || true">{{'common.delete' | translate}}</button>
   </mat-dialog-actions>
 </div>

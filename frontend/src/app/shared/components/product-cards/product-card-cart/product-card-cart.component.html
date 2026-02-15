@@ -1,23 +1,36 @@
 <div class="pcc">
-  <app-product-badges [product]="cartItem()" />
-
-  <app-product-image 
+  <app-product-badges 
     [product]="cartItem()"
-    width="200"
-    height="144"
+    [isCart]="true"
   />
-
+  
   <div class="pcc__content">
+    <app-product-image 
+      [product]="cartItem()"
+      width="100"
+      height="100"
+      cardType="mini"
+    />
+
     <h3 class="product-card__title">
       {{ cartItem().i18n[currentLang()].description }}
     </h3>
 
-    <app-product-price [product]="cartItem()" />
-
-    <app-counter 
-      (quantityChange)="quantityChanged$.next($event)"
-      [quantity]="cartItem().quantity"
+    <app-product-delete-btn 
+      [productId]="cartItem().productId"
     />
   </div>
 
+  <div class="pcc__bottom">
+    <app-product-price 
+      [product]="cartItem()" 
+      class="price-row"
+    />
+
+    <app-counter 
+    (quantityChange)="quantityChanged$.next($event)"
+    [quantity]="cartItem().quantity"
+    />
+
+  </div> 
 </div>

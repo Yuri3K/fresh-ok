@@ -5,10 +5,10 @@ const CART_COLLECTION = 'carts'
 
 export const cartService = {
   // Получить корзину пользователся по userId
-  async getCart (userId: string) {
+  async getCart(userId: string) {
     const doc = await db.collection(CART_COLLECTION).doc(userId).get()
 
-    if(!doc.exists) {
+    if (!doc.exists) {
       return {
         userId,
         items: [],
@@ -25,14 +25,14 @@ export const cartService = {
     const doc = await ref.get()
 
     let items: CartItemBody[] = doc.exists
-    ? (doc.data()?.items || [])
-    : []
-    
+      ? (doc.data()?.items || [])
+      : []
+
     const existingIndex = items.findIndex(i => i.productId == newItem.productId)
-    
-    if(existingIndex !== -1) {
+
+    if (existingIndex !== -1) {
       // Товар уже есть в корзине — увеличиваем quantity
-      items[existingIndex].quantity += newItem.quantity
+      items[existingIndex].quantity = newItem.quantity
     } else {
       // Такого товара в корзине нет — добавляем
       items.push(newItem)
@@ -54,8 +54,8 @@ export const cartService = {
     const ref = db.collection(CART_COLLECTION).doc(userId)
     const doc = await ref.get()
 
-    if(!doc.exists) 
-    return {userId, items: [], apdatedAt: admin.firestore.Timestamp.now().toMillis()}
+    if (!doc.exists)
+      return { userId, items: [], apdatedAt: admin.firestore.Timestamp.now().toMillis() }
 
     const items = (doc.data()?.items || []).filter((i: CartItemBody) => i.productId !== productId)
 
@@ -83,13 +83,14 @@ export const cartService = {
   },
 
   // Очистить корзину
-    async clearCart(userId: string) {
+  async clearCart(userId: string) {
     const ref = db.collection(CART_COLLECTION).doc(userId)
     const cart = {
       userId,
       items: [],
       updatedAt: admin.firestore.Timestamp.now().toMillis()
     }
+    
     ref.set(cart)
     return cart
   }

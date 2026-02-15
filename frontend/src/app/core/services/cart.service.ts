@@ -120,8 +120,8 @@ export class CartService {
     const localItems = this.getItemsFromLS()
 
     // Если локальных товаров нет — мерж не нужен, лишний запрос не делаем
-  if (localItems.length === 0) return serverItems
-  
+    if (localItems.length === 0) return serverItems
+
     const merged = [...serverItems]
 
     for (const localItem of localItems) {
@@ -250,7 +250,7 @@ export class CartService {
   clearCart() {
     this._items.set([])
 
-    if (this.dbUser()) {
+    if (this.dbUser()) {      
       this.apiService.delete('/cart/clear')
         .pipe(
           catchError((err) => {

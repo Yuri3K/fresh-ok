@@ -11,6 +11,7 @@ import { Badge } from '@shared/models';
 export class BadgeComponent {
   badge = input.required<Badge>()
   discountPercent = input<number>(0)
+  isCart = input(false)
 
   currentLang = inject(GetCurrentLangService).currentLang
 }

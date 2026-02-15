@@ -4,7 +4,6 @@ import { CartService } from '@core/services/cart.service';
 import { GetCurrentLangService } from '@core/services/get-current-lang.service';
 import { CalcDiscountPipe } from '@core/pipes/calc-discount.pipe';
 import { MEDIA_URL } from '@core/urls';
-import { RouterLink } from '@angular/router';
 import { LangRouterService } from '@core/services/langs/lang-router.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';

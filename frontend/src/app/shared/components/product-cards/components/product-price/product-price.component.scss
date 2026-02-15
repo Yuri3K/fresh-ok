@@ -94,9 +94,9 @@
       bottom: 0;
       left: 0;
       background: linear-gradient(to bottom right,
-          transparent calc(49% - 3px),
+          transparent calc(49% - 2px),
           var(--mat-sys-on-background) calc(50%),
-          transparent calc(51% + 3px));
+          transparent calc(51% + 2px));
       pointer-events: none;
     }
   }

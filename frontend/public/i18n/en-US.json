@@ -359,6 +359,18 @@
       ]
     }
   },
+  "cart-page": {
+    "title": "Корзина"
+  },
+  "sidenav-cart": {
+    "title": "Корзина",
+    "clear-cart": "Очистить корзину",
+    "place-order": "Оформить заказ",
+    "clear-cart-dialog": {
+      "title": "Очистить корзину",
+      "question": "Вы уверены, что хотите удалить все элемены из корзины?"
+    }
+  },
   "footer": {
     "address": "Kyiv, Shevchenko St., 1",
     "hotline": "Hotline +38(099)-445-35-63",

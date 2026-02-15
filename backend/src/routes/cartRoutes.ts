@@ -21,12 +21,6 @@ router.patch(
   upsertCartItem
 )
 
-router.delete(
-  '/:productId',
-  verifyToken(),
-  validateRequest<DeleteCartItemParams>('cart/delete-item.schema.json', 'params'),
-  removeCartItem
-)
 
 router.post(
   '/save',
@@ -36,5 +30,16 @@ router.post(
 )
 
 router.delete('/clear', verifyToken(), clearCart)
+
+// ЭТОТ РОУТ ДОЛЖЕН ИДНИ ПОСЛЕ РОУТА
+// router.delete('/clear', verifyToken(), clearCart)
+// ПОТОМУ ЧТО В ИНОМ СЛУЧАЕ EXPRESS РАСПОЗНАЕТ /cart/clear
+// как /cart/:productId
+router.delete(
+  '/:productId',
+  verifyToken(),
+  validateRequest<DeleteCartItemParams>('cart/delete-item.schema.json', 'params'),
+  removeCartItem
+)
 
 export default router

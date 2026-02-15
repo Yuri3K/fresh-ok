@@ -1,0 +1,31 @@
+@use 'mixins/castom-scrollbar' as *;
+
+.pcc {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid var(--mat-sys-primary);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+app-product-badges {
+  position: absolute;
+  left: 11px;
+  top: 5px;
+  z-index: 1;
+}
+
+.pcc__content {
+  display: grid;
+  grid-template-columns: 100px 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.pcc__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

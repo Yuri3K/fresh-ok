@@ -12,4 +12,5 @@ import { Product } from '@shared/models';
 export class ProductBadgesComponent {
   currentLang = inject(GetCurrentLangService).currentLang
   product = input.required<Pick<Product, 'badges' | 'discountPercent'>>()
+  isCart = input(false)
 }

@@ -1,0 +1,63 @@
+@use 'mixins/castom-scrollbar' as *;
+
+.sidenav-cart {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 10px;
+  height: 100%;
+}
+
+.sidenav-cart__header {
+  padding: 0 10px;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  grid-template-columns: auto auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.sidenav-cart__title {
+  grid-column: 1;
+  grid-row: 1;
+  margin-left: 24px;
+}
+
+.sidenav-cart__clear {
+  grid-column: 1 / span 2;
+  grid-row: 2;
+}
+
+.sidenav-cart__close {
+  grid-column: 2; 
+  grid-row: 1; 
+  justify-self: end; // прижат к правому краю
+}
+
+.sidenav-cart__items{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 10px;
+  overflow: auto;
+
+  @include custom-scrollbar(
+    var(--mat-sys-outline),
+    var(--mat-sys-primary-container),
+    4px,)
+}
+
+.sidenav-cart__total {
+  padding: 0 24px;
+  font-size: 1.375rem;
+  letter-spacing: 0.7px;
+  line-height: 1.2;
+}
+
+.sidenav-cart__order {
+  margin-top: auto;
+  
+}
+
+

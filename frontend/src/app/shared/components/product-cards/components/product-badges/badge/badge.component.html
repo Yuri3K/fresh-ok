@@ -5,7 +5,7 @@
 	>
 		-{{discountPercent()}}%
 	</span>
-} @else {
+} @else if(!isCart()){
 	<span 
 		class="product-card__badge"
 		[class]="badge().color"
