@@ -22,15 +22,20 @@
   </div>
 
   <div class="pcc__bottom">
+    <app-counter 
+      (quantityChange)="quantityChanged$.next($event)"
+      [quantity]="cartItem().quantity"
+    />
+
     <app-product-price 
       [product]="cartItem()" 
       class="price-row"
     />
 
-    <app-counter 
-    (quantityChange)="quantityChanged$.next($event)"
-    [quantity]="cartItem().quantity"
-    />
+    <div class="pcc__total">
+      <span>{{'common.total' | translate}}</span>
+      <span>{{totalCardPrice()}}₴</span>
+    </div>
 
   </div> 
 </div>

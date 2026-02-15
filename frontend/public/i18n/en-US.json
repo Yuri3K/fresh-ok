@@ -25,6 +25,7 @@
     "cancel": "Cancel",
     "add-to-cart": "Add to cart",
     "add-to-favs": "Add to favs",
+    "total": "Total: ",
     "back-to-homepage": "Back to Homepage",
     "forms": {
       "email": {
@@ -359,16 +360,17 @@
       ]
     }
   },
-  "cart-page": {
-    "title": "Корзина"
-  },
-  "sidenav-cart": {
-    "title": "Корзина",
-    "clear-cart": "Очистить корзину",
-    "place-order": "Оформить заказ",
+  "cart": {
+    "title": "Cart",
+    "clear-cart": "Clear cart",
+    "total": "Total amount: ",
+    "place-order": "Place order",
+    "summary": "Summary",
+    "items-count": "Items count",
+    "confir-order": "I confirm the order",
     "clear-cart-dialog": {
-      "title": "Очистить корзину",
-      "question": "Вы уверены, что хотите удалить все элемены из корзины?"
+      "title": "Clear cart",
+      "question": "Are you sure you want to remove all items from the cart?"
     }
   },
   "footer": {

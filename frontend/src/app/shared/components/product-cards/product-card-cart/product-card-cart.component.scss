@@ -6,6 +6,7 @@
   border: 1px solid var(--mat-sys-primary);
   border-radius: 8px;
   padding: 10px;
+  max-width: 400px;
 }
 
 app-product-badges {
@@ -26,4 +27,8 @@ app-product-badges {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+app-counter {
+  margin-left: 8px;
 }

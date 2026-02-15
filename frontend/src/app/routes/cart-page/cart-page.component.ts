@@ -1,15 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { CartService } from '@core/services/cart.service';
-import { CartItemComponent } from './components/cart-item/cart-item.component';
+// import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { CartSummaryComponent } from './components/cart-summary/cart-summary.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
 import { LangRouterService } from '@core/services/langs/lang-router.service';
+import { ProductCardCartComponent } from '@shared/components/product-cards/product-card-cart/product-card-cart.component';
 
 @Component({
   selector: 'app-cart-page',
   imports: [
-    CartItemComponent,
+    // CartItemComponent,
+    ProductCardCartComponent,
     CartSummaryComponent,
     TranslateModule,
     MatButtonModule,
@@ -20,6 +22,8 @@ import { LangRouterService } from '@core/services/langs/lang-router.service';
 export class CartPageComponent {
   protected readonly cartService = inject(CartService)
   private readonly navigateService = inject(LangRouterService)
+
+  readonly cartItems = this.cartService.items
 
   goToCatalog() {
     this.navigateService.navigate(['/products'])

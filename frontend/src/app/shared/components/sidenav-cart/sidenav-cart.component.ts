@@ -41,7 +41,7 @@ export class SidenavCartComponent {
       exitAnimationDuration: '150ms',
       data: {
         translations: this.translateService.instant(
-          'sidenav-cart.clear-cart-dialog',
+          'cart.clear-cart-dialog',
         ),
       },
     })

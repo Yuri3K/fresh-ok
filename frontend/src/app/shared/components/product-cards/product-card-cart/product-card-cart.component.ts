@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, input, OnInit, signal } from '@angular/core';
+import { Component, computed, DestroyRef, inject, input, OnInit, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CartService } from '@core/services/cart.service';
 import { GetCurrentLangService } from '@core/services/get-current-lang.service';
@@ -9,6 +9,7 @@ import { ProductBadgesComponent } from '../components/product-badges/product-bad
 import { ProductPriceComponent } from '../components/product-price/product-price.component';
 import { ProductImageComponent } from '../components/product-image/product-image.component';
 import { ProductDeleteBtnComponent } from "../components/product-delete-btn/product-delete-btn.component";
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-product-card-cart',
@@ -17,7 +18,8 @@ import { ProductDeleteBtnComponent } from "../components/product-delete-btn/prod
     ProductBadgesComponent,
     ProductPriceComponent,
     ProductImageComponent,
-    ProductDeleteBtnComponent
+    ProductDeleteBtnComponent,
+    TranslateModule,
   ],
   templateUrl: './product-card-cart.component.html',
   styleUrl: './product-card-cart.component.scss'
@@ -30,6 +32,13 @@ export class ProductCardCartComponent implements OnInit {
   private readonly cartService = inject(CartService)
 
   protected readonly quantityChanged$ = new Subject<number>()
+  protected readonly totalCardPrice = computed(() => {
+      // поле discountPercent всегда есть в продукте. Если скидки нет,
+      // то discountPercent равен 0 и выражение будет вычислено буз учета скидки
+      const discountPrice = this.cartItem().price * (1 - this.cartItem().discountPercent / 100)
+
+      return this.cartItem().quantity * discountPrice
+  })
 
   ngOnInit() {
     this.quantityChanged$

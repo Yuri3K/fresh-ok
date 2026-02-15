@@ -11,8 +11,8 @@
   } @else {
     <div class="cart-page__content">
       <div class="cart-page__items">
-        @for (item of cartService.items(); track item.productId) {
-          <app-cart-item [item]="item" />
+        @for (item of cartItems(); track item.productId) {
+          <app-product-card-cart [cartItem]="item" />
         }
       </div>
 
