@@ -41,4 +41,3 @@ export class ProductCardCartComponent implements OnInit {
       })
   }
 }
-// sd 

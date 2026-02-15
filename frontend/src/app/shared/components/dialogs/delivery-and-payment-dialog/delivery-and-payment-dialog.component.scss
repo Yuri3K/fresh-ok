@@ -8,7 +8,8 @@
 mat-dialog-content {
 
 
-  @include custom-scrollbar('transparent',
+  @include custom-scrollbar(
+    'transparent',
     'transparent',
     0, )
 }
