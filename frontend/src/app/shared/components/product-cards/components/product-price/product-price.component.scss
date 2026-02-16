@@ -67,6 +67,30 @@
       color: var(--mat-sys-primary);
     }
   }
+
+  &.medium {
+    .product-card__price-origin {
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: 1px;
+      color: var(--mat-sys-primary);
+
+      &.cross {
+        font-size: 0.875rem;
+        letter-spacing: 0.5px;
+        color: inherit;
+      }
+    }
+
+    .product-card__price-discount {
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: 0.5px;
+      color: var(--mat-sys-primary);
+    }
+  }
 }
 
 .product-card__price {

@@ -16,9 +16,9 @@
       {{ cartItem().i18n[currentLang()].description }}
     </h3>
 
-    <app-product-delete-btn 
-      [productId]="cartItem().productId"
-    />
+    <app-menu class="icon-menu" [options]="menuOptions()"/>
+
+
   </div>
 
   <div class="pcc__bottom">
@@ -29,7 +29,7 @@
 
     <app-product-price 
       [product]="cartItem()" 
-      class="price-row"
+      class="price-row medium"
     />
 
     <div class="pcc__total">

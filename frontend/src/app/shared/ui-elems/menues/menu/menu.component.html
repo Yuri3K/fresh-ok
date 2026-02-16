@@ -1,0 +1,32 @@
+<div class="menu-wrapper">
+  <app-btn-icon 
+    [iconName]="iconName()"
+    [matMenuTriggerFor]="menu"
+    #menuTrigger="matMenuTrigger"
+    (click)="$event.stopPropagation()"
+    (menuOpened)="onMenuOpened()"
+    (menuClosed)="onMenuClosed()"
+    [btnDisabled]="btnDisabled()" 
+    [ariaLabel]="ariaLabel()"
+  />
+  <mat-menu 
+    #menu="matMenu" 
+    class="container-menu green" 
+    xPosition="before"
+    yPosition="below"
+  >
+    @for(option of options(); track $index) {
+      <button 
+        [disabled]="option.disabled" 
+        class="menu-item"  
+        mat-menu-item 
+        (click)="menuItemClicked(option)"
+      >
+        <mat-icon>{{option.icon}}</mat-icon>
+        <span class="menu-item-content">{{option.text}}</span>
+      </button>
+    }
+  </mat-menu>
+</div>
+
+<!-- backdropClass="cdk-overlay-transparent-backdrop" -->

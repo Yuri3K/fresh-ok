@@ -368,6 +368,8 @@
     "summary": "Summary",
     "items-count": "Items count: ",
     "confirm-order": "I confirm the order",
+    "empty": "Your cart is empty",
+    "go-to-catalog": "Go to Catalog",
     "clear-cart-dialog": {
       "title": "Clear cart",
       "question": "Are you sure you want to remove all items from the cart?"

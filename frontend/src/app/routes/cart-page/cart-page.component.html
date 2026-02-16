@@ -1,22 +1,25 @@
+
 <div class="cart-page">
-  <app-h2-title 
-    class="cart-page__title"
-    [text]="'cart.title' | translate"
-  />
-
-  @if (cartService.isEmpty()) {
-    <app-cart-empty />
-  } @else {
-    <div class="cart-page__content">
-      <div class="cart-page__items">
-        @for (item of cartItems(); track item.productId) {
-          <app-product-card-cart [cartItem]="item" />
-        }
+  <div class="container">
+    <app-h2-title 
+      class="cart-page__title"
+      [text]="'cart.title' | translate"
+    />
+  
+    @if (cartService.isEmpty()) {
+      <app-cart-empty />
+    } @else {
+      <div class="cart-page__content">
+        <div class="cart-page__items">
+          @for (item of cartItems(); track item.productId) {
+            <app-product-card-cart [cartItem]="item" />
+          }
+        </div>
+  
+        <aside class="cart-page__summary">
+          <app-cart-summary />
+        </aside>
       </div>
-
-      <aside class="cart-page__summary">
-        <app-cart-summary />
-      </aside>
-    </div>
-  }
+    }
+  </div>
 </div>

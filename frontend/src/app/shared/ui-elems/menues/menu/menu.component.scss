@@ -1,0 +1,21 @@
+.menu-wrapper {
+  position: relative;
+}
+
+::ng-deep {
+  .container-menu {
+    min-width: 150px;
+  
+    .menu-item {
+      --mat-menu-item-label-text-color: var(--mat-sys-primary);
+
+      mat-icon {
+        color: var(--mat-sys-primary);
+      }
+  
+      &:disabled {
+        pointer-events: none;
+      }
+    }
+  }
+}

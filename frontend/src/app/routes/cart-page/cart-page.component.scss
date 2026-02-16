@@ -1,7 +1,6 @@
 .cart-page {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 24px 16px;
+  padding-top: 24px;
+  padding-bottom: 24px;
 }
 
 .cart-page__title {
@@ -12,9 +11,10 @@
 
 .cart-page__content {
   display: grid;
-  grid-template-columns: 1fr 320px;
-  gap: 32px;
+  grid-template-columns: 1fr minmax(270px, 320px);
+  gap: 16px;
   align-items: start;
+  margin-top: 24px;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -28,9 +28,11 @@
 
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
+    justify-self: center;
   }
 
   app-product-card-cart {
+    min-width: 340px;
     width: 100%;
   }
 }
