@@ -1,12 +1,29 @@
 .sidenav-menu {
-  padding: 24px 15px;
+  padding: 24px 0;
   display: flex;
   flex-direction: column;
-  grid-template-columns: 10px;
+  gap: 10px;
 }
 
 .sidenav-menu__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0 15px;
+}
+
+.sidenav-menu__sing {
+  padding: 8px 15px;
+  background-color: var(--mat-sys-primary-container);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  
+  .mat-icon {
+    width: auto;
+    height: auto;
+    color: var(--mat-sys-on-secondary-container);
+    font-size: 32px;
+  }
 }

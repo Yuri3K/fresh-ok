@@ -11,5 +11,20 @@
     />
   </div>
 
-  sidenav-menu__
+  <div class="sidenav-menu__sing">
+    <mat-icon>person</mat-icon>
+    <app-btn-flat 
+      [btnText]="'sidenav-menu.enter' | translate"
+      bgColor="transparent"
+      btnBorder="none"
+      (click)="signDialogService.openLoginDialog(); sidebarService.close('menu')"
+    />
+    <span>|</span>
+    <app-btn-flat 
+      [btnText]="'sidenav-menu.registration' | translate"
+      bgColor="transparent"
+      btnBorder="none"
+      (click)="signDialogService.openRegisterDialog(); sidebarService.close('menu')"
+    />
+  </div>
 </div>

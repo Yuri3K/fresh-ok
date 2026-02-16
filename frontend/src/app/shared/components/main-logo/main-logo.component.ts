@@ -18,5 +18,5 @@ import { SvgIconPipe } from "../../../core/pipes/svg-icon.pipe";
 })
 
 export class MainLogoComponent {
-  logoUrl = '/assets/images/logo-green.svg'
+  logoUrl = 'assets/images/logo-green.svg'
 }
