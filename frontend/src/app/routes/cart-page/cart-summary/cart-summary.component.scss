@@ -1,0 +1,29 @@
+.cart-summary {
+  gap: 16px;
+  border: 1px solid var(--mat-sys-outline-variant);
+  position: sticky;
+  top: 80px;
+}
+
+mat-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cart-summary__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+
+  &--total {
+    font-weight: 700;
+    font-size: 1.125rem;
+  }
+}
+
+mat-card-actions{
+  flex-direction: column;
+  gap: 16px;
+}

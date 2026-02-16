@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MEDIA_URL } from '../../../core/urls';
 import { SvgIconPipe } from '../../../core/pipes/svg-icon.pipe';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,7 +12,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule
   ],
   templateUrl: './social.component.html',
-  styleUrl: './social.component.scss'
+  styleUrl: './social.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SocialComponent {
   iconColor = input.required()

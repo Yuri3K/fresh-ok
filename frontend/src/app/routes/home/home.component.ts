@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { AdvantagesComponent } from './components/advantages/advantages.component';
 import { NewsComponent } from './components/news/news.component';
 import { MainCarouselComponent } from './components/main-carousel/main-carousel.component';
@@ -19,7 +19,8 @@ import { PromoComponent } from '../../shared/components/promo/promo.component';
     PromoComponent
   ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {
 

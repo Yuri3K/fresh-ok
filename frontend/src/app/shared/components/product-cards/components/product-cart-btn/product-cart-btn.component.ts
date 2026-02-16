@@ -1,4 +1,4 @@
-import { Component, computed, DestroyRef, HostListener, inject, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, DestroyRef, HostListener, inject, input, signal } from '@angular/core';
 import { MiniFabBtnComponent } from '../../../../ui-elems/buttons/mini-fab-btn/mini-fab-btn.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { of } from 'rxjs';
@@ -14,7 +14,8 @@ import { CartService } from '@core/services/cart.service';
     AsyncPipe
   ],
   templateUrl: './product-cart-btn.component.html',
-  styleUrl: './product-cart-btn.component.scss'
+  styleUrl: './product-cart-btn.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductCartBtnComponent {
   product = input.required<Product>()

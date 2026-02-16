@@ -1,4 +1,4 @@
-import { Component, Input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -17,7 +17,8 @@ import { TranslateModule } from '@ngx-translate/core';
     MatTooltipModule,
   ],
   templateUrl: './form-control-pwd.component.html',
-  styleUrls: ['./form-control-pwd.component.scss', '../form-control.scss']
+  styleUrls: ['./form-control-pwd.component.scss', '../form-control.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormControlPasswordComponent {
   @Input({required: true}) pwdControl!: FormControl

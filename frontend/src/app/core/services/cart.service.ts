@@ -5,6 +5,9 @@ import { Cart, CartItem, Product } from '@shared/models';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { environment } from '@env/environment';
 import { catchError, finalize, merge, Observable, of, tap } from 'rxjs';
+import { DeleteDialogComponent } from '@shared/components/dialogs/delete-dialog/delete-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
 
 const CART_LS_KEY = environment.lsSavedCart
 
@@ -14,6 +17,8 @@ const CART_LS_KEY = environment.lsSavedCart
 export class CartService {
   private readonly apiService = inject(ApiService)
   private readonly userAccessService = inject(UserAccessService)
+  private readonly dialog = inject(MatDialog)
+  private readonly translateService = inject(TranslateService)
 
   private readonly _items = signal<CartItem[]>([])
   private readonly _isLoading = signal(false)
@@ -243,14 +248,33 @@ export class CartService {
     }
   }
 
+  openClearCartDialog() {
+    const clearCartDialog = this.dialog.open(DeleteDialogComponent, {
+      panelClass: ['green'],
+      maxWidth: '700px',
+      width: '100vw',
+      enterAnimationDuration: '150ms',
+      exitAnimationDuration: '150ms',
+      data: {
+        translations: this.translateService.instant(
+          'cart.clear-cart-dialog',
+        ),
+      },
+    })
+
+    clearCartDialog.afterClosed().subscribe((result) => {
+      if (result) this.clearCart()
+    })
+  }
+
   // Очищает корзину пользователя. 
   // Далее проверяет залогинен ли пользователь. 
   // Если да, то очистит карзину на сервере.
   // Если нет, то очистит localStorage
-  clearCart() {
+  private clearCart() {
     this._items.set([])
 
-    if (this.dbUser()) {      
+    if (this.dbUser()) {
       this.apiService.delete('/cart/clear')
         .pipe(
           catchError((err) => {

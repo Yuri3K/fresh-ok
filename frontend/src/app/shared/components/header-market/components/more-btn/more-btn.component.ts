@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MiniFabBtnComponent } from '../../../../ui-elems/buttons/mini-fab-btn/mini-fab-btn.component';
 import { OpenMenuDirective } from '../../../../../core/directives/open-menu.directive';
 import { ShowSearchBtnComponent } from '../show-search-btn/show-search-btn.component';
@@ -18,6 +18,7 @@ import { ShowCatalogBtnComponent } from '../show-catalog-btn/show-catalog-btn.co
   ],
   templateUrl: './more-btn.component.html',
   styleUrl: './more-btn.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MoreBtnComponent {
 }

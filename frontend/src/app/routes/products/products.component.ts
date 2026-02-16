@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   DestroyRef,
   ElementRef,
@@ -53,6 +54,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsComponent implements AfterViewInit, OnDestroy {
 

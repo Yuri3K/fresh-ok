@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostListener, inject, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, inject, Input, Output } from '@angular/core';
 import { BtnIconComponent } from '../../../../../../ui-elems/buttons/btn-icon/btn-icon.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { User } from 'firebase/auth';
@@ -20,7 +20,8 @@ import { MEDIA_URL } from '../../../../../../../core/urls';
     AsyncPipe
   ],
   templateUrl: './avatar-popup.component.html',
-  styleUrl: './avatar-popup.component.scss'
+  styleUrl: './avatar-popup.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AvatarPopupComponent {
   @Input() authUser!: User

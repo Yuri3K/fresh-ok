@@ -1,31 +1,27 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CartService } from '@core/services/cart.service';
-// import { CartItemComponent } from './components/cart-item/cart-item.component';
-import { CartSummaryComponent } from './components/cart-summary/cart-summary.component';
+import { CartSummaryComponent } from './cart-summary/cart-summary.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
-import { LangRouterService } from '@core/services/langs/lang-router.service';
 import { ProductCardCartComponent } from '@shared/components/product-cards/product-card-cart/product-card-cart.component';
+import { H2TitleComponent } from '@shared/ui-elems/typography/h2-title/h2-title.component';
+import { CartEmptyComponent } from './cart-empty/cart-empty.component';
 
 @Component({
   selector: 'app-cart-page',
   imports: [
-    // CartItemComponent,
     ProductCardCartComponent,
     CartSummaryComponent,
     TranslateModule,
     MatButtonModule,
+    H2TitleComponent,
+    CartEmptyComponent,
   ],
   templateUrl: './cart-page.component.html',
-  styleUrl: './cart-page.component.scss'
+  styleUrl: './cart-page.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartPageComponent {
   protected readonly cartService = inject(CartService)
-  private readonly navigateService = inject(LangRouterService)
-
-  readonly cartItems = this.cartService.items
-
-  goToCatalog() {
-    this.navigateService.navigate(['/products'])
-  }
+  protected readonly cartItems = this.cartService.items
 }

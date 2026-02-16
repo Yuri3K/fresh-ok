@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MiniFabBtnComponent } from '../../../../ui-elems/buttons/mini-fab-btn/mini-fab-btn.component';
 import { LangRouterService } from '../../../../../core/services/langs/lang-router.service';
 import { CartService } from '@core/services/cart.service';
@@ -10,7 +10,8 @@ import { SidebarService } from '@core/services/sidebar.service';
     MiniFabBtnComponent
   ],
   templateUrl: './shopping-cart.component.html',
-  styleUrl: './shopping-cart.component.scss'
+  styleUrl: './shopping-cart.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShoppingCartComponent {
   private navigateService = inject(LangRouterService)

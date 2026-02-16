@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ImageService } from '../../../../core/services/image.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -11,7 +11,8 @@ import { AvatarCropDialogComponent } from '../avatar-crop-dialog/avatar-crop-dia
 
   ],
   templateUrl: './avatar-upload.component.html',
-  styleUrl: './avatar-upload.component.scss'
+  styleUrl: './avatar-upload.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   // (В реальном проекте стили и шаблон выносятся в отдельные файлы)
 })
 export class AvatarUploadComponent {

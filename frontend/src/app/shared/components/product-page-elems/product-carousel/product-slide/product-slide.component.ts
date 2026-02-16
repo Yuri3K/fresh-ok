@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import {  } from '../../../../../core/services/get-current-lang.service';
 
 export interface ProductSlide {
@@ -11,6 +11,7 @@ export interface ProductSlide {
   imports: [],
   templateUrl: './product-slide.component.html',
   styleUrl: './product-slide.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductSlideComponent {
   slide = input.required<ProductSlide>()

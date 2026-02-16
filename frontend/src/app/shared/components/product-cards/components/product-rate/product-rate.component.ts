@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -7,7 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule
   ],
   templateUrl: './product-rate.component.html',
-  styleUrl: './product-rate.component.scss'
+  styleUrl: './product-rate.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductRateComponent {
   rate = input.required<number>()

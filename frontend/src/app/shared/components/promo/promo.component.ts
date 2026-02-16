@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { H2TitleComponent } from '../../ui-elems/typography/h2-title/h2-title.component';
 import { LoaderComponent } from '../loader/loader.component';
 import { TranslateModule } from '@ngx-translate/core';
@@ -22,6 +22,7 @@ import { Pagination, Product } from '@shared/models';
   ],
   templateUrl: './promo.component.html',
   styleUrl: './promo.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PromoComponent implements OnInit {
   productsService = inject(ProductsService);

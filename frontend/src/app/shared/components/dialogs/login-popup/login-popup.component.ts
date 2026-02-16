@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MEDIA_URL } from '../../../../core/urls';
 import { BtnIconComponent } from '../../../ui-elems/buttons/btn-icon/btn-icon.component';
 import { LoginComponent } from '../../../../routes/login/login.component';
@@ -15,7 +15,8 @@ import { TranslateModule } from '@ngx-translate/core';
     MatDialogModule,
   ],
   templateUrl: './login-popup.component.html',
-  styleUrl: './login-popup.component.scss'
+  styleUrl: './login-popup.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginPopupComponent {
   heroImg = `${MEDIA_URL}heroes/donna`

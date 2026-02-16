@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { RouterLink } from "@angular/router";
 import { TranslateModule } from "@ngx-translate/core";
 
@@ -6,6 +6,7 @@ import { TranslateModule } from "@ngx-translate/core";
   selector: 'app-404',
   templateUrl: './404.component.html',
   styleUrl: './404.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     RouterLink,
     TranslateModule

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 
@@ -6,7 +6,8 @@ import { RouterOutlet } from '@angular/router';
   selector: 'app-user',
   imports: [RouterOutlet],
   templateUrl: './user.component.html',
-  styleUrl: './user.component.scss'
+  styleUrl: './user.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserComponent {
 

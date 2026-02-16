@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { SponsorsService } from './services/sponsors.service';
 import { SponsorsSlideComponent } from './sponsors-slide/sponsors-slide.component';
 import { NgxCarouselComponent } from 'ngx-freshok-carousel';
@@ -12,7 +12,8 @@ import { MiniFabBtnComponent } from '../../../../shared/ui-elems/buttons/mini-fa
     MiniFabBtnComponent
   ],
   templateUrl: './sponsors-carousel.component.html',
-  styleUrl: './sponsors-carousel.component.scss'
+  styleUrl: './sponsors-carousel.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SponsorsCarouselComponent {
   sponsorsService = inject(SponsorsService)

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatIconModule } from '@angular/material/icon';
 import { filter } from 'rxjs';
@@ -19,6 +19,7 @@ import { CatalogStateService } from '../../../../core/services/catalog-state.ser
   ],
   templateUrl: './catalog-filter.component.html',
   styleUrl: './catalog-filter.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CatalogFilterComponent {
   private catalogService = inject(CatalogService);

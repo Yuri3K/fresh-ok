@@ -1,5 +1,6 @@
 import { NgTemplateOutlet } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   contentChild,
@@ -20,6 +21,7 @@ import {
   imports: [NgTemplateOutlet],
   templateUrl: './scroll-items.component.html',
   styleUrl: './scroll-items.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ScrollItemsComponent<T> {
   // Порог в пикселях для различения клика и скролла

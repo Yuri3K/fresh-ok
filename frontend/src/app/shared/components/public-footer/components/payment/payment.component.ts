@@ -1,4 +1,4 @@
-import { Component, computed, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { SvgIconPipe } from '../../../../../core/pipes/svg-icon.pipe';
 import { MEDIA_URL } from '../../../../../core/urls';
@@ -10,7 +10,8 @@ import { MEDIA_URL } from '../../../../../core/urls';
     SvgIconPipe
   ],
   templateUrl: './payment.component.html',
-  styleUrl: './payment.component.scss'
+  styleUrl: './payment.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaymentComponent {
   iconColor = input('#fff')

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CopyrightComponent } from '../copyright/copyright.component';
 import { PaymentComponent } from '../payment/payment.component';
 
@@ -9,7 +9,8 @@ import { PaymentComponent } from '../payment/payment.component';
     PaymentComponent
   ],
   templateUrl: './footer-bottom.component.html',
-  styleUrl: './footer-bottom.component.scss'
+  styleUrl: './footer-bottom.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterBottomComponent {
 

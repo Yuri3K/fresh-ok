@@ -1,4 +1,4 @@
-import { Component, computed, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
 import { BreadcrumbsService } from './breadcrumbs.service';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -16,7 +16,8 @@ export interface Breadcrumb {
   selector: 'app-breadcrumbs',
   imports: [RouterModule, MatIconModule],
   templateUrl: './breadcrumbs.component.html',
-  styleUrl: './breadcrumbs.component.scss'
+  styleUrl: './breadcrumbs.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class BreadcrumbsComponent {

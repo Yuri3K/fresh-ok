@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import {
   ProductsService,
 } from '../../../core/services/products.service';
@@ -32,6 +32,7 @@ import { Pagination, Product } from '@shared/models';
   ],
   templateUrl: './hit-products.component.html',
   styleUrl: './hit-products.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HitProductsComponent implements OnInit {
   productsService = inject(ProductsService);

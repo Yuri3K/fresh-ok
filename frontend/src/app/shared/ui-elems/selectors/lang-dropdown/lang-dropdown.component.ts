@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { LangsService } from '../../../../core/services/langs/langs.service';
 import { AsyncPipe } from '@angular/common';
@@ -19,6 +19,7 @@ import { Lang } from '@shared/models';
   ],
   templateUrl: './lang-dropdown.component.html',
   styleUrl: './lang-dropdown.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
 export class LangDropdownComponent {

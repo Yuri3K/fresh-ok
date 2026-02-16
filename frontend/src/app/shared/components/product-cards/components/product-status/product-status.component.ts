@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { GetCurrentLangService } from '../../../../../core/services/get-current-lang.service';
 import { Stock } from '@shared/models';
 
@@ -6,7 +6,8 @@ import { Stock } from '@shared/models';
   selector: 'app-product-status',
   imports: [],
   templateUrl: './product-status.component.html',
-  styleUrl: './product-status.component.scss'
+  styleUrl: './product-status.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductStatusComponent {
   currentLang = inject(GetCurrentLangService).currentLang

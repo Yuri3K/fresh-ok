@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FooterBottomComponent } from './components/footer-bottom/footer-bottom.component';
 import { FooterContentComponent } from './components/footer-content/footer-content.component';
 
@@ -9,7 +9,8 @@ import { FooterContentComponent } from './components/footer-content/footer-conte
     FooterContentComponent
   ],
   templateUrl: './public-footer.component.html',
-  styleUrl: './public-footer.component.scss'
+  styleUrl: './public-footer.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PublicFooterComponent {
 

@@ -34,6 +34,10 @@
   justify-self: end; // прижат к правому краю
 }
 
+app-cart-empty {
+  margin: auto;
+}
+
 .sidenav-cart__items{
   flex: 1;
   display: flex;

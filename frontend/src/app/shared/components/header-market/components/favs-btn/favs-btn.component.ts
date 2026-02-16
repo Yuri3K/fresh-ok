@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MiniFabBtnComponent } from '../../../../ui-elems/buttons/mini-fab-btn/mini-fab-btn.component';
 import { LangRouterService } from '../../../../../core/services/langs/lang-router.service';
 
@@ -8,7 +8,8 @@ import { LangRouterService } from '../../../../../core/services/langs/lang-route
     MiniFabBtnComponent
   ],
   templateUrl: './favs-btn.component.html',
-  styleUrl: './favs-btn.component.scss'
+  styleUrl: './favs-btn.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FavsBtnComponent {
   private navigateService = inject(LangRouterService)

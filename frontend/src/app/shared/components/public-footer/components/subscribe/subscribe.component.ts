@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -18,7 +18,8 @@ import { TranslateModule } from '@ngx-translate/core';
     MatButtonModule,
   ],
   templateUrl: './subscribe.component.html',
-  styleUrl: './subscribe.component.scss'
+  styleUrl: './subscribe.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SubscribeComponent {
   subscribeField = new FormControl('')

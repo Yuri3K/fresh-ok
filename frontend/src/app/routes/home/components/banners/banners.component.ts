@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { BannersService } from './services/banners.service';
 import { BannerItemComponent } from './banner-item/banner-item.component';
 
@@ -8,7 +8,8 @@ import { BannerItemComponent } from './banner-item/banner-item.component';
     BannerItemComponent,
   ],
   templateUrl: './banners.component.html',
-  styleUrl: './banners.component.scss'
+  styleUrl: './banners.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BannersComponent {
   bannersService = inject(BannersService)

@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { OpenMenuDirective } from '../../../../core/directives/open-menu.directive';
 import { MatIconModule } from '@angular/material/icon';
@@ -29,6 +29,7 @@ interface Sort {
   ],
   templateUrl: './sorting-by.component.html',
   styleUrl: './sorting-by.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SortingByComponent {
   private translateService = inject(TranslateService);

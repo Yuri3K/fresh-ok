@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, DestroyRef, inject, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, DestroyRef, inject, OnDestroy, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SwitchModeService } from './core/services/switch-mode.service';
 import { AuthService } from './core/services/auth.service';
@@ -26,6 +26,7 @@ import { RestoreScrollService } from './core/services/restore-scroll.service';
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('fade', [
       transition(':enter', [

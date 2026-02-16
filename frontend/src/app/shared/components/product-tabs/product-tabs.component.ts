@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { TabsComponent } from '../tabs/tabs.component';
 import { ProductReviewsComponent } from './product-reviews/product-reviews.component';
 import { ProductDescrComponent } from './product-descr/product-descr.component';
@@ -19,7 +19,8 @@ import { ProductStateService } from '../../../core/services/product-state.servic
     TranslateModule,
   ],
   templateUrl: './product-tabs.component.html',
-  styleUrl: './product-tabs.component.scss'
+  styleUrl: './product-tabs.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductTabsComponent {
   private productStateService = inject(ProductStateService)

@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { CatalogStateService } from '../../../../core/services/catalog-state.service';
 import { MiniFabBtnComponent } from '../../../ui-elems/buttons/mini-fab-btn/mini-fab-btn.component';
 
@@ -7,6 +7,7 @@ import { MiniFabBtnComponent } from '../../../ui-elems/buttons/mini-fab-btn/mini
   imports: [MiniFabBtnComponent],
   templateUrl: './catalog-pagination.component.html',
   styleUrl: './catalog-pagination.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CatalogPaginationComponent {
   private stateService = inject(CatalogStateService);

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MiniFabBtnComponent } from '../../../../ui-elems/buttons/mini-fab-btn/mini-fab-btn.component';
 import { ShowCatalogService } from './show-catalog.service';
 
@@ -6,7 +6,8 @@ import { ShowCatalogService } from './show-catalog.service';
   selector: 'app-show-catalog-btn',
   imports: [MiniFabBtnComponent],
   templateUrl: './show-catalog-btn.component.html',
-  styleUrl: './show-catalog-btn.component.scss'
+  styleUrl: './show-catalog-btn.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShowCatalogBtnComponent {
   showCatalogService = inject(ShowCatalogService)

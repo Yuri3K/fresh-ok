@@ -1,13 +1,11 @@
 <div class="cart-page">
-  <h1 class="cart-page__title">{{ 'cart.title' | translate }}</h1>
+  <app-h2-title 
+    class="cart-page__title"
+    [text]="'cart.title' | translate"
+  />
 
   @if (cartService.isEmpty()) {
-    <div class="cart-page__empty">
-      <p>{{ 'cart.empty' | translate }}</p>
-      <button mat-flat-button (click)="goToCatalog()">
-        {{ 'cart.go-to-catalog' | translate }}
-      </button>
-    </div>
+    <app-cart-empty />
   } @else {
     <div class="cart-page__content">
       <div class="cart-page__items">

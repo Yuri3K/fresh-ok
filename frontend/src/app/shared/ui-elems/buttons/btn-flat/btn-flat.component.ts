@@ -1,5 +1,5 @@
 import { NgStyle } from '@angular/common';
-import { Component, HostListener, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -13,7 +13,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     NgStyle
   ],
   templateUrl: './btn-flat.component.html',
-  styleUrl: './btn-flat.component.scss'
+  styleUrl: './btn-flat.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BtnFlatComponent {
   @Input({ required: true }) btnText!: string

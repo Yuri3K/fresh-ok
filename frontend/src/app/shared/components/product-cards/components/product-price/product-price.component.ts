@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CalcDiscountPipe } from '../../../../../core/pipes/calc-discount.pipe';
 
 interface PriceData {
@@ -13,7 +13,8 @@ interface PriceData {
     CalcDiscountPipe
   ],
   templateUrl: './product-price.component.html',
-  styleUrl: './product-price.component.scss'
+  styleUrl: './product-price.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductPriceComponent {
   readonly product = input.required<PriceData>()

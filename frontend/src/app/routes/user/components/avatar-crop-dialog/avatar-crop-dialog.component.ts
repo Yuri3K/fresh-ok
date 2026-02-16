@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { H2TitleComponent } from '../../../../shared/ui-elems/typography/h2-title/h2-title.component';
 import { ImageCropperComponent, ImageCroppedEvent, LoadedImage, ImageTransform } from 'ngx-image-cropper';
 // import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
@@ -15,7 +15,8 @@ import { BtnRaisedComponent } from '../../../../shared/ui-elems/buttons/btn-rais
     BtnRaisedComponent,
   ],
   templateUrl: './avatar-crop-dialog.component.html',
-  styleUrl: './avatar-crop-dialog.component.scss'
+  styleUrl: './avatar-crop-dialog.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AvatarCropDialogComponent {
   imageChangedEvent: Event | null = null;

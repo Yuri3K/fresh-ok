@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { H2TitleComponent } from '../../shared/ui-elems/typography/h2-title/h2-title.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
@@ -15,7 +15,8 @@ import { GoogleBtnComponent } from '../../shared/ui-elems/buttons/google-btn/goo
     GoogleBtnComponent,
   ],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+  styleUrl: './register.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterComponent {
   isPopup = input(false)

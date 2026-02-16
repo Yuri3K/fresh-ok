@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MiniFabBtnComponent } from '../../../ui-elems/buttons/mini-fab-btn/mini-fab-btn.component';
 import { CatalogStateService } from '../../../../core/services/catalog-state.service';
 
@@ -6,7 +6,8 @@ import { CatalogStateService } from '../../../../core/services/catalog-state.ser
   selector: 'app-view-grid-btn',
   imports: [MiniFabBtnComponent],
   templateUrl: './view-grid-btn.component.html',
-  styleUrl: './view-grid-btn.component.scss'
+  styleUrl: './view-grid-btn.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ViewGridBtnComponent {
   stateService = inject(CatalogStateService)

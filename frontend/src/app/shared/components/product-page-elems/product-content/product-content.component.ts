@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { ProductStateService } from '../../../../core/services/product-state.service';
 import { H2TitleComponent } from '../../../ui-elems/typography/h2-title/h2-title.component';
 import { GetCurrentLangService } from '../../../../core/services/get-current-lang.service';
@@ -28,7 +28,8 @@ import { DeliveryAndPaymentComponent } from '../../delivery-and-payment/delivery
 
   ],
   templateUrl: './product-content.component.html',
-  styleUrl: './product-content.component.scss'
+  styleUrl: './product-content.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductContentComponent {
   readonly currentLang = inject(GetCurrentLangService).currentLang

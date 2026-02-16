@@ -1,4 +1,4 @@
-import { Component, DestroyRef, effect, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, effect, inject } from '@angular/core';
 import { MiniFabBtnComponent } from '../../../ui-elems/buttons/mini-fab-btn/mini-fab-btn.component';
 import { CatalogStateService } from '../../../../core/services/catalog-state.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -7,7 +7,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   selector: 'app-show-filters-btn',
   imports: [MiniFabBtnComponent],
   templateUrl: './show-filters-btn.component.html',
-  styleUrl: './show-filters-btn.component.scss'
+  styleUrl: './show-filters-btn.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShowFiltersBtnComponent {
   private stateService = inject(CatalogStateService)

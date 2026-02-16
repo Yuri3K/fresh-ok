@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { AvatarUploadComponent } from '../avatar-upload/avatar-upload.component';
 
 @Component({
@@ -7,7 +7,8 @@ import { AvatarUploadComponent } from '../avatar-upload/avatar-upload.component'
     AvatarUploadComponent
   ],
   templateUrl: './user-profile.component.html',
-  styleUrl: './user-profile.component.scss'
+  styleUrl: './user-profile.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserProfileComponent {
 

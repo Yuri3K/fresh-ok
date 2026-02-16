@@ -1,11 +1,12 @@
 import { NgStyle } from "@angular/common";
-import { Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
 @Component({
   selector: 'app-h1-title',
   standalone: true,
   templateUrl: './h1-title.component.html',
   styleUrl: './h1-title.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgStyle]
 })
 

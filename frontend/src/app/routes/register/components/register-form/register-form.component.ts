@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { FormControlPasswordComponent } from '../../../../shared/ui-elems/forms/form-control-pwd/form-control-pwd.component';
 import { FormControlEmailComponent } from '../../../../shared/ui-elems/forms/form-control-email/form-control-email.component';
 import { FormControlNameComponent } from '../../../../shared/ui-elems/forms/form-control-name/form-control-name.component';
@@ -26,7 +26,8 @@ import { AuthService } from '../../../../core/services/auth.service';
     LoaderComponent
   ],
   templateUrl: './register-form.component.html',
-  styleUrl: './register-form.component.scss'
+  styleUrl: './register-form.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterFormComponent implements OnInit {
   private router = inject(Router)

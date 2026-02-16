@@ -1,5 +1,5 @@
 import { NgStyle } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -13,7 +13,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     NgStyle
   ],
   templateUrl: './btn-raised.component.html',
-  styleUrl: './btn-raised.component.scss'
+  styleUrl: './btn-raised.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BtnRaisedComponent {
   @Input({ required: true }) btnText!: string

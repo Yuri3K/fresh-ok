@@ -1,4 +1,4 @@
-import { Component, effect, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, input, signal } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
@@ -10,7 +10,8 @@ import { TranslateModule } from '@ngx-translate/core';
     TranslateModule,
   ],
   templateUrl: './form-control-rating.component.html',
-  styleUrl: './form-control-rating.component.scss'
+  styleUrl: './form-control-rating.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormControlRatingComponent {
   starsControl = input.required<FormControl<number>>()

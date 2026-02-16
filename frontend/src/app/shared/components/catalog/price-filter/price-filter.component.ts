@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatSliderModule } from '@angular/material/slider';
 import { TranslateModule } from '@ngx-translate/core';
 import { ExpantionPanelComponent } from '../../expantion-panel/expantion-panel.component';
@@ -18,7 +18,8 @@ import { PriceFacade } from './price.facade';
   ],
   providers: [PriceFacade],
   templateUrl: './price-filter.component.html',
-  styleUrl: './price-filter.component.scss'
+  styleUrl: './price-filter.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PriceFilterComponent {
   stateService = inject(CatalogStateService)

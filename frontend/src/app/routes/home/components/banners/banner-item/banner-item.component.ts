@@ -1,4 +1,4 @@
-import { Component, computed, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import { Banner } from '../services/banners.service';
 import { RouterLink } from '@angular/router';
 import { NgStyle } from '@angular/common';
@@ -13,7 +13,8 @@ import { LangRouterService } from '../../../../../core/services/langs/lang-route
     NgStyle
   ],
   templateUrl: './banner-item.component.html',
-  styleUrl: './banner-item.component.scss'
+  styleUrl: './banner-item.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BannerItemComponent {
   currentLang = inject(GetCurrentLangService).currentLang

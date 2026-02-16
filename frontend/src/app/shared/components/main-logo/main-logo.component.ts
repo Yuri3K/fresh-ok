@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { RouterModule } from "@angular/router";
 import { TranslateModule } from "@ngx-translate/core";
@@ -8,6 +8,7 @@ import { SvgIconPipe } from "../../../core/pipes/svg-icon.pipe";
   selector: 'app-main-logo',
   templateUrl: './main-logo.component.html',
   styleUrl: './main-logo.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     RouterModule,
     TranslateModule,

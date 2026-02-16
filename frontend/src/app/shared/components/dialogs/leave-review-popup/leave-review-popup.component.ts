@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { ReviewFormComponent } from '../../product-tabs/review-form/review-form.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { H3TitleComponent } from '../../../ui-elems/typography/h3-title/h3-title.component';
@@ -16,7 +16,8 @@ import { Review } from '@shared/models';
     MatDialogModule
 ],
   templateUrl: './leave-review-popup.component.html',
-  styleUrl: './leave-review-popup.component.scss'
+  styleUrl: './leave-review-popup.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LeaveReviewPopupComponent {
   readonly dialogRef = inject(MatDialogRef)

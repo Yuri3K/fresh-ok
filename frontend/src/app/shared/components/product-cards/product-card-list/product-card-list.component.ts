@@ -1,4 +1,4 @@
-import { Component, inject, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, signal } from '@angular/core';
 import { ProductImageComponent } from '../components/product-image/product-image.component';
 import { ProductStatusComponent } from '../components/product-status/product-status.component';
 import { ProductRateComponent } from '../components/product-rate/product-rate.component';
@@ -23,7 +23,8 @@ import { Product } from '@shared/models';
     ProductPriceComponent,
   ],
   templateUrl: './product-card-list.component.html',
-  styleUrl: './product-card-list.component.scss'
+  styleUrl: './product-card-list.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductCardListComponent {
   currentLang = inject(GetCurrentLangService).currentLang

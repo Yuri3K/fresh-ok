@@ -1,11 +1,12 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { Sponsor } from '../services/sponsors.service';
 
 @Component({
   selector: 'app-sponsors-slide',
   imports: [],
   templateUrl: './sponsors-slide.component.html',
-  styleUrl: './sponsors-slide.component.scss'
+  styleUrl: './sponsors-slide.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SponsorsSlideComponent {
   sponsor = input.required<Partial<Sponsor>>()

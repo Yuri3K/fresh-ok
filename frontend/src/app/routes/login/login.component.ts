@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { H2TitleComponent } from "../../shared/ui-elems/typography/h2-title/h2-title.component";
 import { TranslateModule } from '@ngx-translate/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -17,7 +17,8 @@ import { GoogleBtnComponent } from '../../shared/ui-elems/buttons/google-btn/goo
     GoogleBtnComponent
   ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
   isPopup = input(false)

@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MEDIA_URL } from '../../../../../core/urls';
 
 export interface NewsItem {
@@ -15,7 +15,8 @@ export interface NewsItem {
   selector: 'app-news-card',
   imports: [],
   templateUrl: './news-card.component.html',
-  styleUrl: './news-card.component.scss'
+  styleUrl: './news-card.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewsCardComponent {
   newsItem = input.required<NewsItem>()

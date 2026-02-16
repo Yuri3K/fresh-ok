@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatIconModule } from '@angular/material/icon';
 import { OpenMenuDirective } from '../../../../core/directives/open-menu.directive';
@@ -12,6 +12,7 @@ import { CatalogStateService } from '../../../../core/services/catalog-state.ser
   selector: 'app-catalog-selector',
   templateUrl: './catalog-selector.component.html',
   styleUrls: ['./catalog-selector.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     MatIconModule,
     TranslateModule,

@@ -1,4 +1,4 @@
-import { Component, effect, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject } from '@angular/core';
 import { BadgeService } from '../../../../core/services/badge.service';
 import { ExpantionPanelComponent } from '../../expantion-panel/expantion-panel.component';
 import { TranslateModule } from '@ngx-translate/core';
@@ -21,6 +21,7 @@ import { CatalogStateService } from '../../../../core/services/catalog-state.ser
   ],
   templateUrl: './badge-filter.component.html',
   styleUrl: './badge-filter.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BadgeFilterComponent {
   private readonly badgesService = inject(BadgeService);

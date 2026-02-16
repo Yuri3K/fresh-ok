@@ -10,15 +10,6 @@
   margin-bottom: 24px;
 }
 
-.cart-page__empty {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  padding: 64px 0;
-  text-align: center;
-}
-
 .cart-page__content {
   display: grid;
   grid-template-columns: 1fr 320px;

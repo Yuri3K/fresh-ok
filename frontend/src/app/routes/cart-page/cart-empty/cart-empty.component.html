@@ -1,0 +1,16 @@
+<div class="cart-page__empty">
+  <app-h3-title 
+    [text]="'cart.empty' | translate"
+  />
+  <img 
+    width="150"
+    height="118"
+    [src]="imgUrl" 
+    [alt]="'cart.title' | translate"
+  >
+  <app-btn-flat 
+    [btnText]="'cart.go-to-catalog' | translate"
+    (click)="goToCatalog()"
+    borderRarius="6px"
+  />
+</div>

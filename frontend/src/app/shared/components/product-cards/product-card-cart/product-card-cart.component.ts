@@ -1,4 +1,4 @@
-import { Component, computed, DestroyRef, inject, input, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, DestroyRef, inject, input, OnInit, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CartService } from '@core/services/cart.service';
 import { GetCurrentLangService } from '@core/services/get-current-lang.service';
@@ -22,7 +22,8 @@ import { TranslateModule } from '@ngx-translate/core';
     TranslateModule,
   ],
   templateUrl: './product-card-cart.component.html',
-  styleUrl: './product-card-cart.component.scss'
+  styleUrl: './product-card-cart.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductCardCartComponent implements OnInit {
   readonly cartItem = input.required<CartItem>()

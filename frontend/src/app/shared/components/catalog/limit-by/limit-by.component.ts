@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { OpenMenuDirective } from '../../../../core/directives/open-menu.directive';
 import { MatIconModule } from '@angular/material/icon';
@@ -23,6 +23,7 @@ interface Limit {
   ],
   templateUrl: './limit-by.component.html',
   styleUrl: './limit-by.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LimitByComponent {
   private translateService = inject(TranslateService);

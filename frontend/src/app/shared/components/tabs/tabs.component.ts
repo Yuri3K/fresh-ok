@@ -1,4 +1,4 @@
-import { Component, contentChildren, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, contentChildren, signal } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { TabsDirective } from './tabs.directive';
 import { NgTemplateOutlet } from '@angular/common';
@@ -7,7 +7,8 @@ import { NgTemplateOutlet } from '@angular/common';
   selector: 'app-tabs',
   imports: [MatTabsModule, NgTemplateOutlet],
   templateUrl: './tabs.component.html',
-  styleUrl: './tabs.component.scss'
+  styleUrl: './tabs.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabsComponent {
   tabs = contentChildren(TabsDirective)

@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
 import { MEDIA_URL } from '../../../../core/urls';
 import { GetCurrentLangService } from '../../../../core/services/get-current-lang.service';
 import { ProductPriceComponent } from '../components/product-price/product-price.component';
@@ -25,6 +25,7 @@ import { Product } from '@shared/models';
   ],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductCardComponent {
   withStockAndRate = input(true)

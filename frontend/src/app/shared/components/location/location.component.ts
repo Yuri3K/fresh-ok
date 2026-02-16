@@ -1,5 +1,5 @@
 import { NgStyle } from '@angular/common';
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { SocialComponent } from '../social/social.component';
 
@@ -11,7 +11,8 @@ import { SocialComponent } from '../social/social.component';
     TranslateModule,
   ],
   templateUrl: './location.component.html',
-  styleUrl: './location.component.scss'
+  styleUrl: './location.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LocationComponent {
   textColor = input.required()

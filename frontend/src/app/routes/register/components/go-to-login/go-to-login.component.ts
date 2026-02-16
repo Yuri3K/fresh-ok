@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -9,7 +9,8 @@ import { TranslateModule } from '@ngx-translate/core';
     RouterLink
   ],
   templateUrl: './go-to-login.component.html',
-  styleUrl: './go-to-login.component.scss'
+  styleUrl: './go-to-login.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GoToLoginComponent {
   isPopup = input(false)

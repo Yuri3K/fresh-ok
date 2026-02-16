@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
 import { SliderService } from './services/slider.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslateModule } from '@ngx-translate/core';
@@ -17,7 +17,8 @@ import { MiniFabBtnComponent } from '../../../../shared/ui-elems/buttons/mini-fa
     MiniFabBtnComponent,
   ],
   templateUrl: './main-carousel.component.html',
-  styleUrl: './main-carousel.component.scss'
+  styleUrl: './main-carousel.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainCarouselComponent {
   private readonly sliderService = inject(SliderService)

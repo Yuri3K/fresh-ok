@@ -1,4 +1,4 @@
-import { Component, DestroyRef, effect, inject, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, effect, inject, OnDestroy } from '@angular/core';
 import { BreadcrumbsComponent } from '../../../../shared/components/breadcrumbs/breadcrumbs.component';
 import { ProductTabsComponent } from '../../../../shared/components/product-tabs/product-tabs.component';
 import { ProductsService } from '../../../../core/services/products.service';
@@ -21,7 +21,8 @@ import { Product } from '@shared/models';
     H2TitleComponent,
   ],
   templateUrl: './product-detail.component.html',
-  styleUrl: './product-detail.component.scss'
+  styleUrl: './product-detail.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductDetailComponent implements OnDestroy{
   readonly currentLang = inject(GetCurrentLangService).currentLang

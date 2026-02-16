@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -9,7 +9,8 @@ import { TranslateModule } from '@ngx-translate/core';
     TranslateModule
   ],
   templateUrl: './footer-nav.component.html',
-  styleUrl: './footer-nav.component.scss'
+  styleUrl: './footer-nav.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterNavComponent {
 

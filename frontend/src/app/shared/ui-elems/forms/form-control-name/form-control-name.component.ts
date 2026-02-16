@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -15,7 +15,8 @@ import { TranslateModule } from '@ngx-translate/core';
     TranslateModule
   ],
   templateUrl: './form-control-name.component.html',
-  styleUrls: ['./form-control-name.component.scss', '../form-control.scss']
+  styleUrls: ['./form-control-name.component.scss', '../form-control.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormControlNameComponent {
   @Input({ required: true }) nameControl!: FormControl

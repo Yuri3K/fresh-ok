@@ -1,4 +1,4 @@
-import { Component, computed, effect, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, input, output } from '@angular/core';
 import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {
@@ -21,6 +21,7 @@ import { MiniFabBtnComponent } from '../../../../ui-elems/buttons/mini-fab-btn/m
   ],
   templateUrl: './counter.component.html',
   styleUrl: './counter.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CounterComponent {
   size = input<'default' | 'big'>('default')

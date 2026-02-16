@@ -1,0 +1,46 @@
+<mat-card class="cart-summary">
+  <mat-card-header>
+    <mat-card-title>
+      <app-h3-title 
+        class="cart-summary__title" 
+        [text]="'cart.summary' | translate"
+      />
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-divider 
+      class="cart-summary__divider"
+    />
+
+    <div class="cart-summary__row">
+      <span>{{ 'cart.items-count' | translate }}</span>
+      <span>{{ cartService.totalItems() }}</span>
+    </div>
+  
+    <div class="cart-summary__row cart-summary__row--total">
+      <span>{{ 'common.total' | translate }}</span>
+      <span>{{ cartService.totalPrice() | number: '1.2-2' }}</span>
+    </div>
+  
+    <mat-divider class="cart-summary__divider"/>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <app-btn-flat
+      [btnText]="'cart.confirm-order' | translate"
+      textColor="var(--mat-sys-primary)"
+      bgColor="transparent"
+      btnBorder="1px solid var(--mat-sys-primary)"
+    />
+
+    <app-btn-flat
+      [btnText]="'cart.clear-cart' | translate"
+      bgColor="transparent"
+      textColor="var(--mat-sys-error)"
+      btnBorder="1px solid var(--mat-sys-error)"
+      class="red"
+      (click)="cartService.openClearCartDialog()"
+    />
+  </mat-card-actions>
+
+</mat-card>

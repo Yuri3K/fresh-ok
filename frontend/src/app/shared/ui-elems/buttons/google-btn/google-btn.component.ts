@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { AuthService } from '../../../../core/services/auth.service';
 import { BtnFlatComponent } from '../btn-flat/btn-flat.component';
 import { TranslateModule } from '@ngx-translate/core';
@@ -10,7 +10,8 @@ import { TranslateModule } from '@ngx-translate/core';
     TranslateModule
   ],
   templateUrl: './google-btn.component.html',
-  styleUrl: './google-btn.component.scss'
+  styleUrl: './google-btn.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GoogleBtnComponent {
   private readonly authSetvice = inject(AuthService)

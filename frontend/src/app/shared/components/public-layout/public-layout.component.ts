@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, computed, DestroyRef, inject, viewChild, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, computed, DestroyRef, inject, viewChild, ViewChild } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenav, MatSidenavContainer, MatSidenavModule } from '@angular/material/sidenav';
@@ -26,6 +26,7 @@ import { SidenavCartComponent } from '../sidenav-cart/sidenav-cart.component';
   ],
   templateUrl: './public-layout.component.html',
   styleUrl: './public-layout.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PublicLayoutComponent implements AfterViewInit {
   @ViewChild(MatSidenavContainer) sidenavContainer!: MatSidenavContainer;

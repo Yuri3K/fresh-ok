@@ -17,6 +17,15 @@ mat-sidenav {
   --mat-sidenav-container-shape: 0;
 }
 
+mat-sidenav-content {
+  display: flex;
+  flex-direction: column;
+
+  main {
+    flex: 1;
+  }
+}
+
 // НСЛИ НУЖЕН БУДЕТ НЕ ЛИПКИЙ ХЕДЕР
 // .main-container {
 //   height: auto !important;

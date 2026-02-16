@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   effect,
@@ -24,6 +25,7 @@ import { Review, DbUser } from '@shared/models';
   imports: [MatIconModule, DatePipe, TranslateModule, MiniFabBtnComponent],
   templateUrl: './review-card.component.html',
   styleUrl: './review-card.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReviewCardComponent {
   review = input.required<Review>();

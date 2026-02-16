@@ -15,11 +15,12 @@
     />
 
     @if(cartItems().length) {
-      <app-btn-flat 
+      <app-btn-flat
         [btnText]="'cart.clear-cart' | translate"
-        (click)="clearCart()"
-        class="sidenav-cart__clear"
         bgColor="transparent"
+        textColor="var(--mat-sys-error)"
+        class="red"
+        (click)="cartService.openClearCartDialog()"
         fzText="0.875rem"
       />
     }
@@ -31,6 +32,8 @@
         [cartItem]="item"
         class="sidenav-cart__item"
       />
+    } @empty {
+      <app-cart-empty />
     }
   </div>
 

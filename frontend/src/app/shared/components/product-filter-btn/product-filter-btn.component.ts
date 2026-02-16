@@ -1,4 +1,4 @@
-import { Component, computed, EventEmitter, input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, EventEmitter, input, Output } from '@angular/core';
 import { BtnFlatComponent } from '../../ui-elems/buttons/btn-flat/btn-flat.component';
 
 export interface FilterData {
@@ -11,6 +11,7 @@ export interface FilterData {
   imports: [BtnFlatComponent],
   templateUrl: './product-filter-btn.component.html',
   styleUrl: './product-filter-btn.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductFilterBtnComponent {
   @Output() filterBtnClicked = new EventEmitter<string>();

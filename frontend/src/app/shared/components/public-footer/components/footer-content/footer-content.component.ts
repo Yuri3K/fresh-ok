@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { LogoComponent } from '../../../logo/logo.component';
 import { LocationComponent } from '../../../location/location.component';
 import { SubscribeComponent } from '../subscribe/subscribe.component';
@@ -13,7 +13,8 @@ import { FooterNavComponent } from '../footer-nav/footer-nav.component';
     LocationComponent,
   ],
   templateUrl: './footer-content.component.html',
-  styleUrl: './footer-content.component.scss'
+  styleUrl: './footer-content.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterContentComponent {
 

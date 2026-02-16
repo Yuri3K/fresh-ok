@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MEDIA_URL } from '../../../../core/urls';
 import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { LoginPopupComponent } from '../login-popup/login-popup.component';
@@ -15,7 +15,8 @@ import { TranslateModule } from '@ngx-translate/core';
     MatDialogModule,
   ],
   templateUrl: './register-popup.component.html',
-  styleUrl: './register-popup.component.scss'
+  styleUrl: './register-popup.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterPopupComponent {
   heroImg = `${MEDIA_URL}heroes/alex`

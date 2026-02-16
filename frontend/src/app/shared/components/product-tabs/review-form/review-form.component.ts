@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, input, signal } from "@angular/core"
+import { ChangeDetectionStrategy, Component, computed, effect, inject, input, signal } from "@angular/core"
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms"
 import { BtnFlatComponent } from "../../../ui-elems/buttons/btn-flat/btn-flat.component"
 import { FormControlNameComponent } from "../../../ui-elems/forms/form-control-name/form-control-name.component"
@@ -27,7 +27,8 @@ import { Review, DbUser } from "@shared/models"
     LoaderComponent,
   ],
   templateUrl: './review-form.component.html',
-  styleUrl: './review-form.component.scss'
+  styleUrl: './review-form.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReviewFormComponent {
   user = input.required<DbUser>()

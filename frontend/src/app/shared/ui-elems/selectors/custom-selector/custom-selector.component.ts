@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { OpenMenuDirective } from '../../../../core/directives/open-menu.directive';
@@ -11,7 +11,8 @@ import { OpenMenuDirective } from '../../../../core/directives/open-menu.directi
     OpenMenuDirective,
   ],
   templateUrl: './custom-selector.component.html',
-  styleUrl: './custom-selector.component.scss'
+  styleUrl: './custom-selector.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CustomSelectorComponent {
   text = input.required()

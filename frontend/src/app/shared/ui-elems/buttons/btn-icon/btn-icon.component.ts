@@ -1,5 +1,6 @@
 import { NgStyle } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   HostBinding,
   Input,
@@ -13,6 +14,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   imports: [MatButtonModule, MatIconModule, MatTooltipModule, NgStyle],
   templateUrl: './btn-icon.component.html',
   styleUrl: './btn-icon.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BtnIconComponent {
   @Input() iconName: string = '';

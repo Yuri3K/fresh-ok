@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, signal } from '@angular/core';
 import { LogoComponent } from '../logo/logo.component';
 import { FavsBtnComponent } from './components/favs-btn/favs-btn.component';
 import { SearchInMarketComponent } from './components/search-in-market/search-in-market.component';
@@ -30,6 +30,7 @@ import { ShowCatalogService } from './components/show-catalog-btn/show-catalog.s
   ],
   templateUrl: './header-market.component.html',
   styleUrl: './header-market.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class HeaderMarketComponent {

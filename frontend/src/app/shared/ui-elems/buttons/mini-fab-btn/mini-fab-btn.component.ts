@@ -1,5 +1,5 @@
 import { NgStyle } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { MatBadgeModule, MatBadgePosition } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -16,6 +16,7 @@ import { MatTooltip } from '@angular/material/tooltip';
   ],
   templateUrl: './mini-fab-btn.component.html',
   styleUrl: './mini-fab-btn.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MiniFabBtnComponent implements OnInit {
   @Input() iconName!: string;

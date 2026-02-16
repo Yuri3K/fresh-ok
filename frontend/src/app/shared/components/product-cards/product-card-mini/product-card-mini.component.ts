@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { GetCurrentLangService } from '../../../../core/services/get-current-lang.service';
 import { ProductStatusComponent } from '../components/product-status/product-status.component';
 import { ProductPriceComponent } from '../components/product-price/product-price.component';
@@ -18,6 +18,7 @@ import { Product } from '@shared/models';
   ],
   templateUrl: './product-card-mini.component.html',
   styleUrl: './product-card-mini.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductCardMiniComponent {
   product = input.required<Product>();

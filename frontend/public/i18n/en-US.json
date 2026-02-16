@@ -366,8 +366,8 @@
     "total": "Total amount: ",
     "place-order": "Place order",
     "summary": "Summary",
-    "items-count": "Items count",
-    "confir-order": "I confirm the order",
+    "items-count": "Items count: ",
+    "confirm-order": "I confirm the order",
     "clear-cart-dialog": {
       "title": "Clear cart",
       "question": "Are you sure you want to remove all items from the cart?"

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { LottieComponent, AnimationOptions } from 'ngx-lottie';
 
 @Component({
@@ -7,7 +7,8 @@ import { LottieComponent, AnimationOptions } from 'ngx-lottie';
     LottieComponent
   ],
   templateUrl: './loader.component.html',
-  styleUrl: './loader.component.scss'
+  styleUrl: './loader.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoaderComponent {
   @Input() diameter = 126;

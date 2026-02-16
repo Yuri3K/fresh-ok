@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -20,7 +20,8 @@ import { BtnIconComponent } from '../../../../ui-elems/buttons/btn-icon/btn-icon
     BtnIconComponent,
   ],
   templateUrl: './search-in-market.component.html',
-  styleUrl: './search-in-market.component.scss'
+  styleUrl: './search-in-market.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchInMarketComponent {
 

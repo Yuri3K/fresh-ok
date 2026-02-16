@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { MiniFabBtnComponent } from '../../../../ui-elems/buttons/mini-fab-btn/mini-fab-btn.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { Product } from '@shared/models';
@@ -10,7 +10,8 @@ import { Product } from '@shared/models';
     TranslateModule,
   ],
   templateUrl: './product-fav-btn.component.html',
-  styleUrl: './product-fav-btn.component.scss'
+  styleUrl: './product-fav-btn.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductFavBtnComponent {
   product = input.required<Product>()
