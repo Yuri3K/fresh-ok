@@ -41,8 +41,8 @@ export class RegisterFormComponent implements OnInit {
 
   submitting = signal(false)
   registerForm = this.fb.group({
-    displayName: ['testUser', [Validators.required, Validators.minLength(2)]],
-    email: ['testuser@gmail.com', [Validators.required, Validators.email], [emailExistsValidator(this.apiService)]],
+    displayName: ['testUser1', [Validators.required, Validators.minLength(2)]],
+    email: ['testuser1@gmail.com', [Validators.required, Validators.email], [emailExistsValidator(this.apiService)]],
     password: ['123456', [Validators.required, Validators.minLength(6)]]
   })
 
