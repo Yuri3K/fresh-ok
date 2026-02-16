@@ -21,7 +21,7 @@ import { TranslateModule } from '@ngx-translate/core';
 export class LoginPopupComponent {
   heroImg = `${MEDIA_URL}heroes/donna`
 
-  dialogRef = inject(MatDialogRef<LoginPopupComponent>)
+  protected dialogRef = inject(MatDialogRef<LoginPopupComponent>)
   private dialog = inject(MatDialog)
 
   goToRegisterPopup() {
@@ -33,4 +33,3 @@ export class LoginPopupComponent {
     })
   }
 }
-// sdsf 

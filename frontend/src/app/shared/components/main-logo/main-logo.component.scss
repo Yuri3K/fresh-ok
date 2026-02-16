@@ -1,24 +1,39 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
 
-  a {
-    color: var(--white);
-  }
-  
-  .logo-title {
-    font-family: "Ruda", Arial, Helvetica, sans-serif;
-    font-weight: 500;
-    font-size: 2.8rem;
-    line-height: 1.2;
-    display: block;
-    text-transform: uppercase;
-  }
-  
-  .logo-subtitle {
-    font-family: "Ruda", Arial, Helvetica, sans-serif;
-    font-weight: 500;
-    font-size: 1.2rem;
-    line-height: 1.2;
-    width: 100%;
-    display: block;
-    text-align: center;
+  &:hover {
+    opacity: 0.8;
   }
 
+  mat-icon {
+    width: auto;
+    height: 50px;
+  }
+}
+
+.logo__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #63A60E;
+  font-family: "Ruda", Arial, Helvetica, sans-serif;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.logo-title {
+  font-size: 1.75rem;
+  text-transform: uppercase;
+}
+
+.logo-subtitle {
+  font-size: 0.75rem;
+}

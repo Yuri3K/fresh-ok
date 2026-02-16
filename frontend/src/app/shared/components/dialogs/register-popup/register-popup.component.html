@@ -20,6 +20,7 @@
     
       <app-register 
         (openLoginPopup)="goToLoginPopup()"
+        (closePopup)="dialogRef.close()"
         [isPopup]="true"
       />
     </div>

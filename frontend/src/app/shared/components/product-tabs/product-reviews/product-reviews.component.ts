@@ -20,6 +20,7 @@ import { ApiService } from '../../../../core/services/api.service';
 import { InfoDialogComponent } from '../../dialogs/info-dialog/info-dialog.component';
 import { ProductStateService } from '../../../../core/services/product-state.service';
 import { Review } from '@shared/models';
+import { OpenSignDialogService } from '@core/services/open-sign-dialog.service';
 
 export interface CheckReviewApiResponse {
   canReview?: boolean;
@@ -57,6 +58,7 @@ export class ProductReviewsComponent {
   private readonly apiService = inject(ApiService);
   private readonly translateService = inject(TranslateService);
   private readonly productStateService = inject(ProductStateService)
+  private readonly signDialogService = inject(OpenSignDialogService)
 
   reviews$ = this.productStateService.reviews$
 
@@ -85,7 +87,10 @@ export class ProductReviewsComponent {
 
   addReview() {
     if (!this.user()) {
-      this.openLoginDialog();
+      // this.openLoginDialog();
+      const currentUrl = this.router.url;
+      localStorage.setItem('saved-url', currentUrl);
+      this.signDialogService.openLoginDialog()
     } else {
       this.apiService
         .get<CheckReviewApiResponse>(
@@ -99,21 +104,21 @@ export class ProductReviewsComponent {
               this.openInfoDialog(res.review!);
             }
           },
-          error: (err) => {},
+          error: (err) => { },
         });
     }
   }
 
-  private openLoginDialog() {
-    const currentUrl = this.router.url;
-    localStorage.setItem('saved-url', currentUrl);
+  // private openLoginDialog() {
+  //   const currentUrl = this.router.url;
+  //   localStorage.setItem('saved-url', currentUrl);
 
-    this.dialog.open(LoginPopupComponent, {
-      panelClass: ['login-dialog', 'green'],
-      maxWidth: '700px',
-      width: '100vw',
-    });
-  }
+  //   this.dialog.open(LoginPopupComponent, {
+  //     panelClass: ['login-dialog', 'green'],
+  //     maxWidth: '700px',
+  //     width: '100vw',
+  //   });
+  // }
 
   private openReviewDialog(review?: Review) {
     const reviewDialogRef = this.dialog.open(LeaveReviewPopupComponent, {

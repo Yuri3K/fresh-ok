@@ -23,8 +23,14 @@ import { GoogleBtnComponent } from '../../shared/ui-elems/buttons/google-btn/goo
 export class LoginComponent {
   isPopup = input(false)
   openRegisterPopup = output<void>()
+  closePopup = output<void>()
+
 
   switchToRegisterPopup() {
     this.openRegisterPopup.emit()
+  }
+
+  closeLoginPopup() {
+    this.closePopup.emit()
   }
 }

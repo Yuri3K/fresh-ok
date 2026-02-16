@@ -1,1 +1,15 @@
-<p>sidenav-menu works!</p>
+<div class="sidenav-menu">
+  <div class="sidenav-menu__header">
+    <app-main-logo />
+
+    <app-btn-icon 
+      iconName="close"
+      class="sidenav-cart__close"
+      [tooltipText]="'common.close' | translate"
+      [ariaLabel]="'common.close' | translate"
+      (click)="sidebarService.close('menu')"
+    />
+  </div>
+
+  sidenav-menu__
+</div>

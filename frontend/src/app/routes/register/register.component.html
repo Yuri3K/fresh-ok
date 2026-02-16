@@ -3,12 +3,18 @@
     [text]="'register-page.title' | translate"
   />
 
-  <app-register-form />
+  <app-register-form 
+    [isPopup]="isPopup()"
+    (registerByEmailAndPwdEmited)="closeRegisterPopup()"
+  />
 
   <app-go-to-login 
     (openLoginPopup)="switchToLoginPopup()"
     [isPopup]="isPopup()"
   />
 
-  <app-google-btn />
+  <app-google-btn 
+    [isPopup]="isPopup()"
+    (submitWithGoogleEmited)="closeRegisterPopup()"
+  />
 </div>

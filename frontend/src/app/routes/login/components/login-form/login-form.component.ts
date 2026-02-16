@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, output, signal } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BtnFlatComponent } from '../../../../shared/ui-elems/buttons/btn-flat/btn-flat.component';
 import { FormControlPasswordComponent } from '../../../../shared/ui-elems/forms/form-control-pwd/form-control-pwd.component';
@@ -23,6 +23,9 @@ import { finalize } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginFormComponent {
+  isPopup = input(false)
+  submitByEmailAndPwdEmited = output<void>()
+
   private fb = inject(FormBuilder)
   private authService = inject(AuthService)
 
@@ -44,6 +47,7 @@ export class LoginFormComponent {
     if(this.loginForm.invalid) {
       return
     }
+
     this.submitting.set(true)
 
     const formData = this.loginForm.value
@@ -51,5 +55,9 @@ export class LoginFormComponent {
     this.authService.signInWithEmailAndPassword(formData.email!, formData.password!)
     .pipe(finalize(() => this.submitting.set(false)))
     .subscribe()
+
+    if(this.isPopup()) {
+      this.submitByEmailAndPwdEmited.emit()
+    }
   }
 }

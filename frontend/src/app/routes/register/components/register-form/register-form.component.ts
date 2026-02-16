@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, OnInit, output, signal } from '@angular/core';
 import { FormControlPasswordComponent } from '../../../../shared/ui-elems/forms/form-control-pwd/form-control-pwd.component';
 import { FormControlEmailComponent } from '../../../../shared/ui-elems/forms/form-control-email/form-control-email.component';
 import { FormControlNameComponent } from '../../../../shared/ui-elems/forms/form-control-name/form-control-name.component';
@@ -30,13 +30,14 @@ import { AuthService } from '../../../../core/services/auth.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterFormComponent implements OnInit {
-  private router = inject(Router)
+  isPopup = input(false)
+  registerByEmailAndPwdEmited = output<void>()
+
   private fb = inject(FormBuilder)
   private apiService = inject(ApiService)
   private snackbarService = inject(SnackbarService)
   private translateService = inject(TranslateService)
   private authService = inject(AuthService)
-
 
   submitting = signal(false)
   registerForm = this.fb.group({
@@ -97,5 +98,9 @@ export class RegisterFormComponent implements OnInit {
           console.log("error register user", err)
         }
       })
+
+    if (this.isPopup()) {
+      this.registerByEmailAndPwdEmited.emit()
+    }
   }
 }

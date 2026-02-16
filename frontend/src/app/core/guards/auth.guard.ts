@@ -11,6 +11,7 @@ import { AuthService } from '../services/auth.service';
 import { filter, map, Observable, take } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { LangRouterService } from '../services/langs/lang-router.service';
+import { OpenSignDialogService } from '@core/services/open-sign-dialog.service';
 
 /**
  * Применяется ТОЛЬКО к роутам, которые НЕ являются публичными и ТРЕБУЮТ авторизации.
@@ -22,6 +23,7 @@ function checkAuth(
   state: RouterStateSnapshot
 ): Observable<boolean | UrlTree> {
   const authService = inject(AuthService);
+  const signDialogService = inject(OpenSignDialogService)
   const router = inject(Router);
   const navigateService = inject(LangRouterService);
   const lsSavedUrlKey = environment.lsSavedUrlKey;
@@ -44,12 +46,17 @@ function checkAuth(
         localStorage.setItem(lsSavedUrlKey, state.url);
       }
 
-      const urlWithLang = navigateService.addLangInUrlArr(['/login']);
-      // Безопасный редирект через UrlTree
-      return router.createUrlTree(urlWithLang, {
-        queryParamsHandling: 'preserve', // сохраняем query параметры
-        fragment: route.fragment || undefined, // сохраняем fragment (#anchor)
-      }); 
+      // const urlWithLang = navigateService.addLangInUrlArr(['/login']);
+      // // Безопасный редирект через UrlTree
+      // return router.createUrlTree(urlWithLang, {
+      //   queryParamsHandling: 'preserve', // сохраняем query параметры
+      //   fragment: route.fragment || undefined, // сохраняем fragment (#anchor)
+      // }); 
+
+      // Вместо редиректа на страницу /login, теперь будет
+      // появляться loginPopup
+      signDialogService.openLoginDialog()
+      return false
     })
   );
 }
