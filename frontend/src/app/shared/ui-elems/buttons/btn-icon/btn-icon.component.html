@@ -1,22 +1,22 @@
 <button
   mat-icon-button
-  [disabled]="btnDisabled"
-  [attr.aria-label]="ariaLabel"
-  [matTooltip]="tooltipText"
-  [matTooltipShowDelay]="tooltipShowDelay"
+  [disabled]="btnDisabled()"
+  [attr.aria-label]="ariaLabel()"
+  [matTooltip]="tooltipText()"
+  [matTooltipShowDelay]="tooltipShowDelay()"
   [matTooltipHideDelay]="150"
-  [type]="type"
+  [type]="type()"
   [ngStyle]="{
-      width: width,
-      height: width,
+      width: width(),
+      height: width(),
     }"
 >
   <mat-icon
     [ngStyle]="{ 
-        color: iconColor, 
-        fontSize: fz,
+        color: iconColor(), 
+        fontSize: calcFz(),
       }"
   >
-    {{ iconName }}
+    {{ iconName() }}
   </mat-icon>
 </button>

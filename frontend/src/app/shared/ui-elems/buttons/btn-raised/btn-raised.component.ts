@@ -1,5 +1,5 @@
 import { NgStyle } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -17,13 +17,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BtnRaisedComponent {
-  @Input({ required: true }) btnText!: string
-  @Input() iconName?: string
-  @Input() iconColor = 'var(--mat-sys-on-primary)'
-  @Input() tooltipText?: string
-  @Input() ariaLabel?: string;
-  @Input() fz?: string;
-  @Input() btnDisabled = false;
-  @Input() type: string = 'button';
-
+  btnText = input.required<string>()
+  iconName = input<string>(); 
+  iconColor = input<string>('var(--mat-sys-on-primary)');
+  tooltipText = input<string>();
+  ariaLabel = input<string>();
+  fz = input<string>();
+  btnDisabled = input<boolean>(false);
+  type = input<string>('button');
 }

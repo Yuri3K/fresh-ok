@@ -2,41 +2,41 @@
   type="button"
   class="mini-fab__btn"
   mat-mini-fab
-  [attr.aria-label]="ariaLabel"
-  [matBadge]="count"
-  [matBadgeHidden]="count == 0 ? true : isBadgeHidden"
-  [matBadgePosition]="badgePosition"
-  [matTooltip]="tooltipText"
-  [matTooltipShowDelay]="tooltipShowDelay"
-  [style.--mdc-fab-small-container-shape]="borderRadius"
+  [attr.aria-label]="ariaLabel()"
+  [matBadge]="count()"
+  [matBadgeHidden]="count() == 0 ? true : isBadgeHidden()"
+  [matBadgePosition]="badgePosition()"
+  [matTooltip]="tooltipText()"
+  [matTooltipShowDelay]="tooltipShowDelay()"
+  [style.--mdc-fab-small-container-shape]="borderRadius()"
   [ngStyle]="{
-    width: width,
-    height: height || width,
-    border: btnBorder,
-    fontSize: fzText,
-    padding: btnPadding,
-    gap: (iconName && btnText) ? '10px' : 0,
-    '--mdc-fab-small-container-color': bgColor
+    width: width(),
+    height: height() || width(),
+    border: btnBorder(),
+    fontSize: fzText(),
+    padding: btnPadding(),
+    gap: (iconName() && btnText()) ? '10px' : 0,
+    '--mdc-fab-small-container-color': bgColor()
     
   }"
 >
-  @if(iconName) {
+  @if(iconName()) {
     <mat-icon
       class="mini-fab__icon"
       [ngStyle]="{ 
-        color: iconColor, 
-        fontSize: fz,
+        color: iconColor(), 
+        fontSize: calcFz(),
       }"
-      >{{ iconName }}</mat-icon
+      >{{ iconName() }}</mat-icon
     >
   }
 
-  @if(btnText) {
+  @if(btnText()) {
     <span 
       class="mini-fab__text"
       [ngStyle]="{ 
-        color: iconColor, 
+        color: iconColor(), 
       }"
-    >{{btnText}}</span>
+    >{{btnText()}}</span>
   }
 </button>

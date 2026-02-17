@@ -2,19 +2,19 @@
   appearance="outline"
   class="form-control"
 >
-  @if(label){
-    <mat-label>{{label}}</mat-label>
+  @if(label()){
+    <mat-label>{{label()}}</mat-label>
   }
 
   <input
     matInput
     [type]="isPwdHide() ? 'password' : 'text'"
-    [formControl]="pwdControl"
+    [formControl]="pwdControl()"
     autocomplete="off"
   >
 
-  @if(hint) {
-    <mat-hint>{{hint}}</mat-hint>
+  @if(hint()) {
+    <mat-hint>{{hint()}}</mat-hint>
   }
 
   <button
@@ -33,18 +33,18 @@
     <mat-icon>{{isPwdHide() ? 'visibility_off' : 'visibility'}}</mat-icon>
   </button>
 
-  @if (pwdControl.hasError('required') && pwdControl.touched) {
+  @if (pwdControl().hasError('required') && pwdControl().touched) {
     <mat-error>
       {{'common.forms.pwd.pwd-error-required' | translate}}
     </mat-error>
   } 
 
-  @if (pwdControl.hasError('minlength') && pwdControl.touched) {
+  @if (pwdControl().hasError('minlength') && pwdControl().touched) {
     <mat-error>
       {{
         'common.forms.pwd.pwd-error-minlength' | translate : {
-          minlength: pwdControl.getError('minlength').requiredLength,
-          currentlength: pwdControl.getError('minlength').actualLength
+          minlength: pwdControl().getError('minlength').requiredLength,
+          currentlength: pwdControl().getError('minlength').actualLength
         }
       }}
     </mat-error>

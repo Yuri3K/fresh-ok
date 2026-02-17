@@ -1,4 +1,4 @@
-<h1 [ngStyle]="{marginBottom: mb,fontSize: fz,}">
-  <span class="main">{{text}}</span>
+<h1 [ngStyle]="{marginBottom: mb(),fontSize: fz()}">
+  <span class="main">{{text()}}</span>
   <span class="subtitle"><ng-content></ng-content></span>
 </h1>

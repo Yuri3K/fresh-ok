@@ -10,6 +10,7 @@ import {
 
 @Directive({
   selector: '[appShowEl]',
+  
 })
 export class ShowElDirective implements OnInit {
   @HostBinding('class.show') elemName = '';

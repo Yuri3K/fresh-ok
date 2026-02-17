@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { LottieComponent, AnimationOptions } from 'ngx-lottie';
 
 @Component({
@@ -11,7 +11,7 @@ import { LottieComponent, AnimationOptions } from 'ngx-lottie';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoaderComponent {
-  @Input() diameter = 126;
+  diameter = input(126);
   // private lottiePath = 'assets/lottie/delivery_truck.json';
   // private lottiePath = 'assets/lottie/fast_food.json';
   // private lottiePath = 'assets/lottie/restaurant_food.json';

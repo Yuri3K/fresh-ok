@@ -2,39 +2,39 @@
   appearance="outline"
   class="form-control"
 >
-  @if(label) {
-    <mat-label>{{label}}</mat-label>
+  @if(label()) {
+    <mat-label>{{label()}}</mat-label>
   }
 
   <input 
     matInput 
     type="'text" 
-    [placeholder]="placeholder"
-    [formControl]="nameControl"
+    [placeholder]="placeholder()"
+    [formControl]="nameControl()"
   >
   
-  @if(suffixIcon) {
+  @if(suffixIcon()) {
     <mat-icon matSuffix>
-      {{suffixIcon}}
+      {{suffixIcon()}}
     </mat-icon>
   }
 
-  @if(hint) {
-    <mat-hint>{{hint}}</mat-hint>
+  @if(hint()) {
+    <mat-hint>{{hint()}}</mat-hint>
   }
 
-  @if (nameControl.hasError('required') && nameControl.touched) {
+  @if (nameControl().hasError('required') && nameControl().touched) {
     <mat-error>
       {{'common.forms.name.nick-error-required' | translate}}
     </mat-error>
   } 
 
-  @if (nameControl.hasError('minlength') && nameControl.touched) {
+  @if (nameControl().hasError('minlength') && nameControl().touched) {
     <mat-error>
       {{
         'common.forms.name.nick-error-minlength' | translate : {
-          minlength: nameControl.getError('minlength').requiredLength,
-          currentlength: nameControl.getError('minlength').actualLength
+          minlength: nameControl().getError('minlength').requiredLength,
+          currentlength: nameControl().getError('minlength').actualLength
         }
       }}
     </mat-error>

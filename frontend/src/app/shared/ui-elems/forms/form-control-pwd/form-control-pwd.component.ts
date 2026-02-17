@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -21,9 +21,9 @@ import { TranslateModule } from '@ngx-translate/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormControlPasswordComponent {
-  @Input({required: true}) pwdControl!: FormControl
-  @Input() label?: string
-  @Input() hint?: string
+  pwdControl = input.required<FormControl>();
+  label = input<string>()
+  hint = input<string>()
 
   isPwdHide = signal(true);
 

@@ -1,5 +1,4 @@
-import { NgStyle } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-h2-title',
@@ -9,5 +8,5 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class H2TitleComponent {
-  @Input() text!: string // Text that will displayed in the title
+  text = input.required<string>() // Text that will displayed in the title
 }

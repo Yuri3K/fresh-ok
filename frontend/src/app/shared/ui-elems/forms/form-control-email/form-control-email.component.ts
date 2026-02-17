@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -19,8 +19,8 @@ import { TranslateModule } from '@ngx-translate/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormControlEmailComponent {
-  @Input({ required: true }) emailControl!: FormControl
-  @Input() label?: string
-  @Input() placeholder = ''
-  @Input() hint?: string
+  emailControl = input.required<FormControl>()
+  label = input<string>('')
+  placeholder = input<string>('')
+  hint = input<string>('')
 }

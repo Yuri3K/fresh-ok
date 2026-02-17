@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, inject, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, inject, input, output } from '@angular/core';
 import { BtnIconComponent } from '../../../../../../ui-elems/buttons/btn-icon/btn-icon.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { User } from 'firebase/auth';
@@ -24,10 +24,10 @@ import { MEDIA_URL } from '../../../../../../../core/urls';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AvatarPopupComponent {
-  @Input() authUser!: User
+  authUser = input.required<User>()
 
-  @Output() closePopup = new EventEmitter<void>()
-  @Output() logout = new EventEmitter<void>()
+  closePopup = output<void>()
+  logout = output<void>()
 
   readonly privacyLink = 'https://policies.google.com/privacy?hl=en'
   readonly termsLink = 'https://policies.google.com/terms?hl=en'

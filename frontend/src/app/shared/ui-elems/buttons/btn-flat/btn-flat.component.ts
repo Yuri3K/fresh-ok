@@ -1,5 +1,5 @@
 import { NgStyle } from '@angular/common';
-import { ChangeDetectionStrategy, Component, HostListener, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -17,25 +17,25 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BtnFlatComponent {
-  @Input({ required: true }) btnText!: string
-  @Input() btnHeight = '40px' 
-  @Input() btnWidth = 'auto' 
-  @Input() iconName?: string
-  @Input() iconColor = 'var(--mat-sys-on-primary)'
-  @Input() tooltipText?: string
-  @Input() ariaLabel?: string;
-  @Input() fzIcon?: string;
-  @Input() fzText = '1rem';
-  @Input() btnDisabled = false;
-  @Input() type: string = 'button';
-  @Input() borderRarius!: string;
-  @Input() btnBorder = 'none';
-  @Input() textColor: string = 'var(--mat-sys-on-background)';
-  @Input() bgColor: string = 'var(--mat-sys-primary-container)';
+  btnText = input.required<string>()
+  btnHeight = input<string>('40px') 
+  btnWidth = input<string>('auto') 
+  iconName = input<string>('')
+  iconColor = input<string>('var(--mat-sys-on-primary)')
+  tooltipText = input<string>('')
+  ariaLabel = input<string>('');
+  fzIcon = input<string>('');
+  fzText = input<string>('1rem');
+  btnDisabled = input<boolean>(false);
+  type = input<string>('button');
+  borderRarius = input<string>('');
+  btnBorder = input<string>('none');
+  textColor = input<string>('var(--mat-sys-on-background)');
+  bgColor = input<string>('var(--mat-sys-primary-container)');
 
   @HostListener('click', ['$event']) 
   handleClick(e: Event) {
-    if (this.btnDisabled) {
+    if (this.btnDisabled()) {
       e.preventDefault()
       e.stopPropagation()
     }

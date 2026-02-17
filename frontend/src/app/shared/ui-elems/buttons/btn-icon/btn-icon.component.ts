@@ -2,8 +2,9 @@ import { NgStyle } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   HostBinding,
-  Input,
+  input,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -17,23 +18,23 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BtnIconComponent {
-  @Input() iconName: string = '';
-  @Input() iconColor?: string;
-  @Input() tooltipText?: string;
-  @Input() tooltipShowDelay = 150;
-  @Input() btnDisabled = false;
-  @Input() ariaLabel: string = '';
-  @Input() fz?: string;
-  @Input() width: string = '40px';
-  @Input() type: string = 'button';
+  iconName = input<string>('');
+  iconColor = input<string>('');
+  tooltipText = input<string>('');
+  tooltipShowDelay = input<number>(150);
+  btnDisabled = input<boolean>(false);
+  ariaLabel = input<string>('');
+  fz = input<string>('');
+  width = input<string>('40px');
+  type = input<string>('button');
 
   @HostBinding('class.disabled') get isDisabled() {
-    return this.btnDisabled;
+    return this.btnDisabled();
   }
 
-  ngOnInit() {
-    if (!this.fz) {
-      this.fz = `${Math.round(parseInt(this.width) * 0.6) / 16}rem`;
-    }
-  }
+  calcFz = computed(() => {
+    if (!this.fz()) {
+      return `${Math.round(parseInt(this.width()) * 0.6) / 16}rem`;
+    } else return this.fz()
+  })
 }

@@ -4,38 +4,38 @@
   appearance="outline"
   class="form-control"
 >
-  @if(label) {
-    <mat-label>{{label}}</mat-label>
+  @if(label()) {
+    <mat-label>{{label()}}</mat-label>
   }
 
   <input 
     matInput 
     type="'text" 
-    [placeholder]="placeholder"
-    [formControl]="emailControl"
+    [placeholder]="placeholder()"
+    [formControl]="emailControl()"
   >
   
   <mat-icon matSuffix>
     email
   </mat-icon>
 
-  @if(hint) {
-    <mat-hint>{{hint}}</mat-hint>
+  @if(hint()) {
+    <mat-hint>{{hint()}}</mat-hint>
   }
 
-  @if(emailControl.hasError('required') && emailControl.touched){
+  @if(emailControl().hasError('required') && emailControl().touched){
     <mat-error>
       {{translations['email-error-required'] | translate}}
     </mat-error>
   }
 
-  @if(emailControl.hasError('email') && emailControl.touched) {
+  @if(emailControl().hasError('email') && emailControl().touched) {
     <mat-error>
       {{translations['email-error-invalid'] | translate}}
     </mat-error>
   }
 
-  @if(emailControl.hasError('emailExists')) {
+  @if(emailControl().hasError('emailExists')) {
     <mat-error>
       {{translations['email-error-exists'] | translate}}
     </mat-error>

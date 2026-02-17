@@ -1,31 +1,31 @@
 <button
   mat-flat-button
-  [disabled]="btnDisabled"
-  [attr.aria-label]="ariaLabel"
-  [matTooltip]="tooltipText"
+  [disabled]="btnDisabled()"
+  [attr.aria-label]="ariaLabel()"
+  [matTooltip]="tooltipText()"
   [matTooltipShowDelay]="150"
   [matTooltipHideDelay]="150"
-  [type]="type"
+  [type]="type()"
   [ngStyle]="{
-    border: btnBorder,
-    width: btnWidth,
-    fontSize: fzText,
-    '--mdc-filled-button-container-shape': borderRarius,
-    '--mdc-filled-button-container-height': btnHeight,
-    '--mdc-filled-button-label-text-color': textColor,
-    '--mdc-filled-button-container-color': bgColor,
+    border: btnBorder(),
+    width: btnWidth(),
+    fontSize: fzText(),
+    '--mdc-filled-button-container-shape': borderRarius(),
+    '--mdc-filled-button-container-height': btnHeight(),
+    '--mdc-filled-button-label-text-color': textColor(),
+    '--mdc-filled-button-container-color': bgColor(),
   }"
 >
-  @if(iconName) {
+  @if(iconName()) {
   <mat-icon
     [ngStyle]="{
         color: iconColor,
         fontSize: fzIcon,
       }"
   >
-    {{ iconName }}
+    {{ iconName() }}
   </mat-icon>
   }
-  {{ btnText }}
+  {{ btnText() }}
 </button>
     <!-- '--mdc-text-button-container-height': borderRarius, -->

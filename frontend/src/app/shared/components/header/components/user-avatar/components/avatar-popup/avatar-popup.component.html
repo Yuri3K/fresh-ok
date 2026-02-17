@@ -13,7 +13,7 @@
   />
 
   <mat-card-header class="avatar-popup__header">
-    <span>{{authUser.email}}</span>
+    <span>{{authUser().email}}</span>
   </mat-card-header>
   
   <mat-card-content class="avatar-popup__content">
@@ -23,17 +23,17 @@
         [src]="mediaUrl + avatarMeta + dbUser?.avatarId"
         [alt]="'header.user.alt' | translate"
       >
-    } @else if (authUser.photoURL) {
+    } @else if (authUser().photoURL) {
       <img 
         draggable="false"
-        [src]="authUser.photoURL"
+        [src]="authUser().photoURL"
         [alt]="'header.user.alt' | translate"
       >
     } @else {
       <mat-icon>person</mat-icon>
     }
 
-    <p>{{'header.user.greetings' | translate : ({name: authUser.displayName})}}</p>
+    <p>{{'header.user.greetings' | translate : ({name: authUser().displayName})}}</p>
 
     <app-btn-flat 
       class="light"
