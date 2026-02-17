@@ -1,0 +1,13 @@
+{
+  "$id": "validators/favs/add-fav.schema.json",
+  "title": "Add Fav Request",
+  "type": "object",
+  "required": ["productId"],
+  "additionalProperties": false,
+  "properties": {
+    "productId": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

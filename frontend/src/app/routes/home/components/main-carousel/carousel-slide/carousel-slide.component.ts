@@ -1,5 +1,5 @@
 import { NgStyle } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { CarouselSlide } from '../services/slider.service';
 import { LangRouterService } from '../../../../../core/services/langs/lang-router.service';
 import { RestoreScrollService } from '../../../../../core/services/restore-scroll.service';
@@ -16,7 +16,7 @@ import { RestoreScrollService } from '../../../../../core/services/restore-scrol
 
 
 export class CarouselSlideComponent {
-  @Input() slide!: CarouselSlide
+  slide = input.required<CarouselSlide>()
 
   private navigateService = inject(LangRouterService)
   private restoreScrollService = inject(RestoreScrollService)

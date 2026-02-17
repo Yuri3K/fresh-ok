@@ -5,6 +5,7 @@ import { LoginComponent } from '../../../../routes/login/login.component';
 import { MatDialogRef, MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { RegisterPopupComponent } from '../register-popup/register-popup.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { OpenSignDialogService } from '@core/services/open-sign-dialog.service';
 
 @Component({
   selector: 'app-login-popup',
@@ -22,14 +23,10 @@ export class LoginPopupComponent {
   heroImg = `${MEDIA_URL}heroes/donna`
 
   protected dialogRef = inject(MatDialogRef<LoginPopupComponent>)
-  private dialog = inject(MatDialog)
+  private signDialogService = inject(OpenSignDialogService)
 
   goToRegisterPopup() {
     this.dialogRef.close()
-    this.dialog.open(RegisterPopupComponent, {
-      panelClass: ['register-dialog', 'green'],
-      maxWidth: '700px',
-      width: '100vw'
-    })
+    this.signDialogService.openRegisterDialog()
   }
 }

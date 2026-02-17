@@ -1,0 +1,13 @@
+{
+  "$id": "validators/favs/delete-fav.schema.json",
+  "title": "Delete Fav Request",
+  "type": "object",
+  "required": ["productId"],
+  "additionalProperties": false,
+  "properties": {
+    "productId": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}
