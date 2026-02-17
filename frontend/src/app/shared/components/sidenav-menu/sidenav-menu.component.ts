@@ -6,6 +6,10 @@ import { MainLogoComponent } from '../main-logo/main-logo.component';
 import { MatIconModule } from '@angular/material/icon';
 import { BtnFlatComponent } from '@shared/ui-elems/buttons/btn-flat/btn-flat.component';
 import { OpenSignDialogService } from '@core/services/open-sign-dialog.service';
+import { CatalogSelectorComponent } from '@shared/ui-elems/selectors/catalog-selector/catalog-selector.component';
+import { LocationComponent } from '../location/location.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { FooterNavComponent } from '../public-footer/components/footer-nav/footer-nav.component';
 
 @Component({
   selector: 'app-sidenav-menu',
@@ -14,8 +18,12 @@ import { OpenSignDialogService } from '@core/services/open-sign-dialog.service';
     TranslateModule,
     MainLogoComponent,
     MatIconModule,
-    BtnFlatComponent
-],
+    BtnFlatComponent,
+    CatalogSelectorComponent,
+    LocationComponent,
+    MatDividerModule,
+    FooterNavComponent,
+  ],
   templateUrl: './sidenav-menu.component.html',
   styleUrl: './sidenav-menu.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

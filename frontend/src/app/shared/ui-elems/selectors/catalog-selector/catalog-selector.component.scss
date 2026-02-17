@@ -1,9 +1,36 @@
 @use "./styles/catalog-button.scss";
 @use "./styles/catalog-body.scss";
 
-// :host {
-//   margin-left: auto;
-// }
+:host {
+  &.stretch{
+    .catalog{
+      width: auto;
+
+      &.open,
+      &:hover {
+        .catalog__trigger-btn {
+          color: var(--mat-sys-primary-container);
+          background-color: var(--mat-sys-secondary-fixed-dim);
+        }
+  
+        .mat-icon {
+          color: var(--mat-sys-primary-container);
+        }
+      }
+    }
+
+    
+    .catalog__trigger-btn{
+      border-radius: 0;
+      background-color: transparent;
+      color: var(--mat-sys-on-secondary-container);
+
+      .mat-icon {
+        color: var(--mat-sys-on-secondary-container)
+      }
+    }
+  }
+}
 
 .catalog{
   width: 240px;

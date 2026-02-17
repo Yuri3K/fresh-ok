@@ -11,7 +11,7 @@
     />
   </div>
 
-  <div class="sidenav-menu__sing">
+  <div class="sidenav-menu__sign">
     <mat-icon>person</mat-icon>
     <app-btn-flat 
       [btnText]="'sidenav-menu.enter' | translate"
@@ -27,4 +27,20 @@
       (click)="signDialogService.openRegisterDialog(); sidebarService.close('menu')"
     />
   </div>
+
+  <app-catalog-selector 
+    class="stretch"
+  />
+
+  <mat-divider></mat-divider>
+
+  <app-location 
+    textColor="var(--mat-sys-on-background)"
+    iconColor="var(--mat-sys-on-background)"
+    [textWithIcon]="true"
+  />
+
+  <mat-divider></mat-divider>
+
+  <app-footer-nav class="in-column"/>
 </div>

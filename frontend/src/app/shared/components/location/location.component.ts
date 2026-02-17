@@ -2,6 +2,7 @@ import { NgStyle } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { SocialComponent } from '../social/social.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-location',
@@ -9,6 +10,7 @@ import { SocialComponent } from '../social/social.component';
     NgStyle,
     SocialComponent,
     TranslateModule,
+    MatIconModule,
   ],
   templateUrl: './location.component.html',
   styleUrl: './location.component.scss',
@@ -17,4 +19,5 @@ import { SocialComponent } from '../social/social.component';
 export class LocationComponent {
   textColor = input.required()
   iconColor = input.required()
+  textWithIcon = input(false)
 }

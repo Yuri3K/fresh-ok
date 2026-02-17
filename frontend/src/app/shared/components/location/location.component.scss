@@ -12,18 +12,35 @@
   justify-content: start;
   gap: 18px;
 
+  &.with-icon {
+    align-items: start !important;
+
+    .location__address,
+    .location__hotline {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+
   @media (max-width: 576px) {
     align-items: center;
   }
 }
 
 .location__address,
-.location__hotline{
+.location__hotline {
   color: inherit;
   font-size: 0.875rem;
   line-height: 1.4;
   text-decoration: none;
+
+  .mat-icon {
+    color: inherit;
+  }
 }
+
+
 
 .location__hotline {
   &:hover {

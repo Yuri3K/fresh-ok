@@ -1,12 +1,27 @@
 <div class="container">
-  <div class="location" [ngStyle]="{color: textColor()}">
+  <div class="location" 
+    [ngStyle]="{color: textColor()}"
+    [class.with-icon]="textWithIcon()"
+  >
     <a 
       class="location__hotline"
       href="tel:+380994453563"
     >
+      @if(textWithIcon()) {
+        <mat-icon>call</mat-icon>
+      }
+
       {{'footer.hotline' | translate}}
     </a>
-    <p class="location__address">{{'footer.address' | translate}}</p>
+    <p 
+      class="location__address"
+    >
+      @if(textWithIcon()) {
+        <mat-icon>location_on</mat-icon>
+      }
+
+      {{'footer.address' | translate}}
+    </p>
   
     <app-social [iconColor]="iconColor()" />
   </div>

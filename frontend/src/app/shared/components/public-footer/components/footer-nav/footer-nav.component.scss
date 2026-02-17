@@ -1,3 +1,16 @@
+:host {
+  &.in-column {
+    .footer-nav {
+      grid-template-columns: 1fr;
+      gap: 4%;
+
+      .footer-nav__link {
+        text-align: left;
+      }
+    }
+  }
+}
+
 .container {
   padding: 0;
 
@@ -21,6 +34,7 @@
   text-decoration: none;
   margin-bottom: 18px;
   text-align: center;
+  cursor: pointer;
 
   &:hover {
     color: var(--mat-sys-primary-fixed-dim);

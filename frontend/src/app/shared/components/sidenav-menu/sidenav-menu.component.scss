@@ -1,5 +1,4 @@
 .sidenav-menu {
-  padding: 24px 0;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -12,7 +11,7 @@
   padding: 0 15px;
 }
 
-.sidenav-menu__sing {
+.sidenav-menu__sign {
   padding: 8px 15px;
   background-color: var(--mat-sys-primary-container);
   display: flex;
@@ -26,4 +25,12 @@
     color: var(--mat-sys-on-secondary-container);
     font-size: 32px;
   }
+}
+
+app-location {
+  padding: 0 10px;
+}
+
+mat-divider {
+  margin-bottom: 10px;
 }
