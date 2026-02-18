@@ -11,6 +11,16 @@
     "products": {
       "name": "Каталог",
       "url": "/uk/products"
+    },
+    "user": {
+      "name": "Кабінет",
+      "url": "/uk/user"
+    },
+    "profile": {
+      "name": "Профіль"
+    },
+    "favs": {
+      "name": "Обране"
     }
   },
   "common": {

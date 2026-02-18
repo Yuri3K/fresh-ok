@@ -25,7 +25,6 @@ import { DeliveryAndPaymentComponent } from '../../delivery-and-payment/delivery
     ProductCartBtnComponent,
     ProductFavBtnComponent,
     DeliveryAndPaymentComponent
-
   ],
   templateUrl: './product-content.component.html',
   styleUrl: './product-content.component.scss',

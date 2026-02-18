@@ -1,4 +1,6 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { TranslateService } from '@ngx-translate/core';
 
 export interface Breadcrumb {
   label: string,
@@ -11,9 +13,16 @@ export interface Breadcrumb {
   providedIn: 'root'
 })
 export class BreadcrumbsService {
+  private readonly translateService = inject(TranslateService)
+
   private breadcrumbs = signal<Breadcrumb[]>([])
 
   breadcrumbs$ = this.breadcrumbs.asReadonly()
+
+  brcrTranslations = toSignal(
+    this.translateService.stream('breadcrumbs'),
+    { initialValue: null }
+  )
 
   setBreadcrumbs(breadcrumbs: Breadcrumb[]) {
     this.breadcrumbs.set(breadcrumbs)

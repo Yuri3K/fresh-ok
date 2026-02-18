@@ -11,6 +11,16 @@
     "products": {
       "name": "Catalog",
       "url": "/en/products"
+    },
+    "user": {
+      "name": "Cabinet",
+      "url": "/en/user"
+    },
+    "profile": {
+      "name": "Profile"
+    },
+    "favs": {
+      "name": "Favourites"
     }
   },
   "common": {

@@ -1,16 +1,18 @@
-import { ChangeDetectionStrategy, Component, computed, effect, inject, signal, untracked } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { ApiService } from '@core/services/api.service';
 import { FavsService } from '@core/services/favs.service';
 import { LangRouterService } from '@core/services/langs/lang-router.service';
 import { MEDIA_URL } from '@core/urls';
 import { TranslateModule } from '@ngx-translate/core';
+import { BreadcrumbsComponent } from '@shared/components/breadcrumbs/breadcrumbs.component';
+import { Breadcrumb, BreadcrumbsService } from '@shared/components/breadcrumbs/breadcrumbs.service';
 import { LoaderComponent } from '@shared/components/loader/loader.component';
 import { ProductCardComponent } from '@shared/components/product-cards/product-card/product-card.component';
 import { Product } from '@shared/models';
 import { BtnFlatComponent } from '@shared/ui-elems/buttons/btn-flat/btn-flat.component';
 import { H2TitleComponent } from '@shared/ui-elems/typography/h2-title/h2-title.component';
-import { H4TitleComponent } from '@shared/ui-elems/typography/h4-title/h4-title.component';
 import { H5TitleComponent } from '@shared/ui-elems/typography/h5-title/h5-title.component';
 
 @Component({
@@ -23,6 +25,8 @@ import { H5TitleComponent } from '@shared/ui-elems/typography/h5-title/h5-title.
     H2TitleComponent,
     H5TitleComponent,
     BtnFlatComponent,
+    BreadcrumbsComponent,
+
   ],
   templateUrl: './favs.component.html',
   styleUrl: './favs.component.scss',
@@ -32,7 +36,7 @@ export class FavsComponent {
   protected readonly favsService = inject(FavsService)
   private readonly apiService = inject(ApiService)
   private readonly navigateService = inject(LangRouterService)
-
+  private readonly breadcrumbsService = inject(BreadcrumbsService)
 
   protected readonly productIds = computed(() => this.favsService.productIds())
   protected readonly products = signal<Product[]>([])
@@ -46,6 +50,27 @@ export class FavsComponent {
         this.loadFavProducts()
       } else {
         this.isLoading.set(false)
+      }
+    })
+
+    effect(() => {
+      const brcrs = this.breadcrumbsService.brcrTranslations()
+      if (brcrs) {
+        const breadcrumbs: Breadcrumb[] = [
+          {
+            label: brcrs.homepage.name,
+            url: brcrs.homepage.url,
+            icon: 'home',
+          },
+          {
+            label: brcrs.user.name,
+            url: brcrs.user.url,
+          },
+          {
+            label: brcrs.favs.name,
+          },
+        ]
+        this.breadcrumbsService.setBreadcrumbs(breadcrumbs)
       }
     })
   }
