@@ -92,7 +92,6 @@ export class HitProductsComponent implements OnInit {
     if (this.appliedFilter() !== 'all') {
       queryStr.push(`category=${this.appliedFilter()}`);
     }
-    console.log('🚀 ~ queryStr:', queryStr);
 
     this.isShowMoreLoading.set(true);
 

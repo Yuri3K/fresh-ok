@@ -1,10 +1,11 @@
 <app-mini-fab-btn
   class="product-card__fav"
   [width]="btnWidth()"
-  iconName="favorite_border"
-  [tooltipText]="'common.add-to-favs' | translate"
+  [iconName]="isFav() ? 'favorite' : 'favorite_border'"
+  [tooltipText]="(isFav() ? 'common.remove-from-favs' : 'common.add-to-favs') | translate"
   [ariaLabel]="'common.add-to-favs' | translate"
-  (click)="addToFavs()"
+  (click)="toggleFav()"
   [isBadgeHidden]="true"
+  [btnDisabled]="isDisabled()"
   iconColor="var(--mat-sys-on-secondary-container)"
 />
