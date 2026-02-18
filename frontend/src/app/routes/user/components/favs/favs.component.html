@@ -1,1 +1,33 @@
-<p>favs works!</p>
+<div class="favs-page">
+  <div class="container">
+    <app-h2-title
+      class="favs-page__title"
+      [text]="'favs-page.title' | translate"
+    />
+  
+    @if (isLoading()) {
+      <app-loader />
+    } @else if (productIds().length === 0) {
+      <div class="favs-page__empty">
+        <app-h5-title
+          [text]="'favs-page.empty' | translate"
+        />
+        <img width="300" height="300" [src]="imgUrl" [alt]="'favs-page.title' | translate">
+        <app-btn-flat 
+          [btnText]="'favs-page.go-to-catalog' | translate"
+          (click)="goToCatalog()"
+          borderRarius="6px"
+        />
+      </div>
+    } @else {
+      <div class="favs-page__grid">
+        @for (product of products(); track product.id) {
+          <app-product-card
+            [product]="product"
+            [withStockAndRate]="true"
+          />
+        } 
+      </div>
+    }
+  </div>
+</div>

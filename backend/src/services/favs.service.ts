@@ -1,6 +1,7 @@
-import { read } from "fs";
 import { admin, db } from "../config/firebaseAdmin";
-import { FavsDocument, Product } from "../types/models";
+import { Badge, FavsDocument } from "../types/models";
+import { getBadgesMap } from "../utils/get-badges-map";
+import { getStockMap } from "../utils/get-stock-map";
 
 const FAVS_COLLECTION = 'favs'
 const PRODUCTS_COLLECTION = 'products'
@@ -116,9 +117,27 @@ export const favsService = {
     // Собираем все документы из всех чанков
     const docs = snapshots.flatMap(snapshot => snapshot.docs)
 
-    return docs.map(doc => ({
-      id: doc.id,
-      ...doc.data()
-    }))
+    // Получаем badges и stock для обогащения
+    const badgesMap = await getBadgesMap()
+    const stockMap = await getStockMap()
+
+    // Обогащаем продукты
+    const enrichedProducts = docs
+      .map(doc => {
+        const data = doc.data()
+
+        return {
+          id: doc.id,
+          ...data,
+          badges: (data.badges as string[])
+            .map((badgeName) => badgesMap.get(badgeName))
+            .filter((badge): badge is Badge => badge !== undefined)
+            .sort((a, b) => a.priority - b.priority),
+          stock: stockMap.get(data.stock),
+        }
+      })
+      .filter((product) => product !== null)
+
+    return enrichedProducts
   }
 }

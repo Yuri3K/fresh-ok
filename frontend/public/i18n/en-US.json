@@ -362,6 +362,11 @@
       ]
     }
   },
+  "favs-page": {
+    "title": "Favorites",
+    "empty": "Your favorites list is empty. Let's fix that.",
+    "go-to-catalog": "Go to catalog"
+  },
   "cart": {
     "title": "Cart",
     "clear-cart": "Clear cart",

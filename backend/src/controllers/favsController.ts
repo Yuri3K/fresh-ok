@@ -54,14 +54,22 @@ export const getFavProducts = async (req: AuthRequest, res: Response) => {
   try {
     const user = req.user
     if (!user) return res.status(401).json({ message: 'Unauthorized' })
+      
+    let ids: string[] 
+    const {productIds} = req.query
 
-    const favs = await favsService.getFavs(user.uid)
+    if(productIds) {
+      ids = (productIds as string).split(',')
+    } else {
+      const favs = await favsService.getFavs(user.uid)
+      ids = favs.productIds
+    }
 
-    if (favs.productIds.length === 0) {
+    if (ids.length === 0) {
       return res.json([])
     }
 
-    const products = await favsService.getFavProducts(favs.productIds)
+    const products = await favsService.getFavProducts(ids)
     return res.json(products)
   } catch (err) {
     console.error('[getFavProducts]', err)

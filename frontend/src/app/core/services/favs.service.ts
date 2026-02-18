@@ -123,7 +123,9 @@ export class FavsService {
 
     this.apiService.delete<FavsDocument>(`/favs/${productId}`)
       .pipe(
-        tap(favsData => this._productIds.set(favsData.productIds ?? [])),
+        tap(favsData => {
+          this._productIds.set(favsData.productIds ?? [])
+        }),
         catchError(err => {
           console.log('[FavsService] removeFav error', err)
           this._error.set("'Failed to remove fav'")
