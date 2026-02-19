@@ -17,8 +17,8 @@ import { MEDIA_URL } from '../../../../../../../core/urls';
     MatCardModule,
     TranslateModule,
     MatIconModule,
-    AsyncPipe
-  ],
+    AsyncPipe,
+],
   templateUrl: './avatar-popup.component.html',
   styleUrl: './avatar-popup.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -37,7 +37,7 @@ export class AvatarPopupComponent {
   // c_fill — обрезать под квадрат без искажений
   // g_face — определить и центрировать на лице
   // w_300,h_300 — размер 300×300
-  readonly avatarMeta = 'f_auto,q_auto,c_thumb,g_face,r_max,w_100,h_100/'
+  // readonly avatarMeta = 'f_auto,q_auto,c_thumb,g_face,r_max,w_100,h_100/'
   // readonly avatarMeta = 'c_thumb,g_face,r_max,w_200,h_200/'
   readonly dbUser$ = inject(UserAccessService).dbUser$
 
@@ -49,3 +49,4 @@ export class AvatarPopupComponent {
     }
   }
 }
+

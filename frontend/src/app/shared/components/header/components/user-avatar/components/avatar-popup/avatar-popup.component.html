@@ -20,8 +20,10 @@
     @if(dbUser?.avatarId) {
       <img 
         draggable="false"
-        [src]="mediaUrl + avatarMeta + dbUser?.avatarId"
+        [src]="mediaUrl + dbUser?.avatarId"
         [alt]="'header.user.alt' | translate"
+        width="100"
+        height="100"
       >
     } @else if (authUser().photoURL) {
       <img 

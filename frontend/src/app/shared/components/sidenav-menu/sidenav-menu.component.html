@@ -13,15 +13,24 @@
 
   <div class="sidenav-menu__sign">
     <mat-icon>person</mat-icon>
-    <app-btn-flat 
-      [btnText]="'sidenav-menu.enter' | translate"
-      bgColor="transparent"
-      btnBorder="none"
-      (click)="signDialogService.openLoginDialog(); sidebarService.close('menu')"
-    />
+    @if(user()) {
+      <app-btn-flat 
+        [btnText]="'common.logout' | translate"
+        bgColor="transparent"
+        btnBorder="none"
+        (click)="logout()"
+      />
+    } @else {
+      <app-btn-flat 
+        [btnText]="'common.login' | translate"
+        bgColor="transparent"
+        btnBorder="none"
+        (click)="signDialogService.openLoginDialog(); sidebarService.close('menu')"
+      />
+    }
     <span>|</span>
     <app-btn-flat 
-      [btnText]="'sidenav-menu.registration' | translate"
+      [btnText]="'common.register' | translate"
       bgColor="transparent"
       btnBorder="none"
       (click)="signDialogService.openRegisterDialog(); sidebarService.close('menu')"
@@ -30,6 +39,29 @@
 
   <app-catalog-selector 
     class="stretch"
+  />
+
+  <mat-divider></mat-divider>
+
+  <app-btn-raised 
+    [btnText]="('breadcrumbs.profile.name' | translate)"
+    class="sidenav-menu__link accordion-btn"
+    iconName="person"
+    (click)="navigateToProfile()"
+  />
+
+  <app-btn-raised 
+    [btnText]="('favs-page.title' | translate) + ' ' + `(${totalFavs()})`"
+    class="sidenav-menu__link accordion-btn"
+    iconName="favorite_border"
+    (click)="navigateToFavs()"
+  />
+
+  <app-btn-raised 
+    [btnText]="('cart.title' | translate) + ' ' + `(${totalItems()})`"
+    class="sidenav-menu__link accordion-btn"
+    iconName="shopping_cart"
+    (click)="sidebarService.open('cart')"
   />
 
   <mat-divider></mat-divider>

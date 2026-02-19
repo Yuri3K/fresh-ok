@@ -6,13 +6,19 @@
   [matTooltipShowDelay]="150"
   [matTooltipHideDelay]="150"
   [type]="type()"
-
+  [ngStyle]="{
+    width: btnWidth(),
+    fontSize: fzText(),
+    '--mdc-filled-button-container-shape': borderRarius(),
+    '--mdc-filled-button-container-height': btnHeight(),
+    '--mdc-filled-button-label-text-color': textColor(),
+  }"
 >
   @if(iconName()) {
     <mat-icon
       [ngStyle]="{
         color: iconColor(),
-        fontSize: fz(),
+        fontSize: fzIcon(),
       }"
     >
       {{iconName()}}

@@ -19,8 +19,8 @@
   @if(iconName()) {
   <mat-icon
     [ngStyle]="{
-        color: iconColor,
-        fontSize: fzIcon,
+        color: iconColor(),
+        fontSize: fzIcon(),
       }"
   >
     {{ iconName() }}

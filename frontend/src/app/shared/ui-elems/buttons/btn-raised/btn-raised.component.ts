@@ -1,5 +1,5 @@
 import { NgStyle } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, input, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -18,11 +18,24 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 })
 export class BtnRaisedComponent {
   btnText = input.required<string>()
-  iconName = input<string>(); 
-  iconColor = input<string>('var(--mat-sys-on-primary)');
+  btnHeight = input<string>('40px')
+  btnWidth = input<string>('100%')
+  iconName = input<string>();
+  iconColor = input<string>('var(--mat-sys-on-background)');
   tooltipText = input<string>();
   ariaLabel = input<string>();
-  fz = input<string>();
   btnDisabled = input<boolean>(false);
   type = input<string>('button');
+  borderRarius = input<string>();
+  textColor = input<string>('var(--mat-sys-on-background)');
+  fzIcon = input<string>();
+  fzText = input<string>('1rem');
+
+  @HostListener('click', ['$event'])
+  handleClick(e: Event) {
+    if (this.btnDisabled()) {
+      e.preventDefault()
+      e.stopPropagation()
+    }
+  }
 }
