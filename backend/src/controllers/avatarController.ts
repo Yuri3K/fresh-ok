@@ -61,7 +61,8 @@ export async function uploadUserAvatar(
           // *** СОХРАНЕНИЕ public_id В FIRESTORE ***
           const userRef = db.collection('users').doc(req.user.uid);
           await userRef.update({
-            avatarId: result.public_id // Сохраняем public_id
+            avatarId: result.public_id, // Сохраняем public_id
+            avatarVersion: result.version // Сохраняем версию аватарки, чтобы избежать кэширования старой версии при формировании url на фронте.
           });
           // ***************************************
 
@@ -69,6 +70,7 @@ export async function uploadUserAvatar(
           return res.status(200).json({
             message: 'Avatar uploaded successfully.',
             public_id: result.public_id,
+            version: result.version,
             url: result.secure_url // Возвращаем публичный URL для немедленного использования
           })
         } catch (firestoreError) {

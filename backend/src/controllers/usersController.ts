@@ -1,6 +1,7 @@
 import { Response } from "express";
 import { AuthRequest } from "../middleware/verify-token";
 import {db} from '../config/firebaseAdmin'
+import { DbUser } from "../types/models";
 
 const getCurrentUser = async (req: AuthRequest, res: Response) => {
   const user = req.user
@@ -15,15 +16,16 @@ const getCurrentUser = async (req: AuthRequest, res: Response) => {
     return res.status(404).json({error: "User not found"})
   }
 
-  const userData = userDoc.data()
+  const userData = userDoc.data() as DbUser
 
   return res.json({
-    uid: userData?.uid,
-    email: userData?.email,
-    displayName: userData?.displayName,
-    role: userData?.role,
-    permissions: userData?.permissions,
+    uid: userData.uid,
+    email: userData.email,
+    displayName: userData.displayName,
+    role: userData.role,
+    permissions: userData.permissions,
     avatarId: userData?.avatarId,
+    avatarVersion: userData?.avatarVersion
   })
 }
 

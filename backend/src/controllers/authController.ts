@@ -4,15 +4,16 @@ import { AuthRequest } from "../middleware/verify-token"
 import { RegisterUserRequest } from "../types/schemas/auth/register"
 import { RegisterWithGoogleUserRequest } from "../types/schemas/auth/register-google"
 import { CheckEmailExistence } from "../types/schemas/auth/check-email"
+import { uploadAvatarFromUrl } from "../utils/upload-avatar-from-url"
 
 export const DEFAULT_ROLE = 'customer'
 
 async function getPermissionsByRole(role: string) {
   const roleDoc = await db.collection('roles').doc(role).get()
   const permissions = roleDoc.exists ?
-  roleDoc.data()?.permissions :
-  []
-  
+    roleDoc.data()?.permissions :
+    []
+
   return permissions
 }
 
@@ -73,14 +74,26 @@ const registerGoogleUser = async (req: AuthRequest<unknown, unknown, RegisterWit
       const displayName = authUser.displayName || name || 'No Name'
       const permissions = await getPermissionsByRole(DEFAULT_ROLE)
 
-      await userRef.set({
+      const userData: any = {
         uid,
         email,
         displayName,
         role: DEFAULT_ROLE,
         permissions: permissions,
         createdAt: admin.firestore.FieldValue.serverTimestamp()
-      })
+      }
+
+      // Если есть Google аватар — загружаем в Cloudinary
+      if (picture) {
+        const avatarData = await uploadAvatarFromUrl(picture, uid)
+
+        if (avatarData) {
+          userData.avatarId = avatarData.avatarId
+          userData.avatarVersion = avatarData.avatarVersion
+        }
+      }
+
+      await userRef.set(userData)
 
       await admin.auth().setCustomUserClaims(uid, {
         role: DEFAULT_ROLE,

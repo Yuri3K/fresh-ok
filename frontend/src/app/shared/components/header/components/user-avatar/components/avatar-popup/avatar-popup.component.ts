@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostListener, inject, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, HostListener, inject, input, output } from '@angular/core';
 import { BtnIconComponent } from '../../../../../../ui-elems/buttons/btn-icon/btn-icon.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { User } from 'firebase/auth';
@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { UserAccessService } from '../../../../../../../core/services/user-access.service';
 import { AsyncPipe } from '@angular/common';
 import { MEDIA_URL } from '../../../../../../../core/urls';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-avatar-popup',
@@ -41,6 +42,11 @@ export class AvatarPopupComponent {
   // readonly avatarMeta = 'c_thumb,g_face,r_max,w_200,h_200/'
   readonly dbUser$ = inject(UserAccessService).dbUser$
 
+  dbUser = toSignal(
+    this.dbUser$,
+    {requireSync: true}
+  )
+
   @HostListener('document:click', ['$event'])
   onClickInside(event: PointerEvent) {
     const target = event.target as HTMLElement
@@ -48,5 +54,13 @@ export class AvatarPopupComponent {
       this.closePopup.emit()
     }
   }
+
+  protected imgUrl = computed(() => {
+    if(this.dbUser()?.avatarVersion && this.dbUser()?.avatarId) {
+      return `${this.mediaUrl}v${this.dbUser()!.avatarVersion}/${this.dbUser()!.avatarId}`
+    } else {
+      return this.mediaUrl + this.dbUser()!.avatarId
+    }
+  })
 }
 
