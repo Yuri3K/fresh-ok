@@ -1,0 +1,439 @@
+{
+  "seo": {
+    "meta-title": "FRESHOK | Main Page",
+    "meta-descr": "Welcome to the FRESHOK online marketplace. Here you can always find fresh and affordable groceries."
+  },
+  "breadcrumbs": {
+    "homepage": {
+      "name": "Homepage",
+      "url": "/en"
+    },
+    "products": {
+      "name": "Catalog",
+      "url": "/en/products"
+    },
+    "user": {
+      "name": "Cabinet",
+      "url": "/en/user"
+    },
+    "profile": {
+      "name": "Profile"
+    },
+    "favs": {
+      "name": "Favourites"
+    }
+  },
+  "common": {
+    "close": "Close",
+    "logout": "Log Out",
+    "login": "Log In",
+    "register": "Register",
+    "show-more": "Show more",
+    "learn-more": "Learn more",
+    "delete": "Delete",
+    "edit": "Edit",
+    "updte": "Update",
+    "cancel": "Cancel",
+    "add-to-cart": "Add to cart",
+    "added-to-cart": "The product has been added to the cart",
+    "add-to-favs": "Add to favs",
+    "remove-from-favs": "Remove from favs",
+    "total": "Total: ",
+    "back-to-homepage": "Back to Homepage",
+    "forms": {
+      "email": {
+        "enter-email": "Enter your email",
+        "email-hint": "Hint: example@gmail.com",
+        "email-error-required": "Please enter email",
+        "email-error-invalid": "Please enter correct email",
+        "email-error-exists": "This email is already registered"
+      },
+      "pwd": {
+        "enter-pwd": "Enter your password",
+        "show-pwd": "Show password",
+        "hide-pwd": "Hide password",
+        "pwd-hint": "Hint: must be at least 6 characters long",
+        "pwd-error-required": "Please enter password",
+        "pwd-error-minlength": "Password must be at least {{minlength}} characters. Now is {{currentlength}} character(s)"
+      },
+      "name": {
+        "enter-nick": "Enter nickname",
+        "nick-placeholder": "Ex: User",
+        "nick-hint": "Hint: must be at least 2 characters long",
+        "nick-error-required": "Please enter nickname",
+        "nick-error-minlength": "Nickname must be at least {{minlength}} characters. Now is {{currentlength}} character(s)"
+      },
+      "textarea": {
+        "textarea-error-required": "Please write your review"
+      }
+    }
+  },
+  "errors": {
+    "fetch-collection-user": "Error occurred while fetching user from collection"
+  },
+  "header": {
+    "user": {
+      "alt": "Avatar",
+      "greetings": "Hi, {{name}}",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service"
+    }
+  },
+  "header-market": {
+    "logo": {
+      "title": "Freshok",
+      "subtitle": "online market"
+    },
+    "catalog": {
+      "title": "Product catalog"
+    },
+    "search-input": {
+      "placeholder": "Find in market",
+      "submit": "Find"
+    }
+  },
+  "login-page": {
+    "title": "Login",
+    "login-with-google": "Continue with Google",
+    "go-to-register": {
+      "prefix": "Not registered yet? Go to ",
+      "link": "registration",
+      "suffix": " page"
+    }
+  },
+  "register-page": {
+    "title": "Sign Up",
+    "register-error": "Failed to register user \"{{email}}\"",
+    "go-to-login": {
+      "prefix": "Already have an account? Go to ",
+      "link": "login",
+      "suffix": " page"
+    }
+  },
+  "homepage": {
+    "slider": [
+      {
+        "title": "Freshness Delivered Right to Your Door",
+        "subtitle": "50% OFF",
+        "descr": "Only from July 7 to 13 — up to 50% off seasonal fruits and vegetables. Don't miss out!",
+        "btn": "Buy Now",
+        "link": "/products?category=all&page=1&sort=newest&limit=6&badge=discount",
+        "imageUrl": "slider/slide1"
+      },
+      {
+        "title": "Go Wild With Tomatoes",
+        "subtitle": "Deal: 3 kg for the Price of 1",
+        "descr": "From July 12 to 15, enjoy discounts on homegrown, juicy tomatoes!",
+        "btn": "Buy Now",
+        "link": "/products?category=vegetables&page=1&sort=newest&limit=6&badge=discount",
+        "imageUrl": "slider/slide2"
+      },
+      {
+        "title": "Make Everyone Else Green With Envy",
+        "subtitle": "Greens on Sale",
+        "descr": "",
+        "btn": "Buy Now",
+        "link": "/products?category=greens&page=1&sort=newest&limit=6&badge=discount",
+        "imageUrl": "slider/slide3"
+      }
+    ],
+    "advantages": [
+      {
+        "scr": "advantages/scooter",
+        "title": "Free Delivery",
+        "descr": "For orders over 500<span class='currency'>₴</span>"
+      },
+      {
+        "scr": "advantages/return-box",
+        "title": "Product Return",
+        "descr": "If items were damaged"
+      },
+      {
+        "scr": "advantages/24-hours",
+        "title": "24/7 Support",
+        "descr": "Best operators"
+      }
+    ],
+    "hit-products": {
+      "title": "Top products",
+      "not-found": "There are no products matching your filter."
+    },
+    "promo": {
+      "title": "Promotions",
+      "filters": [
+        {
+          "name": "All Products",
+          "selector": "discount",
+          "order": 1
+        },
+        {
+          "name": "New",
+          "selector": "new",
+          "order": 2
+        },
+        {
+          "name": "Hit",
+          "selector": "hit",
+          "order": 3
+        }
+      ]
+    },
+    "news": {
+      "title": "Our News",
+      "all-new": "All News",
+      "route-page": "en/all-news",
+      "newsItems": [
+        {
+          "src": "news/strawberry",
+          "alt": "Fruit sale",
+          "descr": "This summer’s event: seasonal fruit sale at FRESHOK online market. Hurry before it’s all gone!",
+          "date": {
+            "day": "15",
+            "month": "July"
+          }
+        },
+        {
+          "src": "news/mango",
+          "alt": "A fantastic selection of mangoes",
+          "descr": "A fantastic selection of mangoes in our online market",
+          "date": {
+            "day": "28",
+            "month": "May"
+          }
+        },
+        {
+          "src": "news/papaya",
+          "alt": "Papaya",
+          "descr": "Everything you wanted to know about papaya",
+          "date": {
+            "day": "20",
+            "month": "February"
+          }
+        }
+      ]
+    }
+  },
+  "catalog-page": {
+    "title": "Product Catalog",
+    "filters": {
+      "categories": {
+        "title": "Categories"
+      },
+      "offer": {
+        "title": "Special Offers"
+      },
+      "brand": {
+        "title": "Brand"
+      },
+      "price": {
+        "title": "Price",
+        "from": "from",
+        "to": "to"
+      }
+    },
+    "sorting": {
+      "sort-by": [
+        {
+          "name": "By rating",
+          "slug": "rating"
+        },
+        {
+          "name": "Cheapest first",
+          "slug": "price-asc"
+        },
+        {
+          "name": "Most expensive first",
+          "slug": "price-desc"
+        },
+        {
+          "name": "By date added",
+          "slug": "newest"
+        },
+        {
+          "name": "Alphabetical A-Z",
+          "slug": "name-asc"
+        },
+        {
+          "name": "Alphabetical Z-A",
+          "slug": "name-desc"
+        }
+      ],
+      "limit": [
+        {
+          "name": "6 per page",
+          "slug": "6"
+        },
+        {
+          "name": "12 per page",
+          "slug": "12"
+        },
+        {
+          "name": "18 per page",
+          "slug": "18"
+        }
+      ]
+    }
+  },
+  "product-page": {
+    "main-content": {
+      "code": "Code: "
+    },
+    "tabs": {
+      "opinions": "Our customers' opinions",
+      "leave-review": "Leave a review",
+      "your-rating": "Your rating*",
+      "labels": [
+        {
+          "name": "Description",
+          "order": 1
+        },
+        {
+          "name": "Specifications",
+          "order": 2
+        },
+        {
+          "name": "Reviews ({{quantity}})",
+          "order": 3
+        }
+      ],
+      "form-review": {
+        "your-review": "Your review*",
+        "name": "Name",
+        "email": "Email*",
+        "agreement": "I agree with the data processing policy",
+        "send-review": "Send Review"
+      }
+    },
+    "review": {
+      "delete-dialog": {
+        "title": "Delete review",
+        "question": "Are you sure you want to delete your review?"
+      },
+      "review-exists": {
+        "title": "Information",
+        "message": "You have already left a review for this product.",
+        "action": "Edit review"
+      }
+    }
+  },
+  "delivery-and-payment": {
+    "title": "Delivery and payment",
+    "lines": [
+      "Minimum order amount - 300 UAH.",
+      "Delivery time - 60-120 minutes.",
+      "Payment is accepted only by bank card.",
+      "The final order amount is calculated after items are collected."
+    ],
+    "learn-more": {
+      "title": "Delivery and Payment Terms",
+      "sections": [
+        {
+          "subtitle": "Delivery zones and cost",
+          "text": [
+            {
+              "question": "Green zone (up to 5 km): ",
+              "answer": "Free for orders from 500₴. (otherwise — 150₴)."
+            },
+            {
+              "question": "Yellow zone (up to 15 km): ",
+              "answer": "200₴."
+            },
+            {
+              "question": "Time: ",
+              "answer": "We deliver orders daily from 08:00 to 23:00."
+            }
+          ]
+        },
+        {
+          "subtitle": "Payment and order assembly",
+          "text": [
+            {
+              "question": "Why can the price change? ",
+              "answer": "When ordering weight-based products (vegetables, fruits, meat), the final weight may slightly differ from the stated one."
+            },
+            {
+              "question": "Funds reservation: ",
+              "answer": "At checkout, an amount with a 10% reserve is frozen on the card. The final charge will be made only after the collector weighs all products. Extra funds will be returned immediately."
+            },
+            {
+              "question": "If an item is out of stock ",
+              "answer": "Our collector will call you and offer a replacement."
+            }
+          ]
+        },
+        {
+          "subtitle": "Product return",
+          "text": [
+            {
+              "question": "",
+              "answer": "You have the right to refuse any product at the time of delivery if you are not satisfied with its quality or expiration date."
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "favs-page": {
+    "title": "Favorites",
+    "empty": "Your favorites list is empty. Let's fix that.",
+    "go-to-catalog": "Go to catalog"
+  },
+  "cart": {
+    "title": "Cart",
+    "clear-cart": "Clear cart",
+    "total": "Total amount: ",
+    "place-order": "Place order",
+    "summary": "Summary",
+    "items-count": "Items count: ",
+    "confirm-order": "I confirm the order",
+    "empty": "Your cart is empty",
+    "go-to-catalog": "Go to Catalog",
+    "clear-cart-dialog": {
+      "title": "Clear cart",
+      "question": "Are you sure you want to remove all items from the cart?"
+    }
+  },
+  "footer": {
+    "address": "Kyiv, Shevchenko St., 1",
+    "hotline": "Hotline +38(099)-445-35-63",
+    "subscribe": {
+      "title": "Follow our promotions",
+      "placeholder": "email@example.com",
+      "submit": "Subscribe"
+    },
+    "links": [
+      {
+        "text": "About Us",
+        "route": "/about"
+      },
+      {
+        "text": "Payment & Delivery",
+        "route": "/payment-delivery"
+      },
+      {
+        "text": "Reviews",
+        "route": "/reviews"
+      },
+      {
+        "text": "Contacts",
+        "route": "/contacts"
+      },
+      {
+        "text": "Careers",
+        "route": "/careers"
+      },
+      {
+        "text": "News",
+        "route": "/news"
+      },
+      {
+        "text": "Public Offer",
+        "route": "/public-offer"
+      },
+      {
+        "text": "Promotions",
+        "route": "/promotions"
+      }
+    ]
+  }
+}

@@ -1,0 +1,1 @@
+import{a as o}from"./chunk-3HT6ZPWY.js";import"./chunk-BJBK5PZY.js";import"./chunk-EFYAV52P.js";import"./chunk-K2246KKC.js";import"./chunk-KRK6O2AZ.js";import"./chunk-C6Q5SG76.js";var e=[{path:"",component:o}];export{e as routes};
