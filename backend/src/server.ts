@@ -2,6 +2,7 @@ import express from "express"
 import dotenv from 'dotenv';
 import cors from "cors"
 import router from './routes/index'
+import { startKeepAlive } from "./utils/keep-alive";
 dotenv.config();
 const app = express()
 const PORT = process.env.PORT || 5000
@@ -24,4 +25,7 @@ app.use('/api', router) // Один вызов для всех роутов, с�
 
 app.listen(PORT, () => {
   console.log('Server is run on port http://localhost:' + PORT)
+
+  // === Запуск keep-alive ===
+  startKeepAlive();
 })

@@ -1,5 +1,3 @@
-@let dbUser = (dbUser$ | async);
-
 <mat-card 
   class="avatar-popup green"
   appearance="outlined"
@@ -17,7 +15,7 @@
   </mat-card-header>
   
   <mat-card-content class="avatar-popup__content">
-    @if(dbUser?.avatarId) {
+    @if(dbUser().avatarId) {
       <img 
         draggable="false"
         [src]="imgUrl()"

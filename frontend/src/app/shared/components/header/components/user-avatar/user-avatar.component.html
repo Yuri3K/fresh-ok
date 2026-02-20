@@ -1,9 +1,10 @@
 @let authUser = (authUser$ | async);
 @let tooltipContent = (tooltipContent$ | async);
 @let dbUser = (dbUser$ | async);
+@let imgUrl = (imgUrl$ | async);
 
 <div class="user-avatar">
-  @if (authUser) {
+  @if (authUser && dbUser) {
     <!-- #trigger="cdkOverlayOrigin" → сохраняет в переменной trigger ссылку на CdkOverlayOrigin (объект с координатами кнопки). Его задача — предоставить ссылку на элемент (Origin), относительно которого будет позиционироваться overlay. -->
     <button
       class="user-avatar__btn"
@@ -20,7 +21,7 @@
       <div class="user-avatar__bg">
         @if(dbUser?.avatarId) {
           <img 
-            [src]="mediaUrl + avatarMeta + dbUser?.avatarId" 
+            [src]="imgUrl" 
             [alt]="'header.user.alt' | translate"
           >
         }@else if(authUser.photoURL) {
@@ -60,6 +61,8 @@
     >
       <app-avatar-popup 
         [authUser]="authUser"
+        [dbUser]="dbUser"
+        [imgUrl]="imgUrl"
         (closePopup)="closePopup()"
         (logout)="logout()"
       />
