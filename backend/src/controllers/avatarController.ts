@@ -3,7 +3,7 @@ import { AuthRequest } from '../middleware/verify-token'
 import { Response } from 'express'
 import cloudinary from '../config/cloudinary'
 import { Readable } from 'stream'
-import { db } from '../config/firebaseAdmin'
+import { admin, db } from '../config/firebaseAdmin'
 
 // Инициализация multer. Эта библиотека работает с файлами, 
 // которые были переданы на бэк с формы (input type="file") 
@@ -41,10 +41,18 @@ export async function uploadUserAvatar(
   const uploadStream = cloudinary.uploader.upload_stream({
     folder: 'avatars', // Папка в Cloudinary (создастся, если не существует)
     type: 'upload', // Изображение будет ПУБЛИЧНЫМ
-    resource_type: 'auto', // Определить тип файла автоматически
-    public_id: public_id_for_user, 
-    overwrite: true // Перезаписываем старый аватар
+    resource_type: 'image', // Определить тип файла автоматически
+    public_id: public_id_for_user, // устанавливаем ID для аватарки в cloudinary
+    overwrite: true, // Перезаписываем старый аватар
+    transformation: [{  //оптимизация картинки
+      width: 512,
+      height: 512,
+      crop: 'fill',
+      quality: 'auto',
+      fetch_format: 'auto'
+    }]
   },
+
     async (error, result) => {
       if (error) {
         console.error('Cloudinary upload error:', error);
@@ -85,3 +93,56 @@ export async function uploadUserAvatar(
   // 3. Запись буфера файла в поток Cloudinary
   Readable.from(req.file.buffer).pipe(uploadStream)
 }
+
+export async function deleteAvatar(req: AuthRequest, res: Response) {
+  try {
+    if (!req.user) {
+      // Пользователь не аутентифицирован
+      return res.status(401).json({ message: 'User unauthorized' })
+    }
+
+    const publicId = req.params.publicId
+
+    if (!publicId) {
+      // publicId не передан
+      return res.status(400).json({ message: 'No publicId provided' })
+    }
+
+    const result = await cloudinary.uploader.destroy(`avatars/${publicId}`, { resource_type: 'image' });
+
+    if (result.result !== 'ok') {
+      return res.status(400).json({
+        success: false,
+        message: 'Failed to delete image',
+        result,
+      });
+    }
+
+    // 2. Создаём batch для Firestore
+    const batch = db.batch();
+    const userDocRef = db.collection('users').doc(req.user.uid);
+
+    batch.update(userDocRef, {
+      avatarId: admin.firestore.FieldValue.delete(),
+      avatarVersion: admin.firestore.FieldValue.delete(),
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
+
+    await batch.commit();
+
+    return res.json({
+      success: true,
+      message: 'Image deleted successfully and user profile updated',
+      result
+    });
+
+  } catch (err) {
+    console.error('[deleteAvatar] error', err);
+    res.status(500).json({
+      success: false,
+      message: 'Server error while deleting avatar',
+      err
+    });
+  }
+}
+

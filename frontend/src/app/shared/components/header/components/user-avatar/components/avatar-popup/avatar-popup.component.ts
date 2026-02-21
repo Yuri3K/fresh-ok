@@ -27,7 +27,7 @@ import { DbUser } from '@shared/models';
 export class AvatarPopupComponent {
   authUser = input.required<User>()
   dbUser = input.required<DbUser>()
-  imgUrl = input.required<string | null>()
+  avatarUrl = input.required<string | null>()
 
   closePopup = output<void>()
   logout = output<void>()
@@ -51,13 +51,5 @@ export class AvatarPopupComponent {
       this.closePopup.emit()
     }
   }
-
-  // protected imgUrl = computed(() => {
-  //   if(this.dbUser()?.avatarVersion && this.dbUser()?.avatarId) {
-  //     return `${this.mediaUrl}v${this.dbUser()!.avatarVersion}/${this.dbUser()!.avatarId}`
-  //   } else {
-  //     return this.mediaUrl + this.dbUser()!.avatarId
-  //   }
-  // })
 }
 

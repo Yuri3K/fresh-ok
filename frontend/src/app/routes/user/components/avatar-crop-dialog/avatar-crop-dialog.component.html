@@ -29,7 +29,7 @@
         [btnDisabled]="!imageChangedEvent"
       />
       <app-btn-raised 
-        mat-dialog-close
+        (click)="dialogRef.close()"
         btnText="Cancel"
       />
     </mat-dialog-actions>

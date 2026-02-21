@@ -25,8 +25,8 @@ export class AvatarCropDialogComponent {
 
   // private readonly sanitizer = inject(DomSanitizer)
   private readonly data = inject(MAT_DIALOG_DATA)
-  private readonly dialogRef = inject(MatDialogRef)
-  transform: ImageTransform = {scale : 1}
+  protected readonly dialogRef = inject(MatDialogRef)
+  transform: ImageTransform = { scale: 1 }
 
   ngOnInit() {
     this.imageChangedEvent = this.data.event
@@ -39,7 +39,7 @@ export class AvatarCropDialogComponent {
   onWheel(event: WheelEvent) {
     console.log("WHEEL")
     event.preventDefault()
-    const delta = event.deltaY > 0 ? -0.05 : 0.05;
+    const delta = event.deltaY > 0 ? -0.05 : 0.05; // увеличить/уменьшить изображение
     console.log("🔸 delta:", delta)
     this.transform = {
       ...this.transform,
@@ -48,15 +48,32 @@ export class AvatarCropDialogComponent {
     console.log("🔸 this.transform:", this.transform)
   }
 
-  imageCropped(event: ImageCroppedEvent) {
-    this.croppedEvent = event
-  }
+  // Срабатывает тогда, когда бпблиотека 'ngx-image-cropper'
+  // загрузила картинку 
   imageLoaded(image: LoadedImage) {
     // show cropper
+    console.log("IMAGE LOADED!!!", image)
   }
+
+  // Срабатывает тогда, когда бпблиотека 'ngx-image-cropper'
+  // готова работать с картинкой
   cropperReady() {
     // cropper ready
+
+    // Срабатывает, когда 
+    console.log("IMAGE READY")
   }
+
+  // Срабатывает, когда выполняются действия с
+  // подсвечиваемой зоной обрезки картинки 
+  // (увеличение/уменьшение круга, сдвиг круга)
+  imageCropped(event: ImageCroppedEvent) {
+    this.croppedEvent = event
+    console.log("IMAGE CROPPED")
+  }
+
+  // Сработает тогда, когда у библиотеки 'ngx-image-cropper'
+  // не получится выполнить загрузку картинки
   loadImageFailed() {
     // show message
   }

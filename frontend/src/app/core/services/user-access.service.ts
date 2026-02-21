@@ -2,18 +2,28 @@ import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { ApiService } from './api.service';
 import { DbUser } from '@shared/models';
+import { AvatarImageService } from './avatar-image.service';
+import { MEDIA_URL } from '@core/urls';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserAccessService {
   private readonly apiService = inject(ApiService)
+  private readonly imageService = inject(AvatarImageService)
   private readonly dbUserSubject = new BehaviorSubject<DbUser | null | undefined>(undefined)
 
   readonly dbUser$ = this.dbUserSubject.asObservable()
 
   setDbUser(user: DbUser | null) {
+    console.log("🔸 user:", user)
     this.dbUserSubject.next(user)
+    if(user && user.avatarId && user.avatarVersion) {
+      const url = `${MEDIA_URL}v${user.avatarVersion}/${user.avatarId}`
+      this.imageService.setAvatarUrl(url)
+    } else {
+      this.imageService.setAvatarUrl('')
+    }
   }
 
   fetchDbUser(): Observable<DbUser> {

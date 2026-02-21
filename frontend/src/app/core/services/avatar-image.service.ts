@@ -1,12 +1,23 @@
-import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { inject, Injectable, signal } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { ApiService } from './api.service';
+
+export interface DeleteAvatarResponse {
+  success: boolean,
+  message: string,
+  result?: any,
+  error?: any
+}
 
 @Injectable({
   providedIn: 'root'
 })
-export class ImageService {
+export class AvatarImageService {
   private apiService = inject(ApiService)
+  private _avatarUrl = signal('')
+
+  avatarUrl = this._avatarUrl.asReadonly()
+
 
   /**
    * Отправляет файл изображения на сервер для загрузки.
@@ -29,5 +40,18 @@ export class ImageService {
     formData.append('image', file, file.name);
 
     return this.apiService.post('/avatar', formData);
+  }
+
+  setAvatarUrl(url: string) {
+    this._avatarUrl.set(url)
+  }
+
+  deleteAvatar(): Observable<DeleteAvatarResponse | null> {
+    if(!this._avatarUrl()) return of(null)
+
+    const public_id = this._avatarUrl().split('/').slice(-1)[0]
+
+    return this.apiService.delete<DeleteAvatarResponse>(`/avatar/remove/${public_id}`)
+
   }
 }

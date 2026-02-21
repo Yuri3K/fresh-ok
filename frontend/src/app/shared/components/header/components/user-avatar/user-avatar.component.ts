@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   inject,
   ViewEncapsulation,
 } from '@angular/core';
@@ -10,11 +11,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AsyncPipe } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { filter, map, of } from 'rxjs';
+import { filter, map } from 'rxjs';
 import { AvatarPopupComponent } from './components/avatar-popup/avatar-popup.component';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { UserAccessService } from '../../../../../core/services/user-access.service';
 import { MEDIA_URL } from '../../../../../core/urls';
+import { AvatarImageService } from '@core/services/avatar-image.service';
 
 @Component({
   selector: 'app-user-avatar',
@@ -34,6 +36,7 @@ import { MEDIA_URL } from '../../../../../core/urls';
 })
 export class UserAvatarComponent {
   private readonly authService = inject(AuthService);
+  private readonly imageService = inject(AvatarImageService)
   readonly dbUser$ = inject(UserAccessService).dbUser$;
 
   readonly authUser$ = this.authService.user$;
@@ -49,15 +52,17 @@ export class UserAvatarComponent {
 
   isPopupOpen = false;
 
-  protected imgUrl$ = this.dbUser$.pipe(
-    map((dbUser) => {
-      if (dbUser?.avatarVersion && dbUser?.avatarId) {
-        return `${this.mediaUrl}v${dbUser.avatarVersion}/${dbUser.avatarId}`;
-      } else if (dbUser?.avatarId) {
-        return this.mediaUrl + dbUser.avatarId;
-      } else return null;
-    }),
-  );
+  // protected imgUrl$ = this.dbUser$.pipe(
+  //   map((dbUser) => {
+  //     if (dbUser?.avatarVersion && dbUser?.avatarId) {
+  //       return `${this.mediaUrl}v${dbUser.avatarVersion}/${dbUser.avatarId}`;
+  //     } else if (dbUser?.avatarId) {
+  //       return this.mediaUrl + dbUser.avatarId;
+  //     } else return null;
+  //   }),
+  // );
+
+  protected avatarUrl = computed(() => this.imageService.avatarUrl() ?? null) 
 
   togglePopup() {
     this.isPopupOpen = !this.isPopupOpen;

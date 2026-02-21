@@ -1,18 +1,43 @@
-<div style="padding: 20px; border: 1px solid #ccc; max-width: 400px;">
-  <h2>Загрузка Аватарки (Тест)</h2>
+<div class="avatar-upload">
+  <input 
+    #fileSelector
+    class="avatar-upload__input"
+    type="file" 
+    (change)="onFileSelected($event)" 
+    accept="image/*" 
+  />
 
-  <input type="file" (change)="onFileSelected($event)" accept="image/*" />
-  
-  <!-- <button 
-    (click)="onUpload()" 
-    [disabled]="!selectedFile || isUploading"
-    style="margin-left: 10px;"
-  >
-    {{ isUploading ? 'Загрузка...' : 'Загрузить Аватар' }}
-  </button> -->
+  <div class="avatar-upload__img">
+    @if(isUploading()) {
+      <app-loader />
+    } @else {
+      @if(imageService.avatarUrl()) {
+        <img 
+          class="avatar-upload__img"
+          [src]="imageService.avatarUrl()" 
+          alt="Avatar"
+          width="250"
+          height="250"
+        >
+      } @else {
+        <mat-icon>person</mat-icon>
+      }
+    } 
+  </div> 
 
-  <div *ngIf="message" style="margin-top: 15px;">
-    <p [style.color]="isError ? 'red' : 'green'">{{ message }}</p>
-    <p *ngIf="uploadedUrl">URL: <a [href]="uploadedUrl" target="_blank">{{ uploadedUrl }}</a></p>
+  <div class="avatar-upload__actions">
+    <app-btn-icon 
+      class="avatar-upload__btn avatar-upload__btn--edit"
+      [tooltipText]="'common.edit' | translate"
+      iconName="edit"
+      (click)="clickInput()"
+    />
+    <app-btn-icon 
+      class="avatar-upload__btn avatar-upload__btn--delete"
+      [tooltipText]="'common.delete' | translate"
+      iconName="delete"
+      (click)="deleteAvatar()"
+    />
   </div>
+
 </div>
