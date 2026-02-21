@@ -28,6 +28,8 @@
     "logout": "Log Out",
     "login": "Log In",
     "register": "Register",
+    "save": "Save",
+    "submit": "Submit",
     "show-more": "Show more",
     "learn-more": "Learn more",
     "delete": "Delete",
@@ -371,6 +373,19 @@
           ]
         }
       ]
+    }
+  },
+  "profile": {
+    "title": "My Profile",
+    "edit-date": "Enter the date",
+    "no-file": {
+      "title": "No file selected",
+      "message": "Please select a file to upload.",
+      "action": "Select file"
+    },
+    "delete-avatar-dialog": {
+      "title": "Delete Avatar",
+      "question": "Are you sure you want to delete your avatar?"
     }
   },
   "favs-page": {

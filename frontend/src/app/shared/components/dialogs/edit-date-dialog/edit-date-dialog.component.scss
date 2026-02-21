@@ -1,0 +1,11 @@
+ @use '@angular/material' as mat;
+
+  .edit-date {
+    mat-form-field {
+      width: 100%;
+    }
+
+    @include mat.dialog-overrides(( 
+      container-min-width: '300px',
+    ));
+  }

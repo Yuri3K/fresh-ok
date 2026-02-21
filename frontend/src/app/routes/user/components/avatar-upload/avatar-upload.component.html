@@ -32,12 +32,13 @@
       iconName="edit"
       (click)="clickInput()"
     />
-    <app-btn-icon 
-      class="avatar-upload__btn avatar-upload__btn--delete"
-      [tooltipText]="'common.delete' | translate"
-      iconName="delete"
-      (click)="deleteAvatar()"
-    />
+      <app-btn-icon 
+        class="avatar-upload__btn avatar-upload__btn--delete"
+        [tooltipText]="'common.delete' | translate"
+        iconName="delete"
+        [btnDisabled]="!imageService.avatarUrl()"
+        (click)="deleteAvatar()"
+      />
   </div>
 
 </div>

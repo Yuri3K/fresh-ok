@@ -1,6 +1,10 @@
 :host {
   &.disabled {
     pointer-events: none;
+    opacity: 0.5;
+    mat-icon {
+      color: var(--mat-sys-outline);
+    }
   }
   button {
     padding: 0;

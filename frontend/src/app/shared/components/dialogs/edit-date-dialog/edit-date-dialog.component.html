@@ -1,0 +1,47 @@
+<h2 mat-dialog-title>
+  {{'profile.edit-date' | translate}}
+</h2>
+<mat-dialog-content align="center" >
+  <mat-form-field appearance="outline" class="masked-field">
+    <input 
+      matInput 
+      #inpurRef 
+      autofocus
+      placeholder="MM / DD / YY"
+      [mask]="'00 / 00 / 00'"
+      [dropSpecialCharacters]="false"
+      [showMaskTyped]="true"
+      [placeHolderCharacter]="'_'"
+      [formControl]="inputControl"
+      (input)="onInput()"
+      (keydown)="onKeyDown($event)"
+      (keydown.enter)="applyDate()" 
+    />
+
+
+
+    <!-- <mat-hint>
+      {{'add-asset.dialog-edit-due-date.hint' | translate}}
+    </mat-hint> -->
+    <!-- <mat-error *ngIf="inputControl.hasError('invalidDate') && inputControl.touched">
+      {{'add-asset.dialog-edit-due-date.invalid-date' | translate}}
+    </mat-error> -->
+    <!-- <mat-error *ngIf="inputControl.hasError('pastDate') && inputControl.touched">
+      {{'add-asset.dialog-edit-due-date.past-date' | translate}}
+    </mat-error> -->
+
+
+
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <app-btn-flat 
+    [btnText]="'common.cancel' | translate" 
+    (click)="dialogRef.close()" 
+  />
+  <app-btn-flat 
+    [btnText]="'common.save' | translate" 
+    [btnDisabled]="!inputControl.valid" 
+    (click)="applyDate()"
+  />
+</mat-dialog-actions>

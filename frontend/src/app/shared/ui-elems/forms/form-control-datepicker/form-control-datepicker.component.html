@@ -1,0 +1,17 @@
+@if(title()) {
+  <app-h6-title 
+    [text]="title()"
+  />
+}
+
+<app-btn-icon 
+  iconName="calendar_month"
+  (click)="openDatepicker()"
+  [tooltipText]="'profile.birthday-tooltip' | translate"
+/>
+
+@if(datepickerControl().value) {
+  <span>{{datepickerControl().value}}</span>
+} @else {
+  <span>{{'profile.not-set' | translate}}</span>
+}

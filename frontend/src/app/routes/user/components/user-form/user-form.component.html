@@ -1,0 +1,24 @@
+<form 
+  class="user-form"
+  [formGroup]="userForm"
+  (ngSubmit)="onSubmit()"
+>
+  <app-form-control-name 
+    [nameControl]="nameControl"
+    [title]="'profile.name' | translate"
+    [hint]="'common.forms.name.nick-hint' | translate"
+    [placeholder]="'common.forms.name.nick-placeholder' | translate"
+    suffixIcon="person"
+  />
+  <app-form-control-datepicker
+    [datepickerControl]="birthdayControl"
+    [title]="'profile.birthday' | translate"
+  />
+
+
+  <app-btn-flat 
+    [btnText]="'common.save' | translate"
+    type="submit"
+    [btnDisabled]="userForm.invalid || userForm.pristine"
+  />
+</form>

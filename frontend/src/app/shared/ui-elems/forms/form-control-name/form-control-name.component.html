@@ -1,7 +1,13 @@
+@if(title()) {
+  <app-h6-title 
+    [text]="title()"
+  />
+}
 <mat-form-field
   appearance="outline"
   class="form-control"
 >
+
   @if(label()) {
     <mat-label>{{label()}}</mat-label>
   }

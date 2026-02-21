@@ -16,7 +16,6 @@ export class UserAccessService {
   readonly dbUser$ = this.dbUserSubject.asObservable()
 
   setDbUser(user: DbUser | null) {
-    console.log("🔸 user:", user)
     this.dbUserSubject.next(user)
     if(user && user.avatarId && user.avatarVersion) {
       const url = `${MEDIA_URL}v${user.avatarVersion}/${user.avatarId}`

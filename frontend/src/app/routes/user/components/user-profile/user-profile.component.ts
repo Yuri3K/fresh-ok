@@ -2,14 +2,15 @@ import { ChangeDetectionStrategy, Component, effect, inject } from '@angular/cor
 import { AvatarUploadComponent } from '../avatar-upload/avatar-upload.component';
 import { Breadcrumb, BreadcrumbsService } from '@shared/components/breadcrumbs/breadcrumbs.service';
 import { BreadcrumbsComponent } from '@shared/components/breadcrumbs/breadcrumbs.component';
+import { UserFormComponent } from "../user-form/user-form.component";
 
 @Component({
   selector: 'app-user-profile',
   imports: [
     BreadcrumbsComponent,
     AvatarUploadComponent,
-
-  ],
+    UserFormComponent
+],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
