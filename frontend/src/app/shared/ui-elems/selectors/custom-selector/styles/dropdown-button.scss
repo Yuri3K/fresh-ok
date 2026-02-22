@@ -1,0 +1,40 @@
+.custom-dr__trigger-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background-color: var(--mat-sys-neutral10);
+  padding: 4px 5px 4px 10px;
+  border: 1px solid var(--mat-sys-inverse-on-surface);
+  border-radius: 10px;
+  cursor: pointer;
+  min-width: 120px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: var(--mat-sys-neutral-variant20);
+  }
+
+  .custom-dr__selected {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+
+    span {
+      font-family: "Open Sans", Arial, Helvetica, sans-serif;
+      color: var(--mat-sys-primary-fixed);
+      font-size: 1.4rem;
+      font-weight: 500;
+    }
+  }
+
+  mat-icon {
+    color: var(--mat-sys-primary-fixed-dim);
+  }
+
+  .carret {
+    transform: rotate(0);
+    transition: transform 0.3s ease;
+  }
+}

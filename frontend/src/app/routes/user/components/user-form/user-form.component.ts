@@ -6,6 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { BtnFlatComponent } from '@shared/ui-elems/buttons/btn-flat/btn-flat.component';
 import { FormControlNameComponent } from "@shared/ui-elems/forms/form-control-name/form-control-name.component";
 import { FormControlDatepickerComponent } from "@shared/ui-elems/forms/form-control-datepicker/form-control-datepicker.component";
+import { CustomSelectorComponent } from "@shared/ui-elems/selectors/custom-selector/custom-selector.component";
 
 @Component({
   selector: 'app-user-form',
@@ -14,7 +15,8 @@ import { FormControlDatepickerComponent } from "@shared/ui-elems/forms/form-cont
     BtnFlatComponent,
     TranslateModule,
     FormControlNameComponent,
-    FormControlDatepickerComponent
+    FormControlDatepickerComponent,
+    CustomSelectorComponent
 ],
   templateUrl: './user-form.component.html',
   styleUrl: './user-form.component.scss',
@@ -41,7 +43,7 @@ export class UserFormComponent {
         this.userForm = this._fb.group({
           name: [user.displayName, [Validators.required]],
           birthday: [user.birthday ?? null],
-          gender: [user.gender ?? null],
+          gender: [user.gender ?? 'notset'],
           preferLang: [user.lang ?? null],
           phone: [user.phone ?? null],
           country: [user.country ?? null],
@@ -60,6 +62,10 @@ export class UserFormComponent {
 
   get birthdayControl(): FormControl<number | null> {
     return this.userForm.get('birthday') as FormControl<number | null>
+  }
+
+  get genderControl(): FormControl<string> {
+    return this.userForm.get('gender') as FormControl<string>
   }
 
   protected onSubmit() {

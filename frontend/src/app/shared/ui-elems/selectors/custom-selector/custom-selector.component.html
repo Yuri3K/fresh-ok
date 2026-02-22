@@ -1,1 +1,37 @@
-<p>common-selector works!</p>
+<!-- @if(translations()) { -->
+  <div class="custom-dr" appOpenMenu>
+    <button 
+      class="custom-dr__trigger-btn"
+      [attr.aria-label]="selectorData().ariaLabel || ''"
+      type="button"
+    >
+      <div class="custom-dr__selected">
+        @if(selectorData().icon) {
+          <mat-icon>{{selectorData().icon}}</mat-icon>
+        }
+        <span>{{ selectorData().name }}</span>
+      </div>
+      <mat-icon class="carret">arrow_drop_down</mat-icon>
+    </button>
+  
+    <div class="custom-dr__body dropdown-body">
+      <div class="dropdown-content">
+        <ul class="custom-dr__list dropdown-list">
+          @for(option of selectorData().options; track $index) {
+            <li>
+              <button 
+                (click)="selectOption(option.item)"
+              >
+                @if(option.iconName) {
+                  <mat-icon>{{option.iconName}}</mat-icon>
+                }
+                <span>{{ option.item }}</span>
+              </button>
+            </li>
+          }
+        </ul>
+      </div>
+  
+    </div>
+  </div>
+<!-- } -->

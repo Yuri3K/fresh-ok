@@ -387,11 +387,7 @@
   },
   "profile": {
     "title": "Мой профиль",
-    "name": "Ваше имя*",
-    "birthday": {
-      "title": "День рождения"
-    },
-    "no-file": {
+    "no-file-dialof": {
       "title": "Файл не выбран",
       "message": "Выберите файл для загрузки.",
       "action": "Выбрать файл"
@@ -399,6 +395,29 @@
     "delete-avatar-dialog": {
       "title": "Удалить аватар",
       "question": "Вы действительно хотите удалить свой аватар?"
+    },
+    "name": "Ваше имя*",
+    "birthday": {
+      "title": "День рождения"
+    },
+    "gender": {
+      "title": "Ваш пол",
+      "icon": "",
+      "ariaLabel": "Выберите ваш пол",
+      "options": [
+        {
+          "iconName": "",
+          "item": "Не выбрано"
+        },
+        {
+          "iconName": "man",
+          "item": "Мужской"
+        },
+        {
+          "iconName": "woman",
+          "item": "Женский"
+        }
+      ]
     }
   },
   "favs-page": {

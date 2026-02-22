@@ -16,10 +16,13 @@
     [maxDate]="maxDate"
   />
 
-
   <app-btn-flat 
     [btnText]="'common.save' | translate"
     type="submit"
     [btnDisabled]="userForm.invalid || userForm.pristine"
+  />
+
+  <app-custom-selector 
+    pathData="profile.gender"
   />
 </form>

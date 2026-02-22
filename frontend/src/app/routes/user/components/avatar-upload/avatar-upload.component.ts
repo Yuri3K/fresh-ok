@@ -73,7 +73,7 @@ export class AvatarUploadComponent {
         exitAnimationDuration: '150ms',
         data: {
           translations: this.translateService.instant(
-            'profile.no-file',
+            'profile.no-file-dialog',
           ),
         },
       })

@@ -1,4 +1,5 @@
-type Gender = 'male' | 'femail'
+type Gender = 'not-set' | 'male' | 'femail'
+
 export interface DbUser {
   uid: string
   email: string
