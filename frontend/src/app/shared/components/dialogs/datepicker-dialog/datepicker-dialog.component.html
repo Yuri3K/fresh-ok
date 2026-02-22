@@ -1,29 +1,29 @@
-<h2 mat-calendar-title>
-  <div class="calendar-edit">
-    <app-btn-icon 
-      iconName="edit" 
-      (click)="openDialogEditDate()"
-    />
-  </div>
-</h2>
-<mat-dialog-content>
-  <!-- <mat-card> -->
+<div class="datepicker">
+  <mat-dialog-content>
     <mat-calendar
+      #calendar
       [(selected)]="selected"
-      [maxDate]="maxDate"
+      [maxDate]="maxDate ?? null"
+      [minDate]="minDate ?? null"
     >
     </mat-calendar>
-  <!-- </mat-card> -->
-</mat-dialog-content>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+    <app-mini-fab-btn 
+      iconName="edit" 
+      (click)="openDialogEditDate()"
+      [tooltipText]="'common.forms.datePicker.edit-date' | translate"
+    />
+    <app-btn-raised 
+      [btnText]="'common.close' | translate"
+      (click)="dialogRef.close()"
+    />
+    <app-btn-raised 
+      [btnText]="'common.apply' | translate"
+      [btnDisabled]="!selected()" 
+      (click)="saveDate()"
+    />
+  </mat-dialog-actions>
+</div>
 
-<mat-dialog-actions>
-  <app-btn-raised 
-    [btnText]="'common.close' | translate"
-    (click)="dialogRef.close()"
-  />
-  <app-btn-raised 
-    [btnText]="'common.save' | translate"
-    [btnDisabled]="!selected()" 
-    (click)="saveDate()"
-  />
-</mat-dialog-actions>

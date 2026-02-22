@@ -1,11 +1,14 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, inject, viewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, inject, viewChild, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule, MatHint } from '@angular/material/form-field';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { BtnFlatComponent } from "@shared/ui-elems/buttons/btn-flat/btn-flat.component";
-import { maskedDateValidator } from './date.validator';
+import { MatInputModule } from '@angular/material/input';
+import { maxDateValidator } from '@core/validators/max-date.validator';
+import { H3TitleComponent } from "@shared/ui-elems/typography/h3-title/h3-title.component";
+import { BtnIconComponent } from "@shared/ui-elems/buttons/btn-icon/btn-icon.component";
 
 @Component({
   selector: 'app-edit-date-dialog',
@@ -17,19 +20,24 @@ import { maskedDateValidator } from './date.validator';
     TranslateModule,
     MatHint,
     BtnFlatComponent,
-    NgxMaskDirective
-  ],
+    NgxMaskDirective,
+    MatInputModule,
+    H3TitleComponent,
+    BtnIconComponent
+],
   templateUrl: './edit-date-dialog.component.html',
   styleUrl: './edit-date-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   providers: [provideNgxMask()],
 })
+
 export class EditDateDialogComponent implements AfterViewInit {
   protected dialogRef = inject(MatDialogRef<EditDateDialogComponent>)
 
-  inputRef = viewChild.required<ElementRef<HTMLInputElement>>('inputRef')
+  private inputRef = viewChild.required<ElementRef<HTMLInputElement>>('inputRef')
 
-  inputControl = new FormControl('', [Validators.required, maskedDateValidator()])
+  protected inputControl = new FormControl('', [Validators.required, maxDateValidator()])
 
   /** Stores the last pressed key to determine cursor behavior */
   lastKey: string | null = null;
@@ -40,7 +48,8 @@ export class EditDateDialogComponent implements AfterViewInit {
       const input = this.inputRef().nativeElement;
       input.focus();
       input.setSelectionRange(0, 0);
-    });
+    }, 200); // задержка нужна, потому что для диалога установлена
+    // анимация открытиея 150ms. Делаем еще 50ms запас
   }
 
   /**

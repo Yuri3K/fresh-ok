@@ -1,7 +1,17 @@
+.crop {
+  padding-top: 24px;
+  border: 1px solid var(--mat-sys-primary);
+  border-radius: 28px;
+}
+
 .crop__area {
   max-width: 500px;
   max-height: 500px;
   display: inline-flex;
+}
+
+app-h2-title{
+  text-align: center;
 }
 
 image-cropper {

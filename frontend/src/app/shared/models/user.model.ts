@@ -8,7 +8,7 @@ export interface DbUser {
   permissions: string[]
   avatarId?: string
   avatarVersion?: number
-  birthday?: string
+  birthday?: number
   gender?: Gender
   lang?: string
   phone?: string

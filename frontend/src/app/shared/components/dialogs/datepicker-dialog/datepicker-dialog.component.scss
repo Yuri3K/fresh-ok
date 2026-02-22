@@ -1,0 +1,13 @@
+.datepicker{
+  border: 1px solid var(--mat-sys-primary);
+  border-radius: 28px;
+  
+  app-mini-fab-btn{
+    flex: 1;
+  }
+  
+  mat-dialog-actions{
+    --mat-protected-button-horizontal-padding: 20px;
+    gap: 6px;
+  }
+}

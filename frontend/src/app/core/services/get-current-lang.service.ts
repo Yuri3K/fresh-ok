@@ -15,9 +15,15 @@ export class GetCurrentLangService {
 			filter((lang): lang is Lang => !!lang),
 			map(lang => lang.browserLang)
 		),
-    {
-      requireSync: true,
-    }
+    {requireSync: true}
+  )
+
+  currentLocale = toSignal(this.langsService.currentLang$
+    .pipe(
+			filter((lang): lang is Lang => !!lang),
+			map(lang => lang.locale)
+		),
+    {requireSync: true}
   )
 
 }

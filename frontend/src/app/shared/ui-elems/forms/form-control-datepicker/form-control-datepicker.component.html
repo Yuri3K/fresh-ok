@@ -7,11 +7,11 @@
 <app-btn-icon 
   iconName="calendar_month"
   (click)="openDatepicker()"
-  [tooltipText]="'profile.birthday-tooltip' | translate"
+  [tooltipText]="'common.forms.datePicker.tooltip' | translate"
 />
 
-@if(datepickerControl().value) {
-  <span>{{datepickerControl().value}}</span>
+@if(birthday()) {
+  <span>{{birthday()}}</span>
 } @else {
-  <span>{{'profile.not-set' | translate}}</span>
+  <span>{{'common.forms.not-set' | translate}}</span>
 }

@@ -4,5 +4,6 @@ export interface Lang {
   id: string;
   name: string;        // e.g. "en-US", "ru-RU"
   browserLang: LangCode; // e.g. "en", "ru",
-  order: number
+  order: number;
+  locale: string; // e.g. "en-US", "ru-RU", "uk-UA"
 }

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, effect, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormControl, FormControlName } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { UserAccessService } from '@core/services/user-access.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { BtnFlatComponent } from '@shared/ui-elems/buttons/btn-flat/btn-flat.component';
@@ -31,6 +31,7 @@ export class UserFormComponent {
   )
 
   userForm!: FormGroup
+  maxDate = new Date(Date.now())
 
   constructor() {
     effect(() => {
@@ -57,8 +58,8 @@ export class UserFormComponent {
     return this.userForm.get('name') as FormControl<string>
   }
 
-  get birthdayControl(): FormControl<number> {
-    return this.userForm.get('birthday') as FormControl<number>
+  get birthdayControl(): FormControl<number | null> {
+    return this.userForm.get('birthday') as FormControl<number | null>
   }
 
   protected onSubmit() {
