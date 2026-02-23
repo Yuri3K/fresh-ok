@@ -30,7 +30,8 @@ export class OpenMenuDirective implements OnInit {
   // Методы управления меню
   // ---------------------------------------
 
-  private open() {
+  open() {
+    console.log("OPEN CALLED")
     if (!this.dropdownBody || !this.dropdownList) return;
 
     // Получаем размеры и позицию
@@ -53,7 +54,8 @@ export class OpenMenuDirective implements OnInit {
     this.isOpen = true;
   }
 
-  private close() {
+  close() {
+    console.log("CLOSE CALLED")
     if (!this.dropdownBody) return;
 
     this.renderer.setStyle(this.dropdownBody, "max-height", "0px");

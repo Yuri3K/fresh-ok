@@ -29,6 +29,7 @@
     "login": "Увійти",
     "register": "Реєстрація",
     "save": "Зберегти",
+    "apply": "Застосувати",
     "submit": "Вiдправити",
     "show-more": "Показати ще",
     "learn-more": "Детальнiше",
@@ -43,6 +44,7 @@
     "total": "Всього: ",
     "back-to-homepage": "Повернуться на домашню сторiнку",
     "forms": {
+      "not-set": "не встановлено",
       "email": {
         "enter-email": "Введіть свою електронну пошту",
         "email-hint": "Підказка: example@gmail.com",
@@ -67,6 +69,14 @@
       },
       "textarea": {
         "textarea-error-required": "Будь-ласка, напишіть відгук"
+      },
+      "datePicker": {
+        "hint": "MM / DD / YY",
+        "invalid-date": "Неправильна дата. Має бути MM / DD / YY",
+        "future-date": "Дата має бути сьогодні або в минулому",
+        "past-date": "Дата має бути сьогодні або в майбутньому",
+        "tooltip": "Вибрати дату",
+        "edit-date": "Ввести дату"
       }
     }
   },
@@ -377,15 +387,66 @@
   },
   "profile": {
     "title": "Мій профіль",
-    "edit-date": "Ввести дату",
-    "no-file": {
+    "no-file-dialof": {
       "title": "Файл не вибрано",
-      "message": "Виберіть файл для завантаження.",
+      "message": "Будь ласка, виберіть файл для завантаження.",
       "action": "Вибрати файл"
     },
     "delete-avatar-dialog": {
       "title": "Видалити аватар",
       "question": "Ви дійсно хочете видалити свій аватар?"
+    },
+    "name": "Ваше ім’я*",
+    "birthday": {
+      "title": "День народження"
+    },
+    "gender": {
+      "title": "Ваша стать",
+      "icon": "",
+      "ariaLabel": "Виберіть вашу стать",
+      "options": [
+        {
+          "slug": "not-set",
+          "iconName": "no_accounts",
+          "item": "Не обрано"
+        },
+        {
+          "slug": "man",
+          "iconName": "man",
+          "item": "Чоловіча"
+        },
+        {
+          "slug": "woman",
+          "iconName": "woman",
+          "item": "Жіноча"
+        }
+      ]
+    },
+    "prefer-lang": {
+      "title": "Мова інтерфейсу",
+      "ariaLabel": "Виберіть мову інтерфейсу",
+      "options": [
+        {
+          "slug": "not-set",
+          "iconName": "",
+          "item": "Не обрано"
+        },
+        {
+          "slug": "en",
+          "iconName": "",
+          "item": "English"
+        },
+        {
+          "slug": "uk",
+          "iconName": "",
+          "item": "Українська"
+        },
+        {
+          "slug": "ru",
+          "iconName": "",
+          "item": "Російська"
+        }
+      ]
     }
   },
   "favs-page": {

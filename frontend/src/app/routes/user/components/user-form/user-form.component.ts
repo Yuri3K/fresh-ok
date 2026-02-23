@@ -7,6 +7,7 @@ import { BtnFlatComponent } from '@shared/ui-elems/buttons/btn-flat/btn-flat.com
 import { FormControlNameComponent } from "@shared/ui-elems/forms/form-control-name/form-control-name.component";
 import { FormControlDatepickerComponent } from "@shared/ui-elems/forms/form-control-datepicker/form-control-datepicker.component";
 import { CustomSelectorComponent } from "@shared/ui-elems/selectors/custom-selector/custom-selector.component";
+import { LangCode } from '@shared/models';
 
 @Component({
   selector: 'app-user-form',
@@ -32,6 +33,9 @@ export class UserFormComponent {
     { initialValue: undefined }
   )
 
+  readonly gender = signal<string>('not-set')
+  readonly preferLang = signal<string>('not-set')
+
   userForm!: FormGroup
   maxDate = new Date(Date.now())
 
@@ -43,8 +47,8 @@ export class UserFormComponent {
         this.userForm = this._fb.group({
           name: [user.displayName, [Validators.required]],
           birthday: [user.birthday ?? null],
-          gender: [user.gender ?? 'notset'],
-          preferLang: [user.lang ?? null],
+          gender: [user.gender ?? this.gender()],
+          preferLang: [user.lang ?? this.preferLang()],
           phone: [user.phone ?? null],
           country: [user.country ?? null],
           city: [user.city ?? null],
@@ -66,6 +70,14 @@ export class UserFormComponent {
 
   get genderControl(): FormControl<string> {
     return this.userForm.get('gender') as FormControl<string>
+  }
+
+  protected updateGender(value: string) {
+    this.gender.set(value)
+  }
+
+  protected updatePreferLang(lang: string) {
+    this.preferLang.set(lang)
   }
 
   protected onSubmit() {

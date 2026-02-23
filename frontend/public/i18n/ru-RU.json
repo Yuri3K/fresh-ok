@@ -402,20 +402,48 @@
     },
     "gender": {
       "title": "Ваш пол",
-      "icon": "",
       "ariaLabel": "Выберите ваш пол",
       "options": [
         {
-          "iconName": "",
+          "slug": "not-set",
+          "iconName": "no_accounts",
           "item": "Не выбрано"
         },
         {
+          "slug": "man",
           "iconName": "man",
           "item": "Мужской"
         },
         {
+          "slug": "woman",
           "iconName": "woman",
           "item": "Женский"
+        }
+      ]
+    },
+    "prefer-lang": {
+      "title": "Язык интерфейса",
+      "ariaLabel": "Выберите язык интерфейса",
+      "options": [
+        {
+          "slug": "not-set",
+          "iconName": "",
+          "item": "Не выбрано"
+        },
+        {
+          "slug": "en",
+          "iconName": "",
+          "item": "English"
+        },
+        {
+          "slug": "uk",
+          "iconName": "",
+          "item": "Українська"
+        },
+        {
+          "slug": "ru",
+          "iconName": "",
+          "item": "Русский"
         }
       ]
     }

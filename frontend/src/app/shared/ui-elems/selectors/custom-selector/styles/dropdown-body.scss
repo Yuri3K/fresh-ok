@@ -30,7 +30,7 @@
     color: var(--mat-sys-inverse-surface);
     cursor: pointer;
     padding: 5px 10px;
-    font-size: 1.4rem;
+    font-size: 1rem;
     line-height: 1.2;
     transition: background-color 0.3s ease;
 
@@ -42,6 +42,10 @@
 
     &:hover {
       background-color: var(--mat-sys-primary-container);
+    }
+
+    .mat-icon {
+      color: var(--mat-sys-inverse-surface);
     }
   }
 }

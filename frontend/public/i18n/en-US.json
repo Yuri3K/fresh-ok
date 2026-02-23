@@ -29,6 +29,7 @@
     "login": "Log In",
     "register": "Register",
     "save": "Save",
+    "apply": "Apply",
     "submit": "Submit",
     "show-more": "Show more",
     "learn-more": "Learn more",
@@ -43,6 +44,7 @@
     "total": "Total: ",
     "back-to-homepage": "Back to Homepage",
     "forms": {
+      "not-set": "not set",
       "email": {
         "enter-email": "Enter your email",
         "email-hint": "Hint: example@gmail.com",
@@ -67,6 +69,14 @@
       },
       "textarea": {
         "textarea-error-required": "Please write your review"
+      },
+      "datePicker": {
+        "hint": "MM / DD / YY",
+        "invalid-date": "Invalid date. Should be MM / DD / YY",
+        "future-date": "Date must be today or in the past",
+        "past-date": "Date must be today or in the future",
+        "tooltip": "Select date",
+        "edit-date": "Enter date"
       }
     }
   },
@@ -377,15 +387,65 @@
   },
   "profile": {
     "title": "My Profile",
-    "edit-date": "Enter the date",
-    "no-file": {
+    "no-file-dialof": {
       "title": "No file selected",
       "message": "Please select a file to upload.",
       "action": "Select file"
     },
     "delete-avatar-dialog": {
-      "title": "Delete Avatar",
+      "title": "Delete avatar",
       "question": "Are you sure you want to delete your avatar?"
+    },
+    "name": "Your name*",
+    "birthday": {
+      "title": "Birthday"
+    },
+    "gender": {
+      "title": "Your gender",
+      "ariaLabel": "Select your gender",
+      "options": [
+        {
+          "slug": "not-set",
+          "iconName": "no_accounts",
+          "item": "Not selected"
+        },
+        {
+          "slug": "man",
+          "iconName": "man",
+          "item": "Male"
+        },
+        {
+          "slug": "woman",
+          "iconName": "woman",
+          "item": "Female"
+        }
+      ]
+    },
+    "prefer-lang": {
+      "title": "Interface language",
+      "ariaLabel": "Select interface language",
+      "options": [
+        {
+          "slug": "not-set",
+          "iconName": "",
+          "item": "Not selected"
+        },
+        {
+          "slug": "en",
+          "iconName": "",
+          "item": "English"
+        },
+        {
+          "slug": "uk",
+          "iconName": "",
+          "item": "Ukrainian"
+        },
+        {
+          "slug": "ru",
+          "iconName": "",
+          "item": "Russian"
+        }
+      ]
     }
   },
   "favs-page": {

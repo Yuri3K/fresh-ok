@@ -16,13 +16,27 @@
     [maxDate]="maxDate"
   />
 
-  <app-btn-flat 
-    [btnText]="'common.save' | translate"
-    type="submit"
-    [btnDisabled]="userForm.invalid || userForm.pristine"
+  <app-custom-selector 
+    class="user-form__gender"
+    [currentOption]="gender()"
+    pathData="profile.gender"
+    (onOptionChanged)="updateGender($event)"
   />
 
   <app-custom-selector 
-    pathData="profile.gender"
+    class="user-form__prefer-lang"
+    [currentOption]="preferLang()"
+    pathData="profile.prefer-lang"
+    (onOptionChanged)="updatePreferLang($event)"
+  />
+
+
+
+
+
+    <app-btn-flat 
+    [btnText]="'common.save' | translate"
+    type="submit"
+    [btnDisabled]="userForm.invalid || userForm.pristine"
   />
 </form>

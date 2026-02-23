@@ -1,6 +1,11 @@
-// :host {
-//   margin-right: auto;
-// }
+:host {
+  &.no-radius {
+    button {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+}
 
 form {
   width: 100%;
