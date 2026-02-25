@@ -438,14 +438,32 @@
         {
           "slug": "uk",
           "iconName": "",
-          "item": "Ukrainian"
+          "item": "Українська"
         },
         {
           "slug": "ru",
           "iconName": "",
-          "item": "Russian"
+          "item": "Русский"
         }
       ]
+    },
+    "country": {
+      "title": "Country",
+      "label": "Enter your country",
+      "placeholder": "",
+      "suffixIcon": "public"
+    },
+    "city": {
+      "title": "City",
+      "label": "Enter your city",
+      "placeholder": "",
+      "suffixIcon": "location_city"
+    },
+    "address": {
+      "title": "Address",
+      "label": "Enter your address",
+      "placeholder": "",
+      "suffixIcon": "home"
     }
   },
   "favs-page": {

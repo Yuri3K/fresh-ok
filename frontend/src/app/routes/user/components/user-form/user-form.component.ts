@@ -8,6 +8,9 @@ import { FormControlNameComponent } from "@shared/ui-elems/forms/form-control-na
 import { FormControlDatepickerComponent } from "@shared/ui-elems/forms/form-control-datepicker/form-control-datepicker.component";
 import { CustomSelectorComponent } from "@shared/ui-elems/selectors/custom-selector/custom-selector.component";
 import { LangCode } from '@shared/models';
+import { FormControlPhoneComponent } from "@shared/ui-elems/forms/form-control-phone/form-control-phone.component";
+import { FormControlInputComponent } from "@shared/ui-elems/forms/form-control-input/form-control-input.component";
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-user-form',
@@ -17,7 +20,10 @@ import { LangCode } from '@shared/models';
     TranslateModule,
     FormControlNameComponent,
     FormControlDatepickerComponent,
-    CustomSelectorComponent
+    CustomSelectorComponent,
+    FormControlPhoneComponent,
+    FormControlInputComponent,
+    MatDividerModule
 ],
   templateUrl: './user-form.component.html',
   styleUrl: './user-form.component.scss',
@@ -45,7 +51,7 @@ export class UserFormComponent {
 
       if (user) {
         this.userForm = this._fb.group({
-          name: [user.displayName, [Validators.required]],
+          name: [user.displayName, [Validators.required, Validators.minLength(2)]],
           birthday: [user.birthday ?? null],
           gender: [user.gender ?? this.gender()],
           preferLang: [user.lang ?? this.preferLang()],
@@ -53,8 +59,6 @@ export class UserFormComponent {
           country: [user.country ?? null],
           city: [user.city ?? null],
           address: [user.address ?? null],
-          description: [user.description ?? null],
-          registrationDate: [user.registrationDate ?? null],
         })
       }
     })
@@ -70,6 +74,26 @@ export class UserFormComponent {
 
   get genderControl(): FormControl<string> {
     return this.userForm.get('gender') as FormControl<string>
+  }
+
+  get phoneControl(): FormControl<string> {
+    return this.userForm.get('phone') as FormControl<string>
+  }
+
+  get preferLangControl(): FormControl<string> {
+    return this.userForm.get('preferLang') as FormControl<string>
+  }
+
+  get countryControl(): FormControl<string> {
+    return this.userForm.get('country') as FormControl<string>
+  }
+
+  get cityControl(): FormControl<string> {
+    return this.userForm.get('city') as FormControl<string>
+  }
+
+  get addressControl(): FormControl<string> {
+    return this.userForm.get('address') as FormControl<string>
   }
 
   protected updateGender(value: string) {

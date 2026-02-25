@@ -1,17 +1,23 @@
-@if(title()) {
-  <app-h6-title 
-    [text]="title()"
+<div class="datepickear">
+  @if(title()) {
+    <app-h6-title [text]="title()"/>
+  }
+  
+  <app-btn-flat 
+    class="datepickear__actions" 
+    btnHeight="56px"
+    [tooltipText]="'common.forms.datePicker.tooltip' | translate"
+    (click)="openDatepicker()"
+    [btnText]="birthday() ? birthday() : ('common.forms.not-set' | translate)"
+    iconName="calendar_month"
+    borderRarius="4px"
+    btnBorder="1px solid var(--mat-sys-on-background)"
+    iconColor="var(--mat-sys-primary)"
+    bgColor="transparent"
+    btnWidth="100%"
+    fzIcon="1.5rem"
+    alignContent="start"
   />
-}
 
-<app-btn-icon 
-  iconName="calendar_month"
-  (click)="openDatepicker()"
-  [tooltipText]="'common.forms.datePicker.tooltip' | translate"
-/>
 
-@if(birthday()) {
-  <span>{{birthday()}}</span>
-} @else {
-  <span>{{'common.forms.not-set' | translate}}</span>
-}
+</div> 

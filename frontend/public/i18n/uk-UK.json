@@ -444,9 +444,27 @@
         {
           "slug": "ru",
           "iconName": "",
-          "item": "Російська"
+          "item": "Русский"
         }
       ]
+    },
+    "country": {
+      "title": "Країна",
+      "label": "Введіть свою країну",
+      "placeholder": "",
+      "suffixIcon": "public"
+    },
+    "city": {
+      "title": "Місто",
+      "label": "Введіть своє місто",
+      "placeholder": "",
+      "suffixIcon": "location_city"
+    },
+    "address": {
+      "title": "Адреса",
+      "label": "Введіть свою адресу",
+      "placeholder": "",
+      "suffixIcon": "home"
     }
   },
   "favs-page": {

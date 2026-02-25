@@ -1,0 +1,25 @@
+<div class="phone">
+  @if(title()) {
+    <app-h6-title [text]="title()" />
+  }
+  
+  <mat-form-field 
+    appearance="outline" 
+    class="form-control masked-field"
+  >
+    <input 
+      matInput 
+      #inputRef 
+      mask="(000)000-00-00" 
+      prefix="+38" 
+      [dropSpecialCharacters]="false"
+      [showMaskTyped]="true"
+      [placeHolderCharacter]="'_'"
+      [formControl]="inputControl()"
+      (input)="onInput()"
+      (keydown)="onKeyDown($event)"
+    />
+  
+    <mat-icon matSuffix>phone_android</mat-icon>
+  </mat-form-field>
+</div>

@@ -1,9 +1,18 @@
 @use "./styles/dropdown-button.scss";
 @use "./styles/dropdown-body.scss";
 
+.common-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.custom-dr__trigger-btn {
+
+}
+
 .custom-dr {
   position: relative;
-  margin-right: 10px;
 
   &.open {
     .custom-dr__body {

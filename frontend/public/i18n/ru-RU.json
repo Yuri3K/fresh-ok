@@ -400,6 +400,9 @@
     "birthday": {
       "title": "День рождения"
     },
+    "phone": {
+      "title": "Мобильный телефон"
+    },
     "gender": {
       "title": "Ваш пол",
       "ariaLabel": "Выберите ваш пол",
@@ -446,6 +449,24 @@
           "item": "Русский"
         }
       ]
+    },
+    "country": {
+      "title": "Страна",
+      "label": "Введите свою страну",
+      "placeholder": "",
+      "suffixIcon": "public"
+    },
+    "city": {
+      "title": "Город",
+      "label": "Введите свой город",
+      "placeholder": "",
+      "suffixIcon": "location_city"
+    },
+    "address": {
+      "title": "Адрес",
+      "label": "Введите свой адрес",
+      "placeholder": "",
+      "suffixIcon": "home"
     }
   },
   "favs-page": {

@@ -1,4 +1,4 @@
-<div class="name">
+<div class="common-input">
   @if(title()) {
     <app-h6-title 
       [text]="title()"
@@ -18,9 +18,9 @@
       matInput 
       type="'text" 
       [placeholder]="placeholder()"
-      [formControl]="nameControl()"
+      [formControl]="inputControl()"
     >
-    
+  
     @if(suffixIcon()) {
       <mat-icon matSuffix>
         {{suffixIcon()}}
@@ -31,20 +31,9 @@
       <mat-hint>{{hint()}}</mat-hint>
     }
   
-    @if (nameControl().hasError('required') && nameControl().touched) {
+     @if (inputControl().hasError('required') && inputControl().touched) {
       <mat-error>
         {{'common.forms.name.nick-error-required' | translate}}
-      </mat-error>
-    } 
-  
-    @if (nameControl().hasError('minlength') && nameControl().touched) {
-      <mat-error>
-        {{
-          'common.forms.name.nick-error-minlength' | translate : {
-            minlength: nameControl().getError('minlength').requiredLength,
-            currentlength: nameControl().getError('minlength').actualLength
-          }
-        }}
       </mat-error>
     }
   

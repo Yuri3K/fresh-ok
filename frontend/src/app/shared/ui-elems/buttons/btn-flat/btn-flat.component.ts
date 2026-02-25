@@ -26,6 +26,7 @@ export class BtnFlatComponent {
   ariaLabel = input<string>('');
   fzIcon = input<string>('');
   fzText = input<string>('1rem');
+  alignContent = input('center')
   btnDisabled = input<boolean>(false);
   type = input<string>('button');
   borderRarius = input<string>('');

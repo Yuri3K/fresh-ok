@@ -2,10 +2,13 @@
 
 <div class="profile">
   <div class="container">
-    <app-h2-title 
-      [text]="'profile.title' | translate"
-    />
-    <app-avatar-upload />
-    <app-user-form />
+    <div class="profile_content">
+      <app-h2-title 
+        class="profile__title"
+        [text]="'profile.title' | translate"
+      />
+      <app-avatar-upload class="profile__avatar"/>
+      <app-user-form />
+    </div>
   </div>
 </div>

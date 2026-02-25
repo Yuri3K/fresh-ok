@@ -7,14 +7,15 @@ import { TranslateModule } from '@ngx-translate/core';
 import { DatepickerDialogComponent } from '@shared/components/dialogs/datepicker-dialog/datepicker-dialog.component';
 import { BtnIconComponent } from '@shared/ui-elems/buttons/btn-icon/btn-icon.component';
 import { H6TitleComponent } from "@shared/ui-elems/typography/h6-title/h6-title.component";
+import { BtnFlatComponent } from "@shared/ui-elems/buttons/btn-flat/btn-flat.component";
 
 @Component({
   selector: 'app-form-control-datepicker',
   imports: [
-    BtnIconComponent,
     H6TitleComponent,
     TranslateModule,
-  ],
+    BtnFlatComponent
+],
   templateUrl: './form-control-datepicker.component.html',
   styleUrl: './form-control-datepicker.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

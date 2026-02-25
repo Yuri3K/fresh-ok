@@ -5,14 +5,17 @@
   gap: 8px;
   background-color: var(--mat-sys-neutral10);
   padding: 4px 5px 4px 10px;
-  border: 1px solid var(--mat-sys-inverse-on-surface);
   border-radius: 10px;
   cursor: pointer;
   min-width: 120px;
   transition: background-color 0.3s ease;
+  width: 100%;
+  border: 1px solid var(--mat-sys-on-background);
+  min-height: 56px;
 
   &:hover {
     background-color: var(--mat-sys-neutral-variant20);
+    border: 1px solid var(--mat-sys-on-background);
   }
 
   .custom-dr__selected {
@@ -23,14 +26,14 @@
 
     span {
       font-family: "Open Sans", Arial, Helvetica, sans-serif;
-      color: var(--mat-sys-primary-fixed);
+      color: var(--mat-sys-on-background);
       font-size: 1rem;
       font-weight: 500;
     }
   }
 
-  mat-icon {
-    color: var(--mat-sys-primary-fixed-dim);
+  .mat-icon {
+    color: var(--mat-sys-primary);
   }
 
   .carret {

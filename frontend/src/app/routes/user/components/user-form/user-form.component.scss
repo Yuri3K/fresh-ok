@@ -1,10 +1,42 @@
-.user-form__gender {
-  position: relative;
-  z-index: 4;
+.user-form {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.user-form__prefer-lang {
+.user-form__controls {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(250px, 300px));
+  gap: 40px;
+  margin-bottom: 40px;
+  justify-content: center;
+
+  @media (max-width: 1280px) {
+    grid-template-columns: repeat(3, minmax(250px, 300px));
+  }
+
+  @media (max-width: 992px) {
+    grid-template-columns: repeat(2, minmax(250px, 300px));
+  }
+
+  @media (max-width: 576px) {
+    grid-template-columns: repeat(1, minmax(250px, 300px));
+  }
+}
+
+.user-form__gender {
   position: relative;
   z-index: 3;
 }
 
+.user-form__prefer-lang {
+  position: relative;
+  z-index: 4;
+}
+
+.user-form__submit {
+  @media (max-width: 1280px) {
+    margin: 0 auto;
+  }
+}

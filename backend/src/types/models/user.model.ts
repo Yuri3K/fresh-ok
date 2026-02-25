@@ -15,8 +15,6 @@ export interface DbUser {
   country?: string
   city?: string
   address?: string
-  description?: string
-  registrationDate?: string
   updatedAt?: number
   createdAt: number
 }

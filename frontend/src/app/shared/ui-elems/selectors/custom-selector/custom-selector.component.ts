@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, DestroyRef, ElementRef, inject, Injector, input, OnInit, output, signal, Signal, viewChild, viewChildren } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, ElementRef, inject, Injector, input, OnInit, output, Signal, viewChild, viewChildren } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { OpenMenuDirective } from '../../../../core/directives/open-menu.directive';
@@ -6,8 +6,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatInputModule } from '@angular/material/input';
+import { H6TitleComponent } from "@shared/ui-elems/typography/h6-title/h6-title.component";
 
 export interface CustomSelector {
+  title: string
   icon?: string
   ariaLabel?: string
   options: SelectorOption[]
@@ -26,8 +28,9 @@ export interface SelectorOption {
     OpenMenuDirective,
     FormsModule,
     ReactiveFormsModule,
-    MatInputModule
-  ],
+    MatInputModule,
+    H6TitleComponent
+],
   templateUrl: './custom-selector.component.html',
   styleUrl: './custom-selector.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
