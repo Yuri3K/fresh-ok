@@ -3,8 +3,9 @@ button {
   white-space: nowrap;
   line-height: 1.4;
   
-  &:focus{
-    border: 2px solid var(--mat-sys-primary) !important;
+  &:focus-visible{
+    // box-shadow: 0 0 0 2px var(--mat-sys-primary);
+    outline: 2px solid var(--mat-sys-primary) !important;
   }
 
   .mat-icon {

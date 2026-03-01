@@ -413,12 +413,12 @@
           "item": "Не выбрано"
         },
         {
-          "slug": "man",
+          "slug": "male",
           "iconName": "man",
           "item": "Мужской"
         },
         {
-          "slug": "woman",
+          "slug": "female",
           "iconName": "woman",
           "item": "Женский"
         }

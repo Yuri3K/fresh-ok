@@ -11,6 +11,8 @@
   overflow: hidden;
   transition: opacity 0.3s;
 
+
+
   &:hover {
     transition: opacity 0.3s;
 
@@ -37,6 +39,13 @@
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s;
+
+    &:focus-visible {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transition: opacity 0.3s;
+    }
 
     .product-card__svg-wrapper {
       background-color: #fff;

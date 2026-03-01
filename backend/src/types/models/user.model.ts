@@ -10,7 +10,7 @@ export interface DbUser {
   avatarVersion?: number
   birthday?: number
   gender?: Gender
-  lang?: string
+  preferLang?: string
   phone?: string
   country?: string
   city?: string

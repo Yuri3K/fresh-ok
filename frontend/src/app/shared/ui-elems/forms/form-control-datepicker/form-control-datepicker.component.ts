@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component, computed, DestroyRef, effect, inject, input, OnInit, signal } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { GetCurrentLangService } from '@core/services/get-current-lang.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { DatepickerDialogComponent } from '@shared/components/dialogs/datepicker-dialog/datepicker-dialog.component';
-import { BtnIconComponent } from '@shared/ui-elems/buttons/btn-icon/btn-icon.component';
 import { H6TitleComponent } from "@shared/ui-elems/typography/h6-title/h6-title.component";
 import { BtnFlatComponent } from "@shared/ui-elems/buttons/btn-flat/btn-flat.component";
 
@@ -20,7 +19,8 @@ import { BtnFlatComponent } from "@shared/ui-elems/buttons/btn-flat/btn-flat.com
   styleUrl: './form-control-datepicker.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FormControlDatepickerComponent implements OnInit {
+export class FormControlDatepickerComponent //implements OnInit 
+{
   datepickerControl = input.required<FormControl<number | null>>()
   title = input('')
   readonly maxDate = input<Date | null>(null);
@@ -28,7 +28,6 @@ export class FormControlDatepickerComponent implements OnInit {
   private readonly dialog = inject(MatDialog)
   private readonly locale = inject(GetCurrentLangService).currentLocale
   private destroyRef = inject(DestroyRef)
-
 
   private birthdayTimestamp = signal<number | null>(null)
 
@@ -42,6 +41,15 @@ export class FormControlDatepickerComponent implements OnInit {
       }).format(new Date(timestamp));
     } else return ''
   })
+
+  constructor() {
+    effect(() => {
+      const value  = this.datepickerControl().value
+      if(value) {
+        this.birthdayTimestamp.set(value)
+      }
+    })
+  }
 
   ngOnInit() {
     this.datepickerControl().valueChanges
@@ -66,7 +74,9 @@ export class FormControlDatepickerComponent implements OnInit {
 
     datapickerDialog.afterClosed().subscribe(result => {
       if (result) {
-        this.datepickerControl().setValue(result)
+        this.datepickerControl().setValue(result, {emitEvent: true})
+        this.datepickerControl().markAsDirty()
+        this.datepickerControl().markAsTouched()
       }
     })
   }

@@ -18,8 +18,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 })
 export class BtnFlatComponent {
   btnText = input.required<string>()
-  btnHeight = input<string>('40px') 
-  btnWidth = input<string>('auto') 
+  btnHeight = input<string>('40px')
+  btnWidth = input<string>('auto')
   iconName = input<string>('')
   iconColor = input<string>('var(--mat-sys-on-primary)')
   tooltipText = input<string>('')
@@ -34,11 +34,22 @@ export class BtnFlatComponent {
   textColor = input<string>('var(--mat-sys-on-background)');
   bgColor = input<string>('var(--mat-sys-primary-container)');
 
-  @HostListener('click', ['$event']) 
-  handleClick(e: Event) {
+  @HostListener('click', ['$event'])
+  handleClick(e: PointerEvent) {
     if (this.btnDisabled()) {
       e.preventDefault()
       e.stopPropagation()
     }
+
+
+    /**
+     * Handles click events on the button.
+     * Prevents focus if the click is from a mouse or touch pointer,
+     * emulating Angular Material's button behavior to avoid unwanted focus styles.
+     * @param event - Pointer event from the click
+     */
+    if (e.pointerType !== 'mouse' && e.pointerType !== '') return;
+    const btn = (e.target as HTMLElement).closest('button')
+    btn?.blur();
   }
 }

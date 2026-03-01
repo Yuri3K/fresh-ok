@@ -14,9 +14,8 @@
 
     <app-custom-selector 
       class="user-form__prefer-lang"
-      [currentOption]="preferLang()"
+      [customControl]="preferLangControl"
       pathData="profile.prefer-lang"
-      (onOptionChanged)="updatePreferLang($event)"
     />
 
     <app-form-control-phone 
@@ -32,9 +31,8 @@
 
     <app-custom-selector 
       class="user-form__gender"
-      [currentOption]="gender()"
       pathData="profile.gender"
-      (onOptionChanged)="updateGender($event)"
+      [customControl]="genderControl"
     />
   
     <app-form-control-input 
@@ -55,7 +53,7 @@
   
     <app-form-control-input 
       class="user-form__address"
-      [inputControl]="cityControl"
+      [inputControl]="addressControl"
       [title]="'profile.address.title' | translate"
       [label]="'profile.address.label' | translate"
       [suffixIcon]="'profile.address.suffixIcon' | translate"
@@ -66,6 +64,6 @@
     class="user-form__submit"
     [btnText]="'common.save' | translate"
     type="submit"
-    [btnDisabled]="userForm.invalid || userForm.pristine"
+    [btnDisabled]="userForm.invalid || userForm.pristine || submitting()"
   />
 </form>

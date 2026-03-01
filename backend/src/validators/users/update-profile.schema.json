@@ -1,0 +1,52 @@
+{
+    "$id": "validators/users/update-profile.schema.json",
+    "title": "Update User Profile Request",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "displayName"
+    ],
+    "properties": {
+        "displayName": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 50
+        },
+        "birthday": {
+            "type": "number",
+            "minimum": 0
+        },
+        "gender": {
+            "type": "string",
+            "enum": [
+                "male",
+                "female",
+                "not-set"
+            ]
+        },
+        "preferLang": {
+            "type": "string",
+            "enum": [
+                "en",
+                "ru",
+                "uk"
+            ]
+        },
+        "phone": {
+            "type": "string",
+            "maxLength": 20
+        },
+        "country": {
+            "type": "string",
+            "maxLength": 50
+        },
+        "city": {
+            "type": "string",
+            "maxLength": 50
+        },
+        "address": {
+            "type": "string",
+            "maxLength": 200
+        }
+    }
+}

@@ -17,7 +17,7 @@
         @if(selectorData().icon) {
           <mat-icon>{{selectorData().icon}}</mat-icon>
         }
-        <span>{{ selectedOption() }}</span>
+        <span>{{ currentOption().item }}</span>
       </div>
       <mat-icon class="carret">arrow_drop_down</mat-icon>
     </button>
@@ -35,10 +35,11 @@
               <button 
                 #optionBtn
                 role="option"
-                [attr.aria-selected]="currentOption() == option.slug"
+                type="button"
+                [attr.aria-selected]="currentOption().slug == option.slug"
                 [attr.tabindex]="openMenu().isOpen ? '0' : '-1'"
                 (click)="selectOption(option.slug)"
-                [class.active]="currentOption() == option.slug"
+                [class.active]="currentOption().slug == option.slug"
               >
                 @if(option.iconName) {
                   <mat-icon>{{option.iconName}}</mat-icon>

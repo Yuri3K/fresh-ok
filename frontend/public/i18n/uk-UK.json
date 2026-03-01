@@ -411,12 +411,12 @@
           "item": "Не обрано"
         },
         {
-          "slug": "man",
+          "slug": "male",
           "iconName": "man",
           "item": "Чоловіча"
         },
         {
-          "slug": "woman",
+          "slug": "female",
           "iconName": "woman",
           "item": "Жіноча"
         }

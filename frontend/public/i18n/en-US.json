@@ -410,12 +410,12 @@
           "item": "Not selected"
         },
         {
-          "slug": "man",
+          "slug": "male",
           "iconName": "man",
           "item": "Male"
         },
         {
-          "slug": "woman",
+          "slug": "female",
           "iconName": "woman",
           "item": "Female"
         }

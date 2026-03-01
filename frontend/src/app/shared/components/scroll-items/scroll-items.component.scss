@@ -18,6 +18,11 @@
   overflow-x: auto;
   scroll-behavior: smooth;
 
+  // Для outline при фокусе
+  padding-top: 2px;
+  padding-left: 2px;
+  padding-right: 2px;
+
   &::-webkit-scrollbar {
     height: 6px;
     cursor: pointer;

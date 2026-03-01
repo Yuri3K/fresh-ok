@@ -7,10 +7,13 @@ import { BtnFlatComponent } from '@shared/ui-elems/buttons/btn-flat/btn-flat.com
 import { FormControlNameComponent } from "@shared/ui-elems/forms/form-control-name/form-control-name.component";
 import { FormControlDatepickerComponent } from "@shared/ui-elems/forms/form-control-datepicker/form-control-datepicker.component";
 import { CustomSelectorComponent } from "@shared/ui-elems/selectors/custom-selector/custom-selector.component";
-import { LangCode } from '@shared/models';
 import { FormControlPhoneComponent } from "@shared/ui-elems/forms/form-control-phone/form-control-phone.component";
 import { FormControlInputComponent } from "@shared/ui-elems/forms/form-control-input/form-control-input.component";
 import { MatDividerModule } from '@angular/material/divider';
+import { ApiService } from '@core/services/api.service';
+import { catchError, EMPTY, finalize, of, tap } from 'rxjs';
+import { DbUser } from '@shared/models';
+import { removeNulls } from '@core/init/remove-nulls.util';
 
 @Component({
   selector: 'app-user-form',
@@ -24,13 +27,16 @@ import { MatDividerModule } from '@angular/material/divider';
     FormControlPhoneComponent,
     FormControlInputComponent,
     MatDividerModule
-],
+  ],
   templateUrl: './user-form.component.html',
   styleUrl: './user-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserFormComponent {
   private _fb = inject(FormBuilder)
+  private apiService = inject(ApiService)
+  private userAccessService = inject(UserAccessService)
+
   protected submitting = signal(false)
   private dbUser$ = inject(UserAccessService).dbUser$
 
@@ -38,9 +44,6 @@ export class UserFormComponent {
     this.dbUser$,
     { initialValue: undefined }
   )
-
-  readonly gender = signal<string>('not-set')
-  readonly preferLang = signal<string>('not-set')
 
   userForm!: FormGroup
   maxDate = new Date(Date.now())
@@ -51,10 +54,10 @@ export class UserFormComponent {
 
       if (user) {
         this.userForm = this._fb.group({
-          name: [user.displayName, [Validators.required, Validators.minLength(2)]],
+          displayName: [user.displayName, [Validators.required, Validators.minLength(2)]],
           birthday: [user.birthday ?? null],
-          gender: [user.gender ?? this.gender()],
-          preferLang: [user.lang ?? this.preferLang()],
+          gender: [user.gender ?? 'not-set'],
+          preferLang: [user.preferLang ?? 'not-set'],
           phone: [user.phone ?? null],
           country: [user.country ?? null],
           city: [user.city ?? null],
@@ -65,7 +68,7 @@ export class UserFormComponent {
   }
 
   get nameControl(): FormControl<string> {
-    return this.userForm.get('name') as FormControl<string>
+    return this.userForm.get('displayName') as FormControl<string>
   }
 
   get birthdayControl(): FormControl<number | null> {
@@ -96,16 +99,30 @@ export class UserFormComponent {
     return this.userForm.get('address') as FormControl<string>
   }
 
-  protected updateGender(value: string) {
-    this.gender.set(value)
-  }
-
-  protected updatePreferLang(lang: string) {
-    this.preferLang.set(lang)
-  }
-
   protected onSubmit() {
+    if (this.userForm.invalid) return
 
+    this.submitting.set(true)
+
+    const data = removeNulls(this.userForm.value)
+    console.log("🚀 ~ this.userForm:", this.userForm)
+    console.log("🚀 ~ data:", data)
+
+    this.apiService.patch<DbUser>('/users/me', data)
+      .pipe(
+        tap(user => {
+          this.userAccessService.setDbUser(user)
+
+          // Помечаем форму как pristine
+          this.userForm.markAsPristine()
+          return of(user)
+        }),
+        finalize(() => this.submitting.set(false)),
+        catchError(err => {
+          console.log('Update profile error:', err)
+          return EMPTY
+        })
+      ).subscribe()
   }
 
 }
