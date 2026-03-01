@@ -1,29 +1,66 @@
 
-<form (ngSubmit)="onSubmit()">
-  <mat-form-field class="no-subscript">
-    <mat-icon matPrefix>search</mat-icon>
-
-    <input
-      type="text"
-      matInput
-      [formControl]="searchField"
-      [placeholder]="'header-market.search-input.placeholder' | translate"
-    />
-
-    @if(searchField.value) {
-      <app-btn-icon 
-        matSuffix
-        [iconName]="'close'" 
-        [ariaLabel]="'header.clear-search' | translate" 
-        [tooltipText]="'header.clear-search' | translate"
-        (click)="clearInput()"
+<form (ngSubmit)="onSubmit()" class="search-form">
+    <mat-form-field class="no-subscript">
+      <mat-icon matPrefix>search</mat-icon>
+  
+      <input
+        type="text"
+        matInput
+        [formControl]="searchField"
+        [placeholder]="'header-market.search-input.placeholder' | translate"
       />
+  
+      @if(searchField.value) {
+        <app-btn-icon 
+          matSuffix
+          [iconName]="'close'" 
+          [ariaLabel]="'header.clear-search' | translate" 
+          [tooltipText]="'header.clear-search' | translate"
+          (click)="clearInput()"
+        />
+      }
+    </mat-form-field>
+
+    <!-- Dropdown с результатами -->
+    @if (showDropdown() && (searchResults().length > 0 || isSearching())) {
+      <div class="search-dropdown">
+        
+        @if (isSearching()) {
+          <div class="search-loading">
+            <app-loader />
+            <!-- {{ 'search.loading' | translate }} -->
+          </div>
+        } @else {
+          @for (product of searchResults(); track product.id) {
+            <div 
+              class="search-result-item"
+              (mousedown)="selectProduct(product)"
+            >
+              <img 
+                [src]="mediaUrl + product.publicId"
+                [alt]="product.i18n[currentLang()].name"
+                class="result-image"
+              />
+              <div class="result-info">
+                <span class="result-name">
+                  {{ product.i18n[currentLang()].name }}
+                </span>
+                <span class="result-price">
+                  {{ product.price }} {{ product.currency }}
+                </span>
+              </div>
+            </div>
+          }
+        }
+
+      </div>
     }
-  </mat-form-field>
-  <div class="submit-button">
-    <button mat-flat-button type="submit" [disabled]="!searchField.valid">
-      {{ 'header-market.search-input.submit' | translate }}
-    </button>
-  </div>
+  
+    <div class="submit-button">
+      <button mat-flat-button type="submit" [disabled]="!searchField.valid">
+        {{ 'header-market.search-input.submit' | translate }}
+      </button>
+    </div>
+
 </form> 
 

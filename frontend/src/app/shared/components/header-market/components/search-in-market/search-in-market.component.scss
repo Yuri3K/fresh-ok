@@ -1,4 +1,6 @@
 :host {
+  position: relative;
+
   &.no-radius {
     button {
       border-top-right-radius: 0;
@@ -12,6 +14,20 @@ form {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.search-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 250px;
+
+  @media (max-width: 992px) {
+    max-width: 230px;
+  }
+
+  @media (max-width: 768px) {
+    max-width: 426px;
+  }
 }
 
 mat-form-field {
@@ -28,6 +44,68 @@ mat-form-field {
   @media (max-width: 768px) {
     max-width: 426px;
   }
+}
+
+.search-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--mat-sys-surface-container);
+  border: 1px solid var(--mat-sys-outline-variant);
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.search-loading {
+  padding: 16px;
+  text-align: center;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.search-result-item {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background: var(--mat-sys-surface-container-high);
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--mat-sys-outline-variant);
+  }
+}
+
+.result-image {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.result-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.result-name {
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.result-price {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--mat-sys-primary);
 }
 
 button {
