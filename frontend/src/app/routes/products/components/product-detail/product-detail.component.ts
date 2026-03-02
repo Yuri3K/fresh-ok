@@ -1,15 +1,18 @@
-import { ChangeDetectionStrategy, Component, effect, inject, OnDestroy } from '@angular/core';
-import { BreadcrumbsComponent } from '../../../../shared/components/breadcrumbs/breadcrumbs.component';
-import { ProductTabsComponent } from '../../../../shared/components/product-tabs/product-tabs.component';
-import { ProductsService } from '../../../../core/services/products.service';
+import { ChangeDetectionStrategy, Component, effect, inject, OnDestroy} from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Breadcrumb, BreadcrumbsService } from '../../../../shared/components/breadcrumbs/breadcrumbs.service';
-import { GetCurrentLangService } from '../../../../core/services/get-current-lang.service';
-import { ProductCarouselComponent } from '../../../../shared/components/product-page-elems/product-carousel/product-carousel.component';
-import { ProductStateService } from '../../../../core/services/product-state.service';
-import { ProductContentComponent } from '../../../../shared/components/product-page-elems/product-content/product-content.component';
-import { H2TitleComponent } from '../../../../shared/ui-elems/typography/h2-title/h2-title.component';
+import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
+import { GetCurrentLangService } from '@core/services/get-current-lang.service';
+import { replaceSubStr } from '@core/utils/replace-sub-str.util';
+import { ProductStateService } from '@core/services/product-state.service';
+import { ProductsService } from '@core/services/products.service';
+import { TranslateService } from '@ngx-translate/core';
+import { BreadcrumbsComponent } from '@shared/components/breadcrumbs/breadcrumbs.component';
+import { Breadcrumb, BreadcrumbsService } from '@shared/components/breadcrumbs/breadcrumbs.service';
+import { ProductCarouselComponent } from '@shared/components/product-page-elems/product-carousel/product-carousel.component';
+import { ProductContentComponent } from '@shared/components/product-page-elems/product-content/product-content.component';
+import { ProductTabsComponent } from '@shared/components/product-tabs/product-tabs.component';
 import { Product } from '@shared/models';
+import { H2TitleComponent } from '@shared/ui-elems/typography/h2-title/h2-title.component';
 @Component({
   selector: 'app-product-detail',
   imports: [
@@ -23,15 +26,23 @@ import { Product } from '@shared/models';
   styleUrl: './product-detail.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductDetailComponent implements OnDestroy {
+export class ProductDetailComponent implements  OnDestroy {
   protected readonly currentLang = inject(GetCurrentLangService).currentLang
   private readonly breadcrumbsService = inject(BreadcrumbsService)
   private readonly productsService = inject(ProductsService)
   private readonly productStateService = inject(ProductStateService)
+  private readonly translateService = inject(TranslateService)
+  private readonly title = inject(Title)
+  private readonly meta = inject(Meta)
 
   product = toSignal(
     this.productsService.getProductBySlug('pineapple'),
     { initialValue: {} as Product }
+  )
+
+  private seoTranslates = toSignal(
+    this.translateService.stream('seo.product-page'),
+    { initialValue: { 'meta-title': '', 'meta-descr': '' } }
   )
 
   constructor() {
@@ -58,6 +69,24 @@ export class ProductDetailComponent implements OnDestroy {
         this.breadcrumbsService.setBreadcrumbs(breadcrumbs)
       }
     })
+
+    effect(() => {
+      const product = this.product()
+
+      if(product.id) {
+        this.applySeo()
+      }
+    })
+  }
+
+  private applySeo() {
+    const productName = this.product().i18n[this.currentLang()].name
+
+    const title = replaceSubStr(this.seoTranslates()['meta-title'], {productName})
+    const descr = replaceSubStr(this.seoTranslates()['meta-descr'], {productName})
+
+    this.title.setTitle(title);
+    this.meta.updateTag({ name: 'description', content: descr });
   }
 
   ngOnDestroy(): void {

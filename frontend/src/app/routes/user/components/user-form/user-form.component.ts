@@ -13,7 +13,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { ApiService } from '@core/services/api.service';
 import { catchError, EMPTY, finalize, of, tap } from 'rxjs';
 import { DbUser } from '@shared/models';
-import { removeNulls } from '@core/init/remove-nulls.util';
+import { removeNulls } from '@core/utils/remove-nulls.util';
 
 @Component({
   selector: 'app-user-form',

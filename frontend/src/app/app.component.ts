@@ -1,5 +1,5 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, DestroyRef, inject, OnDestroy, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ChangeDetectionStrategy, Component, DestroyRef, effect, inject, OnDestroy, OnInit } from '@angular/core';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { SwitchModeService } from './core/services/switch-mode.service';
 import { AuthService } from './core/services/auth.service';
 import { AsyncPipe } from '@angular/common';
@@ -11,12 +11,11 @@ import {
   animate,
 } from '@angular/animations';
 import { LangsService } from './core/services/langs/langs.service';
-import { Observable } from 'rxjs';
+import { filter, Observable } from 'rxjs';
 import { environment } from '../environments/environment';
 import { Meta, Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { RestoreScrollService } from './core/services/restore-scroll.service';
+import { toSignal } from '@angular/core/rxjs-interop';
 @Component({
   selector: 'app-root',
   imports: [
@@ -39,31 +38,54 @@ import { RestoreScrollService } from './core/services/restore-scroll.service';
     ])
   ]
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnDestroy {
   private readonly switchModeService = inject(SwitchModeService)
   private readonly authService = inject(AuthService)
   private readonly langsService = inject(LangsService)
   private readonly translateService = inject(TranslateService)
-  private readonly destroRef = inject(DestroyRef)
-  private readonly title = inject(Title)
-  private readonly meta = inject(Meta)
+  // private readonly seoService = inject(SeoService) // срабатывает конструктор в сервисе
+  private readonly title = inject(Title);
+  private readonly meta = inject(Meta);
+  private readonly router = inject(Router);
 
   readonly authInitializing$: Observable<boolean> = this.authService.authInitializing$
   readonly langs$ = this.langsService.langs$
 
+  private seoTranslates = toSignal(
+    this.translateService.stream('seo.main-page'),
+    { initialValue: { 'meta-title': '', 'meta-descr': '' } }
+  )
+
+  private readonly routerEnd = toSignal(
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd)),
+    { initialValue: null }
+  )
+
+  constructor() {
+    effect(() => {
+      const translaions = this.seoTranslates()
+      const routerEnd = this.routerEnd()
+
+      if (translaions && routerEnd) {
+        // убираем префикс языка: /ru/, /uk/, /en/ 
+        const cleanUrl = routerEnd.urlAfterRedirects.replace(/^\/(ru|uk|en)(\/|$)/, '/');
+
+        if (cleanUrl === '/' || cleanUrl.startsWith('/home')) {
+          this.applySeo();
+        }
+
+      }
+    })
+  }
+
   async ngOnInit() {
     this.switchModeService.init()
-    this.applySeo()
   }
 
   private applySeo() {
-    this.translateService
-    .stream('seo')
-    .pipe(takeUntilDestroyed(this.destroRef))
-    .subscribe(seo => {
-      this.title.setTitle(seo['meta-title'])
-      this.meta.updateTag({name: 'description', content: seo['meta-descr']})
-    })
+    this.title.setTitle(this.seoTranslates()['meta-title'])
+    this.meta.updateTag(this.seoTranslates()['meta-descr'])
   }
 
   ngOnDestroy(): void {

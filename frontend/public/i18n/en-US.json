@@ -1,7 +1,17 @@
 {
   "seo": {
-    "meta-title": "FRESHOK | Main Page",
-    "meta-descr": "Welcome to the FRESHOK online marketplace. Here you can always find fresh and affordable groceries."
+    "main-page": {
+      "meta-title": "FRESHOK | Home page",
+      "meta-descr": "Welcome to FRESHOK online market. Here you will always find fresh and affordable products."
+    },
+    "catalog-page": {
+      "meta-title": "FRESHOK | Fresh products catalog",
+      "meta-descr": "Explore the FRESHOK catalog: a wide selection of fresh and affordable products. Easy search, fast delivery, and the best deals for the whole family."
+    },
+    "product-page": {
+      "meta-title": "FRESHOK | {{productName}}",
+      "meta-descr": "Order {{productName}} at FRESHOK online market. Always fresh products at affordable prices with fast delivery straight to your home."
+    }
   },
   "breadcrumbs": {
     "homepage": {
@@ -81,6 +91,12 @@
     "fetch-collection-user": "Error occurred while fetching user from collection"
   },
   "header": {
+    "close-menu": "Close menu",
+    "open-menu": "Open menu",
+    "admin-zone": "Admin zone",
+    "public-zone": "Public zone",
+    "light-mode": "Light mode",
+    "dark-mode": "Dark mode",
     "user": {
       "alt": "Avatar",
       "greetings": "Hi, {{name}}",

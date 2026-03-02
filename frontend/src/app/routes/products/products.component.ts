@@ -3,9 +3,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   DestroyRef,
+  effect,
   ElementRef,
   inject,
   OnDestroy,
+  OnInit,
   ViewChild,
 } from '@angular/core';
 import { CatalogStateService } from '../../core/services/catalog-state.service';
@@ -30,7 +32,8 @@ import {
 } from '@angular/material/sidenav';
 import { BreadcrumbsComponent } from '../../shared/components/breadcrumbs/breadcrumbs.component';
 import { Breadcrumb, BreadcrumbsService } from '../../shared/components/breadcrumbs/breadcrumbs.service';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-products',
@@ -61,24 +64,40 @@ export class ProductsComponent implements AfterViewInit, OnDestroy {
   @ViewChild('productsContent', { read: ElementRef }) productsContent!: ElementRef;
   @ViewChild('sidenav') sidenav!: MatSidenav;
 
-  private parentScrollContainer = inject(MatSidenavContent, { optional: true });
-  private translateService = inject(TranslateService)
-  private destroyRef = inject(DestroyRef)
-  private breadcrumbsService = inject(BreadcrumbsService)
-  stateService = inject(CatalogStateService);
+  private readonly parentScrollContainer = inject(MatSidenavContent, { optional: true });
+  private readonly translateService = inject(TranslateService)
+  private readonly destroyRef = inject(DestroyRef)
+  private readonly breadcrumbsService = inject(BreadcrumbsService)
+  protected readonly stateService = inject(CatalogStateService);
+  private readonly title = inject(Title)
+  private readonly meta = inject(Meta)
 
   private resizeObserver?: ResizeObserver;
 
-  products = this.stateService.products;
-  pagination = this.stateService.pagination;
-  view = this.stateService.appliedView;
-  isCardsBlockThin = this.stateService.isCardsBlockThin;
-  isViewBtnsVisible = this.stateService.isViewBtnsVisible;
-  isLoading = this.stateService.isLoading;
-  isSidenavOpenByDefault = this.stateService.isSidenavOpenByDefault;
-  sidenavMode = this.stateService.sidenavMode;
+  protected readonly products = this.stateService.products;
+  protected readonly pagination = this.stateService.pagination;
+  protected readonly view = this.stateService.appliedView;
+  protected readonly isCardsBlockThin = this.stateService.isCardsBlockThin;
+  protected readonly isViewBtnsVisible = this.stateService.isViewBtnsVisible;
+  protected readonly isLoading = this.stateService.isLoading;
+  protected readonly isSidenavOpenByDefault = this.stateService.isSidenavOpenByDefault;
+  protected readonly sidenavMode = this.stateService.sidenavMode;
 
   private scrollPosition = 0;
+
+  private seoTranslates = toSignal(
+    this.translateService.stream('seo.catalog-page'),
+    { initialValue: { 'meta-title': '', 'meta-descr': '' } }
+  )
+
+  constructor() {
+    effect(() => {
+      const translates = this.seoTranslates()
+      if(translates)  {
+        this.applySeo()
+      }
+    })
+  }
 
   ngAfterViewInit() {
     this.setResizeObserver();
@@ -88,6 +107,11 @@ export class ProductsComponent implements AfterViewInit, OnDestroy {
 
     this.defineBreadcrumbs()
 
+  }
+
+  private applySeo() {
+    this.title.setTitle(this.seoTranslates()['meta-title'])
+    this.meta.updateTag(this.seoTranslates()['meta-descr'])
   }
 
   private defineBreadcrumbs() {
@@ -112,7 +136,6 @@ export class ProductsComponent implements AfterViewInit, OnDestroy {
   private setResizeObserver() {
     this.resizeObserver = new ResizeObserver((entries) => {
       const width = entries[0].contentRect.width;
-      // console.log("🔸 width:", width)
       this.stateService.setProductsContainerWidth(width);
     });
   }
