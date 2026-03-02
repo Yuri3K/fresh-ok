@@ -95,8 +95,8 @@
     "open-menu": "Open menu",
     "admin-zone": "Admin zone",
     "public-zone": "Public zone",
-    "light-mode": "Light mode",
-    "dark-mode": "Dark mode",
+    "light-mode": "Enable light mode",
+    "dark-mode": "Enable dark mode",
     "user": {
       "alt": "Avatar",
       "greetings": "Hi, {{name}}",

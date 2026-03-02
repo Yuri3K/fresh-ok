@@ -1,5 +1,8 @@
-@let isDarkTheme = (isDarkTheme$ | async); @let switchModeTooltip = (isDarkTheme
-? 'Hello' : 'World');
+@let isDarkTheme = (isDarkTheme$ | async); 
+@let switchModeTooltip = (isDarkTheme
+? ('header.light-mode' | translate)
+: ('header.dark-mode' | translate)
+);
 
 <app-btn-icon
   iconColor="var(--mat-sys-primary-fixed-dim)"
