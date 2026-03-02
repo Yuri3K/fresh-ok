@@ -13,11 +13,8 @@
       "url": "/en/products"
     },
     "user": {
-      "name": "Cabinet",
+      "name": "Profile",
       "url": "/en/user"
-    },
-    "profile": {
-      "name": "Profile"
     },
     "favs": {
       "name": "Favourites"

@@ -13,11 +13,8 @@
       "url": "/uk/products"
     },
     "user": {
-      "name": "Кабінет",
+      "name": "Профіль",
       "url": "/uk/user"
-    },
-    "profile": {
-      "name": "Профіль"
     },
     "favs": {
       "name": "Обране"

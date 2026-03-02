@@ -1,13 +1,18 @@
 <mat-toolbar>
   <app-btn-icon
     iconColor="var(--mat-sys-primary-fixed-dim)"
-    (click)="sidebarService.toggle('menu')"
-    tooltipText="Menu Open Menu Close"
+    (click)="sidebarService.toggle(layoutType())"
+    [tooltipText]="tooltipText() | translate"
     [tooltipShowDelay]="500"
     iconName="menu"
   />
 
-  <app-admin-btn />
+  @if(layoutType() === 'menu') {
+    <app-admin-btn />
+  } @else {
+    <app-custom-user-btn  class="green"/>
+  }
+
   <app-switch-mode />
   <app-lang-dropdown />
   <app-user-avatar />

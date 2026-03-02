@@ -1,9 +1,8 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, computed, DestroyRef, inject, viewChild, ViewChild } from '@angular/core';
-import { HeaderComponent } from '../header/header.component';
+import { HeaderComponent } from '../headers/header/header.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenav, MatSidenavContainer, MatSidenavModule } from '@angular/material/sidenav';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { HeaderMarketComponent } from '../header-market/header-market.component';
 import { PublicFooterComponent } from '../public-footer/public-footer.component';
 import { filter} from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -11,6 +10,7 @@ import { RestoreScrollService } from '../../../core/services/restore-scroll.serv
 import { SidebarService } from '@core/services/sidebar.service';
 import { SidenavMenuComponent } from '../sidenav-menu/sidenav-menu.component';
 import { SidenavCartComponent } from '../sidenav-cart/sidenav-cart.component';
+import { HeaderMarketComponent } from '../headers/header-market/header-market.component';
 
 @Component({
   selector: 'app-public-layout',

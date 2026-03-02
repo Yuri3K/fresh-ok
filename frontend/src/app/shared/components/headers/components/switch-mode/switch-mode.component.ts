@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { SwitchModeService } from '../../../../../core/services/switch-mode.service';
 import { AsyncPipe } from '@angular/common';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { BtnIconComponent } from '../../../../ui-elems/buttons/btn-icon/btn-icon.component';
+import { BtnIconComponent } from '@shared/ui-elems/buttons/btn-icon/btn-icon.component';
+import { SwitchModeService } from '@core/services/switch-mode.service';
 
 @Component({
   selector: 'app-switch-mode',

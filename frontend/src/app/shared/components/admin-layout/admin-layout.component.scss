@@ -1,4 +1,4 @@
-.container {
+.admin-container {
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -9,5 +9,22 @@
 }
 
 mat-sidenav-container{
-  min-height: calc(100% - 64px);
+  flex: 1;
+}
+
+mat-sidenav {
+  --mat-sidenav-container-shape: 0;
+}
+
+mat-sidenav-content {
+  display: flex;
+  flex-direction: column;
+
+  main {
+    flex: 1;
+  }
+}
+
+.sidenav-menu {
+  padding: 16px 0;
 }

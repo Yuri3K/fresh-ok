@@ -18,7 +18,7 @@ import { CartService } from '@core/services/cart.service';
 import { FavsService } from '@core/services/favs.service';
 import { Router } from '@angular/router';
 import { GetCurrentLangService } from '@core/services/get-current-lang.service';
-import { SearchInMarketComponent } from "../header-market/components/search-in-market/search-in-market.component";
+import { SearchInMarketComponent } from '../headers/components/search-in-market/search-in-market.component';
 
 @Component({
   selector: 'app-sidenav-menu',

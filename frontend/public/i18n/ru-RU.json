@@ -13,11 +13,8 @@
       "url": "/ru/products"
     },
     "user": {
-      "name": "Кабинет",
+      "name": "Профиль",
       "url": "/ru/user"
-    },
-    "profile": {
-      "name": "Профиль"
     },
     "favs": {
       "name": "Избранное"
@@ -84,6 +81,12 @@
     "fetch-collection-user": "Произошла ошибка при получении пользователя из коллекции"
   },
   "header": {
+    "close-menu": "Закрыть меню",
+    "open-menu": "Открыть меню",
+    "admin-zone": "Админ зона",
+    "public-zone": "Публичная зона",
+    "light-mode": "Светлая тема",
+    "dark-mode": "Темная тема",
     "user": {
       "alt": "Аватар",
       "greetings": "Привет, {{name}}",

@@ -1,7 +1,5 @@
 <div class="public-container">
-  <app-header 
-    #headerMain
-    />
+  <app-header #headerMain />
   <app-header-market 
     #headerMarket
     class="green" 
@@ -10,10 +8,12 @@
   <mat-sidenav-container #sidenavContainer
     class="main-container green"
   >
+    <!-- Левое меню (левый сайдбар) -->
     <mat-sidenav class="sidenav-menu" #sidenavMenu [mode]="'over'" position="start">
       <app-sidenav-menu />
     </mat-sidenav>
 
+    <!-- Правое меню (корзина) -->
     <mat-sidenav #sidenavCart [mode]="'over'" position="end">
       <app-sidenav-cart />
     </mat-sidenav>

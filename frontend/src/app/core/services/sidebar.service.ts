@@ -4,7 +4,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 
-export type SidebarType = 'menu' | 'cart'
+export type SidebarType = 'menu' | 'cart' | 'admin'
 
 @Injectable({
   providedIn: 'root'

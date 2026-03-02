@@ -5,7 +5,6 @@ import {
   inject,
   ViewEncapsulation,
 } from '@angular/core';
-import { AuthService } from '../../../../../core/services/auth.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -14,9 +13,10 @@ import { TranslateModule } from '@ngx-translate/core';
 import { filter, map } from 'rxjs';
 import { AvatarPopupComponent } from './components/avatar-popup/avatar-popup.component';
 import { OverlayModule } from '@angular/cdk/overlay';
-import { UserAccessService } from '../../../../../core/services/user-access.service';
-import { MEDIA_URL } from '../../../../../core/urls';
 import { AvatarImageService } from '@core/services/avatar-image.service';
+import { AuthService } from '@core/services/auth.service';
+import { UserAccessService } from '@core/services/user-access.service';
+import { MEDIA_URL } from '@core/urls';
 
 @Component({
   selector: 'app-user-avatar',

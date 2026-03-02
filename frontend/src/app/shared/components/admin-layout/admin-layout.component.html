@@ -1,15 +1,21 @@
-<div class="container">
-  <app-header (toggleSidenav)="sidenav.toggle()"/>
-  <mat-sidenav-container>
-    <mat-sidenav #sidenav [mode]="'side'">
+<div class="admin-container">
+  <app-header layoutType="admin" #headerMain/>
+  <mat-sidenav-container 
+    #adminSidenavContainer
+  >
+    <mat-sidenav 
+      class="sidenav-menu" 
+      #adminSidenavMenu [mode]="'over'" 
+      position="start"
+    >
       <p>ADMIN SIDENAV</p>
     </mat-sidenav>
-
+  
     <mat-sidenav-content>
       <main>
         <router-outlet />
       </main>
     </mat-sidenav-content>
-  </mat-sidenav-container>
 
+  </mat-sidenav-container>
 </div>

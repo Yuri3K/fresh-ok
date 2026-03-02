@@ -1,15 +1,12 @@
-import { ChangeDetectionStrategy, Component, computed, HostListener, inject, input, output } from '@angular/core';
-import { BtnIconComponent } from '../../../../../../ui-elems/buttons/btn-icon/btn-icon.component';
+import { ChangeDetectionStrategy, Component, HostListener, input, output } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { User } from 'firebase/auth';
 import { MatCardModule } from '@angular/material/card';
-import { BtnFlatComponent } from '../../../../../../ui-elems/buttons/btn-flat/btn-flat.component';
 import { MatIconModule } from '@angular/material/icon';
-import { UserAccessService } from '../../../../../../../core/services/user-access.service';
-import { AsyncPipe } from '@angular/common';
-import { MEDIA_URL } from '../../../../../../../core/urls';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { DbUser } from '@shared/models';
+import { BtnFlatComponent } from '@shared/ui-elems/buttons/btn-flat/btn-flat.component';
+import { BtnIconComponent } from '@shared/ui-elems/buttons/btn-icon/btn-icon.component';
+import { MEDIA_URL } from '@core/urls';
 
 @Component({
   selector: 'app-avatar-popup',
