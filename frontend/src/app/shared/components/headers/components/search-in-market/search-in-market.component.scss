@@ -34,7 +34,8 @@ mat-form-field {
   --mdc-filled-text-field-container-shape: 0;
 
   width: 100%;
-  max-width: 250px;
+  max-width: 346px;
+  min-width: 276px;
   height: 50px;
 
   @media (max-width: 992px) {
@@ -108,17 +109,17 @@ mat-form-field {
   color: var(--mat-sys-primary);
 }
 
-button {
-  --mdc-filled-button-container-height: 50px;
-  --mdc-filled-button-container-color: var(--mat-sys-neutral-variant20);
-  --mdc-filled-button-label-text-color: var(--mat-sys-secondary-fixed);
-  --mdc-filled-button-container-shape: 10px;
+// button {
+//   --mdc-filled-button-container-height: 50px;
+//   --mdc-filled-button-container-color: var(--mat-sys-neutral-variant20);
+//   --mdc-filled-button-label-text-color: var(--mat-sys-secondary-fixed);
+//   --mdc-filled-button-container-shape: 10px;
 
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  min-width: 110px;
+//   border-top-left-radius: 0;
+//   border-bottom-left-radius: 0;
+//   min-width: 110px;
 
-  @media (max-width: 992px) {
-    min-width: 100px;
-  }
-}
+//   @media (max-width: 992px) {
+//     min-width: 100px;
+//   }
+// }

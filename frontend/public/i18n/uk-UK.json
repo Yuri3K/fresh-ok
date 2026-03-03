@@ -68,11 +68,11 @@
         "pwd-error-minlength": "Пароль має бути не менше {{minlength}} символів. Зараз {{currentlength}} символ(ів)"
       },
       "name": {
-        "enter-nick": "Введіть нікнейм",
+        "enter-nick": "Введіть ім'я",
         "nick-placeholder": "Наприклад: Користувач",
         "nick-hint": "Підказка: має бути не менше 2 символів",
-        "nick-error-required": "Будь ласка, введіть нікнейм",
-        "nick-error-minlength": "Нікнейм має бути не менше {{minlength}} символів. Зараз {{currentlength}} символ"
+        "nick-error-required": "Будь ласка, введіть ім'я",
+        "nick-error-minlength": "Ім'я має бути не менше {{minlength}} символів. Зараз {{currentlength}} символ"
       },
       "textarea": {
         "textarea-error-required": "Будь-ласка, напишіть відгук"

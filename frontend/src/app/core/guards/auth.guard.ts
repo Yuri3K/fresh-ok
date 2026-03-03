@@ -3,14 +3,14 @@ import {
   ActivatedRouteSnapshot,
   CanActivateChildFn,
   CanActivateFn,
-  Router,
+  // Router,
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { filter, map, Observable, take } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { LangRouterService } from '../services/langs/lang-router.service';
+// import { LangRouterService } from '../services/langs/lang-router.service';
 import { OpenSignDialogService } from '@core/services/open-sign-dialog.service';
 
 /**
@@ -24,8 +24,8 @@ function checkAuth(
 ): Observable<boolean | UrlTree> {
   const authService = inject(AuthService);
   const signDialogService = inject(OpenSignDialogService)
-  const router = inject(Router);
-  const navigateService = inject(LangRouterService);
+  // const router = inject(Router);
+  // const navigateService = inject(LangRouterService);
   const lsSavedUrlKey = environment.lsSavedUrlKey;
 
   return authService.user$.pipe(

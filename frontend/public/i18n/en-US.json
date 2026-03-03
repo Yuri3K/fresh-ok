@@ -68,11 +68,11 @@
         "pwd-error-minlength": "Password must be at least {{minlength}} characters. Now is {{currentlength}} character(s)"
       },
       "name": {
-        "enter-nick": "Enter nickname",
+        "enter-nick": "Enter your name",
         "nick-placeholder": "Ex: User",
         "nick-hint": "Hint: must be at least 2 characters long",
-        "nick-error-required": "Please enter nickname",
-        "nick-error-minlength": "Nickname must be at least {{minlength}} characters. Now is {{currentlength}} character(s)"
+        "nick-error-required": "Please enter the name",
+        "nick-error-minlength": "Name must be at least {{minlength}} characters. Now is {{currentlength}} character(s)"
       },
       "textarea": {
         "textarea-error-required": "Please write your review"

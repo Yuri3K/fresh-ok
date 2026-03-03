@@ -19,6 +19,7 @@
       type="'text" 
       [placeholder]="placeholder()"
       [formControl]="nameControl()"
+      [maxlength]="maxLength()"
     >
     
     @if(suffixIcon()) {
@@ -26,9 +27,17 @@
         {{suffixIcon()}}
       </mat-icon>
     }
-  
+
+    @if(maxLength()) {
+      <mat-hint [align]="'end'">
+        {{nameControl().value.length}} / {{maxLength()}}
+      </mat-hint>
+    }
+
     @if(hint()) {
-      <mat-hint>{{hint()}}</mat-hint>
+      <mat-hint>
+        {{hint()}}
+      </mat-hint>
     }
   
     @if (nameControl().hasError('required') && nameControl().touched) {

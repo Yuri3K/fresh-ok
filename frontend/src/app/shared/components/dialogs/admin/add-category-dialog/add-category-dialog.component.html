@@ -1,0 +1,27 @@
+<div class="category">
+  <form 
+    class="category__form"
+    [formGroup]="categoryForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="category__names">
+      <app-form-control-name 
+        [nameControl]="ruNameControl"
+        [maxLength]="100"
+        [label]="'admin.add-category.ru-name' | translate"
+      />
+
+      <app-form-control-name 
+        [nameControl]="ukNameControl"
+        [maxLength]="100"
+        [label]="'admin.add-category.uk-name' | translate"
+      />
+
+      <app-form-control-name 
+        [nameControl]="enNameControl"
+        [maxLength]="100"
+        [label]="'admin.add-category.en-name' | translate"
+      />
+    </div>
+  </form>
+</div>

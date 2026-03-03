@@ -1,0 +1,8 @@
+@for(category of categories(); track category.id) {
+  <app-category-card [category]="category"/>
+}
+
+<app-btn-flat 
+  [btnText]="'goods.add-category' | translate"
+  (click)="openAddCategoryDialog()"
+/>

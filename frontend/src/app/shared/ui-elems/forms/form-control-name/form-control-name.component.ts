@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, input } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -27,4 +27,12 @@ export class FormControlNameComponent {
   placeholder = input<string>('')
   hint = input<string>('')
   suffixIcon = input<string>('')
+  maxLength = input<number | null>(null)
+  
+  constructor() {
+    effect(() => {
+      console.log("🚀 ~ maxLength:", this.maxLength())
+      
+    })
+  }
 }

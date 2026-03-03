@@ -6,8 +6,8 @@ export interface CatalogItem {
   id: string
   order: number
   slug: string
-  createdAt: string
-  updatedAt: string
+  createdAt: number
+  updatedAt: number
   name: {
     en: string
     ru: string

@@ -71,7 +71,7 @@
         "enter-nick": "Введите никнейм",
         "nick-placeholder": "Например: Пользователь",
         "nick-hint": "Подсказка: не меньше 2 символов",
-        "nick-error-required": "Пожалуйста, введите никнейм",
+        "nick-error-required": "Пожалуйста, введите имя",
         "nick-error-minlength": "Никнейм должен быть не менее {{minlength}} символов. Сейчас {{currentlength}} символов"
       },
       "textarea": {
@@ -544,5 +544,17 @@
         "route": "/promotions"
       }
     ]
+  },
+  "admin": {
+    "create-product": "Содать продукт",
+    "go-to-goods": "Перейти к товарам",
+    "add-category": {
+      "title": "Добивить категорию",
+      "ru-name": "Название (RU)",
+      "en-name": "Название (EN)",
+      "uk-name": "Название (UK)",
+      "order": "Позиция",
+      "slug": "ID"
+    }
   }
 }

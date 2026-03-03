@@ -78,7 +78,6 @@ export class SearchInMarketComponent {
         takeUntilDestroyed()
       )
       .subscribe(response => {
-        console.log("🚀 ~ response:", response)
         if('data' in response ) {
           this.searchResults.set(response.data || [])
         }
@@ -87,17 +86,17 @@ export class SearchInMarketComponent {
   }
 
   onSubmit() {
-    const query = this.searchField.value?.trim()
+    // const query = this.searchField.value?.trim()
 
-    if (!query) return
+    // if (!query) return
 
-    // Переход на страницу поиска со всеми результатами
-    this.navigateService.navigate(['/products'], {
-      queryParams: { search: query }
-    })
+    // // Переход на страницу поиска со всеми результатами
+    // this.navigateService.navigate(['/products'], {
+    //   queryParams: { search: query }
+    // })
 
-    // Закрываем dropdown
-    this.showDropdown.set(false)
+    // // Закрываем dropdown
+    // this.showDropdown.set(false)
   }
 
   selectProduct(product: Product) {

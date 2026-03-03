@@ -1,9 +1,10 @@
 import { Routes } from "@angular/router";
-import { DashboardComponent } from "../../../routes/dashboard/dashboard.component";
-import { UsersListComponent } from "../../../routes/users-list/users-list.component";
+import { DashboardComponent } from "../../../routes/admin/dashboard/dashboard.component";
+import { UsersListComponent } from "../../../routes/admin/users-list/users-list.component";
 import { AdminLayoutComponent } from "./admin-layout.component";
 import { authChildGuard, authGuard } from "../../../core/guards/auth.guard";
 import { roleGuard } from "../../../core/guards/role.guard";
+import { GoodsComponent } from "@routes/admin/goods/goods.component";
 
 export const routes: Routes = [
   {
@@ -22,6 +23,11 @@ export const routes: Routes = [
         path: 'dashboard',
         data: { roles: ['superAdmin', 'admin', 'manager', 'customer'] },
         component: DashboardComponent
+      },
+      {
+        path: 'goods',
+        data: { roles: ['superAdmin', 'admin', 'manager', 'customer'] },
+        component: GoodsComponent
       },
       {
         path: 'users-list',
