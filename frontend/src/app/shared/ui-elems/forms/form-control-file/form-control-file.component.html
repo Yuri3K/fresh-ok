@@ -1,0 +1,35 @@
+<mat-card 
+  appDragDrop 
+  (filesDropped)="onFilesDropped($event)" 
+  class="drop-zone"
+>
+  <div class="drop-zone__actions">
+    <mat-icon>cloud_upload</mat-icon>
+    
+    <input 
+      type="file" 
+      hidden 
+      #fileInput 
+      accept="image/*"
+      (change)="onFilesDropped($event)"
+    >
+  
+    <app-btn-flat 
+      [btnText]="'common.forms.file.choose-file' | translate"
+      borderRarius="4px"
+      (click)="fileInput.click()"
+    />
+  
+    <p>{{'common.forms.file.drag-file' | translate}}</p>
+  </div>
+
+
+  <div class="drop-zone__preview">
+    @if(imageUrl()) {
+      <img [src]="imageUrl()" [alt]="'common.forms.file.preview-image' | translate">
+    } @else{
+      <p>{{'common.forms.file.preview-image' | translate}}</p>
+    }
+  </div>
+</mat-card>
+

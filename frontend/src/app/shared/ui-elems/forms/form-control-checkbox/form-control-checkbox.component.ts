@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-form-control-checkbox',
@@ -15,6 +15,13 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 })
 
 export class FormControlCheckboxComponent {
-  checkboxControl = input.required<FormControl<boolean>>()
-  label = input.required<string>()
+  readonly checkboxControl = input.required<FormControl<boolean>>()
+  readonly label = input.required<string>()
+  readonly checkboxDisabled = input<boolean>(false)
+
+   update(event: MatCheckboxChange) {
+    console.log("🚀 ~ event:", event.checked)
+    console.log("IN!!!")
+    this.checkboxControl().setValue(event.checked)
+  }
 }

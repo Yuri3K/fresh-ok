@@ -77,6 +77,13 @@
       "textarea": {
         "textarea-error-required": "Please write your review"
       },
+      "file": {
+        "choose-file": "Choose a file",
+        "drag-file": "Or drag it here",
+        "reader-error": "Failed to read the file for preview",
+        "preview-image": "Preview image",
+        "invalid-type": "Invalid file type. Please select an image"
+      },
       "datePicker": {
         "hint": "MM / DD / YY",
         "invalid-date": "Invalid date. Should be MM / DD / YY",
@@ -541,5 +548,17 @@
         "route": "/promotions"
       }
     ]
+  },
+  "admin": {
+    "create-product": "Create product",
+    "go-to-goods": "Go to goods",
+    "add-category": {
+      "title": "Add category",
+      "ru-name": "Name (RU version)",
+      "en-name": "Name (EN version)",
+      "uk-name": "Name (UK version)",
+      "order": "Order",
+      "slug": "ID"
+    }
   }
 }

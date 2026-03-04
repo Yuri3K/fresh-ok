@@ -28,11 +28,4 @@ export class FormControlNameComponent {
   hint = input<string>('')
   suffixIcon = input<string>('')
   maxLength = input<number | null>(null)
-  
-  constructor() {
-    effect(() => {
-      console.log("🚀 ~ maxLength:", this.maxLength())
-      
-    })
-  }
 }

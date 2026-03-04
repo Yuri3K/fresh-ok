@@ -1,3 +1,7 @@
-<mat-checkbox [formControl]="checkboxControl()">
+<mat-checkbox 
+  [checked]="checkboxControl().value"
+  (change)="update($event)"
+  [disabled]="checkboxDisabled()"
+>
   <span>{{label()}}</span>
 </mat-checkbox>

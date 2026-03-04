@@ -32,14 +32,8 @@ export class GoodsComponent {
     this.dialog.open(AddCategoryDialogComponent, {
       panelClass: ['dialog-category'],
       width: '100vw',
-      maxWidth: '100vw',
-      height: '95vh',
-      maxHeight: '95vh',
+      maxWidth: '650px',
       backdropClass: 'categiry-dialog-overlay',
-      position: {
-        bottom: '0',
-        left: '0',
-      },
       data: { categories: this.categories()}
 
     })

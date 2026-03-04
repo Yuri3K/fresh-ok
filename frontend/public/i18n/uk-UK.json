@@ -77,6 +77,13 @@
       "textarea": {
         "textarea-error-required": "Будь-ласка, напишіть відгук"
       },
+      "file": {
+        "choose-file": "Виберіть файл",
+        "drag-file": "Або перетягніть його сюди",
+        "reader-error": "Не вдалося прочитати файл для відображення",
+        "preview-image": "Попередній перегляд зображення",
+        "invalid-type": "Неправильний тип файлу. Будь ласка, виберіть картинку"
+      },
       "datePicker": {
         "hint": "MM / DD / YY",
         "invalid-date": "Неправильна дата. Має бути MM / DD / YY",
@@ -542,5 +549,17 @@
         "route": "/promotions"
       }
     ]
+  },
+  "admin": {
+    "create-product": "Створити продукт",
+    "go-to-goods": "Перейти до товарів",
+    "add-category": {
+      "title": "Додати категорію",
+      "ru-name": "Назва (RU версія)",
+      "en-name": "Назва (EN версія)",
+      "uk-name": "Назва (UK версія)",
+      "order": "Позиція",
+      "slug": "ID"
+    }
   }
 }

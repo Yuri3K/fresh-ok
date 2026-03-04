@@ -77,6 +77,13 @@
       "textarea": {
         "textarea-error-required": "Пожалуйста, напишите отзыв"
       },
+      "file": {
+        "choose-file": "Выберите файл",
+        "drag-file": "Или перетащите его сюда",
+        "reader-error": "Не удалось прочитать файл для его отображения",
+        "preview-image": "Предпросмотр",
+        "invalid-type": "Неверный тип файла. Пожалуйста, выберите картинку"
+      },
       "datePicker": {
         "hint": "MM / DD / YY",
         "invalid-date": "Invalid date. Should be MM / DD / YY",
@@ -550,11 +557,12 @@
     "go-to-goods": "Перейти к товарам",
     "add-category": {
       "title": "Добивить категорию",
-      "ru-name": "Название (RU)",
-      "en-name": "Название (EN)",
-      "uk-name": "Название (UK)",
+      "ru-name": "Название (RU версия)",
+      "en-name": "Название (EN версия)",
+      "uk-name": "Название (UK версия)",
       "order": "Позиция",
-      "slug": "ID"
+      "slug": "ID",
+      "checkbox": "Published"
     }
   }
 }
