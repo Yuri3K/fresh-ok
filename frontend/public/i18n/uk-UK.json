@@ -72,7 +72,7 @@
         "nick-placeholder": "Наприклад: Користувач",
         "nick-hint": "Підказка: має бути не менше 2 символів",
         "nick-error-required": "Будь ласка, введіть ім'я",
-        "nick-error-minlength": "Ім'я має бути не менше {{minlength}} символів. Зараз {{currentlength}} символ"
+        "nick-error-minlength": "Ім'я має бути не менше {{minlength}} символів. Зараз {{currentlength}} символ(ів)"
       },
       "input": {
         "input-error-required": "Це поле обов'язкове до заповнення"

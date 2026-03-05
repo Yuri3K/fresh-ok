@@ -13,6 +13,7 @@ import badgesRoutes from './badgesRoutes'
 import reviewsRoutes from './reviewsRoutes'
 import cartRoutes from './cartRoutes'
 import favsRoutes from './favsRoutes'
+import categoryImageRoutes from './categoryImageRoutes'
 
 const router = express.Router()
 
@@ -22,6 +23,7 @@ router.use('/users', usersRoutes)
 router.use('/admin', adminRoutes)
 router.use('/image', imageRoutes)  // НЕ ИСПОЛЬЗУЕТСЯ
 router.use('/avatar', avatarRoutes)
+router.use('/category-image', categoryImageRoutes)
 router.use('/catalog', catalogRoutes)
 router.use('/sponsors', sponsorsRoutes)
 router.use('/banners', bannersRoutes)

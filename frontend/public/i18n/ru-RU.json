@@ -65,14 +65,14 @@
         "hide-pwd": "Скрыть пароль",
         "pwd-hint": "Подсказка: не меньше 6 символов",
         "pwd-error-required": "Пожалуйста, введите пароль",
-        "pwd-error-minlength": "Пароль должен быть не менее {{minlength}} символов. Сейчас {{currentlength}} символов"
+        "pwd-error-minlength": "Пароль должен быть не менее {{minlength}} символов. Сейчас {{currentlength}} символ(ов)"
       },
       "name": {
-        "enter-nick": "Введите никнейм",
+        "enter-nick": "Введите имя",
         "nick-placeholder": "Например: Пользователь",
         "nick-hint": "Подсказка: не меньше 2 символов",
         "nick-error-required": "Пожалуйста, введите имя",
-        "nick-error-minlength": "Никнейм должен быть не менее {{minlength}} символов. Сейчас {{currentlength}} символов"
+        "nick-error-minlength": "Имя должно быть не менее {{minlength}} символов. Сейчас {{currentlength}} символ(ов)"
       },
       "input": {
         "input-error-required": "Это поля обязательно к заполнению"

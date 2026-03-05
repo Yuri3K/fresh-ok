@@ -15,7 +15,7 @@ const upload = multer({
 })
 
 // Middleware для обработки одного файла с именем 'image'. 
-// То есть multer проверит тип файла и убудиться, что это картинка
+// То есть multer проверит тип файла и убедится, что это картинка
 export const uploadImageMiddleware = upload.single('image')
 
 export async function uploadUserAvatar(
@@ -39,19 +39,19 @@ export async function uploadUserAvatar(
 
   // 1. Создание потока для загрузки
   const uploadStream = cloudinary.uploader.upload_stream({
-    folder: 'avatars', // Папка в Cloudinary (создастся, если не существует)
-    type: 'upload', // Изображение будет ПУБЛИЧНЫМ
-    resource_type: 'image', // Определить тип файла автоматически
-    public_id: public_id_for_user, // устанавливаем ID для аватарки в cloudinary
-    overwrite: true, // Перезаписываем старый аватар
-    transformation: [{  //оптимизация картинки
-      width: 512,
-      height: 512,
-      crop: 'fill',
-      quality: 'auto',
-      fetch_format: 'auto'
-    }]
-  },
+      folder: 'avatars', // Папка в Cloudinary (создастся, если не существует)
+      type: 'upload', // Изображение будет ПУБЛИЧНЫМ
+      resource_type: 'image', // Определить тип файла автоматически
+      public_id: public_id_for_user, // устанавливаем ID для аватарки в cloudinary
+      overwrite: true, // Перезаписываем старый аватар
+      transformation: [{  //оптимизация картинки
+        width: 512,
+        height: 512,
+        crop: 'fill',
+        quality: 'auto',
+        fetch_format: 'auto'
+      }]
+    },
 
     async (error, result) => {
       if (error) {

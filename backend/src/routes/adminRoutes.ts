@@ -7,7 +7,12 @@ import { DeleteUser } from '../types/schemas/admin/delete-user'
 
 const router = express.Router()
 
-router.get('/users', verifyToken(), checkPermission.any(['user.list']), getUsersList)
+router.get(
+  '/users', verifyToken(), 
+  checkPermission.any(['user.list']), 
+  getUsersList
+)
+
 router.delete(
   '/users/:uid', 
   verifyToken(), 

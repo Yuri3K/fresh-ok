@@ -7,11 +7,12 @@ import { FormControlFileComponent } from "@shared/ui-elems/forms/form-control-fi
 import { BtnIconComponent } from "@shared/ui-elems/buttons/btn-icon/btn-icon.component";
 import { H3TitleComponent } from "@shared/ui-elems/typography/h3-title/h3-title.component";
 import { toSignal } from '@angular/core/rxjs-interop';
-import { tap } from 'rxjs';
+import { finalize, switchMap, tap } from 'rxjs';
 import { FormControlCheckboxComponent } from "@shared/ui-elems/forms/form-control-checkbox/form-control-checkbox.component";
 import { FormControlInputComponent } from "@shared/ui-elems/forms/form-control-input/form-control-input.component";
 import { FormControlInputNumberComponent } from "@shared/ui-elems/forms/form-control-input-number/form-control-input-number.component";
 import { BtnFlatComponent } from "@shared/ui-elems/buttons/btn-flat/btn-flat.component";
+import { CatalogService } from '@core/services/catalog.service';
 
 @Component({
   selector: 'app-add-category-dialog',
@@ -28,12 +29,13 @@ import { BtnFlatComponent } from "@shared/ui-elems/buttons/btn-flat/btn-flat.com
     FormControlInputComponent,
     FormControlInputNumberComponent,
     BtnFlatComponent
-],
+  ],
   templateUrl: './add-category-dialog.component.html',
   styleUrl: './add-category-dialog.component.scss'
 })
 export class AddCategoryDialogComponent {
   protected readonly dialogRef = inject(MatDialogRef)
+  private readonly catalogService = inject(CatalogService)
   private _fb = inject(FormBuilder)
   private data = inject(MAT_DIALOG_DATA)
 
@@ -43,35 +45,51 @@ export class AddCategoryDialogComponent {
   protected maxLengthSlug = 50
 
   protected formComplete = signal(false)
+  protected uploading = signal(false)
 
   protected readonly categoryForm = this._fb.group({
-    ruName: ['', [Validators.min(3), Validators.maxLength(this.maxLengthName)]],
-    enName: ['', [Validators.min(3), Validators.maxLength(this.maxLengthName)]],
-    ukName: ['', [Validators.min(3), Validators.maxLength(this.maxLengthName)]],
+    ruName: ['', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(this.maxLengthName)
+    ]],
+    enName: ['', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(this.maxLengthName)
+    ]],
+    ukName: ['', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(this.maxLengthName)
+    ]],
     imageFile: [null],
     order: [this.maxOrder, [
       Validators.required,
-      Validators.min(1), 
+      Validators.min(1),
       Validators.max(this.maxOrder)
     ]],
-    slug: ['', [Validators.required, Validators.maxLength(this.maxLengthSlug)]],
+    slug: ['', [
+      Validators.required,
+      Validators.maxLength(this.maxLengthSlug)
+    ]],
     published: [false],
   })
 
   protected categoryChanged = toSignal(
     this.categoryForm.valueChanges
       .pipe(tap(changes => {
-        const isFormComplete =  
-          this.ruNameControl.value !== '' 
-          && this.enNameControl.value !== '' 
-          && this.ukNameControl.value !== '' 
-          && this.slugControl.value !== '' 
+        const isFormComplete =
+          this.ruNameControl.value !== ''
+          && this.enNameControl.value !== ''
+          && this.ukNameControl.value !== ''
+          && this.slugControl.value !== ''
 
-          if(!isFormComplete && !!this.publishedControl.value) {
-            this.publishedControl.setValue(false)
-          }
+        if (!isFormComplete && !!this.publishedControl.value) {
+          this.publishedControl.setValue(false)
+        }
 
-          this.formComplete.set(isFormComplete)
+        this.formComplete.set(isFormComplete)
       })),
     { initialValue: null }
   )
@@ -106,7 +124,51 @@ export class AddCategoryDialogComponent {
 
   protected onSubmit() {
     console.log(this.categoryForm.value)
+
+    if (this.categoryForm.invalid) return
+
+    const slug = this.slugControl.value
+    const imageFile = this.imageFileControl.value
+
+    if (imageFile) {
+      this.uploading.set(true)
+
+      this.catalogService.uploadCategoryImage(imageFile, slug)
+        .pipe(
+          switchMap(uploadResult => {
+            return this.catalogService.createCategory({
+              slug,
+              order: this.orderControl.value,
+              name: {
+                en: this.enNameControl.value,
+                ru: this.ruNameControl.value,
+                uk: this.ukNameControl.value
+              },
+              publicId: uploadResult.publicId,
+              imgVersion: uploadResult.imgVersion,
+              isPublished: this.publishedControl.value
+            })
+          }),
+          finalize(() => this.uploading.set(false))
+        ).subscribe({
+          next: () => this.dialogRef.close(),
+          error: err => console.error('Error:', err)
+        })
+    } else {
+      // Без картинки — просто создаём категорию
+      this.catalogService.createCategory({
+        slug,
+        order: this.orderControl.value,
+        name: {
+          en: this.enNameControl.value,
+          ru: this.ruNameControl.value,
+          uk: this.ukNameControl.value
+        },
+        isPublished: this.publishedControl.value
+      }).subscribe({
+        next: () => this.dialogRef.close(),
+        error: err => console.error('Error:', err)
+      })
+    }
   }
-
-
 }

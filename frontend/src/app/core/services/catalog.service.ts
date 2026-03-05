@@ -1,18 +1,21 @@
 import { inject, Injectable } from '@angular/core';
 import { ApiService } from './api.service';
-import { BehaviorSubject, catchError, take, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, take, tap, throwError } from 'rxjs';
 
 export interface CatalogItem {
   id: string
   order: number
   slug: string
-  createdAt: number
-  updatedAt: number
+  publicId: string
+  imgVersion: number
+  isPublished: boolean
   name: {
     en: string
     ru: string
     uk: string
   }
+  createdAt: number
+  updatedAt: number
 }
 
 @Injectable({
@@ -38,14 +41,31 @@ export class CatalogService {
 
   private getCatalogList() {
     return this.apiService.getWithoutToken<CatalogItem[]>('/catalog')
-    .pipe(
-      take(1),
-      tap(catalog => this.catalogListSubject.next(catalog)),
-      catchError(err => {
-        console.log("Error fetching catalog", err)
-        return throwError(() => err)
-      })
-    )
+      .pipe(
+        take(1),
+        tap(catalog => this.catalogListSubject.next(catalog)),
+        catchError(err => {
+          console.log("Error fetching catalog", err)
+          return throwError(() => err)
+        })
+      )
+  }
+
+  uploadCategoryImage(file: File, slug: string): Observable<{
+    publicId: string
+    imgVersion: number
+    url: string
+  }> {
+    const formData = new FormData()
+    formData.append('image', file)
+    formData.append('slug', slug)
+
+    return this.apiService.post('/category-image', formData)
+  }
+
+  createCategory(categoryData: Partial<CatalogItem>): Observable<CatalogItem> {
+    return this.apiService.post('/catalog/create-category', categoryData)
+      
   }
 
 }
