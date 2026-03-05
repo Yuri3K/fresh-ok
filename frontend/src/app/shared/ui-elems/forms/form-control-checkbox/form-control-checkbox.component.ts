@@ -20,8 +20,6 @@ export class FormControlCheckboxComponent {
   readonly checkboxDisabled = input<boolean>(false)
 
    update(event: MatCheckboxChange) {
-    console.log("🚀 ~ event:", event.checked)
-    console.log("IN!!!")
     this.checkboxControl().setValue(event.checked)
   }
 }

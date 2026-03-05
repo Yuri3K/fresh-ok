@@ -1,3 +1,5 @@
+@use 'mixins/castom-scrollbar' as *;
+
 :host {
   border: 1px solid var(--mat-sys-primary);
   
@@ -6,16 +8,7 @@
   }
 }
 
-.category {
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
 .category__header{
-  --mat-dialog-headline-padding: 0;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -25,10 +18,32 @@
   }
 }
 
+mat-dialog-content {
+  @include custom-scrollbar(
+    var(--mat-sys-outline),
+    var(--mat-sys-primary-container)
+  )
+}
+
 .category__form {
+  padding-top: 16px;
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.category__slug-order {
+  display: grid;
+  grid-template-columns: 1fr 150px;
+  gap: 16px;
+
+  .category__order{
+    max-width: 150px;
+  }
+
+  @media (max-width: 576px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .category__names {

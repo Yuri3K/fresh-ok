@@ -74,6 +74,9 @@
         "nick-error-required": "Пожалуйста, введите имя",
         "nick-error-minlength": "Никнейм должен быть не менее {{minlength}} символов. Сейчас {{currentlength}} символов"
       },
+      "input": {
+        "input-error-required": "Это поля обязательно к заполнению"
+      },
       "textarea": {
         "textarea-error-required": "Пожалуйста, напишите отзыв"
       },
@@ -561,8 +564,9 @@
       "en-name": "Название (EN версия)",
       "uk-name": "Название (UK версия)",
       "order": "Позиция",
-      "slug": "ID",
-      "checkbox": "Published"
+      "order-error": "Укажите позицию",
+      "slug": "Идентификатор (slug)",
+      "checkbox": "Опубликовано"
     }
   }
 }

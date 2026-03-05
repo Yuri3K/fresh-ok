@@ -9,6 +9,9 @@ import { H3TitleComponent } from "@shared/ui-elems/typography/h3-title/h3-title.
 import { toSignal } from '@angular/core/rxjs-interop';
 import { tap } from 'rxjs';
 import { FormControlCheckboxComponent } from "@shared/ui-elems/forms/form-control-checkbox/form-control-checkbox.component";
+import { FormControlInputComponent } from "@shared/ui-elems/forms/form-control-input/form-control-input.component";
+import { FormControlInputNumberComponent } from "@shared/ui-elems/forms/form-control-input-number/form-control-input-number.component";
+import { BtnFlatComponent } from "@shared/ui-elems/buttons/btn-flat/btn-flat.component";
 
 @Component({
   selector: 'app-add-category-dialog',
@@ -21,7 +24,10 @@ import { FormControlCheckboxComponent } from "@shared/ui-elems/forms/form-contro
     FormControlFileComponent,
     BtnIconComponent,
     H3TitleComponent,
-    FormControlCheckboxComponent
+    FormControlCheckboxComponent,
+    FormControlInputComponent,
+    FormControlInputNumberComponent,
+    BtnFlatComponent
 ],
   templateUrl: './add-category-dialog.component.html',
   styleUrl: './add-category-dialog.component.scss'
@@ -32,19 +38,23 @@ export class AddCategoryDialogComponent {
   private data = inject(MAT_DIALOG_DATA)
 
   private categories = this.data.categories
-  protected maxOrder: number = this.categories.length
+  protected maxOrder: number = this.categories.length + 1
+  protected maxLengthName = 100
+  protected maxLengthSlug = 50
 
   protected formComplete = signal(false)
 
   protected readonly categoryForm = this._fb.group({
-    ruName: ['', [Validators.maxLength(100)]],
-    enName: ['', [Validators.maxLength(100)]],
-    ukName: ['', [Validators.maxLength(100)]],
+    ruName: ['', [Validators.min(3), Validators.maxLength(this.maxLengthName)]],
+    enName: ['', [Validators.min(3), Validators.maxLength(this.maxLengthName)]],
+    ukName: ['', [Validators.min(3), Validators.maxLength(this.maxLengthName)]],
     imageFile: [null],
-    order: [this.maxOrder + 1, [
-      Validators.min(1), Validators.max(this.maxOrder + 1)
+    order: [this.maxOrder, [
+      Validators.required,
+      Validators.min(1), 
+      Validators.max(this.maxOrder)
     ]],
-    slug: ['asdf', [Validators.required, Validators.maxLength(50)]],
+    slug: ['', [Validators.required, Validators.maxLength(this.maxLengthSlug)]],
     published: [false],
   })
 
@@ -65,8 +75,6 @@ export class AddCategoryDialogComponent {
       })),
     { initialValue: null }
   )
-
-  
 
   get ruNameControl(): FormControl<string> {
     return this.categoryForm.get('ruName') as FormControl<string>
@@ -97,6 +105,8 @@ export class AddCategoryDialogComponent {
   }
 
   protected onSubmit() {
-
+    console.log(this.categoryForm.value)
   }
+
+
 }

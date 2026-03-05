@@ -16,10 +16,11 @@
   
     <input 
       matInput 
-      type="text" 
+      type="number" 
       [placeholder]="placeholder()"
       [formControl]="inputControl()"
-      [maxlength]="maxLength()"
+      [max]="maxNum()"
+      (blur)="checkOrder($event)"
     >
   
     @if(suffixIcon()) {
@@ -28,9 +29,9 @@
       </mat-icon>
     }
   
-    @if(maxLength()) {
-      <mat-hint [align]="'end'">
-        {{inputControl().value.length}} / {{maxLength()}}
+    @if(maxNum()) {
+      <mat-hint [align]="'start'">
+        max: {{maxNum()}}
       </mat-hint>
     }
 

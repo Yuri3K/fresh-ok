@@ -64,7 +64,6 @@ export class FormControlFileComponent {
 
     reader.onload = () => {
       this.imageUrl.set(reader.result as string)
-      console.log("🚀 ~ this.imageUrl:", this.imageUrl())
     }
 
     reader.onerror = error => {

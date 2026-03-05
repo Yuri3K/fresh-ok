@@ -74,6 +74,9 @@
         "nick-error-required": "Будь ласка, введіть ім'я",
         "nick-error-minlength": "Ім'я має бути не менше {{minlength}} символів. Зараз {{currentlength}} символ"
       },
+      "input": {
+        "input-error-required": "Це поле обов'язкове до заповнення"
+      },
       "textarea": {
         "textarea-error-required": "Будь-ласка, напишіть відгук"
       },
@@ -559,7 +562,9 @@
       "en-name": "Назва (EN версія)",
       "uk-name": "Назва (UK версія)",
       "order": "Позиція",
-      "slug": "ID"
+      "order-error": "Вкажіть, позицию",
+      "slug": "Идентифікатор (slug)",
+      "checkbox": "Опубліковано"
     }
   }
 }

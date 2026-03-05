@@ -74,6 +74,9 @@
         "nick-error-required": "Please enter the name",
         "nick-error-minlength": "Name must be at least {{minlength}} characters. Now is {{currentlength}} character(s)"
       },
+      "input": {
+        "input-error-required": "This field is required"
+      },
       "textarea": {
         "textarea-error-required": "Please write your review"
       },
@@ -558,7 +561,9 @@
       "en-name": "Name (EN version)",
       "uk-name": "Name (UK version)",
       "order": "Order",
-      "slug": "ID"
+      "order-error": "Add the order",
+      "slug": "Identifier (slug)",
+      "checkbox": "Published"
     }
   }
 }
