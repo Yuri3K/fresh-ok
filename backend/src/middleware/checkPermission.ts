@@ -14,18 +14,18 @@ export const checkPermission = {
     return (req: AuthRequest, res: Response, next: NextFunction) => {
       const user = req.user
 
-      if(!user) {
-        return res.status(401).json({error: 'User not Authenticated'})
+      if (!user) {
+        return res.status(401).json({ error: 'User not Authenticated' })
       }
 
-      const {role, permissions = []} = user
+      const { role, permissions = [] } = user
       const isHasAll = hasAll(permissions, required)
 
-      if(role === 'superAdmin' || isHasAll) {
+      if (role === 'superAdmin' || isHasAll) {
         return next()
       }
 
-      return res.status(403).json({error: "Access denied"})
+      return res.status(403).json({ error: "Access denied" })
     }
   },
 
@@ -33,17 +33,39 @@ export const checkPermission = {
     return (req: AuthRequest, res: Response, next: NextFunction) => {
       const user = req.user
 
-      if(!user) {
-        return res.status(401).json({error: 'User not Authenticated'})
+      if (!user) {
+        return res.status(401).json({ error: 'User not Authenticated' })
       }
 
-      const {role, permissions = []} = user
+      const { role, permissions = [] } = user
 
-      if(role === 'superAdmin' || hasAny(permissions, required)) {
+      if (role === 'superAdmin' || hasAny(permissions, required)) {
         return next()
       }
 
-      return res.status(403).json({error: 'Access denied'})
+      return res.status(403).json({ error: 'Access denied' })
+    }
+  },
+
+  role: (allowedRoles: string[]) => {
+    return (req: AuthRequest, res: Response, next: NextFunction) => {
+      const user = req.user
+
+      if (!user) {
+        return res.status(401).json({ error: 'User not Authenticated' })
+      }
+
+      const userRole = user.role
+
+      if (!userRole || !allowedRoles.includes(userRole)) {
+        return res.status(403).json({
+          error: 'Forbidden: insufficient permissions',
+          required: allowedRoles,
+          current: userRole
+        })
+      }
+
+      next()
     }
   }
 

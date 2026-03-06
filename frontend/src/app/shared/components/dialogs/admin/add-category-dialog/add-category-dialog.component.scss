@@ -2,13 +2,13 @@
 
 :host {
   border: 1px solid var(--mat-sys-primary);
-  
+
   mat-dialog-container {
     margin: 0 !important;
   }
 }
 
-.category__header{
+.category__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -19,10 +19,8 @@
 }
 
 mat-dialog-content {
-  @include custom-scrollbar(
-    var(--mat-sys-outline),
-    var(--mat-sys-primary-container)
-  )
+  @include custom-scrollbar(var(--mat-sys-outline),
+    var(--mat-sys-primary-container))
 }
 
 .category__form {
@@ -37,7 +35,7 @@ mat-dialog-content {
   grid-template-columns: 1fr 150px;
   gap: 16px;
 
-  .category__order{
+  .category__order {
     max-width: 150px;
   }
 

@@ -12,7 +12,8 @@ import { FormControlCheckboxComponent } from "@shared/ui-elems/forms/form-contro
 import { FormControlInputComponent } from "@shared/ui-elems/forms/form-control-input/form-control-input.component";
 import { FormControlInputNumberComponent } from "@shared/ui-elems/forms/form-control-input-number/form-control-input-number.component";
 import { BtnFlatComponent } from "@shared/ui-elems/buttons/btn-flat/btn-flat.component";
-import { CatalogService } from '@core/services/catalog.service';
+import { CatalogItem, CatalogService } from '@core/services/catalog.service';
+import { MatProgressSpinner } from "@angular/material/progress-spinner";
 
 @Component({
   selector: 'app-add-category-dialog',
@@ -28,8 +29,9 @@ import { CatalogService } from '@core/services/catalog.service';
     FormControlCheckboxComponent,
     FormControlInputComponent,
     FormControlInputNumberComponent,
-    BtnFlatComponent
-  ],
+    BtnFlatComponent,
+    MatProgressSpinner
+],
   templateUrl: './add-category-dialog.component.html',
   styleUrl: './add-category-dialog.component.scss'
 })
@@ -39,8 +41,8 @@ export class AddCategoryDialogComponent {
   private _fb = inject(FormBuilder)
   private data = inject(MAT_DIALOG_DATA)
 
-  private categories = this.data.categories
-  protected maxOrder: number = this.categories.length + 1
+  protected category: CatalogItem | null = this.data.category ?? null
+  protected maxOrder: number = this.catalogService.categoriesLehgth + 2
   protected maxLengthName = 100
   protected maxLengthSlug = 50
 

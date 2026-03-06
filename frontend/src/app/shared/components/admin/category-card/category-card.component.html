@@ -1,1 +1,22 @@
-<p>category-card works!</p>
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>
+      <app-h5-title
+        class="two-lines"
+        [text]="category().name[currentLang()]"
+      />
+    </mat-card-title>
+    <app-menu class="icon-menu" [options]="menuOptions()"/>
+  </mat-card-header>
+  <div class="category-card__img">
+    @if(categoryImg()) {
+      <img 
+        mat-card-image 
+        [src]="categoryImg()" 
+        [alt]="category().name[currentLang()]"
+      >
+    } @else {
+      <mat-icon>image_not_supported</mat-icon>
+    }
+  </div>
+</mat-card>

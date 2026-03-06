@@ -6,7 +6,7 @@ import {db} from '../config/firebaseAdmin'
  * Middleware для проверки роли и/или permissions пользователя
  * @param required - строка (роль или permission) или массив таких строк
  */
-export const checkPermission = (required: string | string[]) => {
+const checkPermission = (required: string | string[]) => {
   return async (req: AuthRequest, res: Response, next: NextFunction) => {
     try {
       const user = req.user

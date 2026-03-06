@@ -34,8 +34,7 @@ export class GoodsComponent {
       width: '100vw',
       maxWidth: '650px',
       backdropClass: 'categiry-dialog-overlay',
-      data: { categories: this.categories()}
-
+      data: {category: null}
     })
   }
 }

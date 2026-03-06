@@ -31,6 +31,10 @@ export class CatalogService {
   readonly catalogList$ = this.catalogListSubject.asObservable()
   readonly selectedCategory$ = this.selectedCategorySubject.asObservable()
 
+  get categoriesLehgth(): number {
+    return this.catalogListSubject.getValue().length
+  }
+
   constructor() {
     this.getCatalogList().subscribe()
   }
@@ -64,8 +68,15 @@ export class CatalogService {
   }
 
   createCategory(categoryData: Partial<CatalogItem>): Observable<CatalogItem> {
-    return this.apiService.post('/catalog/create-category', categoryData)
-      
+    return this.apiService.post<CatalogItem>('/catalog/create-category', categoryData)
+  }
+
+  editCategory(categoryData: CatalogItem) {
+  }
+  
+  removeCategory(slug: CatalogItem['slug']) {
+    console.log("CALLED!!!!")
+    // this.apiService.delete(`/catalog/${slug}`).subscribe()
   }
 
 }

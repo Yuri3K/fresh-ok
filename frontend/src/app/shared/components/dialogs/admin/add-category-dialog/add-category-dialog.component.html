@@ -64,10 +64,14 @@
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <app-btn-flat 
-    [btnText]="'common.save' | translate"
-    type="submit"
-    [btnDisabled]="categoryForm.invalid"
-    (click)="onSubmit()"
-  />
+  @if(uploading()) {
+    <mat-spinner diameter="40"/>
+  } @else {
+    <app-btn-flat 
+      [btnText]="'common.save' | translate"
+      type="submit"
+      [btnDisabled]="categoryForm.invalid"
+      (click)="onSubmit()"
+    />
+  }
 </mat-dialog-actions>
