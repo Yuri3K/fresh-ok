@@ -557,6 +557,7 @@
     "go-to-goods": "Go to goods",
     "add-category": {
       "title": "Add category",
+      "edit-title": "Edit category",
       "ru-name": "Name (RU version)",
       "en-name": "Name (EN version)",
       "uk-name": "Name (UK version)",

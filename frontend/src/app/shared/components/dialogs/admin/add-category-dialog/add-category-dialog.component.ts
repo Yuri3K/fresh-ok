@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
@@ -7,13 +7,14 @@ import { FormControlFileComponent } from "@shared/ui-elems/forms/form-control-fi
 import { BtnIconComponent } from "@shared/ui-elems/buttons/btn-icon/btn-icon.component";
 import { H3TitleComponent } from "@shared/ui-elems/typography/h3-title/h3-title.component";
 import { toSignal } from '@angular/core/rxjs-interop';
-import { finalize, switchMap, tap } from 'rxjs';
+import { finalize, of, switchMap, tap } from 'rxjs';
 import { FormControlCheckboxComponent } from "@shared/ui-elems/forms/form-control-checkbox/form-control-checkbox.component";
 import { FormControlInputComponent } from "@shared/ui-elems/forms/form-control-input/form-control-input.component";
 import { FormControlInputNumberComponent } from "@shared/ui-elems/forms/form-control-input-number/form-control-input-number.component";
 import { BtnFlatComponent } from "@shared/ui-elems/buttons/btn-flat/btn-flat.component";
 import { CatalogItem, CatalogService } from '@core/services/catalog.service';
 import { MatProgressSpinner } from "@angular/material/progress-spinner";
+import { MEDIA_URL } from '@core/urls';
 
 @Component({
   selector: 'app-add-category-dialog',
@@ -31,7 +32,7 @@ import { MatProgressSpinner } from "@angular/material/progress-spinner";
     FormControlInputNumberComponent,
     BtnFlatComponent,
     MatProgressSpinner
-],
+  ],
   templateUrl: './add-category-dialog.component.html',
   styleUrl: './add-category-dialog.component.scss'
 })
@@ -48,6 +49,7 @@ export class AddCategoryDialogComponent {
 
   protected formComplete = signal(false)
   protected uploading = signal(false)
+  protected readonly isEditMode = computed(() => !!this.category)
 
   protected readonly categoryForm = this._fb.group({
     ruName: ['', [
@@ -78,7 +80,7 @@ export class AddCategoryDialogComponent {
     published: [false],
   })
 
-  protected categoryChanged = toSignal(
+  protected readonly categoryChanged = toSignal(
     this.categoryForm.valueChanges
       .pipe(tap(changes => {
         const isFormComplete =
@@ -95,6 +97,15 @@ export class AddCategoryDialogComponent {
       })),
     { initialValue: null }
   )
+
+  protected readonly currentImageUrl = computed(() => {
+    if (!this.category) return ''
+
+    const { publicId, imgVersion } = this.category
+    if (!publicId) return ''
+
+    return `${MEDIA_URL}v${imgVersion}/${publicId}`
+  })
 
   get ruNameControl(): FormControl<string> {
     return this.categoryForm.get('ruName') as FormControl<string>
@@ -124,6 +135,36 @@ export class AddCategoryDialogComponent {
     return this.categoryForm.get('published') as FormControl<boolean>
   }
 
+  constructor() {
+    this.fillInEditableForm()
+  }
+
+  private fillInEditableForm() {
+    console.log("🚀 ~ this.category:", this.category)
+    if (this.category) {
+      // patchValue — это метод Angular Reactive Forms, 
+      // который позволяет обновить значения в форме частично, 
+      // то есть только для тех контролов, которые будут указаны.
+      // setValue требует, чтобы передали значения для ВСЕХ 
+      // контролов формы. Если хотя бы один пропущен — будет ошибка.
+      // patchValue обновляет только те поля, которые указали. 
+      // Остальные остаются без изменений. Если передать лишние 
+      // ключи (которых нет в форме) — TypeScript выдаст ошибку,
+      this.categoryForm.patchValue({
+        ruName: this.category.name.ru,
+        enName: this.category.name.en,
+        ukName: this.category.name.uk,
+        order: this.category.order,
+        slug: this.category.slug,
+        published: this.category.isPublished
+      })
+
+      // При редактировании slug нельзя менять
+      this.slugControl.disable()
+    }
+
+  }
+
   protected onSubmit() {
     console.log(this.categoryForm.value)
 
@@ -131,46 +172,49 @@ export class AddCategoryDialogComponent {
 
     const slug = this.slugControl.value
     const imageFile = this.imageFileControl.value
+    this.uploading.set(true)
 
-    if (imageFile) {
-      this.uploading.set(true)
+    // Определяем нужно ли загружать картинку.
+    // При редактировании у нас поле FileControl будет null,
+    // (если пользователь картинку не добавил про обновлении)
+    // но картинку мы отображаем за счет того, что получаем
+    // ее по publicId и передаем в <app-form-control-file>
+    const uploadImage$ = imageFile
+      ? this.catalogService.uploadCategoryImage(imageFile, slug)
+      : of(this.category ? {
+        publicId: this.category.publicId,
+        imgVersion: this.category.imgVersion
+      } : { publicId: '', imgVersion: 0 })
 
-      this.catalogService.uploadCategoryImage(imageFile, slug)
-        .pipe(
-          switchMap(uploadResult => {
-            return this.catalogService.createCategory({
-              slug,
-              order: this.orderControl.value,
-              name: {
-                en: this.enNameControl.value,
-                ru: this.ruNameControl.value,
-                uk: this.ukNameControl.value
-              },
-              publicId: uploadResult.publicId,
-              imgVersion: uploadResult.imgVersion,
-              isPublished: this.publishedControl.value
-            })
-          }),
-          finalize(() => this.uploading.set(false))
-        ).subscribe({
-          next: () => this.dialogRef.close(),
-          error: err => console.error('Error:', err)
-        })
-    } else {
-      // Без картинки — просто создаём категорию
-      this.catalogService.createCategory({
-        slug,
-        order: this.orderControl.value,
-        name: {
-          en: this.enNameControl.value,
-          ru: this.ruNameControl.value,
-          uk: this.ukNameControl.value
+    uploadImage$
+      .pipe(
+        switchMap(uploadResult => {
+          const categoryData = {
+            slug,
+            order: this.orderControl.value,
+            name: {
+              en: this.enNameControl.value,
+              ru: this.ruNameControl.value,
+              uk: this.ukNameControl.value
+            },
+            publicId: uploadResult.publicId,
+            imgVersion: uploadResult.imgVersion,
+            isPublished: this.publishedControl.value
+          }
+
+          // Создание или редактирование
+          return this.isEditMode()
+            ? this.catalogService.editCategory(categoryData)
+            : this.catalogService.createCategory(categoryData)
+        }),
+        finalize(() => this.uploading.set(false))
+      )
+      .subscribe({
+        next: () => {
+          this.dialogRef.close()
+          this.catalogService.getCatalogList().subscribe()
         },
-        isPublished: this.publishedControl.value
-      }).subscribe({
-        next: () => this.dialogRef.close(),
         error: err => console.error('Error:', err)
       })
-    }
   }
 }

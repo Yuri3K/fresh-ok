@@ -1,6 +1,8 @@
 <div class="category__header" mat-dialog-title>
   <app-h3-title 
-    [text]="'admin.add-category.title' | translate"
+    [text]="isEditMode() 
+     ? ('admin.add-category.edit-title' | translate)
+     : ('admin.add-category.title' | translate)"
   />
   <app-btn-icon 
     iconName="close"
@@ -53,6 +55,7 @@
 
     <app-form-control-file 
       [fileControl]="imageFileControl"
+      [existingImageUrl]="currentImageUrl()"
     />
 
     <app-form-control-checkbox

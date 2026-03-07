@@ -3,7 +3,6 @@ import { ApiService } from './api.service';
 import { BehaviorSubject, catchError, Observable, take, tap, throwError } from 'rxjs';
 
 export interface CatalogItem {
-  id: string
   order: number
   slug: string
   publicId: string
@@ -43,7 +42,7 @@ export class CatalogService {
     this.selectedCategorySubject.next(category)
   }
 
-  private getCatalogList() {
+  getCatalogList() {
     return this.apiService.getWithoutToken<CatalogItem[]>('/catalog')
       .pipe(
         take(1),
@@ -71,12 +70,12 @@ export class CatalogService {
     return this.apiService.post<CatalogItem>('/catalog/create-category', categoryData)
   }
 
-  editCategory(categoryData: CatalogItem) {
+  editCategory(categoryData: Omit<CatalogItem, 'updatedAt' | 'createdAt'>) {
+    return this.apiService.patch<CatalogItem>(`/catalog/${categoryData.slug}`, categoryData)
   }
   
   removeCategory(slug: CatalogItem['slug']) {
-    console.log("CALLED!!!!")
-    // this.apiService.delete(`/catalog/${slug}`).subscribe()
+    this.apiService.delete(`/catalog/${slug}`).subscribe()
   }
 
 }

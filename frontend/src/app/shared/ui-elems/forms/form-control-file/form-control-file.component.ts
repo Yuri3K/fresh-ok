@@ -1,4 +1,4 @@
-import { Component, inject, input, signal } from '@angular/core';
+import { Component, effect, inject, input, signal } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -21,14 +21,24 @@ import { BtnFlatComponent } from "@shared/ui-elems/buttons/btn-flat/btn-flat.com
   styleUrl: './form-control-file.component.scss'
 })
 export class FormControlFileComponent {
-  fileControl = input.required<FormControl<File | null>>()
+  readonly fileControl = input.required<FormControl<File | null>>()
+  readonly existingImageUrl = input<string>('')
 
   private readonly snackbarService = inject(SnackbarService)
   private readonly translateService = inject(TranslateService)
 
   protected readonly imageUrl = signal('')
 
-  onFilesDropped(event: FileList | Event) {
+  constructor() {
+    effect(() => {
+      const existingImageUrl = this.existingImageUrl()
+      if(existingImageUrl) {
+        this.imageUrl.set(existingImageUrl)
+      }
+    })
+  }
+
+  protected onFilesDropped(event: FileList | Event) {
     let file: File | null = null
 
     if (event instanceof FileList) {
