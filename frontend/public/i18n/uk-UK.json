@@ -556,20 +556,27 @@
   "admin": {
     "create-product": "Створити продукт",
     "go-to-goods": "Перейти до товарів",
-    "add-category": {
-      "title": "Додати категорію",
-      "edit-title": "Редагувати категорію",
-      "ru-name": "Назва (RU версія)",
-      "en-name": "Назва (EN версія)",
-      "uk-name": "Назва (UK версія)",
-      "order": "Позиція",
-      "order-error": "Вкажіть, позицию",
-      "slug": "Идентифікатор (slug)",
-      "checkbox": "Опубліковано"
-    },
-    "delete-category-dialog": {
-      "title": "Видалити категорію",
-      "question": "Ви дійсно хочете видалити категорію?"
+    "goods": {
+      "add-category": {
+        "title": "Додати категорію",
+        "edit-title": "Редагувати категорію",
+        "ru-name": "Назва (RU версія)",
+        "en-name": "Назва (EN версія)",
+        "uk-name": "Назва (UK версія)",
+        "order": "Позиція",
+        "order-error": "Вкажіть, позицию",
+        "slug": "Идентифікатор (slug)",
+        "checkbox": "Опубліковано"
+      },
+      "delete-category": {
+        "delete-category-dialog": {
+          "title": "Видалити категорію",
+          "question": "Ви дійсно хочете видалити категорію?"
+        },
+        "success-removed-message": "Категорія видалена успішно",
+        "not-removed-message": "Неможливо видалити категорію: категорія містить товари. Спочатку видаліть товари.",
+        "forbidden-remove-message": "Цю категорію видаляти заборонено"
+      }
     }
   }
 }

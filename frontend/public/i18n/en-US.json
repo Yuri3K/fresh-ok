@@ -555,20 +555,27 @@
   "admin": {
     "create-product": "Create product",
     "go-to-goods": "Go to goods",
-    "add-category": {
-      "title": "Add category",
-      "edit-title": "Edit category",
-      "ru-name": "Name (RU version)",
-      "en-name": "Name (EN version)",
-      "uk-name": "Name (UK version)",
-      "order": "Order",
-      "order-error": "Add the order",
-      "slug": "Identifier (slug)",
-      "checkbox": "Published"
-    },
-    "delete-category-dialog": {
-      "title": "Delete category",
-      "question": "Do you really want to delete the category?"
+    "goods": {
+      "add-category": {
+        "title": "Add category",
+        "edit-title": "Edit category",
+        "ru-name": "Name (RU version)",
+        "en-name": "Name (EN version)",
+        "uk-name": "Name (UK version)",
+        "order": "Order",
+        "order-error": "Add the order",
+        "slug": "Identifier (slug)",
+        "checkbox": "Published"
+      },
+      "delete-category": {
+        "delete-category-dialog": {
+          "title": "Delete category",
+          "question": "Do you really want to delete the category?"
+        },
+        "success-removed-message": "Category deleted successfully",
+        "not-removed-message": "Cannot delete category: it contains products. Please remove products first.",
+        "forbidden-remove-message": "This category will not be deleted"
+      }
     }
   }
 }

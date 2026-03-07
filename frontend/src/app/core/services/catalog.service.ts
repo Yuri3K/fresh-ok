@@ -71,7 +71,6 @@ export class CatalogService {
   }
 
   editCategory(categoryData: Omit<CatalogItem, 'updatedAt' | 'createdAt'>) {
-    console.log("🚀 ~ [editCategory] categoryData:", categoryData)
     return this.apiService.patch<CatalogItem>(`/catalog/${categoryData.slug}`, categoryData)
   }
 

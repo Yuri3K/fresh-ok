@@ -1,8 +1,8 @@
 <div class="category__header" mat-dialog-title>
   <app-h3-title 
     [text]="isEditMode() 
-     ? ('admin.add-category.edit-title' | translate)
-     : ('admin.add-category.title' | translate)"
+     ? ('admin.goods.add-category.edit-title' | translate)
+     : ('admin.goods.add-category.title' | translate)"
   />
   <app-btn-icon 
     iconName="close"
@@ -20,15 +20,15 @@
       <app-form-control-input 
         class="category__slug"
         [inputControl]="slugControl"
-        [label]="'admin.add-category.slug' | translate"
+        [label]="'admin.goods.add-category.slug' | translate"
         [maxLength]="maxLengthSlug"
       />
 
       <app-form-control-input-number 
         class="category__order"
         [inputControl]="orderControl"
-        [label]="'admin.add-category.order' | translate"
-        [errorMessage]="'admin.add-category.order-error' | translate"
+        [label]="'admin.goods.add-category.order' | translate"
+        [errorMessage]="'admin.goods.add-category.order-error' | translate"
         [maxNum]="maxOrder"
       />
     </div>
@@ -37,19 +37,19 @@
       <app-form-control-name 
         [nameControl]="ruNameControl"
         [maxLength]="maxLengthName"
-        [label]="'admin.add-category.ru-name' | translate"
+        [label]="'admin.goods.add-category.ru-name' | translate"
       />
 
       <app-form-control-name 
         [nameControl]="ukNameControl"
         [maxLength]="maxLengthName"
-        [label]="'admin.add-category.uk-name' | translate"
+        [label]="'admin.goods.add-category.uk-name' | translate"
       />
 
       <app-form-control-name 
         [nameControl]="enNameControl"
         [maxLength]="maxLengthName"
-        [label]="'admin.add-category.en-name' | translate"
+        [label]="'admin.goods.add-category.en-name' | translate"
       />
     </div>
 
@@ -60,7 +60,7 @@
 
     <app-form-control-checkbox
       [checkboxControl]="publishedControl"
-      [label]="'admin.add-category.checkbox' | translate"
+      [label]="'admin.goods.add-category.checkbox' | translate"
       [checkboxDisabled]="!formComplete()"
     />
   </form>

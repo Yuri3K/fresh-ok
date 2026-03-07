@@ -13,8 +13,8 @@ import { AddCategoryDialogComponent } from '@shared/components/dialogs/admin/add
 import { UserAccessService } from '@core/services/user-access.service';
 import { DeleteDialogComponent } from '@shared/components/dialogs/delete-dialog/delete-dialog.component';
 import { finalize, switchMap } from 'rxjs';
-import { MatProgressSpinner } from "@angular/material/progress-spinner";
 import { LoaderComponent } from "@shared/components/loader/loader.component";
+import { SnackbarService } from '@core/services/snackbar.service';
 
 @Component({
   selector: 'app-category-card',
@@ -23,9 +23,8 @@ import { LoaderComponent } from "@shared/components/loader/loader.component";
     MatIconModule,
     H5TitleComponent,
     MenuComponent,
-    MatProgressSpinner,
     LoaderComponent
-],
+  ],
   templateUrl: './category-card.component.html',
   styleUrl: './category-card.component.scss'
 })
@@ -37,6 +36,7 @@ export class CategoryCardComponent {
   private catalogService = inject(CatalogService)
   private readonly dialog = inject(MatDialog)
   private readonly userAccessService = inject(UserAccessService)
+  private readonly snackbarService = inject(SnackbarService)
 
   protected readonly isLoading = signal(false)
 
@@ -93,7 +93,7 @@ export class CategoryCardComponent {
       exitAnimationDuration: '150ms',
       data: {
         translations: this.translateService.instant(
-          'admin.delete-category-dialog',
+          'admin.goods.delete-category.delete-category-dialog',
         ),
         info: category.slug
       },
@@ -107,7 +107,30 @@ export class CategoryCardComponent {
           .pipe(
             switchMap(() => this.catalogService.getCatalogList()),
             finalize(() => this.isLoading.set(false)),
-          ).subscribe()
+          ).subscribe({
+            next: () => {
+              const message = this.translateService
+                .instant('admin.goods.delete-category.success-removed-message')
+
+              this.snackbarService.openSnackBar(message, 'OK', 'center', 'bottom', 3000)
+            },
+            error: (err) => {
+              // Показываем сообщение пользователю
+              if (err.error?.error?.includes('existing products')) {
+                const message = this.translateService
+                  .instant('admin.goods.delete-category.not-removed-message')
+
+                this.snackbarService.openSnackBar(message)
+              }
+
+              if (err.error?.error?.includes('main category')) {
+                const message = this.translateService
+                  .instant('admin.goods.delete-category.forbidden-remove-message')
+
+                this.snackbarService.openSnackBar(message)
+              }
+            }
+          })
       }
     })
   }

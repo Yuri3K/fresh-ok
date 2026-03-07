@@ -140,7 +140,6 @@ export class AddCategoryDialogComponent {
   }
 
   private fillInEditableForm() {
-    console.log("🚀 ~ this.category:", this.category)
     if (this.category) {
       // patchValue — это метод Angular Reactive Forms, 
       // который позволяет обновить значения в форме частично, 
@@ -166,8 +165,6 @@ export class AddCategoryDialogComponent {
   }
 
   protected onSubmit() {
-    console.log(this.categoryForm.value)
-
     if (this.categoryForm.invalid) return
 
     const slug = this.slugControl.value

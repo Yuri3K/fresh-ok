@@ -142,7 +142,16 @@ const deleteCategory = async (req: AuthRequest, res: Response) => {
     }
 
     const { slug } = req.params
+    
+    if(slug === 'all') {
+      throw new Error('Cannot delete main category')
+    }
+
     const categoryRef = db.collection('catalog').doc(slug)
+
+
+    const categoryData = (await categoryRef.get()).data()
+    const publicId = categoryData?.publicId
 
     await db.runTransaction(async (transaction) => {
       // ШАГ 1: ЧИТАЕМ ВСЁ ЧТО НУЖНО (ДО любых write операций)
@@ -151,6 +160,17 @@ const deleteCategory = async (req: AuthRequest, res: Response) => {
 
       if (!categoryDoc.exists) {
         throw new Error('[deleteCategory] Category not found')
+      }
+
+      // Проверяем есть ли товары в этой категории
+      const productsInCategory = await transaction.get(
+        db.collection('products')
+          .where('category', '==', slug)
+          .limit(1)
+      )
+
+      if (!productsInCategory.empty) {
+        throw new Error('Cannot delete category with existing products')
       }
 
       const deletedOrder = categoryDoc.data()!.order
@@ -174,11 +194,8 @@ const deleteCategory = async (req: AuthRequest, res: Response) => {
 
 
     // Удаляем картинку из Cloudinary (если есть)
-    // Удаляем из Cloudinary ПОСЛЕ успешной транзакции
-    // НЕ внутри транзакции — это внешний API
-    const categoryData = (await categoryRef.get()).data()
-    const publicId = categoryData?.publicId
-
+    // ПОСЛЕ успешной транзакции
+    // НЕ внутри транзакции, потому что это внешний API
     if (publicId) {
       try {
         await cloudinary.uploader.destroy(publicId)
@@ -193,9 +210,23 @@ const deleteCategory = async (req: AuthRequest, res: Response) => {
     })
   } catch (err: any) {
     console.error('[catalogController] deleteCategory error', err)
+
     if (err.message.includes('not found')) {
       return res.status(404).json({ error: err.message })
     }
+
+    if (err.message.includes('main category')) {
+      return res.status(400).json({ 
+        error: 'Cannot delete main category',
+      })
+    }
+
+    if (err.message.includes('existing products')) {
+      return res.status(400).json({ 
+        error: 'Cannot delete category with existing products',
+      })
+    }
+
     return res.status(500).json({ error: 'Failed to delete category' })
   }
 }
