@@ -1,0 +1,38 @@
+{
+  "$id": "validators/catalog/update-category.schema.json",
+  "title": "Update Category Request",
+  "type": "object",
+  "required": ["slug", "order", "name", "isPublished"],
+  "additionalProperties": false,
+  "properties": {
+    "slug": {
+      "type": "string",
+      "maxLength": 50,
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "order": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 999
+    },
+    "name": {
+      "type": "object",
+      "required": ["en", "ru", "uk"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string", "minLength": 3, "maxLength": 100 },
+        "ru": { "type": "string", "minLength": 3, "maxLength": 100 },
+        "uk": { "type": "string", "minLength": 3, "maxLength": 100 }
+      }
+    },
+    "publicId": {
+      "type": "string"
+    },
+    "imgVersion": {
+      "type": "number"
+    },
+    "isPublished": {
+      "type": "boolean"
+    }
+  }
+}

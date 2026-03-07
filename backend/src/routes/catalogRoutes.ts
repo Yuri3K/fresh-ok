@@ -1,5 +1,5 @@
 import express from 'express'
-import {createCategory, getCatalogList} from '../controllers/catalogController'
+import { createCategory, getCatalogList, updateCategory } from '../controllers/catalogController'
 import verifyToken from '../middleware/verify-token'
 import { checkPermission } from '../middleware/checkPermission'
 import validateRequest from '../middleware/validateRequest'
@@ -12,9 +12,18 @@ router.get('/', getCatalogList)
 router.post(
   '/create-category',
   verifyToken(),
-  checkPermission.any(['category.create']),
+  checkPermission.all(['category.create']),
   validateRequest('catalog/create-category.schema.json', 'body'),
   createCategory
+)
+
+// Обновление категории
+router.patch(
+  '/:slug',
+  verifyToken(),
+  checkPermission.all(['category.create']),
+  validateRequest('catalog/update-category.schema.json', 'body'),
+  updateCategory
 )
 
 export default router

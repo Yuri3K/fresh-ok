@@ -80,7 +80,61 @@ const createCategory = async (req: AuthRequest, res: Response) => {
   }
 }
 
+const updateCategory = async (req: AuthRequest, res: Response) => {
+  const user = req.user
+  if (!user) return res.status(401).json({ error: 'Unauthorized' })
+
+  const { slug } = req.params
+  const { order, name, publicId, imgVersion, isPublished } = req.body
+
+  const categoryRef = db.collection('catalog').doc(slug)
+  let updatedCategory
+
+  await db.runTransaction(async (transaction) => {
+    const categoryDoc = await transaction.get(categoryRef)
+
+    if (!categoryDoc.exists) {
+      throw new Error('Catalog not found')
+    }
+
+    const oldOrder = categoryDoc.data()!.order
+
+    if (oldOrder !== order) {
+      const categoriesSnapshot = await transaction.get(db.collection('catalog'))
+
+      categoriesSnapshot.forEach((doc) => {
+        if (doc.id === slug) return // Пропускаем текущую категорию
+
+        const data = doc.data()
+        // Сдвигаем категории между старым и новым order
+        if (oldOrder < order && data.order > oldOrder && data.order <= order) {
+          transaction.update(doc.ref, { order: data.order - 1 })
+        } else if (oldOrder > order && data.order < oldOrder && data.order >= order) {
+          transaction.update(doc.ref, { order: data.order + 1 })
+        }
+      })
+    }
+
+    updatedCategory = {
+      order,
+      name,
+      publicId: publicId || '',
+      imgVersion: imgVersion || 0,
+      isPublished,
+      updatedAt: admin.firestore.Timestamp.now().toMillis()
+    }
+
+    transaction.update(categoryRef, updatedCategory)
+  })
+
+  return res.status(200).json({
+    message: 'Category updated successfully',
+    category: updatedCategory
+  })
+}
+
 export {
   getCatalogList,
-  createCategory
+  createCategory,
+  updateCategory,
 }
