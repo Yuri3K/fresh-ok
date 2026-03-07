@@ -30,5 +30,5 @@ export class DeleteDialogComponent {
   data = inject(MAT_DIALOG_DATA)
 
   translations = computed<DeleteDialogData>(() => this.data.translations)
-  str = computed<string>(() => this.data.info?.text ?? null)
+  str = computed<string>(() => this.data.info ?? null)
 }

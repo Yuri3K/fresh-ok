@@ -69,7 +69,7 @@ export class ReviewCardComponent {
         translations: this.translateService.instant(
           'product-page.review.delete-dialog',
         ),
-        info: this.review(),
+        info: this.review().text,
       },
     });
 

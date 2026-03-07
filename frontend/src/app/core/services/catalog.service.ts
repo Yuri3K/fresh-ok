@@ -71,11 +71,18 @@ export class CatalogService {
   }
 
   editCategory(categoryData: Omit<CatalogItem, 'updatedAt' | 'createdAt'>) {
+    console.log("🚀 ~ [editCategory] categoryData:", categoryData)
     return this.apiService.patch<CatalogItem>(`/catalog/${categoryData.slug}`, categoryData)
   }
-  
-  removeCategory(slug: CatalogItem['slug']) {
-    this.apiService.delete(`/catalog/${slug}`).subscribe()
+
+  removeCategory(slug: CatalogItem['slug']): Observable<any> {
+    return this.apiService.delete(`/catalog/${slug}`)
+      .pipe(
+        catchError(err => {
+          console.log("Error fetching catalog", err)
+          return throwError(() => err)
+        })
+      )
   }
 
 }

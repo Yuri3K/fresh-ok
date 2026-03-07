@@ -565,6 +565,10 @@
       "order-error": "Add the order",
       "slug": "Identifier (slug)",
       "checkbox": "Published"
+    },
+    "delete-category-dialog": {
+      "title": "Delete category",
+      "question": "Do you really want to delete the category?"
     }
   }
 }

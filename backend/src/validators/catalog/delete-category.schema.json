@@ -1,0 +1,14 @@
+{
+  "$id": "validators/catalog/delete-category.schema.json",
+  "title": "Delete Category Request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["slug"],
+  "properties": {
+    "slug": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Slug of the category to delete"
+    }
+  }
+}

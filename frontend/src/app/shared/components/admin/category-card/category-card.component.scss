@@ -2,6 +2,10 @@ mat-card {
   width: 250px;
   height: auto;
 
+  app-loader {
+    height: 242px;
+  }
+
   mat-card-header{
     align-items: center;
     justify-content: space-between;
@@ -17,6 +21,7 @@ mat-card {
     height: 150px;
     margin: 16px;
     max-width: 100%;
+    padding: 5px;
 
     img {
       width: 100%;
