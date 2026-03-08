@@ -28,6 +28,16 @@
     },
     "favs": {
       "name": "Обране"
+    },
+    "admin": {
+      "name": "Адмін",
+      "url": "/uk/admin"
+    },
+    "dashboard": {
+      "name": "Панель керування"
+    },
+    "goods": {
+      "name": "Категорії"
     }
   },
   "common": {
@@ -555,8 +565,14 @@
   },
   "admin": {
     "create-product": "Створити продукт",
-    "go-to-goods": "Перейти до товарів",
+    "dashboard": {
+      "title": "Hello, {{name}}!",
+      "subtitle": "Давай виконаємо роботу.",
+      "go-to-goods": "Перейти до категорій"
+    },
     "goods": {
+      "title": "Категорії товарів",
+      "create-category": "Створити нову категорію",
       "add-category": {
         "title": "Додати категорію",
         "edit-title": "Редагувати категорію",

@@ -28,6 +28,16 @@
     },
     "favs": {
       "name": "Favourites"
+    },
+    "admin": {
+      "name": "Admin",
+      "url": "/en/admin"
+    },
+    "dashboard": {
+      "name": "Dashboard"
+    },
+    "goods": {
+      "name": "Categories"
     }
   },
   "common": {
@@ -554,8 +564,14 @@
   },
   "admin": {
     "create-product": "Create product",
-    "go-to-goods": "Go to goods",
+    "dashboard": {
+      "title": "Привіт, {{name}}!",
+      "subtitle": "Let’s get the job done.",
+      "go-to-goods": "Go to categories"
+    },
     "goods": {
+      "title": "Product categories",
+      "create-category": "Create new category",
       "add-category": {
         "title": "Add category",
         "edit-title": "Edit category",

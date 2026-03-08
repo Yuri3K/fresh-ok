@@ -6,6 +6,7 @@ import cloudinary from "../config/cloudinary"
 const getCatalogList = async (req: Request, res: Response) => {
   try {
     const snapshot = await db.collection('catalog')
+      .where('isPublished', '==', true)
       .orderBy('order', 'asc') // 'asc' - Ascending (по возрастанию)
       .get()
 
@@ -19,7 +20,28 @@ const getCatalogList = async (req: Request, res: Response) => {
     res.json(catalog)
   } catch (err) {
     console.log(err)
-    res.status(500).send('Error fetching catalog')
+    res.status(500).send('[catalogController], getCatalogList Error')
+  }
+}
+
+const getCatalogListAdmin = async (req: AuthRequest, res: Response) => {
+  try {
+    const snapshot = await db.collection('catalog')
+      .orderBy('order', 'asc')
+      .get()
+
+    const catalog = snapshot.docs.map(doc => {
+      return {
+        id: doc.id,
+        ...doc.data()
+      }
+    })
+
+    res.json(catalog)
+
+  } catch (err) {
+    console.log(err)
+    res.status(500).send('[catalogController], getCatalogListAdmin Error')
   }
 }
 
@@ -142,8 +164,8 @@ const deleteCategory = async (req: AuthRequest, res: Response) => {
     }
 
     const { slug } = req.params
-    
-    if(slug === 'all') {
+
+    if (slug === 'all') {
       throw new Error('Cannot delete main category')
     }
 
@@ -216,13 +238,13 @@ const deleteCategory = async (req: AuthRequest, res: Response) => {
     }
 
     if (err.message.includes('main category')) {
-      return res.status(400).json({ 
+      return res.status(400).json({
         error: 'Cannot delete main category',
       })
     }
 
     if (err.message.includes('existing products')) {
-      return res.status(400).json({ 
+      return res.status(400).json({
         error: 'Cannot delete category with existing products',
       })
     }
@@ -233,6 +255,7 @@ const deleteCategory = async (req: AuthRequest, res: Response) => {
 
 export {
   getCatalogList,
+  getCatalogListAdmin,
   createCategory,
   updateCategory,
   deleteCategory,

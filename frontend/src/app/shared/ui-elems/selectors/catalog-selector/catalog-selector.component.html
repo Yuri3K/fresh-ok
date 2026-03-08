@@ -13,7 +13,7 @@
   </button>
   <div class="catalog__body dropdown-body">
     <ul class="catalog__list dropdown-list">
-      @for(item of catalogList; track item.id; let i = $index) {
+      @for(item of catalogList; track item.slug; let i = $index) {
       <li class="catalog__item">
         <!-- (click)="selectCategory(item.slug)" -->
         <a

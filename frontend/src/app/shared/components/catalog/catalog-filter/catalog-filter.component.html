@@ -4,7 +4,7 @@
   [title]="translattes.categories.title"
 >
   <ul class="categories-list">
-    @for(category of categories(); track category.id) {
+    @for(category of categories(); track category.slug) {
       <li class="categories-item">
         <app-btn-raised 
           class="accordion-btn"

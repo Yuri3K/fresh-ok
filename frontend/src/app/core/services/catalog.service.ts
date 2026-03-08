@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { ApiService } from './api.service';
 import { BehaviorSubject, catchError, Observable, take, tap, throwError } from 'rxjs';
 
@@ -27,8 +27,12 @@ export class CatalogService {
   private readonly catalogListSubject = new BehaviorSubject<CatalogItem[]>([])
   private readonly selectedCategorySubject = new BehaviorSubject<string>('all')
 
+  
   readonly catalogList$ = this.catalogListSubject.asObservable()
   readonly selectedCategory$ = this.selectedCategorySubject.asObservable()
+  
+  private readonly _catalogListAdmin = signal<CatalogItem[]>([])
+  readonly catalogListAdmin = this._catalogListAdmin.asReadonly()
 
   get categoriesLehgth(): number {
     return this.catalogListSubject.getValue().length
@@ -49,6 +53,18 @@ export class CatalogService {
         tap(catalog => this.catalogListSubject.next(catalog)),
         catchError(err => {
           console.log("Error fetching catalog", err)
+          return throwError(() => err)
+        })
+      )
+  }
+
+  getCatalogListAdmin() {
+    return this.apiService.get<CatalogItem[]>('/catalog/admin')
+      .pipe(
+        take(1),
+        tap(catalog => this._catalogListAdmin.set(catalog)),
+        catchError(err => {
+          console.log("Error fetching admin catalog", err)
           return throwError(() => err)
         })
       )

@@ -1,5 +1,5 @@
 import express from 'express'
-import { createCategory, deleteCategory, getCatalogList, updateCategory } from '../controllers/catalogController'
+import { createCategory, deleteCategory, getCatalogList, getCatalogListAdmin, updateCategory } from '../controllers/catalogController'
 import verifyToken from '../middleware/verify-token'
 import { checkPermission } from '../middleware/checkPermission'
 import validateRequest from '../middleware/validateRequest'
@@ -10,6 +10,13 @@ import { CreateCategoryRequest } from '../types/schemas/catalog/create-category'
 const router = express.Router()
 
 router.get('/', getCatalogList)
+
+router.get(
+  '/admin', 
+  verifyToken(),
+  checkPermission.all(['category.create']), // 'category.view'
+  getCatalogListAdmin
+)
 
 // Создание категории
 router.post(
@@ -24,7 +31,7 @@ router.post(
 router.patch(
   '/:slug',
   verifyToken(),
-  checkPermission.all(['category.create']),
+  checkPermission.all(['category.create']), // 'category.update'
   validateRequest<UpdateCategoryRequest>('catalog/update-category.schema.json', 'body'),
   updateCategory
 )
@@ -33,7 +40,7 @@ router.patch(
 router.delete(
   '/:slug',
   verifyToken(),
-  checkPermission.all(['category.create']),
+  checkPermission.all(['category.create']), // 'category.delete'
   validateRequest<DeleteCategoryRequest>('catalog/delete-category.schema.json', 'params'),
   deleteCategory
 )

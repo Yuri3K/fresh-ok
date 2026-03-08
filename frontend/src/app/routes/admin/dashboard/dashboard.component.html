@@ -1,11 +1,19 @@
-<app-btn-flat 
-  [btnText]="'admin.go-to-goods' | translate"
-  (click)="goToGoods()"
-  borderRarius="6px"
-/>
+<app-breadcrumbs />
 
-<app-btn-flat 
-  [btnText]="'admin.create-product' | translate"
-  iconName="add"
-  iconColor="inherit"
-/> 
+<div class="container">
+  <div class="dashboard">
+    <app-today />
+
+    <app-btn-flat 
+      [btnText]="'admin.dashboard.go-to-goods' | translate"
+      (click)="goToGoods()"
+      borderRarius="6px"
+    />
+  <!--   
+    <app-btn-flat 
+      [btnText]="'admin.create-product' | translate"
+      iconName="add"
+      iconColor="inherit"
+    />  -->
+  </div>
+</div>

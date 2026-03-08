@@ -28,6 +28,16 @@
     },
     "favs": {
       "name": "Избранное"
+    },
+    "admin": {
+      "name": "Админ",
+      "url": "/ru/admin"
+    },
+    "dashboard": {
+      "name": "Панель управления"
+    },
+    "goods": {
+      "name": "Категории"
     }
   },
   "common": {
@@ -557,8 +567,14 @@
   },
   "admin": {
     "create-product": "Содать продукт",
-    "go-to-goods": "Перейти к товарам",
+    "dashboard": {
+      "title": "Привет, {{name}}!",
+      "subtitle": "Давай приступим к работе.",
+      "go-to-goods": "Перейти к категориям"
+    },
     "goods": {
+      "title": "Категории товаров",
+      "create-category": "Создать новую категорию",
       "add-category": {
         "title": "Добивить категорию",
         "edit-title": "Редактировать категорию",

@@ -1,0 +1,51 @@
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 64px;
+
+  &-title {
+    font-size: 48px;
+  }
+}
+
+.date-card {
+  padding: 8px;
+  border: 1px solid var(--mat-sys-primary);
+
+  &-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding-right: 16px;
+
+    &__circle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 56px;
+      height: 56px;
+      padding: 14px 15px 13px 15px;
+      border-radius: 50%;
+      background-color: var(--mat-sys-surface-bright);
+    }
+
+    &__text {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: center;
+      font-size: 0.875rem;
+      line-height: 120%;
+      color: var(--mat-sys-primary);
+    }
+  }
+}
+
+.day-number {
+  font-size: 1.5rem;
+  line-height: 120%;
+  color: var(--mat-sys-primary)
+}

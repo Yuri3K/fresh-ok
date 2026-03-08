@@ -1,0 +1,25 @@
+<div class="header-inner">
+  <div class="header-inner-left">
+    <div class="header-inner-title">
+      <app-h1-title
+        class="gradient"
+        [text]="('admin.dashboard.title' | translate : {name: (currentUser$ | async)?.displayName})"
+      >
+        {{'admin.dashboard.subtitle' | translate }}
+      </app-h1-title>
+    </div>
+  </div>
+  <div class="header-inner-right">
+    <mat-card class="date-card">
+      <div class="date-card-content">
+        <div class="date-card-content__circle">
+          <span class="day-number">{{ day }}</span>
+        </div>
+        <div class="date-card-content__text">
+          <div class="weekday">{{ weekday }}</div>
+          <div class="month">{{ month }}</div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>

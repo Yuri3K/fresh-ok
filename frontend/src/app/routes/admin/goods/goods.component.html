@@ -1,11 +1,23 @@
-<app-btn-flat 
-  [btnText]="'goods.add-category' | translate"
-  (click)="openAddCategoryDialog()"
-/>
+<app-breadcrumbs />
 
-<div class="goods__categories">
-  @for(category of categories(); track category.id) {
-    <app-category-card [category]="category"/>
-  }
+<div class="container">
+  <div class="goods">
+    <app-h2-title
+      [text]="'admin.goods.title' | translate"
+    />
+    
+    <app-btn-flat 
+      iconName="add"
+      iconColor="inherit"
+      [btnText]="'admin.goods.create-category' | translate"
+      (click)="openAddCategoryDialog()"
+    />
+    
+    <div class="goods__categories">
+      @for(category of categories(); track category.slug) {
+        <app-category-card [category]="category"/>
+      }
+    </div>
+  </div>
 </div>
 
