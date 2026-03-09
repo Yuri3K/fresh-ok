@@ -18,8 +18,8 @@
         <!-- (click)="selectCategory(item.slug)" -->
         <a
           [routerLink]="['/', lang.browserLang, 'products']"
-          [class.active]="item.slug == selectedCategory()"
           [queryParams]="{ category: item.slug }"
+          [class.active]="item.slug == selectedCategory()"
         >
           {{ item.name[lang.browserLang] }}
         </a>

@@ -27,7 +27,7 @@ export const routes: Routes = [
       {
         path: 'goods',
         data: { roles: ['superAdmin', 'admin', 'manager', 'customer'] },
-        component: GoodsComponent
+        loadChildren: () => import('../../../routes/admin/goods/goods.routes').then(m => m.routes)
       },
       {
         path: 'users-list',

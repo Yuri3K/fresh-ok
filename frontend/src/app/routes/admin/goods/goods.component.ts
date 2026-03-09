@@ -42,7 +42,6 @@ export class GoodsComponent {
             url: brcrs.admin.url,
             icon: 'manage_accounts',
           },
-
           {
             label: brcrs.goods.name,
           },

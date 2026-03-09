@@ -1,6 +1,5 @@
 <mat-card appearance="outlined">
   @if(isLoading()) {
-    <!-- <mat-spinner [diameter]="180"/> -->
      <app-loader />
   } @else {
     <mat-card-header>
@@ -13,6 +12,10 @@
       <app-menu class="icon-menu" [options]="menuOptions()"/>
     </mat-card-header>
     <div class="category-card__img">
+      <a 
+        class="category-card__link"
+        [routerLink]="['/', currentLang(), 'admin', 'goods', 'category', category().slug]"
+      ></a>
       @if(categoryImg()) {
         <img 
           mat-card-image 

@@ -15,6 +15,7 @@ import { DeleteDialogComponent } from '@shared/components/dialogs/delete-dialog/
 import { finalize, switchMap } from 'rxjs';
 import { LoaderComponent } from "@shared/components/loader/loader.component";
 import { SnackbarService } from '@core/services/snackbar.service';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-category-card',
@@ -23,8 +24,9 @@ import { SnackbarService } from '@core/services/snackbar.service';
     MatIconModule,
     H5TitleComponent,
     MenuComponent,
-    LoaderComponent
-  ],
+    LoaderComponent,
+    RouterLink
+],
   templateUrl: './category-card.component.html',
   styleUrl: './category-card.component.scss'
 })

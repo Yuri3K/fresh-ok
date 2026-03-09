@@ -13,6 +13,7 @@ mat-card {
   }
 
   .category-card__img {
+    position: relative;
     background-color: var(--mat-sys-secondary);
     border-radius: 8px;
     display: flex;
@@ -26,6 +27,15 @@ mat-card {
     img {
       width: 100%;
       height: 100%;
+    }
+
+    .category-card__link {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
     }
   }
 }
