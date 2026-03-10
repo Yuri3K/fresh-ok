@@ -1,25 +1,33 @@
-import { Component, computed, effect, inject, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component,  effect,  inject, input, OnDestroy } from '@angular/core';
+import { BreadcrumbsComponent } from "@shared/components/breadcrumbs/breadcrumbs.component";
+import { AdminProductCardComponent } from "@shared/components/product-cards/admin-product-card/admin-product-card.component";
+import { AdminCategoryStateService } from '@core/services/admin/admin-category-state.service';
+import { Breadcrumb, BreadcrumbsService } from '@shared/components/breadcrumbs/breadcrumbs.service';
+import { GetCurrentLangService } from '@core/services/get-current-lang.service';
 import { ActivatedRoute } from '@angular/router';
-import { ApiService } from '@core/services/api.service';
-import { ProductsService } from '@core/services/products.service';
-import { Pagination, Product } from '@shared/models';
-import { debounceTime, distinctUntilChanged, map } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { distinctUntilChanged } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-admin-category',
-  imports: [],
+  imports: [
+    BreadcrumbsComponent, 
+    AdminProductCardComponent,
+    TranslateModule,
+  ],
   templateUrl: './admin-category.component.html',
-  styleUrl: './admin-category.component.scss'
+  styleUrl: './admin-category.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AdminCategoryComponent {
-  private readonly apiService = inject(ApiService)
+export class AdminCategoryComponent implements OnDestroy {
+  private readonly stateService = inject(AdminCategoryStateService)
+  private readonly breadcrumbsService = inject(BreadcrumbsService)
   private readonly route = inject(ActivatedRoute)
-  private readonly productsService = inject(ProductsService);
 
-  protected readonly isLoading = signal(false);
-  protected readonly productsList = signal<Product[]>([])
-  protected readonly pagination = signal<Pagination>({} as Pagination)
+  protected readonly productsList = this.stateService.products
+  protected readonly isLoading = this.stateService.isLoading
+  private readonly currentLang = inject(GetCurrentLangService).currentLang
 
   private readonly params = toSignal(
     this.route.paramMap.pipe(
@@ -35,46 +43,48 @@ export class AdminCategoryComponent {
     { requireSync: true }
   );
 
-  private readonly currentPage = computed(() => {
-    const page = this.queryParams()?.get('page');
-    return page ? parseInt(page, 10) : 1;
-  });
-
-  private readonly filterQuery = computed(() => {
-    const category = this.params().get('slug');
-    const page = this.currentPage();
-
-    return [
-      `page=${page}`,
-      `limit=3`,
-      `category=${category === 'all' || !category ? '' : category}`,
-    ]
-  });
-
-   constructor() {
+  constructor() {
     effect(() => {
-      console.log("🚀 ~ this.filterQuery():", this.filterQuery())
-      if (this.filterQuery()) this.getProductsByFilter();
-    });
+      const brcrs = this.breadcrumbsService.brcrTranslations()
+      const currentCategory = this.stateService.currentCategory()
+
+      if (brcrs && currentCategory) {
+        const breadcrumbs: Breadcrumb[] = [
+          {
+            label: brcrs.admin.name,
+            url: brcrs.admin.url,
+            icon: 'manage_accounts',
+          },
+          {
+            label: brcrs.goods.name,
+            url: brcrs.goods.url,
+          },
+          {
+            label: currentCategory.name[this.currentLang()],
+          },
+        ]
+        this.breadcrumbsService.setBreadcrumbs(breadcrumbs)
+      }
+    })
+
+    effect(() => {
+      const params = this.params()
+      if(Object.keys(params).length) {
+        this.stateService.setParams(params)
+      }
+    })
+
+    effect(() => {
+      const queryParams = this.queryParams()
+      if(Object.keys(queryParams).length) {
+        this.stateService.setQueryParams(queryParams)
+      }
+    })
   }
 
-  private getProductsByFilter() {
-    this.isLoading.set(true);
-
-    this.productsService
-      .getProducts(this.filterQuery())
-      .pipe(debounceTime(100))
-      .subscribe({
-        next: (res) => {
-          console.log("🚀 ~ res:", res)
-          this.isLoading.set(false);
-          this.productsList.set(res.data);
-          this.pagination.set(res.pagination);
-        },
-        error: (err) => {
-          console.error('Error loading products:', err);
-          this.isLoading.set(false);
-        },
-      });
+  ngOnDestroy(): void {
+    this.stateService.resetState()
   }
+
+
 }

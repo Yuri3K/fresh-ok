@@ -1,1 +1,15 @@
-<p>admin-category works!</p>
+<app-breadcrumbs />
+
+<div class="container">
+  <div class="admin-category">
+    <div class="admin-category__products">
+      @for (product of productsList(); track $index) {
+        <app-admin-product-card
+          [product]="product"
+        />
+      } @empty {
+        <p>{{'admin.admin-categories.empty-products' | translate}}</p>
+      }
+    </div>
+  </div>
+</div>

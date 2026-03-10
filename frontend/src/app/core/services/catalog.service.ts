@@ -62,7 +62,9 @@ export class CatalogService {
     return this.apiService.get<CatalogItem[]>('/catalog/admin')
       .pipe(
         take(1),
-        tap(catalog => this._catalogListAdmin.set(catalog)),
+        tap(catalog => {
+          this._catalogListAdmin.set(catalog)
+        }),
         catchError(err => {
           console.log("Error fetching admin catalog", err)
           return throwError(() => err)

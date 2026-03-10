@@ -37,7 +37,8 @@
       "name": "Dashboard"
     },
     "goods": {
-      "name": "Categories"
+      "name": "Categories",
+      "url": "/en/admin/goods"
     }
   },
   "common": {
@@ -592,6 +593,9 @@
         "not-removed-message": "Cannot delete category: it contains products. Please remove products first.",
         "forbidden-remove-message": "This category will not be deleted"
       }
+    },
+    "admin-categories": {
+      "empty-products": "There are no products in this category."
     }
   }
 }

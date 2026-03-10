@@ -15,7 +15,9 @@
     
     <div class="goods__categories">
       @for(category of categories(); track category.slug) {
-        <app-category-card [category]="category"/>
+        <app-category-card 
+          [category]="category"
+        />
       }
     </div>
   </div>

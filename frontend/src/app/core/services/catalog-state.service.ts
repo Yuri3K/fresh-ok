@@ -28,9 +28,9 @@ export class CatalogStateService {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private breakpointObserver = inject(BreakpointObserver);
-  private restoreScrollService = inject(RestoreScrollService)
+  private readonly restoreScrollService = inject(RestoreScrollService)
 
-  private userPrefferedView = signal<View>('grid');
+  private readonly userPrefferedView = signal<View>('grid');
   readonly isLoading = signal(false);
   readonly productsContainerWidth = signal(0);
   readonly products = signal<Product[]>([]);
