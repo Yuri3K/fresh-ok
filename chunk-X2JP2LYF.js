@@ -1,0 +1,1 @@
+import"./chunk-C6Q5SG76.js";var o=[{path:"",data:{breadcrumb:"products"},children:[{path:"",loadComponent:()=>import("./chunk-PCP3BQQX.js").then(t=>t.ProductsComponent)},{path:":slug",loadComponent:()=>import("./chunk-KBTGF25J.js").then(t=>t.ProductDetailComponent),data:{breadcrumb:(t,a)=>a.slug}}]}];export{o as routes};
