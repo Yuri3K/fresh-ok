@@ -1,0 +1,57 @@
+.admin-card {
+  position: relative;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--mat-sys-on-tertiary-container);
+  width: 350px;
+  transition: box-shadow 0.2s;
+  display: flex;
+  gap: 12px;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 0 2px 1px var(--mat-sys-on-tertiary-container);
+  }
+}
+
+app-product-badges {
+  z-index: 1;
+  position: absolute;
+  left: 13px;
+  top: 13px;
+}
+
+.admin-card__content {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+  gap: 5px;
+  width: 100%;
+}
+
+.admin-card__title {
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  letter-spacing: 0.5px;
+  min-height: 60px;
+  overflow: hidden;
+  display: -webkit-box;
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+
+.admin-card__img {
+  border-radius: 6px;
+}
+
+.admin-card__footer{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}

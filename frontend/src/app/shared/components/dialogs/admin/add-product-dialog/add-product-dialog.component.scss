@@ -1,0 +1,17 @@
+@use 'mixins/castom-scrollbar' as *;
+
+.admin-product {
+  border: 2px solid var(--mat-sys-primary);
+  border-radius: 28px;
+  height: 100%;
+}
+
+.admin-product__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  app-h3-title {
+    flex: 1;
+  }
+}

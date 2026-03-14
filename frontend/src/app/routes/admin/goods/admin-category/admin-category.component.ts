@@ -9,6 +9,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { distinctUntilChanged } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
 import { AdminPaginationComponent } from "../admin-pagination/admin-pagination.component";
+import { LoaderComponent } from "@shared/components/loader/loader.component";
 
 @Component({
   selector: 'app-admin-category',
@@ -16,7 +17,8 @@ import { AdminPaginationComponent } from "../admin-pagination/admin-pagination.c
     BreadcrumbsComponent,
     AdminProductCardComponent,
     TranslateModule,
-    AdminPaginationComponent
+    AdminPaginationComponent,
+    LoaderComponent
 ],
   templateUrl: './admin-category.component.html',
   styleUrl: './admin-category.component.scss',
@@ -26,10 +28,11 @@ export class AdminCategoryComponent implements OnDestroy {
   private readonly stateService = inject(AdminCategoryStateService)
   private readonly breadcrumbsService = inject(BreadcrumbsService)
   private readonly route = inject(ActivatedRoute)
+  private readonly currentLang = inject(GetCurrentLangService).currentLang
 
   protected readonly productsList = this.stateService.products
   protected readonly isLoading = this.stateService.isLoading
-  private readonly currentLang = inject(GetCurrentLangService).currentLang
+
 
   private readonly params = toSignal(
     this.route.paramMap.pipe(

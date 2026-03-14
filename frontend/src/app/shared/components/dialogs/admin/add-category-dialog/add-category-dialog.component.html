@@ -1,80 +1,82 @@
-<div class="category__header" mat-dialog-title>
-  <app-h3-title 
-    [text]="isEditMode() 
-     ? ('admin.goods.add-category.edit-title' | translate)
-     : ('admin.goods.add-category.title' | translate)"
-  />
-  <app-btn-icon 
-    iconName="close"
-    [tooltipText]="'common.close' | translate"
-    (click)="dialogRef.close()"
-  />
+<div class="category">
+  <div class="category__header" mat-dialog-title>
+    <app-h3-title 
+      [text]="isEditMode() 
+       ? ('admin.goods.add-category.edit-title' | translate)
+       : ('admin.goods.add-category.title' | translate)"
+    />
+    <app-btn-icon 
+      iconName="close"
+      [tooltipText]="'common.close' | translate"
+      (click)="dialogRef.close()"
+    />
+  </div>
+  
+  <mat-dialog-content>
+    <form 
+      class="category__form"
+      [formGroup]="categoryForm"
+    >
+      <div class="category__slug-order">
+        <app-form-control-input 
+          class="category__slug"
+          [inputControl]="slugControl"
+          [label]="'admin.goods.add-category.slug' | translate"
+          [maxLength]="maxLengthSlug"
+        />
+  
+        <app-form-control-input-number 
+          class="category__order"
+          [inputControl]="orderControl"
+          [label]="'admin.goods.add-category.order' | translate"
+          [errorMessage]="'admin.goods.add-category.order-error' | translate"
+          [maxNum]="maxOrder"
+        />
+      </div>
+  
+      <div class="category__names">
+        <app-form-control-name 
+          [nameControl]="ruNameControl"
+          [maxLength]="maxLengthName"
+          [label]="'admin.goods.add-category.ru-name' | translate"
+        />
+  
+        <app-form-control-name 
+          [nameControl]="ukNameControl"
+          [maxLength]="maxLengthName"
+          [label]="'admin.goods.add-category.uk-name' | translate"
+        />
+  
+        <app-form-control-name 
+          [nameControl]="enNameControl"
+          [maxLength]="maxLengthName"
+          [label]="'admin.goods.add-category.en-name' | translate"
+        />
+      </div>
+  
+      <app-form-control-file 
+        [fileControl]="imageFileControl"
+        [existingImageUrl]="currentImageUrl()"
+      />
+  
+      <app-form-control-checkbox
+        [checkboxControl]="publishedControl"
+        [label]="'admin.goods.add-category.checkbox' | translate"
+        [checkboxDisabled]="!formComplete()"
+      />
+    </form>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+    @if(uploading()) {
+      <mat-spinner diameter="40"/>
+    } @else {
+      <app-btn-flat 
+        [btnText]="'common.save' | translate"
+        type="submit"
+        [btnDisabled]="categoryForm.invalid"
+        (click)="onSubmit()"
+      />
+    }
+  </mat-dialog-actions>
 </div>
-
-<mat-dialog-content>
-  <form 
-    class="category__form"
-    [formGroup]="categoryForm"
-  >
-    <div class="category__slug-order">
-      <app-form-control-input 
-        class="category__slug"
-        [inputControl]="slugControl"
-        [label]="'admin.goods.add-category.slug' | translate"
-        [maxLength]="maxLengthSlug"
-      />
-
-      <app-form-control-input-number 
-        class="category__order"
-        [inputControl]="orderControl"
-        [label]="'admin.goods.add-category.order' | translate"
-        [errorMessage]="'admin.goods.add-category.order-error' | translate"
-        [maxNum]="maxOrder"
-      />
-    </div>
-
-    <div class="category__names">
-      <app-form-control-name 
-        [nameControl]="ruNameControl"
-        [maxLength]="maxLengthName"
-        [label]="'admin.goods.add-category.ru-name' | translate"
-      />
-
-      <app-form-control-name 
-        [nameControl]="ukNameControl"
-        [maxLength]="maxLengthName"
-        [label]="'admin.goods.add-category.uk-name' | translate"
-      />
-
-      <app-form-control-name 
-        [nameControl]="enNameControl"
-        [maxLength]="maxLengthName"
-        [label]="'admin.goods.add-category.en-name' | translate"
-      />
-    </div>
-
-    <app-form-control-file 
-      [fileControl]="imageFileControl"
-      [existingImageUrl]="currentImageUrl()"
-    />
-
-    <app-form-control-checkbox
-      [checkboxControl]="publishedControl"
-      [label]="'admin.goods.add-category.checkbox' | translate"
-      [checkboxDisabled]="!formComplete()"
-    />
-  </form>
-</mat-dialog-content>
-
-<mat-dialog-actions>
-  @if(uploading()) {
-    <mat-spinner diameter="40"/>
-  } @else {
-    <app-btn-flat 
-      [btnText]="'common.save' | translate"
-      type="submit"
-      [btnDisabled]="categoryForm.invalid"
-      (click)="onSubmit()"
-    />
-  }
-</mat-dialog-actions>

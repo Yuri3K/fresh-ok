@@ -53,7 +53,7 @@ export class GoodsComponent {
 
   protected openAddCategoryDialog() {
     this.dialog.open(AddCategoryDialogComponent, {
-      panelClass: ['dialog-category'],
+      panelClass: ['dialog-full-width'],
       width: '100vw',
       maxWidth: '650px',
       backdropClass: 'categiry-dialog-overlay',

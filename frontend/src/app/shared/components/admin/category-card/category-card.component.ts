@@ -78,7 +78,6 @@ export class CategoryCardComponent {
 
   private openDialogCategory(category: CatalogItem) {
     this.dialog.open(AddCategoryDialogComponent, {
-      panelClass: ['dialog-category'],
       width: '100vw',
       maxWidth: '650px',
       backdropClass: 'categiry-dialog-overlay',

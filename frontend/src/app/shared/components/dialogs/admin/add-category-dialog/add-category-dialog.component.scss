@@ -1,11 +1,8 @@
 @use 'mixins/castom-scrollbar' as *;
 
-:host {
-  border: 1px solid var(--mat-sys-primary);
-
-  mat-dialog-container {
-    margin: 0 !important;
-  }
+.category {
+  border: 2px solid var(--mat-sys-primary);
+  border-radius: 28px;
 }
 
 .category__header {

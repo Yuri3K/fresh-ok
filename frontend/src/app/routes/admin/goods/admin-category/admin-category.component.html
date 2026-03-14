@@ -2,15 +2,19 @@
 
 <div class="container">
   <div class="admin-category">
-    <div class="admin-category__products">
-      @for (product of productsList(); track $index) {
-        <app-admin-product-card
-          [product]="product"
-        />
-      } @empty {
-        <p>{{'admin.admin-categories.empty-products' | translate}}</p>
-      }
-    </div>
+    @if(isLoading()) {
+      <app-loader />
+    } @else {
+      <div class="admin-category__products">
+        @for (product of productsList(); track $index) {
+          <app-admin-product-card
+            [product]="product"
+          />
+        } @empty {
+          <p>{{'admin.admin-categories.empty-products' | translate}}</p>
+        }
+      </div>
+    }
   </div>
 
   <app-admin-pagination />

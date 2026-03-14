@@ -2,6 +2,10 @@ mat-card {
   width: 250px;
   height: auto;
 
+  &:hover {
+    border: 1px solid var(--mat-sys-primary);
+  }
+
   app-loader {
     height: 242px;
   }

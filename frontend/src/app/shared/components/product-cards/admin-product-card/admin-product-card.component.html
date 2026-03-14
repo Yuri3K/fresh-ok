@@ -1,1 +1,33 @@
-<p>{{product().i18n[currentLang()].name}}</p>
+<div class="admin-card"
+  (click)="openAddProductDialog()"
+>
+  <app-product-badges 
+		class="badge-mini"
+		[product]="product()"
+	/>
+
+  <img 
+    width="125"
+    height="125"
+    draggable="false"
+    class="admin-card__img"
+    [src]="imgUrl()" 
+    [alt]="product().i18n[currentLang()].name"
+  >
+
+	<div class="admin-card__content">
+		<h3 class="admin-card__title" >
+			{{product().i18n[currentLang()].name}}
+		</h3>
+
+		<app-product-status [status]="product().stock"/>
+
+		<div class="admin-card__footer">
+			<app-product-price 
+				class="price-row"
+				[product]="product()" 
+			/>
+			<app-product-rate [rate]="product().rate" />
+		</div>
+	</div>
+</div>

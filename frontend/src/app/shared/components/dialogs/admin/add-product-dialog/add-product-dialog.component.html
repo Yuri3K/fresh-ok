@@ -1,0 +1,14 @@
+<div class="admin-product">
+  <div class="admin-product__header" mat-dialog-title>
+    <app-h3-title 
+      [text]="isEditMode() 
+       ? ('admin.goods.add-category.edit-title' | translate)
+       : ('admin.goods.add-category.title' | translate)"
+    />
+    <app-btn-icon 
+      iconName="close"
+      [tooltipText]="'common.close' | translate"
+      (click)="dialogRef.close()"
+    />
+  </div>
+</div>
