@@ -566,7 +566,7 @@
   "admin": {
     "create-product": "Create product",
     "dashboard": {
-      "title": "Привіт, {{name}}!",
+      "title": "Hello, {{name}}!",
       "subtitle": "Let’s get the job done.",
       "go-to-goods": "Go to categories"
     },

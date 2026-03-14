@@ -8,14 +8,16 @@ import { ActivatedRoute } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { distinctUntilChanged } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
+import { AdminPaginationComponent } from "../admin-pagination/admin-pagination.component";
 
 @Component({
   selector: 'app-admin-category',
   imports: [
-    BreadcrumbsComponent, 
+    BreadcrumbsComponent,
     AdminProductCardComponent,
     TranslateModule,
-  ],
+    AdminPaginationComponent
+],
   templateUrl: './admin-category.component.html',
   styleUrl: './admin-category.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

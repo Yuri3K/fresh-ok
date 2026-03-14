@@ -567,7 +567,7 @@
   "admin": {
     "create-product": "Створити продукт",
     "dashboard": {
-      "title": "Hello, {{name}}!",
+      "title": "Привіт, {{name}}!",
       "subtitle": "Давай виконаємо роботу.",
       "go-to-goods": "Перейти до категорій"
     },
