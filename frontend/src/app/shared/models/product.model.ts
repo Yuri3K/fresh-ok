@@ -5,6 +5,8 @@ export type stockStatus = 'in-stock' | 'low-stock' | 'out-of-stock';
 export interface Product {
   id: string;
   publicId: string;
+  version: number;
+  slides: ProductSlide[];
   badges: Badge[];
   category: string;
   currency: string;
@@ -26,6 +28,12 @@ export interface Product {
   reviews: Review[];
   createdAt: number;
   updatedAt: number;
+}
+
+export interface ProductSlide {
+  publicId: string
+  version: number
+  order: number
 }
 
 export interface CharacteristicItem {

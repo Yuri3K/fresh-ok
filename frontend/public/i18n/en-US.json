@@ -573,6 +573,7 @@
     "goods": {
       "title": "Product categories",
       "create-category": "Create new category",
+      "empty-products": "There are no products in this category.",
       "add-category": {
         "title": "Add category",
         "edit-title": "Edit category",
@@ -593,9 +594,6 @@
         "not-removed-message": "Cannot delete category: it contains products. Please remove products first.",
         "forbidden-remove-message": "This category will not be deleted"
       }
-    },
-    "admin-categories": {
-      "empty-products": "There are no products in this category."
     }
   }
 }

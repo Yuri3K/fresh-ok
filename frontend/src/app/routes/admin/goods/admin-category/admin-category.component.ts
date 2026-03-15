@@ -18,7 +18,7 @@ import { LoaderComponent } from "@shared/components/loader/loader.component";
     AdminProductCardComponent,
     TranslateModule,
     AdminPaginationComponent,
-    LoaderComponent
+    LoaderComponent,
 ],
   templateUrl: './admin-category.component.html',
   styleUrl: './admin-category.component.scss',

@@ -11,4 +11,10 @@
       (click)="dialogRef.close()"
     />
   </div>
+
+  <mat-dialog-content>
+    <app-product-slides 
+      [product]="product()"
+    />
+  </mat-dialog-content>
 </div>

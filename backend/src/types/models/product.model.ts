@@ -3,6 +3,8 @@ import { LangCode } from "./lang.model";
 export interface Product {
   id: string;
   publicId: string;
+  version: number;
+  slides: ProductSlide[];
   badges: string[];
   category: string;
   currency: string;
@@ -24,6 +26,12 @@ export interface Product {
   reviews: Review[],
   createdAt: number;
   updatedAt: number;
+}
+
+export interface ProductSlide {
+  publicId: string
+  version: number
+  order: number
 }
 
 interface CharacteristicItem {

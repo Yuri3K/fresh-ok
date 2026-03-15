@@ -4,7 +4,9 @@ import { CharacteristicItem, Product, ProductTexts, Review, Stock } from '@share
 
 const EMPTY_PRODUCT: Product = { 
   id: '', 
-  publicId: '', 
+  publicId: '',
+  version: 0, 
+  slides: [],
   badges: [], 
   category: '', 
   currency: '', 

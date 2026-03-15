@@ -1,0 +1,30 @@
+@let translations = ('admin.goods.product' | translate);
+
+<div class="product-slides">
+  <div class="product-slides__header">
+    <app-h6-title
+      [text]="translations['slides-title'] | translate"
+    />
+
+    <app-btn-icon 
+      iconName="add"
+      [tooltipText]="translations['add-slide']"
+      [ariaLabel]="translations['add-slide']"
+    />
+  </div>
+
+  <div 
+    cdkDropList
+    (cdkDropListDropped)="drop($event)"
+    class="product-slides__content"
+  >
+    @if(slides()) {
+      @for (slide of slides(); track $index) {
+        <div cdkDrag class="product-slides__card">
+          <span class="product-slides__order">{{slide.order}}</span>
+          <img width="130" height="130" [src]="slide.imgUrl">
+        </div>
+      }
+    }
+  </div>
+</div>

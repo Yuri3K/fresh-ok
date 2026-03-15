@@ -4,6 +4,8 @@
   border: 2px solid var(--mat-sys-primary);
   border-radius: 28px;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .admin-product__header {
@@ -14,4 +16,8 @@
   app-h3-title {
     flex: 1;
   }
+}
+
+mat-dialog-content {
+  max-height: unset;
 }
