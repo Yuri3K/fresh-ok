@@ -1,0 +1,17 @@
+@let translations = ('admin.goods.product.add-slide-dialog' | translate);
+
+<div class="add-slide">
+  <div 
+    class="add-slide__header"
+    mat-dialog-title
+  >
+    <app-h4-title [text]="translations['title']"/>
+
+    <app-btn-icon 
+      class="delete-dialog__close"
+      iconName="close"
+      [tooltipText]="'common.close' | translate"
+      (click)="dialogRef.close()"
+    />
+  </div>
+</div>

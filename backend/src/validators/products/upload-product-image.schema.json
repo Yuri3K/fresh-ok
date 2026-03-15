@@ -1,0 +1,23 @@
+{
+  "$id": "validators/products/upload-product-image.schema.json",
+  "title": "Upload Product Image Request",
+  "type": "object",
+  "required": ["category", "slug"],
+  "additionalProperties": false,
+  "properties": {
+    "category": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 50,
+      "pattern": "^[a-z0-9-]+$",
+      "description": "Category slug (lowercase, numbers, hyphens only)"
+    },
+    "slug": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 50,
+      "pattern": "^[a-z0-9-]+$",
+      "description": "Product slug (lowercase, numbers, hyphens only)"
+    }
+  }
+}

@@ -14,6 +14,8 @@ import reviewsRoutes from './reviewsRoutes'
 import cartRoutes from './cartRoutes'
 import favsRoutes from './favsRoutes'
 import categoryImageRoutes from './categoryImageRoutes'
+import productImageRoutes from './productImageRoutes'
+import productSlideRoutes from './productSlideRoutes'
 
 const router = express.Router()
 
@@ -32,5 +34,7 @@ router.use('/badges',  badgesRoutes)
 router.use('/reviews',  reviewsRoutes)
 router.use('/cart',  cartRoutes)
 router.use('/favs',  favsRoutes)
+router.use('/product-image', productImageRoutes)
+router.use('/product-slide', productSlideRoutes)
 
 export default router

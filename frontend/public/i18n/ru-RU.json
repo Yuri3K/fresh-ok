@@ -601,7 +601,10 @@
         "create-product": "Содать продукт",
         "edit-product": "Редактировать продукт",
         "slides-title": "Слайды",
-        "add-slide": "Добавить слайд"
+        "add-slide": "Добавить слайд",
+        "add-slide-dialog": {
+          "title": "Добавить слайд"
+        }
       }
     }
   }

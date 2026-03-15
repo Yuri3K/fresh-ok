@@ -1,0 +1,15 @@
+.add-slide {
+  border: 2px solid var(--mat-sys-primary);
+  border-radius: 28px;
+  height: 100%;
+}
+
+.add-slide__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+}
+
+app-h4-title {
+  width: 100%;
+}

@@ -1,0 +1,71 @@
+<form [formGroup]="basicForm" class="step1">
+  <h4>{{ 'admin.goods.product.step1.title' | translate }}</h4>
+
+  <!-- Категория -->
+  <mat-form-field>
+    <mat-label>{{ 'admin.goods.product.category' | translate }}</mat-label>
+    <mat-select formControlName="category">
+      @for (cat of categories(); track cat.slug) {
+        <mat-option [value]="cat.slug">
+          {{ cat.name['en'] }}
+        </mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Slug -->
+  <app-form-control-input
+    [inputControl]="basicForm.controls.slug"
+    [label]="'admin.goods.product.slug' | translate"
+    [maxLength]="50"
+  />
+
+  <!-- Названия -->
+  <app-form-control-name
+    [nameControl]="basicForm.controls.nameRu"
+    [label]="'admin.goods.product.name-ru' | translate"
+    [maxLength]="100"
+  />
+
+  <app-form-control-name
+    [nameControl]="basicForm.controls.nameUk"
+    [label]="'admin.goods.product.name-uk' | translate"
+    [maxLength]="100"
+  />
+
+  <app-form-control-name
+    [nameControl]="basicForm.controls.nameEn"
+    [label]="'admin.goods.product.name-en' | translate"
+    [maxLength]="100"
+  />
+
+  <!-- Цена -->
+  <div class="price-row">
+    <app-form-control-input
+      [inputControl]="basicForm.controls.price"
+      [label]="'admin.goods.product.price' | translate"
+      type="number"
+    />
+
+    <mat-form-field>
+      <mat-label>{{ 'admin.goods.product.currency' | translate }}</mat-label>
+      <mat-select formControlName="currency">
+        <mat-option value="UAH">UAH</mat-option>
+        <mat-option value="USD">USD</mat-option>
+        <mat-option value="EUR">EUR</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- Код товара -->
+  <app-form-control-input
+    [inputControl]="basicForm.controls.code"
+    [label]="'admin.goods.product.code' | translate"
+  />
+
+  <app-btn-flat
+    [btnText]="'common.next' | translate"
+    [btnDisabled]="basicForm.invalid"
+    (click)="onNext()"
+  />
+</form>

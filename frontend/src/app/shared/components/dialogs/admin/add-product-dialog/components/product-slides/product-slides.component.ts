@@ -6,6 +6,8 @@ import { Product } from '@shared/models';
 import { BtnIconComponent } from "@shared/ui-elems/buttons/btn-icon/btn-icon.component";
 import { H6TitleComponent } from "@shared/ui-elems/typography/h6-title/h6-title.component";
 import { CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray } from '@angular/cdk/drag-drop';
+import { MatDialog } from '@angular/material/dialog';
+import { AddProductSlideDialogComponent } from '../../../add-product-slide-dialog/add-product-slide-dialog.component';
 
 @Component({
   selector: 'app-product-slides',
@@ -22,6 +24,7 @@ import { CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray } from '@angular/cdk
 })
 export class ProductSlidesComponent {
   readonly product = input<Product>()
+  private readonly dialog = inject(MatDialog)
 
   protected currentLang = inject(GetCurrentLangService).currentLang
 
@@ -39,7 +42,24 @@ export class ProductSlidesComponent {
 
   })
 
-  drop(event: CdkDragDrop<string[]>) {
+  protected drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.slides()!, event.previousIndex, event.currentIndex);
+  }
+
+  protected openAddSlideDialog() {
+    const addSlideDialog = this.dialog.open(AddProductSlideDialogComponent, {
+      panelClass: [],
+      width: '100vw',
+      maxWidth: '700px',
+      enterAnimationDuration: '150ms',
+      exitAnimationDuration: '150ms',
+    })
+
+    addSlideDialog.afterClosed().subscribe(result => {
+      console.log("🚀 ~ result:", result)
+      if (result) {
+
+      }
+    })
   }
 }

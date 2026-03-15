@@ -1,0 +1,29 @@
+{
+  "$id": "validators/products/upload-product-slide.schema.json",
+  "title": "Upload Product Slide Request",
+  "type": "object",
+  "required": ["category", "slug", "order"],
+  "additionalProperties": false,
+  "properties": {
+    "category": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 100,
+      "pattern": "^[a-z0-9-]+$",
+      "description": "Category slug (lowercase, numbers, hyphens only)"
+    },
+    "slug": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 100,
+      "pattern": "^[a-z0-9-]+$",
+      "description": "Product slug (lowercase, numbers, hyphens only)"
+    },
+    "order": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 10,
+      "description": "Slide order number (1, 2, 3, ...)"
+    }
+  }
+}
